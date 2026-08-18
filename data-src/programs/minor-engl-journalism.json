@@ -1,0 +1,50 @@
+{
+  "id": "minor-engl-journalism",
+  "type": "minor",
+  "name": "Journalism",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "humanities",
+  "departments": ["ENGL"],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/eng/undergraduate/minors/",
+  "sourcedOn": "2026-08-01",
+  "snapshot": "data-src/pages/eng/eng_undergraduate_minors.html",
+  "programChecks": { "totalCourses": 6, "minFromDepts": { "depts": ["ENGL"], "n": 6 }, "max100Level": 4 },
+  "notes": [
+    "Six courses, five of which must be taken while at the University of Rochester. No more than two courses in one's major may overlap with the minor.",
+    "The practicum option ENGL 388+389 is a two-course pair; the app models the practicum group as single courses, so choosing that route consumes two of the six.",
+    "Any remaining courses may be chosen from the 200- and 300-level courses in literature or criticism."
+  ],
+  "requirementGroups": [
+    {
+      "id": "core",
+      "label": "News reporting and feature writing",
+      "rule": { "type": "all_of", "courses": ["ENGL 131", "ENGL 132"] },
+      "sourceQuote": "ENGL 131: Reporting and Writing the News; ENGL 132: Feature Writing"
+    },
+    {
+      "id": "writing-choice",
+      "label": "Writing or rhetoric course",
+      "rule": { "type": "n_of", "n": 1, "options": [
+        "ENGL 105", "ENGL 121", "ENGL 122", "ENGL 125", "ENGL 138", "ENGL 281", "ENGL 282", "ENGL 283"] },
+      "sourceQuote": "At least one of the following: ENGL 105: Intro to Rhetoric; ENGL 121: Creative Writing: Fiction; ENGL 122: Creative Writing: Poetry; ENGL 125: Speculative Fiction; ENGL 138: Journalism Case Studies; ENGL 281: Creative Nonfiction; ENGL 282: Humor Writing; ENGL 283: Journalism and Media (Topics)"
+    },
+    {
+      "id": "practice",
+      "label": "Editing, practicum, independent study or internship (2)",
+      "rule": { "type": "n_of", "n": 2, "options": [
+        "ENGL 133", "ENGL 388", "ENGL 389", "ENGL 391", "ENGL 394"] },
+      "sourceQuote": "At least two of the following: ENGL 133: Editing; ENGL 388+389: Practicum in Academic Publishing and Editing I + II; ENGL 391: Independent Study (in Journalism); ENGL 394: Internship"
+    },
+    {
+      "id": "additional",
+      "label": "Literature or criticism at the 200-300 level",
+      "rule": { "type": "n_from_filter", "n": 1,
+                "filter": { "depts": ["ENGL"], "minNumber": 200, "maxNumber": 399,
+                            "exclude": ["ENGL 281", "ENGL 282", "ENGL 283",
+                                        "ENGL 388", "ENGL 389", "ENGL 391", "ENGL 394"] } },
+      "sourceQuote": "Additional courses can be chosen from the 200- and 300-level courses in literature or criticism."
+    }
+  ]
+}

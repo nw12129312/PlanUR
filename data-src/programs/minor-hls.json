@@ -1,0 +1,68 @@
+{
+  "id": "minor-hls",
+  "type": "minor",
+  "name": "Health, Behavior, and Society",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "social-sciences",
+  "departments": [
+    "PHLT"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/ph/undergraduate/minors.html",
+  "sourcedOn": "2026-08-01",
+  "snapshot": "data-src/pages/ph/ph_undergraduate_minors.html",
+  "overlapCapOverride": 1,
+  "programChecks": {
+    "totalCourses": 6,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Six courses. Fulfils the social sciences academic division of the Rochester Curriculum.",
+    "Students may major, minor, OR complete a cluster within the public health-related programs, but not more than one.",
+    "No more than ONE course may overlap between a public health minor and another program of study - stricter than the College's usual two-course cap, so overlapCapOverride is set to 1.",
+    "Several electives carry validity windows or class-year restrictions noted on the page (MHB 220 valid until fall 2023; MHB 420U from spring 2025; PHLT 216 until spring 2022; the MHB 4xxU courses are open to juniors and seniors)."
+  ],
+  "requirementGroups": [
+    {
+      "id": "core",
+      "label": "Required courses",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "PHLT 101",
+          "PHLT 116"
+        ]
+      },
+      "sourceQuote": "Required Courses: PHLT 101: Introduction to Public Health I; PHLT 116: Introduction to the U.S. Health System"
+    },
+    {
+      "id": "electives",
+      "label": "Electives (4)",
+      "rule": {
+        "type": "n_of",
+        "n": 4,
+        "options": [
+          "ANTH 216",
+          "GSWS 206",
+          "PHLT 206",
+          "HIST 359W",
+          "HIST 373W",
+          "HIST 383W",
+          "MHB 220",
+          "MHB 420U",
+          "MHB 473U",
+          "MHB 480U",
+          "PHLT 216",
+          "PHLT 236",
+          "PHLT 230",
+          "PHLT 240",
+          "PHLT 265W",
+          "PSYC 283"
+        ]
+      },
+      "sourceQuote": "Plus four of the following: ANTH 216: Medical Anthropology; GSWS 206/PHLT 206: The Global Politics of Gender and Health; HIST 359W; HIST 373W; HIST 383W; MHB 220; MHB 420U; PHLT 216; PHLT 236: Healthcare and Law or PHLT 230: Public Health Law and Policy; PHLT 240: Communities Mental Health and Injury Prevention; PHLT 265W: Global Health; PSYC 283: Behavioral Medicine; MHB 473U OR MHB 480U"
+    }
+  ]
+}

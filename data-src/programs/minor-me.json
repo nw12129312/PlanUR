@@ -1,0 +1,75 @@
+{
+  "id": "minor-me",
+  "type": "minor",
+  "name": "Mechanical Engineering",
+  "degree": "Minor",
+  "school": "hajim",
+  "division": "engineering",
+  "departments": [
+    "ME"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.hajim.rochester.edu/me/undergraduate/minor.html",
+  "sourcedOn": "2026-08-01",
+  "snapshot": "data-src/pages/me/me_undergraduate_minor.html",
+  "programChecks": {
+    "totalCourses": 4,
+    "minFromDepts": {
+      "depts": [
+        "ME"
+      ],
+      "n": 4
+    },
+    "max100Level": null
+  },
+  "notes": [
+    "Students cannot declare a minor until accepted into a major, and cannot elect satisfactory/fail for minor courses.",
+    "No more than two courses from the minor may be used toward a separate major or minor.",
+    "Course selections are evaluated and managed by Professor Lambropoulos before the declaration form is submitted.",
+    "The department also offers Aerospace Engineering and Materials Science minors, not yet encoded.",
+    "The page presents five four-course themes; students pick one."
+  ],
+  "requirementGroups": [
+    {
+      "id": "theme",
+      "label": "Four-course theme",
+      "rule": {
+        "type": "track_n_of",
+        "n": 4,
+        "tracks": {
+          "Fluid Dynamics and Thermal Sciences": [
+            "ME 223",
+            "ME 225",
+            "ME 241",
+            "ME 251"
+          ],
+          "Materials and Solid Mechanics": [
+            "ME 226",
+            "ME 240",
+            "ME 280",
+            "ME 281"
+          ],
+          "Fluid Mechanics and Solid Mechanics": [
+            "ME 225",
+            "ME 226",
+            "ME 241",
+            "ME 240"
+          ],
+          "Mechanical Design": [
+            "ME 204",
+            "ME 205",
+            "ME 222",
+            "ME 226"
+          ],
+          "Structural Analysis": [
+            "ME 204",
+            "ME 226",
+            "ME 254",
+            "ME 440"
+          ]
+        }
+      },
+      "sourceQuote": "Fluid Dynamics and Thermal Sciences: ME 223, ME 225, ME 241, ME 251. Materials and Solid Mechanics: ME 226, ME 240, ME 280, ME 281. Fluid Mechanics and Solid Mechanics: ME 225, ME 226, ME 241, ME 240. Mechanical Design: ME 204, ME 205, ME 222, ME 226. Structural Analysis: ME 204, ME 226, ME 254, ME 440."
+    }
+  ]
+}

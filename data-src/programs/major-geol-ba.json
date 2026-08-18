@@ -1,0 +1,171 @@
+{
+  "id": "major-geol-ba",
+  "type": "major",
+  "name": "Geological Sciences",
+  "degree": "BA",
+  "school": "sas",
+  "division": "natural-sciences",
+  "departments": [
+    "EESC"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/ees/undergraduate/geological-sciences-ba.html",
+  "snapshot": "data-src/pages/ees/ees_undergraduate_geological-sciences-ba.html",
+  "sourcedOn": "2026-08-14",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": [
+    "humanities",
+    "social-sciences"
+  ],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "programChecks": {
+    "totalCourses": null,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "ONLY THE BA IS OFFERED. The BS in Geological Sciences page states: 'This degree program is no longer being offered. Students who declared this as their program of study prior to the summer of 2025 can continue in this major or change to one of the other majors offered by the department. New students will not be able to declare this major.' The BS is deliberately absent from this planner so nobody plans into a retired degree - see also the retired BS in Environmental Science.",
+    "AP credit is acceptable for the prerequisite courses upon approval.",
+    "PHYS 121 rather than PHYS 113 is recommended: the page notes PHYS 121 'provides more opportunities for students who wish to switch to the geological sciences BS program during their studies' (that switch is now closed to new declarers, but PHYS 121 remains the stronger preparation).",
+    "The three technical electives 'should be chosen to create what the student and faculty advisor(s) view as a coherent program'. Any EESC course at the 200 level or higher is acceptable; one 100-level EESC course may be acceptable if it was taken in the first year - the planner only accepts 200-level and above, so ask your advisor if you want to use a first-year 100-level course.",
+    "The writing requirement is met inside the major: two of the core courses or technical electives must be taken as W sections. The catalog carries W sections for EESC 201, 204, 207, 211, 213, 216, 220, 236, 274, 310, 312, 320, 391, 393 and 395."
+  ],
+  "requirementGroups": [
+    {
+      "id": "prereq-chem",
+      "label": "Prerequisite: chemistry",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "CHEM 131"
+        ]
+      },
+      "sourceQuote": "Prerequisite Courses (AP credit is acceptable upon approval). Chemistry: CHEM 131: Chemical Concepts, Systems, and Practices l"
+    },
+    {
+      "id": "prereq-math",
+      "label": "Prerequisite: calculus",
+      "rule": {
+        "type": "sequence_one_of",
+        "sequences": [
+          [
+            "MATH 161"
+          ],
+          [
+            "MATH 141",
+            "MATH 142"
+          ]
+        ]
+      },
+      "sourceQuote": "Mathematics: MATH 161: Calculus lA. Or the series of courses below: MATH 141: Calculus l; MATH 142: Calculus ll"
+    },
+    {
+      "id": "prereq-physics",
+      "label": "Prerequisite: physics",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "PHYS 121",
+          "PHYS 113"
+        ]
+      },
+      "sourceQuote": "Physics: (choose one of the following options) PHYS 113: General Physics I; PHYS 121*: Mechanics. *Please note that PHYS 121 provides more opportunities for students who wish to switch to the geological sciences BS program during their studies."
+    },
+    {
+      "id": "prereq-science",
+      "label": "Prerequisite: one further related science course",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 1,
+        "filter": {
+          "depts": [
+            "MATH",
+            "PHYS",
+            "CHEM",
+            "BIOL",
+            "STAT"
+          ],
+          "minNumber": 100,
+          "maxNumber": 399,
+          "exclude": [
+            "CHEM 131",
+            "MATH 161",
+            "MATH 141",
+            "MATH 142",
+            "PHYS 113",
+            "PHYS 121"
+          ]
+        }
+      },
+      "sourceQuote": "Additional Course: One other course in related sciences (mathematics, physics, chemistry, biology, or statistics)."
+    },
+    {
+      "id": "geology-core",
+      "label": "Geology core courses",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "EESC 101",
+          "EESC 201",
+          "EESC 204",
+          "EESC 208"
+        ]
+      },
+      "sourceQuote": "Geology Core Courses: EESC 101: Introduction to Earth Sciences; EESC 201: Evolution of the Earth; EESC 204: Earth Materials; EESC 208: Structural Geology"
+    },
+    {
+      "id": "core-choice",
+      "label": "Surface processes or sedimentology",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "EESC 223",
+          "EESC 203"
+        ]
+      },
+      "sourceQuote": "EESC 223: Earth Surface Processes: The Science of Scenery OR EESC 203: Sedimentology and Stratigraphy"
+    },
+    {
+      "id": "technical-electives",
+      "label": "Three technical electives",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 3,
+        "filter": {
+          "depts": [
+            "EESC"
+          ],
+          "minNumber": 200,
+          "maxNumber": 399,
+          "exclude": [
+            "EESC 201",
+            "EESC 204",
+            "EESC 208",
+            "EESC 223",
+            "EESC 203"
+          ]
+        }
+      },
+      "sourceQuote": "Technical Electives: Three technical electives should be chosen to create what the student and faculty advisor(s) view as a coherent program. Any EESC courses at the 200 level or higher are acceptable. One 100-level EESC course may be acceptable if it was taken in the first year."
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "Two core courses or technical electives taken as W sections",
+    "rule": {
+      "type": "n_from_filter",
+      "n": 2,
+      "filter": {
+        "depts": [
+          "EESC"
+        ],
+        "minNumber": 200,
+        "maxNumber": 399,
+        "wOnly": true
+      }
+    },
+    "sourceQuote": "Writing Requirement: Two core courses or technical electives must be taken as writing courses (writing courses are indicated by a W)."
+  }
+}

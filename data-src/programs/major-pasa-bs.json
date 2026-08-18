@@ -1,0 +1,176 @@
+{
+  "id": "major-pasa-bs",
+  "type": "major",
+  "name": "Physics and Astronomy",
+  "degree": "BS",
+  "school": "sas",
+  "division": "natural-sciences",
+  "departments": [
+    "PHYS",
+    "ASTR"
+  ],
+  "status": "ACTIVE",
+  "sourcedOn": "2026-08-01",
+  "sourceUrl": "https://www.sas.rochester.edu/pas/undergraduate/BS-physics-astronomy.html",
+  "snapshot": "data-src/pages/pas/pas_undergraduate_BS-physics-astronomy.html",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": [
+    "humanities",
+    "social-sciences"
+  ],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "minMajorGPA": 2.0,
+  "programChecks": {
+    "totalCourses": null,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "The department page writes PHY / AST / MTH; the registrar catalog uses PHYS / ASTR / MATH, the form used here.",
+    "PHYS 141-143 (honors) are encouraged for physics and astronomy majors.",
+    "ASTR 111 in the first year and ASTR 142 in the sophomore year are strongly recommended but not required.",
+    "PHYS 218 or PHYS 243W are recommended among the six physics/astronomy courses.",
+    "MATH 282 or OPT 287 is recommended for the second advanced-mathematics course; only MATH 281 is stated as required.",
+    "Computer literacy may also be satisfied by an approved computing project or faculty certification rather than a course - those routes are not modeled.",
+    "PHYS 244W is named on the page but was not scheduled in the harvested terms and appears as a flagged stub."
+  ],
+  "requirementGroups": [
+    {
+      "id": "precon-calc",
+      "label": "Pre-concentration: calculus sequence",
+      "rule": {
+        "type": "sequence_one_of",
+        "sequences": [
+          [
+            "MATH 161",
+            "MATH 162",
+            "MATH 164",
+            "MATH 165"
+          ],
+          [
+            "MATH 171",
+            "MATH 172",
+            "MATH 173",
+            "MATH 174"
+          ]
+        ]
+      },
+      "sourceQuote": "One of the following calculus sequences: MTH 161, 162, 164, and 165; MTH 171, 172, 173, and 174"
+    },
+    {
+      "id": "precon-physics",
+      "label": "Pre-concentration: introductory physics (3)",
+      "rule": {
+        "type": "sequence_one_of",
+        "sequences": [
+          [
+            "PHYS 121",
+            "PHYS 122",
+            "PHYS 123"
+          ],
+          [
+            "PHYS 141",
+            "PHYS 142",
+            "PHYS 143"
+          ]
+        ]
+      },
+      "sourceQuote": "Three introductory physics courses: PHY 121 or PHY 141; PHY 122 or PHY 142; PHY 123 or PHY 143"
+    },
+    {
+      "id": "astro-core",
+      "label": "Astronomy and relativity courses (3)",
+      "rule": {
+        "type": "n_of",
+        "n": 3,
+        "options": [
+          "PHYS 231",
+          "ASTR 232",
+          "ASTR 233",
+          "ASTR 241",
+          "ASTR 242",
+          "ASTR 243",
+          "ASTR 244W",
+          "ASTR 265"
+        ]
+      },
+      "sourceQuote": "Three of the following: PHY 231: Gravitation and General Relativity; AST 232: The Milkyway Galaxy; AST 233: Astrodynamics; AST 241: Stellar Astrophysics; AST 242: Galaxies & Cosmology; AST 243: Astrophysical Fluid Dynamics; AST 244W: Observational Astronomy; AST 265: Physics of Planetary Interiors"
+    },
+    {
+      "id": "physics-core",
+      "label": "Physics and astronomy courses (6)",
+      "rule": {
+        "type": "n_of",
+        "n": 6,
+        "options": [
+          "PHYS 217",
+          "PHYS 218",
+          "PHYS 227",
+          "PHYS 235W",
+          "PHYS 237",
+          "PHYS 243W",
+          "PHYS 244W",
+          "PHYS 245W",
+          "PHYS 246",
+          "ASTR 393W"
+        ]
+      },
+      "sourceQuote": "Six of the following: PHY 217; PHY 218; PHY 227; PHY 235W; PHY 237; PHY 243W; PHY 244W; PHY 245W; PHY 246; AST 393W: Senior Thesis. PHY 218 or 243W are recommended."
+    },
+    {
+      "id": "advanced-math",
+      "label": "Advanced mathematics",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "MATH 281"
+        ]
+      },
+      "sourceQuote": "Two courses in advanced mathematics: MTH 281: Applied Boundary Value Problems is required"
+    },
+    {
+      "id": "advanced-math-2",
+      "label": "Second advanced mathematics course",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "MATH 282",
+          "OPT 287"
+        ]
+      },
+      "sourceQuote": "MTH 282: Introduction to Complex Variables with Applications or OPT 287: Mathematical Methods for Optics and Physics is recommended"
+    },
+    {
+      "id": "computer-literacy",
+      "label": "Computer literacy",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "PHYS 256",
+          "CSC 171",
+          "CSC 161"
+        ]
+      },
+      "sourceQuote": "The computer literacy requirement can be satisfied by: Taking PHY 256: Computational Physics or Taking CSC 171 or Taking CSC 161 or Completing a computing-based problem approved by the department or Having a faculty member certify computer literacy"
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "Upper-level writing within the major",
+    "rule": {
+      "type": "n_of",
+      "n": 2,
+      "options": [
+        "PHYS 235W",
+        "PHYS 243W",
+        "PHYS 245W",
+        "ASTR 244W",
+        "ASTR 393W"
+      ]
+    },
+    "sourceQuote": "PHY 235W; PHY 243W; PHY 245W; AST 244W: Observational Astronomy; AST 393W: Senior Thesis",
+    "note": "NEEDS VERIFICATION: the page states no explicit ULW policy; modeled on the major's W-designated courses."
+  }
+}

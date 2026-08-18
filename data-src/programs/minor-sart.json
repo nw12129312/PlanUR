@@ -1,0 +1,94 @@
+{
+  "id": "minor-sart",
+  "type": "minor",
+  "name": "Studio Arts",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "humanities",
+  "departments": [
+    "SART",
+    "AHST"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/aah/undergraduate/minors-clusters.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/aah/aah_undergraduate_minors-clusters.html",
+  "programChecks": {
+    "totalCourses": 6,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Six courses: five studio courses (two or three at each level) plus one art history course.",
+    "No more than two TRANSFERRED studio courses are accepted toward the minor.",
+    "Students are encouraged to meet a studio arts faculty advisor early to design a coherent program of study."
+  ],
+  "requirementGroups": [
+    {
+      "id": "intro",
+      "label": "Two 100-level studio courses",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 2,
+        "filter": {
+          "depts": [
+            "SART"
+          ],
+          "minNumber": 100,
+          "maxNumber": 199
+        }
+      },
+      "sourceQuote": "A minor in studio arts requires six courses: Two or three 100-level studio courses*. *No more than two transferred studio courses will be accepted toward a minor"
+    },
+    {
+      "id": "advanced",
+      "label": "Two 200- or 300-level studio courses",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 2,
+        "filter": {
+          "depts": [
+            "SART"
+          ],
+          "minNumber": 200,
+          "maxNumber": 399
+        }
+      },
+      "sourceQuote": "Two or three 200 or 300-level studio courses"
+    },
+    {
+      "id": "fifth",
+      "label": "A fifth studio course at either level",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 1,
+        "filter": {
+          "depts": [
+            "SART"
+          ],
+          "minNumber": 100,
+          "maxNumber": 399
+        }
+      },
+      "sourceQuote": "Two or three 100-level studio courses ... Two or three 200 or 300-level studio courses",
+      "note": "The split is two-or-three each way, so the fifth studio course may be at either level."
+    },
+    {
+      "id": "art-history",
+      "label": "One art history course",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 1,
+        "filter": {
+          "depts": [
+            "AHST"
+          ],
+          "minNumber": 100,
+          "maxNumber": 399
+        }
+      },
+      "sourceQuote": "One art history course"
+    }
+  ],
+  "upperLevelWriting": null
+}

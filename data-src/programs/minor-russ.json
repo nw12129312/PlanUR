@@ -1,0 +1,44 @@
+{
+  "id": "minor-russ",
+  "type": "minor",
+  "name": "Russian",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "humanities",
+  "departments": [
+    "RUSS"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/mlc/undergraduate/russian.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/mlc/mlc_undergraduate_russian.html",
+  "programChecks": {
+    "totalCourses": 5,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Five courses in Russian language, literature and culture, selected with the Russian advisor.",
+    "The department's complete Russian course list is a PDF that is not part of this snapshot.",
+    "This is the Russian minor; Russian Studies is a separate interdisciplinary minor (minor-rust)."
+  ],
+  "requirementGroups": [
+    {
+      "id": "courses",
+      "label": "Five Russian courses",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 5,
+        "filter": {
+          "depts": [
+            "RUSS"
+          ],
+          "minNumber": 101,
+          "maxNumber": 399
+        }
+      },
+      "sourceQuote": "Russian Minor Requirements: Five courses in Russian language, literature, and culture, to be selected in consultation with the Russian advisor."
+    }
+  ],
+  "upperLevelWriting": null
+}

@@ -1,0 +1,132 @@
+{
+  "type": "major",
+  "school": "sas",
+  "division": "natural-sciences",
+  "status": "ACTIVE",
+  "sourcedOn": "2026-08-01",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": [
+    "humanities",
+    "social-sciences"
+  ],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "id": "major-mthstat-ba",
+  "name": "Mathematics and Statistics",
+  "degree": "BA",
+  "departments": [
+    "MATH",
+    "STAT"
+  ],
+  "sourceUrl": "https://www.sas.rochester.edu/mth/undergraduate/ba-joint.html",
+  "snapshot": "data-src/pages/mth/mth_undergraduate_ba-joint.html",
+  "programChecks": {
+    "totalCourses": 14,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Fourteen courses: eleven foundational or core, three additional advanced. Approval of advisors in BOTH mathematics and statistics is required.",
+    "Equivalent substitutions: MATH 163 or MATH 173 for MATH 165; MATH 171/172/174 for MATH 161/162/164; MATH 141-143 for MATH 161-162. AP courses may satisfy foundational requirements.",
+    "Advanced courses are mathematics courses numbered 200+ (excluding 500+) and statistics courses numbered 214 and higher.",
+    "Beyond STAT 226W the second writing course may be a STAT W course, MATH 391W (one credit, taken alongside another course), or an approved 4-credit ULW course in another department."
+  ],
+  "requirementGroups": [
+    {
+      "id": "foundational",
+      "label": "Foundational mathematics",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "MATH 161",
+          "MATH 162",
+          "MATH 164",
+          "MATH 165"
+        ]
+      },
+      "sourceQuote": "The following foundational courses must be completed before acceptance into the major: MATH 161; MATH 162; MATH 164; MATH 165"
+    },
+    {
+      "id": "core",
+      "label": "Core courses",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "MATH 201",
+          "MATH 203",
+          "MATH 208",
+          "STAT 226W",
+          "MATH 265"
+        ]
+      },
+      "sourceQuote": "MATH/STAT 201: Introduction to Probability; MATH/STAT 203: Introduction to Mathematical Statistics; MATH/STAT 208: Operations Research I; STAT 226W: Introduction to Linear Models; MATH 265: Functions of a Real Variable I"
+    },
+    {
+      "id": "linear",
+      "label": "Linear algebra",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "MATH 235",
+          "MATH 173"
+        ]
+      },
+      "sourceQuote": "MATH 235: Linear Algebra or MATH 173: Honors Calculus III"
+    },
+    {
+      "id": "computing",
+      "label": "Computing",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "CSC 161",
+          "CSC 171"
+        ]
+      },
+      "sourceQuote": "CSC 161 or 171. Equivalent classes also accepted when approved by the statistics program advisor."
+    },
+    {
+      "id": "advanced",
+      "label": "Advanced mathematics or statistics (3)",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 3,
+        "filter": {
+          "depts": [
+            "MATH"
+          ],
+          "minNumber": 200,
+          "maxNumber": 399,
+          "minCredits": 4,
+          "exclude": [
+            "MATH 201",
+            "MATH 203",
+            "MATH 208",
+            "MATH 235",
+            "MATH 265"
+          ]
+        }
+      },
+      "sourceQuote": "Students must complete three 4-credit advanced courses in mathematics or statistics. Advanced courses are math classes numbered 200 or higher (excluding 500+ level) and stat classes numbered 214 and higher."
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "STAT 226W plus one more writing course",
+    "rule": {
+      "type": "n_from_filter",
+      "n": 2,
+      "filter": {
+        "depts": [
+          "STAT",
+          "MATH"
+        ],
+        "minNumber": 200,
+        "maxNumber": 399,
+        "wOnly": true
+      }
+    },
+    "sourceQuote": "In addition to STAT 226W, students must pass one more writing course, to be chosen from the following options: A statistics course with the W designation; MATH 391W; A four credit course, approved in advance, satisfying part of the upper level writing requirement in another department"
+  }
+}

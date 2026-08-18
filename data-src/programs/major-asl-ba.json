@@ -1,0 +1,79 @@
+{
+  "id": "major-asl-ba",
+  "type": "major",
+  "name": "American Sign Language",
+  "degree": "BA",
+  "school": "sas",
+  "division": "humanities",
+  "departments": ["ASLA"],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/asl/undergraduate/major.html",
+  "sourcedOn": "2026-08-01",
+  "snapshot": "data-src/pages/asl/asl_undergraduate_major.html",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": ["social-sciences", "natural-sciences"],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "programChecks": { "totalCourses": 12, "minFromDepts": null, "max100Level": null },
+  "notes": [
+    "Twelve classes: four core courses and eight advanced electives.",
+    "ASLA 101 and ASLA 102 should be completed before declaring the major; they are prerequisites, not part of the twelve.",
+    "For ASLA 102-106 and 200-level ASLA courses, students must have taken a course conducted entirely in ASL in the immediately preceding semester, or obtain instructor permission. ASLA 106 requires a permission code from the program advisor. Not auto-enforced.",
+    "No more than three of the courses taken for the major may be conducted in spoken English - not auto-enforced (the catalog does not record language of instruction).",
+    "NEEDS VERIFICATION: the page requires at least 2 literature/culture, 2-3 cultures-language-history, and at least 2 other advanced electives, which accounts for 6-7 of the 8 electives. The remaining 1-2 are modeled as free choice across all three published lists; confirm with the department which list they must come from.",
+    "The page writes ASLA 203W and ASLA 205(W); the harvested catalog lists these as ASLA 203 and ASLA 205, which is the form used here."
+  ],
+  "requirementGroups": [
+    {
+      "id": "core",
+      "label": "Core courses",
+      "rule": { "type": "all_of", "courses": ["ASLA 105", "ASLA 106", "ASLA 200", "ASLA 203"] },
+      "sourceQuote": "Core Courses: ASLA 105: Intermediate American Sign Language I; ASLA 106: Intermediate American Sign Language II; ASLA 203W: Advanced ASLA; ASLA 200: Structure of Signed Languages"
+    },
+    {
+      "id": "lit-culture",
+      "label": "ASL literature and culture (2)",
+      "rule": { "type": "n_of", "n": 2, "options": ["ASLA 201", "ASLA 202", "ASLA 205", "ASLA 250"] },
+      "sourceQuote": "ASLA Literature and Culture-select at least 2: ASLA 201: Introduction to ASLA Literature; ASLA 202: History and Culture of the American Deaf Community; ASLA 205(W): Art of Translation: ASLA and English; ASLA 250: Sociolinguistics of the American Deaf Community"
+    },
+    {
+      "id": "cultures-language-history",
+      "label": "Cultures, language, and history (2)",
+      "rule": { "type": "n_of", "n": 2, "options": [
+        "ANTH 101", "ASLA 208", "ASLA 260", "LING 110", "CLTR 200", "CLTR 389",
+        "GSWS 105", "GSWS 200", "GSWS 205", "GSWS 218", "GSWS 296",
+        "HIST 259", "HIST 303W", "HIST 402",
+        "AAAS 183", "AAAS 207", "PSCI 224", "PSCI 228", "PSCI 267", "RELC 183",
+        "PHIL 171", "PHIL 223", "PHIL 226", "PHIL 247"] },
+      "sourceQuote": "Cultures, Language, and History-select 2-3: ANTH 101; ASLA 208 (BCSC/PSYC 259/LING 208); ASLA 260 (BCSC/PSYC 152/LING 217); LING 110; CLTR 200; CLTR 389; GSWS 105; GSWS 200; GSWS 205; GSWS 296; GSWS 218; HIST 259; HIST 303W; HIST 402; AAAS 207; AAAS 183; PSCI/INTR 267; PSCI/INTR 224; PSCI/INTR 228; RELC 183; PHIL 171; PHIL 247; PHIL 223; PHIL 226",
+      "note": "Page says 2-3; the enforced minimum is 2."
+    },
+    {
+      "id": "other-advanced",
+      "label": "Other advanced electives (2)",
+      "rule": { "type": "n_of", "n": 2, "options": [
+        "ASLA 110", "ASLA 113", "ASLA 204", "ASLA 209", "ASLA 222", "ASLA 280", "BCSC 172"] },
+      "sourceQuote": "Other Advanced Electives-select at least 2: ASLA 110: Comparative Study of French Sign Language; ASLA 113: French Sign Language and Deaf Culture in France; ASLA 204: Theory and Practice of Sign Language Interpreting; ASLA 209: Teaching subjects through ASL; ASLA 222: ASLA Fine Art; ASLA 280: Deaf-Related Careers; BCSC/PSYC 172: Development of Mind and Brain"
+    },
+    {
+      "id": "electives-remaining",
+      "label": "Remaining advanced electives (2)",
+      "rule": { "type": "n_of", "n": 2, "options": [
+        "ASLA 201", "ASLA 202", "ASLA 205", "ASLA 250",
+        "ASLA 110", "ASLA 113", "ASLA 204", "ASLA 209", "ASLA 222", "ASLA 280", "BCSC 172",
+        "ANTH 101", "ASLA 208", "ASLA 260", "LING 110", "CLTR 200", "CLTR 389",
+        "GSWS 105", "GSWS 200", "GSWS 205", "GSWS 218", "GSWS 296",
+        "HIST 259", "HIST 303W", "HIST 402",
+        "AAAS 183", "AAAS 207", "PSCI 224", "PSCI 228", "PSCI 267", "RELC 183",
+        "PHIL 171", "PHIL 223", "PHIL 226", "PHIL 247"] },
+      "sourceQuote": "Students are required to complete eight advanced elective courses with at least two courses in the categories of ASLA literature and culture and other advanced electives, and two-three courses in the cultures, language, and history category.",
+      "note": "NEEDS VERIFICATION - the published minimums cover 6-7 of the 8 electives; these last 2 are modeled as free choice across all three lists."
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "Upper-level writing (ASLA 203W, ASLA 205W)",
+    "rule": { "type": "n_of", "n": 2, "options": ["ASLA 203", "ASLA 205"] },
+    "sourceQuote": "ASLA 203W: Advanced ASLA ... ASLA 205(W): Art of Translation: ASLA and English",
+    "note": "NEEDS VERIFICATION: the major page states no explicit upper-level-writing policy. The two courses the department marks with a W are used here. The harvested catalog lists them as ASLA 203 / ASLA 205 with no W suffix, so a wOnly filter cannot match them."
+  }
+}

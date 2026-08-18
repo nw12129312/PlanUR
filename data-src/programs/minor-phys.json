@@ -1,0 +1,85 @@
+{
+  "id": "minor-phys",
+  "type": "minor",
+  "name": "Physics",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "natural-sciences",
+  "departments": [
+    "PHYS"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/pas/undergraduate/minors.html",
+  "sourcedOn": "2026-08-01",
+  "snapshot": "data-src/pages/pas/pas_undergraduate_minors.html",
+  "minMajorGPA": 2.0,
+  "programChecks": {
+    "totalCourses": 6,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "An average of at least 2.0 is required in the introductory physics sequences and in all introductory mathematics courses.",
+    "The department page writes PHY/MTH; the registrar catalog uses PHYS/MATH, the form used here.",
+    "The department also offers an Astronomy minor, not yet encoded.",
+    "PHYS 244W is named on the page but was not scheduled in the harvested terms; it appears as a flagged stub."
+  ],
+  "requirementGroups": [
+    {
+      "id": "intro",
+      "label": "Introductory physics sequence",
+      "rule": {
+        "type": "sequence_one_of",
+        "sequences": [
+          [
+            "PHYS 121",
+            "PHYS 122",
+            "PHYS 123"
+          ],
+          [
+            "PHYS 141",
+            "PHYS 142",
+            "PHYS 143"
+          ]
+        ]
+      },
+      "sourceQuote": "One of the following introductory sequences: PHYS 121, 122 and 123; PHYS 141, 142 and 143"
+    },
+    {
+      "id": "core-advanced",
+      "label": "Advanced physics from the named list (2)",
+      "rule": {
+        "type": "n_of",
+        "n": 2,
+        "options": [
+          "PHYS 217",
+          "PHYS 218",
+          "PHYS 220",
+          "PHYS 227",
+          "PHYS 235W",
+          "PHYS 237",
+          "PHYS 243W",
+          "PHYS 244W",
+          "PHYS 245W"
+        ]
+      },
+      "sourceQuote": "Three 200-level physics courses, two of which must be from the following: PHYS 217; PHYS 218; PHYS 220: Practical Electronics; PHYS 227; PHYS 235W; PHYS 237; PHYS 243W; PHYS 244W; PHYS 245W"
+    },
+    {
+      "id": "elective",
+      "label": "Third 200-level physics course",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 1,
+        "filter": {
+          "depts": [
+            "PHYS"
+          ],
+          "minNumber": 200,
+          "maxNumber": 299
+        }
+      },
+      "sourceQuote": "Three 200-level physics courses, two of which must be from the following list."
+    }
+  ]
+}

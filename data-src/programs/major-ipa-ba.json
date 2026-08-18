@@ -1,0 +1,23 @@
+{
+  "id": "major-ipa-ba",
+  "type": "major",
+  "name": "International Political Analysis (IPA)",
+  "degree": "BA",
+  "school": "sas",
+  "division": "social-sciences",
+  "departments": ["PSCI", "INTR"],
+  "status": "NEEDS_DATA_ENTRY",
+  "sourceUrl": "https://www.sas.rochester.edu/psc/undergraduate/index.html",
+  "sourcedOn": "2026-08-01",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": ["humanities", "natural-sciences"],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": 2,
+  "notes": [
+    "DELIBERATELY NOT ENCODED - no verifiable source exists. Checked 2026-08-01: the department's own requirements URL for this major (psc/undergraduate/major-ipa.html) returns 404, the Political Science undergraduate index does not mention International Political Analysis anywhere, and the program does not appear as a row in the official undergraduate requirements directory that drives this app's coverage.",
+    "The most likely explanation is that IPA has been retired or folded into the International Relations major (major-ir-ba, which IS encoded and active). Requirements have NOT been guessed or copied from a sibling program, because doing so would produce a plausible-looking four-year plan for a degree that may no longer be awarded.",
+    "If you are an IPA student under an older catalog, confirm your requirements with the Department of Political Science and they can be encoded from whatever document they provide.",
+    "The overlap cap of 2 is retained from the original placeholder and is not itself sourced."
+  ],
+  "requirementGroups": []
+}

@@ -1,0 +1,97 @@
+{
+  "id": "major-che-bs",
+  "type": "major",
+  "name": "Chemical Engineering",
+  "degree": "BS",
+  "school": "hajim",
+  "division": "engineering",
+  "departments": ["CHE"],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.hajim.rochester.edu/che/undergraduate/major.html",
+  "sourcedOn": "2026-08-01",
+  "snapshot": "data-src/pages/che/che_undergraduate_major.html",
+  "clustersRequired": 1,
+  "allowedClusterDivisions": ["humanities", "social-sciences"],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "minMajorGPA": 2.0,
+  "programChecks": { "totalCourses": null, "minFromDepts": null, "max100Level": null },
+  "notes": [
+    "A 2.0 minimum GPA is required in core courses to remain in the program.",
+    "The humanities/social science requirement is one cluster PLUS two courses in the OPPOSITE division from the chosen cluster (20 credits total). The app cannot tie the two extra courses to the division you did not cluster in, so they are modeled as any humanities or social science courses - check the opposite-division rule yourself.",
+    "PHYS 113 replaces PHYS 121 only for students in the MATH 141 series; the 121P/122P variants are alternate sections of the same courses. Neither is modeled as a separate option.",
+    "Upper-level writing is covered inside CHE 246 and CHE 255, which are already required core courses, so the only separate writing course is WRTG 273.",
+    "The advanced chemistry elective is modeled as any 200-level or higher CHEM course.",
+    "Two technical electives may be any engineering or natural science course."
+  ],
+  "requirementGroups": [
+    {
+      "id": "che-core",
+      "label": "Required chemical engineering courses",
+      "rule": { "type": "all_of", "courses": [
+        "CHE 113", "CHE 116", "CHE 225", "CHE 226", "CHE 231", "CHE 243", "CHE 244",
+        "CHE 246", "CHE 250", "CHE 255", "CHE 272", "CHE 273", "CHE 279"] },
+      "sourceQuote": "Required Chemical Engineering Courses: CHE113: Chemical Process Analysis; CHE 116: Numerical Methods and Statistics; CHE243: Fluid Dynamics; CHE225: Thermodynamics I; CHE 226: Thermodynamics II; CHE244: Heat and Mass Transfer; CHE231: Kinetics and Reactor Design; CHE250: Separation Processes; CHE246: Laboratory in CHE Principles; CHE279: Chemical Engineering Practice; CHE273: CHE Process Design and Simulation; CHE255: CHE Senior Design Lab; CHE272: CHE Process Control"
+    },
+    {
+      "id": "chemistry",
+      "label": "Foundational chemistry",
+      "rule": { "type": "all_of", "courses": [
+        "CHEM 131", "CHEM 132", "CHEM 203", "CHEM 204", "CHEM 207"] },
+      "sourceQuote": "Chemistry: CHEM131: Chemical Concepts I; CHEM132: Chemical Concepts II; CHEM203: Organic Chemistry I; CHEM207: Organic Chemistry Lab; CHEM204: Organic Chemistry II"
+    },
+    {
+      "id": "chem-elective",
+      "label": "Advanced chemistry elective",
+      "rule": { "type": "n_from_filter", "n": 1,
+                "filter": { "depts": ["CHEM"], "minNumber": 200, "maxNumber": 399,
+                            "exclude": ["CHEM 203", "CHEM 204", "CHEM 207"] } },
+      "sourceQuote": "One Advanced Chemistry Elective"
+    },
+    {
+      "id": "math",
+      "label": "Mathematics",
+      "rule": { "type": "sequence_one_of", "sequences": [
+        ["MATH 161", "MATH 162", "MATH 164", "MATH 165"],
+        ["MATH 141", "MATH 142", "MATH 143", "MATH 164", "MATH 165"]] },
+      "sourceQuote": "Math: MATH161: Calculus I (or MTH 141); MATH162: Calculus II (or MTH 142-143); MATH164: Multidimensional Calculus; MATH165: Linear Algebra and Differential Equations"
+    },
+    {
+      "id": "physics",
+      "label": "Physics",
+      "rule": { "type": "all_of", "courses": ["PHYS 121", "PHYS 122"] },
+      "sourceQuote": "Physics: PHYS121 or 121P: Mechanics (or PHYS 113 for students in MATH 141-series); PHYS122 or 122P: Electricity and Magnetism"
+    },
+    {
+      "id": "sustainable-energy",
+      "label": "Introduction to Sustainable Energy",
+      "rule": { "type": "all_of", "courses": ["CHE 150"] },
+      "sourceQuote": "Electives: CHE150: Introduction to Sustainable Energy"
+    },
+    {
+      "id": "technical-electives",
+      "label": "Technical electives (2)",
+      "rule": { "type": "n_from_filter", "n": 2,
+                "filter": { "depts": ["CHE", "ME", "ECE", "BME", "OPT", "CSC", "MATH",
+                                      "PHYS", "CHEM", "BIOL", "EESC"],
+                            "minNumber": 200, "maxNumber": 399 } },
+      "sourceQuote": "Two technical electives (any engineering or natural science course)"
+    },
+    {
+      "id": "hum-soc",
+      "label": "Humanities/social science beyond the cluster (2)",
+      "rule": { "type": "n_from_filter", "n": 2,
+                "filter": { "depts": ["ENGL", "HIST", "PHIL", "RELC", "MUSC", "ANTH", "PSCI",
+                                      "ECON", "PSYC", "SOCI", "LING", "AHST", "BLST", "GSWS"],
+                            "minNumber": 100, "maxNumber": 399 } },
+      "sourceQuote": "One humanities or social science cluster plus two courses in the opposite division of the chosen cluster (20 credits total)",
+      "note": "The opposite-division constraint is not auto-enforced."
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "WRTG 273 plus writing inside CHE 246 and CHE 255",
+    "rule": { "type": "all_of", "courses": ["WRTG 273"] },
+    "sourceQuote": "Writing: WRTG 105: Primary Writing Requirement; WRTG 273: Communicating Your Professional Identity; Upper level writing requirement covered in CHE 246 and CHE 255",
+    "note": "CHE 246 and CHE 255 are already required in the core group."
+  }
+}

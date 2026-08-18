@@ -1,0 +1,214 @@
+{
+  "id": "minor-danc",
+  "type": "minor",
+  "name": "Dance",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "humanities",
+  "departments": [
+    "DANC"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/dan/undergraduate/minors.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/dan/dan_undergraduate_minors.html",
+  "programChecks": {
+    "totalCourses": null,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Dance minors are required to take a total of 26 credits: at least 10 in embodied practice, at least 12 in critical thinking, and at least 2 in somatic awareness.",
+    "Requirements are stated in CREDITS and many DANC courses are 1-2 credits rather than 4. Each group below converts its credit minimum into a course count using the modal credit value of that group's own option list; confirm your credit totals with the program.",
+    "CREDIT GAP: the three category minimums sum to 24 of the stated 26 credits, so about one more 2-credit dance course is needed beyond what the groups below model.",
+    "NOT A COURSE REQUIREMENT: Experience in Technical Production - a combination of red (13+ hours), yellow (6-12 hours) and green (0-5 hours) jobs on program productions. For the dance minor: one red job, OR one yellow plus one green job, OR three green jobs.",
+    "NOT A COURSE REQUIREMENT: students enrolled in any dance course must attend at least two program-sponsored performances and two program-sponsored workshops each semester.",
+    "The catalog splits DANC 250 into sections DANC 250A and DANC 250B, and carries DANC 365 as DANC 365A/B/C; all are listed as options.",
+    "The dance MAJOR is a separate pair of entries (major-danc-cep-ba and major-danc-ds-ba)."
+  ],
+  "requirementGroups": [
+    {
+      "id": "embodied-core",
+      "label": "Embodied practice: one 4-credit practice course",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "DANC 204",
+          "DANC 250A",
+          "DANC 250B",
+          "DANC 251",
+          "DANC 252",
+          "DANC 253",
+          "DANC 254",
+          "DANC 285"
+        ]
+      },
+      "sourceQuote": "Embodied Practice Courses. Students are required to take at least 10 credits of embodied practice courses. Choose one or more of the following courses: DANC 204; DANC 250; DANC 251; DANC 252; DANC 253; DANC 254; DANC 285 (4 credits each)"
+    },
+    {
+      "id": "embodied-additional",
+      "label": "Embodied practice: remaining 6 credits",
+      "rule": {
+        "type": "n_of",
+        "n": 3,
+        "options": [
+          "DANC 102",
+          "DANC 110",
+          "DANC 116",
+          "DANC 126",
+          "DANC 140",
+          "DANC 145",
+          "DANC 150",
+          "DANC 171",
+          "DANC 181",
+          "DANC 182",
+          "DANC 185",
+          "DANC 187",
+          "DANC 188",
+          "DANC 189",
+          "DANC 190",
+          "DANC 197",
+          "DANC 212",
+          "DANC 215",
+          "DANC 240",
+          "DANC 266",
+          "DANC 267",
+          "DANC 268",
+          "DANC 269",
+          "DANC 271",
+          "DANC 273",
+          "DANC 281",
+          "DANC 283",
+          "DANC 290",
+          "DANC 365A",
+          "DANC 365B",
+          "DANC 365C"
+        ]
+      },
+      "sourceQuote": "Additional embodied practice courses: DANC 102; DANC 110; DANC 116; DANC 126; DANC 140; DANC 145; DANC 150; DANC 171; DANC 181; DANC 182; DANC 185; DANC 187; DANC 188; DANC 189; DANC 190; DANC 197; DANC 212/MUR 210; DANC 215; DANC 240; DANC 266; DANC 267; DANC 268; DANC 269; DANC 271; DANC 273; DANC 281; DANC 283; DANC 290; DANC 365",
+      "note": "Almost every course here is 2 credits, so three of them supply the remaining 6 of the 10 embodied-practice credits."
+    },
+    {
+      "id": "ct-creative",
+      "label": "Critical thinking: creative expression (4 credits)",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "DANC 241",
+          "DANC 243",
+          "DANC 245",
+          "DANC 247",
+          "DANC 249",
+          "DANC 278",
+          "DANC 377",
+          "DANC 378",
+          "DANC 379",
+          "DANC 380",
+          "DANC 104",
+          "DANC 109",
+          "DANC 160",
+          "DANC 237",
+          "DANC 242",
+          "DANC 279",
+          "DANC 385",
+          "DANC 397",
+          "DANC 398"
+        ]
+      },
+      "sourceQuote": "Critical Thinking Courses. Students are required to take at least 12 credits of Critical Thinking courses. Creative Expression: Choose at least four credits from the following: DANC 104 (2); DANC 109 (2); DANC 160 (2); DANC 237 (2); DANC 241 (4); DANC 242 (2); DANC 243/SART 243/FMST 223/DMST 281 (4); DANC 245 (4); DANC 247 (4); DANC 249 (4); DANC 278 (4); DANC 279 (1); DANC 377 (4); DANC 378 (4); DANC 379 (4); DANC 380 (3); DANC 385 (2); DANC 397/DANC 398 (1)",
+      "note": "4-credit options are listed first: one of them satisfies the category outright."
+    },
+    {
+      "id": "ct-context",
+      "label": "Critical thinking: context, citizenship and cultural competency",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "DANC 155",
+          "DANC 195",
+          "DANC 202",
+          "DANC 228",
+          "DANC 233",
+          "DANC 235",
+          "DANC 247",
+          "DANC 248",
+          "DANC 249",
+          "DANC 296",
+          "DANC 305"
+        ]
+      },
+      "sourceQuote": "Context, Citizenship, and Cultural Competency. Choose at least four credits of the following: DANC 155; DANC 195; DANC 202; DANC 228; DANC 233; DANC 235; DANC 247; DANC 248; DANC 249; DANC 296; DANC 305 (4 credits each)"
+    },
+    {
+      "id": "ct-additional",
+      "label": "Critical thinking: remaining 4 credits",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "DANC 155",
+          "DANC 195",
+          "DANC 202",
+          "DANC 228",
+          "DANC 233",
+          "DANC 235",
+          "DANC 247",
+          "DANC 248",
+          "DANC 249",
+          "DANC 296",
+          "DANC 305",
+          "DANC 241",
+          "DANC 243",
+          "DANC 245",
+          "DANC 278",
+          "DANC 377",
+          "DANC 378",
+          "DANC 379",
+          "DANC 380",
+          "DANC 104",
+          "DANC 109",
+          "DANC 160",
+          "DANC 237",
+          "DANC 242",
+          "DANC 279",
+          "DANC 385",
+          "DANC 397",
+          "DANC 398"
+        ]
+      },
+      "sourceQuote": "Students are required to take at least 12 credits of Critical Thinking courses.",
+      "note": "Four credits each from creative expression and from context leaves 4 of the 12 credits, which this third course from either category supplies."
+    },
+    {
+      "id": "somatic",
+      "label": "Somatic awareness (2 credits)",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "DANC 106",
+          "DANC 114",
+          "DANC 115",
+          "DANC 130",
+          "DANC 167M",
+          "DANC 170",
+          "DANC 200",
+          "DANC 208",
+          "DANC 209",
+          "DANC 211",
+          "DANC 218",
+          "DANC 225",
+          "DANC 230",
+          "DANC 245",
+          "DANC 258",
+          "DANC 288"
+        ]
+      },
+      "sourceQuote": "Somatic Awareness Courses. Choose at least two credits from the following: DANC 106 (1); DANC 114 (2); DANC 115 (2); DANC 130 (2); DANC 167M (4); DANC 170 (4); DANC 200 (4); DANC 208 (2); DANC 209 (2); DANC 211 (4); DANC 218 (4); DANC 225 (2); DANC 230 (4); DANC 245 (4); DANC 258 (2); DANC 288 (4)"
+    }
+  ],
+  "upperLevelWriting": null
+}

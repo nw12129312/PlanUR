@@ -1,0 +1,87 @@
+{
+  "type": "major",
+  "degree": "BA",
+  "school": "sas",
+  "division": "humanities",
+  "status": "ACTIVE",
+  "sourcedOn": "2026-08-01",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": [
+    "social-sciences",
+    "natural-sciences"
+  ],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "id": "major-fren-ba",
+  "name": "French",
+  "departments": [
+    "FREN"
+  ],
+  "sourceUrl": "https://www.sas.rochester.edu/mlc/undergraduate/french.html",
+  "snapshot": "data-src/pages/mlc/mlc_undergraduate_french.html",
+  "programChecks": {
+    "totalCourses": 10,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Ten courses. The two CLTR foundation courses also fulfil the upper-level writing requirement.",
+    "NOT auto-enforced: at least one elective must be in literature and/or culture prior to the 20th century, and at least one in Francophone literature and/or culture. The catalog records no period or region per course.",
+    "Majors are expected to consult the French undergraduate advisor before registering."
+  ],
+  "requirementGroups": [
+    {
+      "id": "foundation",
+      "label": "Foundation courses (fulfil upper-level writing)",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "CLTR 200",
+          "CLTR 389"
+        ]
+      },
+      "sourceQuote": "FOUNDATION COURSES (fulfills upper level writing): CLTR 200: Topics in Critical Thinking; CLTR 389: MLC Research Seminar"
+    },
+    {
+      "id": "core",
+      "label": "Core courses",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "FREN 153",
+          "FREN 200",
+          "FREN 202",
+          "FREN 204"
+        ]
+      },
+      "sourceQuote": "CORE COURSES: FREN 153: Intermediate French; FREN 200: Advanced French; FREN 202: Introduction to Literature in French; FREN 204: Contemporary French Culture"
+    },
+    {
+      "id": "electives",
+      "label": "French literature and culture electives (4)",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 4,
+        "filter": {
+          "depts": [
+            "FREN"
+          ],
+          "minNumber": 205,
+          "maxNumber": 399
+        }
+      },
+      "sourceQuote": "ELECTIVE COURSES: Four or more elective courses in French literature and culture including: At least one course in literature and/or culture prior to the 20th century; At least one course in Francophone literature and/or culture"
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "CLTR 200 and CLTR 389",
+    "rule": {
+      "type": "all_of",
+      "courses": [
+        "CLTR 200",
+        "CLTR 389"
+      ]
+    },
+    "sourceQuote": "FOUNDATION COURSES (fulfill upper level writing)"
+  }
+}

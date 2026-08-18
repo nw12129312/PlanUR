@@ -1,0 +1,116 @@
+{
+  "type": "major",
+  "degree": "BA",
+  "school": "sas",
+  "division": "humanities",
+  "status": "ACTIVE",
+  "sourcedOn": "2026-08-01",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": [
+    "social-sciences",
+    "natural-sciences"
+  ],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "id": "major-jpns-ba",
+  "name": "Japanese",
+  "departments": [
+    "JPNS"
+  ],
+  "sourceUrl": "https://www.sas.rochester.edu/mlc/undergraduate/japanese.html",
+  "snapshot": "data-src/pages/mlc/mlc_undergraduate_japanese.html",
+  "programChecks": {
+    "totalCourses": 10,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Ten courses beyond JPNS 101-102: two foundation, four core language, four electives.",
+    "The four core language courses must be CONSECUTIVE from JPNS 151, 152, 201, 202, 205, 206 - consecutiveness is not auto-enforced.",
+    "Two of the four electives must be 4-credit upper-level (200-level) JPNS culture courses. One pair of two-credit courses (JPNS 114, 115, 203, 204) may substitute for one culture course.",
+    "Up to two courses per semester of education abroad in Japan may apply, pre-approved by an advisor; up to two transfer courses may apply."
+  ],
+  "requirementGroups": [
+    {
+      "id": "foundation",
+      "label": "Foundation courses (fulfil upper-level writing)",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "CLTR 200",
+          "CLTR 389"
+        ]
+      },
+      "sourceQuote": "FOUNDATION COURSES (fulfills upper level writing): CLTR 200: Topics in Critical Thinking; CLTR 389: MLC Research Seminar"
+    },
+    {
+      "id": "core-language",
+      "label": "Core Japanese language courses (4)",
+      "rule": {
+        "type": "n_of",
+        "n": 4,
+        "options": [
+          "JPNS 151",
+          "JPNS 152",
+          "JPNS 201",
+          "JPNS 202",
+          "JPNS 205",
+          "JPNS 206"
+        ]
+      },
+      "sourceQuote": "CORE COURSES: Four consecutive courses in Japanese language from the following list: JPNS 151, 152, 201, 202, 205 and 206."
+    },
+    {
+      "id": "culture",
+      "label": "Upper-level Japanese culture courses (2)",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 2,
+        "filter": {
+          "depts": [
+            "JPNS"
+          ],
+          "minNumber": 207,
+          "maxNumber": 399,
+          "minCredits": 4
+        }
+      },
+      "sourceQuote": "A minimum of four additional courses in Japanese language or culture, two of which must be 4.0 credit upper-level (200 level) JPNS courses in Japanese culture."
+    },
+    {
+      "id": "electives",
+      "label": "Further Japanese electives (2)",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 2,
+        "filter": {
+          "depts": [
+            "JPNS"
+          ],
+          "minNumber": 103,
+          "maxNumber": 399,
+          "exclude": [
+            "JPNS 151",
+            "JPNS 152",
+            "JPNS 201",
+            "JPNS 202",
+            "JPNS 205",
+            "JPNS 206"
+          ]
+        }
+      },
+      "sourceQuote": "A minimum of four additional courses in Japanese language or culture"
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "CLTR 200 and CLTR 389",
+    "rule": {
+      "type": "all_of",
+      "courses": [
+        "CLTR 200",
+        "CLTR 389"
+      ]
+    },
+    "sourceQuote": "FOUNDATION COURSES (fulfill upper level writing)"
+  }
+}

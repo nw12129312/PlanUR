@@ -1,0 +1,114 @@
+{
+  "id": "major-bus-acc-bs",
+  "type": "major",
+  "name": "Business: Accounting",
+  "degree": "BS",
+  "school": "simon",
+  "division": "social-sciences",
+  "departments": [
+    "BUS",
+    "ACC",
+    "FIN",
+    "MKT",
+    "CIS",
+    "OPS",
+    "STR",
+    "ENT"
+  ],
+  "status": "ACTIVE",
+  "sourcedOn": "2026-08-01",
+  "sourceUrl": "https://www.sas.rochester.edu/bsb/undergraduate/bs-degree.html",
+  "snapshot": "data-src/pages/bsb/bsb_undergraduate_bs-degree.html",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": [
+    "humanities",
+    "natural-sciences"
+  ],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "programChecks": {
+    "totalCourses": 15,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Pre-major calculus and statistics are NOT subject to the school's overlap policy, and AP/IB credit is acceptable for them.",
+    "Completing the required coursework satisfies the school's upper-level writing requirement - there is no separate writing course.",
+    "Students may officially declare only ONE BS Business track.",
+    "The major may be declared once all pre-major requirement courses are complete.",
+    "This entry encodes the NEW curriculum, effective Fall 2026. Students with an intended or declared business major before Fall 2026 may request the old curriculum (which had no BUS 103 and placed statistics inside the core rather than the pre-major); students graduating on or before 31 August 2026 must use the old curriculum. The old curriculum is not modeled.",
+    "Course offering terms are marked F/S/SM on the department page and are reflected in the app's own catalog data where the registrar scheduled them.",
+    "Completing this track makes students eligible to sit for the CPA exam in New York State; licensure requires additional coursework (e.g. the 4+1 MS in Accountancy)."
+  ],
+  "requirementGroups": [
+    {
+      "id": "premajor-calc",
+      "label": "Pre-major calculus",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "MATH 161",
+          "MATH 171",
+          "MATH 141"
+        ]
+      },
+      "sourceQuote": "One of the following calculus courses or its equivalent: MATH 141-142: Calculus I and Calculus II; MATH 161: Calculus IA; MATH 171: Honors Calculus I",
+      "note": "MATH 143 or MATH 162/172 is strongly recommended for Finance-track students but not required."
+    },
+    {
+      "id": "premajor-stat",
+      "label": "Pre-major statistics",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "STAT 190",
+          "ECON 230",
+          "MATH 203",
+          "STAT 216",
+          "PSCI 205",
+          "STAT 180",
+          "PSCI 200"
+        ]
+      },
+      "sourceQuote": "Plus one statistics course: Finance track students MUST choose one of these options, which are the preferred statistics courses for all tracks: STAT 190; ECON 230; MATH 203; STAT 216; PSCI 205. Other options for all other tracks: STAT 180; PSCI 200."
+    },
+    {
+      "id": "core",
+      "label": "Business core (9)",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "ECON 108",
+          "ECON 207",
+          "ACC 201",
+          "BUS 103",
+          "FIN 205",
+          "MKT 203",
+          "CIS 220",
+          "OPS 221",
+          "STR 203"
+        ]
+      },
+      "sourceQuote": "Core Courses: All of the following courses are required: ECON 108: Principles of Economics; ECON 207: Intermediate Microeconomics; ACC 201: Financial Accounting; BUS 103: Business Communication; FIN 205: Financial Management; MKT 203: Principles of Marketing; CIS 220: Business Information Systems and Analytics; OPS 221: Operations Management; STR 203/ECON 214: Economics of Strategy and Organization"
+    },
+    {
+      "id": "track",
+      "label": "Accounting track (6)",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "ACC 221",
+          "ACC 224",
+          "ACC 225",
+          "ACC 226",
+          "ACC 227",
+          "ACC 228"
+        ]
+      },
+      "sourceQuote": "Accounting Track (6 Courses): ACC 221: Managerial Accounting (S); ACC 224: Intermediate Accounting I (F); ACC 225: Intermediate Accounting II (S); ACC 226: Auditing (F); ACC 227: Individual Income Tax (F); ACC 228: Corporate, Gift & Estate Taxes (S)"
+    }
+  ],
+  "upperLevelWriting": null
+}

@@ -1,0 +1,88 @@
+{
+ "sourceNote": "Confirmed UR policy rules supplied with the project spec (2026-07); per-item sources in README.",
+ "standardTotalCredits": 128,
+ "doubleDegreeTotalCredits": 136,
+ "maxCoursesPerDepartment": 20,
+ "declareByCredits": 64,
+ "clusterMinCourses": 3,
+ "divisions": [
+  "humanities",
+  "social-sciences",
+  "natural-sciences",
+  "engineering"
+ ],
+ "overlapCaps": {
+  "majorMajor": 3,
+  "majorMinor": 2,
+  "minorMinor": 2,
+  "clusterProgram": 1
+ },
+ "clusterUniqueCoursesMin": 2,
+ "overlapExemptCourses": [
+  "BIOL 110L",
+  "BIOL 111L",
+  "BIOL 112L",
+  "BIOL 113L",
+  "MATH 141",
+  "MATH 142",
+  "MATH 143",
+  "MATH 150",
+  "MATH 161",
+  "MATH 162",
+  "MATH 163",
+  "MATH 164",
+  "MATH 165",
+  "MATH 171",
+  "MATH 172",
+  "MATH 173",
+  "MATH 174",
+  "PHYS 113",
+  "PHYS 114",
+  "PHYS 121",
+  "PHYS 121P",
+  "PHYS 122",
+  "PHYS 122P",
+  "PHYS 123",
+  "PHYS 141",
+  "PHYS 142",
+  "PHYS 143",
+  "STAT 211",
+  "STAT 212",
+  "STAT 213",
+  "STAT 214",
+  "ECON 230",
+  "PSCI 200",
+  "DSCC 262"
+ ],
+ "pwr": {
+  "label": "Primary Writing Requirement",
+  "satisfiedBy": [
+   [
+    "WRTG 105"
+   ],
+   [
+    "WRTG 105E"
+   ],
+   [
+    "WRTG 105A",
+    "WRTG 105B"
+   ]
+  ],
+  "minGrade": "C",
+  "neverCountsTowardCluster": [
+   "WRTG 105",
+   "WRTG 105A",
+   "WRTG 105B",
+   "WRTG 105E"
+  ]
+ },
+ "creditLoad": {
+  "min": 12,
+  "max": 18
+ },
+ "transferRules": {
+  "apIbNeverSatisfiesCluster": true,
+  "transferGenerallyNotForClusters": true,
+  "transferClusterExceptionNote": "Study-abroad courses may count toward clusters with department approval."
+ }
+}

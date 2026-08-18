@@ -1,0 +1,69 @@
+{
+  "id": "major-econ-ba",
+  "type": "major",
+  "name": "Economics",
+  "degree": "BA",
+  "school": "sas",
+  "division": "social-sciences",
+  "departments": ["ECON"],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/eco/undergraduate/major.html",
+  "sourcedOn": "2026-07-05",
+  "snapshot": "data-src/pages/eco/eco_undergraduate_major.html",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": ["humanities", "natural-sciences"],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "notes": [
+    "Declaration: C average or better in at least three of ECON 108/207/209/230/one semester of calculus; no pass/fail credit toward the major.",
+    "ECON 108 cannot be taken after ECON 207; honors equivalents accepted for 207/209.",
+    "Electives: no pass/fail; ECON 394 and ECON 230 cannot count; ECON 390 once; graduate (400-level) courses count with instructor permission; 8-credit courses count as one elective.",
+    "Department overlap policy matches the app's defaults (3 with a second major, 2 with a minor, 1 with a cluster); the calculus requirement and ECON 230 are overlap-exempt.",
+    "Transfer: freshmen-entry students may transfer at most one core course and two electives (allied-field counts as elective).",
+    "An honors BA variant exists (adds ECON 207H/208/219 and 389W or 289W, with GPA thresholds) - not separately modeled."
+  ],
+  "requirementGroups": [
+    {
+      "id": "core",
+      "label": "Core",
+      "rule": { "type": "all_of", "courses": ["ECON 108", "ECON 207", "ECON 209", "ECON 231W"] },
+      "sourceQuote": "ECON 108: Principles of Economics; ECON 207: Intermediate Microeconomics; ECON 209: Intermediate Macroeconomics; ... ECON 231W: Econometrics"
+    },
+    {
+      "id": "stat",
+      "label": "Statistics (ECON 230 or substitute)",
+      "rule": { "type": "n_of", "n": 1, "options": ["ECON 230", "STAT 190", "MATH 203", "DSCC 262"] },
+      "sourceQuote": "The following can be used to substitute for ECON 230: STAT 190 ..., MATH 203: Introduction to Mathematical Statistics, or DSCC 262 Computational Introduction to Statistics"
+    },
+    {
+      "id": "calculus",
+      "label": "Calculus sequence",
+      "rule": { "type": "sequence_one_of", "sequences": [
+        ["MATH 141", "MATH 142", "MATH 143"], ["MATH 161", "MATH 162"], ["MATH 171", "MATH 172"]] },
+      "sourceQuote": "Students are required to complete one of the following calculus sequences: MATH 141, MATH 142 and MATH 143; MATH 161 and MATH 162; MATH 171 and MATH 172"
+    },
+    {
+      "id": "electives",
+      "label": "Economics electives (4)",
+      "rule": { "type": "n_from_filter", "n": 4,
+                "filter": { "depts": ["ECON"], "minNumber": 200, "maxNumber": 399,
+                            "exclude": ["ECON 207", "ECON 209", "ECON 230", "ECON 231W", "ECON 394"] } },
+      "sourceQuote": "Four economics electives ... ECON 394: Internship and ECON 230: Economic Statistics cannot be counted as electives",
+      "note": "Graduate 400-level courses can also count (not matched by this filter); see notes."
+    },
+    {
+      "id": "allied",
+      "label": "Allied field (2 courses, same field)",
+      "rule": { "type": "n_from_filter", "n": 2,
+                "filter": { "depts": ["CSC", "DSCC", "EESC", "HIST", "MATH", "PSCI", "INTR", "PSYC", "STAT", "PHLT"], "minNumber": 200, "maxNumber": 399 } },
+      "sourceQuote": "Students are required to complete two 200-level (or above) courses in the same allied field. ... Acceptable Allied Fields: Computer science; Data science; Environmental Science or Environmental Studies; Health Policy; History; Mathematics ...; Political science; Psychology; Statistics; Undergraduate Business Program courses",
+      "note": "NEEDS nuance: the same-field constraint (and the business-program option) is not auto-enforced; cross-field pairs require a department petition."
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "Two of the major's courses taken for W credit",
+    "rule": { "type": "n_from_filter", "n": 2,
+              "filter": { "depts": ["ECON"], "minNumber": 200, "maxNumber": 399, "wOnly": true } },
+    "sourceQuote": "Upper-level writing requirement (two of the above courses must be taken for W credit)"
+  }
+}

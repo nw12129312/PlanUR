@@ -1,0 +1,133 @@
+{
+  "id": "major-ame-bs",
+  "type": "major",
+  "name": "Audio and Music Engineering",
+  "degree": "BS",
+  "school": "hajim",
+  "division": "engineering",
+  "departments": ["AME"],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.hajim.rochester.edu/ame/undergraduate/major.html",
+  "sourcedOn": "2026-08-01",
+  "snapshot": "data-src/pages/ame/ame_undergraduate_major.html",
+  "clustersRequired": 1,
+  "allowedClusterDivisions": ["humanities", "social-sciences"],
+  "totalCreditsOverride": 130,
+  "overlapCapOverride": null,
+  "programChecks": { "totalCourses": null, "minFromDepts": null, "max100Level": null },
+  "notes": [
+    "130 total credits: 32 basic science and mathematics, 60 engineering, 6 writing, 20 humanities and social sciences (cluster), 12 free electives.",
+    "NEEDS VERIFICATION - the five subject areas: the page lists courses across Recording Arts and Sound Design, Acoustics, Audio Electronics, Signal Processing, and Software Design, marking the OPTIONAL ones in italics. The saved HTML preserves no italic markup, so required and elective courses in those lists cannot be told apart. They are modeled here as one course from each of the five areas, which matches the page's statement that the degree 'requires completion of courses and portfolio projects in five subject areas'. Confirm the exact required course in each area against the AME Curriculum Guide PDF.",
+    "Basic music competency is a minimum of 10 credits: 8 credits of music theory (MUSC 101 and MUSC 111 minimum; students with proficiency may start at MUSC 110 followed by MUSC 111) and 2 credits of musicianship (two 1-credit courses from MUSC 109, 113, 114, 115, or one 2-credit course MUSC 201 or MUSC 202). Placement is by exam.",
+    "Courses taken for the music competency requirement may also count toward a music cluster and toward the H&SS requirement.",
+    "MATH 141, 142, 143 may be substituted for MATH 161 and 162.",
+    "The H&SS requirement is five courses including the three-course cluster and the music competency courses."
+  ],
+  "requirementGroups": [
+    {
+      "id": "foundations",
+      "label": "AME foundations",
+      "rule": { "type": "all_of", "courses": ["AME 140", "AME 141"] },
+      "sourceQuote": "Foundations Courses (Completed by all students): AME 140: Intro to Audio and Music Engineering; AME 141: Fundamentals for Digital Design"
+    },
+    {
+      "id": "math",
+      "label": "Calculus sequence",
+      "rule": { "type": "sequence_one_of", "sequences": [
+        ["MATH 161", "MATH 162", "MATH 164", "MATH 165"],
+        ["MATH 141", "MATH 142", "MATH 143", "MATH 164", "MATH 165"],
+        ["MATH 171", "MATH 172", "MATH 173", "MATH 174"]] },
+      "sourceQuote": "Calculus sequence option A: MATH 161; MATH 162; MATH 164; MATH 165 or MATH 163. Calculus sequence option B: MATH 171; MATH 172; MATH 173; MATH 174. MATH 141, 142, 143 may be substituted for MATH 161 and 162."
+    },
+    {
+      "id": "natural-science",
+      "label": "Probability and statistics",
+      "rule": { "type": "all_of", "courses": ["ECE 270"] },
+      "sourceQuote": "Natural Science: ECE 270; STATS 180 or 190; PHYSICS (2 courses)"
+    },
+    {
+      "id": "statistics",
+      "label": "Statistics",
+      "rule": { "type": "n_of", "n": 1, "options": ["STAT 180", "STAT 190"] },
+      "sourceQuote": "STATS 180 or 190"
+    },
+    {
+      "id": "physics",
+      "label": "Physics (2 courses)",
+      "rule": { "type": "sequence_one_of", "sequences": [
+        ["PHYS 121", "PHYS 122"],
+        ["PHYS 113", "PHYS 114"],
+        ["PHYS 141", "PHYS 142"]] },
+      "sourceQuote": "PHYSICS (2 courses) PHYS 121, PHYS 122; PHYS 113, 114 or PHYS 141, PHYS 142"
+    },
+    {
+      "id": "music-theory",
+      "label": "Music theory",
+      "rule": { "type": "all_of", "courses": ["MUSC 101", "MUSC 111"] },
+      "sourceQuote": "The minimum requirement is completion of MUSC 101 and MUSC 111, however students with appropriate background and demonstrated proficiency in music theory may begin in a higher-level course such as MUSC 110 followed by MUSC 111."
+    },
+    {
+      "id": "musicianship",
+      "label": "Musicianship",
+      "rule": { "type": "n_of", "n": 1, "options": [
+        "MUSC 109", "MUSC 113", "MUSC 114", "MUSC 115", "MUSC 201", "MUSC 202"] },
+      "sourceQuote": "To meet the musicianship requirement, students normally would complete two one-credit courses: MUSC 109, MUSC 113, MUSC 114, MUSC 115 or one two credit course: MUSC 201 or MUSC 202.",
+      "note": "Two 1-credit courses or one 2-credit course; modeled as a single selection."
+    },
+    {
+      "id": "area-recording",
+      "label": "Recording arts and sound design",
+      "rule": { "type": "n_of", "n": 1, "options": [
+        "AME 191", "AME 193", "AME 240", "AME 242", "AME 244", "AME 391", "AME 393"] },
+      "sourceQuote": "1. Recording Arts and Sound Design: AME 191: Art and Technology of Recording; AME 193: Sound Design; AME 240; AME 242; AME 244; AME 391; AME 393"
+    },
+    {
+      "id": "area-acoustics",
+      "label": "Acoustics",
+      "rule": { "type": "n_of", "n": 1, "options": ["AME 233", "AME 292", "ECE 439"] },
+      "sourceQuote": "2. Acoustics: AME 233/PHYS 233: Musical Acoustics; AME 292: Acoustics Portfolio (2 credits); ECE 439: Electroacoustics and Spatial Audio"
+    },
+    {
+      "id": "area-electronics",
+      "label": "Audio electronics",
+      "rule": { "type": "n_of", "n": 1, "options": [
+        "ECE 113", "AME 223", "AME 295", "ECE 216", "ECE 222", "ECE 261"] },
+      "sourceQuote": "3. Audio Electronics: AME 140; ECE 113: Circuits and Signals; AME 223: Audio Electronics; AME 295: Audio Electronics Portfolio (2 credits); ECE 216; ECE 222; ECE 261/461: Introduction to VLSI"
+    },
+    {
+      "id": "area-dsp",
+      "label": "Signal processing",
+      "rule": { "type": "n_of", "n": 1, "options": [
+        "ECE 241", "AME 272", "AME 294", "AME 277", "ECE 246"] },
+      "sourceQuote": "4. Signal Processing: ECE 241: Signals; AME 272: Audio Signal Processing; AME 294: Audio DSP Portfolio (2); AME 277/477: Computer Audition; ECE 246/446: Digital Signal Processing"
+    },
+    {
+      "id": "area-software",
+      "label": "Software design",
+      "rule": { "type": "n_of", "n": 1, "options": [
+        "ECE 114", "AME 262", "AME 264", "AME 196", "CSC 172", "CSC 210"] },
+      "sourceQuote": "5. Software Design: ECE 114: Introduction to Computers and Programming; AME 262: Audio Software Design; AME 264: Audio Software Design II; AME 196: Interactive Music Programming; CSC 172: Data Structures & Algorithms; CSC 210: Web Programming"
+    },
+    {
+      "id": "senior-design",
+      "label": "Senior design project",
+      "rule": { "type": "all_of", "courses": ["AME 386", "AME 387"] },
+      "sourceQuote": "All AME majors must complete a one-year senior design project: AME 386/387: Senior Design Project I and II."
+    },
+    {
+      "id": "hum-soc",
+      "label": "Humanities/social science beyond the cluster",
+      "rule": { "type": "n_from_filter", "n": 1,
+                "filter": { "depts": ["ENGL", "HIST", "PHIL", "RELC", "ANTH", "PSCI",
+                                      "ECON", "PSYC", "LING", "AHST", "BLST", "GSWS"],
+                            "minNumber": 100, "maxNumber": 399 } },
+      "sourceQuote": "All AME majors must take a minimum of 5 humanities and/or social science (H&SS) courses. This includes the three courses taken to satisfy the University Cluster requirement, and the AME music competency requirement.",
+      "note": "Five total: three from the cluster, plus the music competency courses, leaving roughly one further course."
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "WRTG 273",
+    "rule": { "type": "all_of", "courses": ["WRTG 273"] },
+    "sourceQuote": "Writing: six credits (WRTG 105 and WRTG 273)"
+  }
+}

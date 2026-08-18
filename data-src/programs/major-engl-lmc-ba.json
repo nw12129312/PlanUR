@@ -1,0 +1,87 @@
+{
+  "type": "major",
+  "degree": "BA",
+  "school": "sas",
+  "division": "humanities",
+  "status": "ACTIVE",
+  "sourcedOn": "2026-08-01",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": [
+    "social-sciences",
+    "natural-sciences"
+  ],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "sourceUrl": "https://www.sas.rochester.edu/eng/undergraduate/majors/language-media-communication.html",
+  "id": "major-engl-lmc-ba",
+  "name": "English: Language, Media, and Communication",
+  "departments": [
+    "ENGL"
+  ],
+  "snapshot": "data-src/pages/eng/eng_undergraduate_majors_language-media-communication.html",
+  "programChecks": {
+    "totalCourses": 10,
+    "minFromDepts": null,
+    "max100Level": 3
+  },
+  "notes": [
+    "Ten 4-credit courses (40 credit hours), at least SEVEN at the 200 or 300 level. The upper-level writing requirement is fulfilled by completion of the major.",
+    "Requirements as of July 1, 2014.",
+    "Up to three of the six core courses may be approved courses taught in other departments, and no more than two core courses may be 100-level. The department's list is explicitly not comprehensive - consult the director of undergraduate studies.",
+    "NEEDS VERIFICATION: because the core list is open-ended, core courses are modeled as ENGL courses in the named areas (journalism and nonfiction writing; media and cultural studies) rather than a closed list.",
+    "Upper-level writing carries NO separate course requirement here: the department states it is 'fulfilled by completion of the major'. (The harvested catalog also contains no W-designated ENGL courses at the 200-300 level, so a wOnly rule could not be satisfied in any case.)"
+  ],
+  "requirementGroups": [
+    {
+      "id": "intro",
+      "label": "Introductory course",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "ENGL 117",
+          "ENGL 118"
+        ]
+      },
+      "sourceQuote": "One Introductory Course. One of the following: ENGL 117: Introduction to the Art of Film; ENGL 118: Introduction to Media Studies"
+    },
+    {
+      "id": "core",
+      "label": "Core courses (6)",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 6,
+        "filter": {
+          "depts": [
+            "ENGL"
+          ],
+          "minNumber": 105,
+          "maxNumber": 399,
+          "exclude": [
+            "ENGL 117",
+            "ENGL 118"
+          ]
+        }
+      },
+      "sourceQuote": "Six Core Courses. Students must choose six core courses. Up to three of these courses can be chosen from approved courses taught in other departments. No more than two can be 100-level courses. I. Journalism and Nonfiction Writing: ENGL 105; ENGL 131; ENGL 132; ENGL 133; ENGL 138; ENGL 281; ENGL 283. II. Media and Cultural Studies: ENGL 117 ...",
+      "note": "Open-ended list; modeled as ENGL courses."
+    },
+    {
+      "id": "advanced",
+      "label": "Further 200/300-level English courses (3)",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 3,
+        "filter": {
+          "depts": [
+            "ENGL"
+          ],
+          "minNumber": 200,
+          "maxNumber": 399
+        }
+      },
+      "sourceQuote": "A minimum of ten, 4-credit courses are required for the major. At least seven of the courses must be at the 200 or 300 level."
+    }
+  ],
+  "upperLevelWriting": null
+}

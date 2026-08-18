@@ -1,0 +1,199 @@
+{
+  "id": "major-bioe-ba",
+  "type": "major",
+  "name": "Bioethics",
+  "degree": "BA",
+  "school": "sas",
+  "division": "humanities",
+  "departments": [
+    "PHLT"
+  ],
+  "status": "ACTIVE",
+  "sourcedOn": "2026-08-01",
+  "sourceUrl": "https://www.sas.rochester.edu/ph/undergraduate/majors/bioe.html",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": [
+    "humanities",
+    "social-sciences"
+  ],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": 2,
+  "programChecks": {
+    "totalCourses": null,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Prerequisites of individual courses are not counted toward the major.",
+    "Students may major, minor, OR complete a cluster within the public health-related programs, but not more than one.",
+    "No more than two courses may overlap between a public health major and another major.",
+    "STAT 212 was valid until spring 2024; STAT 180 is the current course.",
+    "Several electives carry validity windows or class-year restrictions noted on the department page.",
+    "The major requires BOTH PHIL 228 and PHIL 225: one counts toward the Public Health General Core and the other toward the Specific Core Requirements.",
+    "NEEDS VERIFICATION: the four electives are split into themes (Philosophy and Ethics, 2 courses, plus further themes); only the first theme was captured in the page snapshot, so the remaining two electives are modeled as PHLT/PHIL courses."
+  ],
+  "requirementGroups": [
+    {
+      "id": "ph-core",
+      "label": "Public health general core",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "PHLT 101",
+          "PHLT 103"
+        ]
+      },
+      "sourceQuote": "Public Health General Core (Four Courses): PHLT 101: Introduction to Public Health I; PHLT 103: Concepts of Epidemiology"
+    },
+    {
+      "id": "ph-stat",
+      "label": "Statistics",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "STAT 180",
+          "STAT 212"
+        ]
+      },
+      "sourceQuote": "STAT 212: Applied Statistics I (valid until spring 2024) or STAT 180: Introduction to Applied Statistical Methodology (valid beginning fall 2024)"
+    },
+    {
+      "id": "ph-ethics",
+      "label": "Public health or medical ethics",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "PHIL 228",
+          "PHIL 228W",
+          "PHIL 225"
+        ]
+      },
+      "sourceQuote": "PHIL 228 (PHIL 228W): Public Health Ethics or PHIL 225: Ethical Decisions in Medicine"
+    },
+    {
+      "id": "phil-core",
+      "label": "Philosophy core",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "PHIL 223"
+        ]
+      },
+      "sourceQuote": "PHIL 223/223W: Social and Political Philosophy"
+    },
+    {
+      "id": "phil-intro",
+      "label": "Introductory ethics",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "PHIL 102",
+          "PHIL 103"
+        ]
+      },
+      "sourceQuote": "PHIL 102: General Ethics or PHIL 103: Contemporary Moral Problems"
+    },
+    {
+      "id": "law",
+      "label": "Health law and policy",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "PHLT 236",
+          "PHLT 230"
+        ]
+      },
+      "sourceQuote": "PHLT/PSCI 236: Health Care and Law or PHLT 230: Public Health Law and Policy"
+    },
+    {
+      "id": "seminar",
+      "label": "Seminar for bioethics majors",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "PHLT 300W"
+        ]
+      },
+      "sourceQuote": "PHLT 300W (H): Seminar for Bioethics Majors"
+    },
+    {
+      "id": "second-ethics",
+      "label": "Second ethics course",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "PHIL 225",
+          "PHIL 225W",
+          "PHIL 228",
+          "PHIL 228W"
+        ]
+      },
+      "sourceQuote": "PHIL 228/228W: Public Health Ethics or PHIL 225/225W: Ethical Decisions in Medicine",
+      "note": "The major requires both PHIL 228 and PHIL 225; the other one counts in the general core."
+    },
+    {
+      "id": "electives-phil",
+      "label": "Philosophy and ethics electives (2)",
+      "rule": {
+        "type": "n_of",
+        "n": 2,
+        "options": [
+          "MHB 210",
+          "MHB 410U",
+          "MHB 472U",
+          "PHIL 102",
+          "PHIL 103"
+        ]
+      },
+      "sourceQuote": "I. Philosophy and Ethics (2 Courses). Choose two of the following: MHB 210: Bioethics at the Bedside; MHB 410U: Clinical Bioethics; MHB 472U: Philosophical Foundations of Bioethics; PHIL 102: General Ethics; PHIL 103: Contemporary Moral Problems"
+    },
+    {
+      "id": "electives-other",
+      "label": "Further electives (2)",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 2,
+        "filter": {
+          "depts": [
+            "PHLT",
+            "PHIL"
+          ],
+          "minNumber": 200,
+          "maxNumber": 399,
+          "exclude": [
+            "PHIL 223",
+            "PHIL 225",
+            "PHIL 228",
+            "PHLT 230",
+            "PHLT 236",
+            "PHLT 300W"
+          ]
+        }
+      },
+      "sourceQuote": "Electives (Four Courses)",
+      "note": "NEEDS VERIFICATION - the later elective themes were truncated in the captured page."
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "PHLT 300W and PHIL 223W/225W/228W",
+    "rule": {
+      "type": "n_from_filter",
+      "n": 2,
+      "filter": {
+        "depts": [
+          "PHLT",
+          "PHIL"
+        ],
+        "minNumber": 200,
+        "maxNumber": 399,
+        "wOnly": true
+      }
+    },
+    "sourceQuote": "PHLT 300W (H): Seminar for Bioethics Majors; PHIL 223/223W; PHIL 228/228W; PHIL 225/225W"
+  }
+}

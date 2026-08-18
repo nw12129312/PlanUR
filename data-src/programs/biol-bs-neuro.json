@@ -1,0 +1,258 @@
+{
+ "id": "biol-bs-neuro",
+ "type": "major",
+ "name": "Biological Sciences: Neuroscience Track",
+ "degree": "BS",
+ "school": "sas",
+ "division": "natural-sciences",
+ "departments": [
+  "BIOL",
+  "NSCI"
+ ],
+ "status": "ACTIVE",
+ "sourceUrl": "https://www.sas.rochester.edu/bcs/neuro/requirements.html",
+ "sourcedOn": "2026-07-06",
+ "last_verified": "2026-07-06",
+ "snapshot": "data-src/pages/bcs/bcs_undergraduate_.._neuro_requirements.html",
+ "clustersRequired": 2,
+ "allowedClusterDivisions": [
+  "humanities",
+  "social-sciences"
+ ],
+ "totalCreditsOverride": null,
+ "overlapCapOverride": null,
+ "apIbCreditExcluded": true,
+ "minMajorGPA": 2.0,
+ "minPctFromHomeInstitution": 50,
+ "notes": [
+  "AP Biology (4/5) and IB Biology HL (6/7) earn general credit only - never major/minor requirements (encoded: apIbCreditExcluded).",
+  "UR courses must fulfill at least half the concentration requirements; ancillary-field courses are exempt (encoded: minPctFromHomeInstitution + per-group ancillary flags).",
+  "Maintain a 2.0 GPA within the major, excluding allied/ancillary field courses (minMajorGPA - informational: the app does not track grades).",
+  "Administered by the Department of Brain and Cognitive Sciences; requirements sourced from the BCS neuroscience page (snapshot data-src/pages/bcs/bcs_undergraduate_.._neuro_requirements.html).",
+  "Twenty courses total; independent study credits (e.g. NSCI 395) may not substitute for any major requirement.",
+  "First-year organic students may substitute CHEM 172 (with CHEM 208 or CHEM 210W lab) for CHEM 132."
+ ],
+ "requirementGroups": [
+  {
+   "id": "intro-bio-1",
+   "label": "Introductory biology I",
+   "rule": {
+    "type": "n_of",
+    "n": 1,
+    "options": [
+     "BIOL 110L",
+     "BIOL 110"
+    ]
+   },
+   "sourceQuote": "One of the following: BIOL 110: Principles of Biology I (Spring); BIOL 110L: Principles of Biology I with lab (Fall)"
+  },
+  {
+   "id": "intro-bio-2",
+   "label": "Introductory biology II",
+   "rule": {
+    "type": "all_of",
+    "courses": [
+     "BIOL 111L"
+    ]
+   },
+   "sourceQuote": "Plus BIOL 111L: Principles of Biology II with lab (Spring)"
+  },
+  {
+   "id": "genetics",
+   "label": "Genetics",
+   "rule": {
+    "type": "n_of",
+    "n": 1,
+    "options": [
+     "BIOL 198",
+     "BIOL 190"
+    ]
+   },
+   "sourceQuote": "BIOL 198 & 198P: Principles of Genetics with Lab; BIOL 190 & 198P: Genetics: From Mendel to Molecules with Lab",
+   "note": "Judgment call: modeled as a one-slot choice (n_of), not an equivalency group - both feed the same downstream requirements."
+  },
+  {
+   "id": "biochem",
+   "label": "Biochemistry",
+   "rule": {
+    "type": "n_of",
+    "n": 1,
+    "options": [
+     "BIOL 250",
+     "BIOL 252"
+    ]
+   },
+   "sourceQuote": "One of the following: BIOL 250: Biochemistry (Spring); BIOL 252: Principles of Biochemistry (Spring)",
+   "note": "BIOL 198P and BIOL 250P labs are recommended but not required."
+  },
+  {
+   "id": "diversification",
+   "label": "Biology diversification elective (outside neuroscience)",
+   "rule": {
+    "type": "n_from_filter",
+    "n": 1,
+    "filter": {
+     "depts": [
+      "BIOL",
+      "MBI",
+      "BCH"
+     ],
+     "minNumber": 200,
+     "maxNumber": 499,
+     "minCredits": 4
+    }
+   },
+   "sourceQuote": "Students are required to take one biology diversification elective ... from within the biological sciences, but from outside the neuroscience curriculum. The diversification elective must be 200-level or higher and 4 credits."
+  },
+  {
+   "id": "core",
+   "label": "Neuroscience core",
+   "rule": {
+    "type": "all_of",
+    "courses": [
+     "NSCI 201",
+     "NSCI 201P",
+     "NSCI 203"
+    ]
+   },
+   "sourceQuote": "NSCI 201 & 201P: Basic Neurobiology with lab (Fall); NSCI 203: Laboratory in Neurobiology (Spring)"
+  },
+  {
+   "id": "seminar",
+   "label": "Senior seminar",
+   "rule": {
+    "type": "n_of",
+    "n": 1,
+    "options": [
+     "NSCI 301",
+     "NSCI 302"
+    ]
+   },
+   "sourceQuote": "NSCI 301 or NSCI 302: Senior Seminar in Neuroscience (Fall or Spring)"
+  },
+  {
+   "id": "electives",
+   "label": "Neuroscience electives (4)",
+   "rule": {
+    "type": "n_of",
+    "n": 4,
+    "options": [
+     "NSCI 242",
+     "NSCI 243",
+     "NSCI 244",
+     "NSCI 245",
+     "NSCI 246",
+     "NSCI 247",
+     "NSCI 249",
+     "NSCI 250",
+     "NSCI 251",
+     "NSCI 252",
+     "NSCI 257",
+     "NSCI 280",
+     "BME 415",
+     "IND 447"
+    ]
+   },
+   "sourceQuote": "Neuroscience Electives (4 courses): NSCI 242; NSCI 243; NSCI 244; NSCI 245; NSCI 246; NSCI 247; NSCI 249; NSCI 250; NSCI 251; NSCI 252; NSCI 257; NSCI 280; BME 415; IND 447U",
+   "note": "NSCI 241 is no longer available (valid if previously completed); BME 415 on hiatus until 2026."
+  },
+  {
+   "id": "chem-gen",
+   "label": "General chemistry",
+   "rule": {
+    "type": "all_of",
+    "courses": [
+     "CHEM 131",
+     "CHEM 132"
+    ]
+   },
+   "sourceQuote": "Both of the following general chemistry courses: CHEM 131: Chemical Concepts I with Lab; CHEM 132: Chemical Concepts II with Lab",
+   "ancillary": true
+  },
+  {
+   "id": "orgo-1",
+   "label": "Organic chemistry I (one path)",
+   "rule": {
+    "type": "sequence_one_of",
+    "sequences": [
+     [
+      "CHEM 203",
+      "CHEM 207"
+     ],
+     [
+      "CHEM 171",
+      "CHEM 173"
+     ]
+    ]
+   },
+   "sourceQuote": "One of the following organic chemistry I courses: CHEM 203/207: Organic Chemistry I with Lab; CHEM 171/173: First Year Organic Chemistry I with Lab",
+   "note": "Alternate-rigor paths - also enforced by the orgo-sequence equivalency group (mixing paths is flagged).",
+   "ancillary": true
+  },
+  {
+   "id": "stat",
+   "label": "Statistics",
+   "rule": {
+    "type": "n_of",
+    "n": 1,
+    "options": [
+     "STAT 180",
+     "STAT 190"
+    ]
+   },
+   "sourceQuote": "One of the following statistics courses: STAT 180 (AP credits acceptable); STAT 190; STAT 212 (no longer available)",
+   "ancillary": true
+  },
+  {
+   "id": "allied",
+   "label": "Additional allied field courses (4, from 2+ categories)",
+   "rule": {
+    "type": "n_from_filter",
+    "n": 4,
+    "filter": {
+     "depts": [
+      "CHEM",
+      "CSC",
+      "MATH",
+      "STAT",
+      "PHYS",
+      "BCSC",
+      "DSCC"
+     ],
+     "minNumber": 140,
+     "maxNumber": 499,
+     "exclude": [
+      "CHEM 131",
+      "CHEM 132",
+      "CHEM 203",
+      "CHEM 207",
+      "CHEM 171",
+      "CHEM 173"
+     ]
+    }
+   },
+   "sourceQuote": "Four additional allied field courses, chosen from at least two of the following categories: Chemistry ... (full category lists on the BCS neuroscience page)",
+   "note": "NEEDS nuance: the two-category minimum and exact per-category lists are not auto-enforced; filter approximates the allowed departments."
+  }
+ ],
+ "upperLevelWriting": {
+  "label": "Two ULW courses (biological/natural sciences)",
+  "rule": {
+   "type": "n_from_filter",
+   "n": 2,
+   "filter": {
+    "depts": [
+     "NSCI",
+     "BIOL",
+     "BCH",
+     "MBI"
+    ],
+    "minNumber": 200,
+    "maxNumber": 499,
+    "wOnly": true
+   }
+  },
+  "sourceQuote": "All biology majors must complete two ULW courses (per the shared UPBM requirement).",
+  "note": "Neuroscience is administered by BCS; ULW specifics follow the UPBM biology rule."
+ }
+}

@@ -1,0 +1,55 @@
+{
+  "id": "minor-arbc",
+  "type": "minor",
+  "name": "Arabic",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "humanities",
+  "departments": [
+    "ARBC"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/rel/undergraduate/minors.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/rel/rel_undergraduate_minors.html",
+  "programChecks": {
+    "totalCourses": 6,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Six courses. ARBC 101 and 102 may be replaced by equivalent preparation.",
+    "The four upper courses must be read in the original language."
+  ],
+  "requirementGroups": [
+    {
+      "id": "elementary",
+      "label": "Elementary Arabic",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "ARBC 101",
+          "ARBC 102"
+        ]
+      },
+      "sourceQuote": "Minor in Arabic: ARBC 101 and 102, or the equivalent."
+    },
+    {
+      "id": "textual",
+      "label": "Four courses of close textual analysis in Arabic",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 4,
+        "filter": {
+          "depts": [
+            "ARBC"
+          ],
+          "minNumber": 103,
+          "maxNumber": 399
+        }
+      },
+      "sourceQuote": "Four courses of close textual analysis and interpretation, chosen from a wide range of Arabic texts, and read in the original language."
+    }
+  ],
+  "upperLevelWriting": null
+}

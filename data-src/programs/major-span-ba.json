@@ -1,0 +1,114 @@
+{
+  "type": "major",
+  "degree": "BA",
+  "school": "sas",
+  "division": "humanities",
+  "status": "ACTIVE",
+  "sourcedOn": "2026-08-01",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": [
+    "social-sciences",
+    "natural-sciences"
+  ],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "id": "major-span-ba",
+  "name": "Spanish",
+  "departments": [
+    "SPAN"
+  ],
+  "sourceUrl": "https://www.sas.rochester.edu/mlc/undergraduate/spanish.html",
+  "snapshot": "data-src/pages/mlc/mlc_undergraduate_spanish.html",
+  "programChecks": {
+    "totalCourses": 11,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Eleven courses: two foundation, three core, six electives.",
+    "SPAN 205 or 206 are highly recommended. AP credit may cover SPAN 151/152 depending on score and placement.",
+    "SPAN 203 may be replaced by an approved alternative. Study in a Spanish-speaking country is strongly recommended."
+  ],
+  "requirementGroups": [
+    {
+      "id": "foundation",
+      "label": "Foundation courses (fulfil upper-level writing)",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "CLTR 200",
+          "CLTR 389"
+        ]
+      },
+      "sourceQuote": "FOUNDATION COURSES (fulfills upper level writing): CLTR 200: Topics in Critical Thinking; CLTR 389: MLC Research Seminar"
+    },
+    {
+      "id": "core-comp",
+      "label": "Advanced Spanish Composition",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "SPAN 200"
+        ]
+      },
+      "sourceQuote": "CORE COURSES: SPAN 200: Advanced Spanish Composition"
+    },
+    {
+      "id": "core-lit",
+      "label": "Literature survey",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "SPAN 202",
+          "SPAN 204"
+        ]
+      },
+      "sourceQuote": "SPAN 202: The Forging of a Nation or SPAN 204: Coming to Terms: Spanish American Literature"
+    },
+    {
+      "id": "core-identities",
+      "label": "Representing Identities in the Early Hispanic World",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "SPAN 203"
+        ]
+      },
+      "sourceQuote": "SPAN 203: Representing Identities in the Early Hispanic World (or an approved alternative)"
+    },
+    {
+      "id": "electives",
+      "label": "Spanish electives (6)",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 6,
+        "filter": {
+          "depts": [
+            "SPAN"
+          ],
+          "minNumber": 151,
+          "maxNumber": 399,
+          "exclude": [
+            "SPAN 200",
+            "SPAN 202",
+            "SPAN 203",
+            "SPAN 204"
+          ]
+        }
+      },
+      "sourceQuote": "ELECTIVE COURSES: Six additional courses which could include SPAN 151 and 152 and 200-level electives in Spanish. SPAN 205 or 206 are highly recommended."
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "CLTR 200 and CLTR 389",
+    "rule": {
+      "type": "all_of",
+      "courses": [
+        "CLTR 200",
+        "CLTR 389"
+      ]
+    },
+    "sourceQuote": "FOUNDATION COURSES (fulfill upper level writing)"
+  }
+}

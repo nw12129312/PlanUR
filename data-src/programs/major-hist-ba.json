@@ -1,0 +1,65 @@
+{
+  "id": "major-hist-ba",
+  "type": "major",
+  "name": "History",
+  "degree": "BA",
+  "school": "sas",
+  "division": "humanities",
+  "departments": ["HIST"],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/his/undergraduate/major.html",
+  "sourcedOn": "2026-07-05",
+  "snapshot": "data-src/pages/his/his_undergraduate_major.html",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": ["social-sciences", "natural-sciences"],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "notes": [
+    "Ten courses (40 credits) total; at least six from department faculty; no more than four from outside the department.",
+    "The geographical, chronological, and focus-area groups OVERLAP: one course can satisfy multiple distribution requirements at once (e.g. traditional China counts for both Asia and pre-1800), but at least 10 history courses are still required overall. The app counts these groups independently and does not subtract shared courses from the 10-course total.",
+    "A grade of C or better is required in the two ULW courses.",
+    "Which specific HIST courses fall in each geographic area / chronological period / focus area is maintained on department list pages; the app treats any 200+ HIST course as eligible for these groups (an approximation)."
+  ],
+  "requirementGroups": [
+    {
+      "id": "gateway",
+      "label": "Gateway seminar",
+      "rule": { "type": "all_of", "courses": ["HIST 200"] },
+      "sourceQuote": "Gateway Seminar (One Course): HIST 200: Introduction to Historical Methods"
+    },
+    {
+      "id": "geographic",
+      "label": "Geographical distribution (3 areas)",
+      "allowReuse": true,
+      "rule": { "type": "n_from_filter", "n": 3,
+                "filter": { "depts": ["HIST"], "minNumber": 100, "maxNumber": 399, "exclude": ["HIST 200"] } },
+      "sourceQuote": "A minimum of one history course in at least three of the following geographical areas: Africa; Asia and the Pacific; Europe; Latin America; The Middle East; North America.",
+      "note": "NEEDS VERIFICATION: per-area course lists are department-maintained; modeled as three distinct HIST courses. Overlaps with chronological/focus groups (allowReuse)."
+    },
+    {
+      "id": "chronological",
+      "label": "Chronological periods (2 pre-1800 + 2 post-1800)",
+      "allowReuse": true,
+      "rule": { "type": "n_from_filter", "n": 4,
+                "filter": { "depts": ["HIST"], "minNumber": 100, "maxNumber": 399, "exclude": ["HIST 200"] } },
+      "sourceQuote": "Four courses, two from each of the following chronological periods: Pre-1800; Post-1800.",
+      "note": "NEEDS VERIFICATION: pre/post-1800 designations are department-maintained; modeled as four HIST courses. Overlaps with geographic/focus groups (allowReuse)."
+    },
+    {
+      "id": "focus",
+      "label": "Focus area (5 courses in one area)",
+      "allowReuse": true,
+      "rule": { "type": "n_from_filter", "n": 5,
+                "filter": { "depts": ["HIST"], "minNumber": 100, "maxNumber": 399 } },
+      "sourceQuote": "Five history courses in one of the following focus areas: National or regional; Topical; Methodological.",
+      "note": "NEEDS VERIFICATION: focus-area membership is department-maintained. Overlaps with the other distribution groups (allowReuse); the 10-course major total is the binding count."
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "Two W history courses (one at 300-level, one in focus area)",
+    "rule": { "type": "n_from_filter", "n": 2,
+              "filter": { "depts": ["HIST"], "minNumber": 100, "maxNumber": 399, "wOnly": true } },
+    "sourceQuote": "Two upper-level writing ('W') history courses, one of which must be at the 300-level, and one of which must be in the student's area of focus.",
+    "note": "The 300-level and focus-area constraints are not auto-enforced."
+  }
+}

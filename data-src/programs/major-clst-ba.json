@@ -1,0 +1,105 @@
+{
+  "id": "major-clst-ba",
+  "type": "major",
+  "name": "Classics",
+  "degree": "BA",
+  "school": "sas",
+  "division": "humanities",
+  "departments": [
+    "CLST",
+    "CGRK",
+    "LATN"
+  ],
+  "status": "ACTIVE",
+  "sourcedOn": "2026-08-01",
+  "sourceUrl": "https://www.sas.rochester.edu/rel/undergraduate/classics.html",
+  "snapshot": "data-src/pages/rel/rel_undergraduate_classics.html",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": [
+    "social-sciences",
+    "natural-sciences"
+  ],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "programChecks": {
+    "totalCourses": 11,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "A minimum of 11 courses. Students may major in classics (both languages) or in Greek (CGRK) or Latin (LATN) alone; all majors are encouraged to take at least one year of each language.",
+    "The six language courses are modeled as Latin or Greek courses numbered 103 or above; the page allows either language to be the 'major language'.",
+    "A senior project is required, demonstrating the ability to interpret an ancient text in the original language. It may be completed as a senior thesis or within another classics course, so it is modeled as CLST 393.",
+    "NEEDS VERIFICATION: the history, philosophy, and literature/mythology requirements are given as examples (e.g. CLST 102, CLST 210) rather than closed lists; the modeled options follow those examples."
+  ],
+  "requirementGroups": [
+    {
+      "id": "language",
+      "label": "Language courses numbered 103 or above (6)",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 6,
+        "filter": {
+          "depts": [
+            "LATN",
+            "CGRK"
+          ],
+          "minNumber": 103,
+          "maxNumber": 399
+        }
+      },
+      "sourceQuote": "At least six courses in the major language numbered 103 or above"
+    },
+    {
+      "id": "history",
+      "label": "History of the ancient world",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "CLST 102",
+          "CLST 210"
+        ]
+      },
+      "sourceQuote": "One course focusing on the history of the ancient world (e.g., CLST 102, CLST 210)"
+    },
+    {
+      "id": "philosophy",
+      "label": "Ancient philosophy",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "CLST 142",
+          "CLST 202"
+        ]
+      },
+      "sourceQuote": "One course focusing on the philosophical writings of the ancient world (e.g., CLST 142, CLST 202)"
+    },
+    {
+      "id": "literature",
+      "label": "Literature or mythology survey",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "CLST 135",
+          "CLST 140"
+        ]
+      },
+      "sourceQuote": "One course surveying the literature and/or mythology of the ancient world (e.g., CLST 135, CLST 140)"
+    },
+    {
+      "id": "senior",
+      "label": "Senior project",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "CLST 393"
+        ]
+      },
+      "sourceQuote": "A senior project is required. This project must demonstrate the student's ability to meaningfully interpret an ancient text or texts, read in the original language. It can be completed as part of a senior thesis or in connection with requirements for any other classics course."
+    }
+  ],
+  "upperLevelWriting": null
+}

@@ -1,0 +1,151 @@
+{
+  "type": "major",
+  "school": "sas",
+  "division": "natural-sciences",
+  "status": "ACTIVE",
+  "sourcedOn": "2026-08-01",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": [
+    "humanities",
+    "social-sciences"
+  ],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "id": "major-apma-bs",
+  "name": "Applied Mathematics",
+  "degree": "BS",
+  "departments": [
+    "MATH"
+  ],
+  "sourceUrl": "https://www.sas.rochester.edu/mth/undergraduate/bs-applied-math.html",
+  "snapshot": "data-src/pages/mth/mth_undergraduate_bs-applied-math.html",
+  "programChecks": {
+    "totalCourses": null,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Foundational courses must be completed before acceptance into the major. AP credit may satisfy them.",
+    "Equivalent substitutions: MATH 171/172/174 for MATH 161/162/164; MATH 173 for MATH 165; MATH 141-143 for MATH 161-162.",
+    "MATH 235 may instead be satisfied by MATH 173, and should be taken early in the major.",
+    "An honors version of a course can always be substituted for the listed course.",
+    "Students choosing the physics track must ALSO complete the basic computing requirement (CSC 161 or CSC 171); students choosing the CSC track satisfy it automatically."
+  ],
+  "requirementGroups": [
+    {
+      "id": "found-math",
+      "label": "Foundational mathematics",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "MATH 161",
+          "MATH 162",
+          "MATH 164",
+          "MATH 165"
+        ]
+      },
+      "sourceQuote": "The following courses must be completed before acceptance into the major: MATH 161; MATH 162; MATH 164; MATH 165"
+    },
+    {
+      "id": "found-science",
+      "label": "Physics or computer science pair",
+      "rule": {
+        "type": "sequence_one_of",
+        "sequences": [
+          [
+            "PHYS 121",
+            "PHYS 122"
+          ],
+          [
+            "CSC 171",
+            "CSC 172"
+          ]
+        ]
+      },
+      "sourceQuote": "students must complete two courses from exactly one of the following subsections: PHYS 121, 122 or the honors equivalents PHYS 141, 142, 143 OR CSC 171, 172"
+    },
+    {
+      "id": "computing",
+      "label": "Basic computing requirement",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "CSC 161",
+          "CSC 171"
+        ]
+      },
+      "sourceQuote": "Basic computing requirement: students not choosing the computer science track above must also complete the basic computing requirement by taking either CSC 161 or 171."
+    },
+    {
+      "id": "core",
+      "label": "Core courses",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "MATH 235",
+          "MATH 201",
+          "MATH 265",
+          "MATH 280"
+        ]
+      },
+      "sourceQuote": "Core Course Requirement -- 5 courses. Students must complete the following courses: MATH 235: Linear Algebra; MATH 201: Introduction to Probability; MATH 265: Functions of a Real Variable I; MATH 280: Numerical Analysis"
+    },
+    {
+      "id": "core-choice",
+      "label": "Topology or complex variables",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "MATH 240",
+          "MATH 282"
+        ]
+      },
+      "sourceQuote": "In addition, students must complete one of the following courses: MATH 240: Introduction to Topology; MATH 282: Introduction to Complex Variables"
+    },
+    {
+      "id": "advanced",
+      "label": "Advanced courses (4)",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 4,
+        "filter": {
+          "depts": [
+            "MATH"
+          ],
+          "minNumber": 200,
+          "maxNumber": 399,
+          "minCredits": 4,
+          "exclude": [
+            "MATH 201",
+            "MATH 235",
+            "MATH 265",
+            "MATH 280",
+            "MATH 240",
+            "MATH 282"
+          ]
+        }
+      },
+      "sourceQuote": "students must complete four 4-credit advanced courses as follows: Two advanced mathematics courses; Two additional advanced courses with substantial mathematical content. Any mathematics course numbered 200 or above (excluding courses applied to the core requirement and 500+ level) qualifies.",
+      "note": "The two 'substantial mathematical content' courses may come from other departments; modeled as MATH courses."
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "Two upper-level writing courses",
+    "rule": {
+      "type": "n_from_filter",
+      "n": 2,
+      "filter": {
+        "depts": [
+          "MATH",
+          "STAT"
+        ],
+        "minNumber": 200,
+        "maxNumber": 399,
+        "wOnly": true
+      }
+    },
+    "sourceQuote": "To satisfy the upper level writing requirement, students must pass two upper level writing courses of a certain type."
+  }
+}

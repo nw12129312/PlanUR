@@ -1,0 +1,69 @@
+{
+  "id": "minor-eesc-envgeo",
+  "type": "minor",
+  "name": "Environmental Geology",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "natural-sciences",
+  "departments": [
+    "EESC"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/ees/undergraduate/minors.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/ees/ees_undergraduate_minors.html",
+  "programChecks": {
+    "totalCourses": 6,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Six courses total: one or both introductory courses plus four or five electives.",
+    "Intended especially for natural-science and social-science concentrators planning further study or employment in environmental fields.",
+    "EESC 205 (Solid Earth Geophysics) is an acceptable substitute for EESC 215.",
+    "See the department's major/minor course overlap policy."
+  ],
+  "requirementGroups": [
+    {
+      "id": "intro",
+      "label": "One or both introductory courses",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "EESC 101",
+          "EESC 103"
+        ]
+      },
+      "sourceQuote": "Required Courses. One or both of the following introductory courses: EESC 101: Introduction to Earth Sciences; EESC 103: Introduction to Environmental Science"
+    },
+    {
+      "id": "electives",
+      "label": "Five environmental geology electives",
+      "rule": {
+        "type": "n_of",
+        "n": 5,
+        "options": [
+          "EESC 105",
+          "EESC 201",
+          "EESC 203",
+          "EESC 204",
+          "EESC 208",
+          "EESC 211",
+          "EESC 212",
+          "EESC 213",
+          "EESC 215",
+          "EESC 205",
+          "EESC 216",
+          "EESC 218",
+          "EESC 219",
+          "EESC 252",
+          "EESC 103"
+        ]
+      },
+      "sourceQuote": "Four or five of the following elective courses: EESC 105: Introduction to Climate Change; EESC 201: Evolution of the Earth; EESC 203: Sedimentology and Stratigraphy; EESC 204: Earth Materials; EESC 208: Structural Geology; EESC 211: Nature's Fury; EESC 212: A Climate Change Perspective to Chemical Oceanography; EESC 213: Hydrology and Water Resources; EESC 215: Environmental and Applied Geophysics (EESC 205: Solid Earth Geophysics is an acceptable substitute); EESC 216: Environmental Geochemistry; EESC 218: Atmospheric Chemistry; EESC 219: Energy and Society; EESC 252: Marine Geology",
+      "note": "Take five electives if you took one introductory course, four if you took both."
+    }
+  ],
+  "upperLevelWriting": null
+}

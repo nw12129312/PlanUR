@@ -1,0 +1,154 @@
+[
+ {
+  "id": "calc-sequence",
+  "name": "Calculus sequence",
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.cs.rochester.edu/undergraduate/bs-requirements.html",
+  "sourceQuote": "Either MATH 14x, MATH 16x, or MATH 17x sequence",
+  "sourcedOn": "2026-07-03",
+  "satisfiesPrereqLevel": "calc_sequence_complete",
+  "paths": [
+   {
+    "id": "14x",
+    "name": "MATH 141-143",
+    "courses": [
+     "MATH 141",
+     "MATH 142",
+     "MATH 143"
+    ],
+    "accelerated": false
+   },
+   {
+    "id": "16x",
+    "name": "MATH 161-162",
+    "courses": [
+     "MATH 161",
+     "MATH 162"
+    ],
+    "accelerated": false
+   },
+   {
+    "id": "17x",
+    "name": "Honors (MATH 171-172)",
+    "courses": [
+     "MATH 171",
+     "MATH 172"
+    ],
+    "accelerated": true
+   }
+  ]
+ },
+ {
+  "id": "intro-biology",
+  "name": "Introductory biology sequence",
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/bio/undergraduate/bio.html",
+  "sourceQuote": "BIOL 110L and 111L (or 112L and 113L)",
+  "sourcedOn": "2026-07-03",
+  "satisfiesPrereqLevel": "intro_bio_complete",
+  "paths": [
+   {
+    "id": "110",
+    "name": "BIOL 110L-111L",
+    "courses": [
+     "BIOL 110L",
+     "BIOL 111L"
+    ],
+    "accelerated": false
+   },
+   {
+    "id": "112",
+    "name": "BIOL 112L-113L",
+    "courses": [
+     "BIOL 112L",
+     "BIOL 113L"
+    ],
+    "accelerated": false
+   }
+  ]
+ },
+ {
+  "id": "intro-physics",
+  "name": "Introductory physics (Physics I)",
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/bio/undergraduate/bio.html",
+  "sourceQuote": "One of the following physics I courses: PHYS 113: General Physics I with Lab; PHYS 121: Mechanics; PHYS 141: Mechanics (Honors) with Lab",
+  "sourcedOn": "2026-07-06",
+  "satisfiesPrereqLevel": "physics_intro_complete",
+  "paths": [
+   {
+    "id": "113",
+    "name": "PHYS 113 (general)",
+    "courses": [
+     "PHYS 113"
+    ],
+    "accelerated": false
+   },
+   {
+    "id": "121",
+    "name": "PHYS 121 (mechanics)",
+    "courses": [
+     "PHYS 121"
+    ],
+    "accelerated": false
+   },
+   {
+    "id": "141",
+    "name": "PHYS 141 (honors)",
+    "courses": [
+     "PHYS 141"
+    ],
+    "accelerated": true
+   }
+  ]
+ },
+ {
+  "id": "orgo-sequence",
+  "name": "Organic chemistry I sequence",
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/bio/undergraduate/bio.html",
+  "sourceQuote": "One of the following organic chemistry I courses: CHEM 203/207: Organic Chemistry I with Lab; CHEM 171/173: First Year Organic Chemistry I with Lab",
+  "sourcedOn": "2026-07-06",
+  "satisfiesPrereqLevel": "orgo_sequence_complete",
+  "paths": [
+   {
+    "id": "203",
+    "name": "CHEM 203 + 207",
+    "courses": [
+     "CHEM 203",
+     "CHEM 207"
+    ],
+    "accelerated": false
+   },
+   {
+    "id": "171",
+    "name": "First-year organic (CHEM 171 + 173)",
+    "courses": [
+     "CHEM 171",
+     "CHEM 173"
+    ],
+    "accelerated": true
+   }
+  ]
+ },
+ {
+  "id": "intro-chemistry",
+  "name": "Introductory / first-year chemistry",
+  "status": "NEEDS_DATA_ENTRY",
+  "sourceUrl": "https://www.sas.rochester.edu/chm/",
+  "sourceQuote": "Bio BA page notes CHEM 171/173 + 172/210 with AP credit can replace CHEM 131-132; exact path structure unconfirmed",
+  "sourcedOn": null,
+  "satisfiesPrereqLevel": "intro_chem_complete",
+  "paths": []
+ },
+ {
+  "id": "intro-statistics",
+  "name": "Introductory statistics",
+  "status": "NEEDS_DATA_ENTRY",
+  "sourceUrl": "https://www.sas.rochester.edu/mth/",
+  "sourceQuote": null,
+  "sourcedOn": null,
+  "satisfiesPrereqLevel": "intro_stat_complete",
+  "paths": []
+ }
+]

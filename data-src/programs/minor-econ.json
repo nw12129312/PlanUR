@@ -1,0 +1,37 @@
+{
+  "id": "minor-econ",
+  "type": "minor",
+  "name": "Economics",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "social-sciences",
+  "departments": ["ECON"],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/eco/undergraduate/minor-clusters.html",
+  "sourcedOn": "2026-08-01",
+  "snapshot": "data-src/pages/eco/eco_undergraduate_minor-clusters.html",
+  "programChecks": { "totalCourses": 5, "minFromDepts": null, "max100Level": null },
+  "minMajorGPA": 2.0,
+  "notes": [
+    "The department page writes course codes as ECO / STT; the registrar catalog uses ECON / STAT, which is the form used here.",
+    "An overall average of C or better is required in the economics courses counted toward the minor.",
+    "The department will accept up to two transfer courses for the elective requirement.",
+    "STAT 213 cannot be used for the economics minor - excluded from the elective filter."
+  ],
+  "requirementGroups": [
+    {
+      "id": "intermediate",
+      "label": "Intermediate theory",
+      "rule": { "type": "all_of", "courses": ["ECON 207", "ECON 209"] },
+      "sourceQuote": "Minor Requirements: ECO 207: Intermediate Microeconomics; ECO 209: Intermediate Macroeconomics"
+    },
+    {
+      "id": "electives",
+      "label": "200-level economics electives (3)",
+      "rule": { "type": "n_from_filter", "n": 3,
+                "filter": { "depts": ["ECON"], "minNumber": 200, "maxNumber": 299,
+                            "exclude": ["ECON 207", "ECON 209"] } },
+      "sourceQuote": "Three 200-level economics electives. The department will accept up to two transfer courses for the economics elective requirement. STT 213 cannot be used for the economics minor."
+    }
+  ]
+}

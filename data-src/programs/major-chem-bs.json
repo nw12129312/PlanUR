@@ -1,0 +1,112 @@
+{
+  "id": "major-chem-bs",
+  "type": "major",
+  "name": "Chemistry",
+  "degree": "BS",
+  "school": "sas",
+  "division": "natural-sciences",
+  "departments": ["CHEM"],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/chm/undergraduate/bs-requirements.html",
+  "sourcedOn": "2026-08-01",
+  "snapshot": "data-src/pages/chm/chm_undergraduate_bs-requirements.html",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": ["humanities", "social-sciences"],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "minMajorGPA": 2.0,
+  "programChecks": { "totalCourses": null, "minFromDepts": null, "max100Level": null },
+  "notes": [
+    "Meets the requirements for an American Chemical Society (ACS) approved degree.",
+    "At least 55 credit hours in chemistry and at least 85 credit hours overall. A 2.0 GPA must be maintained in the major, excluding allied field courses.",
+    "Both general/organic sequences require CHEM 210W (unlike the BA, where CHEM 208 is an alternative). The standard sequence also requires CHEM 132, which the first-year organic sequence does not - CHEM 132 is therefore part of the sequence rather than the theory group.",
+    "CHEM 231, 232, or 244 may be replaced by an upper-level laboratory course from another department that maintains ACS curricular coverage in analytical, physical, and macromolecular/nanoscale chemistry - substitutions are not modeled.",
+    "Senior research is two semesters totalling eight credits of CHEM 393, plus a written thesis read and approved by the research advisor and a second chemistry faculty member. The app places CHEM 393 once; the second semester is not separately represented.",
+    "Biochemistry may be taken as CHEM 262, BIOL 250, or BIOL 252.",
+    "PHYS 121-123 is recommended over PHYS 113-114."
+  ],
+  "requirementGroups": [
+    {
+      "id": "gen-organic",
+      "label": "General and organic chemistry sequence",
+      "rule": { "type": "sequence_one_of", "sequences": [
+        ["CHEM 131", "CHEM 132", "CHEM 203", "CHEM 204", "CHEM 207", "CHEM 210W"],
+        ["CHEM 131", "CHEM 171", "CHEM 172", "CHEM 173", "CHEM 210W"]] },
+      "sourceQuote": "General Standard Sequence: CHEM 131; CHEM 132; CHEM 203; CHEM 204; CHEM 207; CHEM 210W. First-year Organic Sequence: CHEM 131; CHEM 171; CHEM 172; CHEM 173; CHEM 210W"
+    },
+    {
+      "id": "theory",
+      "label": "Theory courses",
+      "rule": { "type": "all_of", "courses": ["CHEM 211", "CHEM 251", "CHEM 252"] },
+      "sourceQuote": "Theory Courses (16 credits): CHEM 211: Inorganic Chemistry; CHEM 251: Physical Chemistry I; CHEM 252: Physical Chemistry II"
+    },
+    {
+      "id": "biochem",
+      "label": "Biochemistry",
+      "rule": { "type": "n_of", "n": 1, "options": ["CHEM 262", "BIOL 250", "BIOL 252"] },
+      "sourceQuote": "CHEM 262/BIOL 250/BIOL 252: Biochemistry"
+    },
+    {
+      "id": "core-labs",
+      "label": "Core laboratory courses",
+      "rule": { "type": "all_of", "courses": ["CHEM 231", "CHEM 234"] },
+      "sourceQuote": "Both of the core laboratory courses: CHEM 231: Chemical Instrumentation; CHEM 234: Advanced Laboratory Techniques"
+    },
+    {
+      "id": "pchem-lab",
+      "label": "Physical chemistry laboratory",
+      "rule": { "type": "n_of", "n": 1, "options": ["CHEM 232", "CHEM 244"] },
+      "sourceQuote": "One physical chemistry lab course: CHEM 232: Molecular Spectroscopy OR CHEM 244: Adv. Nuclear Science (ANSEL)"
+    },
+    {
+      "id": "graduate-course",
+      "label": "400-level chemistry course",
+      "rule": { "type": "n_from_filter", "n": 1,
+                "filter": { "depts": ["CHEM"], "minNumber": 400, "maxNumber": 599 } },
+      "sourceQuote": "400-Level/Graduate Level Chemistry Course (4 credits). At least four credits of a 400-level chemistry course may be taken anytime during the junior or senior year."
+    },
+    {
+      "id": "senior-research",
+      "label": "Senior research",
+      "rule": { "type": "all_of", "courses": ["CHEM 393"] },
+      "sourceQuote": "Senior Research (8 credits): CHEM 393: Senior Thesis Research. Two semesters, equaling eight credit hours of Senior Research, are required for a BS degree.",
+      "note": "Two semesters are required; the app places the course once."
+    },
+    {
+      "id": "math-calc",
+      "label": "Calculus sequence",
+      "rule": { "type": "sequence_one_of", "sequences": [
+        ["MATH 141", "MATH 142", "MATH 143"],
+        ["MATH 161", "MATH 162"]] },
+      "sourceQuote": "One of the following sequences: MATH 141, MATH 142, and MATH 143; MATH 161 and MATH 162"
+    },
+    {
+      "id": "math-diffeq",
+      "label": "Linear algebra or differential equations",
+      "rule": { "type": "n_of", "n": 1, "options": ["MATH 165", "MATH 163"] },
+      "sourceQuote": "Plus one of the following courses: MATH 165: Linear Algebra and Differential Equations; MATH 163: Ordinary Differential Equations"
+    },
+    {
+      "id": "math-plus",
+      "label": "Additional mathematics, statistics, or computing",
+      "rule": { "type": "n_of", "n": 1, "options": [
+        "MATH 164", "STAT 180", "STAT 190", "STAT 201", "CSC 161", "CSC 171"] },
+      "sourceQuote": "Plus one of the following courses: MATH 164: Multidimensional Calculus; STAT 180; STAT 190; STAT 201: Introduction to Probability; CSC 161; CSC 171; Any 200-level mathematics course",
+      "note": "The 'any 200-level mathematics course' alternative is not modeled."
+    },
+    {
+      "id": "physics",
+      "label": "Physics sequence",
+      "rule": { "type": "sequence_one_of", "sequences": [
+        ["PHYS 121", "PHYS 122"],
+        ["PHYS 113", "PHYS 114"]] },
+      "sourceQuote": "Physics Coursework (8 credits). One of the following sequences: PHYS 113-114 Sequence (General Physics I & II); PHYS 121-123 Sequence (Mechanics and Electricity & Magnetism) recommended"
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "Two upper-level writing courses (at least one in chemistry)",
+    "rule": { "type": "n_of", "n": 2, "options": ["CHEM 210W", "CHEM 231W", "CHEM 232W", "CHEM 234W"] },
+    "sourceQuote": "All chemistry majors are required to complete two upper-level writing courses ('W' courses). At least one of these courses must be a chemistry department course selected from the following: CHEM 210W; CHEM 231W; CHEM 232W; CHEM 234W.",
+    "note": "Only one of the two must be a chemistry course; the second may come from another department."
+  }
+}

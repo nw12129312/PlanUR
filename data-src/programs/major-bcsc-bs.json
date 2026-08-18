@@ -1,0 +1,97 @@
+{
+  "id": "major-bcsc-bs",
+  "type": "major",
+  "name": "Brain and Cognitive Sciences",
+  "degree": "BS",
+  "school": "sas",
+  "division": "natural-sciences",
+  "departments": ["BCSC"],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/bcs/undergraduate/BSdegree.html",
+  "sourcedOn": "2026-07-05",
+  "snapshot": "data-src/pages/bcs/bcs_undergraduate_BSdegree.html",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": ["humanities", "social-sciences"],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "notes": [
+    "Independent study courses (BCSC 391, BCS 395C) do not fulfill any major requirement.",
+    "The page notes students without CHEM 131 may struggle in BIOL 110 - advisory only.",
+    "STAT 212/213 were renamed STAT 180/190 per the Statistics program; both code families accepted.",
+    "A formal methods (statistics) course must be completed before taking a lab course - not auto-enforced.",
+    "BCSC 206/207 research sequence: both required; 207 fulfills the lab requirement, 206 may count as an elective.",
+    "Electives should form a coherent track (3 of 4 on-theme, at most one 100-level); allied fields should relate to the track - adviser-approved, not auto-enforced."
+  ],
+  "requirementGroups": [
+    {
+      "id": "sci-bio",
+      "label": "Science foundation: biology",
+      "rule": { "type": "n_of", "n": 1, "options": ["BIOL 110L", "BIOL 112L"] },
+      "sourceQuote": "Choose one of the following: BIOL 110: Principles of Biology I; BIOL 112: Perspectives in Biology I"
+    },
+    {
+      "id": "sci-calc",
+      "label": "Science foundation: calculus",
+      "rule": { "type": "n_of", "n": 1, "options": ["MATH 141", "MATH 161", "MATH 171"] },
+      "sourceQuote": "Choose one of the following: MATH 141: Calculus I; MATH 161: Calculus IA; MATH 171: Honors Calculus I"
+    },
+    {
+      "id": "sci-symbolic",
+      "label": "Science foundation: symbolic systems",
+      "rule": { "type": "n_of", "n": 1, "options": ["LING 110", "CSC 173", "CSC 242"] },
+      "sourceQuote": "Choose one of the following: LING 110: Introduction to Linguistic Analysis; CSC 173: Computation and Formal Systems; CSC 242: Artificial Intelligence"
+    },
+    {
+      "id": "sci-programming",
+      "label": "Science foundation: programming",
+      "rule": { "type": "n_of", "n": 1, "options": ["CSC 161", "CSC 171", "BIOL 208"] },
+      "sourceQuote": "Choose one of the following: CSC 161: Art of Programming; CSC 171: Science of Programming; BIOL 208: Intro to Programming for Biology"
+    },
+    {
+      "id": "core",
+      "label": "BCS foundation and core",
+      "rule": { "type": "all_of", "courses": ["BCSC 110", "BCSC 111", "BCSC 151", "BCSC 152", "BCSC 153", "BCSC 310"] },
+      "sourceQuote": "BCSC 110: Neural Foundations of Behavior; BCSC 111: Foundations of Cognitive Science; BCSC 151: Perception and Action; BCSC 152: Language and Psycholinguistics; BCSC 153: Cognition; BCSC 310: Senior Seminar"
+    },
+    {
+      "id": "stat",
+      "label": "Formal methods (statistics)",
+      "rule": { "type": "n_of", "n": 1, "options": ["STAT 212", "STAT 180", "STAT 190", "STAT 211", "STAT 214", "DSCC 262", "ECON 230"] },
+      "sourceQuote": "Students are required to take STAT 212: Applied Statistics for Biological and Physical Sciences. Alternative statistics courses, such as STAT 211, STAT 213, STAT/BIOL 214, DSCC 262, PSYC/CSSP 211, and ECON 230, will be considered on a case-by-case basis."
+    },
+    {
+      "id": "lab",
+      "label": "Laboratory course",
+      "rule": { "type": "n_of", "n": 1, "options": ["BCSC 204", "BCSC 205", "BCSC 207", "BCSC 208"] },
+      "sourceQuote": "One of the following: BCSC 204: Lab in Cognitive Neuroscience; BCSC 205: Lab in Development and Learning; BCSC 206/207: Undergraduate Research in Cognitive Science; BCSC 208: Lab in Perception and Cognition"
+    },
+    {
+      "id": "electives",
+      "label": "BCS upper-level electives (4, forming a track)",
+      "rule": { "type": "n_from_filter", "n": 4,
+                "filter": { "depts": ["BCSC"], "minNumber": 100, "maxNumber": 389,
+                            "exclude": ["BCSC 110", "BCSC 111", "BCSC 151", "BCSC 152", "BCSC 153", "BCSC 310", "BCSC 204", "BCSC 205", "BCSC 208"] } },
+      "sourceQuote": "Students are required to take four BCS elective courses. ... At least three of the four electives should adhere to the track theme. No more than one 100-level course may be used in the track."
+    },
+    {
+      "id": "allied",
+      "label": "Allied fields (2)",
+      "rule": { "type": "n_from_filter", "n": 2,
+                "filter": { "depts": ["MATH", "CSC", "BIOL", "CHEM", "PHYS", "PHIL", "LING", "OPT", "ECE", "BME"], "minNumber": 100, "maxNumber": 399 } },
+      "sourceQuote": "Students must take two courses from the approved allied field courses list, which includes math, computer science, biology, chemistry, physics, philosophy, linguistics, optics, and engineering.",
+      "note": "NEEDS VERIFICATION: the approved list is department-maintained; this department filter is an approximation."
+    },
+    {
+      "id": "open-electives",
+      "label": "Open electives (2)",
+      "rule": { "type": "n_from_filter", "n": 2,
+                "filter": { "depts": ["BCSC", "MATH", "CSC", "BIOL", "CHEM", "PHYS", "PHIL", "LING", "OPT", "ECE", "BME"], "minNumber": 100, "maxNumber": 399 } },
+      "sourceQuote": "Students are required to take two elective courses, which can be additional BCS or allied field courses, or a combination of the two."
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "Lab course + senior seminar",
+    "rule": { "type": "n_of", "n": 2, "options": ["BCSC 204", "BCSC 205", "BCSC 207", "BCSC 208", "BCSC 310"] },
+    "sourceQuote": "Successful completion of the laboratory course and the senior seminar will satisfy the upper-level writing requirement."
+  }
+}

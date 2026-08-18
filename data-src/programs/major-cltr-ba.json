@@ -1,0 +1,84 @@
+{
+  "type": "major",
+  "degree": "BA",
+  "school": "sas",
+  "division": "humanities",
+  "status": "ACTIVE",
+  "sourcedOn": "2026-08-01",
+  "clustersRequired": 2,
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "id": "major-cltr-ba",
+  "name": "Comparative Literature",
+  "departments": [
+    "CLTR"
+  ],
+  "allowedClusterDivisions": [
+    "social-sciences",
+    "natural-sciences"
+  ],
+  "sourceUrl": "https://www.sas.rochester.edu/mlc/undergraduate/complit.html",
+  "snapshot": "data-src/pages/mlc/mlc_undergraduate_complit.html",
+  "programChecks": {
+    "totalCourses": 10,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Ten courses (40 credits) across one of three tracks: Comparative Literature and Cultural Studies; Comparative Literature and Critical Theory; and a third track relating a non-English literature to other media.",
+    "ALL tracks require the student to demonstrate advanced proficiency in at least one non-English language - not modeled as coursework.",
+    "NEEDS VERIFICATION: the eight non-core courses differ per track (track 1 = eight courses across at least two national literatures; track 2 = three-to-five in national literatures plus three-to-five in critical theory). They are modeled as eight CLTR/MLC-language courses. Track-specific splits and the 'at least one 200-level course in each language area chosen' rule are not auto-enforced."
+  ],
+  "requirementGroups": [
+    {
+      "id": "core",
+      "label": "Core courses",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "CLTR 200",
+          "CLTR 389"
+        ]
+      },
+      "sourceQuote": "Two core courses: CLTR 200: Topics in Critical Thinking; CLTR 389: Major Seminar"
+    },
+    {
+      "id": "literatures",
+      "label": "National literature and theory courses (8)",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 8,
+        "filter": {
+          "depts": [
+            "CLTR",
+            "FREN",
+            "GRMN",
+            "ITAL",
+            "SPAN",
+            "RUSS",
+            "JPNS",
+            "CHIN"
+          ],
+          "minNumber": 150,
+          "maxNumber": 399,
+          "exclude": [
+            "CLTR 200",
+            "CLTR 389"
+          ]
+        }
+      },
+      "sourceQuote": "Plus eight courses in at least two national literatures, which must: Have CLTR or section prefix; Include at least one 200-level course conducted in each MLC language area chosen"
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "CLTR 200 and CLTR 389",
+    "rule": {
+      "type": "all_of",
+      "courses": [
+        "CLTR 200",
+        "CLTR 389"
+      ]
+    },
+    "sourceQuote": "Two core courses: CLTR 200: Topics in Critical Thinking; CLTR 389: Major Seminar"
+  }
+}

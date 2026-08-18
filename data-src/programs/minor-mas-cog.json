@@ -1,0 +1,71 @@
+{
+  "id": "minor-mas-cog",
+  "type": "minor",
+  "name": "Music Cognition",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "natural-sciences",
+  "departments": [
+    "BCSC",
+    "MUSC"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.rochester.edu/college/mas/minor.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/mas/college_mas_minor.html",
+  "programChecks": {
+    "totalCourses": 6,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Six courses. Offered through the Music and Sound Initiative; satisfies the natural sciences division of the Rochester Curriculum.",
+    "DEPARTMENT-CODE TRANSLATION: the Music and Sound Initiative page writes 'BCS' and 'MUR' where the registrar's catalog uses BCSC and MUSC. All codes here are translated.",
+    "No more than two courses may overlap with the student's major or another minor.",
+    "Eastman School music theory courses are acceptable in place of MUSC 111 or MUSC 112."
+  ],
+  "requirementGroups": [
+    {
+      "id": "core",
+      "label": "Required courses",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "BCSC 260",
+          "MUSC 111",
+          "MUSC 112"
+        ]
+      },
+      "sourceQuote": "Music Cognition Minor ... All three of the following: BCS 260: Music and the Mind; MUR 111: Theory I; MUR 112: Theory II"
+    },
+    {
+      "id": "foundation",
+      "label": "One cognitive-science foundation course",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "BCSC 110",
+          "BCSC 111"
+        ]
+      },
+      "sourceQuote": "Plus one of the following: BCS 110: Neural Foundations of Behavior; BCS 111: Foundations of Cognitive Science"
+    },
+    {
+      "id": "electives",
+      "label": "Two electives",
+      "rule": {
+        "type": "n_of",
+        "n": 2,
+        "options": [
+          "BCSC 152",
+          "BCSC 153",
+          "BCSC 221",
+          "BCSC 265"
+        ]
+      },
+      "sourceQuote": "And two of the following: BCS 152: Language and Psycholinguistics; BCS 153: Cognition; BCS 221: Auditory Perception; BCS 265: Language and the Brain"
+    }
+  ],
+  "upperLevelWriting": null
+}

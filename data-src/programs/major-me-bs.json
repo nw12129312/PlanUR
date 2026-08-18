@@ -1,0 +1,76 @@
+{
+  "id": "major-me-bs",
+  "type": "major",
+  "name": "Mechanical Engineering",
+  "degree": "BS",
+  "school": "hajim",
+  "division": "engineering",
+  "departments": ["ME"],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.hajim.rochester.edu/me/undergraduate/major.html",
+  "sourcedOn": "2026-07-05",
+  "snapshot": "data-src/pages/me/me_undergraduate_major.html",
+  "clustersRequired": 1,
+  "allowedClusterDivisions": ["humanities", "social-sciences"],
+  "totalCreditsOverride": 128,
+  "totalCreditsNote": "Confirmed 128 credit hours from the ME major page (resolves the earlier needs-verification flag). ABET-accredited BS.",
+  "overlapCapOverride": null,
+  "notes": [
+    "128 credit-hour minimum; 2.0 GPA required both in ME courses and overall.",
+    "Many required courses are offered once a year and have prerequisite chains - the department requires following the published program schedule.",
+    "ULW is fulfilled by core lab (ME 240, 241) and design (ME 204, 205) courses, which cannot be taken at another university.",
+    "Cluster requirement is four courses: a 3-course approved humanities/social-science cluster plus one more humanities/social-science course (software/computer courses excluded); a humanities/social-science second major or minor also satisfies it.",
+    "Foundational equivalencies: CHEM 131 for CHEM 137; PHYS 113 or 141/142 for PHYS 121; MATH 14x/17x for 161/162 - captured where the app has the courses."
+  ],
+  "requirementGroups": [
+    {
+      "id": "found-fixed",
+      "label": "Foundations (physics, EM, circuits)",
+      "rule": { "type": "all_of", "courses": ["PHYS 121", "PHYS 122", "OPT 210"] },
+      "sourceQuote": "PHYS 122: Electricity and Magnetism; ... PHYS 121: Mechanics; ... OPT 210: Circuits"
+    },
+    {
+      "id": "found-chem",
+      "label": "Chemistry for engineers",
+      "rule": { "type": "n_of", "n": 1, "options": ["CHEM 137", "CHEM 131"] },
+      "sourceQuote": "CHEM 137: Chemical Principles for Engineers* ... Students may take CHEM 131 in place of CHEM 137"
+    },
+    {
+      "id": "found-calc",
+      "label": "Calculus & linear algebra",
+      "rule": { "type": "all_of", "courses": ["MATH 161", "MATH 162", "MATH 164", "MATH 165"] },
+      "sourceQuote": "MATH 161: Calculus 1A; MATH 162: Calculus IIA; MATH 164: Multidimensional Calculus; MATH 165: Linear Algebra and Differential Equations",
+      "note": "MATH 140-3 or 170-4 series may substitute for 161/162 per the page."
+    },
+    {
+      "id": "core",
+      "label": "Mechanical engineering core (16)",
+      "rule": { "type": "all_of", "courses": [
+        "ME 121", "ME 160", "ME 204", "ME 213", "ME 225", "ME 240", "ME 280",
+        "ME 123", "ME 205", "ME 223", "ME 226", "ME 241", "ME 251", "ME 260",
+        "ME 110", "ME 120"] },
+      "sourceQuote": "Students are required to take all of the following courses, following our program schedule: ME 121; ME 160; ME 204; ME 213; ME 225; ME 240; ME 280; ME 123; ME 205; ME 223; ME 226; ME 241; ME 251; ME 260; ME 110; ME 120"
+    },
+    {
+      "id": "tech-elective",
+      "label": "Technical elective",
+      "rule": { "type": "n_from_filter", "n": 1,
+                "filter": { "depts": ["BME", "CSC", "CHEM", "ECE", "ME", "OPT", "MATH", "STAT"], "minNumber": 150, "maxNumber": 499 } },
+      "sourceQuote": "Students are required to complete one technical elective ... Biomedical engineering - Any course at the 200 level or higher except BME 201; Computer science - 170-173 and any 200+; Chemistry - 113 and any 200+; Electrical and computer engineering - 112, 114, 140 and any 200+; Mechanical engineering - any course not otherwise required; Optics - any 200+; Math - 150 and any 200+; Statistics - 212 and 213",
+      "note": "NEEDS nuance: per-department floors vary; modeled as a broad engineering/science filter."
+    },
+    {
+      "id": "natural-science",
+      "label": "Natural science elective",
+      "rule": { "type": "n_from_filter", "n": 1,
+                "filter": { "depts": ["ASTR", "BIOL", "CHEM", "EESC", "MATH", "PHYS"], "minNumber": 100, "maxNumber": 499, "minCredits": 4 } },
+      "sourceQuote": "All ME majors must complete one four-credit natural science course ... Astronomy - 111, 142 and any 200+; Biology - 110, 111, 198 and any 200+ EXCEPT BIO 214; Chemistry - 132 and any 200+; Earth and environmental science - ...; Math - 150 and any 200+; Physics - 103, 123, 143 and any 200+",
+      "note": "NEEDS nuance: per-department floors vary; modeled as a natural-science filter."
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "Core lab and design courses (ME 204/205/240/241)",
+    "rule": { "type": "n_of", "n": 2, "options": ["ME 204", "ME 205", "ME 240", "ME 241"] },
+    "sourceQuote": "The upper-level writing requirement is fulfilled through upper-level laboratory courses (ME 240, ME 241) and design courses (ME 204, ME 205), all of which are core courses."
+  }
+}

@@ -1,0 +1,193 @@
+{
+  "type": "major",
+  "degree": "BS",
+  "school": "hajim",
+  "division": "engineering",
+  "departments": [
+    "OPT"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.hajim.rochester.edu/optics/undergraduate/major.html",
+  "sourcedOn": "2026-08-01",
+  "snapshot": "data-src/pages/optics/optics_undergraduate_major.html",
+  "clustersRequired": 1,
+  "allowedClusterDivisions": [
+    "humanities",
+    "social-sciences"
+  ],
+  "totalCreditsOverride": 130,
+  "overlapCapOverride": null,
+  "minMajorGPA": 2.0,
+  "programChecks": {
+    "totalCourses": null,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "upperLevelWriting": null,
+  "id": "major-opt-bs",
+  "name": "Optics",
+  "notes": [
+    "Optics and optical engineering share the same course load until the senior year: optics majors take two senior thesis courses, optical engineering majors take two senior design courses.",
+    "130 total credits. A 2.0 overall GPA is required, plus a 2.0 GPA in each of: all attempted or completed optics courses; the MATH 16X/14X/17X series; the PHYS 12X or 14X series; all cluster courses; and WRTG 105 or an authorized equivalent.",
+    "CHEM 137 is preferred for the chemistry requirement; CHEM 131 or an AP score of 4-5 also satisfies it.",
+    "Honors physics (PHYS 141-143) does not follow the same semester sequencing as the PHYS 12X series - consult your faculty advisor before planning it.",
+    "Twelve technical elective credits are required, usually three 4-credit courses. The page gives suggested themes (biomedical optics, optics and math, lens design, photonic materials/devices, optics and physics) rather than a fixed list, so the electives are modeled as any 200-level or higher OPT course plus related engineering, math, and physics courses.",
+    "The department directs students to the Optics Undergraduate Handbook PDF for full requirements and policies.",
+    "NEEDS VERIFICATION - upper-level writing: the major page states no ULW policy and the harvested catalog contains no W-designated OPT courses, so no rule is encoded rather than inventing one."
+  ],
+  "requirementGroups": [
+    {
+      "id": "matlab",
+      "label": "Matlab for optics",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "OPT 211"
+        ]
+      },
+      "sourceQuote": "Foundational Courses: OPT 211: Matlab for Optics I"
+    },
+    {
+      "id": "programming",
+      "label": "Second programming course",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "OPT 212",
+          "CSC 161"
+        ]
+      },
+      "sourceQuote": "Plus one of the following: OPT 212: Matlab for Optics Majors II (two credits); CSC 161: Introduction to Programming (four credits)"
+    },
+    {
+      "id": "chemistry",
+      "label": "Chemistry",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "CHEM 137",
+          "CHEM 131"
+        ]
+      },
+      "sourceQuote": "CHEM 137: Chemical Principals for Engineers. CHEM 137 is preferred, but students use CHEM 131: Concepts, Systems, Practice I, or an AP score of 4 or 5 to satisfy this requirement"
+    },
+    {
+      "id": "math",
+      "label": "Mathematics",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "MATH 161",
+          "MATH 162",
+          "MATH 164",
+          "MATH 165"
+        ]
+      },
+      "sourceQuote": "MATH 161: Calculus IA and MATH 162: Calculus IIA (AP scores may give credit and/or placement); MATH 164: Multidimensional Calculus; MATH 165: Linear Algebra with Differential Equations"
+    },
+    {
+      "id": "physics",
+      "label": "Physics",
+      "rule": {
+        "type": "sequence_one_of",
+        "sequences": [
+          [
+            "PHYS 121",
+            "PHYS 122",
+            "PHYS 123"
+          ],
+          [
+            "PHYS 113",
+            "PHYS 122",
+            "PHYS 123"
+          ],
+          [
+            "PHYS 141",
+            "PHYS 142",
+            "PHYS 143"
+          ]
+        ]
+      },
+      "sourceQuote": "PHYS 113, PHYS 122-123, PHYS 121-123, or Honors Physics 141-143"
+    },
+    {
+      "id": "labs",
+      "label": "Optics laboratory sequence",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "OPT 201",
+          "OPT 202",
+          "OPT 203",
+          "OPT 204"
+        ]
+      },
+      "sourceQuote": "Required Core Classes: OPT 201: Geometrical Optics Lab (2 credits); OPT 202: Physical Optics Lab (2 credits); OPT 203: Instrumentation Lab (2 credits); OPT 204: Sources and Detectors Lab (2 credits)"
+    },
+    {
+      "id": "core",
+      "label": "Optics core courses",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "ECE 210",
+          "OPT 223",
+          "OPT 225",
+          "OPT 241",
+          "OPT 242",
+          "OPT 261",
+          "OPT 262",
+          "OPT 287"
+        ]
+      },
+      "sourceQuote": "ECE 210: Circuit Analysis for System Thinking; OPT 223: Quantum Theory of Optics; OPT 225: Optical Sources and Detectors; OPT 241: Geometrical Optics; OPT 242: Aberrations and Testing; OPT 261: Interference and Diffraction; OPT 262: Electromagnetic Theory; OPT 287: Math Methods for Optics and Physics"
+    },
+    {
+      "id": "senior",
+      "label": "Senior thesis",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "OPT 320",
+          "OPT 321"
+        ]
+      },
+      "sourceQuote": "During their last year optics students will take two senior thesis courses ... OPT 320: Senior Thesis I; OPT 321: Senior Thesis II"
+    },
+    {
+      "id": "technical-electives",
+      "label": "Technical electives (12 credits)",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 3,
+        "filter": {
+          "depts": [
+            "OPT",
+            "BME",
+            "ME",
+            "ECE",
+            "MATH",
+            "PHYS"
+          ],
+          "minNumber": 200,
+          "maxNumber": 499,
+          "minCredits": 4,
+          "exclude": [
+            "OPT 223",
+            "OPT 225",
+            "OPT 241",
+            "OPT 242",
+            "OPT 261",
+            "OPT 262",
+            "OPT 287",
+            "ECE 210"
+          ]
+        }
+      },
+      "sourceQuote": "Students can think of the technical elective requirement as a 'cluster.' The goal is to study an area that is of interest, but not part of the core requirements. Twelve technical elective credits are required, which is usually completed with three four credit courses.",
+      "note": "Suggested themes only; modeled as related 200+ level technical courses."
+    }
+  ]
+}

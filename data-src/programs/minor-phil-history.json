@@ -1,0 +1,40 @@
+{
+  "id": "minor-phil-history",
+  "type": "minor",
+  "name": "History of Philosophy",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "humanities",
+  "departments": ["PHIL"],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/phl/undergraduate/minor.html",
+  "sourcedOn": "2026-08-01",
+  "snapshot": "data-src/pages/phl/phl_undergraduate_minor.html",
+  "programChecks": { "totalCourses": 5, "minFromDepts": null, "max100Level": null },
+  "notes": [
+    "PHIL 201 and PHIL 202 plus three other philosophy courses, at least two of them advanced history-of-philosophy courses (PHIL 261-270)."
+  ],
+  "requirementGroups": [
+    {
+      "id": "core",
+      "label": "History of philosophy surveys",
+      "rule": { "type": "all_of", "courses": ["PHIL 201", "PHIL 202"] },
+      "sourceQuote": "Requirements: PHIL 201 and 202, and three other courses in philosophy"
+    },
+    {
+      "id": "advanced-history",
+      "label": "Advanced history of philosophy (2)",
+      "rule": { "type": "n_from_filter", "n": 2,
+                "filter": { "depts": ["PHIL"], "minNumber": 261, "maxNumber": 270 } },
+      "sourceQuote": "at least two of which are advanced courses in the history of philosophy (PHIL 261-270)"
+    },
+    {
+      "id": "other",
+      "label": "Additional philosophy course",
+      "rule": { "type": "n_from_filter", "n": 1,
+                "filter": { "depts": ["PHIL"], "minNumber": 101, "maxNumber": 399,
+                            "exclude": ["PHIL 201", "PHIL 202"] } },
+      "sourceQuote": "PHIL 201 and 202, and three other courses in philosophy"
+    }
+  ]
+}

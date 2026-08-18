@@ -1,0 +1,72 @@
+{
+  "id": "major-psyc-ba",
+  "type": "major",
+  "name": "Psychology",
+  "degree": "BA",
+  "school": "sas",
+  "division": "social-sciences",
+  "departments": ["PSYC", "CSSP"],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/psy/undergraduate/major.html",
+  "sourcedOn": "2026-07-05",
+  "snapshot": "data-src/pages/psy/psy_undergraduate_major.html",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": ["humanities", "natural-sciences"],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "notes": [
+    "Encodes the NEW psychology major (students matriculating Fall 2025 and beyond). Earlier matriculants follow the retiring major (same intro/stat; PSYC 110+111 both required; two social-science core from 161/170-171/180/281; different elective count).",
+    "An AP psychology score of 4 or 5 waives PSYC 101.",
+    "Statistics should be completed by end of sophomore year; statistics is a prerequisite for research methods (take methods by end of junior year).",
+    "Cross-listed pairs (PSYC 110/BCSC 110, PSYC 111/BCSC 111, NSCI 201/BCSC 240) count once - not auto-enforced.",
+    "Elective caps not auto-enforced: no more than eight credits of independent research/study (39X) or teaching courses (PSYC 301-304, 390)."
+  ],
+  "requirementGroups": [
+    {
+      "id": "intro",
+      "label": "Introductory course",
+      "rule": { "type": "all_of", "courses": ["PSYC 101"] },
+      "sourceQuote": "One Introductory Course: PSYC 101: Intro to Psychology (an AP psychology test score of 4 or 5 will waive this requirement)"
+    },
+    {
+      "id": "stat",
+      "label": "Statistics",
+      "rule": { "type": "n_of", "n": 1, "options": ["STAT 180", "STAT 190", "STAT 203"] },
+      "sourceQuote": "Choose one of the following: STAT 180 ... (formerly STAT 212); STAT 190 ... (formerly STAT 213); STAT 203: Introduction to Mathematical Statistics"
+    },
+    {
+      "id": "methods",
+      "label": "Research methods",
+      "rule": { "type": "n_of", "n": 1, "options": ["PSYC 218", "PSYC 219W"] },
+      "sourceQuote": "Choose one of the following: PSYC 218: Research Methods in Psychology (lecture-based version); PSYC 219W: Research Methods in Psychology (hands-on experience version)"
+    },
+    {
+      "id": "cog-neuro",
+      "label": "Cognitive & neurobiological foundations (2)",
+      "rule": { "type": "n_of", "n": 2, "options": ["PSYC 110", "BCSC 110", "NSCI 201", "BCSC 240", "PSYC 111", "BCSC 111", "PSYC 112"] },
+      "sourceQuote": "Choose two of the following: PSYC 110/BCSC 110: Neural Foundations of Behavior or NSCI 201/BCSC 240: Basic Neurobiology; PSYC 111/BCSC 111: Foundations of Cognitive Science; PSYC 112: Social, Affective, and Clinical Neuroscience",
+      "note": "Cross-listed/either-or pairs count as one choice; the app lists all codes for placement flexibility."
+    },
+    {
+      "id": "soc-dev-clinical",
+      "label": "Social, developmental & clinical foundations (2)",
+      "rule": { "type": "n_of", "n": 2, "options": ["PSYC 161", "PSYC 170", "PSYC 180"] },
+      "sourceQuote": "Choose two of the following: PSYC 161: Social Psychology and Individual Differences; PSYC 170: Child Development; PSYC 180: Intro to Psychopathology"
+    },
+    {
+      "id": "electives",
+      "label": "Psychology electives (5)",
+      "rule": { "type": "n_from_filter", "n": 5,
+                "filter": { "depts": ["PSYC"], "minNumber": 200, "maxNumber": 399, "minCredits": 4,
+                            "exclude": ["PSYC 218", "PSYC 219W"] } },
+      "sourceQuote": "Students must complete five, four-credit elective courses in PSYC. ... No more than eight credits can be independent research/study courses or teaching courses."
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "Two PSYC upper-level writing courses (at least one at 200+)",
+    "rule": { "type": "n_from_filter", "n": 2,
+              "filter": { "depts": ["PSYC"], "minNumber": 100, "maxNumber": 399, "wOnly": true } },
+    "sourceQuote": "Students are required to take two of their psychology courses designated as upper-level writing courses, and at least one of these courses is to be at or above the 200 level.",
+    "note": "Half-credit W tagalong sections, PSYC 39X with faculty approval, and WRTG 274/PSYC 274W also qualify; the at-least-one-200+ rule is not auto-enforced."
+  }
+}

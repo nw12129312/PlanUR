@@ -1,0 +1,66 @@
+{
+  "id": "major-csc-ba",
+  "type": "major",
+  "name": "Computer Science",
+  "degree": "BA",
+  "school": "sas",
+  "division": "natural-sciences",
+  "departments": ["CSC"],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.cs.rochester.edu/undergraduate/ba-requirements.html",
+  "sourcedOn": "2026-07-05",
+  "snapshot": "data-src/pages/csc/undergraduate_ba-requirements.html",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": ["humanities", "social-sciences"],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "notes": [
+    "Encodes the UPDATED BA requirements (students matriculating fall 2026 and beyond). Students who matriculated earlier follow the retiring requirements: two core courses from the six-course core list plus seven electives.",
+    "Pre-major courses require a GPA no lower than 2.0.",
+    "Elective restrictions not auto-checked: no more than one elective below CSC 171; CSC 161/162 only count if taken before CSC 171/172 (and without AP credit for 171); at most two independent studies (39x).",
+    "No more than two core or major electives at other institutions (except UR education abroad).",
+    "Clusters: one humanities and one social sciences, passed with a 2.0 average or better."
+  ],
+  "requirementGroups": [
+    {
+      "id": "premajor",
+      "label": "Pre-major",
+      "rule": { "type": "all_of", "courses": ["CSC 171", "MATH 150", "CSC 172"] },
+      "sourceQuote": "must first complete the following pre-major requirements with a GPA no lower than a 2.0: CSC 171, MATH 150, CSC 172"
+    },
+    {
+      "id": "core-a",
+      "label": "Core: theory (one of CSC 173 / 280)",
+      "rule": { "type": "n_of", "n": 1, "options": ["CSC 173", "CSC 280"] },
+      "sourceQuote": "At least one course must be selected from: CSC 173: Computation and Formal Systems; CSC 280: Computer Models and Limitations"
+    },
+    {
+      "id": "core-b",
+      "label": "Core: systems (one of CSC 252 / 254)",
+      "rule": { "type": "n_of", "n": 1, "options": ["CSC 252", "CSC 254"] },
+      "sourceQuote": "At least one course must be selected from: CSC 252: Computer Organization; CSC 254: Programming Language Design and Implementation"
+    },
+    {
+      "id": "core-c",
+      "label": "Core: third course",
+      "rule": { "type": "n_of", "n": 1, "options": ["CSC 173", "CSC 280", "CSC 252", "CSC 254", "CSC 242", "CSC 282"] },
+      "sourceQuote": "The third course can be chosen from the four core courses above and: CSC 242: Introduction to Artificial Intelligence; CSC 282: Design and Analysis of Efficient Algorithms"
+    },
+    {
+      "id": "electives",
+      "label": "CS major electives (6)",
+      "rule": { "type": "n_from_filter", "n": 6,
+                "filter": { "depts": ["CSC"], "minNumber": 100, "maxNumber": 399, "minCredits": 4,
+                            "exclude": ["CSC 173", "CSC 280", "CSC 252", "CSC 254", "CSC 242", "CSC 282"] } },
+      "sourceQuote": "Students must also complete six (6) computer science major electives. This is any four-credit computer science course subject to the following restrictions",
+      "note": "Restrictions on sub-171 courses, CSC 161/162 timing, and independent-study counts are listed in the program notes and not auto-enforced."
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "Two upper-level writing courses (department-preapproved list)",
+    "rule": { "type": "n_of", "n": 2, "options": [
+      "WRTG 273", "WRTG 290B", "CSC 273W", "CSC 299W", "CSC 391W", "CSC 395H",
+      "PHIL 235W", "PHIL 243W", "PHIL 244W", "PHIL 246W", "PHIL 247W", "PHIL 252W", "PHIL 257W"] },
+    "sourceQuote": "The following courses are preapproved for satisfying this requirement: WRTG 273 ... CSC 273W ... PHIL 257W"
+  }
+}

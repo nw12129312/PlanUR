@@ -1,0 +1,248 @@
+{
+  "id": "major-dmst-ba",
+  "type": "major",
+  "name": "Digital Media Studies",
+  "degree": "BA",
+  "school": "sas",
+  "division": "humanities",
+  "departments": [
+    "DMST"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/dms/undergraduate/curriculum.html",
+  "snapshot": "data-src/pages/dms/dms_undergraduate_curriculum.html",
+  "sourcedOn": "2026-08-14",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": [
+    "social-sciences",
+    "natural-sciences"
+  ],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "programChecks": {
+    "totalCourses": 14,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Digital Media Studies is a 14-course interdisciplinary major: four introductory courses, four technology/production courses, three media history/theory/practice courses, one digital-applications course, and the two-course capstone.",
+    "DIVISIONAL AREA IS THE STUDENT'S CHOICE: 'Students can use their DMS major to satisfy either the humanities or the natural science divisional area requirement. Students choose their divisional area when they declare their major. Seven of a DMS major's fourteen courses must be in the divisional area they declare.' This entry is filed under humanities; if you declare natural science, the cluster requirement shifts accordingly. The page marks each course (H), (NS) or (SS) - the planner does not track the seven-course divisional split, so count it yourself.",
+    "Students must complete at least two of the four core courses before they can declare the major. The core courses are offered both fall and spring and need not be taken consecutively.",
+    "CAPSTONE PREREQUISITES: DMST 103 must be completed by the end of sophomore year and DMST 200W by the end of junior year; the capstone itself runs the full senior year (DMST 372 fall, DMST 373 spring).",
+    "Technology/production should total 16 credit hours - if you choose a 2-credit course from that list (EAS 141, ME 110), pair it with another 2-credit course.",
+    "Courses appearing in BOTH the technology/production and media history/theory/practice lists may count toward either component, but not both. The groups below do not share courses, which matches that rule.",
+    "ART NEW YORK: two of the three courses in the Art New York internship sequence count toward the major - SART 300 (Art New York New Field Studio) toward technology/production and SART 301 (Art New York Colloquium) toward media history/theory/practice. Permission from the DMS program director is required, and the upper-level writing designation depends on the nature of the student's project.",
+    "HIST 246 and HIST 285 are upper-level-writing qualified and may substitute for the ULW course in the media history/theory/practice component - but you must register for the W section.",
+    "NEEDS VERIFICATION: several codes the page names are absent from the 2025-26 catalog (DMST 271 History of Graphic Design, AME 194, ME 103, SART 262, ATHS 299G). Some are marked 'occasionally offered' on the page itself.",
+    "The page's ENGL 263, ENGL 265 and ENGL 267 entries are rotating topics slots listed several times with different titles; each number appears once in the option lists below."
+  ],
+  "requirementGroups": [
+    {
+      "id": "intro",
+      "label": "Introductory courses (four)",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "DMST 101",
+          "DMST 102",
+          "DMST 103",
+          "DMST 104"
+        ]
+      },
+      "sourceQuote": "Introductory Courses (Four Courses): DMST 101: Introduction to Digital Media Studies (H); DMST 102: Programming for Digital Media (NS); DMST 103: The Essential Digital Media Toolkit (H); DMST 104: Design in a Digital Age (NS)"
+    },
+    {
+      "id": "production",
+      "label": "Technology/production courses (four, 16 credits)",
+      "rule": {
+        "type": "n_of",
+        "n": 4,
+        "options": [
+          "DMST 115",
+          "DMST 120",
+          "DMST 171",
+          "DMST 175",
+          "DMST 210",
+          "DMST 251",
+          "DMST 272",
+          "AME 120",
+          "AME 140",
+          "AME 191",
+          "AME 193",
+          "AME 194",
+          "AME 196",
+          "AME 242",
+          "AME 244",
+          "AME 247",
+          "AME 262",
+          "AME 264",
+          "CSC 131",
+          "CSC 170",
+          "CSC 171",
+          "CSC 172",
+          "CSC 186",
+          "CSC 210",
+          "CSC 212",
+          "CSC 214",
+          "CSC 242",
+          "CSC 249",
+          "EAS 141",
+          "ENGL 277",
+          "FMST 161",
+          "HIST 246",
+          "HIST 246W",
+          "HIST 285",
+          "HIST 285W",
+          "ME 103",
+          "ME 110",
+          "OPT 101",
+          "SART 141",
+          "SART 151",
+          "SART 242",
+          "SART 244",
+          "SART 252",
+          "SART 262",
+          "SART 300",
+          "ATHS 299G"
+        ]
+      },
+      "sourceQuote": "Technology/Production Courses (Four Courses): Select four courses from the list below dealing with the production of digital objects or experiences using relevant technologies. Note: This section should total 16 credit hours. If students choose a 2-credit course from the list below, it should be paired with an additional 2-credit course.",
+      "note": "DMS students may take AME 191 only in fall semesters. DMST 251, ME 103 and HIST 285 are occasionally offered."
+    },
+    {
+      "id": "mhtp-predigital",
+      "label": "Media history/theory: pre-digital history of a medium",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "AHST 128",
+          "AHST 137",
+          "AHST 242",
+          "AHST 285",
+          "AME 240",
+          "DMST 271",
+          "ENGL 118",
+          "JPNS 207",
+          "MUSC 134"
+        ]
+      },
+      "sourceQuote": "Media History, Theory, and Practice (Three Courses) ... You will need at least one course that covers the deep pre-digital history of a particular medium from the following list: AHST 128: Modern Art (H); AHST 137: Introduction to Modern Architecture (H); AHST 242: History of Photography: 1839-1915 (H); AHST 285: History of Photography II (H); AME 240: History of Sound Recording (NS); DMST 271: History of Graphic Design (H); ENGL 118: Introduction to Media Studies (H); JPNS 207: Film as Object (H); MUSC 134: Styles and Genres: Introduction to Music History (H)"
+    },
+    {
+      "id": "mhtp-ulw",
+      "label": "Media history/theory: an upper-level-writing course",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "AHST 206",
+          "AHST 212",
+          "AHST 240",
+          "AHST 308",
+          "DMST 250",
+          "DMST 261W",
+          "ENGL 255",
+          "ENGL 260",
+          "ENGL 263",
+          "ENGL 265",
+          "ENGL 267",
+          "HIST 285W",
+          "JPNS 219W",
+          "JPNS 294W"
+        ]
+      },
+      "sourceQuote": "Select two media history, theory, and practice courses of your choice from the lists below, one of which must be upper-level writing qualified (as denoted with an asterisk). ... *Please note that if you plan to use this course for upper-level writing, you MUST register for the W section.",
+      "note": "Only the asterisked (ULW-qualified) courses are listed here. Register for the W section where one exists."
+    },
+    {
+      "id": "mhtp-elective",
+      "label": "Media history/theory: one more course",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "AHST 100",
+          "AHST 101",
+          "AHST 206",
+          "AHST 212",
+          "AHST 240",
+          "AHST 253",
+          "AHST 254",
+          "AHST 308",
+          "AHST 317",
+          "AHST 319",
+          "DMST 110",
+          "DMST 115",
+          "DMST 250",
+          "DMST 260",
+          "DMST 261W",
+          "ENGL 117",
+          "ENGL 132",
+          "ENGL 134",
+          "ENGL 138",
+          "ENGL 240",
+          "ENGL 249",
+          "ENGL 255",
+          "ENGL 259",
+          "ENGL 260",
+          "ENGL 261",
+          "ENGL 263",
+          "ENGL 265",
+          "ENGL 267",
+          "ENGL 283",
+          "HIST 285",
+          "HIST 285W",
+          "JPNS 219A",
+          "JPNS 219W",
+          "JPNS 292",
+          "JPNS 294",
+          "JPNS 294W",
+          "MUSC 123",
+          "MUSC 125",
+          "MUSC 130",
+          "SART 151",
+          "SART 252",
+          "SART 301"
+        ]
+      },
+      "sourceQuote": "Select three courses dealing with the theories, aesthetics, and history of particular media or involving performative media-related practices. ... Select two media history, theory, and practice courses of your choice from the lists below"
+    },
+    {
+      "id": "digital-applications",
+      "label": "Digital applications: DMST 200W",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "DMST 200W"
+        ]
+      },
+      "sourceQuote": "Digital Applications (One Course). Beginning with the Class year of 2022, students will be required to complete the Digital Application course prior to their senior year in order to move along in the DMS Senior Capstone course, DMS 372. DMST 200W: Digital Portfolio (Divisional neutral)"
+    },
+    {
+      "id": "capstone",
+      "label": "Senior capstone (two courses)",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "DMST 372",
+          "DMST 373"
+        ]
+      },
+      "sourceQuote": "Capstone (Two Courses). For their capstone experience students plan, design, construct, and deliver a digital media object of significant scope. ... DMST 372: Capstone: Design (H) [Only offered in fall semesters]; DMST 373: Capstone: Development (NS) [Only offered in spring semesters]"
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "DMST 200W, the capstone, and one ULW media history/theory course",
+    "rule": {
+      "type": "all_of",
+      "courses": [
+        "DMST 200W",
+        "DMST 372",
+        "DMST 373"
+      ]
+    },
+    "sourceQuote": "Upper-Level Writing Requirement: Upper-level writing requirements are satisfied through the Digital Applications course, the Capstone, and one additional upper-level writing course taken in the media history, theory, and practice track.",
+    "note": "The additional ULW course is the 'mhtp-ulw' requirement group above."
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "id": "major-ling-ba",
+  "type": "major",
+  "name": "Linguistics",
+  "degree": "BA",
+  "school": "sas",
+  "division": "social-sciences",
+  "departments": ["LING"],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/lin/undergraduate/major.html",
+  "sourcedOn": "2026-08-01",
+  "snapshot": "data-src/pages/lin/lin_undergraduate_major.html",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": ["humanities", "natural-sciences"],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "programChecks": { "totalCourses": 10, "minFromDepts": null, "max100Level": null },
+  "notes": [
+    "Ten courses: five core courses plus five electives, at least three of the electives at the 200 level or above.",
+    "NEEDS VERIFICATION - tracks: the page says four of the five electives must fit either a pre-approved track (Linguistic Theory, Language Documentation and Description, Language Variation and Change, and two others) OR a specialized track arranged with the undergraduate advisor. Because individualized tracks are explicitly allowed, the track structure is NOT modeled as a hard requirement here - only the 200-level minimum is enforced. Plan your track with the Director of Undergraduate Studies.",
+    "LING 214 Statistical Methods in Linguistics is recommended, not required."
+  ],
+  "requirementGroups": [
+    {
+      "id": "core",
+      "label": "Core courses",
+      "rule": { "type": "all_of", "courses": ["LING 110", "LING 210", "LING 220", "LING 225", "LING 389"] },
+      "sourceQuote": "All majors must take our five core courses: LING 110 Intro to Linguistic Analysis; LING 210(W) Intro to Language Sound Systems; LING 220 Intro to Syntax; LING 225 Intro to Semantic Analysis; LING 389 Senior Seminar"
+    },
+    {
+      "id": "electives-advanced",
+      "label": "Electives at the 200 level or above (3)",
+      "rule": { "type": "n_from_filter", "n": 3,
+                "filter": { "depts": ["LING"], "minNumber": 200, "maxNumber": 399,
+                            "exclude": ["LING 210", "LING 220", "LING 225", "LING 389"] } },
+      "sourceQuote": "Students must also take five additional electives, at least three of which must be at the 200-level or above."
+    },
+    {
+      "id": "electives-any",
+      "label": "Linguistics electives (2 more)",
+      "rule": { "type": "n_from_filter", "n": 2,
+                "filter": { "depts": ["LING"], "minNumber": 102, "maxNumber": 399,
+                            "exclude": ["LING 110", "LING 210", "LING 220", "LING 225", "LING 389"] } },
+      "sourceQuote": "Students must also take five additional electives, at least three of which must be at the 200-level or above."
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "Upper-level writing within the major",
+    "rule": { "type": "n_from_filter", "n": 2,
+              "filter": { "depts": ["LING"], "minNumber": 200, "maxNumber": 399, "wOnly": true } },
+    "note": "NEEDS VERIFICATION: the major page states no explicit upper-level-writing policy. Modeled as the College's two-course norm satisfied by the department's W-designated courses (LING 210W, 240W, 260W, 265W, 270W all exist in the catalog)."
+  }
+}

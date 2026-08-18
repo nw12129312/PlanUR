@@ -1,0 +1,95 @@
+{
+  "id": "minor-bcsc",
+  "type": "minor",
+  "name": "Brain and Cognitive Sciences",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "natural-sciences",
+  "departments": [
+    "BCSC"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/bcs/undergraduate/minors.html",
+  "sourcedOn": "2026-08-01",
+  "snapshot": "data-src/pages/bcs/bcs_undergraduate_minors.html",
+  "programChecks": {
+    "totalCourses": 6,
+    "minFromDepts": {
+      "depts": [
+        "BCSC"
+      ],
+      "n": 6
+    },
+    "max100Level": null
+  },
+  "notes": [
+    "Six courses. A maximum of two courses may overlap between a student's major and minor.",
+    "Independent study courses (39x) cannot be included.",
+    "The department also offers a Visual Science minor, not yet encoded."
+  ],
+  "requirementGroups": [
+    {
+      "id": "core",
+      "label": "Core courses",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "BCSC 110",
+          "BCSC 111"
+        ]
+      },
+      "sourceQuote": "BCSC 110: Neural Foundations of Behavior; BCSC 111: Foundations of Cognitive Science"
+    },
+    {
+      "id": "breadth",
+      "label": "Breadth courses (2)",
+      "rule": {
+        "type": "n_of",
+        "n": 2,
+        "options": [
+          "BCSC 151",
+          "BCSC 152",
+          "BCSC 153"
+        ]
+      },
+      "sourceQuote": "Two of the following: BCSC 151: Perception and Action; BCSC 152: Language and Psycholinguistics; BCSC 153: Cognition"
+    },
+    {
+      "id": "elective-advanced",
+      "label": "Elective at 200 or higher",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 1,
+        "filter": {
+          "depts": [
+            "BCSC"
+          ],
+          "minNumber": 200,
+          "maxNumber": 389
+        }
+      },
+      "sourceQuote": "Two electives, at least one must be numbered 200 or higher. Independent study courses (39x) CANNOT be included."
+    },
+    {
+      "id": "elective-any",
+      "label": "Elective",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 1,
+        "filter": {
+          "depts": [
+            "BCSC"
+          ],
+          "minNumber": 112,
+          "maxNumber": 389,
+          "exclude": [
+            "BCSC 151",
+            "BCSC 152",
+            "BCSC 153"
+          ]
+        }
+      },
+      "sourceQuote": "Two electives, at least one must be numbered 200 or higher."
+    }
+  ]
+}

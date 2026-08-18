@@ -1,0 +1,126 @@
+{
+  "type": "major",
+  "degree": "BA",
+  "school": "sas",
+  "division": "humanities",
+  "status": "ACTIVE",
+  "sourcedOn": "2026-08-01",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": [
+    "social-sciences",
+    "natural-sciences"
+  ],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "id": "major-sart-ba",
+  "name": "Studio Arts",
+  "departments": [
+    "SART"
+  ],
+  "sourceUrl": "https://www.sas.rochester.edu/aah/undergraduate/sa-major.html",
+  "snapshot": "data-src/pages/aah/aah_undergraduate_sa-major.html",
+  "programChecks": {
+    "totalCourses": 12,
+    "minFromDepts": null,
+    "max100Level": 4
+  },
+  "notes": [
+    "Twelve courses, typically declared prior to the junior year. Portfolio submission is not required for enrollment.",
+    "No more than two transferred studio courses are accepted toward the major.",
+    "SART 396 (fall only) and SART 397 (spring only) must be taken in the SAME academic year, both in the senior year, and SART 397 should not be taken concurrently with any other 200/300-level studio. The app schedules them but does not enforce the same-year or concurrency rules.",
+    "Majors must present a senior exhibition (SART 399) with a defense; documentation is retained by the department. The exhibition is not modeled as one of the twelve courses.",
+    "Honors requires a 3.5 GPA within the major - not modeled."
+  ],
+  "requirementGroups": [
+    {
+      "id": "intro-studios",
+      "label": "100-level studio courses (4)",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 4,
+        "filter": {
+          "depts": [
+            "SART"
+          ],
+          "minNumber": 100,
+          "maxNumber": 199
+        }
+      },
+      "sourceQuote": "Four 100-level studio courses; no more than two transferred studio courses will be accepted toward a major"
+    },
+    {
+      "id": "advanced-studios",
+      "label": "200/300-level studios (3)",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 3,
+        "filter": {
+          "depts": [
+            "SART"
+          ],
+          "minNumber": 200,
+          "maxNumber": 399,
+          "exclude": [
+            "SART 209",
+            "SART 396",
+            "SART 397",
+            "SART 399"
+          ]
+        }
+      },
+      "sourceQuote": "Three 200/300-level studios, in any discipline"
+    },
+    {
+      "id": "writing",
+      "label": "Writing on Art",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "SART 209"
+        ]
+      },
+      "sourceQuote": "SART 209: Writing on Art (preferably taken prior to the junior year)"
+    },
+    {
+      "id": "senior",
+      "label": "Senior studio sequence",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "SART 396",
+          "SART 397"
+        ]
+      },
+      "sourceQuote": "SART 396 (fall only) and 397 (spring only) must be taken in the same academic year; both must occur in the senior year"
+    },
+    {
+      "id": "related",
+      "label": "Related-area courses (2)",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 2,
+        "filter": {
+          "depts": [
+            "AHST",
+            "FMST"
+          ],
+          "minNumber": 100,
+          "maxNumber": 399
+        }
+      },
+      "sourceQuote": "Two other courses from related areas, typically in art history or film and media studies"
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "SART 209, SART 396 and SART 397",
+    "rule": {
+      "type": "all_of",
+      "courses": [
+        "SART 209",
+        "SART 396",
+        "SART 397"
+      ]
+    },
+    "sourceQuote": "The upper-level writing requirement in studio art is fulfilled by SART 209 and SART 396 and 397."
+  }
+}

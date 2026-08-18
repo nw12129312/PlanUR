@@ -1,0 +1,84 @@
+{
+  "id": "major-geo-bs",
+  "type": "major",
+  "name": "Geomechanics",
+  "degree": "BS",
+  "school": "sas",
+  "division": "natural-sciences",
+  "departments": ["EESC", "ME"],
+  "status": "ACTIVE",
+  "sourceUrl": "http://www.sas.rochester.edu/ees/undergraduate/geomechanics.html",
+  "sourcedOn": "2026-08-01",
+  "snapshot": "data-src/pages/ees/ees_undergraduate_geomechanics.html",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": ["humanities", "social-sciences"],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "programChecks": { "totalCourses": null, "minFromDepts": null, "max100Level": null },
+  "notes": [
+    "A four-year program offered jointly by Earth and Environmental Sciences and Mechanical Engineering.",
+    "MATH 161 and MATH 162 can be replaced with MATH 141-143.",
+    "This major explicitly requires TWO clusters, one in the social sciences and one in the humanities, for six additional courses.",
+    "Three free electives are expected, to allow a strong minor or to broaden the curriculum - not modeled as requirements.",
+    "One technical elective may come from any discipline, as agreed with the faculty advisor - modeled as an EESC/ME course since the app cannot represent advisor approval.",
+    "The page writes 'EES 225: Seismic Signals and Noise'; the catalog department prefix is EESC, which is the form used here."
+  ],
+  "requirementGroups": [
+    {
+      "id": "math",
+      "label": "Mathematics",
+      "rule": { "type": "sequence_one_of", "sequences": [
+        ["MATH 161", "MATH 162", "MATH 164", "MATH 165"],
+        ["MATH 141", "MATH 142", "MATH 143", "MATH 164", "MATH 165"]] },
+      "sourceQuote": "MATH 161: Calculus IA; MATH 162: Calculus IIA; MATH 164: Multidimensional Calculus; MATH 165: Linear Algebra with Differential Equations. MATH 161 and MATH 162 can be replaced with MATH 141-143."
+    },
+    {
+      "id": "science",
+      "label": "Physics and chemistry",
+      "rule": { "type": "all_of", "courses": ["PHYS 099", "PHYS 121", "PHYS 122", "CHEM 131"] },
+      "sourceQuote": "PHYS 099: Intro Math Methods in Science and Engineering; PHYS 121: Mechanics; PHYS 122: Electricity and Magnetism; CHEM 131: Chemistry Concepts, Systems, Practice I"
+    },
+    {
+      "id": "earth-core",
+      "label": "Earth science core",
+      "rule": { "type": "all_of", "courses": ["EESC 101", "EESC 201", "EESC 204W", "EESC 224"] },
+      "sourceQuote": "EESC 101: Introduction to Earth Sciences; EESC 201: Evolution of the Earth; EESC 204W: Earth Minerals; EESC 224: Geomechanics"
+    },
+    {
+      "id": "me-core",
+      "label": "Mechanical engineering core",
+      "rule": { "type": "all_of", "courses": ["ME 120", "ME 123", "ME 160", "ME 225", "ME 226"] },
+      "sourceQuote": "ME 120: Mechanical Engineering Mechanics I; ME 123: Introduction to Thermodynamics; ME 160: Engineering Computation I; ME 225: Introduction to Fluid Dynamics; ME 226: Introduction to Solid Mechanics"
+    },
+    {
+      "id": "instrumentation",
+      "label": "Instrumentation or seismic signals",
+      "rule": { "type": "n_of", "n": 1, "options": ["ME 240", "ME 241", "EESC 225"] },
+      "sourceQuote": "Plus one of the following: ME 240: Fundamentals of Instrumentation and Measurement (recommended); ME 241: Mechanics Laboratory (prerequisite ME 240); EES 225: Seismic Signals and Noise"
+    },
+    {
+      "id": "technical-electives",
+      "label": "Technical electives from EESC or ME (4)",
+      "rule": { "type": "n_from_filter", "n": 4,
+                "filter": { "depts": ["EESC", "ME"], "minNumber": 200, "maxNumber": 399,
+                            "exclude": ["EESC 201", "EESC 204W", "EESC 224", "EESC 225",
+                                        "ME 225", "ME 226", "ME 240", "ME 241"] } },
+      "sourceQuote": "Plus four technical electives from any EESC or ME courses at the 200 level or higher"
+    },
+    {
+      "id": "technical-elective-any",
+      "label": "Technical elective, any discipline",
+      "rule": { "type": "n_from_filter", "n": 1,
+                "filter": { "depts": ["EESC", "ME", "PHYS", "CHEM", "MATH", "CSC", "BIOL"],
+                            "minNumber": 200, "maxNumber": 399 } },
+      "sourceQuote": "Plus one technical elective from any discipline, as agreed upon with the faculty advisor",
+      "note": "Advisor approval cannot be represented; modeled as a related technical course."
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "Two upper-level writing courses within the major",
+    "rule": { "type": "n_from_filter", "n": 2,
+              "filter": { "depts": ["EESC", "ME"], "minNumber": 200, "maxNumber": 399, "wOnly": true } },
+    "sourceQuote": "Two of the courses for the major must be taken as upper-level writing courses, indicated by a 'W' after the course number."
+  }
+}

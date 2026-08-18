@@ -1,0 +1,1386 @@
+{
+ "Data and Modeling": [
+  {
+   "code": "PSCI 205",
+   "crosslist": null,
+   "title": "Data Analysis II (Prerequisite: PSCI 200 or other statistics course)"
+  },
+  {
+   "code": "PSCI 107",
+   "crosslist": null,
+   "title": "Introduction to Positive Political Theory"
+  },
+  {
+   "code": "PSCI 200",
+   "crosslist": null,
+   "title": "Data Analysis I (Open only to students without previous statistics course)"
+  },
+  {
+   "code": "PSCI 203W",
+   "crosslist": null,
+   "title": "Survey Research Methods"
+  },
+  {
+   "code": "PSCI 227",
+   "crosslist": null,
+   "title": "Designing American Democracy"
+  },
+  {
+   "code": "PSCI 248",
+   "crosslist": null,
+   "title": "Discrimination"
+  },
+  {
+   "code": "PSCI 264",
+   "crosslist": [
+    "INTR 264"
+   ],
+   "title": "Comparative Political Institutions"
+  },
+  {
+   "code": "PSCI 270",
+   "crosslist": [
+    "INTR 270"
+   ],
+   "title": "Mechanisms of International Relations"
+  },
+  {
+   "code": "PSCI 272",
+   "crosslist": [
+    "INTR 272"
+   ],
+   "title": "Theories of International Relations"
+  },
+  {
+   "code": "PSCI 278",
+   "crosslist": [
+    "INTR 278"
+   ],
+   "title": "Foundations of Modern International Politics"
+  },
+  {
+   "code": "PSCI 280",
+   "crosslist": null,
+   "title": "Intermediate Positive Political Theory"
+  },
+  {
+   "code": "PSCI 281",
+   "crosslist": null,
+   "title": "Formal Models in Political Science"
+  },
+  {
+   "code": "PSCI 282",
+   "crosslist": null,
+   "title": "Making Public Policy"
+  },
+  {
+   "code": "PSCI 288",
+   "crosslist": null,
+   "title": "Game Theory"
+  },
+  {
+   "code": "PSCI 287",
+   "crosslist": null,
+   "title": ""
+  }
+ ],
+ "Elections and Government": [
+  {
+   "code": "PSCI 101",
+   "crosslist": [
+    "INTR 101"
+   ],
+   "title": "Introduction to Comparative Politics"
+  },
+  {
+   "code": "PSCI 105",
+   "crosslist": null,
+   "title": "Introduction to U.S. Politics"
+  },
+  {
+   "code": "PSCI 121",
+   "crosslist": null,
+   "title": "Democracy in America"
+  },
+  {
+   "code": "PSCI 167M",
+   "crosslist": null,
+   "title": "Democracy: Past and Present"
+  },
+  {
+   "code": "PSCI 202W",
+   "crosslist": null,
+   "title": "Argument in Political Science"
+  },
+  {
+   "code": "PSCI 209",
+   "crosslist": null,
+   "title": "The Politics of Punishment"
+  },
+  {
+   "code": "PSCI 210",
+   "crosslist": null,
+   "title": "Pandemic Politics"
+  },
+  {
+   "code": "PSCI 211",
+   "crosslist": null,
+   "title": "Conspiracy Theories in American Politics"
+  },
+  {
+   "code": "PSCI 212",
+   "crosslist": null,
+   "title": "The United States Supreme Court: The Constitution at a Crossroads"
+  },
+  {
+   "code": "PSCI 213",
+   "crosslist": null,
+   "title": "Black Politics"
+  },
+  {
+   "code": "PSCI 215",
+   "crosslist": null,
+   "title": "American Elections"
+  },
+  {
+   "code": "INTR 215",
+   "crosslist": null,
+   "title": "Populism in 21st Century Politics"
+  },
+  {
+   "code": "PSCI 218W",
+   "crosslist": null,
+   "title": "Emergence of the Modern Congress"
+  },
+  {
+   "code": "PSCI 219",
+   "crosslist": null,
+   "title": "Congress as an Institution"
+  },
+  {
+   "code": "PSCI 220",
+   "crosslist": null,
+   "title": "Inequality and American Democracy"
+  },
+  {
+   "code": "INTR 220",
+   "crosslist": null,
+   "title": "Inside the State:  Subnational Politics in Comparative Perspectives"
+  },
+  {
+   "code": "INTR 221",
+   "crosslist": null,
+   "title": "Nationalism, Central Europe, and the Russia-Ukraine War"
+  },
+  {
+   "code": "PSCI 222",
+   "crosslist": null,
+   "title": "U.S. Presidency"
+  },
+  {
+   "code": "INTR 222",
+   "crosslist": null,
+   "title": "Central Europe and the Russian-Ukraine War"
+  },
+  {
+   "code": "PSCI 223",
+   "crosslist": null,
+   "title": "Constitutional Structure and Rights"
+  },
+  {
+   "code": "INTR 223",
+   "crosslist": null,
+   "title": "Opposition in an Authoritarian State:  Poland, 1945-1989"
+  },
+  {
+   "code": "PSCI 226W",
+   "crosslist": null,
+   "title": "Act Locally? Local Government in the U.S."
+  },
+  {
+   "code": "PSCI 227",
+   "crosslist": null,
+   "title": "Designing American Democracy"
+  },
+  {
+   "code": "PSCI 228",
+   "crosslist": null,
+   "title": "Race and Ethnicity in American Politics"
+  },
+  {
+   "code": "PSCI 232",
+   "crosslist": null,
+   "title": "Disagreement in a Democratic Society"
+  },
+  {
+   "code": "PSCI 233W",
+   "crosslist": null,
+   "title": "Innovation in Public Service"
+  },
+  {
+   "code": "PSCI 235W",
+   "crosslist": null,
+   "title": "The Political Economy of U.S. Food Policy"
+  },
+  {
+   "code": "PSCI 237",
+   "crosslist": null,
+   "title": "U.S. Policymaking Processes"
+  },
+  {
+   "code": "PSCI 238",
+   "crosslist": null,
+   "title": "Business and Politics"
+  },
+  {
+   "code": "PSCI 241",
+   "crosslist": null,
+   "title": "Race, History and Urban Politics"
+  },
+  {
+   "code": "INTR 242W",
+   "crosslist": null,
+   "title": "Identity Politics in Poland, Tajikistan, and Iran"
+  },
+  {
+   "code": "PSCI 243",
+   "crosslist": null,
+   "title": "Environmental Politics"
+  },
+  {
+   "code": "INTR 243W",
+   "crosslist": null,
+   "title": "Media and Social Media in Poland and America"
+  },
+  {
+   "code": "PSCI 244",
+   "crosslist": null,
+   "title": "Politics and Markets: Innovation and The Global Business Environment"
+  },
+  {
+   "code": "PSCI 245",
+   "crosslist": [
+    "INTR 245"
+   ],
+   "title": "The Politics of Science and Expertise"
+  },
+  {
+   "code": "INTR 246",
+   "crosslist": null,
+   "title": "Religious Nationalism (through Spring 2026 only)"
+  },
+  {
+   "code": "PSCI 247",
+   "crosslist": null,
+   "title": "Green Markets: Environmental Opportunities and Pitfalls"
+  },
+  {
+   "code": "INTR 247",
+   "crosslist": null,
+   "title": "Zionism and Its Discontents"
+  },
+  {
+   "code": "PSCI 248",
+   "crosslist": null,
+   "title": "Discrimination"
+  },
+  {
+   "code": "PSCI 250",
+   "crosslist": [
+    "INTR 250"
+   ],
+   "title": "Democracy and the Rule of Law"
+  },
+  {
+   "code": "PSCI 251",
+   "crosslist": [
+    "INTR 251"
+   ],
+   "title": "Politics of Authoritarian Regimes"
+  },
+  {
+   "code": "PSCI 252",
+   "crosslist": [
+    "INTR 252"
+   ],
+   "title": "Ethnic Politics and Ethnic Conflict"
+  },
+  {
+   "code": "PSCI 253",
+   "crosslist": [
+    "INTR 253"
+   ],
+   "title": "Comparative Political Parties"
+  },
+  {
+   "code": "PSCI 254",
+   "crosslist": [
+    "INTR 254"
+   ],
+   "title": "Fascism:  Politics, History, and Culture"
+  },
+  {
+   "code": "PSCI 256",
+   "crosslist": [
+    "INTR 256"
+   ],
+   "title": "Theories of Comparative Politics"
+  },
+  {
+   "code": "PSCI 257",
+   "crosslist": [
+    "INTR 257"
+   ],
+   "title": "The Origins of the Modern World"
+  },
+  {
+   "code": "PSCI 258",
+   "crosslist": [
+    "INTR 258"
+   ],
+   "title": "Democratic Regimes"
+  },
+  {
+   "code": "PSCI 259",
+   "crosslist": [
+    "INTR 259"
+   ],
+   "title": "Order, Violence, and the State"
+  },
+  {
+   "code": "PSCI 260",
+   "crosslist": [
+    "INTR 260"
+   ],
+   "title": "Democratic Erosion"
+  },
+  {
+   "code": "PSCI 261",
+   "crosslist": [
+    "INTR 261"
+   ],
+   "title": "Latin American Politics"
+  },
+  {
+   "code": "PSCI 262",
+   "crosslist": [
+    "INTR 262"
+   ],
+   "title": "Elections in Developing Countries"
+  },
+  {
+   "code": "PSCI 263",
+   "crosslist": null,
+   "title": "Democracy and Authoritarianism in the United States"
+  },
+  {
+   "code": "PSCI 264",
+   "crosslist": [
+    "INTR 264"
+   ],
+   "title": "Comparative Political Institutions"
+  },
+  {
+   "code": "PSCI 265",
+   "crosslist": [
+    "INTR 265"
+   ],
+   "title": "Civil War and the International System"
+  },
+  {
+   "code": "PSCI 266",
+   "crosslist": [
+    "INTR 266"
+   ],
+   "title": "The Politics of India and Pakistan"
+  },
+  {
+   "code": "PSCI 267",
+   "crosslist": [
+    "INTR 267"
+   ],
+   "title": "Identity, Ethnicity and Nationalism"
+  },
+  {
+   "code": "PSCI 269",
+   "crosslist": [
+    "INTR 269"
+   ],
+   "title": "Migration, Economic Change, and Conflict"
+  },
+  {
+   "code": "PSCI 275",
+   "crosslist": [
+    "INTR 275"
+   ],
+   "title": "European Integration (and Disintegration?)"
+  },
+  {
+   "code": "PSCI 276",
+   "crosslist": [
+    "INTR 276"
+   ],
+   "title": "The Politics of Insurgency"
+  },
+  {
+   "code": "PSCI 279",
+   "crosslist": [
+    "INTR 279"
+   ],
+   "title": "War and the Nation State"
+  },
+  {
+   "code": "INTR 283",
+   "crosslist": null,
+   "title": "Politics in the European Union"
+  },
+  {
+   "code": "PSCI 291",
+   "crosslist": null,
+   "title": "First Amendment and Religion"
+  },
+  {
+   "code": "PSCI 306",
+   "crosslist": null,
+   "title": "Governing a City"
+  },
+  {
+   "code": "PSCI 373",
+   "crosslist": [
+    "INTR 373"
+   ],
+   "title": "Territory and Group Conflict"
+  },
+  {
+   "code": "PSCI 394",
+   "crosslist": null,
+   "title": "Internship"
+  },
+  {
+   "code": "PSCI 394C",
+   "crosslist": [
+    "INTR 394C"
+   ],
+   "title": "Washington Semester Internship"
+  },
+  {
+   "code": "PSCI 394D",
+   "crosslist": null,
+   "title": "New York State Assembly Internship"
+  }
+ ],
+ "Political Economy and Development": [
+  {
+   "code": "PSCI 102",
+   "crosslist": [
+    "INTR 102"
+   ],
+   "title": "Introduction to International Political Economy"
+  },
+  {
+   "code": "PSCI 106",
+   "crosslist": [
+    "INTR 106"
+   ],
+   "title": "Introduction to International Relations"
+  },
+  {
+   "code": "INTR 205",
+   "crosslist": null,
+   "title": "Global Sustainable Development"
+  },
+  {
+   "code": "PSCI 210",
+   "crosslist": null,
+   "title": "Pandemic Politics"
+  },
+  {
+   "code": "INTR 212",
+   "crosslist": null,
+   "title": "Economic Transformation in Central Europe"
+  },
+  {
+   "code": "PSCI 217",
+   "crosslist": [
+    "INTR 217"
+   ],
+   "title": "How Countries Become Rich"
+  },
+  {
+   "code": "PSCI 220",
+   "crosslist": null,
+   "title": "Agriculture Law, Property Rights and Sustainability"
+  },
+  {
+   "code": "INTR 221",
+   "crosslist": null,
+   "title": "Nationalism, Central Europe, and the Russia-Ukraine War"
+  },
+  {
+   "code": "INTR 233",
+   "crosslist": null,
+   "title": "International Relations in East Asia"
+  },
+  {
+   "code": "PSCI 234W",
+   "crosslist": null,
+   "title": "The Past and Future of Our Financial System"
+  },
+  {
+   "code": "PSCI 235W",
+   "crosslist": null,
+   "title": "The Political Economy of U.S. Food Policy"
+  },
+  {
+   "code": "INTR 237",
+   "crosslist": null,
+   "title": "Gender and Development"
+  },
+  {
+   "code": "PSCI 239",
+   "crosslist": [
+    "INTR 239"
+   ],
+   "title": "International Environmental Law"
+  },
+  {
+   "code": "INTR 240",
+   "crosslist": null,
+   "title": "Human Rights, Minorities and Migration in Europe"
+  },
+  {
+   "code": "PSCI 244",
+   "crosslist": null,
+   "title": "Politics and Markets: Innovation and The Global Business Environment"
+  },
+  {
+   "code": "PSCI 247",
+   "crosslist": null,
+   "title": "Green Markets: Environmental Opportunities and Pitfalls"
+  },
+  {
+   "code": "PSCI 251",
+   "crosslist": [
+    "INTR 251"
+   ],
+   "title": "Politics of Authoritarian Regimes"
+  },
+  {
+   "code": "PSCI 255",
+   "crosslist": [
+    "INTR 255"
+   ],
+   "title": "Poverty and Development"
+  },
+  {
+   "code": "PSCI 256",
+   "crosslist": [
+    "INTR 256"
+   ],
+   "title": "Theories of Comparative Politics"
+  },
+  {
+   "code": "PSCI 257",
+   "crosslist": [
+    "INTR 257"
+   ],
+   "title": "The Origins of the Modern World"
+  },
+  {
+   "code": "PSCI 259",
+   "crosslist": [
+    "INTR 259"
+   ],
+   "title": "Order, Violence, and the State"
+  },
+  {
+   "code": "PSCI 261",
+   "crosslist": [
+    "INTR 261"
+   ],
+   "title": "Latin American Politics"
+  },
+  {
+   "code": "PSCI 262",
+   "crosslist": [
+    "INTR 262"
+   ],
+   "title": "Elections in Developing Countries"
+  },
+  {
+   "code": "PSCI 266",
+   "crosslist": [
+    "INTR 266"
+   ],
+   "title": "The Politics of India and Pakistan"
+  },
+  {
+   "code": "PSCI 268",
+   "crosslist": [
+    "INTR 268"
+   ],
+   "title": "International Organization"
+  },
+  {
+   "code": "PSCI 269",
+   "crosslist": [
+    "INTR 269"
+   ],
+   "title": "Migration, Economic Change, and Conflict"
+  },
+  {
+   "code": "PSCI 275",
+   "crosslist": [
+    "INTR 275"
+   ],
+   "title": "European Integration (and Disintegration?)"
+  },
+  {
+   "code": "PSCI 277",
+   "crosslist": [
+    "INTR 277"
+   ],
+   "title": "Caste, Class, and Race"
+  },
+  {
+   "code": "PSCI 282",
+   "crosslist": null,
+   "title": "Making Public Policy"
+  },
+  {
+   "code": "INTR 286",
+   "crosslist": null,
+   "title": "Political Economy of Developing Countries"
+  },
+  {
+   "code": "PSCI 287",
+   "crosslist": null,
+   "title": "Theories of Political Economy"
+  },
+  {
+   "code": "PSCI 289",
+   "crosslist": [
+    "INTR 289"
+   ],
+   "title": "The Role of the State in Global Historical Perspective"
+  },
+  {
+   "code": "PSCI 290",
+   "crosslist": null,
+   "title": "Unequal Development and State Policy:  Brazil, the U.S., and Nigeria"
+  },
+  {
+   "code": "PSCI 293",
+   "crosslist": null,
+   "title": "Politics, Philosophy, and Economics:  How to Change the World"
+  },
+  {
+   "code": "PSCI 294",
+   "crosslist": null,
+   "title": "Political Economy of African-American Communities"
+  }
+ ],
+ "Philosophy, Law, and Public Policy": [
+  {
+   "code": "PSCI 104",
+   "crosslist": null,
+   "title": "Introduction to Political Philosophy"
+  },
+  {
+   "code": "PSCI 116",
+   "crosslist": null,
+   "title": "Introduction to the U.S. Health System"
+  },
+  {
+   "code": "PSCI 121",
+   "crosslist": null,
+   "title": "Democracy in America"
+  },
+  {
+   "code": "PSCI 167M",
+   "crosslist": null,
+   "title": "Democracy: Past and Present"
+  },
+  {
+   "code": "PSCI 180",
+   "crosslist": null,
+   "title": "Justice"
+  },
+  {
+   "code": "PSCI 207W",
+   "crosslist": null,
+   "title": "Democratic Visions:  Tocqueville and W.E.B. DuBois"
+  },
+  {
+   "code": "PSCI 208W",
+   "crosslist": null,
+   "title": "Liberalism, Racism, and U.S. Citizenship"
+  },
+  {
+   "code": "PSCI 209",
+   "crosslist": null,
+   "title": "The Politics of Punishment"
+  },
+  {
+   "code": "PSCI 210",
+   "crosslist": null,
+   "title": "Pandemic Politics"
+  },
+  {
+   "code": "PSCI 212",
+   "crosslist": null,
+   "title": "The United States Supreme Court: The Constitution at a Crossroads"
+  },
+  {
+   "code": "PSCI 213",
+   "crosslist": null,
+   "title": "Black Politics"
+  },
+  {
+   "code": "PSCI 214",
+   "crosslist": null,
+   "title": "Race and the Law"
+  },
+  {
+   "code": "PSCI 216",
+   "crosslist": null,
+   "title": "Environmental Health and Justice"
+  },
+  {
+   "code": "PSCI 217",
+   "crosslist": null,
+   "title": "Public Policy and Black Communities: Education, Poverty, Affirmative Action, and Crime"
+  },
+  {
+   "code": "PSCI 220",
+   "crosslist": null,
+   "title": "Inequality and American Democracy"
+  },
+  {
+   "code": "PSCI 221",
+   "crosslist": null,
+   "title": "Philosophical Foundations of the American Revolution"
+  },
+  {
+   "code": "PSCI 223",
+   "crosslist": null,
+   "title": "Constitutional Structure and Rights"
+  },
+  {
+   "code": "PSCI 224",
+   "crosslist": null,
+   "title": "Incarceration Nation (through Spring 2026 only)"
+  },
+  {
+   "code": "PSCI 225",
+   "crosslist": null,
+   "title": "Cultural Politics of Prison Towns (through Fall 2024 only)"
+  },
+  {
+   "code": "INTR 226",
+   "crosslist": null,
+   "title": "Comparative Legal History in Central and Eastern Europe"
+  },
+  {
+   "code": "PSCI 226W",
+   "crosslist": null,
+   "title": "Act Locally? Local Government in the U.S."
+  },
+  {
+   "code": "PSCI 228",
+   "crosslist": null,
+   "title": "Race and Ethnicity in American Politics"
+  },
+  {
+   "code": "PSCI 229",
+   "crosslist": null,
+   "title": "Environmental Health Policy"
+  },
+  {
+   "code": "PSCI 230",
+   "crosslist": null,
+   "title": "Public Health Law and Policy"
+  },
+  {
+   "code": "PSCI 231W",
+   "crosslist": null,
+   "title": "Maternal Child Health Policy and Advocacy"
+  },
+  {
+   "code": "PSCI 232",
+   "crosslist": null,
+   "title": "Disagreement in a Democratic Society"
+  },
+  {
+   "code": "PSCI 233W",
+   "crosslist": null,
+   "title": "Innovation in Public Service"
+  },
+  {
+   "code": "PSCI 234W",
+   "crosslist": null,
+   "title": "The Past and Future of Our Financial System"
+  },
+  {
+   "code": "PSCI 235W",
+   "crosslist": null,
+   "title": "The Political Economy of U.S. Food Policy"
+  },
+  {
+   "code": "PSCI 236",
+   "crosslist": null,
+   "title": "Health Care and the Law"
+  },
+  {
+   "code": "PSCI 237",
+   "crosslist": null,
+   "title": "U.S. Policymaking Processes"
+  },
+  {
+   "code": "PSCI 238",
+   "crosslist": null,
+   "title": "Business and Politics"
+  },
+  {
+   "code": "PSCI 239",
+   "crosslist": [
+    "INTR 239"
+   ],
+   "title": "International Environmental Law"
+  },
+  {
+   "code": "PSCI 240",
+   "crosslist": null,
+   "title": "Criminal Procedure and Constitutional Principles"
+  },
+  {
+   "code": "PSCI 241",
+   "crosslist": null,
+   "title": "Race, History and Urban Politics"
+  },
+  {
+   "code": "PSCI 242",
+   "crosslist": null,
+   "title": "Research Practicum in Criminal Justice Reform"
+  },
+  {
+   "code": "PSCI 243",
+   "crosslist": null,
+   "title": "Environmental Politics"
+  },
+  {
+   "code": "PSCI 244",
+   "crosslist": null,
+   "title": "Politics and Markets: Innovation and The Global Business Environment"
+  },
+  {
+   "code": "PSCI 245",
+   "crosslist": [
+    "INTR 245"
+   ],
+   "title": "The Politics of Science and Expertise"
+  },
+  {
+   "code": "PSCI 246",
+   "crosslist": null,
+   "title": "Environmental Law and Policy"
+  },
+  {
+   "code": "PSCI 247",
+   "crosslist": null,
+   "title": "Green Markets: Environmental Opportunities and Pitfalls"
+  },
+  {
+   "code": "PSCI 248",
+   "crosslist": null,
+   "title": "Discrimination"
+  },
+  {
+   "code": "PSCI 249",
+   "crosslist": null,
+   "title": "Environmental Policy in Action"
+  },
+  {
+   "code": "PSCI 250",
+   "crosslist": [
+    "INTR 250"
+   ],
+   "title": "Democracy and the Rule of Law"
+  },
+  {
+   "code": "PSCI 277",
+   "crosslist": [
+    "INTR 277"
+   ],
+   "title": "Caste, Class, and Race"
+  },
+  {
+   "code": "PSCI 282",
+   "crosslist": null,
+   "title": "Making Public Policy"
+  },
+  {
+   "code": "PSCI 284",
+   "crosslist": null,
+   "title": "Democratic Theory"
+  },
+  {
+   "code": "PSCI 285W",
+   "crosslist": null,
+   "title": "Law and Morality"
+  },
+  {
+   "code": "PSCI 287",
+   "crosslist": null,
+   "title": "Theories of Political Economy"
+  },
+  {
+   "code": "PSCI 291",
+   "crosslist": null,
+   "title": "First Amendment and Religion"
+  },
+  {
+   "code": "PSCI 292",
+   "crosslist": null,
+   "title": "Ethics in Markets and In Public Policy"
+  },
+  {
+   "code": "PSCI 293",
+   "crosslist": null,
+   "title": "Politics, Philosophy, and Economics:  How to Change the World"
+  },
+  {
+   "code": "PSCI 294",
+   "crosslist": null,
+   "title": "Political Economy of African-American Communities"
+  },
+  {
+   "code": "PSCI 295W",
+   "crosslist": null,
+   "title": "The Good Society"
+  },
+  {
+   "code": "PSCI 296",
+   "crosslist": null,
+   "title": "Freedom and Domination in Black Political Philosophy"
+  },
+  {
+   "code": "PSCI 304",
+   "crosslist": null,
+   "title": "Urban Crime and Justice"
+  },
+  {
+   "code": "PSCI 305",
+   "crosslist": null,
+   "title": "Poverty and Mental Health"
+  },
+  {
+   "code": "PSCI 306",
+   "crosslist": null,
+   "title": "Governing a City"
+  },
+  {
+   "code": "PSCI 316W",
+   "crosslist": null,
+   "title": "Pandemics, Politics and Policies in the U.S., 1918-2020"
+  },
+  {
+   "code": "PSCI 317W",
+   "crosslist": null,
+   "title": "American Health Politics and Policy"
+  },
+  {
+   "code": "PSCI 394",
+   "crosslist": null,
+   "title": "Internship"
+  },
+  {
+   "code": "PSCI 394C",
+   "crosslist": [
+    "INTR 394C"
+   ],
+   "title": "Washington Semester Internship"
+  },
+  {
+   "code": "PSCI 394D",
+   "crosslist": null,
+   "title": "New York State Assembly Internship"
+  },
+  {
+   "code": "PSCI 394F",
+   "crosslist": null,
+   "title": "Health Policy Internship"
+  }
+ ],
+ "Race, Ethnicity, and Identity": [
+  {
+   "code": "PSCI 101",
+   "crosslist": [
+    "INTR 101"
+   ],
+   "title": "Introduction to Comparative Politics"
+  },
+  {
+   "code": "PSCI 105",
+   "crosslist": null,
+   "title": "Introduction to U.S. Politics"
+  },
+  {
+   "code": "PSCI 202W",
+   "crosslist": null,
+   "title": "Argument in Political Science"
+  },
+  {
+   "code": "INTR 205",
+   "crosslist": null,
+   "title": "Global Sustainable Development"
+  },
+  {
+   "code": "PSCI 207W",
+   "crosslist": null,
+   "title": "Democratic Visions:  Tocqueville and W.E.B. DuBois"
+  },
+  {
+   "code": "PSCI 208W",
+   "crosslist": null,
+   "title": "Liberalism, Racism, and U.S. Citizenship"
+  },
+  {
+   "code": "PSCI 209",
+   "crosslist": null,
+   "title": "The Politics of Punishment"
+  },
+  {
+   "code": "PSCI 213",
+   "crosslist": null,
+   "title": "Black Politics"
+  },
+  {
+   "code": "PSCI 214",
+   "crosslist": null,
+   "title": "Race and the Law"
+  },
+  {
+   "code": "PSCI 216",
+   "crosslist": null,
+   "title": "Environmental Health and Justice"
+  },
+  {
+   "code": "PSCI 217",
+   "crosslist": null,
+   "title": "Public Policy and Black Communities: Education, Poverty, Affirmative Action, and Crime"
+  },
+  {
+   "code": "PSCI 220",
+   "crosslist": null,
+   "title": "Inequality and American Democracy"
+  },
+  {
+   "code": "PSCI 224",
+   "crosslist": null,
+   "title": "Incarceration Nation (through Spring 2026 only)"
+  },
+  {
+   "code": "PSCI 225",
+   "crosslist": null,
+   "title": "Cultural Politics of Prison Towns (through Fall 2024 only)"
+  },
+  {
+   "code": "PSCI 228",
+   "crosslist": null,
+   "title": "Race and Ethnicity in American Politics"
+  },
+  {
+   "code": "INTR 228",
+   "crosslist": null,
+   "title": "Gender, War, and Militarism (through Fall 2025 only)"
+  },
+  {
+   "code": "PSCI 229",
+   "crosslist": null,
+   "title": "Environmental Health Policy"
+  },
+  {
+   "code": "INTR 237",
+   "crosslist": null,
+   "title": "Gender and Development"
+  },
+  {
+   "code": "PSCI 241",
+   "crosslist": null,
+   "title": "Race, History and Urban Politics"
+  },
+  {
+   "code": "INTR 242W",
+   "crosslist": null,
+   "title": "Identity Politics in Poland, Tajikistan, and Iran"
+  },
+  {
+   "code": "INTR 246",
+   "crosslist": null,
+   "title": "Religious Nationalism (through Spring 2026 only)"
+  },
+  {
+   "code": "PSCI 248",
+   "crosslist": null,
+   "title": "Discrimination"
+  },
+  {
+   "code": "INTR 249",
+   "crosslist": null,
+   "title": "Israel/Palestine (through Fall 2025 only)"
+  },
+  {
+   "code": "PSCI 252",
+   "crosslist": [
+    "INTR 252"
+   ],
+   "title": "Ethnic Politics and Ethnic Conflict"
+  },
+  {
+   "code": "PSCI 263",
+   "crosslist": null,
+   "title": "Democracy and Authoritarianism in the United States"
+  },
+  {
+   "code": "PSCI 265",
+   "crosslist": [
+    "INTR 265"
+   ],
+   "title": "Civil War and the International System"
+  },
+  {
+   "code": "PSCI 266",
+   "crosslist": [
+    "INTR 266"
+   ],
+   "title": "The Politics of India and Pakistan"
+  },
+  {
+   "code": "PSCI 267",
+   "crosslist": [
+    "INTR 267"
+   ],
+   "title": "Identity, Ethnicity and Nationalism"
+  },
+  {
+   "code": "PSCI 269",
+   "crosslist": [
+    "INTR 269"
+   ],
+   "title": "Migration, Economic Change, and Conflict"
+  },
+  {
+   "code": "PSCI 277",
+   "crosslist": [
+    "INTR 277"
+   ],
+   "title": "Caste, Class, and Race"
+  },
+  {
+   "code": "PSCI 290",
+   "crosslist": null,
+   "title": "Unequal Development and State Policy:  Brazil, the U.S., and Nigeria"
+  },
+  {
+   "code": "PSCI 294",
+   "crosslist": null,
+   "title": "Political Economy of African-American Communities"
+  },
+  {
+   "code": "PSCI 296",
+   "crosslist": null,
+   "title": "Freedom and Domination in Black Political Philosophy"
+  },
+  {
+   "code": "PSCI 317W",
+   "crosslist": null,
+   "title": "American Health Politics and Policy"
+  },
+  {
+   "code": "PSCI 373",
+   "crosslist": [
+    "INTR 373"
+   ],
+   "title": "Territory and Group Conflict"
+  }
+ ],
+ "War, Violence, and Cooperation": [
+  {
+   "code": "PSCI 102",
+   "crosslist": [
+    "INTR 102"
+   ],
+   "title": "Introduction to International Political Economy"
+  },
+  {
+   "code": "PSCI 106",
+   "crosslist": [
+    "INTR 106"
+   ],
+   "title": "Introduction to International Relations"
+  },
+  {
+   "code": "PSCI 108",
+   "crosslist": [
+    "INTR 108"
+   ],
+   "title": "War in Our Time"
+  },
+  {
+   "code": "INTR 221",
+   "crosslist": null,
+   "title": "Nationalism, Central Europe, and the Russia-Ukraine War"
+  },
+  {
+   "code": "INTR 222",
+   "crosslist": null,
+   "title": "Central Europe and the Russian-Ukraine War"
+  },
+  {
+   "code": "INTR 227",
+   "crosslist": null,
+   "title": "War and Memory in Eastern Europe"
+  },
+  {
+   "code": "INTR 228",
+   "crosslist": null,
+   "title": "Gender, War, and Militarism (through Fall 2025 only)"
+  },
+  {
+   "code": "INTR 231",
+   "crosslist": null,
+   "title": "Cold War"
+  },
+  {
+   "code": "INTR 233",
+   "crosslist": null,
+   "title": "International Relations in East Asia"
+  },
+  {
+   "code": "INTR 241",
+   "crosslist": null,
+   "title": "Polish Foreign Policy After Communism, 1989-2019"
+  },
+  {
+   "code": "INTR 246",
+   "crosslist": null,
+   "title": "Religious Nationalism (through Spring 2026 only)"
+  },
+  {
+   "code": "INTR 247",
+   "crosslist": null,
+   "title": "Zionism and Its Discontents"
+  },
+  {
+   "code": "INTR 249",
+   "crosslist": null,
+   "title": "Israel/Palestine (through Fall 2025 only)"
+  },
+  {
+   "code": "PSCI 252",
+   "crosslist": [
+    "INTR 252"
+   ],
+   "title": "Ethnic Politics and Ethnic Conflict"
+  },
+  {
+   "code": "PSCI 254",
+   "crosslist": [
+    "INTR 254"
+   ],
+   "title": "The U.S. in the Middle East"
+  },
+  {
+   "code": "PSCI 256",
+   "crosslist": [
+    "INTR 256"
+   ],
+   "title": "Theories of Comparative Politics"
+  },
+  {
+   "code": "PSCI 259",
+   "crosslist": [
+    "INTR 259"
+   ],
+   "title": "Order, Violence, and the State"
+  },
+  {
+   "code": "PSCI 265",
+   "crosslist": [
+    "INTR 265"
+   ],
+   "title": "Civil War and the International System"
+  },
+  {
+   "code": "PSCI 268",
+   "crosslist": [
+    "INTR 268"
+   ],
+   "title": "International Organization"
+  },
+  {
+   "code": "PSCI 269",
+   "crosslist": [
+    "INTR 269"
+   ],
+   "title": "Migration, Economic Change, and Conflict"
+  },
+  {
+   "code": "PSCI 270",
+   "crosslist": [
+    "INTR 270"
+   ],
+   "title": "Mechanisms of International Relations"
+  },
+  {
+   "code": "PSCI 272",
+   "crosslist": [
+    "INTR 272"
+   ],
+   "title": "Theories of International Relations"
+  },
+  {
+   "code": "PSCI 273",
+   "crosslist": [
+    "INTR 273"
+   ],
+   "title": "The Politics of Terrorism"
+  },
+  {
+   "code": "PSCI 275",
+   "crosslist": [
+    "INTR 275"
+   ],
+   "title": "European Integration (and Disintegration?)"
+  },
+  {
+   "code": "PSCI 276",
+   "crosslist": [
+    "INTR 276"
+   ],
+   "title": "The Politics of Insurgency"
+  },
+  {
+   "code": "PSCI 278",
+   "crosslist": [
+    "INTR 278"
+   ],
+   "title": "Foundations of Modern International Politics"
+  },
+  {
+   "code": "PSCI 279",
+   "crosslist": [
+    "INTR 279"
+   ],
+   "title": "War and the Nation State"
+  },
+  {
+   "code": "PSCI 373",
+   "crosslist": [
+    "INTR 373"
+   ],
+   "title": "Territory and Group Conflict"
+  }
+ ]
+}

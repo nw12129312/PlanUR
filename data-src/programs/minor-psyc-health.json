@@ -1,0 +1,45 @@
+{
+  "id": "minor-psyc-health",
+  "type": "minor",
+  "name": "Health Psychology",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "social-sciences",
+  "departments": [
+    "PSYC"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/psy/undergraduate/minor.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/psy/psy_undergraduate_minor.html",
+  "programChecks": {
+    "totalCourses": 5,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "RETIRED MINOR - only available to students who declared it before Fall 2023. Every other student takes the single Psychology minor introduced that term (minor-psyc), which the department encourages even for earlier declarers. It is encoded here because the University's official program list still carries it and students who declared in time may still finish it. DO NOT DECLARE THIS AS A NEW STUDENT.",
+    "Five fixed courses. This minor satisfies a social science divisional requirement.",
+    "PSYC 101 may be replaced by its equivalent, including a grade of B- or higher in PSYC 101A, a 4 or 5 on the AP psychology test, or a 6 or better on the higher-level IB psychology exam. PSYC 101A is not in the 2025-26 catalog.",
+    "Up to two transferred psychology courses, in addition to Introduction to Psychology, may be used in the minor plan.",
+    "SOCIAL VS NATURAL SCIENCE: social-science psychology courses are PSYC courses NOT cross-listed with BCSC; natural-science ones ARE cross-listed with BCSC. The exceptions run both ways - PSYC 170/BCSC 170, PSYC 210/BCSC 185 and PSYC 248/BCSC 278 count as social science and not as natural science. The catalog does not record cross-listing, so the planner cannot enforce the split."
+  ],
+  "requirementGroups": [
+    {
+      "id": "courses",
+      "label": "Required courses",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "PSYC 101",
+          "PSYC 110",
+          "PSYC 181",
+          "PSYC 282",
+          "PSYC 283"
+        ]
+      },
+      "sourceQuote": "This minor requires a total of five courses, which are outlined below. PSYC 101: Introduction to Psychology or the equivalent; PSYC 110: Neural Foundations of Behavior; PSYC 181: Theories of Personality and Psychotherapy; PSYC 282: Psychopathology (formerly Abnormal Psychology); PSYC 283: Behavioral Medicine"
+    }
+  ],
+  "upperLevelWriting": null
+}

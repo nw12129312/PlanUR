@@ -1,0 +1,78 @@
+{
+  "id": "major-phil-ba",
+  "type": "major",
+  "name": "Philosophy",
+  "degree": "BA",
+  "school": "sas",
+  "division": "humanities",
+  "departments": ["PHIL"],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/phl/undergraduate/major.html",
+  "sourcedOn": "2026-07-05",
+  "snapshot": "data-src/pages/phl/phl_undergraduate_major.html",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": ["social-sciences", "natural-sciences"],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "notes": [
+    "Ten courses total (five named + five electives). IB higher-level score of 5+ awards PHIL 101 credit.",
+    "Optional emphases (law and ethics; history of philosophy; logic and philosophy of science) don't change the transcript; only the general requirements below are official.",
+    "Elective distribution constraints are partially modeled: at least three electives above PHIL 202 is enforced; the ethics course, the logic/traditional/phil-of-science course, and the advanced 'W' elective are represented as their own groups. 'No more than three logic-science courses' and the allied-field substitution are notes, not auto-checked."
+  ],
+  "requirementGroups": [
+    {
+      "id": "core",
+      "label": "Core courses",
+      "rule": { "type": "all_of", "courses": ["PHIL 101", "PHIL 110", "PHIL 201", "PHIL 202", "PHIL 393"] },
+      "sourceQuote": "PHIL 101: Introduction to Philosophy; PHIL 110: Intro Logic; PHIL 201: History of Ancient Philosophy; PHIL 202: History of Modern Philosophy; PHIL 393: Seminar for Majors"
+    },
+    {
+      "id": "ethics",
+      "label": "Ethics course",
+      "rule": { "type": "n_of", "n": 1, "options": [
+        "PHIL 102", "PHIL 103", "PHIL 118", "PHIL 120", "PHIL 135",
+        "PHIL 220", "PHIL 221", "PHIL 222", "PHIL 223", "PHIL 224", "PHIL 225",
+        "PHIL 226", "PHIL 227", "PHIL 228", "PHIL 229", "PHIL 230",
+        "PHIL 308", "PHIL 311", "PHIL 312", "PHIL 320"] },
+      "sourceQuote": "At least one course in ethics (PHIL 102, 103, 118, 120, 135, 220-230, 308, 311, 312, 320)."
+    },
+    {
+      "id": "logic-traditions",
+      "label": "Logic, traditional disciplines, or philosophy of science",
+      "rule": { "type": "n_from_filter", "n": 1,
+                "filter": { "depts": ["PHIL"], "minNumber": 211, "maxNumber": 259 } },
+      "sourceQuote": "At least one course from either logic and related courses (PHIL 211-219), or traditional philosophical disciplines (PHIL 242-249), or philosophy of science (PHIL 250-259)."
+    },
+    {
+      "id": "advanced-w",
+      "label": "Advanced philosophy W course",
+      "rule": { "type": "n_from_filter", "n": 1,
+                "filter": { "depts": ["PHIL"], "minNumber": 200, "maxNumber": 399, "wOnly": true } },
+      "sourceQuote": "At least one advanced philosophy course designated with a 'W', to indicate upper-level writing credit."
+    },
+    {
+      "id": "electives-advanced",
+      "label": "Advanced electives above PHIL 202 (3)",
+      "rule": { "type": "n_from_filter", "n": 3,
+                "filter": { "depts": ["PHIL"], "minNumber": 203, "maxNumber": 399,
+                            "exclude": ["PHIL 393"] } },
+      "sourceQuote": "Five philosophy electives ... At least three courses must be above PHIL 202."
+    },
+    {
+      "id": "electives-any",
+      "label": "Philosophy electives (2 more)",
+      "rule": { "type": "n_from_filter", "n": 2,
+                "filter": { "depts": ["PHIL"], "minNumber": 102, "maxNumber": 399,
+                            "exclude": ["PHIL 101", "PHIL 110", "PHIL 201", "PHIL 202", "PHIL 393"] } },
+      "sourceQuote": "Five philosophy electives ... A relevant course in an allied field may be substituted for one of the five Philosophy electives above, with the permission of the Philosophy Department's undergraduate advisor.",
+      "note": "Allied-field substitution not auto-enforced."
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "Advanced philosophy W course (fulfilled within the major)",
+    "rule": { "type": "n_from_filter", "n": 1,
+              "filter": { "depts": ["PHIL"], "minNumber": 200, "maxNumber": 399, "wOnly": true } },
+    "sourceQuote": "At least one advanced philosophy course designated with a 'W', to indicate upper-level writing credit.",
+    "note": "The department states one advanced W course; the University's two-ULW-course norm is satisfied through the major's writing-intensive seminars per department policy."
+  }
+}

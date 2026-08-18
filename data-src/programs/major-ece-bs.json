@@ -1,0 +1,76 @@
+{
+  "id": "major-ece-bs",
+  "type": "major",
+  "name": "Electrical and Computer Engineering",
+  "degree": "BS",
+  "school": "hajim",
+  "division": "engineering",
+  "departments": ["ECE"],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.hajim.rochester.edu/ece/undergraduate/major.html",
+  "sourcedOn": "2026-08-01",
+  "snapshot": "data-src/pages/ece/ece_undergraduate_major.html",
+  "clustersRequired": 1,
+  "allowedClusterDivisions": ["humanities", "social-sciences"],
+  "totalCreditsOverride": 128,
+  "overlapCapOverride": null,
+  "programChecks": { "totalCourses": null, "minFromDepts": null, "max100Level": null },
+  "notes": [
+    "128 total credits: 52 core, 12 advanced electives and design, 16 math, 12 science, 12 cluster, 8 humanities/social science, 6 primary and upper-level writing, 10 elective.",
+    "Writing is satisfied by WRTG 105 (primary), WRTG 273 (2 credits, typically second year), and the writing embedded in third- and fourth-year ECE core courses with laboratory components (ECE 216, 221, 222, 230). WRTG 273 is modeled as the ULW requirement.",
+    "The humanities/social science requirement is five courses (20 credits) INCLUDING the three-course cluster, so two further H/SS courses are required beyond the cluster. Language courses at the 101 level count only when followed by a more advanced course in the same language. A minor of five or more courses in one area also satisfies it.",
+    "PHYS 113 is an acceptable replacement for PHYS 121 only for students taking the MATH 141-143 calculus sequence - not modeled as an alternative.",
+    "The three advanced electives may be concentrated in one area (Computer Engineering, Semiconductor Devices, Integrated Circuits, Waves and Fields, Signals/Communication/Image Processing, Robotics) or spread for breadth. Other upper-level courses may be approved by the undergraduate chair."
+  ],
+  "requirementGroups": [
+    {
+      "id": "core",
+      "label": "Required core courses",
+      "rule": { "type": "all_of", "courses": [
+        "ECE 101", "ECE 112", "ECE 113", "ECE 114", "ECE 200", "ECE 216",
+        "ECE 221", "ECE 222", "ECE 230", "ECE 241", "ECE 270",
+        "ECE 348", "ECE 349", "PHIL 120"] },
+      "sourceQuote": "Required Core Courses: ECE 101: Introduction to Electrical and Computer Engineering; ECE 112: Digital Logic; ECE 113: Introduction to Signals and Circuits; ECE 114: Introduction to C/C++ Programming; ECE 200: Computer Organization; ECE 216: Mechatronics and Embedded Systems; ECE 221: Electronic Devices and Circuits; ECE 222: Integrated Circuit Design and Analysis; ECE 230: Electromagnetic Waves; ECE 241: Signals Processing and Communication; ECE 270: Probability for Electrical Engineers; ECE 348: ECE Design Seminar; ECE 349: ECE Design Capstone; PHIL 120: Ethics of Technology"
+    },
+    {
+      "id": "advanced-electives",
+      "label": "200-level ECE advanced electives (3)",
+      "rule": { "type": "n_from_filter", "n": 3,
+                "filter": { "depts": ["ECE"], "minNumber": 200, "maxNumber": 299,
+                            "exclude": ["ECE 200", "ECE 216", "ECE 221", "ECE 222",
+                                        "ECE 230", "ECE 241", "ECE 270"] } },
+      "sourceQuote": "Three 200-level ECE Advanced Electives. The three 200-level ECE courses that comprise the advanced electives may be taken in a single area of concentration to provide additional depth or can be spread across multiple areas to provide additional breadth."
+    },
+    {
+      "id": "math",
+      "label": "Mathematics sequence",
+      "rule": { "type": "sequence_one_of", "sequences": [
+        ["MATH 161", "MATH 162", "MATH 164", "MATH 165"],
+        ["MATH 141", "MATH 142", "MATH 143", "MATH 164", "MATH 165"],
+        ["MATH 171", "MATH 172", "MATH 173", "MATH 174"]] },
+      "sourceQuote": "The mathematics requirements can be satisfied by one of the following sequences: MATH 161, MATH 162, MATH 164, and MATH 165; MATH 141, MATH 142, MATH 143, MATH 164, and MATH 165; MATH 171, MATH 172, MATH 173, and MATH 174"
+    },
+    {
+      "id": "science",
+      "label": "Physics",
+      "rule": { "type": "all_of", "courses": ["PHYS 121", "PHYS 122", "PHYS 123"] },
+      "sourceQuote": "The science requirements of the Bachelor of Science in Electrical and Computer Engineering include PHYS 121, PHYS 122, and PHYS 123."
+    },
+    {
+      "id": "hum-soc",
+      "label": "Humanities/social science beyond the cluster (2)",
+      "rule": { "type": "n_from_filter", "n": 2,
+                "filter": { "depts": ["ENGL", "HIST", "PHIL", "RELC", "MUSC", "ANTH", "PSCI",
+                                      "ECON", "PSYC", "SOCI", "LING", "AHST", "BLST", "GSWS"],
+                            "minNumber": 100, "maxNumber": 399 } },
+      "sourceQuote": "The humanities and social sciences requirements require a minimum of five humanities and/or social science courses equaling 20 credits. This includes the three courses taken to satisfy the University Cluster requirement. ... Table 4: Three-course cluster in humanities or social sciences 12; Two additional courses in humanities and/or social sciences 8",
+      "note": "PHIL 120 is a core requirement and is counted there, not here."
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "WRTG 273 plus writing in ECE core laboratory courses",
+    "rule": { "type": "all_of", "courses": ["WRTG 273"] },
+    "sourceQuote": "The primary and upper-level writing requirements are satisfied through WRTG 105, WRTG 273, and ECE core courses taken during the third and fourth years. ... The second course, WRTG 273, focuses on communicating your professional identity. WRTG 273 is typically taken during the second year.",
+    "note": "The remaining writing is embedded in ECE core courses (ECE 216, 221, 222, 230) already required above, so only WRTG 273 is a separate course."
+  }
+}

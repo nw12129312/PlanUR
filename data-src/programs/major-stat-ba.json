@@ -1,0 +1,172 @@
+{
+  "type": "major",
+  "school": "sas",
+  "division": "natural-sciences",
+  "status": "ACTIVE",
+  "sourcedOn": "2026-08-01",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": [
+    "humanities",
+    "social-sciences"
+  ],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "id": "major-stat-ba",
+  "name": "Statistics",
+  "degree": "BA",
+  "departments": [
+    "STAT"
+  ],
+  "sourceUrl": "https://www.sas.rochester.edu/stt/undergraduate/barequirements.html",
+  "snapshot": "data-src/pages/stt/stt_undergraduate_barequirements.html",
+  "programChecks": {
+    "totalCourses": null,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Double majors with Economics or Business may substitute ECON 231W for STAT 216.",
+    "STAT 180 replaces the former STAT 212; STAT 190 replaces STAT 213 / DSCC 262.",
+    "STAT 219 counts as an applications course only for the Class of 2026 and earlier."
+  ],
+  "requirementGroups": [
+    {
+      "id": "prereq-calc",
+      "label": "Prerequisite: calculus sequence",
+      "rule": {
+        "type": "sequence_one_of",
+        "sequences": [
+          [
+            "MATH 161",
+            "MATH 162"
+          ],
+          [
+            "MATH 141",
+            "MATH 142",
+            "MATH 143"
+          ],
+          [
+            "MATH 171",
+            "MATH 172"
+          ]
+        ]
+      },
+      "sourceQuote": "Choose one of the following calculus sequences: MATH 161 and MATH 162; MATH 141, MATH 142, and MATH 143; MATH 171 and MATH 172"
+    },
+    {
+      "id": "prereq-stat",
+      "label": "Prerequisite: introductory statistics",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "STAT 180",
+          "STAT 190",
+          "ECON 230",
+          "PSCI 200"
+        ]
+      },
+      "sourceQuote": "Choose one of the following introductory statistics courses: STAT 180; STAT 190; ECON 230: Economic Statistics; PSCI 200: Data Analysis I"
+    },
+    {
+      "id": "core",
+      "label": "Core courses",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "STAT 201",
+          "STAT 203",
+          "STAT 216"
+        ]
+      },
+      "sourceQuote": "Core Courses (Three Courses): STAT/MATH 201: Introduction to Probability; STAT/MATH 203: Introduction to Mathematical Statistics; STAT 216: Intermediate Statistical Methodology"
+    },
+    {
+      "id": "computational",
+      "label": "Computational courses (2)",
+      "rule": {
+        "type": "n_of",
+        "n": 2,
+        "options": [
+          "STAT 275",
+          "STAT 275W",
+          "STAT 276",
+          "STAT 276W",
+          "STAT 277",
+          "CSC 171",
+          "CSC 172"
+        ]
+      },
+      "sourceQuote": "Computational Courses (Two Courses). Choose two of the following: STAT 275(W): R Programming; STAT 276(W): Statistical Computation in R; STAT 277; CSC 171; CSC 172. It is highly recommended to have at least one STAT-listed computing course for the major."
+    },
+    {
+      "id": "methods",
+      "label": "Methods courses (2)",
+      "rule": {
+        "type": "n_of",
+        "n": 2,
+        "options": [
+          "STAT 219",
+          "STAT 221W",
+          "STAT 223",
+          "STAT 226W"
+        ]
+      },
+      "sourceQuote": "Methods Courses (Two Courses). Choose two of the following: STAT 219: Nonparametric Inference; STAT 221W: Sampling Techniques; STAT 223: Bayesian Inference; STAT 226W: Linear Models"
+    },
+    {
+      "id": "applications",
+      "label": "Applications courses (2)",
+      "rule": {
+        "type": "n_of",
+        "n": 2,
+        "options": [
+          "STAT 215",
+          "STAT 217",
+          "STAT 218",
+          "STAT 219",
+          "DSCC 265"
+        ]
+      },
+      "sourceQuote": "Applications Courses (Two Courses). Choose two of the following: STAT 215; STAT 217; STAT 218; STAT 219 (for students in the Class of 2026 and previous); DSCC 265"
+    },
+    {
+      "id": "upper-electives",
+      "label": "Upper-level electives (2)",
+      "rule": {
+        "type": "n_of",
+        "n": 2,
+        "options": [
+          "MATH 202",
+          "MATH 208",
+          "MATH 209",
+          "MATH 217",
+          "MATH 218",
+          "PSCI 205",
+          "PSCI 281",
+          "PSCI 288",
+          "ECON 223",
+          "ECON 224"
+        ]
+      },
+      "sourceQuote": "Upper-Level Elective Courses (Two Courses). Choose two of the following courses: Any non-introductory 200-level STAT course; MATH 202; MATH 208; MATH 209; MATH 217; MATH 218; PSCI 205; PSCI 281; PSCI 288; ECON 223; ECON 224",
+      "note": "'Any non-introductory 200-level STAT course' is also allowed but not enumerated here."
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "Statistics W courses",
+    "rule": {
+      "type": "n_from_filter",
+      "n": 2,
+      "filter": {
+        "depts": [
+          "STAT"
+        ],
+        "minNumber": 200,
+        "maxNumber": 399,
+        "wOnly": true
+      }
+    },
+    "note": "NEEDS VERIFICATION: the BA page does not state the ULW policy; modeled on the department's W-designated courses (STAT 221W, 226W, 275W, 276W)."
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "id": "minor-eesc-planetary",
+  "type": "minor",
+  "name": "Earth, Environmental, and Planetary Science",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "natural-sciences",
+  "departments": [
+    "EESC",
+    "ASTR"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/ees/undergraduate/minors.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/ees/ees_undergraduate_minors.html",
+  "programChecks": {
+    "totalCourses": 6,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Six courses. The department calls this the 'Earth and planetary sciences minor'; the University's official program list names it Earth, Environmental, and Planetary Science.",
+    "Intended for students interested in careers in earth resources, space research and administration.",
+    "ASTR 111 may count in the planetary group only if EESC 101 and EESC 201 have been taken - the planner cannot check that condition.",
+    "See the department's major/minor course overlap policy."
+  ],
+  "requirementGroups": [
+    {
+      "id": "intro",
+      "label": "Two introductory courses",
+      "rule": {
+        "type": "n_of",
+        "n": 2,
+        "options": [
+          "EESC 101",
+          "EESC 201",
+          "ASTR 111",
+          "ASTR 142"
+        ]
+      },
+      "sourceQuote": "Required Courses. Two of the following: EESC 101: Introduction to Earth Sciences; EESC 201: Evolution of the Earth; ASTR 111: The Solar System and Its Origin; ASTR 142: Elementary Astrophysics"
+    },
+    {
+      "id": "earth",
+      "label": "Two earth science courses",
+      "rule": {
+        "type": "n_of",
+        "n": 2,
+        "options": [
+          "EESC 203",
+          "EESC 204",
+          "EESC 206",
+          "EESC 208",
+          "EESC 211",
+          "EESC 214",
+          "EESC 215",
+          "EESC 253"
+        ]
+      },
+      "sourceQuote": "Plus two of the following (prerequisites in parenthesis): EESC 203: Sedimentology and Stratigraphy (EESC 101 and EESC 201); EESC 204: Earth Materials; EESC 206: Petrology (EESC 204); EESC 208: Structural Geology (EESC 101 and EESC 201); EESC 211: Nature's Fury; EESC 214: Earth Science and Data Analysis (MATH 161 and MATH 162 or equivalent); EESC 215: Seismology and Earth Structure (EESC 101 and EESC 201); EESC 253: Geodynamics"
+    },
+    {
+      "id": "planetary",
+      "label": "Two planetary science courses",
+      "rule": {
+        "type": "n_of",
+        "n": 2,
+        "options": [
+          "EESC 229",
+          "EESC 254",
+          "ASTR 265",
+          "EESC 255",
+          "EESC 256",
+          "ASTR 233",
+          "ASTR 111"
+        ]
+      },
+      "sourceQuote": "Plus two of the following (prerequisites in parenthesis): ASTR 111: The Solar System and its Origin (may be used here if EESC 101 and EESC 201 have been taken); EESC 229: Designing Your Space Mission; EESC 254/ASTR 265: Planetary Interiors (MATH 165 and PHYS 113 or equivalent); EESC 255: Planetary Science; EESC 256: Paleomagnetism and Global Plate Tectonics; ASTR 233: Astrodynamics"
+    }
+  ],
+  "upperLevelWriting": null
+}

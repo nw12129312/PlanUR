@@ -1,0 +1,42 @@
+{
+  "id": "minor-phil-ethics",
+  "type": "minor",
+  "name": "Ethics in Philosophy",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "humanities",
+  "departments": ["PHIL"],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/phl/undergraduate/minor.html",
+  "sourcedOn": "2026-08-01",
+  "snapshot": "data-src/pages/phl/phl_undergraduate_minor.html",
+  "programChecks": { "totalCourses": 5, "minFromDepts": null, "max100Level": null },
+  "notes": [
+    "PHIL 102 or PHIL 103, plus four other philosophy courses, at least two of them advanced ethics courses."
+  ],
+  "requirementGroups": [
+    {
+      "id": "intro",
+      "label": "Introductory ethics",
+      "rule": { "type": "n_of", "n": 1, "options": ["PHIL 102", "PHIL 103"] },
+      "sourceQuote": "Requirements: PHIL 102 or 103, and four other courses in philosophy"
+    },
+    {
+      "id": "advanced-ethics",
+      "label": "Advanced ethics courses (2)",
+      "rule": { "type": "n_of", "n": 2, "options": [
+        "PHIL 220", "PHIL 221", "PHIL 222", "PHIL 223", "PHIL 224", "PHIL 225",
+        "PHIL 226", "PHIL 227", "PHIL 228", "PHIL 229", "PHIL 230", "PHIL 235",
+        "PHIL 311", "PHIL 312", "PHIL 313", "PHIL 320", "PHIL 321", "PHIL 326"] },
+      "sourceQuote": "at least two of which are advanced courses in ethics (PHIL 220-230, 235, 311-313, 320, 321, 326)"
+    },
+    {
+      "id": "other",
+      "label": "Additional philosophy courses (2)",
+      "rule": { "type": "n_from_filter", "n": 2,
+                "filter": { "depts": ["PHIL"], "minNumber": 101, "maxNumber": 399,
+                            "exclude": ["PHIL 102", "PHIL 103"] } },
+      "sourceQuote": "PHIL 102 or 103, and four other courses in philosophy"
+    }
+  ]
+}

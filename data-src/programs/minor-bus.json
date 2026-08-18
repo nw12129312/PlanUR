@@ -1,0 +1,140 @@
+{
+  "id": "minor-bus",
+  "type": "minor",
+  "name": "Business",
+  "degree": "Minor",
+  "school": "simon",
+  "division": "social-sciences",
+  "departments": [
+    "BUS",
+    "ACC",
+    "FIN",
+    "MKT",
+    "CIS",
+    "OPS",
+    "STR",
+    "ENT"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.simon.rochester.edu/programs/bs-business/minor",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/bsb/bsb_undergraduate_minor.html",
+  "programChecks": {
+    "totalCourses": 7,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "THE NEW CURRICULUM (effective fall 2026) is encoded: pre-minor requirement plus six courses (one core, two flexible core, three electives). Incoming first-year and transfer students for fall 2026 must follow it, and current business minors may opt into it.",
+    "THE OLD CURRICULUM IS NOT MODELED. Students who declared a business minor before fall 2026 may request to complete it, and students graduating on or before 31 August 2026 MUST follow it. Under the old rules, students using the business minor for the social-sciences divisional requirement had to choose both minor electives from the social-sciences course list.",
+    "You must complete the pre-minor requirement before declaring the minor.",
+    "Many electives carry prerequisites - the department marks them with an asterisk on its page."
+  ],
+  "requirementGroups": [
+    {
+      "id": "pre-minor",
+      "label": "Pre-minor requirement",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "ECON 108",
+          "ECON 207"
+        ]
+      },
+      "sourceQuote": "Pre-Minor Requirement. ECON 108: Principles of Economics or ECON 207: Intermediate Microeconomics"
+    },
+    {
+      "id": "core",
+      "label": "Core course",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "BUS 101"
+        ]
+      },
+      "sourceQuote": "Core Course (One Required). BUS 101: Introduction to Business"
+    },
+    {
+      "id": "flexible-core",
+      "label": "Flexible core (two courses)",
+      "rule": {
+        "type": "n_of",
+        "n": 2,
+        "options": [
+          "ACC 201",
+          "MKT 203",
+          "FIN 205",
+          "CIS 220",
+          "OPS 221",
+          "STR 203"
+        ]
+      },
+      "sourceQuote": "Flexible Core (Two Courses). Plus two of the following: ACC 201: Financial Accounting; MKT 203: Principles of Marketing; FIN 205: Financial Management; CIS 220: Business Information Systems and Analytics; OPS 221: Operations Management (previously listed as BUS 221); STR 203: Economics of Strategy and Organization"
+    },
+    {
+      "id": "electives",
+      "label": "Three electives",
+      "rule": {
+        "type": "n_of",
+        "n": 3,
+        "options": [
+          "ACC 201",
+          "ACC 221",
+          "ACC 222",
+          "ACC 224",
+          "ACC 225",
+          "BUS 103",
+          "BUS 118",
+          "BUS 201",
+          "BUS 217",
+          "BUS 219",
+          "BUS 389",
+          "CIS 191",
+          "CIS 211",
+          "CIS 220",
+          "CIS 240",
+          "CIS 242",
+          "CIS 245",
+          "CIS 278",
+          "CIS 279",
+          "ECON 209",
+          "ECON 211",
+          "ECON 231W",
+          "ECON 251",
+          "ECON 268",
+          "ENT 101",
+          "ENT 223",
+          "ENT 227",
+          "ENT 230",
+          "FIN 205",
+          "FIN 206",
+          "FIN 213",
+          "FIN 224",
+          "FIN 233",
+          "FIN 241",
+          "FIN 242",
+          "FIN 244",
+          "FIN 246",
+          "LAW 205",
+          "LAW 250",
+          "MKT 203",
+          "MKT 212",
+          "MKT 213",
+          "MKT 233",
+          "MKT 235",
+          "MKT 237",
+          "OPS 221",
+          "PSCI 238",
+          "PSCI 244",
+          "STR 203",
+          "STR 221",
+          "STR 241"
+        ]
+      },
+      "sourceQuote": "Electives (Three Courses): ACC 201**; ACC 221; ACC 222; ACC 224; ACC 225; BUS 103; BUS 118; BUS 201; BUS 217; BUS 219; BUS 389; CIS 191; CIS 211; CIS 220**; CIS 240; CIS 242; CIS 245; CIS 278; CIS 279; ECON 209; ECON 211; ECON 231W; ECON 251; ECON 268; ENT 101; ENT 223; ENT 227; ENT 230; FIN 205**; FIN 206; FIN 213; FIN 224; FIN 233; FIN 241; FIN 242; FIN 244; FIN 246; LAW 205; LAW 250; MKT 203**; MKT 212; MKT 213; MKT 233; MKT 235; MKT 237; OPS 221**; PSCI 238; PSCI 244; STR 203**; STR 221; STR 241. **if not taken as a core course",
+      "note": "The six flexible-core courses can also serve as electives IF not already used as your core - the planner keeps the groups separate, which matches that rule."
+    }
+  ],
+  "upperLevelWriting": null
+}

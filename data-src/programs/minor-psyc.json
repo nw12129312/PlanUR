@@ -1,0 +1,52 @@
+{
+  "id": "minor-psyc",
+  "type": "minor",
+  "name": "Psychology",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "social-sciences",
+  "departments": ["PSYC"],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/psy/undergraduate/minor.html",
+  "sourcedOn": "2026-08-01",
+  "snapshot": "data-src/pages/psy/psy_undergraduate_minor.html",
+  "programChecks": { "totalCourses": 6, "minFromDepts": null, "max100Level": null },
+  "notes": [
+    "This is the single Psychology minor introduced in Fall 2023. The six retired minors (Natural Science, Social Science, Clinical, Health, Organizational, Social and Emotional Development) remain available only to students who declared before Fall 2023 and are not modeled.",
+    "A student cannot minor and major in psychology.",
+    "The two foundational core courses must come from two DIFFERENT areas among Social, Developmental, Clinical, and Natural Science - the app enforces two courses from the combined list but cannot enforce the different-areas rule.",
+    "Students may not receive credit for both PSYC 170 and PSYC 171.",
+    "This minor satisfies a social-science divisional requirement only if at least three of the six courses are social-science (non-BCSC-cross-listed) courses; PSYC 210/BCSC 185 and PSYC 248/BCSC 278 do count as social science. Not auto-enforced.",
+    "At most one of the three additional courses may be a research, teaching, or internship course - not auto-enforced.",
+    "AP psychology 4-5, or IB higher-level 6+, gives PSYC 101 credit and waives the introduction requirement. Up to two transferred psychology courses may also be used."
+  ],
+  "requirementGroups": [
+    {
+      "id": "intro",
+      "label": "Introduction to Psychology",
+      "rule": { "type": "all_of", "courses": ["PSYC 101"] },
+      "sourceQuote": "PSYC 101: Introduction to Psychology or the equivalent (which may include a grade of B- or higher in PSYC 101A)"
+    },
+    {
+      "id": "foundational",
+      "label": "Foundational core courses (2, from two different areas)",
+      "rule": { "type": "n_of", "n": 2, "options": [
+        "PSYC 161",
+        "PSYC 170", "PSYC 171",
+        "PSYC 180", "PSYC 280", "PSYC 281", "PSYC 282",
+        "PSYC 110", "PSYC 111", "PSYC 112"] },
+      "sourceQuote": "Two foundational core courses in psychology, one each from two of the four different areas listed below: Social Psychology - PSYC 161; Developmental Psychology - PSYC 170, PSYC 171; Clinical Psychology - PSYC 180, PSYC 281, PSYC 280, PSYC 282; Psychology as a Natural Science - BCSC/PSYC 110, BCSC/PSYC 111, PSYC 112",
+      "note": "The two-different-areas constraint is not auto-enforced."
+    },
+    {
+      "id": "additional",
+      "label": "Additional psychology courses (3)",
+      "rule": { "type": "n_from_filter", "n": 3,
+                "filter": { "depts": ["PSYC"], "minNumber": 102, "maxNumber": 399,
+                            "exclude": ["PSYC 161", "PSYC 170", "PSYC 171", "PSYC 180",
+                                        "PSYC 280", "PSYC 281", "PSYC 282",
+                                        "PSYC 110", "PSYC 111", "PSYC 112"] } },
+      "sourceQuote": "Three additional psychology courses: Any two or three content courses; Up to one of these courses may be a research, teaching, or internship course"
+    }
+  ]
+}

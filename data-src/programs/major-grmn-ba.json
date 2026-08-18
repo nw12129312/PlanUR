@@ -1,0 +1,93 @@
+{
+  "type": "major",
+  "degree": "BA",
+  "school": "sas",
+  "division": "humanities",
+  "status": "ACTIVE",
+  "sourcedOn": "2026-08-01",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": [
+    "social-sciences",
+    "natural-sciences"
+  ],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "id": "major-grmn-ba",
+  "name": "German",
+  "departments": [
+    "GRMN"
+  ],
+  "sourceUrl": "https://www.sas.rochester.edu/mlc/undergraduate/german.html",
+  "snapshot": "data-src/pages/mlc/mlc_undergraduate_german.html",
+  "programChecks": {
+    "totalCourses": 11,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Eleven courses: two CLTR foundation courses, six core courses, three upper-level electives."
+  ],
+  "requirementGroups": [
+    {
+      "id": "foundation",
+      "label": "Foundation courses (fulfil upper-level writing)",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "CLTR 200",
+          "CLTR 389"
+        ]
+      },
+      "sourceQuote": "FOUNDATION COURSES (fulfills upper level writing): CLTR 200: Topics in Critical Thinking; CLTR 389: MLC Research Seminar"
+    },
+    {
+      "id": "core",
+      "label": "Core courses",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "GRMN 151",
+          "GRMN 152",
+          "GRMN 200",
+          "GRMN 202",
+          "GRMN 203",
+          "GRMN 256"
+        ]
+      },
+      "sourceQuote": "CORE COURSES: GRMN 151: Intermediate German I; GRMN 152: Intermediate German II; GRMN 200: Advanced Conversation and Composition; GRMN 202: Introduction to German Cultural Studies; GRMN 203: Introduction to German Literature; GRMN 256: Advanced Topics in German Studies"
+    },
+    {
+      "id": "electives",
+      "label": "Upper-level German electives (3)",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 3,
+        "filter": {
+          "depts": [
+            "GRMN"
+          ],
+          "minNumber": 200,
+          "maxNumber": 399,
+          "exclude": [
+            "GRMN 200",
+            "GRMN 202",
+            "GRMN 203",
+            "GRMN 256"
+          ]
+        }
+      },
+      "sourceQuote": "ELECTIVE COURSES: Three upper-level elective courses in German literature and culture"
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "CLTR 200 and CLTR 389",
+    "rule": {
+      "type": "all_of",
+      "courses": [
+        "CLTR 200",
+        "CLTR 389"
+      ]
+    },
+    "sourceQuote": "FOUNDATION COURSES (fulfill upper level writing)"
+  }
+}

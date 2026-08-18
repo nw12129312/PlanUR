@@ -1,0 +1,63 @@
+{
+  "id": "minor-fren",
+  "type": "minor",
+  "name": "French",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "humanities",
+  "departments": [
+    "FREN"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/mlc/undergraduate/french.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/mlc/mlc_undergraduate_french.html",
+  "programChecks": {
+    "totalCourses": 5,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Five courses beyond first-year French: the four core courses plus one elective.",
+    "Students who place directly into FREN 200 take TWO electives instead of one, since the minor is still five courses.",
+    "All courses you intend to count toward the minor must be approved by the undergraduate advisor before you declare the minor."
+  ],
+  "requirementGroups": [
+    {
+      "id": "core",
+      "label": "Core French courses",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "FREN 153",
+          "FREN 200",
+          "FREN 202",
+          "FREN 204"
+        ]
+      },
+      "sourceQuote": "The minor in French requires five courses beyond first-year French. These will include the core courses: FREN 153: Intermediate French; FREN 200: Advanced French; FREN 202: Introduction to French Literature; FREN 204: Contemporary France"
+    },
+    {
+      "id": "elective",
+      "label": "One French elective",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 1,
+        "filter": {
+          "depts": [
+            "FREN"
+          ],
+          "minNumber": 155,
+          "maxNumber": 399,
+          "exclude": [
+            "FREN 200",
+            "FREN 202",
+            "FREN 204"
+          ]
+        }
+      },
+      "sourceQuote": "And one elective (or two electives, if the student places directly into FREN 200), which could include one or more pf the following: FREN 155: French Conversation; FREN 157 or 207: French in France; Another 200-level course in French in consultation with the undergraduate advisor"
+    }
+  ],
+  "upperLevelWriting": null
+}

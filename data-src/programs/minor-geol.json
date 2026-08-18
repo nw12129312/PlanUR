@@ -1,0 +1,60 @@
+{
+  "id": "minor-geol",
+  "type": "minor",
+  "name": "Geological Sciences",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "natural-sciences",
+  "departments": [
+    "EESC"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/ees/undergraduate/minors.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/ees/ees_undergraduate_minors.html",
+  "programChecks": {
+    "totalCourses": 6,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Six courses. Unlike the BS in geological sciences, which is retired, this MINOR is still offered - the BA in geological sciences (major-geol-ba) is the live degree.",
+    "A student taking this minor will have a broad grasp of geology as a foundation for switching into the major should career plans change.",
+    "See the department's major/minor course overlap policy."
+  ],
+  "requirementGroups": [
+    {
+      "id": "core",
+      "label": "Required introductory courses",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "EESC 101",
+          "EESC 201"
+        ]
+      },
+      "sourceQuote": "Required Courses. Both of the following: EESC 101: Introduction to Earth Sciences; EESC 201: Evolution of the Earth"
+    },
+    {
+      "id": "electives",
+      "label": "Four geology electives",
+      "rule": {
+        "type": "n_of",
+        "n": 4,
+        "options": [
+          "EESC 203",
+          "EESC 204",
+          "EESC 205",
+          "EESC 206",
+          "EESC 207",
+          "EESC 208",
+          "EESC 214",
+          "EESC 215",
+          "EESC 253"
+        ]
+      },
+      "sourceQuote": "Plus four of the following: EESC 203: Sedimentology and Stratigraphy; EESC 204: Earth Materials; EESC 205: Geophysics; EESC 206: Petrology; EESC 207: Principles of Paleontology; EESC 208: Structural Geology; EESC 214: Earth Science Data Analysis; EESC 215: Seismology and Earth Structure; EESC 253: Geodynamics"
+    }
+  ],
+  "upperLevelWriting": null
+}

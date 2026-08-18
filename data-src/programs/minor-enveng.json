@@ -1,0 +1,88 @@
+{
+  "id": "minor-enveng",
+  "type": "minor",
+  "name": "Environmental Engineering",
+  "degree": "Minor",
+  "school": "hajim",
+  "division": "engineering",
+  "departments": [
+    "CHE",
+    "EESC"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.hajim.rochester.edu/che/undergraduate/minor.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/che/che_undergraduate_minor.html",
+  "programChecks": {
+    "totalCourses": 5,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "A coherent sequence of 16 credits plus a required background course. Students need a GPA of at least 2.0 to declare.",
+    "PREREQUISITES: one semester of chemistry, two semesters of calculus and one semester of physics. AP equivalents or instructor approval are acceptable.",
+    "Substitutions the page allows: ME 123 for CHE 225, ME 225 for CHE 243, ME 223 for CHE 244.",
+    "The objective is core technical proficiency in environmental engineering analysis."
+  ],
+  "requirementGroups": [
+    {
+      "id": "background",
+      "label": "Required background",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "CHE 150",
+          "EESC 103"
+        ]
+      },
+      "sourceQuote": "Minor in Environmental Engineering. Required Background: CHE 150: Intro to Sustainabile Energy OR EESC 103: Introduction to Environmental Science"
+    },
+    {
+      "id": "coursework",
+      "label": "Sixteen credits of environmental engineering coursework",
+      "rule": {
+        "type": "n_of",
+        "n": 4,
+        "options": [
+          "CHE 113",
+          "CHE 160",
+          "CHE 225",
+          "ME 123",
+          "CHE 226",
+          "CHE 231",
+          "CHE 243",
+          "ME 225",
+          "CHE 244",
+          "ME 223",
+          "CHE 250",
+          "CHE 288",
+          "ME 251",
+          "ME 280",
+          "EESC 201",
+          "EESC 204",
+          "EESC 206",
+          "EESC 207",
+          "EESC 213",
+          "EESC 216",
+          "EESC 218",
+          "EESC 219",
+          "EESC 223",
+          "EESC 224",
+          "EESC 233",
+          "EESC 235",
+          "EESC 236",
+          "EESC 265",
+          "EESC 307",
+          "EESC 310",
+          "EESC 312W",
+          "EESC 320",
+          "EESC 368"
+        ]
+      },
+      "sourceQuote": "Choose 16 Credits. No more than 12 credits can be taken from one department. Students not majoring in engineering should take 12 credits in engineering courses (CHE or ME). Students majoring in engineering should take 12 of the 16 credits in non-engineering courses (EES, BIO, PHLT).",
+      "note": "BALANCE RULE NOT ENFORCED: no more than 12 of the 16 credits may come from one department, and the engineering/non-engineering split runs OPPOSITE ways depending on your major - engineering majors take 12 credits OUTSIDE engineering, everyone else takes 12 credits INSIDE it. Check your own split."
+    }
+  ],
+  "upperLevelWriting": null
+}

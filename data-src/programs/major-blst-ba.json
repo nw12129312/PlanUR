@@ -1,0 +1,63 @@
+{
+  "id": "major-blst-ba",
+  "type": "major",
+  "name": "Black Studies",
+  "degree": "BA",
+  "school": "sas",
+  "division": "humanities",
+  "departments": ["BLST"],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/aas/undergraduate/major.html",
+  "sourcedOn": "2026-08-01",
+  "snapshot": "data-src/pages/aas/aas_undergraduate_major.html",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": ["humanities", "social-sciences", "natural-sciences"],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "programChecks": { "totalCourses": 10, "minFromDepts": { "depts": ["BLST"], "n": 10 }, "max100Level": 4 },
+  "notes": [
+    "A minimum of 10 courses (40 credits): BLST 110, five divisional courses, three electives, and BLST 380.",
+    "NEEDS VERIFICATION - cluster divisions: the department states the major counts as either social sciences or humanities depending on the balance of courses the student takes, so the app cannot know which division the major occupies. All three cluster divisions are permitted here to avoid blocking a valid plan; confirm your own divisional classification with the director of undergraduate studies.",
+    "The five divisional courses must all come from EITHER the humanities OR the social sciences side of the BLST offerings - not auto-enforced, because the catalog does not record each BLST course's division.",
+    "max100Level 4 is the aggregate of the page's per-group caps (BLST 110, plus at most two 100-level divisional courses and at most one 100-level elective).",
+    "No more than six courses may be in a single discipline - not auto-enforced (BLST courses are cross-listed from many home departments).",
+    "Two of the ten courses must satisfy the Upper-Level Writing Requirement."
+  ],
+  "requirementGroups": [
+    {
+      "id": "intro",
+      "label": "Introductory course",
+      "rule": { "type": "all_of", "courses": ["BLST 110"] },
+      "sourceQuote": "One introductory course - BLST 110: Introduction to Black Studies"
+    },
+    {
+      "id": "divisional",
+      "label": "Divisional courses (5)",
+      "rule": { "type": "n_from_filter", "n": 5,
+                "filter": { "depts": ["BLST"], "minNumber": 101, "maxNumber": 399,
+                            "exclude": ["BLST 110", "BLST 380"] } },
+      "sourceQuote": "Five divisional courses - Students must choose five BLST courses from either the humanities or social sciences. These courses will determine which of the College's divisional requirements the BLST major will satisfy. No more than two of these courses can be at the 100-level.",
+      "note": "Humanities-vs-social-sciences split not auto-enforced; the 100-level sub-cap is folded into the program-wide max100Level."
+    },
+    {
+      "id": "electives",
+      "label": "Elective courses (3)",
+      "rule": { "type": "n_from_filter", "n": 3,
+                "filter": { "depts": ["BLST"], "minNumber": 101, "maxNumber": 399,
+                            "exclude": ["BLST 110", "BLST 380"] } },
+      "sourceQuote": "Three elective courses - Students must choose three additional BLST courses as electives. No more than one course can be at the 100-level."
+    },
+    {
+      "id": "seminar",
+      "label": "Advanced seminar",
+      "rule": { "type": "all_of", "courses": ["BLST 380"] },
+      "sourceQuote": "One advanced seminar - BLST 380: Advanced Seminar in Black Studies"
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "Two upper-level writing courses within the major",
+    "rule": { "type": "n_from_filter", "n": 2,
+              "filter": { "depts": ["BLST"], "minNumber": 200, "maxNumber": 399, "wOnly": true } },
+    "sourceQuote": "Two of the above courses must satisfy the Upper-Level Writing Requirement."
+  }
+}

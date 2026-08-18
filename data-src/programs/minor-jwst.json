@@ -1,0 +1,60 @@
+{
+  "id": "minor-jwst",
+  "type": "minor",
+  "name": "Jewish Studies",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "humanities",
+  "departments": [
+    "JWST"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/rel/undergraduate/minors.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/rel/rel_undergraduate_minors.html",
+  "programChecks": {
+    "totalCourses": 6,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Six courses. JWST 106 and JWST 113 are cross-listed as RELC 101 and RELC 103 - either code is the same course.",
+    "Up to two of the four additional courses may be Hebrew language courses."
+  ],
+  "requirementGroups": [
+    {
+      "id": "core",
+      "label": "Core Jewish Studies courses",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "JWST 106",
+          "JWST 113"
+        ]
+      },
+      "sourceQuote": "Minor in Jewish Studies: JWST 106: Introduction to Hebrew Bible (cross-listed with RELC 101); JWST 113: History of Judaism (cross-listed with RELC 103)"
+    },
+    {
+      "id": "additional",
+      "label": "Four additional Jewish Studies courses",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 4,
+        "filter": {
+          "depts": [
+            "JWST"
+          ],
+          "minNumber": 100,
+          "maxNumber": 399,
+          "exclude": [
+            "JWST 106",
+            "JWST 113"
+          ]
+        }
+      },
+      "sourceQuote": "Four additional JWST courses, including up to two courses in Hebrew language",
+      "note": "Up to two of the four may be Hebrew language courses."
+    }
+  ],
+  "upperLevelWriting": null
+}

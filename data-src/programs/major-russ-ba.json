@@ -1,0 +1,123 @@
+{
+  "type": "major",
+  "degree": "BA",
+  "school": "sas",
+  "division": "humanities",
+  "status": "ACTIVE",
+  "sourcedOn": "2026-08-01",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": [
+    "social-sciences",
+    "natural-sciences"
+  ],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "id": "major-russ-ba",
+  "name": "Russian",
+  "departments": [
+    "RUSS"
+  ],
+  "sourceUrl": "https://www.sas.rochester.edu/mlc/undergraduate/russian.html",
+  "snapshot": "data-src/pages/mlc/mlc_undergraduate_russian.html",
+  "programChecks": {
+    "totalCourses": 10,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Ten courses: two foundation, four core, four electives.",
+    "CLTR 200 and CLTR 389 may be replaced by approved equivalent courses.",
+    "Two of the core courses are content courses in literature, culture, or film - modeled as 200-level RUSS courses."
+  ],
+  "requirementGroups": [
+    {
+      "id": "foundation",
+      "label": "Foundation courses (fulfil upper-level writing)",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "CLTR 200",
+          "CLTR 389"
+        ]
+      },
+      "sourceQuote": "FOUNDATION COURSES (fulfills upper level writing): CLTR 200: Topics in Critical Thinking; CLTR 389: MLC Research Seminar"
+    },
+    {
+      "id": "core-readings",
+      "label": "Advanced readings",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "RUSS 202"
+        ]
+      },
+      "sourceQuote": "Core Courses: RUSS 202 Advanced Readings in Russian I"
+    },
+    {
+      "id": "core-second",
+      "label": "Advanced Russian II or through film",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "RUSS 205",
+          "RUSS 209"
+        ]
+      },
+      "sourceQuote": "RUSS 205 Advanced Readings in Russian II or RUSS 209 Advanced Russian through Film"
+    },
+    {
+      "id": "core-content",
+      "label": "Content courses in literature, culture, or film (2)",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 2,
+        "filter": {
+          "depts": [
+            "RUSS"
+          ],
+          "minNumber": 200,
+          "maxNumber": 399,
+          "exclude": [
+            "RUSS 202",
+            "RUSS 205",
+            "RUSS 209"
+          ]
+        }
+      },
+      "sourceQuote": "Two content courses in literature, culture, or film"
+    },
+    {
+      "id": "electives",
+      "label": "Russian electives (4)",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 4,
+        "filter": {
+          "depts": [
+            "RUSS"
+          ],
+          "minNumber": 103,
+          "maxNumber": 399,
+          "exclude": [
+            "RUSS 202",
+            "RUSS 205",
+            "RUSS 209"
+          ]
+        }
+      },
+      "sourceQuote": "Elective Courses: Four or more courses in literature, culture, film or language beyond RUSS 102."
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "CLTR 200 and CLTR 389",
+    "rule": {
+      "type": "all_of",
+      "courses": [
+        "CLTR 200",
+        "CLTR 389"
+      ]
+    },
+    "sourceQuote": "FOUNDATION COURSES (fulfill upper level writing)"
+  }
+}

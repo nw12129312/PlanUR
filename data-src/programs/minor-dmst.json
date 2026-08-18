@@ -1,0 +1,114 @@
+{
+  "id": "minor-dmst",
+  "type": "minor",
+  "name": "Digital Media Studies",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "humanities",
+  "departments": [
+    "DMST"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/dms/undergraduate/minors.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/dms/dms_undergraduate_minors.html",
+  "programChecks": {
+    "totalCourses": 6,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Six courses. THE HUMANITIES TRACK IS ENCODED HERE.",
+    "TWO TRACKS: 'Students can use their DMS minor to satisfy either the humanities or the natural science divisional area requirement. Students choose their divisional area when they declare their minor.' The HUMANITIES track needs four of the six courses to be humanities courses (DMST 101 + DMST 103 + at least two more H courses, plus one or two NS courses). The NATURAL SCIENCES track needs four of the six to be natural-science courses: DMST 101 plus DMST 102 or CSC 161, then three NS courses and one H course. If you declare the NS track, read the option lists below in the opposite proportion.",
+    "The DMS MAJOR is a separate entry (major-dmst-ba).",
+    "The page's ENGL 263 and ENGL 267 entries are rotating topics slots listed more than once with different titles; each number appears once here.",
+    "NEEDS VERIFICATION: DMST 271 (History of Graphic Design) and DMST 172 (Graphic Design 1) are absent from the 2025-26 catalog under those numbers - the major page writes the latter as DMST 171."
+  ],
+  "requirementGroups": [
+    {
+      "id": "core",
+      "label": "Required courses",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "DMST 101",
+          "DMST 103"
+        ]
+      },
+      "sourceQuote": "Digital Media Studies Minor - Humanities. Students must take a total of six courses, four of which must be humanities courses. Required Courses. Both of the following courses: DMST 101: Introduction to Digital Media Studies (H); DMST 103: The Essential Digital Media Toolkit (H)"
+    },
+    {
+      "id": "humanities",
+      "label": "Three humanities digital-media courses",
+      "rule": {
+        "type": "n_of",
+        "n": 3,
+        "options": [
+          "DMST 110",
+          "DMST 115",
+          "DMST 172",
+          "DMST 175",
+          "DMST 250",
+          "DMST 271",
+          "DMST 272",
+          "AHST 100",
+          "AHST 101",
+          "AHST 213",
+          "AHST 242",
+          "AHST 253",
+          "AHST 254",
+          "AHST 361",
+          "ENGL 117",
+          "ENGL 118",
+          "ENGL 138",
+          "ENGL 249",
+          "ENGL 255",
+          "ENGL 260",
+          "ENGL 263",
+          "ENGL 267",
+          "ENGL 283",
+          "JPNS 219A",
+          "JPNS 292",
+          "JPNS 294",
+          "MUSC 161",
+          "SART 141",
+          "SART 151",
+          "SART 242",
+          "SART 244",
+          "SART 252"
+        ]
+      },
+      "sourceQuote": "Plus two or more of the following courses: DMST 110; DMST 115; DMST 172; DMST 175; DMST 250/ENGL 288/WRTG 261; DMST 271; DMST 272; AHST 100; AHST 101; AHST 213; AHST 242; AHST 253; AHST 254; AHST 361; ENGL 117; ENGL 118; ENGL 138; ENGL 249; ENGL 255; ENGL 260; ENGL 263; ENGL 267; ENGL 283; JPNS 219A; JPNS 292; JPNS 294; MUSC 161; SART 141; SART 151; SART 242; SART 244; SART 252 (all H)",
+      "note": "Two of the six courses must come from the natural-science list, so three from this list plus the two required courses gives the four humanities courses the track needs."
+    },
+    {
+      "id": "natural-science",
+      "label": "One natural-science digital-media course",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "DMST 102",
+          "DMST 104",
+          "DMST 120",
+          "DMST 251",
+          "DMST 210",
+          "AME 140",
+          "AME 193",
+          "AME 194",
+          "AME 196",
+          "AME 197",
+          "AME 240",
+          "CSC 131",
+          "CSC 161",
+          "CSC 170",
+          "CSC 171",
+          "CSC 186",
+          "HIST 285"
+        ]
+      },
+      "sourceQuote": "Plus at least one and up to two of the following courses: DMST 102: Programming for Digital Media (NS); DMST 104: Design in a Digital Age (NS); DMST 120: Videogame Design (NS); DMST 251/CASC 251 (NS); DMST 210 (NS); AME 140; AME 193; AME 194; AME 196; AME 197; AME 240; CSC 131; CSC 161; CSC 170; CSC 171; CSC 186 (all NS); HIST 285: Digital History: Virtual St. George's (SS)"
+    }
+  ],
+  "upperLevelWriting": null
+}

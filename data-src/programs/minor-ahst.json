@@ -1,0 +1,77 @@
+{
+  "id": "minor-ahst",
+  "type": "minor",
+  "name": "Art History",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "humanities",
+  "departments": [
+    "AHST"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/aah/undergraduate/minors-clusters.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/aah/aah_undergraduate_minors-clusters.html",
+  "programChecks": {
+    "totalCourses": 5,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Five courses: two or three at the 100 level and two or three at the 200/300 level.",
+    "Individual programs can be designed in consultation with the art history advisor.",
+    "The 100-level courses should come from the group listed under the art history major requirements; the planner accepts any 100-level AHST course."
+  ],
+  "requirementGroups": [
+    {
+      "id": "intro",
+      "label": "Two 100-level art history courses",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 2,
+        "filter": {
+          "depts": [
+            "AHST"
+          ],
+          "minNumber": 100,
+          "maxNumber": 199
+        }
+      },
+      "sourceQuote": "A minor consist of five courses: Two or three 100-level courses from the group listed under art history major requirements"
+    },
+    {
+      "id": "advanced",
+      "label": "Two 200- or 300-level art history courses",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 2,
+        "filter": {
+          "depts": [
+            "AHST"
+          ],
+          "minNumber": 200,
+          "maxNumber": 399
+        }
+      },
+      "sourceQuote": "Two or three 200 or 300-level program courses"
+    },
+    {
+      "id": "fifth",
+      "label": "A fifth art history course at either level",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 1,
+        "filter": {
+          "depts": [
+            "AHST"
+          ],
+          "minNumber": 100,
+          "maxNumber": 399
+        }
+      },
+      "sourceQuote": "A minor consist of five courses: Two or three 100-level courses ... Two or three 200 or 300-level program courses",
+      "note": "The split is two-or-three each way, so the fifth course may be at either level."
+    }
+  ],
+  "upperLevelWriting": null
+}

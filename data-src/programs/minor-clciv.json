@@ -1,0 +1,80 @@
+{
+  "id": "minor-clciv",
+  "type": "minor",
+  "name": "Classical Civilization",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "humanities",
+  "departments": [
+    "CLST"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/rel/undergraduate/minors.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/rel/rel_undergraduate_minors.html",
+  "programChecks": {
+    "totalCourses": 6,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Six courses. This is the Classical Civilization MINOR; the major of the same name is a separate entry (major-clciv-ba), as is the Classics major (major-clst-ba).",
+    "THE PAGE GIVES EXAMPLES, NOT LISTS: the history and literature requirements are stated as 'e.g.' with two sample courses each, so the groups below accept any CLST course. Choose one that actually fits each category and confirm with the department.",
+    "The four additional courses may include Greek or Latin language courses, and the 101/102 levels of those languages count."
+  ],
+  "requirementGroups": [
+    {
+      "id": "history",
+      "label": "A course on the history of the ancient world",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 1,
+        "filter": {
+          "depts": [
+            "CLST"
+          ],
+          "minNumber": 100,
+          "maxNumber": 399
+        }
+      },
+      "sourceQuote": "Minor in Classical Civilization: A course focusing on the history of the ancient world, e.g., CLST 102, CLST 210.",
+      "note": "The page gives CLST 102 and CLST 210 as examples rather than a closed list, so any CLST course is accepted here - pick a history one."
+    },
+    {
+      "id": "literature",
+      "label": "A survey of ancient literature or mythology",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 1,
+        "filter": {
+          "depts": [
+            "CLST"
+          ],
+          "minNumber": 100,
+          "maxNumber": 399
+        }
+      },
+      "sourceQuote": "A course surveying the literature and/or mythology of the ancient world, e.g., CLST 135, CLST 140.",
+      "note": "Examples only - pick a literature or mythology course."
+    },
+    {
+      "id": "additional",
+      "label": "Four additional classics courses",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 4,
+        "filter": {
+          "depts": [
+            "CLST",
+            "CGRK",
+            "LATN"
+          ],
+          "minNumber": 100,
+          "maxNumber": 399
+        }
+      },
+      "sourceQuote": "Four additional courses, which may include language courses as well as courses in translation; 101 and 102 courses in the languages may count."
+    }
+  ],
+  "upperLevelWriting": null
+}

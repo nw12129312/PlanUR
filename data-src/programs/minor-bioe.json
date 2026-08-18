@@ -1,0 +1,100 @@
+{
+  "id": "minor-bioe",
+  "type": "minor",
+  "name": "Bioethics",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "humanities",
+  "departments": [
+    "PHLT",
+    "PHIL"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/ph/undergraduate/minors.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/ph/ph_undergraduate_minors.html",
+  "programChecks": {
+    "totalCourses": 6,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Six courses; fulfills the humanities academic division of the Rochester Curriculum.",
+    "Students may major, OR minor, OR complete a cluster within the public health-related programs - not more than one.",
+    "NO MORE THAN ONE COURSE may overlap between a public health minor and another program of study (stricter than the University's usual two-course cap).",
+    "MHB 210 was valid only until fall 2023; MHB 410U begins spring 2025; the MHB 4xxU courses are open to juniors and seniors."
+  ],
+  "requirementGroups": [
+    {
+      "id": "intro",
+      "label": "Introduction to Public Health",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "PHLT 101"
+        ]
+      },
+      "sourceQuote": "Required Courses. PHLT 101: Introduction to Public Health I"
+    },
+    {
+      "id": "ethics",
+      "label": "Medical or public health ethics",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "PHIL 225",
+          "PHIL 228",
+          "PHIL 228W"
+        ]
+      },
+      "sourceQuote": "Plus one of the following: PHIL 225: Ethical Decisions in Medicine; PHIL 228: Public Health Ethics"
+    },
+    {
+      "id": "bioethics-core",
+      "label": "Two bioethics courses",
+      "rule": {
+        "type": "n_of",
+        "n": 2,
+        "options": [
+          "PHLT 236",
+          "PHLT 300W",
+          "PHIL 312",
+          "PHIL 313",
+          "PHIL 321",
+          "MHB 210",
+          "MHB 410U",
+          "MHB 472U",
+          "PHIL 225",
+          "PHIL 228"
+        ]
+      },
+      "sourceQuote": "At least two of the following: PHLT 236: Healthcare and Law; PHLT 300W: Seminar in Bioethics; PHIL 225: Ethical Decisions in Medicine (if not taken above); PHIL 228: Public Health Ethics (if not taken above); PHIL 312: Neuroethics; PHIL 313: Global Health Ethics (prerequisite: one PHIL); PHIL 321: Death; MHB 210: Bioethics at the Bedside (valid until fall 2023); MHB 410U: Clinical Ethics (valid beginning spring 2025; open to juniors and seniors); MHB 472U: Philosophical Foundations of Bioethics (open to juniors and seniors)"
+    },
+    {
+      "id": "electives",
+      "label": "Two further ethics electives",
+      "rule": {
+        "type": "n_of",
+        "n": 2,
+        "options": [
+          "MHB 420U",
+          "MHB 430U",
+          "PHIL 102",
+          "PHIL 103",
+          "PHIL 220",
+          "PHIL 220W",
+          "PHIL 223",
+          "PHIL 223W",
+          "PHIL 226",
+          "PHIL 230",
+          "PHIL 230W"
+        ]
+      },
+      "sourceQuote": "May take up to two of the following: MHB 420U: Stories in Healthcare: Clinicians, Patients, and Narrative Medicine OR MHB 430U: Visual Arts in Healthcare (open to juniors and seniors); PHIL 102: Ethics; PHIL 103: Contemporary Moral Problems; PHIL 220/220W: Recent Ethical Theory; PHIL 223/223W: Social and Political Philosophy; PHIL 226: Philosophy of Law; PHIL 230/230W: Environmental Justice",
+      "note": "The page caps this list at two courses; a student who takes more bioethics courses above needs fewer here."
+    }
+  ],
+  "upperLevelWriting": null,
+  "overlapCapOverride": 1
+}

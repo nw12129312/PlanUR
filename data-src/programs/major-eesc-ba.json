@@ -1,0 +1,82 @@
+{
+  "id": "major-eesc-ba",
+  "type": "major",
+  "name": "Environmental Studies",
+  "degree": "BA",
+  "school": "sas",
+  "division": "natural-sciences",
+  "departments": ["EESC"],
+  "status": "ACTIVE",
+  "sourceUrl": "http://www.sas.rochester.edu/ees/undergraduate/environmental-studies-ba.html",
+  "sourcedOn": "2026-08-01",
+  "snapshot": "data-src/pages/ees/ees_undergraduate_environmental-studies-ba.html",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": ["humanities", "social-sciences"],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "programChecks": { "totalCourses": null, "minFromDepts": null, "max100Level": null },
+  "notes": [
+    "Designed to link natural and social sciences for students interested in environmental management.",
+    "If more than two intermediate core courses are taken, the extras count as technical electives; likewise for extra skills courses.",
+    "The five elective courses must form a coherent program agreed with the faculty advisors, drawn from two groups (natural sciences and engineering; social sciences/humanities). The page does not enumerate them here, so they are modeled as related 200-level courses across both groups - NEEDS VERIFICATION against the department's elective lists.",
+    "One additional 100-level EESC course may count as a technical elective if taken in the first year.",
+    "STAT 180 is the current number for the former STAT 212; the page also lists STAT 211."
+  ],
+  "requirementGroups": [
+    {
+      "id": "chemistry",
+      "label": "Chemistry",
+      "rule": { "type": "all_of", "courses": ["CHEM 131"] },
+      "sourceQuote": "Chemistry: CHEM 131: Chemical Concepts, Systems, and Practices I"
+    },
+    {
+      "id": "math",
+      "label": "Mathematics",
+      "rule": { "type": "sequence_one_of", "sequences": [
+        ["MATH 161"],
+        ["MATH 141", "MATH 142"]] },
+      "sourceQuote": "Mathematics: (choose one of the following options) MATH 161: Calculus IA; MATH 141: Calculus I and MATH 142: Calculus II"
+    },
+    {
+      "id": "intro-core",
+      "label": "Introductory core course",
+      "rule": { "type": "n_of", "n": 1, "options": ["EESC 100", "EESC 101", "EESC 103", "EESC 105"] },
+      "sourceQuote": "Choose one of the following introductory core courses: EESC 100: Introduction to Oceanography; EESC 101: Introduction to Earth Sciences; EESC 103: Introduction to Environmental Science; EESC 105: Introduction to Climate Change"
+    },
+    {
+      "id": "intermediate-core",
+      "label": "Intermediate core courses (2)",
+      "rule": { "type": "n_of", "n": 2, "options": [
+        "EESC 201", "EESC 212", "EESC 213", "EESC 213W", "EESC 216", "EESC 216W",
+        "EESC 218", "EESC 219", "EESC 223", "EESC 235", "EESC 236", "EESC 236W"] },
+      "sourceQuote": "Choose two of the following: EESC 201: Evolution of the Earth; EESC 212: A Climate Change Perspective to Chemical Oceanography; EESC 213(W): Hydrology and Water Resources; EESC 216(W): Environmental Geochemistry; EESC 218: Atmospheric Geochemistry; EESC 219: Energy and Society; EESC 223: Earth Surface Processes; EESC 235: Physical Oceanography; EESC 236(W): Physics of Climate"
+    },
+    {
+      "id": "skills",
+      "label": "Skills course",
+      "rule": { "type": "n_of", "n": 1, "options": [
+        "CHEM 203", "CSC 161", "EESC 214", "EESC 221", "EESC 251", "STAT 211", "STAT 180"] },
+      "sourceQuote": "Choose one of the following: CHEM 203/207: Organic Chemistry plus Lab; CSC 161: Introduction to Programming; EESC 214: Earth Science Data Analysis; EESC 221: Quantitative Environmental Problem Solving; EESC 251: Introduction to GIS; STAT 211: Applied Statistics for the Social Sciences; STAT 180: Introduction to Applied Statistical Methodology",
+      "note": "The CHEM 203 route also requires the CHEM 207 lab."
+    },
+    {
+      "id": "electives",
+      "label": "Elective courses (5)",
+      "rule": { "type": "n_from_filter", "n": 5,
+                "filter": { "depts": ["EESC", "BIOL", "CHEM", "PHYS", "ECON", "PSCI", "ANTH", "HIST", "PHIL"],
+                            "minNumber": 200, "maxNumber": 399,
+                            "exclude": ["EESC 201", "EESC 212", "EESC 213", "EESC 213W",
+                                        "EESC 216", "EESC 216W", "EESC 218", "EESC 219",
+                                        "EESC 223", "EESC 235", "EESC 236", "EESC 236W",
+                                        "EESC 214", "EESC 221", "EESC 251"] } },
+      "sourceQuote": "Five elective courses must be chosen to create what the student and the faculty advisors view as a coherent program. The elective courses are presented in two groups: Natural sciences and engineering; Social sciences/humanities",
+      "note": "NEEDS VERIFICATION - the per-group elective lists are not on this page."
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "Two upper-level writing courses within the major",
+    "rule": { "type": "n_from_filter", "n": 2,
+              "filter": { "depts": ["EESC"], "minNumber": 200, "maxNumber": 399, "wOnly": true } },
+    "note": "NEEDS VERIFICATION: the page states no explicit ULW policy; modeled as the College's two-course norm satisfied by the department's W courses (EESC 213W, 216W, 236W and others exist in the catalog)."
+  }
+}

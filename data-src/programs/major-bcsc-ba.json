@@ -1,0 +1,58 @@
+{
+  "id": "major-bcsc-ba",
+  "type": "major",
+  "name": "Brain and Cognitive Sciences",
+  "degree": "BA",
+  "school": "sas",
+  "division": "natural-sciences",
+  "departments": ["BCSC"],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/bcs/undergraduate/BAdegree.html",
+  "sourcedOn": "2026-07-05",
+  "snapshot": "data-src/pages/bcs/bcs_undergraduate_BAdegree.html",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": ["humanities", "social-sciences"],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "notes": [
+    "12 required courses; independent study courses (BCSC 391, BCSC 395) do not fulfill any major requirement.",
+    "The department page lists STAT 212 (its alternatives STAT 211/213/214, DSCC 262, PSYC/CSSP 211, ECON 230 are case-by-case); STAT 212/213 were renamed STAT 180/190 per the Statistics program, so both code families are accepted here.",
+    "A formal methods (statistics) course must be completed before taking a lab course - not auto-enforced.",
+    "BCSC 206/207 research sequence: both courses required; 207 fulfills the lab requirement, 206 may count as an upper-level elective.",
+    "Electives should form a coherent track (3 of 4 on-theme, at most one 100-level) - adviser-approved, not auto-enforced."
+  ],
+  "requirementGroups": [
+    {
+      "id": "core",
+      "label": "BCS foundation and core",
+      "rule": { "type": "all_of", "courses": ["BCSC 110", "BCSC 111", "BCSC 151", "BCSC 152", "BCSC 153", "BCSC 310"] },
+      "sourceQuote": "Students must take all of the following courses: BCSC 110 ...; BCSC 111 ...; BCSC 151: Perception and Action; BCSC 152: Language and Psycholinguistics; BCSC 153: Cognition; BCSC 310: Senior Seminar"
+    },
+    {
+      "id": "stat",
+      "label": "Formal methods (statistics)",
+      "rule": { "type": "n_of", "n": 1, "options": ["STAT 212", "STAT 180", "STAT 190", "STAT 211", "STAT 214", "DSCC 262", "ECON 230"] },
+      "sourceQuote": "Students must take STAT 212: Applied Statistics for Biological and Physical Sciences. ... Alternative statistics courses, such as STAT 211, STAT 213, STAT/BIOL 214, DSCC 262, PSYC/CSSP 211, and ECON 230, will be considered on a case-by-case basis.",
+      "note": "Alternatives require department approval; AP statistics credit does not satisfy this."
+    },
+    {
+      "id": "lab",
+      "label": "Laboratory course",
+      "rule": { "type": "n_of", "n": 1, "options": ["BCSC 204", "BCSC 205", "BCSC 207", "BCSC 208"] },
+      "sourceQuote": "Choose one of the following: BCSC 204: Laboratory in Cognitive Neuroscience; BCSC 205: Laboratory in Development and Learning; BCSC 206/BCSC 207: Undergraduate Research in Cognitive Science; BCSC 208: Laboratory in Perception and Cognition"
+    },
+    {
+      "id": "electives",
+      "label": "BCS upper-level electives (4, forming a track)",
+      "rule": { "type": "n_from_filter", "n": 4,
+                "filter": { "depts": ["BCSC"], "minNumber": 100, "maxNumber": 389,
+                            "exclude": ["BCSC 110", "BCSC 111", "BCSC 151", "BCSC 152", "BCSC 153", "BCSC 310", "BCSC 204", "BCSC 205", "BCSC 208"] } },
+      "sourceQuote": "Students are required to take four BCS electives. These electives should be chosen in order to form a coherent theme, or track. ... No more than one 100-level course may be used in the track."
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "Lab course + senior seminar",
+    "rule": { "type": "n_of", "n": 2, "options": ["BCSC 204", "BCSC 205", "BCSC 207", "BCSC 208", "BCSC 310"] },
+    "sourceQuote": "Successful completion of the laboratory course and the senior seminar will satisfy the upper-level writing requirement."
+  }
+}

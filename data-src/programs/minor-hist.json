@@ -1,0 +1,30 @@
+{
+  "id": "minor-hist",
+  "type": "minor",
+  "name": "History",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "social-sciences",
+  "departments": ["HIST"],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/his/undergraduate/minor.html",
+  "sourcedOn": "2026-08-01",
+  "snapshot": "data-src/pages/his/his_undergraduate_minor.html",
+  "programChecks": { "totalCourses": 6, "minFromDepts": { "depts": ["HIST"], "n": 6 }, "max100Level": null },
+  "notes": [
+    "Six courses (24 credit hours) taken from department faculty.",
+    "Distribution requirements are NOT auto-enforced: the minor requires at least one course from each of two different geographical areas (Africa; Asia and the Pacific; Europe; Latin America; The Middle East; North America) and at least one course from each of two chronological periods (pre-1800, post-1800). The harvested catalog does not record a course's region or period, so the app counts the six courses and leaves the distribution to you and your adviser.",
+    "No more than two courses (8 credit hours) taken outside the department may count - this includes transfer, study-abroad, and cross-listed courses taught by faculty not formally associated with the department.",
+    "No more than a combined total of four elective credit hours (one course) for AP and IB exams."
+  ],
+  "requirementGroups": [
+    {
+      "id": "six",
+      "label": "Six history courses",
+      "rule": { "type": "n_from_filter", "n": 6,
+                "filter": { "depts": ["HIST"], "minNumber": 100, "maxNumber": 399 } },
+      "sourceQuote": "The minor in history consists of six courses (or 24 credit hours): A minimum of one course from at least two different geographical areas: Africa; Asia and the Pacific; Europe; Latin America; The Middle East; North America. A minimum of one course from each of two chronological periods: pre-1800; post-1800.",
+      "note": "Geographical and chronological distribution not auto-enforced - see notes."
+    }
+  ]
+}

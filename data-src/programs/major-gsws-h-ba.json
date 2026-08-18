@@ -1,0 +1,167 @@
+{
+  "id": "major-gsws-h-ba",
+  "type": "major",
+  "name": "Gender, Sexuality, and Women's Studies (Humanities)",
+  "degree": "BA",
+  "school": "sas",
+  "division": "humanities",
+  "departments": [
+    "GSWS"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/gsw/undergraduate/major.html",
+  "snapshot": "data-src/pages/gsw/gsw_undergraduate_major.html",
+  "sourcedOn": "2026-08-14",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": [
+    "social-sciences",
+    "natural-sciences"
+  ],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "minMajorGPA": null,
+  "programChecks": {
+    "totalCourses": 10,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "The Susan B. Anthony Institute offers TWO GSWS majors - one in the humanities and one in the social sciences. This entry is the HUMANITIES major; the social-sciences major is a separate entry (major-gsws-ss-ba). They differ only in which track the core courses and electives must come from.",
+    "To complete a major, a student must take 10 courses (40 credits) in GSWS. Students may use up to 4 courses taken abroad.",
+    "Core courses used for the major must NOT be the required courses: 'If you are completing a minor or major, you must take core courses that are not the required courses (GSWS 105, GSWS 200).' GSWS 105 and GSWS 200 are therefore excluded from the core groups below.",
+    "GSWS 100 (Topics in GSW) changes topic by semester and its humanities/social-science designation changes with it. Students may only take GSWS 100 once.",
+    "TRACK DESIGNATION NOT ENFORCEABLE for the three free GSWS courses: the catalog does not record an H or SS designation per course, so the elective group accepts any GSWS course. Check each course's current designation with SBAI - see the master course list.",
+    "HONORS: students may replace GSWS 393 with GSWS 389H (fall) plus GSWS 393H (spring) and write a roughly 35-page honors thesis; honors requires a GSWS GPA of at least 3.3. Honors students take 11 courses rather than 10.",
+    "DEGREE DISTINCTIONS (not tracked by the planner): a GSWS major GPA of at least 3.4 graduates with Distinction, 3.6 High Distinction, 3.8 Highest Distinction."
+  ],
+  "requirementGroups": [
+    {
+      "id": "intro",
+      "label": "GSWS 105: Sex and Power",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "GSWS 105"
+        ]
+      },
+      "sourceQuote": "MAJOR REQUIREMENTS: GSWS 105: Sex and Power"
+    },
+    {
+      "id": "colloquium",
+      "label": "GSWS 200: History of Feminism (colloquium)",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "GSWS 200W",
+          "GSWS 200"
+        ]
+      },
+      "sourceQuote": "GSWS 200: History of Feminism: Colloquium",
+      "note": "Take the W section (GSWS 200W) - the department states the College upper-level writing requirement is satisfied with GSW 200W and GSW 393."
+    },
+    {
+      "id": "core-track",
+      "label": "Two humanities-track core courses",
+      "rule": {
+        "type": "n_of",
+        "n": 2,
+        "options": [
+          "GSWS 100",
+          "GSWS 189",
+          "GSWS 212",
+          "GSWS 215",
+          "GSWS 218",
+          "GSWS 232",
+          "GSWS 280"
+        ]
+      },
+      "sourceQuote": "GSWS core course (H-track course if H major, SS-track course if SS major) [x2]. Humanities core courses: GSWS 100: Topics in GSW; GSWS 105: Sex and Power; GSWS 189: Sexuality in World Religions; GSWS 212: Queer Theory; GSWS 215: LGBTQ+ Histories and Cultures in the US; GSWS 218: Gender and Disability; GSWS 232: Body and Sexuality; GSWS 280: Intersectionality: The History of an Idea"
+    },
+    {
+      "id": "core-any",
+      "label": "One core course from either track",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "GSWS 100",
+          "GSWS 189",
+          "GSWS 212",
+          "GSWS 215",
+          "GSWS 218",
+          "GSWS 232",
+          "GSWS 280",
+          "GSWS 206",
+          "GSWS 208",
+          "GSWS 209",
+          "GSWS 213",
+          "GSWS 219",
+          "GSWS 235",
+          "GSWS 259",
+          "GSWS 266"
+        ]
+      },
+      "sourceQuote": "GSWS core course (any track). Social Sciences core courses: GSWS 100; GSWS 200: History of Feminism/Colloquium in GSW; GSWS 206: Feminism, Gender, and Health AND Global Politics of Gender and Health; GSWS 208: The Case of Sherlock Holmes: Race, Gender, and Crime in the British Empire; GSWS 209: Psychology of Human Sexuality; GSWS 213: Politics of Nature: Race, Gender, and the Environment; GSWS 215: LGBTQ Histories and Cultures in the US; GSWS 219: Politics of Sport: Race, Gender, and National Identity in Athletic Competition; GSWS 232: Body and Sexuality; GSWS 235: History of Masculinity; GSWS 259: Food Matters: Gender, Religion, Ethnicity, and Consumerism; GSWS 266: Psychology of Gender"
+    },
+    {
+      "id": "electives-track",
+      "label": "Three humanities-track GSWS courses",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 3,
+        "filter": {
+          "depts": [
+            "GSWS"
+          ],
+          "minNumber": 100,
+          "maxNumber": 389
+        }
+      },
+      "sourceQuote": "GSWS course (H-track course if H major, SS-track course if SS major) [x3]",
+      "note": "Must be humanities-track courses; the planner cannot check the track designation - see the program notes."
+    },
+    {
+      "id": "elective-any",
+      "label": "One GSWS course from either track",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 1,
+        "filter": {
+          "depts": [
+            "GSWS"
+          ],
+          "minNumber": 100,
+          "maxNumber": 389
+        }
+      },
+      "sourceQuote": "GSWS course (any track)"
+    },
+    {
+      "id": "seminar",
+      "label": "Major senior seminar",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "GSWS 393",
+          "GSWS 393H"
+        ]
+      },
+      "sourceQuote": "GSWS 393: Major Senior Seminar (taken spring semester of senior year) -OR- GSWS 389H and 393H: Major Senior Seminar - Honors (Taken during fall and spring semesters of senior year)",
+      "note": "Honors students take GSWS 389H in the fall as well; only the spring seminar is counted here."
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "GSWS 200W and GSWS 393",
+    "rule": {
+      "type": "all_of",
+      "courses": [
+        "GSWS 200W",
+        "GSWS 393"
+      ]
+    },
+    "sourceQuote": "Each major can satisfy the College Upper-Level Writing requirements with GSW 200W and GSW 393.",
+    "note": "Honors students substitute GSWS 393H for GSWS 393."
+  }
+}

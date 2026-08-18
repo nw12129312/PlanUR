@@ -1,0 +1,166 @@
+{
+  "id": "major-clciv-ba",
+  "type": "major",
+  "name": "Classical Civilization",
+  "degree": "BA",
+  "school": "sas",
+  "division": "humanities",
+  "departments": [
+    "CLST"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/rel/undergraduate/classical-civilization.html",
+  "snapshot": "data-src/pages/rel/rel_undergraduate_classical-civilization.html",
+  "sourcedOn": "2026-08-14",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": [
+    "social-sciences",
+    "natural-sciences"
+  ],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "programChecks": {
+    "totalCourses": null,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Eleven courses: one foundation course, three subject courses (one from each subject group), two concentration courses in a single subject area, four electives, and the senior capstone.",
+    "This is a different major from Classics (major-clst-ba), which requires Greek or Latin language work.",
+    "Some courses overlap categories - for example Ancient Greek and Roman Historiography (CLST 220) may satisfy either the History or the Literature requirement, but not both. The groups below do not share courses, which matches that rule.",
+    "The literature subject group also admits any LATN or CGRK course at the 200 level or above; those are not enumerable as a fixed list here, so the literature group lists only the CLST courses the page names.",
+    "CONCENTRATION COURSES - NEEDS VERIFICATION: two additional courses both drawn from ONE of the three subject areas, determined with the major advisor, at least one at the 200 level. The planner cannot enforce 'both from the same area', so the group below accepts any two subject-area courses with at least one at the 200 level. Confirm your pair with your advisor.",
+    "CAPSTONE: the capstone experience is a four-credit course or equivalent with a significant writing component, built on an area of strength already demonstrated through coursework - it is proposed by the student rather than being a fixed course. Only the accompanying one-credit Senior Capstone Workshop (CLST 389) is a fixed course code, so it is what the capstone group checks. Work in the two concentration courses should ideally feed the capstone.",
+    "NEEDS VERIFICATION: several course numbers the page lists (CLST 123, 130, 132, 160, 232, 234, 265, 290, 291, 292, and CLST 167a/167b which the catalog carries as CLST 167M) are absent from the 2025-26 catalog under those numbers. They are kept as options because the page names them.",
+    "NEEDS VERIFICATION - UPPER-LEVEL WRITING: the page states no ULW policy beyond the capstone's 'significant writing component'. The catalog does carry W-suffixed classics courses (CLST 233W, 298W, 393W); confirm with the department which one satisfies the College requirement."
+  ],
+  "requirementGroups": [
+    {
+      "id": "foundation",
+      "label": "Foundation / introductory course",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "CLST 101"
+        ]
+      },
+      "sourceQuote": "(1) Foundation / Introductory Course (1 course): CLST 101: Introduction to Greek and Roman Antiquity. This course provides a general survey of the history, geography, and cultures of ancient Greece and Rome."
+    },
+    {
+      "id": "subject-literature",
+      "label": "Subject course: literature",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "CLST 110",
+          "CLST 140",
+          "CLST 160",
+          "CLST 210",
+          "CLST 211",
+          "CLST 212",
+          "CLST 213",
+          "CLST 265"
+        ]
+      },
+      "sourceQuote": "Literature: CLST 110: Classical Mythology; CLST 140: Classical and Scriptural Background; CLST 160: History of Ancient Philosophy; CLST 210: Ancient Drama; CLST 211: Ancient Epic; CLST 212: Theories of Myth; CLST 213: Hercules: Myth and Legacy; CLST 265: Selected Topics in Ancient Philosophy; Any LATN/CGRK at the 200 level or above",
+      "note": "Any LATN or CGRK course at the 200 level or above also satisfies this group but cannot be listed as a fixed option."
+    },
+    {
+      "id": "subject-history",
+      "label": "Subject course: history",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "CLST 120",
+          "CLST 121",
+          "CLST 123",
+          "CLST 124",
+          "CLST 167M",
+          "CLST 220",
+          "CLST 221",
+          "CLST 222",
+          "CLST 223",
+          "CLST 224",
+          "CLST 225"
+        ]
+      },
+      "sourceQuote": "History: CLST 120: History of the Ancient Greek World; CLST 121: History of the Ancient Roman World; CLST 123: Alexander the Great; CLST 124: Sacred Spaces in Greece; CLST 167a: Democracy: Past and Present; CLST 167b: Who Owns the Past?; CLST 220: Ancient Greek and Roman Historiography; CLST 221: Economy and Society in Classical Antiquity; CLST 222: Slavery in Classical Antiquity; CLST 223: War and Society in Classical Antiquity; CLST 224: The Greeks and the Persian Empire; CLST 225: Ethnic Identity in Classical Antiquity",
+      "note": "The catalog carries the page's CLST 167a/167b as CLST 167M (Democracy Past and Present)."
+    },
+    {
+      "id": "subject-archaeology",
+      "label": "Subject course: archaeology / culture",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "CLST 130",
+          "CLST 131",
+          "CLST 132",
+          "CLST 208",
+          "CLST 230",
+          "CLST 231",
+          "CLST 232",
+          "CLST 233W",
+          "CLST 234",
+          "CLST 240",
+          "CLST 241",
+          "CLST 244",
+          "CLST 290",
+          "CLST 291",
+          "CLST 292"
+        ]
+      },
+      "sourceQuote": "Archaeology/Culture: CLST 130: Introduction to Archaeology; CLST 131: The Ancient City; CLST 132: Great Sites in Archaeology; CLST 208: Medicine, Magic, Miracles: Healing in Antiquity; CLST 230: Classical Archaeology: Greek Art and Archaeology; CLST 231: Classical Archaeology: Roman Art and Archaeology; CLST 232: Etruscan Art and Archaeology; CLST 233W: Building, Engineering, and Society in Classical Antiquity; CLST 234: Pompeii and the Bay of Naples; CLST 240: Ancient Roman Religion; CLST 241: Ancient Greek Religion; CLST 244: Jews, Pagans, and Christians; CLST 290: Field Methods in Archaeology; CLST 291: Advanced Field Methods in Archaeology; CLST 292: Monuments of Italy: History, Structure, Form"
+    },
+    {
+      "id": "concentration",
+      "label": "Two concentration courses in one subject area (one at the 200 level)",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 2,
+        "filter": {
+          "depts": [
+            "CLST"
+          ],
+          "minNumber": 110,
+          "maxNumber": 299
+        }
+      },
+      "sourceQuote": "(3) Concentration Courses (2 courses): Two additional courses, both drawn from one of the subject areas listed above, determined in consultation with the major advisor. At least one of these courses must be at the 200-level. Work completed in these two courses will ideally contribute to the Senior Capstone Experience.",
+      "note": "See the program note - 'both from the same subject area' and 'at least one at the 200 level' cannot be enforced by the planner."
+    },
+    {
+      "id": "electives",
+      "label": "Four electives in Classics, Greek or Latin",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 4,
+        "filter": {
+          "depts": [
+            "CLST",
+            "CGRK",
+            "LATN"
+          ],
+          "minNumber": 100,
+          "maxNumber": 399
+        }
+      },
+      "sourceQuote": "(4) Electives (4 courses): Four additional courses drawn from the department's offerings in Classics (CLST), Greek (CGRK), and Latin (LATN), which the student should select after consulting his or her major advisor."
+    },
+    {
+      "id": "capstone",
+      "label": "Senior capstone workshop",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "CLST 389"
+        ]
+      },
+      "sourceQuote": "(5) Senior Capstone Experience (1 course): ... The capstone experience should include a four-credit course or equivalent, and it should also involve a significant writing component. In tandem with or subsequent to the capstone experience, students must enroll in the Senior Capstone Workshop (CLST 389), a one-credit course in which students will refine the write product of the capstone experience and make a public presentation of the work carried out."
+    }
+  ],
+  "upperLevelWriting": null
+}

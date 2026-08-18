@@ -1,0 +1,194 @@
+{
+  "id": "major-musc-ba",
+  "type": "major",
+  "name": "Music",
+  "degree": "BA",
+  "school": "sas",
+  "division": "humanities",
+  "departments": [
+    "MUSC"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/mur/undergraduate/requirements.html",
+  "snapshot": "data-src/pages/mur/mur_undergraduate_requirements.html",
+  "sourcedOn": "2026-08-14",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": [
+    "social-sciences",
+    "natural-sciences"
+  ],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "programChecks": {
+    "totalCourses": null,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "The Arthur Satz Department of Music, in cooperation with the Eastman School of Music, offers the BA in music. Requirements are stated in credits; the groups below convert them to course counts.",
+    "EMPHASES ARE NOT MODELED SEPARATELY. Every music major picks one of nine emphases - Basic, Composition, History/Theory, Music in World Cultures, Musical Theater, Performance, Popular Music/Jazz, Audio and Music Engineering, or Conducting. The page states these 'are not separate degrees and will not appear on the diploma'; all of them share the core requirements and differ only in how many semesters of lessons and ensembles they need and what the electives must be. This entry encodes the CORE plus the BASIC EMPHASIS (63 credits: four semesters of studio lessons, four semesters of ensemble, eight elective credits). Check your emphasis' own line in the department's degree-requirements PDF.",
+    "Non-basic emphases at a glance: Composition 67 cr (12 credits of composition/theory electives); History/Theory 63 cr (2 semesters of lessons, 12 credits of history/theory electives); Music in World Cultures 63 cr (2 semesters of lessons, 2 semesters of world-music ensemble, MUSC 121 and MUSC 280, 4 elective credits of world music - and its 'Music in World Cultures' core course must be MUSC 210 or MUSC 236, not MUSC 121); Musical Theater 65 cr (4 semesters of studio voice, MUSC 133 and MUSC 163, 4 elective credits); Performance 73 cr (6 semesters/16 credits of lessons, 6 semesters of ensemble); Popular Music/Jazz 63 cr (12 elective credits in popular music); Audio and Music Engineering 63 cr (12 elective credits in audio and music engineering); Conducting 65 cr (Introduction to the Art of Conducting plus independent study as assistant conductor).",
+    "NOT MODELED - PRIVATE INSTRUCTION: the basic emphasis requires four semesters of studio lessons at Eastman or on the carillon. Eastman studio-lesson courses are not in the AS&E catalog, so the planner cannot track them. No more than 8 credits of private instruction count toward the degree (the performance emphasis excepted).",
+    "ENSEMBLES REPEAT: the requirement is four SEMESTERS of ensemble participation, which is usually the same ensemble taken repeatedly. The planner counts distinct courses, so the ensemble group asks for four different ensemble course codes; in practice repeating one ensemble four times satisfies the department. No more than 8 ensemble credits count toward the degree (the performance emphasis excepted). MUSC 155 (Chamber Ensembles), MUSC 157A (Jazz Combos) and MUSC 165 (Mbira Ensemble) explicitly do NOT count toward the ensemble requirement.",
+    "PLACEMENT: students who do not qualify for MUSC 111 enroll in MUSC 110 (Introduction to Music Theory) first; the theory placement exam is given during summer orientation. Musicianship normally starts at MUSC 113, but the supervising faculty member may direct a student to start elsewhere, and MUSC 109 is added if needed - hence the stated 2-4 credit range for musicianship.",
+    "Keyboard skills may also be satisfied by passing an equivalent proficiency exam for each of MUSC 116 and MUSC 117.",
+    "In accordance with University policy, no more than 80 credit hours can be taken in a student's concentration.",
+    "NEEDS VERIFICATION: the music-history topics list on the page (MUSC 122A, 122B, 128, 135A, 135B, 218) contains course numbers absent from the 2025-26 catalog, and the catalog's MUSC 122 is Voice Class rather than a history topic. These are rotating topics slots - confirm the current list with the department."
+  ],
+  "requirementGroups": [
+    {
+      "id": "theory",
+      "label": "Music theory (16 credits)",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "MUSC 111",
+          "MUSC 112",
+          "MUSC 211",
+          "MUSC 212"
+        ]
+      },
+      "sourceQuote": "Music Theory (16 credits): MUSC 111: Theory I; MUSC 112: Theory II; MUSC 211: Theory III; MUSC 212: Theory IV"
+    },
+    {
+      "id": "musicianship",
+      "label": "Musicianship (2-4 credits)",
+      "rule": {
+        "type": "n_of",
+        "n": 3,
+        "options": [
+          "MUSC 113",
+          "MUSC 114",
+          "MUSC 115"
+        ]
+      },
+      "sourceQuote": "Musicianship (2-4 credits): MUSC 109: Intro to Musicianship: Literacy Skills (if needed); MUSC 113: Musicianship I (one credit); MUSC 114: Musicianship II (one credit); MUSC 115: Musicianship III (one credit). Music majors normally begin their musicianship work with MUSC 113. However, the faculty member supervising the musicianship courses may instruct a student to begin with another course.",
+      "note": "The three musicianship courses are 1 credit each; the normal path is MUSC 113 - 114 - 115. Students who place higher may need only two, and students who need MUSC 109 take four."
+    },
+    {
+      "id": "history-survey",
+      "label": "Music history survey (12 of the 16 credits)",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "MUSC 221",
+          "MUSC 222",
+          "MUSC 223"
+        ]
+      },
+      "sourceQuote": "Music History* (16 credits): MUSC 221: History of Western Music to 1600; MUSC 222: History of Western Music 1600-1800; MUSC 223: History of Western Music 1800-present"
+    },
+    {
+      "id": "history-topics",
+      "label": "Music history topics course",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "MUSC 123",
+          "MUSC 125",
+          "MUSC 126",
+          "MUSC 127A",
+          "MUSC 129",
+          "MUSC 130",
+          "MUSC 131",
+          "MUSC 137",
+          "MUSC 139",
+          "MUSC 140",
+          "MUSC 144",
+          "MUSC 147",
+          "MUSC 205"
+        ]
+      },
+      "sourceQuote": "In addition, music majors must take one topics course in Music History. Classes include MUSC 122A, 122B, 123, 125, 126, 127, 128, 129, 130, 131, 135A, 135B, 137, 139, 140, 144, 147, 205, 218.",
+      "note": "Only the topics numbers that exist in the 2025-26 catalog are listed (MUSC 127 appears as MUSC 127A). See the program note about the missing numbers."
+    },
+    {
+      "id": "world-cultures",
+      "label": "Music in world cultures (4 credits)",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "MUSC 121",
+          "MUSC 210",
+          "MUSC 236"
+        ]
+      },
+      "sourceQuote": "Music in World Cultures (4 credits): MUSC 121 or 210 or 236 * [*For Music in World Cultures emphasis, MUSC 210 or 236 - see \"Emphases\" below]"
+    },
+    {
+      "id": "keyboard",
+      "label": "Keyboard skills (4 credits)",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "MUSC 116",
+          "MUSC 117"
+        ]
+      },
+      "sourceQuote": "Keyboard Skills (4 credits): MUSC 116: Keyboard Skills I; MUSC 117: Keyboard Skills II. Students can also fulfill they keyboard requirement by passing an equivalent proficiency exam for each course."
+    },
+    {
+      "id": "ensembles",
+      "label": "Four semesters of faculty-directed ensemble",
+      "rule": {
+        "type": "n_of",
+        "n": 4,
+        "options": [
+          "MUSC 150",
+          "MUSC 152",
+          "MUSC 153",
+          "MUSC 154",
+          "MUSC 156",
+          "MUSC 157",
+          "MUSC 158",
+          "MUSC 159",
+          "MUSC 160",
+          "MUSC 168",
+          "MUSC 168A",
+          "MUSC 170",
+          "MUSC 180",
+          "MUSC 184"
+        ]
+      },
+      "sourceQuote": "Students must participate in one or more faculty-directed ensembles sponsored by the College's music department: Treble Chorus; Chamber Singers; Concert Choir; Gospel Choir; Jazz Ensemble; Wind Symphony; Chamber Orchestra; Symphony Orchestra; Rock Repertory Ensemble; Brass Choir; West African Drumming; Sansifanyi; Gamelan. ... Participation in Chamber Ensembles (MUSC 155), Jazz Combos (MUSC 157A) and/or Mbira Ensemble MUSC 165) will not count toward the ensemble requirement. [Basic Emphasis:] Four semesters of ensemble",
+      "note": "Four SEMESTERS - repeating one ensemble is normal and satisfies the department; see the program notes."
+    },
+    {
+      "id": "electives",
+      "label": "Eight elective credits (basic emphasis)",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 2,
+        "filter": {
+          "depts": [
+            "MUSC"
+          ],
+          "minNumber": 120,
+          "maxNumber": 399,
+          "minCredits": 4,
+          "exclude": [
+            "MUSC 204"
+          ]
+        }
+      },
+      "sourceQuote": "Basic Emphasis ... plus: Four semesters of studio lessons; Four semesters of ensemble; Eight elective credits (not lessons or ensembles). Electives: Credits can be chosen from any MUSC course numbered 120 or higher and/or Eastman School course numbered 200 or higher (except Eastman MHS 421-6). Unless stated otherwise in the requirements for the emphasis, no ensemble, class lessons or private instruction credits may be included.",
+      "note": "Restricted to 4-credit MUSC courses, which excludes the 1-2 credit ensembles and class lessons the page bars. Eastman courses numbered 200 or higher also count but are not in the AS&E catalog. Non-basic emphases require 12 elective credits in a specific area instead of 8 free credits."
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "One of the music history surveys (MUSC 221, 222 or 223)",
+    "rule": {
+      "type": "n_of",
+      "n": 1,
+      "options": [
+        "MUSC 221",
+        "MUSC 222",
+        "MUSC 223"
+      ]
+    },
+    "sourceQuote": "*MUSC 221, 222, or 223 fulfill the ULW requirement.",
+    "note": "All three surveys are required for the major anyway, so this is satisfied by the music-history group."
+  }
+}

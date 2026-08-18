@@ -1,0 +1,66 @@
+{
+  "id": "major-engl-ba",
+  "type": "major",
+  "name": "English: British and American Literature",
+  "degree": "BA",
+  "school": "sas",
+  "division": "humanities",
+  "departments": ["ENGL"],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/eng/undergraduate/majors/literature.html",
+  "sourcedOn": "2026-07-05",
+  "snapshot": "data-src/pages/eng/eng_undergraduate_majors_literature.html",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": ["social-sciences", "natural-sciences"],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "notes": [
+    "This is the British and American Literature track. English also offers Creative Writing, Language/Media/Communication, and Theater tracks (separate NEEDS_DATA_ENTRY placeholders could be added later).",
+    "Ten 4-credit courses (40 credits); at least seven must be ENGL at the 200 or 300 level.",
+    "The upper-level writing requirement is fulfilled by completing the major.",
+    "Pre-1800 and post-1800 designations are maintained on the department's pre/post-1800 page; the app treats any ENGL 200+ course as eligible for those slots (an approximation)."
+  ],
+  "requirementGroups": [
+    {
+      "id": "survey",
+      "label": "Survey courses (2)",
+      "rule": { "type": "n_of", "n": 2, "options": ["ENGL 112", "ENGL 113", "ENGL 114", "ENGL 115", "ENGL 116"] },
+      "sourceQuote": "Two of the following courses, ideally by the end of the sophomore year: ENGL 112; ENGL 113: British Literature I; ENGL 114: British Literature II; ENGL 115: American Literature; ENGL 116: Intro to African American Literature"
+    },
+    {
+      "id": "pre-1800",
+      "label": "Pre-1800 literature (2)",
+      "rule": { "type": "n_from_filter", "n": 2,
+                "filter": { "depts": ["ENGL"], "minNumber": 200, "maxNumber": 399 } },
+      "sourceQuote": "Two Pre-1800 British or American literature courses",
+      "note": "NEEDS VERIFICATION: pre-1800 list is department-maintained; modeled as ENGL 200+."
+    },
+    {
+      "id": "post-1800",
+      "label": "Post-1800 literature (2)",
+      "rule": { "type": "n_from_filter", "n": 2,
+                "filter": { "depts": ["ENGL"], "minNumber": 200, "maxNumber": 399 } },
+      "sourceQuote": "Two Post-1800 British or American literature courses",
+      "note": "NEEDS VERIFICATION: post-1800 list is department-maintained; modeled as ENGL 200+."
+    },
+    {
+      "id": "seminar",
+      "label": "Advanced/Honors seminar",
+      "rule": { "type": "n_of", "n": 1, "options": ["ENGL 380", "ENGL 396"] },
+      "sourceQuote": "ENGL 380: Advanced Seminar or ENGL 396: Honors Seminar. Taken in either your junior or senior year."
+    },
+    {
+      "id": "upper-electives",
+      "label": "Additional 200/300-level English (3)",
+      "rule": { "type": "n_from_filter", "n": 3,
+                "filter": { "depts": ["ENGL"], "minNumber": 200, "maxNumber": 399,
+                            "exclude": ["ENGL 380", "ENGL 396"] } },
+      "sourceQuote": "A minimum of ten, 4-credit courses are required for the major ... At least seven of the ten courses must be English courses at the 200 or 300 level. ... Seven or eight courses at the 200 or 300 level"
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "Fulfilled by completing the major",
+    "rule": { "type": "n_of", "n": 1, "options": ["ENGL 380", "ENGL 396"] },
+    "sourceQuote": "The upper-level writing requirement is fulfilled by completion of the major."
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "id": "major-phys-bs",
+  "type": "major",
+  "name": "Physics",
+  "degree": "BS",
+  "school": "sas",
+  "division": "natural-sciences",
+  "departments": ["PHYS"],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/pas/undergraduate/BS-physics.html",
+  "sourcedOn": "2026-08-01",
+  "snapshot": "data-src/pages/pas/pas_undergraduate_BS-physics.html",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": ["humanities", "social-sciences"],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "minMajorGPA": 2.0,
+  "programChecks": { "totalCourses": null, "minFromDepts": null, "max100Level": null },
+  "notes": [
+    "The department page writes course codes as PHY / MTH; the registrar catalog this app is built from uses PHYS / MATH, which is the form used here.",
+    "At least a 2.0 (C) average in astronomy, physics and mathematics courses must be maintained, and all choices must be approved by the undergraduate physics advisor.",
+    "PHYS 141/142/143 (honors) are encouraged for physics majors; the app treats the 12x and 14x introductory sequences as alternatives.",
+    "Computer literacy may also be satisfied by a department-approved computing project or by faculty certification instead of a course - those routes cannot be represented as a course requirement, so the course options are modeled and the alternatives noted.",
+    "MATH 282 or OPT 287 is 'recommended' for the second advanced-mathematics course; only MATH 281 is stated as required, so the second course is modeled as a choice between the two recommended options.",
+    "PHYS 244W (Advanced Experimental Techniques II) and PHYS 256 (Computational Physics) are named on the page but were not scheduled in the harvested 2025-26 terms; they appear in the app as flagged stubs.",
+    "Graduate-level courses generally cannot be substituted for undergraduate core requirements."
+  ],
+  "requirementGroups": [
+    {
+      "id": "precon-calc",
+      "label": "Pre-concentration: calculus sequence",
+      "rule": { "type": "sequence_one_of", "sequences": [
+        ["MATH 161", "MATH 162", "MATH 164", "MATH 165"],
+        ["MATH 171", "MATH 172", "MATH 173", "MATH 174"]] },
+      "sourceQuote": "One of the following calculus sequences: MTH 161, 162, 164, and 165; MTH 171, 172, 173, and 174"
+    },
+    {
+      "id": "precon-physics",
+      "label": "Pre-concentration: introductory physics (3)",
+      "rule": { "type": "sequence_one_of", "sequences": [
+        ["PHYS 121", "PHYS 122", "PHYS 123"],
+        ["PHYS 141", "PHYS 142", "PHYS 143"]] },
+      "sourceQuote": "Three introductory physics courses: PHY 121: Mechanics or PHY 141: Mechanics (Honors); PHY 122: Electricity and Magnetism or PHY 142; PHY 123: Waves and Modern Physics or PHY 143. PHY 141, 142, and 143 are encouraged for Physics majors."
+    },
+    {
+      "id": "core",
+      "label": "Core physics courses (6)",
+      "rule": { "type": "all_of", "courses": [
+        "PHYS 217", "PHYS 218", "PHYS 227", "PHYS 235W", "PHYS 237", "PHYS 246"] },
+      "sourceQuote": "The following six physics courses or their close equivalents: PHY 217: Electricity and Magnetism I; PHY 218: Electricity and Magnetism II; PHY 227: Thermodynamics and Statistical Mechanics; PHY 235W: Classical Mechanics; PHY 237: Quantum Mechanics of Physical Systems; PHY 246: Quantum Theory"
+    },
+    {
+      "id": "writing-lab",
+      "label": "Advanced experimental writing course",
+      "rule": { "type": "n_of", "n": 1, "options": ["PHYS 243W", "PHYS 244W", "PHYS 245W"] },
+      "sourceQuote": "One of the following writing courses: PHY 243W: Advanced Experimental Techniques I; PHY 244W: Advanced Experimental Techniques II; PHY 245W: The Advanced Nuclear Science Education Laboratory"
+    },
+    {
+      "id": "phys-astr-elective",
+      "label": "One 200-300 level physics or astronomy course",
+      "rule": { "type": "n_from_filter", "n": 1,
+                "filter": { "depts": ["PHYS", "ASTR"], "minNumber": 200, "maxNumber": 399, "minCredits": 4 } },
+      "sourceQuote": "One four-credit 200-300 level physics and/or astronomy course."
+    },
+    {
+      "id": "advanced-math",
+      "label": "Advanced mathematics (2)",
+      "rule": { "type": "all_of", "courses": ["MATH 281"] },
+      "sourceQuote": "Two courses in advanced mathematics: MTH 281: Applied Boundary Value Problems is required",
+      "note": "Only MATH 281 is stated as required; the second course is the group below."
+    },
+    {
+      "id": "advanced-math-2",
+      "label": "Second advanced mathematics course",
+      "rule": { "type": "n_of", "n": 1, "options": ["MATH 282", "OPT 287"] },
+      "sourceQuote": "MTH 282: Introduction to Complex Variables with Applications or OPT 287: Mathematical Methods for Optics and Physics is recommended"
+    },
+    {
+      "id": "computer-literacy",
+      "label": "Computer literacy",
+      "rule": { "type": "n_of", "n": 1, "options": ["PHYS 256", "CSC 171", "CSC 161"] },
+      "sourceQuote": "The computer literacy requirement can be satisfied by: Taking PHY 256: Computational Physics or Taking CSC 171: Intro to Computer Science or Taking CSC 161: Intro to Programming or Completing a computing-based problem approved by the department's undergraduate physics advisor or Having a faculty member certify computer literacy",
+      "note": "The non-course routes (approved computing problem, faculty certification) cannot be scheduled and are not modeled."
+    },
+    {
+      "id": "natural-science",
+      "label": "Natural science outside physics",
+      "rule": { "type": "n_from_filter", "n": 1,
+                "filter": { "depts": ["ASTR", "BIOL", "CHEM", "EESC", "BCSC", "MBI", "BCH"],
+                            "minNumber": 100, "maxNumber": 399 } },
+      "sourceQuote": "One course in a natural science other than physics. This can be an astronomy (ASTR) course, or a course outside of the Department of Physics and Astronomy.",
+      "note": "Modeled as the natural-science departments outside PHYS; the page allows any course outside the department, which is broader."
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "Upper-level writing within the major",
+    "rule": { "type": "n_of", "n": 2, "options": ["PHYS 235W", "PHYS 243W", "PHYS 244W", "PHYS 245W"] },
+    "sourceQuote": "PHY 235W: Classical Mechanics ... One of the following writing courses: PHY 243W, PHY 244W, PHY 245W",
+    "note": "NEEDS VERIFICATION: the page does not state the ULW policy explicitly; modeled as the College's two-course norm satisfied by the major's W-designated courses."
+  }
+}

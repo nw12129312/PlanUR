@@ -1,0 +1,56 @@
+{
+  "id": "minor-chem",
+  "type": "minor",
+  "name": "Chemistry",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "natural-sciences",
+  "departments": [
+    "CHEM"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/chm/undergraduate/minor-clusters.html",
+  "sourcedOn": "2026-08-01",
+  "snapshot": "data-src/pages/chm/chm_undergraduate_minor-clusters.html",
+  "programChecks": {
+    "totalCourses": 6,
+    "minFromDepts": {
+      "depts": [
+        "CHEM"
+      ],
+      "n": 6
+    },
+    "max100Level": null
+  },
+  "notes": [
+    "Any six chemistry courses of four credits or more, totalling at least 24 credit hours.",
+    "300-level courses are NOT included. 400-level courses may be included with instructor permission - not modeled.",
+    "CHEM 111 Molecules of Power may NOT be used; it is intended for humanities and social science concentrators.",
+    "BIOL 250 is no longer an allowed substitute for CHEM 262 for newly created programs of study.",
+    "Prerequisites for advanced courses (mathematics, physics) must be taken IN ADDITION to the six chemistry courses.",
+    "Two courses with substantial overlap of content should not both be included.",
+    "Overlap rule: no major and minor may overlap by more than two courses. Exempt from that rule: BIOL 110L/111L/112L/113L, CHEM 131/137 and CHEM 132, CSC 161/171/172."
+  ],
+  "requirementGroups": [
+    {
+      "id": "six",
+      "label": "Six chemistry courses (24+ credits)",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 6,
+        "filter": {
+          "depts": [
+            "CHEM"
+          ],
+          "minNumber": 112,
+          "maxNumber": 299,
+          "minCredits": 4,
+          "exclude": [
+            "CHEM 111"
+          ]
+        }
+      },
+      "sourceQuote": "Any six courses in chemistry that meet the following guidelines: Courses must be four credits or more; Courses at the 300 level are not included; CHEM 111: Molecules of Power may NOT be used. All of the courses should total at least 24 credit-hours in chemistry."
+    }
+  ]
+}

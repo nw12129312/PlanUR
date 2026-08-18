@@ -1,0 +1,105 @@
+{
+  "id": "minor-compbio",
+  "type": "minor",
+  "name": "Computational Biology",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "natural-sciences",
+  "departments": [
+    "BIOL",
+    "CSC",
+    "STAT"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/bio/undergraduate/minors.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/bio/bio_undergraduate_minors.html",
+  "programChecks": {
+    "totalCourses": 6,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Students in this minor study biological systems using math and computer science.",
+    "Students must maintain a 2.0 GPA in the minor, excluding allied field courses.",
+    "The course count varies with the paths chosen: the genetics requirement is two courses and the statistics requirement is one or two."
+  ],
+  "requirementGroups": [
+    {
+      "id": "intro-bio",
+      "label": "Introductory biology with lab",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "BIOL 110L",
+          "BIOL 112L"
+        ]
+      },
+      "sourceQuote": "One of the following: BIOL 110L: Principles of Biology I with Lab; BIOL 112L: Perspectives in Biology I with Lab"
+    },
+    {
+      "id": "genetics",
+      "label": "Genetics with lab",
+      "rule": {
+        "type": "sequence_one_of",
+        "sequences": [
+          [
+            "BIOL 190",
+            "BIOL 198P"
+          ],
+          [
+            "BIOL 198",
+            "BIOL 198P"
+          ]
+        ]
+      },
+      "sourceQuote": "One of the following: BIOL 190: The Human Genome and BIOL 198P: Genetics Lab; BIOL 198: Principles of Genetics and BIOL 198P: Genetics Lab"
+    },
+    {
+      "id": "programming",
+      "label": "Programming",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "CSC 161",
+          "CSC 171"
+        ]
+      },
+      "sourceQuote": "One of the following: CSC 161: The Art of Programming; CSC 171: The Science of Programming"
+    },
+    {
+      "id": "statistics",
+      "label": "Statistics",
+      "rule": {
+        "type": "sequence_one_of",
+        "sequences": [
+          [
+            "STAT 190"
+          ],
+          [
+            "STAT 180",
+            "STAT 216"
+          ]
+        ]
+      },
+      "sourceQuote": "STAT 190 (formerly CSC 262): Introduction to Statistical Methodology OR STAT 180 (formerly STAT 212): Introduction to Applied Statistical Methodology + STAT 216: Applied Statistics Methods"
+    },
+    {
+      "id": "computational",
+      "label": "Two computational biology courses",
+      "rule": {
+        "type": "n_of",
+        "n": 2,
+        "options": [
+          "BIOL 219L",
+          "BIOL 253L",
+          "BIOL 257L"
+        ]
+      },
+      "sourceQuote": "Two of the following: BIOL 219L: Genomics of Quantitative Traits; BIOL 253L: Computational Biology; BIOL 257L: Applied Genomics"
+    }
+  ],
+  "upperLevelWriting": null
+}

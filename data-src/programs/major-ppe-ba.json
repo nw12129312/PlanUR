@@ -1,0 +1,105 @@
+{
+  "id": "major-ppe-ba",
+  "type": "major",
+  "name": "Politics, Philosophy, and Economics",
+  "degree": "BA",
+  "school": "sas",
+  "division": "social-sciences",
+  "departments": ["PPHE", "PSCI", "PHIL", "ECON"],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/psc/undergraduate/major-ppe.html",
+  "sourcedOn": "2026-08-01",
+  "snapshot": "data-src/pages/psc/psc_undergraduate_major-ppe.html",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": ["humanities", "social-sciences", "natural-sciences"],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "minMajorGPA": 2.0,
+  "programChecks": { "totalCourses": 15, "minFromDepts": null, "max100Level": null },
+  "notes": [
+    "Fifteen courses: three strongly-recommended gateways plus twelve required. Minimum overall GPA of 2.0 in these courses.",
+    "No course used for one component may also be used for another - the app keeps groups disjoint by default, so this holds.",
+    "NEEDS VERIFICATION - cluster divisions: students designate the PPE major as EITHER social sciences OR humanities in consultation with their advisor (the general rule being that at least six major courses come from that division, excluding PPHE 293). The app cannot know which, so all three cluster divisions are permitted to avoid blocking a valid plan. The page is explicit that PPE can never meet the natural sciences distribution requirement.",
+    "The gateway courses are 'strongly encouraged', not required - they are modeled as a group so the plan schedules them, and ECON 108 is normally a prerequisite for the required ECON 207 in any case.",
+    "The thematic concentration is a student-designed set of five conceptually linked courses (at least three at the 200 level or higher) formed with the major advisor. It cannot be enumerated, so it is modeled as five courses across the PPE departments with a 200-level minimum on three of them.",
+    "Each student must write a research paper for one of their theme courses and present it to PPE majors and faculty in the spring of senior year - not a schedulable course.",
+    "No more than three transferred courses (including AP and IB) may count toward the major, and transfers generally cannot replace core courses, analytical methods, or the seminar."
+  ],
+  "requirementGroups": [
+    {
+      "id": "gateway-econ",
+      "label": "Gateway: economics",
+      "rule": { "type": "all_of", "courses": ["ECON 108"] },
+      "sourceQuote": "Economics: ECON 108 Principles of Economics (Normally necessary as a prerequisite for ECON 207, which is required for the PPE major)"
+    },
+    {
+      "id": "gateway-phil",
+      "label": "Gateway: philosophy",
+      "rule": { "type": "n_of", "n": 1, "options": ["PHIL 102", "PHIL 103"] },
+      "sourceQuote": "Philosophy: Either PHIL 102 Introduction to Ethics or PHIL 103 Contemporary Moral Problems"
+    },
+    {
+      "id": "gateway-psci",
+      "label": "Gateway: political science",
+      "rule": { "type": "n_of", "n": 1, "options": ["PSCI 101", "PSCI 104", "PSCI 105", "PSCI 107"] },
+      "sourceQuote": "Political Science: Either PSCI 101 Introduction to Comparative Politics, PSC 104 Introduction to Political Philosophy, PSCI 105 Introduction to American Politics, or PSCI 107 Introduction to Positive Political Theory"
+    },
+    {
+      "id": "core",
+      "label": "Core courses",
+      "rule": { "type": "all_of", "courses": ["PSCI 287", "PHIL 223", "ECON 207"] },
+      "sourceQuote": "Core Courses (Three Courses, Required): PSCI 287: Theories of Political Economy; PHIL 223: Social and Political Philosophy; ECON 207: Intermediate Microeconomics"
+    },
+    {
+      "id": "analytical",
+      "label": "Analytical methods",
+      "rule": { "type": "all_of", "courses": ["PHIL 105", "PSCI 288"] },
+      "sourceQuote": "Analytical Methods (Two Courses, Required): PHIL 105: Reason and Argument; PSCI/ECON 288: Game Theory"
+    },
+    {
+      "id": "statistics",
+      "label": "Statistics",
+      "rule": { "type": "n_of", "n": 1, "options": [
+        "PSCI 200", "PSCI 205", "ECON 230", "STAT 180", "STAT 190"] },
+      "sourceQuote": "Statistics (One Course, Required). One of the following: PSCI 200: Data Analysis I; PSCI 205: Data Analysis II; ECON 230: Economic Statistics; STAT 180 (formerly STAT 212); STAT 190 (formerly STAT 213)"
+    },
+    {
+      "id": "seminar",
+      "label": "PPE seminar",
+      "rule": { "type": "n_of", "n": 1, "options": ["PPHE 293", "PHIL 293", "PSCI 293"] },
+      "sourceQuote": "Seminar (One Course, Required): PPHE/PHIL/PSCI 293: Politics, Philosophy, and Economics: How to Change the World"
+    },
+    {
+      "id": "concentration-advanced",
+      "label": "Thematic concentration at the 200 level or higher (3)",
+      "rule": { "type": "n_from_filter", "n": 3,
+                "filter": { "depts": ["PSCI", "PHIL", "ECON", "INTR", "PPHE"],
+                            "minNumber": 200, "maxNumber": 399,
+                            "exclude": ["PSCI 287", "PHIL 223", "ECON 207", "PSCI 288",
+                                        "PSCI 200", "PSCI 205", "ECON 230",
+                                        "PPHE 293", "PHIL 293", "PSCI 293"] } },
+      "sourceQuote": "Choose an additional five courses in a thematic concentration ... At least three of these five courses must be at the 200 level or higher.",
+      "note": "Student-designed; modeled as PPE-department courses, not an enumerated list."
+    },
+    {
+      "id": "concentration-any",
+      "label": "Thematic concentration, remaining (2)",
+      "rule": { "type": "n_from_filter", "n": 2,
+                "filter": { "depts": ["PSCI", "PHIL", "ECON", "INTR", "PPHE"],
+                            "minNumber": 101, "maxNumber": 399,
+                            "exclude": ["PSCI 287", "PHIL 223", "ECON 207", "PSCI 288",
+                                        "PHIL 105", "ECON 108", "PHIL 102", "PHIL 103",
+                                        "PSCI 101", "PSCI 104", "PSCI 105", "PSCI 107",
+                                        "PSCI 200", "PSCI 205", "ECON 230",
+                                        "PPHE 293", "PHIL 293", "PSCI 293"] } },
+      "sourceQuote": "Choose an additional five courses in a thematic concentration, which is a set of courses tied together conceptually, oriented toward a particular problem or area of particular interest to the student."
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "Two 'W' courses",
+    "rule": { "type": "n_from_filter", "n": 2,
+              "filter": { "depts": ["PSCI", "PHIL", "ECON", "INTR"],
+                          "minNumber": 200, "maxNumber": 399, "wOnly": true } },
+    "sourceQuote": "Upper-Level Writing: Take at least two courses designated as 'W' courses."
+  }
+}

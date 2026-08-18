@@ -1,0 +1,132 @@
+{
+  "id": "major-fmst-theory-ba",
+  "type": "major",
+  "name": "Film and Media Studies (Theory Track)",
+  "degree": "BA",
+  "school": "sas",
+  "division": "humanities",
+  "departments": [
+    "FMST"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/fms/undergraduate/film/major.html",
+  "snapshot": "data-src/pages/fms/fms_undergraduate_film_major.html",
+  "sourcedOn": "2026-08-14",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": [
+    "social-sciences",
+    "natural-sciences"
+  ],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "programChecks": {
+    "totalCourses": 12,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "The film and media studies BA has two tracks - Theory and Production - each twelve courses. This entry is the THEORY track; the production track is a separate entry (major-fmst-production-ba). The first four requirements are identical in both tracks; the tracks differ only in the last two.",
+    "DEPARTMENT CODE: the major page writes 'FMS 131' and 'FMS 132', but the registrar's catalog prefix is FMST. All codes here are translated to FMST.",
+    "CATEGORY LISTS ARE TERM-DEPENDENT - NEEDS VERIFICATION: the department's course-categories page lists only the courses offered in the captured term, so the history, international/transnational, analysis and production groups below are a snapshot, not the department's full category membership. Several of the numbers it lists (FMST 107, 203, 235, 236, 243, 245, 270, 274, 277, 288) are not in the 2025-26 catalog under those numbers, and FMST 224/245 are rotating topics slots whose current catalog titles differ from the ones on the categories page. Confirm the current category list with the department before planning around it.",
+    "Students who are double majoring, earning a dual degree, or taking a minor or cluster in a related area should review the overlap policy before selecting their courses.",
+    "NEEDS VERIFICATION - UPPER-LEVEL WRITING: neither the major page nor the course-categories page states a ULW policy, and the 2025-26 catalog has no W-suffixed FMST courses, so none is encoded. Confirm with the program how you will satisfy the College requirement."
+  ],
+  "requirementGroups": [
+    {
+      "id": "intro",
+      "label": "Introductory course",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "FMST 131",
+          "FMST 132"
+        ]
+      },
+      "sourceQuote": "One of the following introductory courses: FMS 131: Introduction to Media Studies; FMS 132: Introduction to the Art of Film"
+    },
+    {
+      "id": "history",
+      "label": "One course in film/media history",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "FMST 224",
+          "FMST 245"
+        ]
+      },
+      "sourceQuote": "One course in film/media history. [Course Categories] History Courses: FMST 224: American Experiments: Film and Art of the 1930s; FMST 245: American Movies in their Moment: Silver Age 1968-1980"
+    },
+    {
+      "id": "international",
+      "label": "One course in international or transnational film/media",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "FMST 235",
+          "FMST 236",
+          "FMST 277"
+        ]
+      },
+      "sourceQuote": "One course in international or transnational film/media. [Course Categories] International and Transnational Film and Media Courses: FMST 235: Internet Aesthetics: Viral Forms from the Global South; FMST 236: Monsters, Ghosts and Aliens: From Schiller to King; FMST 277: Tourist Japan"
+    },
+    {
+      "id": "analysis",
+      "label": "Three courses in film/media theory and analysis",
+      "rule": {
+        "type": "n_of",
+        "n": 3,
+        "options": [
+          "FMST 107",
+          "FMST 205",
+          "FMST 224",
+          "FMST 225",
+          "FMST 235",
+          "FMST 236",
+          "FMST 243",
+          "FMST 245",
+          "FMST 270",
+          "FMST 274",
+          "FMST 277",
+          "FMST 288"
+        ]
+      },
+      "sourceQuote": "Three courses in film/media theory and analysis. [Course Categories] Analysis and Criticism Courses: FMST 107: Intro to GSW: Televising Gender; FMST 205: Arttech 1: Photoshop and Apocalypse; FMST 224: American Experiments: Film and Art of the 1930s; FMST 225: Media ABC; FMST 235: Internet Aesthetics: Viral Forms from the Global South; FMST 236: Monsters, Ghosts and Aliens: From Schiller to King; FMST 243: Film as Object; FMST 245: American Movies in their Moment: Silver Age 1968-1980; FMST 270: On Repeat; FMST 274: Environmental Literature: Memory and Modernity; FMST 277: Tourist Japan; FMST 288: Hitchcock's Signature / Signature Hitchcock"
+    },
+    {
+      "id": "media-production",
+      "label": "One course in media production",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "FMST 161",
+          "FMST 203",
+          "FMST 205",
+          "FMST 243",
+          "FMST 260"
+        ]
+      },
+      "sourceQuote": "One course in media production. [Course Categories] Production Courses: FMST 161: Intro to Video Art; FMST 203: Media in the Digital Age; FMST 205: Arttech 1: Photoshop and Apocalypse; FMST 243: Film as Object; FMST 260: Screenwriting"
+    },
+    {
+      "id": "upper-level",
+      "label": "Five upper-level (200+) film/media studies courses",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 5,
+        "filter": {
+          "depts": [
+            "FMST"
+          ],
+          "minNumber": 200,
+          "maxNumber": 399
+        }
+      },
+      "sourceQuote": "Five upper-level (200+) courses in film/media studies."
+    }
+  ],
+  "upperLevelWriting": null
+}

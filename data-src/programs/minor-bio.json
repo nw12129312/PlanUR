@@ -1,0 +1,42 @@
+{
+  "id": "minor-bio",
+  "type": "minor",
+  "name": "Biological Sciences",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "natural-sciences",
+  "departments": ["BIOL"],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/bio/undergraduate/minors.html",
+  "sourcedOn": "2026-08-01",
+  "snapshot": "data-src/pages/bio/bio_undergraduate_minors.html",
+  "minMajorGPA": 2.0,
+  "programChecks": { "totalCourses": 6, "minFromDepts": null, "max100Level": null },
+  "apIbCreditExcluded": true,
+  "notes": [
+    "This is the Biological Sciences (BI) minor. The department also offers a separate Computational Biology (CB) minor, which is not yet encoded.",
+    "A 2.0 GPA must be maintained in the minor, excluding allied field courses.",
+    "The upper-level requirement is stated in CREDITS - fifteen credits at or above the 190 level - not in courses. It is modeled here as four 4-credit courses, which is the page's own typical case; the alternative it names is three 4-credit courses plus three 1-credit independent labs. Confirm your own combination with the department.",
+    "Genetics (BIOL 190 or BIOL 198) is strongly recommended but not required.",
+    "The two introductory pairs are alternatives, handled by the app's intro-biology equivalency group."
+  ],
+  "requirementGroups": [
+    {
+      "id": "intro",
+      "label": "Introductory biology with lab",
+      "rule": { "type": "sequence_one_of", "sequences": [
+        ["BIOL 110L", "BIOL 111L"],
+        ["BIOL 112L", "BIOL 113L"]] },
+      "sourceQuote": "One of the following: BIOL 110L: Principles of Biology I with Lab; BIOL 112L: Perspectives in Biology I with Lab. One of the following: BIOL 111L: Principles of Biology II with Lab; BIOL 113L: Perspectives in Biology II with Lab"
+    },
+    {
+      "id": "upper",
+      "label": "Fifteen credits at or above the 190 level",
+      "rule": { "type": "n_from_filter", "n": 4,
+                "filter": { "depts": ["BIOL", "BCH", "MBI", "NSCI"], "minNumber": 190,
+                            "maxNumber": 399, "minCredits": 4 } },
+      "sourceQuote": "Fifteen credits at or above the 190 level. This is typically met by four upper level courses (4 credits each) or three upper level courses (4 credits each) and three credits from independent labs (1 credit each). Genetics (BIOL 190 or BIOL 198) is strongly recommended.",
+      "note": "Stated in credits; modeled as four 4-credit courses."
+    }
+  ]
+}

@@ -1,0 +1,544 @@
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+
+import { newPlan, addSemester, withCourseMeta, getCourseMeta } from './engine/model.js';
+import { checkAll, resolveRequiredCredits } from './engine/constraints.js';
+import { autoGenerate } from './engine/autogen.js';
+import { conflictForAdd } from './engine/equivalency.js';
+import { applyRequirementOption } from './engine/swapRequirement.js';
+import { divisionalCoverageForPlan } from './engine/coverage.js';
+// dataStore is the ONLY module that touches window.storage (and the only
+// place App reads bundled data from); see src/storage/dataStore.js.
+import * as store from './storage/dataStore.js';
+
+import { SetupPanel } from './ui/SetupPanel.jsx';
+import { CourseSearch } from './ui/CourseSearch.jsx';
+import { SemesterGrid } from './ui/SemesterGrid.jsx';
+import { Checklist } from './ui/Checklist.jsx';
+import { PlansModal } from './ui/PlansModal.jsx';
+import { GenerateBar, DiffModal, CoverageModal } from './ui/AutoGen.jsx';
+import { AdvisorPacket, exportAdvisorPdf } from './ui/AdvisorPacket.jsx';
+import { Button, Tag, Ring, Panel } from './ui/bits.jsx';
+import { Icon } from './ui/icons.jsx';
+
+const DATA = {
+  courses: store.getCourses(),
+  programs: store.getPrograms(),
+  clusters: store.getClusters(),
+  policy: store.getPolicy(),
+  equivalencyGroups: store.getEquivalencyGroups(),
+};
+const metaData = store.getMeta();
+// Placeholder until real accounts exist; dataStore signatures already take it.
+const USER = store.LOCAL_USER;
+
+export default function App() {
+  const [plan, setPlan] = useState(() => newPlan('My first plan'));
+  const [savedJson, setSavedJson] = useState(null);
+  const [planIndex, setPlanIndex] = useState([]);
+  const [storageState, setStorageState] = useState(store.storageStatus());
+  const [saveFlash, setSaveFlash] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [activeSemesterId, setActiveSemesterId] = useState(null);
+  const [genResult, setGenResult] = useState(null); // {base, result} pending diff review
+  const [genBusy, setGenBusy] = useState(false);
+  const [blockNotice, setBlockNotice] = useState(null); // blocked-add explanation
+  const [setupOpen, setSetupOpen] = useState(true);      // setup band expanded?
+  const [auditOpen, setAuditOpen] = useState(true);      // right rail visible?
+  const blockTimer = useRef(null);
+
+  const showBlock = (message) => {
+    setBlockNotice(message);
+    clearTimeout(blockTimer.current);
+    blockTimer.current = setTimeout(() => setBlockNotice(null), 8000);
+  };
+
+  // Blocks an add that would mix equivalency-group paths, with an explanation.
+  const blockedByEquivalency = (cid) => {
+    const conflict = conflictForAdd(planRef.current, cid, DATA.equivalencyGroups);
+    if (conflict) { showBlock(conflict.message); return true; }
+    return false;
+  };
+  const planRef = useRef(plan);
+  planRef.current = plan;
+
+  const dirty = savedJson !== JSON.stringify(plan);
+
+  useEffect(() => store.subscribeStorageStatus(setStorageState), []);
+
+  // Load index + most recent plan on mount.
+  useEffect(() => {
+    (async () => {
+      const idx = await store.listPlans(USER);
+      setPlanIndex(idx);
+      const latest = [...idx].sort((a, b) => (b.last_edited || 0) - (a.last_edited || 0))[0];
+      if (latest) {
+        const p = await store.loadPlan(USER, latest.id);
+        if (p) { setPlan(p); setSavedJson(JSON.stringify(p)); }
+      }
+    })();
+  }, []);
+
+  const { progress, violations } = useMemo(() => checkAll(plan, DATA), [plan]);
+
+  const violationsByCourse = useMemo(() => {
+    const m = new Map();
+    for (const x of violations) {
+      if (x.courseId) {
+        if (!m.has(x.courseId)) m.set(x.courseId, []);
+        m.get(x.courseId).push(x);
+      }
+    }
+    return m;
+  }, [violations]);
+
+  const violationsBySemester = useMemo(() => {
+    const m = new Map();
+    for (const x of violations) {
+      if (x.semesterId && !x.courseId) {
+        if (!m.has(x.semesterId)) m.set(x.semesterId, []);
+        m.get(x.semesterId).push(x);
+      }
+    }
+    return m;
+  }, [violations]);
+
+  const placedSet = useMemo(() => new Set([
+    ...plan.semesters.flatMap((s) => s.courseIds),
+    ...plan.transfer.map((t) => t.courseId),
+  ]), [plan]);
+
+  const selectedPrograms = [...plan.majorIds, ...plan.minorIds]
+    .map((id) => DATA.programs.find((p) => p.id === id)).filter(Boolean);
+  const selectedClusters = plan.clusterIds
+    .map((id) => DATA.clusters.find((c) => c.id === id)).filter(Boolean);
+
+  // Headline progress, lifted out of the audit rail so it survives collapsing it.
+  const requiredCredits = useMemo(() => resolveRequiredCredits(plan, DATA), [plan]);
+  const plannedCredits = useMemo(
+    () => [...placedSet].reduce((a, cid) => a + (DATA.courses[cid]?.credits ?? 4), 0),
+    [placedSet],
+  );
+  const creditPct = requiredCredits ? Math.round((100 * plannedCredits) / requiredCredits) : 0;
+  const errorCount = violations.filter((v) => v.severity === 'error').length;
+
+  const clustersNeeded = useMemo(() => {
+    const majors = plan.majorIds.map((id) => DATA.programs.find((p) => p.id === id)).filter(Boolean);
+    const base = majors.length ? Math.max(...majors.map((m) => m.clustersRequired ?? 2)) : 2;
+    const substitutions = plan.minorIds.length + Math.max(0, plan.majorIds.length - 1);
+    return Math.max(0, base - substitutions);
+  }, [plan.majorIds, plan.minorIds]);
+
+  // ---- plan mutations ----
+  const touch = (p) => ({ ...p, lastEdited: Date.now() });
+
+  const addCourse = (cid, semId) => {
+    if (blockedByEquivalency(cid)) return;
+    setPlan((p) => {
+      if (p.semesters.some((s) => s.courseIds.includes(cid)) || p.transfer.some((t) => t.courseId === cid)) return p;
+      const target = semId || activeSemesterId || p.semesters.find((s) => s.courseIds.length < 5)?.id || p.semesters[0]?.id;
+      const next = {
+        ...p,
+        semesters: p.semesters.map((s) => (s.id === target ? { ...s, courseIds: [...s.courseIds, cid] } : s)),
+      };
+      // manually placed courses are locked by default
+      return touch(withCourseMeta(next, cid, { source: 'manual', locked: true, reason: null }));
+    });
+  };
+
+  const pickRequirementOption = ({ programId, groupId, courseId }) => {
+    const result = applyRequirementOption(planRef.current, DATA, { programId, groupId, courseId });
+    if (result.error) { showBlock(result.error); return; }
+    if (result.kind !== 'swap') {
+      addCourse(courseId);
+      return;
+    }
+    setPlan(touch(result.plan));
+  };
+
+  const removeCourse = (cid, semId) => {
+    setPlan((p) => touch(withCourseMeta({
+      ...p,
+      semesters: p.semesters.map((s) => (s.id === semId ? { ...s, courseIds: s.courseIds.filter((x) => x !== cid) } : s)),
+    }, cid, null)));
+  };
+
+  const dropCourse = (cid, semId, origin) => {
+    if (origin === 'search' && blockedByEquivalency(cid)) return;
+    setPlan((p) => {
+      let next = { ...p, semesters: p.semesters.map((s) => ({ ...s, courseIds: s.courseIds.filter((x) => x !== cid) })) };
+      if (origin === 'search' && p.transfer.some((t) => t.courseId === cid)) return p;
+      next = {
+        ...next,
+        semesters: next.semesters.map((s) => (s.id === semId ? { ...s, courseIds: [...s.courseIds, cid] } : s)),
+      };
+      // a manual drag counts as a manual edit: lock it so regenerate keeps it
+      const meta = origin === 'search'
+        ? { source: 'manual', locked: true, reason: null }
+        : { locked: true };
+      return touch(withCourseMeta(next, cid, meta));
+    });
+  };
+
+  const toggleLock = (cid) => {
+    setPlan((p) => touch(withCourseMeta(p, cid, { locked: !getCourseMeta(p, cid).locked })));
+  };
+
+  const lockAll = (locked) => {
+    setPlan((p) => {
+      let next = p;
+      for (const s of p.semesters) for (const cid of s.courseIds) next = withCourseMeta(next, cid, { locked });
+      return touch(next);
+    });
+  };
+
+  // ---- divisional coverage (selection-level, advisory) ----
+  const coverage = useMemo(() => divisionalCoverageForPlan(plan, DATA),
+    [plan.majorIds, plan.minorIds, plan.clusterIds]);
+  // session-scoped "proceed anyway" acknowledgments, keyed by the exact
+  // selection combination; changing any selection creates a new key and
+  // re-arms the modal. Deliberately NOT persisted to storage.
+  const coverageAcks = useRef(new Set());
+  const [coveragePrompt, setCoveragePrompt] = useState(null); // pending generate args
+
+  // ---- auto-generate ----
+  function reallyGenerate(scope, targetLoad, pathPreference) {
+    setGenBusy(true);
+    // let the busy state paint before the (fast, but synchronous) solve
+    setTimeout(() => {
+      try {
+        const base = planRef.current;
+        const result = autoGenerate(base, DATA, { scope, targetLoad, pathPreference });
+        setGenResult({ base, result });
+      } finally {
+        setGenBusy(false);
+      }
+    }, 20);
+  }
+
+  function runGenerate(scope, targetLoad, pathPreference = 'auto') {
+    // advisory gate: warn (once per combination) when the selected programs
+    // don't collectively cover all three divisions
+    if (coverage.applicable && !coverage.satisfied && !coverageAcks.current.has(coverage.comboKey)) {
+      setCoveragePrompt({ scope, targetLoad, pathPreference });
+      return;
+    }
+    reallyGenerate(scope, targetLoad, pathPreference);
+  }
+
+  const autoFillGroup = (programId, groupId) =>
+    runGenerate({ kind: 'group', programId, groupId }, 18);
+
+  // ---- department-ordering overrides (per-pair, plan-level) ----
+  const allowSequencing = (pair) => setPlan((p) => touch({
+    ...p,
+    sequencingOverrides: [
+      ...(p.sequencingOverrides || []).filter((o) => !(o.lower === pair.lower && o.higher === pair.higher)),
+      pair,
+    ],
+  }));
+  const removeSequencingOverride = (pair) => setPlan((p) => touch({
+    ...p,
+    sequencingOverrides: (p.sequencingOverrides || [])
+      .filter((o) => !(o.lower === pair.lower && o.higher === pair.higher)),
+  }));
+
+  const applyGenerated = (nextPlan) => {
+    setPlan(touch(nextPlan));
+    setGenResult(null);
+  };
+
+  const addTransfer = (cid, kind) => {
+    if (blockedByEquivalency(cid)) return;
+    setPlan((p) => {
+      if (p.transfer.some((t) => t.courseId === cid) || p.semesters.some((s) => s.courseIds.includes(cid))) return p;
+      return touch({ ...p, transfer: [...p.transfer, { courseId: cid, kind }] });
+    });
+  };
+  const removeTransfer = (cid) => setPlan((p) => touch({ ...p, transfer: p.transfer.filter((t) => t.courseId !== cid) }));
+
+  const onAddSemester = () => setPlan((p) => touch(addSemester(p)));
+  const onRemoveSemester = (semId) => setPlan((p) => {
+    const s = p.semesters.find((x) => x.id === semId);
+    if (!s || s.courseIds.length) return p;
+    return touch({ ...p, semesters: p.semesters.filter((x) => x.id !== semId) });
+  });
+
+  // ---- persistence (all through dataStore) ----
+  async function savePlanAction() {
+    const p = touch(planRef.current);
+    setPlan(p);
+    const { ok, index } = await store.savePlan(USER, p);
+    setPlanIndex(index);
+    setSavedJson(JSON.stringify(p));
+    setSaveFlash(ok ? 'Saved' : 'Saved locally — persistent storage failed');
+    setTimeout(() => setSaveFlash(null), 2500);
+  }
+
+  function confirmDiscard() {
+    return !dirty || window.confirm('This plan has unsaved changes. Discard them?');
+  }
+
+  async function loadPlanAction(id) {
+    if (!confirmDiscard()) return;
+    const p = await store.loadPlan(USER, id);
+    if (p) { setPlan(p); setSavedJson(JSON.stringify(p)); setModalOpen(false); setActiveSemesterId(null); }
+  }
+
+  function newPlanAction() {
+    if (!confirmDiscard()) return;
+    const p = newPlan(`Plan ${planIndex.length + 1}`);
+    setPlan(p);
+    setSavedJson(null);
+    setModalOpen(false);
+    setActiveSemesterId(null);
+  }
+
+  async function renamePlanAction(id, name) {
+    // rename = load + save composition; savePlan refreshes the index entry
+    const p = id === plan.id ? { ...planRef.current, name } : await store.loadPlan(USER, id);
+    if (!p) return;
+    const { index } = await store.savePlan(USER, { ...p, name });
+    setPlanIndex(index);
+    if (plan.id === id) {
+      setPlan((x) => ({ ...x, name }));
+      setSavedJson(JSON.stringify({ ...p, name }));
+    }
+  }
+
+  async function duplicatePlanAction(id) {
+    if (id === plan.id) {
+      // duplicating the open plan copies its LIVE (possibly unsaved) state
+      const copy = { ...planRef.current, id: newPlan().id, name: `${planRef.current.name} (copy)`, lastEdited: Date.now() };
+      const { index } = await store.savePlan(USER, copy);
+      setPlanIndex(index);
+      return;
+    }
+    const { index } = await store.duplicatePlan(USER, id);
+    setPlanIndex(index);
+  }
+
+  async function deletePlanAction(id) {
+    if (!window.confirm('Delete this plan permanently?')) return;
+    const { index } = await store.deletePlan(USER, id);
+    setPlanIndex(index);
+  }
+
+  const storageBroken = storageState.available === false;
+
+  const setupSummary = [
+    ...selectedPrograms.map((p) => `${p.name}${p.type === 'minor' ? ' minor' : ` (${p.degree})`}`),
+    plan.clusterIds.length ? `${plan.clusterIds.length} of ${clustersNeeded} clusters` : null,
+  ].filter(Boolean);
+
+  return (
+    <>
+    <div className="no-print flex flex-col bg-ground">
+      <header className="site-header">
+        <div className="mx-auto flex w-full max-w-[1600px] flex-wrap items-center gap-x-3 gap-y-1.5 px-3 py-2 lg:px-4">
+          <div className="flex shrink-0 items-center">
+            <h1 className="text-[22px] font-extrabold leading-none tracking-[-0.04em] text-ink">
+              PlanUR
+              <span className="sr-only"> — UR Schedule Builder</span>
+            </h1>
+          </div>
+
+          <div className="flex min-w-0 flex-1 items-center gap-2 sm:max-w-md">
+            <input
+              value={plan.name}
+              onChange={(e) => setPlan((p) => ({ ...p, name: e.target.value }))}
+              aria-label="Plan name"
+              className="input-flat min-h-8 w-full rounded-md border border-line bg-surface px-2.5 text-[13px] font-medium text-ink shadow-sm transition hover:border-ink-3/40 focus:border-accent focus:ring-2 focus:ring-accent/20"
+            />
+            {dirty ? <Tag tone="warn">Unsaved</Tag> : <Tag tone="good">Saved</Tag>}
+          </div>
+
+          <div className="stat-pill">
+            <Ring pct={creditPct} label={`${plannedCredits} of ${requiredCredits} credit hours planned`} />
+            <div className="leading-tight">
+              <div className="tnum text-[13px] font-semibold text-ink">
+                {plannedCredits}<span className="font-normal text-ink-3"> / {requiredCredits} cr</span>
+              </div>
+              <div className="text-[11px] text-ink-3">
+                {errorCount > 0
+                  ? <span className="font-medium text-bad">{errorCount} rule {errorCount === 1 ? 'error' : 'errors'}</span>
+                  : 'No rule errors'}
+              </div>
+            </div>
+          </div>
+
+          <div className="flex shrink-0 items-center gap-2">
+            {saveFlash && <span className="hidden text-xs text-ink-3 sm:inline">{saveFlash}</span>}
+            <Button kind="primary" onClick={savePlanAction}>Save plan</Button>
+            <Button
+              onClick={() => exportAdvisorPdf(plan.name)}
+              title="Opens the print dialog — choose Save as PDF to email your adviser"
+            >
+              <Icon name="document" size="sm" /> Export PDF
+            </Button>
+            <Button onClick={() => setModalOpen(true)}>My plans</Button>
+          </div>
+        </div>
+      </header>
+
+      {storageBroken && (
+        <div className="banner banner-warn" role="status">
+          Persistent storage is unavailable ({storageState.lastError}). Your changes are kept in this session only until storage recovers.
+        </div>
+      )}
+
+      {blockNotice && (
+        <div className="banner banner-bad" role="alert">
+          <span className="font-semibold">Not added: </span>{blockNotice}
+          <button type="button" className="ml-2 underline hover:no-underline" onClick={() => setBlockNotice(null)}>Dismiss</button>
+        </div>
+      )}
+
+      <div className="mx-auto w-full max-w-[1600px] px-3 pt-2 lg:px-4">
+        {setupOpen ? (
+          <Panel
+            title="Programs & clusters"
+            icon="settings"
+            className="mb-2"
+            headerRight={plan.majorIds.length > 0 && (
+              <Button kind="quiet" onClick={() => setSetupOpen(false)}>Done <Icon name="chevronUp" size="sm" /></Button>
+            )}
+            bodyClassName="!p-0"
+          >
+            <div className="p-2.5">
+              <SetupPanel data={DATA} plan={plan} clustersNeeded={clustersNeeded} coverage={coverage}
+                onChange={(p) => setPlan(touch(p))} />
+            </div>
+          </Panel>
+        ) : (
+          <button
+            type="button"
+            onClick={() => setSetupOpen(true)}
+            className="mb-2 flex w-full items-center gap-2 rounded-lg border border-line bg-surface px-3 py-1.5 text-left shadow-sm transition hover:border-accent/40 hover:bg-surface-2"
+          >
+            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-accent-soft text-accent">
+              <Icon name="settings" size="sm" />
+            </span>
+            <span className="min-w-0 flex-1 truncate text-[13px] text-ink-2">
+              {setupSummary.length
+                ? setupSummary.map((s, i) => (
+                    <span key={i}>
+                      {i > 0 && <span className="text-ink-3"> · </span>}
+                      <span className="font-medium text-ink">{s}</span>
+                    </span>
+                  ))
+                : 'No programs selected — set up your degree plan'}
+            </span>
+            <span className="inline-flex shrink-0 items-center gap-1 text-[13px] font-semibold text-accent">Edit <Icon name="chevronDown" size="sm" /></span>
+          </button>
+        )}
+      </div>
+
+      <main className={`mx-auto grid w-full max-w-[1600px] items-start grid-cols-1 gap-2.5 px-3 pb-3 lg:px-4 ${
+        auditOpen
+          ? 'lg:grid-cols-[minmax(220px,260px)_minmax(0,1fr)_minmax(240px,280px)] xl:grid-cols-[minmax(240px,280px)_minmax(0,1fr)_minmax(260px,300px)]'
+          : 'lg:grid-cols-[minmax(240px,300px)_minmax(0,1fr)]'
+      }`}>
+          <aside className="w-full overflow-hidden">
+            <CourseSearch
+              data={DATA}
+              plan={plan}
+              selectedPrograms={selectedPrograms}
+              selectedClusters={selectedClusters}
+              placedSet={placedSet}
+              onAdd={(cid) => addCourse(cid)}
+              targetLabel={plan.semesters.find((s) => s.id === activeSemesterId)?.label || 'first open semester'}
+            />
+          </aside>
+
+          <div className="@container min-w-0 space-y-2">
+            <GenerateBar plan={plan} data={DATA} onGenerate={runGenerate} onLockAll={lockAll} busy={genBusy} />
+            <SemesterGrid
+              data={DATA}
+              plan={plan}
+              activeSemesterId={activeSemesterId}
+              onSetActive={(id) => setActiveSemesterId((x) => (x === id ? null : id))}
+              onDropCourse={dropCourse}
+              onRemoveCourse={removeCourse}
+              onToggleLock={toggleLock}
+              onAddSemester={onAddSemester}
+              onRemoveSemester={onRemoveSemester}
+              violationsByCourse={violationsByCourse}
+              violationsBySemester={violationsBySemester}
+              courseUses={progress.courseUses}
+              onAddTransfer={addTransfer}
+              onRemoveTransfer={removeTransfer}
+              auditOpen={auditOpen}
+              onToggleAudit={() => setAuditOpen((x) => !x)}
+            />
+          </div>
+
+          {auditOpen && (
+            <aside className="w-full overflow-hidden">
+              <Checklist data={DATA} plan={plan} progress={progress} violations={violations} clustersNeeded={clustersNeeded}
+                onAutoFill={autoFillGroup} onAllowSequencing={allowSequencing} onRemoveSequencingOverride={removeSequencingOverride}
+                onHide={() => setAuditOpen(false)} placedSet={placedSet} onPickOption={pickRequirementOption} />
+            </aside>
+          )}
+      </main>
+
+      <footer className="site-footer">
+        <div className="mx-auto flex w-full max-w-[1600px] flex-wrap items-center gap-x-3 gap-y-1 px-3 py-1.5 text-[11px] text-ink-3 lg:px-4">
+          <span className="font-medium text-ink-2">UR Schedule Builder</span>
+          <span aria-hidden="true">·</span>
+          <span>
+            {metaData.counts.activePrograms} programs · {metaData.counts.clusters} clusters · {metaData.counts.courses} courses
+            ({metaData.builtOn})
+          </span>
+          <span className="hidden sm:inline" aria-hidden="true">·</span>
+          <span className="hidden sm:inline">Not an official degree audit — confirm with your adviser.</span>
+        </div>
+      </footer>
+
+      {coveragePrompt && (
+        <CoverageModal
+          coverage={coverage}
+          onAdjust={() => setCoveragePrompt(null)}
+          onProceed={() => {
+            coverageAcks.current.add(coverage.comboKey);
+            const { scope, targetLoad, pathPreference } = coveragePrompt;
+            setCoveragePrompt(null);
+            reallyGenerate(scope, targetLoad, pathPreference);
+          }}
+        />
+      )}
+
+      {genResult && (
+        <DiffModal
+          base={genResult.base}
+          result={genResult.result}
+          data={DATA}
+          onApply={applyGenerated}
+          onClose={() => setGenResult(null)}
+        />
+      )}
+
+      {modalOpen && (
+        <PlansModal
+          index={[...planIndex].sort((a, b) => (b.last_edited || 0) - (a.last_edited || 0))}
+          currentId={plan.id}
+          onLoad={loadPlanAction}
+          onRename={renamePlanAction}
+          onDuplicate={duplicatePlanAction}
+          onDelete={deletePlanAction}
+          onNew={newPlanAction}
+          onClose={() => setModalOpen(false)}
+        />
+      )}
+    </div>
+    <AdvisorPacket
+      data={DATA}
+      plan={plan}
+      progress={progress}
+      violations={violations}
+      clustersNeeded={clustersNeeded}
+      requiredCredits={requiredCredits}
+      plannedCredits={plannedCredits}
+    />
+    </>
+  );
+}

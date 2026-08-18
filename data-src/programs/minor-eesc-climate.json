@@ -1,0 +1,76 @@
+{
+  "id": "minor-eesc-climate",
+  "type": "minor",
+  "name": "Climate Change Science",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "natural-sciences",
+  "departments": [
+    "EESC"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/ees/undergraduate/minors.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/ees/ees_undergraduate_minors.html",
+  "programChecks": {
+    "totalCourses": 6,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "A minimum of 24 credits (six four-credit courses) are required.",
+    "The page states one introductory course and 'at least two' core courses, then lists the upper-level selections without a count; six courses at 4 credits meets the 24-credit floor, so three upper-level courses are modeled. Confirm the split with the department.",
+    "Students who complete this minor will understand the natural and anthropogenic causes of climate change, its impacts on physical, chemical and biological processes in the atmosphere and oceans, and how future climate is modeled or past climate measured.",
+    "Several of these courses carry substantial prerequisites in mathematics, chemistry and physics - see the source quotes.",
+    "See the department's major/minor course overlap policy."
+  ],
+  "requirementGroups": [
+    {
+      "id": "intro",
+      "label": "Introductory course",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "EESC 103",
+          "EESC 105"
+        ]
+      },
+      "sourceQuote": "Required Courses. One of the following (but not both): EESC 103: Introduction to Environmental Science; EESC 105: Introduction to Climate Change",
+      "note": "One of these, but NOT both."
+    },
+    {
+      "id": "core",
+      "label": "Two climate core courses",
+      "rule": {
+        "type": "n_of",
+        "n": 2,
+        "options": [
+          "EESC 212",
+          "EESC 218",
+          "EESC 235",
+          "EESC 236"
+        ]
+      },
+      "sourceQuote": "Plus at least two of the following (prerequisites in parenthesis): EESC 212: Climate Change Perspectives on Chemical Oceanography (MATH 161, CHEM 131); EESC 218: Atmospheric Chemistry (EESC 101 or 103 or 105, MATH 161, CHEM 131, CHEM 132 recommended but not required); EESC 235: Physical Oceanography (MATH 165, PHYS 121); EESC 236: Physics of Climate (PHYS 121)"
+    },
+    {
+      "id": "upper",
+      "label": "Three upper-level climate courses",
+      "rule": {
+        "type": "n_of",
+        "n": 3,
+        "options": [
+          "EESC 233",
+          "EESC 234",
+          "EESC 265",
+          "EESC 266",
+          "EESC 274",
+          "EESC 307"
+        ]
+      },
+      "sourceQuote": "Upper-level Course Selections (prerequisites in parenthesis): EESC 233: Marine Ecosystems and Carbon Cycling Modeling (MATH 165, EESC 212); EESC 234: Fundamentals of Atmospheric Modeling; EESC 265: Paleoclimate (EESC 101 or 103, MATH 162, CHEM 131); EESC 266: Ice Core Records of Climate and Environmental Change (EESC 101 or 103 or 105, MATH 162, CHEM 131, PHYS 121); EESC 274: Seminar in Paleoceanography; EESC 307: Advanced Seminar on Climate and Environmental Change (at least one of EESC 212, EESC 218 or EESC 265)"
+    }
+  ],
+  "upperLevelWriting": null
+}

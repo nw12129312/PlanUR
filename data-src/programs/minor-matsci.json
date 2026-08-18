@@ -1,0 +1,102 @@
+{
+  "id": "minor-matsci",
+  "type": "minor",
+  "name": "Materials Science",
+  "degree": "Minor",
+  "school": "hajim",
+  "division": "engineering",
+  "departments": [
+    "MSC",
+    "ME"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.hajim.rochester.edu/matsci/undergraduate/minor.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/matsci/matsci_undergraduate_minor.html",
+  "programChecks": {
+    "totalCourses": 4,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "A minimum of 16 credits (four courses) of materials science coursework, offered by the Department of Mechanical Engineering.",
+    "Designed for science and engineering majors who want a materials focus; students customize the program with a faculty advisor.",
+    "Nearly every course here is cross-listed under two codes (MSC and BME, CHE, CHEM, ME or PHYS) - either code counts.",
+    "For courses not on the list, contact Professor John Lambropoulos, who evaluates and manages all ME minors."
+  ],
+  "requirementGroups": [
+    {
+      "id": "intro",
+      "label": "Introduction to Materials Science",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "ME 280",
+          "MSC 202"
+        ]
+      },
+      "sourceQuote": "Requirements. ME 280/MSC 202: Introduction to Materials Science*. *This course requires the following prerequisites or permission from the instructor: MATH 163: Differential Equations I; MATH 164/ME 164: Multidimensional Calculus; PHYS 123: Waves and Modern Physics; ME 226: Intro to Solid Mechanics; PHYS 122: Electricity and Magnetism"
+    },
+    {
+      "id": "thermo",
+      "label": "Thermodynamics",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "MSC 230",
+          "PHYS 227",
+          "MSC 455",
+          "CHEM 455",
+          "MSC 405",
+          "ME 460"
+        ]
+      },
+      "sourceQuote": "Plus one of the following courses: MSC 230/PHYS 227: Thermodynamics and Stat Mechanics; MSC 455/CHEM 455: Thermodynamics and Stat Mechanics; MSC 405/ME 460: Thermodynamics of Solids"
+    },
+    {
+      "id": "electives",
+      "label": "Two materials electives (at least one at the 400/500 level)",
+      "rule": {
+        "type": "n_of",
+        "n": 2,
+        "options": [
+          "MSC 421",
+          "BME 420",
+          "MSC 442",
+          "BME 442",
+          "MSC 451",
+          "BME 451",
+          "MSC 462",
+          "BME 462",
+          "BME 212",
+          "BME 412",
+          "BME 245",
+          "BME 283",
+          "BME 483",
+          "CHE 225",
+          "MSC 413",
+          "CHE 413",
+          "MSC 454",
+          "CHE 454",
+          "MSC 458",
+          "CHE 458",
+          "MSC 460",
+          "CHE 460",
+          "MSC 469",
+          "CHE 469",
+          "MSC 482",
+          "CHE 482",
+          "MSC 485",
+          "CHE 485",
+          "MSC 404",
+          "CHEM 404"
+        ]
+      },
+      "sourceQuote": "Plus two of the following courses, with at least one 400- or 500-level course: MSC 421/BME 420: Biomedical Nanotech; MSC 442/BME 442: Microbiomechanics; MSC 451/BME 451: Biomedical Ultrasound; MSC 462/BME 462: Cell and Tissue Engineering; BME 212/BME 412: Visco in Biotissues; BME 245: Biomaterials; BME 283/483: Biosolids; CHE 225: Thermodynamics I; MSC 413/CHE 413: Engineering of Soft Matter; MSC 454/CHE 454: Interfacial Engineering; MSC 458/CHE 458: Electrochem Battery and Fuel Cell; MSC 460/CHE 460: Solar Cells; MSC 469/CHE 469: Biotechnology and Bioengineering; MSC 482/CHE 482: Proc Microelec Device; MSC 485/CHE 485: Thermodynamics and Stat Mech; MSC 404/CHEM 404: Biophysical Chemistry II",
+      "note": "At least one of the two must be a 400- or 500-level course - the planner does not check that."
+    }
+  ],
+  "upperLevelWriting": null
+}

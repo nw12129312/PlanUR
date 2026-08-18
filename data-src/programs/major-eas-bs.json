@@ -1,0 +1,78 @@
+{
+  "id": "major-eas-bs",
+  "type": "major",
+  "name": "Engineering and Applied Sciences",
+  "degree": "BS",
+  "school": "hajim",
+  "division": "engineering",
+  "departments": ["EAS"],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.hajim.rochester.edu/undergraduate/eas-bs.html",
+  "sourcedOn": "2026-08-01",
+  "snapshot": "data-src/pages/hajim/undergraduate_eas-bs.html",
+  "clustersRequired": 1,
+  "allowedClusterDivisions": ["humanities", "social-sciences"],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "programChecks": { "totalCourses": null, "minFromDepts": null, "max100Level": null },
+  "notes": [
+    "IMPORTANT - this is an INDIVIDUALLY DESIGNED major. The page states plainly: 'The program approved by the committee for a given student constitutes that student's degree requirements.' There is no fixed course list. What follows models the structural rules the page gives (how many courses in each area), NOT a specific approved program. Your own approved proposal is the authority.",
+    "Students devise the major from the offerings of two or more engineering departments, and must submit the proposed program to the Engineering and Applied Sciences Program Committee, which may accept, reject, or require modification.",
+    "Natural sciences: eight courses - three mathematics including one in differential equations, four in physics or chemistry with at least one of each, and one additional mathematics or natural science course. Modeled as counts; the differential-equations and one-of-each constraints are not auto-enforced.",
+    "Core: at least eight 4-credit engineering courses from two or more departments, at least half at the 200 level. May include the upper-level writing and computational analysis courses. Up to eight credit hours of independent study may be included. The two-or-more-departments rule is not auto-enforced.",
+    "Technical sequences: three sequences of at least three courses each, with no more than one introductory-level course per sequence, where a sequence is 'a logical progression of study, confined to an acceptably identifiable area, in which later material builds upon and extends earlier material.' These nine courses overlap with the core if the student wishes, so they are NOT modeled as an additional nine-course block - doing so would roughly double the real requirement.",
+    "The senior design project EAS 393 may be replaced with pre-approval by a departmental senior design sequence (AME 386+387, BME 296, CHE 255, ECE 348+349, ME 204+205, OPT 310+311).",
+    "WRTG 105 must be completed by the time the major is officially declared."
+  ],
+  "requirementGroups": [
+    {
+      "id": "natural-science-math",
+      "label": "Mathematics (3, including differential equations)",
+      "rule": { "type": "n_from_filter", "n": 3,
+                "filter": { "depts": ["MATH"], "minNumber": 141, "maxNumber": 399, "minCredits": 4 } },
+      "sourceQuote": "Natural science courses should include: Three math courses including one in differential equations",
+      "note": "The differential-equations requirement is not auto-enforced."
+    },
+    {
+      "id": "natural-science-phys-chem",
+      "label": "Physics or chemistry (4, at least one of each)",
+      "rule": { "type": "n_from_filter", "n": 4,
+                "filter": { "depts": ["PHYS", "CHEM"], "minNumber": 100, "maxNumber": 399, "minCredits": 4 } },
+      "sourceQuote": "Four courses in physics or chemistry, with at least one in each",
+      "note": "The at-least-one-of-each constraint is not auto-enforced."
+    },
+    {
+      "id": "natural-science-extra",
+      "label": "Additional mathematics or natural science course",
+      "rule": { "type": "n_from_filter", "n": 1,
+                "filter": { "depts": ["MATH", "PHYS", "CHEM", "BIOL", "EESC", "STAT"],
+                            "minNumber": 100, "maxNumber": 399, "minCredits": 4 } },
+      "sourceQuote": "One additional course in mathematics or other natural sciences"
+    },
+    {
+      "id": "computational",
+      "label": "Computational analysis and programming",
+      "rule": { "type": "n_of", "n": 1, "options": [
+        "BME 221", "CHE 116", "ECE 114", "ME 160", "OPT 211"] },
+      "sourceQuote": "At least four-credits of a single-department computational analysis and programming course(s) related to the student's field of interest and offered by one of our engineering departments: BME 221; CHE 116; ECE 114; ME 160 and ME 260; OPT 211 and OPT 212",
+      "note": "The ME and OPT routes are two-course sequences; only the first course of each is modeled."
+    },
+    {
+      "id": "core",
+      "label": "Engineering core from two or more departments (8)",
+      "rule": { "type": "n_from_filter", "n": 8,
+                "filter": { "depts": ["BME", "CHE", "ECE", "ME", "OPT", "AME", "EAS", "CSC"],
+                            "minNumber": 100, "maxNumber": 399, "minCredits": 4 } },
+      "sourceQuote": "At least eight four-credit courses in engineering taken from two or more departments. These courses should be chosen in consultation with a faculty advisor and may include the student's upper-level writing courses and the aforementioned computational analysis course. At least half of the courses should be 200-level.",
+      "note": "The two-or-more-departments and half-at-200-level rules are not auto-enforced; the three technical sequences may overlap with these courses."
+    },
+    {
+      "id": "senior-design",
+      "label": "Senior thesis or senior design project",
+      "rule": { "type": "n_of", "n": 1, "options": [
+        "EAS 393", "AME 386", "BME 296", "CHE 255", "ECE 348", "ME 204", "OPT 310"] },
+      "sourceQuote": "A senior design project (EAS 393) is a capstone experience ... With pre-approval, students may request to replace EAS 393 with one of the following engineering senior design courses: AME 386 and 387; BME 296; CHE 255; ECE 348 and 349; ME 204 and 205; OPT 310 and 311"
+    }
+  ],
+  "upperLevelWriting": null
+}

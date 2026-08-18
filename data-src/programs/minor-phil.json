@@ -1,0 +1,34 @@
+{
+  "id": "minor-phil",
+  "type": "minor",
+  "name": "Philosophy",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "humanities",
+  "departments": ["PHIL"],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/phl/undergraduate/minor.html",
+  "sourcedOn": "2026-08-01",
+  "snapshot": "data-src/pages/phl/phl_undergraduate_minor.html",
+  "programChecks": { "totalCourses": 5, "minFromDepts": null, "max100Level": null },
+  "notes": [
+    "Five courses in philosophy, at least two of them advanced (above PHIL 202).",
+    "No more than two may be logic-science courses (PHIL 110, 199, 215, 216, 217, 249) - not auto-enforced."
+  ],
+  "requirementGroups": [
+    {
+      "id": "advanced",
+      "label": "Advanced philosophy courses above PHIL 202 (2)",
+      "rule": { "type": "n_from_filter", "n": 2,
+                "filter": { "depts": ["PHIL"], "minNumber": 203, "maxNumber": 399 } },
+      "sourceQuote": "At least two of the five must be advanced courses (above PHIL 202)"
+    },
+    {
+      "id": "any",
+      "label": "Philosophy courses (3 more)",
+      "rule": { "type": "n_from_filter", "n": 3,
+                "filter": { "depts": ["PHIL"], "minNumber": 101, "maxNumber": 399 } },
+      "sourceQuote": "Requirements: Five courses in philosophy, at least two of which are advanced courses (above PHIL 202)."
+    }
+  ]
+}

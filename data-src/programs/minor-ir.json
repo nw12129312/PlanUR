@@ -1,0 +1,75 @@
+{
+  "id": "minor-ir",
+  "type": "minor",
+  "name": "International Relations",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "social-sciences",
+  "departments": [
+    "INTR",
+    "PSCI"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/psc/undergraduate/ir-minor.html",
+  "sourcedOn": "2026-08-01",
+  "snapshot": "data-src/pages/psc/psc_undergraduate_ir-minor.html",
+  "minMajorGPA": 2.0,
+  "programChecks": {
+    "totalCourses": 6,
+    "minFromDepts": {
+      "depts": [
+        "INTR",
+        "PSCI"
+      ],
+      "n": 4
+    },
+    "max100Level": null
+  },
+  "notes": [
+    "Applies to the Class of 2021 and later; earlier classes may follow the old requirements, which are not modeled.",
+    "At least four of the six courses must be INTR or PSCI courses taken in residence. None may be taken S/F.",
+    "Courses used for tools of political analysis cannot also satisfy the core track or breadth.",
+    "The three IR core tracks are Governance of Nations, Peace and Conflict, and Politics/Policy/Development - the same track data the IR major uses."
+  ],
+  "requirementGroups": [
+    {
+      "id": "tools",
+      "label": "Tools of political analysis (2)",
+      "rule": {
+        "type": "n_of",
+        "n": 2,
+        "options": [
+          "PSCI 107",
+          "PSCI 200",
+          "PSCI 202W",
+          "PSCI 203W",
+          "PSCI 205",
+          "PSCI 281",
+          "PSCI 288"
+        ]
+      },
+      "sourceQuote": "Tools of Political Analysis (Two Courses): PSCI 107; PSCI 200: Data Analysis I; PSCI 202W: Argument in Political Science; PSCI 203W: Survey Research Methods; PSCI 205: Data Analysis II; PSCI 281: Formal Models in Political Science; PSCI 288: Game Theory"
+    },
+    {
+      "id": "core-track",
+      "label": "Core track (3 courses from one track)",
+      "rule": {
+        "type": "track_n_of",
+        "n": 3,
+        "tracksRef": "ir-tracks"
+      },
+      "sourceQuote": "Core Track (Three Courses from One Track): Governance of Nations; Peace and Conflict; Politics, Policy, and Development"
+    },
+    {
+      "id": "breadth",
+      "label": "Breadth (1 course outside your core track)",
+      "rule": {
+        "type": "breadth_outside_track",
+        "n": 1,
+        "trackGroupId": "core-track"
+      },
+      "sourceQuote": "Students must take at least six courses ... Core Track (Three Courses from One Track)",
+      "note": "NEEDS VERIFICATION - modeled on the political science minor's breadth rule; confirm the IR minor's sixth course requirement with the department."
+    }
+  ]
+}
