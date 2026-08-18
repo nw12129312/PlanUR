@@ -1,0 +1,46 @@
+{
+  "id": "minor-jpns",
+  "type": "minor",
+  "name": "Japanese",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "humanities",
+  "departments": [
+    "JPNS"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/mlc/undergraduate/japanese.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/mlc/mlc_undergraduate_japanese.html",
+  "programChecks": {
+    "totalCourses": 5,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Five courses of at least 4 credits, chosen with your undergraduate advisor.",
+    "TWO-CREDIT COURSES: one PAIR of two-credit courses (for example two conversational Japanese courses) may substitute for one 4-credit course. The two-credit courses are JPNS 114, 115, 203 and 204; the planner's 4-credit floor excludes them, so count such a pair yourself.",
+    "The summer program in Tokyo (JPNS 107 or JPNS 157) counts as either a language or a culture course.",
+    "EDUCATION ABROAD: up to one course per semester of education abroad in Japan may be applied, pre-approved by a Japanese Program advisor. TRANSFER: credit for up to one course from another institution may be applied; for language coursework you must demonstrate the matching level on the MLC Japanese placement test."
+  ],
+  "requirementGroups": [
+    {
+      "id": "courses",
+      "label": "Five Japanese language and culture courses",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 5,
+        "filter": {
+          "depts": [
+            "JPNS"
+          ],
+          "minNumber": 101,
+          "maxNumber": 399,
+          "minCredits": 4
+        }
+      },
+      "sourceQuote": "The Japanese minor consists of a total of five courses (of at least 6.0 and/or 4.0 credits) in Japanese language and culture to be selected in consultation with your undergraduate advisor."
+    }
+  ],
+  "upperLevelWriting": null
+}

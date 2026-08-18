@@ -1,0 +1,77 @@
+{
+  "id": "minor-epid",
+  "type": "minor",
+  "name": "Epidemiology",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "social-sciences",
+  "departments": [
+    "PHLT"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/ph/undergraduate/minors.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/ph/ph_undergraduate_minors.html",
+  "programChecks": {
+    "totalCourses": 6,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Six courses; fulfills the social sciences academic division of the Rochester Curriculum.",
+    "Students may major, OR minor, OR complete a cluster within the public health-related programs - not more than one.",
+    "NO MORE THAN ONE COURSE may overlap between a public health minor and another program of study.",
+    "STAT 212 was the older code for the introductory statistics requirement; STAT 180 is current."
+  ],
+  "requirementGroups": [
+    {
+      "id": "core",
+      "label": "Public health core",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "PHLT 101",
+          "PHLT 103"
+        ]
+      },
+      "sourceQuote": "Required Courses. PHLT 101: Introduction to Public Health I; PHLT 103: Concepts of Epidemiology"
+    },
+    {
+      "id": "stat",
+      "label": "Introductory statistics",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "STAT 180",
+          "STAT 212"
+        ]
+      },
+      "sourceQuote": "Plus one of the following: STAT 180: Intro to Applied Statistical Methodology; STAT 212: Applied Statistics I"
+    },
+    {
+      "id": "epi",
+      "label": "Three epidemiology courses",
+      "rule": {
+        "type": "n_of",
+        "n": 3,
+        "options": [
+          "PM 414",
+          "PM 415U",
+          "PM 413",
+          "PM 424",
+          "PM 424W",
+          "PM 451",
+          "PM 451W",
+          "PM 470",
+          "PM 489",
+          "PM 489W"
+        ]
+      },
+      "sourceQuote": "Plus three of the following: PM 414U: History of Epidemiology; PM 415U: Principles of Epidemiology; PM 413U: Field Epidemiology; PM 424U: Chronic Diseases Epidemiology; PM 451U: Infectious Disease Epidemiology; PM 470U: Environmental and Occupational Epidemiology; PM 489U: Injury Epidemiology and Emergency Care Research Methods",
+      "note": "PM COURSE NUMBERING: the department writes these with a 'U' suffix, but the catalog and the other public-health programs in this planner carry most of them without it. The catalog form is used so a placed course is recognized across programs."
+    }
+  ],
+  "upperLevelWriting": null,
+  "overlapCapOverride": 1
+}

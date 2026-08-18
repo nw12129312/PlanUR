@@ -1,0 +1,123 @@
+{
+  "type": "major",
+  "school": "sas",
+  "division": "natural-sciences",
+  "status": "ACTIVE",
+  "sourcedOn": "2026-08-01",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": [
+    "humanities",
+    "social-sciences"
+  ],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "id": "major-stat-bs",
+  "name": "Statistics",
+  "degree": "BS",
+  "departments": [
+    "STAT"
+  ],
+  "sourceUrl": "https://www.sas.rochester.edu/stt/undergraduate/bsrequirements.html",
+  "snapshot": "data-src/pages/stt/stt_undergraduate_bsrequirements.html",
+  "programChecks": {
+    "totalCourses": null,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "The BS core is eight courses and includes the multivariable calculus and linear algebra that the BA leaves out.",
+    "Double majors with Economics or Business may substitute ECON 231W for STAT 216."
+  ],
+  "requirementGroups": [
+    {
+      "id": "prereq-calc",
+      "label": "Prerequisite: calculus sequence",
+      "rule": {
+        "type": "sequence_one_of",
+        "sequences": [
+          [
+            "MATH 161",
+            "MATH 162"
+          ],
+          [
+            "MATH 141",
+            "MATH 142",
+            "MATH 143"
+          ],
+          [
+            "MATH 171",
+            "MATH 172"
+          ]
+        ]
+      },
+      "sourceQuote": "Choose one of the following calculus sequences: MATH 161 and MATH 162; MATH 141, MATH 142, and MATH 143; MATH 171 and MATH 172"
+    },
+    {
+      "id": "prereq-stat",
+      "label": "Prerequisite: introductory statistics",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "STAT 180",
+          "STAT 190",
+          "ECON 230",
+          "PSCI 200"
+        ]
+      },
+      "sourceQuote": "Choose one of the following introductory statistics courses: STAT 180; STAT 190; ECON 230: Economic Statistics; PSCI 200: Data Analysis I"
+    },
+    {
+      "id": "core",
+      "label": "Core courses (8)",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "MATH 164",
+          "MATH 165",
+          "STAT 201",
+          "STAT 203",
+          "STAT 216",
+          "STAT 217",
+          "STAT 223",
+          "STAT 226W"
+        ]
+      },
+      "sourceQuote": "Core Courses (Eight Courses): MATH 164: Multidimensional Calculus; MATH 165: Linear Algebra with Differential Equations; STAT/MATH 201; STAT/MATH 203; STAT 216; STAT 217; STAT 223: Bayesian Inference; STAT 226W: Linear Models"
+    },
+    {
+      "id": "computational",
+      "label": "Computational courses (2)",
+      "rule": {
+        "type": "n_of",
+        "n": 2,
+        "options": [
+          "STAT 275",
+          "STAT 275W",
+          "STAT 276",
+          "STAT 276W",
+          "STAT 277",
+          "CSC 171",
+          "CSC 172"
+        ]
+      },
+      "sourceQuote": "Computational Courses (Two Courses). Choose two of the following: STAT 275(W): R Programming; STAT 276(W): Statistical Computation in R; STAT 277; CSC 171; CSC 172. It is highly recommended to have at least one STAT-listed computing course for the major."
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "STAT 226W plus a second W course",
+    "rule": {
+      "type": "n_from_filter",
+      "n": 2,
+      "filter": {
+        "depts": [
+          "STAT"
+        ],
+        "minNumber": 200,
+        "maxNumber": 399,
+        "wOnly": true
+      }
+    },
+    "sourceQuote": "STAT 226W: Linear Models"
+  }
+}

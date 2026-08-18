@@ -1,0 +1,85 @@
+{
+  "id": "minor-hpol",
+  "type": "minor",
+  "name": "Health Policy",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "social-sciences",
+  "departments": [
+    "PHLT",
+    "ECON",
+    "HIST"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/ph/undergraduate/minors.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/ph/ph_undergraduate_minors.html",
+  "programChecks": {
+    "totalCourses": 6,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Six courses; fulfills the social sciences academic division of the Rochester Curriculum. This is the health policy MINOR - the major of the same name is a separate entry (major-hpol-ba).",
+    "Students may major, OR minor, OR complete a cluster within the public health-related programs - not more than one.",
+    "NO MORE THAN ONE COURSE may overlap between a public health minor and another program of study."
+  ],
+  "requirementGroups": [
+    {
+      "id": "core",
+      "label": "Public health core",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "PHLT 101",
+          "PHLT 116"
+        ]
+      },
+      "sourceQuote": "Required Courses. PHLT 101: Introduction to Public Health I; PHLT 116: Introduction to the U.S Health System"
+    },
+    {
+      "id": "law",
+      "label": "Health law and policy",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "PHLT 230",
+          "PHLT 236"
+        ]
+      },
+      "sourceQuote": "Plus one of the following: PHLT 230: Public Health Law and Policy; PHLT 236: Health Care and Law"
+    },
+    {
+      "id": "electives",
+      "label": "Three health policy electives",
+      "rule": {
+        "type": "n_of",
+        "n": 3,
+        "options": [
+          "ECON 207",
+          "ECON 230",
+          "PSCI 205",
+          "ECON 236",
+          "HIST 119",
+          "HIST 203",
+          "HIST 242W",
+          "HIST 373W",
+          "HIST 374W",
+          "MHB 473U",
+          "MHB 480U",
+          "PHLT 232",
+          "PHLT 234W",
+          "PHLT 238",
+          "PSCI 243",
+          "PSCI 246",
+          "PSCI 247"
+        ]
+      },
+      "sourceQuote": "Plus three of the following: ECON 207: Intermediate Microeconomics; ECON 230: Economic Statistics or PSCI 205: Data Analysis II; ECON 236: Economics of Health; HIST 119: The Black Death; HIST 203: Childhood, Health, and the Formation of U.S. Social Policy; HIST 242W: Unequal, Unjust: 100 Years of Racism in American Public Health; HIST 373W: Health Policy and Politics; HIST 374W: Pandemics, Politics, and Policis in the U.S.; MHB 473U: Unsafe America (open to juniors and seniors); MHB 480U: Disabled Body in Medicine and Culture (open to juniors and seniors); PHLT 232: Environmental Health Policy; PHLT 234W: Maternal and Child Health Policy; PHLT 238: Environmental Health and Justice in the Rochester Community; PSCI 243: Environmental Politics or PSCI 246: Environmental Law and Policy or PSCI 247: Green Markets*. *Only one of the three courses listed can be used as an elective",
+      "note": "Only ONE of PSCI 243 / PSCI 246 / PSCI 247 may be used as an elective."
+    }
+  ],
+  "upperLevelWriting": null,
+  "overlapCapOverride": 1
+}

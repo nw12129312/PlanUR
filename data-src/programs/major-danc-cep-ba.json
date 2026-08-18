@@ -1,0 +1,247 @@
+{
+  "type": "major",
+  "degree": "BA",
+  "school": "sas",
+  "division": "humanities",
+  "status": "ACTIVE",
+  "sourcedOn": "2026-08-14",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": [
+    "social-sciences",
+    "natural-sciences"
+  ],
+  "overlapCapOverride": null,
+  "sourceUrl": "https://www.sas.rochester.edu/dan/undergraduate/major.html",
+  "snapshot": "data-src/pages/dan/dan_undergraduate_major.html",
+  "id": "major-danc-cep-ba",
+  "name": "Creative Expression and Performance",
+  "departments": [
+    "DANC"
+  ],
+  "totalCreditsOverride": null,
+  "programChecks": {
+    "totalCourses": null,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "The dance BA offers two concentrations: Creative Expression and Performance, and Dance Studies. Each is encoded as its own program here because the university's program list names them separately.",
+    "This concentration comprises at least 54 credits.",
+    "Requirements are stated in CREDITS, and many DANC courses are 1-2 credits rather than 4. Each group below converts its credit minimum into a course count using the modal credit value of that group's own option list; a student who picks larger or smaller courses will need fewer or more than the count shown. Confirm credit totals with the program.",
+    "CREDIT GAP - NEEDS VERIFICATION: the five stated category minimums sum to 46 credits (8 foundations + 16 embodied practice + 12 critical thinking + 6 somatic awareness + 4 seminar), but the concentration is stated as at least 54 credits. About 8 further credits of dance coursework are needed beyond the category minimums modeled here.",
+    "Courses that appear in more than one category can only be used to fulfill one category (the groups below do not share courses).",
+    "Foundations lists an OPTIONAL fourth bullet - 'choose up to one' of DANC 170, DANC 241/242, or DANC 288 (4 credits). It is not modeled as required because DANC 160 + DANC 278 + DANC 241/242 already meets the 8-credit foundations minimum.",
+    "Seminar/capstone also lists optional courses DANC 260 (Interdisciplinary Dance Studies) and DANC 391 (Independent Study); the senior capstone may be a paper, project, service or community-based activity, choreography and/or performance.",
+    "NOT A COURSE REQUIREMENT: Experience in Technical Production - students must complete one red job (13+ hours), one yellow job (6-12 hours) and one green job (0-5 hours) on program productions.",
+    "NOT A COURSE REQUIREMENT: students enrolled in any dance course must attend at least two program-sponsored performances and two program-sponsored workshops each semester.",
+    "The catalog splits DANC 250 (Contemporary Dance: Context and Practice) into sections DANC 250A and DANC 250B; both are listed as options wherever the page says DANC 250. Likewise DANC 365 is catalogued as DANC 365A/B/C."
+  ],
+  "requirementGroups": [
+    {
+      "id": "foundations",
+      "label": "Foundations",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "DANC 160",
+          "DANC 278"
+        ]
+      },
+      "sourceQuote": "Required Courses Foundations - Minimum of 8 credits required: DANC 160: Dance Improvisation (2 credits) (Suggested as a pre-req to Choreography); DANC 278: Choreography (4 credits)"
+    },
+    {
+      "id": "production",
+      "label": "Dance production or lighting design",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "DANC 241",
+          "DANC 242"
+        ]
+      },
+      "sourceQuote": "DANC 241: Introduction to Dance Production (4 credits) or DANC 242: Lighting Design for Dance (2 credits)"
+    },
+    {
+      "id": "embodied-core",
+      "label": "Embodied practice: two 4-credit practice courses",
+      "rule": {
+        "type": "n_of",
+        "n": 2,
+        "options": [
+          "DANC 204",
+          "DANC 250A",
+          "DANC 250B",
+          "DANC 251",
+          "DANC 252",
+          "DANC 253",
+          "DANC 254",
+          "DANC 285"
+        ]
+      },
+      "sourceQuote": "Embodied Practice - Minimum of 16 credits required. Students are required to take at least 16 credits of embodied practice courses. Choose two or more courses: DANC 204: Contact Improvisation and Culture (4 credits); DANC 250: Contemporary Dance: Context and Practice (4 credits); DANC 251: Jazz Dance: Context and Practice (4 credits); DANC 252: Intermediate Ballet: Context and Practice (4 credits); DANC 253: West African Dance: Context and Practice (4 credits); DANC 254: Tap Dance in American History: Context and Practice (4 credits); DANC 285: Experience Guinea (4 credits)",
+      "note": "Every course in this list is 4 credits, so two of them supply 8 of the 16 required embodied-practice credits."
+    },
+    {
+      "id": "embodied-additional",
+      "label": "Embodied practice: remaining 8 credits",
+      "rule": {
+        "type": "n_of",
+        "n": 4,
+        "options": [
+          "DANC 110",
+          "DANC 116",
+          "DANC 126",
+          "DANC 140",
+          "DANC 145",
+          "DANC 150",
+          "DANC 171",
+          "DANC 181",
+          "DANC 182",
+          "DANC 185",
+          "DANC 187",
+          "DANC 188",
+          "DANC 189",
+          "DANC 190",
+          "DANC 197",
+          "DANC 212",
+          "DANC 215",
+          "DANC 240",
+          "DANC 266",
+          "DANC 267",
+          "DANC 268",
+          "DANC 269",
+          "DANC 271",
+          "DANC 273",
+          "DANC 281",
+          "DANC 283",
+          "DANC 290",
+          "DANC 365A",
+          "DANC 365B",
+          "DANC 365C"
+        ]
+      },
+      "sourceQuote": "Additional embodied practice courses: DANC 110; DANC 116; DANC 126; DANC 140; DANC 145; DANC 150; DANC 171; DANC 181; DANC 182; DANC 185; DANC 187; DANC 188; DANC 189; DANC 190; DANC 197; DANC 212/MUR 210; DANC 215; DANC 240; DANC 266; DANC 267; DANC 268; DANC 269; DANC 271; DANC 273; DANC 281; DANC 283; DANC 290; DANC 365",
+      "note": "Almost every course here is 2 credits, so four of them supply the remaining 8 embodied-practice credits. Two more 4-credit courses from the list above would do the same; the additional list is not mandatory."
+    },
+    {
+      "id": "ct-creative",
+      "label": "Critical thinking: creative expression (4 credits)",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "DANC 243",
+          "DANC 377",
+          "DANC 378",
+          "DANC 379",
+          "DANC 380",
+          "DANC 104",
+          "DANC 109",
+          "DANC 237",
+          "DANC 279",
+          "DANC 385",
+          "DANC 397"
+        ]
+      },
+      "sourceQuote": "Critical Thinking - Minimum of 12 credits. All dance majors are required to present work and/or participate in public performance through one or more of the following courses. Choose at least four credits in each of the following required categories for a total of 12 credits. Creative expression (choose at least 4 credits): DANC 104 (2); DANC 109 (2); DANC 237 (2); DANC 243/SART 243/FMST 223/DMST 281 (4); DANC 279 (1); DANC 377 (4); DANC 378 (4); DANC 379 (4); DANC 380 (3); DANC 385 (2); DANC 397 (1)",
+      "note": "This list mixes 1-4 credit courses; the 4-credit options are listed first because one of them satisfies the category outright. Picking smaller courses means taking more of them to reach 4 credits."
+    },
+    {
+      "id": "ct-citizenship",
+      "label": "Critical thinking: citizenship (4 credits)",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "DANC 202",
+          "DANC 233",
+          "DANC 235",
+          "DANC 247",
+          "DANC 249",
+          "DANC 296",
+          "DANC 305"
+        ]
+      },
+      "sourceQuote": "Citizenship (choose at least 4 credits): DANC 202: Dance and Peacebuilding (4 credits); DANC 233: Climate Interventions: Performing Arts + New Media (4 credits); DANC 247: Moving Memories (4 credits); DANC 249: The Art of Dance, Change, and Community Practice (4 credits); DANC 296: The Art of Teaching Dance (4 credits); DANC 305: Dance and Interdependent Community (4 credits); DANC 235: Change: Welcomed, Denied, Inevitable (4 credits)"
+    },
+    {
+      "id": "ct-context",
+      "label": "Critical thinking: context and cultural competency (4 credits)",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "DANC 155",
+          "DANC 195",
+          "DANC 228",
+          "DANC 248"
+        ]
+      },
+      "sourceQuote": "Context and cultural competency (choose at least 4 credits): DANC 155: Social Dance: A Cultural History (4 credits); DANC 195: World Dance (4 credits); DANC 228: Dance History: Philosophy, Aesthetics and Culture (4 credits); DANC 248: Arts and Activism (4 credits)"
+    },
+    {
+      "id": "somatic-anchor",
+      "label": "Somatic awareness anchor",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "DANC 200",
+          "DANC 230"
+        ]
+      },
+      "sourceQuote": "Somatic Awareness - Minimum of 6 credits required. Choose at least one of the following: DANC 200: Anatomy and Kinesiology (4 credits); DANC 230: Living Anatomy, Living Yoga (4 credits)"
+    },
+    {
+      "id": "somatic-additional",
+      "label": "Somatic awareness: remaining 2 credits",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "DANC 106",
+          "DANC 114",
+          "DANC 115",
+          "DANC 130",
+          "DANC 167M",
+          "DANC 170",
+          "DANC 208",
+          "DANC 209",
+          "DANC 211",
+          "DANC 218",
+          "DANC 225",
+          "DANC 245",
+          "DANC 258",
+          "DANC 288"
+        ]
+      },
+      "sourceQuote": "Additional somatic awareness courses: DANC 106: Pilates (1 credit); DANC 114: Intro to Yoga (2 credits); DANC 115: Moving Into Stillness (2 credits); DANC 130: Conditioning for the Dancer and Athlete (2 credits); DANC 167: Ecolinguistics: Language and Movement (4 credits); DANC 170: Embodied Resourcing Through Somatic Practices (4 credits); DANC 208: Tai Chi: Movement Art and Culture (2 credits); DANC 209: Qi Gong Way to Health (2 credits); DANC 211: Tai Chi: Explorations in Qi (4 credits); DANC 218: Into the Present Moment (4 credits); DANC 225: Yoga II: Continuing the Journey (2 credits); DANC 245: Dance/Movement Therapy Foundations (4 credits); DANC 258: Resilient Activism Embodied Practices for Effective Systemic Change (2 credits); DANC 288: Movement Analysis and Integration (4 credits)",
+      "note": "One 2-credit course from this list completes the 6-credit somatic-awareness minimum on top of the 4-credit anchor above."
+    },
+    {
+      "id": "capstone",
+      "label": "Senior seminar/capstone (4 credits)",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "DANC 388W",
+          "DANC 389W"
+        ]
+      },
+      "sourceQuote": "Seminar/Capstone Courses - 4 credits required. DANC 388W: Senior Seminar A (fall) and DANC 389W: Senior Seminar B (spring) /Project* (4 credits total; 2 in fall semester and 2 in spring semester, starting fall 2023)"
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "Senior seminar pairing (DANC 388W + DANC 389W)",
+    "rule": {
+      "type": "all_of",
+      "courses": [
+        "DANC 388W",
+        "DANC 389W"
+      ]
+    },
+    "note": "The department states the upper-level writing requirement is built into the array of courses in the dance major, and that DANC 388W/389W is where the requirement is formally attended to: students submit drafts and receive feedback before the final senior thesis is due.",
+    "sourceQuote": "The upper-level writing requirement is built into the array of courses in the dance major, where reflective and research-based writing is inherent. ... DANC 388W Senior Seminar A (fall) and DANC 389W Senior Seminar B (spring) is where we pay attention to the writing requirement."
+  }
+}

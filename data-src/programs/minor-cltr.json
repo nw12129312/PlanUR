@@ -1,0 +1,58 @@
+{
+  "id": "minor-cltr",
+  "type": "minor",
+  "name": "Comparative Literature",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "humanities",
+  "departments": [
+    "CLTR"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/mlc/undergraduate/complit.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/mlc/mlc_undergraduate_complit.html",
+  "programChecks": {
+    "totalCourses": 5,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Five courses: CLTR 200 plus four CLTR electives.",
+    "At least one elective must be a 200-level course conducted in an MLC language area."
+  ],
+  "requirementGroups": [
+    {
+      "id": "core",
+      "label": "Core course",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "CLTR 200"
+        ]
+      },
+      "sourceQuote": "Minor Requirements: One core course: CLTR 200: Topics in Critical Thinking"
+    },
+    {
+      "id": "electives",
+      "label": "Four comparative literature electives",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 4,
+        "filter": {
+          "depts": [
+            "CLTR"
+          ],
+          "minNumber": 100,
+          "maxNumber": 399,
+          "exclude": [
+            "CLTR 200"
+          ]
+        }
+      },
+      "sourceQuote": "Plus four electives, which must: Have CLTR or section prefix; Include at least one 200-level course conducted in an MLC language area.",
+      "note": "At least one of the four must be a 200-level course conducted in an MLC language area - the planner cannot check the language of instruction."
+    }
+  ],
+  "upperLevelWriting": null
+}

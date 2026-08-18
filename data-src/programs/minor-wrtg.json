@@ -1,0 +1,129 @@
+{
+  "id": "minor-wrtg",
+  "type": "minor",
+  "name": "Writing Studies",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "humanities",
+  "departments": [
+    "WRTG"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://writing.rochester.edu/undergraduate/minor.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/wrt/undergraduate_minor.html",
+  "programChecks": {
+    "totalCourses": 6,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "At least six courses including one core course, minimum 22 credits.",
+    "FOUR TRACKS: General Writing Studies (take at least one course from each of the other three tracks) plus three specialized tracks - Language/Linguistics/Writing, Digital and Multimodal Communication, and Theory and Practice in Writing and Speaking - each of which requires 3 of the 6 courses from that track. THE GENERAL TRACK IS WHAT IS ENCODED HERE. For a specialized track, take three courses from your track instead of one from each.",
+    "WRTG 103, WRTG 104 and all versions of WRTG 105 may NOT be used for the minor.",
+    "Courses cannot be taken pass/fail and you must earn at least a 2.0 average in them.",
+    "No major and minor may overlap by more than two courses; no two minors may overlap by more than two courses.",
+    "PROFESSIONAL WRITING (27X) COURSES: no more than one 27X course counts toward the minor, and all 27X courses are two credits - which is why the minor states a 22-credit floor alongside the six-course count. They all require the primary writing requirement first.",
+    "WRTG 267 (Legal Writing and Analysis) is temporarily discontinued and WRTG 290B is not currently offered."
+  ],
+  "requirementGroups": [
+    {
+      "id": "core",
+      "label": "One core course",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "WRTG 250",
+          "WRTG 251",
+          "WRTG 252",
+          "WRTG 253",
+          "WRTG 265",
+          "WRTG 282"
+        ]
+      },
+      "sourceQuote": "Core Courses. Analysis of writing at different textual levels (these courses also include practice). Students must select at least one course from the following: WRTG 250/LING 161: Modern English Grammar; WRTG 251/LING 160/ENGL 288: The Playful Sentence; WRTG 252/ENGL 136: Principles and Practices of Copyediting; WRTG 253/BCSC 163: Cognition & Writing; WRTG 265/PHIL 106/ENGL 284: Writing Across the Disciplines: Argument and Evidence; WRTG 282: Research Methods in Writing Studies"
+    },
+    {
+      "id": "lang-track",
+      "label": "Language, linguistics, and writing",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "WRTG 250",
+          "WRTG 251",
+          "WRTG 253",
+          "WRTG 263",
+          "WRTG 290B",
+          "LING 162"
+        ]
+      },
+      "sourceQuote": "Language, Linguistics, and Writing Track (3 of the 6 courses must be from this track): WRTG 250; WRTG 251; WRTG 253; WRTG 263/ENGL 289/LTST 263: Translation: Interpreting & Adapting; WRTG 290B: Topics: Writing About and With Artificial Intelligence; LING 162/AAAS 162: Modern African-American English"
+    },
+    {
+      "id": "digital-track",
+      "label": "Digital and multimodal communication",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "WRTG 247",
+          "WRTG 260",
+          "WRTG 261",
+          "WRTG 263",
+          "WRTG 290A",
+          "WRTG 290B",
+          "WRTG 370",
+          "BUS 201",
+          "DMST 200"
+        ]
+      },
+      "sourceQuote": "Digital and Multimodal Communication Track (3 of the 6 courses must be from this track): WRTG 247; WRTG 260/DMST 260; WRTG 261/ENGL 288/DMST 250; WRTG 263/ENGL 289/LTST 263; WRTG 290A: Topics: Extended Reality, Communication, and the Metaverse; WRTG 290B (not currently offered); WRTG 370: Creating Digital Identities; BUS 201: Impactful Presentations (valid starting Fall 2026); DMST 200: Digital Portfolio (valid through Spring 2026)"
+    },
+    {
+      "id": "practice-track",
+      "label": "Theory and practice in writing and speaking",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "BUS 201",
+          "WRTG 245",
+          "WRTG 247",
+          "WRTG 252",
+          "WRTG 262",
+          "WRTG 265",
+          "WRTG 266",
+          "WRTG 267",
+          "WRTG 370",
+          "WRTG 396"
+        ]
+      },
+      "sourceQuote": "Theory and Practice in Writing and Speaking (3 of the 6 courses must be from this track): BUS 201; WRTG 245/ENGL 285; WRTG 247; WRTG 252/ENGL 136; WRTG 262/BIOL 274W; WRTG 265/PHIL 106/ENGL 284; WRTG 266/GSWS 276 prior to F2023/PHIL 108 beginning F2024; WRTG 267: Legal Writing and Analysis (temporarily discontinued); WRTG 370; WRTG 396/BIOL 396W"
+    },
+    {
+      "id": "electives",
+      "label": "Two further writing-studies courses",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 2,
+        "filter": {
+          "depts": [
+            "WRTG"
+          ],
+          "minNumber": 106,
+          "maxNumber": 399,
+          "exclude": [
+            "WRTG 103",
+            "WRTG 104",
+            "WRTG 105"
+          ]
+        }
+      },
+      "sourceQuote": "Minor requirements: at least 6 courses including 1 core course, minimum 22 credits.",
+      "note": "Students may apply two non-WSAP writing-focused courses (AHST 209, BCSC 207, ENGL 132, ENGL 134, ENGL 135 and others on the page) toward the minor, but no more than one creative-writing course."
+    }
+  ],
+  "upperLevelWriting": null
+}

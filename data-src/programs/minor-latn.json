@@ -1,0 +1,42 @@
+{
+  "id": "minor-latn",
+  "type": "minor",
+  "name": "Latin",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "humanities",
+  "departments": [
+    "LATN"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/rel/undergraduate/minors.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/rel/rel_undergraduate_minors.html",
+  "programChecks": {
+    "totalCourses": 6,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Six LATN courses; the elementary sequence (LATN 101 and 102) counts."
+  ],
+  "requirementGroups": [
+    {
+      "id": "courses",
+      "label": "Six Latin courses",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 6,
+        "filter": {
+          "depts": [
+            "LATN"
+          ],
+          "minNumber": 100,
+          "maxNumber": 399
+        }
+      },
+      "sourceQuote": "Minor In Latin: Six courses in Latin (LATN); may include 101 and 102."
+    }
+  ],
+  "upperLevelWriting": null
+}

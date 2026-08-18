@@ -1,0 +1,215 @@
+{
+ "id": "biol-bs-clintrans",
+ "type": "major",
+ "name": "Clinical and Translational Sciences",
+ "degree": "BS",
+ "school": "sas",
+ "division": "natural-sciences",
+ "departments": [
+  "BIOL",
+  "CTSC"
+ ],
+ "status": "ACTIVE",
+ "sourceUrl": "https://www.sas.rochester.edu/bio/undergraduate/cts.html",
+ "sourcedOn": "2026-07-06",
+ "last_verified": "2026-07-06",
+ "snapshot": "data-src/pages/bio/bio_undergraduate_cts.html",
+ "clustersRequired": 2,
+ "allowedClusterDivisions": [
+  "humanities",
+  "social-sciences"
+ ],
+ "totalCreditsOverride": null,
+ "overlapCapOverride": null,
+ "apIbCreditExcluded": true,
+ "minMajorGPA": 2.0,
+ "minPctFromHomeInstitution": 50,
+ "notes": [
+  "AP Biology (4/5) and IB Biology HL (6/7) earn general credit only - never major/minor requirements (encoded: apIbCreditExcluded).",
+  "UR courses must fulfill at least half the concentration requirements; ancillary-field courses are exempt (encoded: minPctFromHomeInstitution + per-group ancillary flags).",
+  "Maintain a 2.0 GPA within the major, excluding allied/ancillary field courses (minMajorGPA - informational: the app does not track grades).",
+  "Eight full-credit required courses (CTSC 299 spans two semesters), one 1-credit lab, and four electives; satisfies the natural science division of the Rochester Curriculum per the page.",
+  "Declaration requires three of PHLT 103 / STAT 180 / CHEM 203 / BIOL 198 (or 190) / BIOL 204 with a 2.0 average; S/F-graded courses cannot apply.",
+  "Transfer credit must be approved BEFORE taking courses elsewhere, including ancillary requirements."
+ ],
+ "requirementGroups": [
+  {
+   "id": "foundations",
+   "label": "Foundational courses",
+   "rule": {
+    "type": "all_of",
+    "courses": [
+     "BIOL 110L",
+     "BIOL 111L",
+     "CHEM 131",
+     "CHEM 132"
+    ]
+   },
+   "sourceQuote": "All of the following courses: BIOL 110: Principles of Biology I; BIOL 111: Principles of Biology II; CHEM 131; CHEM 132"
+  },
+  {
+   "id": "core-fixed",
+   "label": "Core: epidemiology, statistics, physiology",
+   "rule": {
+    "type": "all_of",
+    "courses": [
+     "PHLT 103",
+     "STAT 180",
+     "BIOL 204"
+    ]
+   },
+   "sourceQuote": "Six of the following courses: PHLT 103: Concepts of Epidemiology; STAT 180; ... BIOL 204: Principles of Human Physiology"
+  },
+  {
+   "id": "core-ethics",
+   "label": "Core: ethics",
+   "rule": {
+    "type": "n_of",
+    "n": 1,
+    "options": [
+     "PHIL 225",
+     "PHIL 228"
+    ]
+   },
+   "sourceQuote": "PHIL 225: Medical Ethics or PHIL 228: Public Health Ethics (instructor permission required)"
+  },
+  {
+   "id": "core-orgo",
+   "label": "Core: organic chemistry I",
+   "rule": {
+    "type": "n_of",
+    "n": 1,
+    "options": [
+     "CHEM 203",
+     "CHEM 171"
+    ]
+   },
+   "sourceQuote": "CHEM 203: Organic Chemistry I or CHEM 171: First-Year Organic Chemistry I"
+  },
+  {
+   "id": "core-genetics",
+   "label": "Core: genetics",
+   "rule": {
+    "type": "n_of",
+    "n": 1,
+    "options": [
+     "BIOL 198",
+     "BIOL 190"
+    ]
+   },
+   "sourceQuote": "BIOL 198: Principles of Genetics or BIOL 190: Genetics: From Mendel to Molecules"
+  },
+  {
+   "id": "seminar",
+   "label": "Research seminar (two semesters)",
+   "rule": {
+    "type": "all_of",
+    "courses": [
+     "CTSC 299",
+     "CTSC 299W"
+    ]
+   },
+   "sourceQuote": "Plus both of the following: CTSC 299W: Research Seminar in Translational Sciences; CTSC 299 (CTS juniors or seniors only)"
+  },
+  {
+   "id": "orgo-lab",
+   "label": "Organic chemistry lab (1 credit)",
+   "rule": {
+    "type": "n_of",
+    "n": 1,
+    "options": [
+     "CHEM 207",
+     "CHEM 173"
+    ]
+   },
+   "sourceQuote": "Plus one of the following one credit labs: CHEM 207: Organic Chem I: Lab; CHEM 173: First-Year Organic Chem I Lab"
+  },
+  {
+   "id": "elective-clinical",
+   "label": "Elective: clinical research methods (1+)",
+   "rule": {
+    "type": "n_of",
+    "n": 1,
+    "options": [
+     "STAT 276",
+     "CSC 161",
+     "DSCC 201",
+     "BIOL 253L",
+     "DSCC 210",
+     "PM 415U",
+     "PM 488",
+     "BST 465"
+    ]
+   },
+   "sourceQuote": "Choose at least one from this group: STAT 276; CSC 161; DSCC 201 or BIOL 253; DSCC 210; PM 415U; PM 488; BST 465"
+  },
+  {
+   "id": "elective-population",
+   "label": "Elective: population sciences (exactly 1)",
+   "rule": {
+    "type": "n_of",
+    "n": 1,
+    "options": [
+     "PHLT 116",
+     "PHLT 236",
+     "HIST 383W",
+     "PM 412",
+     "PM 414",
+     "PM 418",
+     "PM 424",
+     "PM 451",
+     "PM 489",
+     "PHLT 394E"
+    ]
+   },
+   "sourceQuote": "Choose only one from this group: PHLT 116; PHLT 236; PHLT 216 (valid until spring 2022); HIST 383W; PM 412; PM 414; PM 418; PM 424; PM 451; PM 489; PHLT 394E",
+   "note": "The choose-ONLY-one cap is honored by giving the flexible slots no population-sciences options."
+  },
+  {
+   "id": "elective-flex",
+   "label": "Electives: two more (clinical methods or biomedical sciences)",
+   "rule": {
+    "type": "n_of",
+    "n": 2,
+    "options": [
+     "STAT 276",
+     "CSC 161",
+     "DSCC 201",
+     "BIOL 253L",
+     "DSCC 210",
+     "PM 415U",
+     "PM 488",
+     "BST 465",
+     "CHEM 204",
+     "CHEM 172",
+     "BIOL 202",
+     "BIOL 210",
+     "BIOL 222",
+     "BIOL 226",
+     "BIOL 250",
+     "MBI 220",
+     "MBI 221W"
+    ]
+   },
+   "sourceQuote": "Students must take a total of FOUR of the following, with at least one from clinical research methods and one from population sciences. Biomedical Sciences Electives: CHEM 204 or CHEM 172; BIOL 202; BIOL 210; BIOL 222; BIOL 226; BIOL 250; MBI 220; MBI 221W"
+  }
+ ],
+ "upperLevelWriting": {
+  "label": "ULW: CTSC 299W plus one more W course in the major",
+  "rule": {
+   "type": "n_of",
+   "n": 2,
+   "options": [
+    "CTSC 299W",
+    "HIST 383W",
+    "PM 418W",
+    "PM 424W",
+    "PM 451W",
+    "PM 489W",
+    "MBI 221W"
+   ]
+  },
+  "sourceQuote": "Students will be required to register for two upper-level writing courses within this major, one of which is CTSC 299W: Research Seminar in Translational Sciences.",
+  "note": "CTSC 299W is required as one of the two (also part of the seminar requirement); PM W-sections cap at five students."
+ }
+}

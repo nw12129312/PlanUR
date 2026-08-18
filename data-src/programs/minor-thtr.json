@@ -1,0 +1,132 @@
+{
+  "id": "minor-thtr",
+  "type": "minor",
+  "name": "Theater",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "humanities",
+  "departments": [
+    "ENGL",
+    "THTR"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/eng/undergraduate/minors.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/eng/eng_undergraduate_minors.html",
+  "programChecks": {
+    "totalCourses": 6,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "A minimum of 24 credits across three categories - six four-credit courses. Offered by the International Theatre Program in partnership with the Department of English.",
+    "COURSE RENUMBERING - READ THIS: the minor page states 'Course numbers and prefixes were updating in Summer of 2026. Course titles remained the same.' The 2025-26 catalog this planner was built from contains NO THTR courses at all, so every option list below carries BOTH the new THTR number AND the old ENGL number for the same course, matched by the titles the theater MAJOR page still lists (for example THTR 101 Intro to Theater = ENGL 184/185; THTR 290 Plays in Performance = ENGL 292/293/294/295; THTR 295 Stage Management = ENGL 296/297; THTR 143 Improvisation = ENGL 164). The THTR codes will resolve once the catalog is re-harvested. A few new courses have no old equivalent: THTR 122 Costume Production, THTR 142 Auditioning, THTR 150 Stage Combat, THTR 153 Acting with Objects, THTR 260 and THTR 270.",
+    "THTR 298 (Performance Lab) and THTR 392 (Practicum: Advanced Stage Management) do NOT count toward the minor.",
+    "All four English minors require a minimum of six courses, five of which must be taken at the University of Rochester, and no more than two courses in your major may overlap with the minor.",
+    "Students who study theater abroad in England can usually apply those courses toward the minor.",
+    "The Theater MAJOR is a separate entry (major-thtr-ba) and is still specified entirely in ENGL numbers.",
+    "Other courses in the English department relating to drama and/or theater may be valid additions - contact the director of undergraduate studies."
+  ],
+  "requirementGroups": [
+    {
+      "id": "production",
+      "label": "Production and performance (two productions, 8 credits)",
+      "rule": {
+        "type": "n_of",
+        "n": 2,
+        "options": [
+          "THTR 101",
+          "ENGL 184",
+          "ENGL 185",
+          "THTR 290",
+          "ENGL 292",
+          "ENGL 293",
+          "ENGL 294",
+          "ENGL 295",
+          "THTR 295",
+          "ENGL 296",
+          "ENGL 297"
+        ]
+      },
+      "sourceQuote": "The theater minor requires a minimum of 24 credits from the following three categories. Participation in at least two productions, earning at least eight credits in Production and Performance Courses (either onstage or backstage): THTR 101: Intro to Theater; THTR 290: Plays in Performance; THTR 295: Stage Management"
+    },
+    {
+      "id": "method",
+      "label": "Method and performance (8 credits)",
+      "rule": {
+        "type": "n_of",
+        "n": 2,
+        "options": [
+          "THTR 100",
+          "ENGL 123",
+          "THTR 121",
+          "ENGL 170",
+          "ENGL 171",
+          "THTR 122",
+          "THTR 123",
+          "ENGL 124",
+          "THTR 124",
+          "ENGL 172",
+          "ENGL 173",
+          "THTR 130",
+          "ENGL 154",
+          "ENGL 155",
+          "THTR 140",
+          "ENGL 174",
+          "ENGL 175",
+          "THTR 141",
+          "ENGL 279",
+          "THTR 142",
+          "THTR 143",
+          "ENGL 164",
+          "THTR 144",
+          "ENGL 176",
+          "THTR 145",
+          "ENGL 177",
+          "THTR 150",
+          "THTR 151",
+          "ENGL 165",
+          "THTR 152",
+          "ENGL 290",
+          "THTR 153",
+          "THTR 180",
+          "ENGL 180",
+          "THTR 200",
+          "ENGL 278",
+          "THTR 221",
+          "ENGL 270",
+          "THTR 240",
+          "ENGL 272",
+          "THTR 241",
+          "ENGL 273",
+          "THTR 242",
+          "ENGL 291",
+          "THTR 260",
+          "THTR 270",
+          "THTR 360",
+          "ENGL 360",
+          "ENGL 252"
+        ]
+      },
+      "sourceQuote": "Eight credits of theater Method and Performance Courses: THTR 100: Playwriting; THTR 121: Technical Theater; THTR 122: Costume Production; THTR 123: Intro to Lighting for the Stage; THTR 124: Intro to Sound for the Stage; THTR 130: Intro to Design for the Stage (2 credits); THTR 140: Acting I; THTR 141: Consent and Performance (2 credits); THTR 142: Auditioning for Live Theater & Film (2 credits); THTR 143: Improvisation; THTR 144: Movement for the Actor; THTR 145: The Actor's Voice; THTR 150: Stage Combat (2 credits); THTR 151: Acting Comedy; THTR 152: Acting for Camera; THTR 153: Acting with Objects: Puppetry; THTR 180: Directing; THTR 200: Advanced Playwriting; THTR 221: Advanced Technical Theatre; THTR 240: Acting II; THTR 241: Performing as Patients; THTR 242: Musical Theater Performance; THTR 260: Topics in Theater; THTR 270: Topics in Performance; THTR 360: Special Projects: Theater; ENGL 252: Theater in England; Other classes offered occasionally may also fulfill this requirment"
+    },
+    {
+      "id": "dramatic-literature",
+      "label": "Dramatic literature (8 credits)",
+      "rule": {
+        "type": "n_of",
+        "n": 2,
+        "options": [
+          "ENGL 203",
+          "ENGL 208",
+          "ENGL 210",
+          "ENGL 214",
+          "ENGL 217",
+          "ENGL 235"
+        ]
+      },
+      "sourceQuote": "Eight credits of Dramatic Literature Courses: ENGL 203: Medieval Drama; ENGL 208: Renaissance Drama (Topics); ENGL 210: Shakespeare; ENGL 214: Restoration and Eighteenth-Century Drama; ENGL 235: Post-1800 Drama (Topics)"
+    }
+  ],
+  "upperLevelWriting": null
+}

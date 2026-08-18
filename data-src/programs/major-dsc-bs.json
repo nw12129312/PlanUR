@@ -1,0 +1,98 @@
+{
+  "id": "major-dsc-bs",
+  "type": "major",
+  "name": "Data Science",
+  "degree": "BS",
+  "school": "hajim",
+  "division": "natural-sciences",
+  "departments": ["DSCC"],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.hajim.rochester.edu/dsc/undergraduate/major.html",
+  "sourcedOn": "2026-08-01",
+  "snapshot": "data-src/pages/dsc/dsc_undergraduate_major.html",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": ["humanities", "social-sciences"],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "programChecks": { "totalCourses": null, "minFromDepts": null, "max100Level": null },
+  "notes": [
+    "The Goergen Institute page lists the BA and BS together; this entry encodes the shared requirements. Any BS-only additions beyond these are NOT captured - confirm with gids-undergrad@rochester.edu.",
+    "Prerequisite courses must be complete or in progress before declaring the major, and cannot be taken Satisfactory/Fail. They may be satisfied by AP credit or by testing.",
+    "The DSCC core courses are cross-listed with computer science: DSCC/CSC 242, DSCC/CSC 240, DSCC/CSC 261.",
+    "One core option is a PAIR - STAT 216 together with either STAT 217 or STAT 226W - rather than a single course. The app models the single-course alternative DSCC 265; if you take the STAT route it consumes two courses the app counts as one.",
+    "STAT 190 replaces the former DSCC/CSC/STAT 262 and STAT 213; STAT 180 replaces the former STAT 212.",
+    "Each concentration requires three courses from one of ten application areas (AI, biology, biomedical signals and imaging, brain and cognitive sciences, computer science/statistics/mathematics, earth and environmental science, linguistics, physics, economics and business, political science). The page does not enumerate the courses per area on this page, so the concentration is modeled as three courses drawn from the union of those departments - NEEDS VERIFICATION against the per-area course lists."
+  ],
+  "requirementGroups": [
+    {
+      "id": "prereq-discrete",
+      "label": "Prerequisite: discrete mathematics",
+      "rule": { "type": "n_of", "n": 1, "options": ["MATH 150", "MATH 150A"] },
+      "sourceQuote": "MATH 150: Discrete Mathematics OR MATH 150A: Discrete Math Module for MATH171"
+    },
+    {
+      "id": "prereq-programming",
+      "label": "Prerequisite: programming",
+      "rule": { "type": "all_of", "courses": ["CSC 171", "CSC 172"] },
+      "sourceQuote": "CSC 171: Intro to Computer Science; CSC 172: Data Structures and Algorithms"
+    },
+    {
+      "id": "prereq-calc",
+      "label": "Prerequisite: calculus sequence",
+      "rule": { "type": "sequence_one_of", "sequences": [
+        ["MATH 161", "MATH 162"],
+        ["MATH 141", "MATH 142", "MATH 143"],
+        ["MATH 171", "MATH 172"]] },
+      "sourceQuote": "Students must also complete ONE of the following sequences: MATH 161 and MATH 162; MATH 141, MATH 142, and MATH 143; MATH 171 and MATH 172"
+    },
+    {
+      "id": "core",
+      "label": "Core data science courses",
+      "rule": { "type": "all_of", "courses": ["DSCC 242", "DSCC 240", "DSCC 261", "DSCC 383W"] },
+      "sourceQuote": "ALL OF THE FOLLOWING: DSCC/CSC 242: Introduction to Artificial Intelligence; DSCC/CSC 240: Data Mining; DSCC/CSC 261: Database Systems; DSCC 383W: Data Science Capstone"
+    },
+    {
+      "id": "linear-algebra",
+      "label": "Linear algebra",
+      "rule": { "type": "n_of", "n": 1, "options": ["MATH 165", "MATH 173"] },
+      "sourceQuote": "Plus ONE of the following: MATH 165: Linear Algebra with Differential Equations; MATH 173: Calculus III (Honors)"
+    },
+    {
+      "id": "statistics",
+      "label": "Introductory statistics",
+      "rule": { "type": "n_of", "n": 1, "options": ["STAT 190", "STAT 180"] },
+      "sourceQuote": "Plus ONE of the following: STAT 190: Introduction to Statistical Methodology; STAT 180: Introduction to Applied Statistical Methodology"
+    },
+    {
+      "id": "machine-learning",
+      "label": "Statistical machine learning",
+      "rule": { "type": "n_of", "n": 1, "options": ["DSCC 265", "STAT 216"] },
+      "sourceQuote": "Plus ONE of the following: DSCC 265: Introduction to Statistical Machine Learning; Both STAT 216: Intermediate Statistical Methodology and STAT 217: Advanced Statistical Methodology OR STAT 226W: Linear Models",
+      "note": "The STAT 216 route additionally requires STAT 217 or STAT 226W; only the first course of that pair is modeled."
+    },
+    {
+      "id": "tools",
+      "label": "Tools, time series, or algorithms",
+      "rule": { "type": "n_of", "n": 1, "options": ["DSCC 201", "DSCC 275", "CSC 282"] },
+      "sourceQuote": "Plus ONE of the following: DSCC 201: Tools for Data Science; DSCC 275: Time Series Analysis & Forecasting in Data Science; CSC 282: Design and Analysis of Efficient Algorithms"
+    },
+    {
+      "id": "concentration",
+      "label": "Concentration / application area (3)",
+      "rule": { "type": "n_from_filter", "n": 3,
+                "filter": { "depts": ["CSC", "DSCC", "STAT", "MATH", "BIOL", "BME", "BCSC",
+                                      "EESC", "LING", "PHYS", "ECON", "PSCI"],
+                            "minNumber": 200, "maxNumber": 399,
+                            "exclude": ["DSCC 242", "DSCC 240", "DSCC 261", "DSCC 265",
+                                        "DSCC 201", "DSCC 275", "CSC 282"] } },
+      "sourceQuote": "Students can choose from one of the following concentrations (application areas): Artificial Intelligence (AI); Biology; Biomedical signals and imaging; Brain and cognitive sciences; Computer science, statistics, and mathematics; Earth and environmental science; Linguistics; Physics; Economics and business; Political science. Each concentration requires students to take three courses.",
+      "note": "NEEDS VERIFICATION - per-area course lists are not on this page; modeled as three 200+ courses from the listed departments."
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "Data Science Capstone (DSCC 383W)",
+    "rule": { "type": "all_of", "courses": ["DSCC 383W"] },
+    "sourceQuote": "DSCC 383W: Data Science Capstone (typically taken fall or spring of senior year)",
+    "note": "NEEDS VERIFICATION: the page states no explicit ULW policy; DSCC 383W is the major's only W-designated course."
+  }
+}

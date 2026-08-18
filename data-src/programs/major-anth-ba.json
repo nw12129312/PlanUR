@@ -1,0 +1,69 @@
+{
+  "id": "major-anth-ba",
+  "type": "major",
+  "name": "Anthropology",
+  "degree": "BA",
+  "school": "sas",
+  "division": "social-sciences",
+  "departments": ["ANTH"],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/ant/undergraduate/major.html",
+  "sourcedOn": "2026-08-01",
+  "snapshot": "data-src/pages/ant/ant_undergraduate_major.html",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": ["humanities", "natural-sciences"],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "programChecks": { "totalCourses": 10, "minFromDepts": { "depts": ["ANTH"], "n": 10 }, "max100Level": 2 },
+  "notes": [
+    "Ten courses, of which at least eight must be at the 200 level or higher. Modeled as max100Level 2.",
+    "ANTH 101 is normally taken before the spring semester of the sophomore year; ANTH 200 is normally taken in the sophomore year and has ANTH 101 as a prerequisite.",
+    "The department also offers a separate BA in Medical Anthropology, encoded as major-medanth-ba.",
+    "Honors requires a research project (minimum 4 credits) and an additional theory course - not modeled.",
+    "Transfer cap is 5 courses (20 credit hours), subject to approval by the Director of Undergraduate Studies.",
+    "The department prefers ANTH 2xx for remaining electives.",
+    "NEEDS VERIFICATION - upper-level writing: the major page states no ULW policy, and the harvested catalog contains no W-designated ANTH courses at all, so no rule is encoded rather than inventing one. Confirm how you satisfy the College's ULW requirement with the Director of Undergraduate Studies."
+  ],
+  "requirementGroups": [
+    {
+      "id": "core",
+      "label": "Core courses",
+      "rule": { "type": "all_of", "courses": ["ANTH 101", "ANTH 200", "ANTH 204"] },
+      "sourceQuote": "ANTH 101: Being Human: Cultural Anthropology; ANTH 200: Anthropological Research and Methods; ANTH 204: Reading Ethnography"
+    },
+    {
+      "id": "theory",
+      "label": "Theory course",
+      "rule": { "type": "n_of", "n": 1, "options": [
+        "ANTH 201", "ANTH 202", "ANTH 205", "ANTH 206", "ANTH 207", "ANTH 208",
+        "ANTH 209", "ANTH 210"] },
+      "sourceQuote": "One Theory course: ANTH 201-202, 205-210"
+    },
+    {
+      "id": "electives-advanced",
+      "label": "Anthropology electives at the 200 level or above (4)",
+      "rule": { "type": "n_from_filter", "n": 4,
+                "filter": { "depts": ["ANTH"], "minNumber": 200, "maxNumber": 299,
+                            "exclude": ["ANTH 200", "ANTH 204", "ANTH 201", "ANTH 202",
+                                        "ANTH 205", "ANTH 206", "ANTH 207", "ANTH 208",
+                                        "ANTH 209", "ANTH 210"] } },
+      "sourceQuote": "Five ANTH electives - four of which must be 200-level or above."
+    },
+    {
+      "id": "elective-any",
+      "label": "Anthropology elective",
+      "rule": { "type": "n_from_filter", "n": 1,
+                "filter": { "depts": ["ANTH"], "minNumber": 102, "maxNumber": 299,
+                            "exclude": ["ANTH 200", "ANTH 204"] } },
+      "sourceQuote": "Five ANTH electives - four of which must be 200-level or above."
+    },
+    {
+      "id": "seminar",
+      "label": "Advanced topics seminar",
+      "rule": { "type": "n_from_filter", "n": 1,
+                "filter": { "depts": ["ANTH"], "minNumber": 300, "maxNumber": 399 } },
+      "sourceQuote": "ANTH3xx: Advanced Topics Seminar"
+    }
+  ],
+  "upperLevelWriting": null
+}

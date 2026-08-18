@@ -1,0 +1,140 @@
+{
+  "id": "minor-lacx",
+  "type": "minor",
+  "name": "Latin American, Caribbean, and Latinx Studies",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "humanities",
+  "departments": [
+    "SPAN",
+    "PORT",
+    "HIST",
+    "ANTH",
+    "PSCI"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/lacx/undergraduate/minor.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/lacx/lacx_undergraduate_minor.html",
+  "programChecks": {
+    "totalCourses": 5,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Five courses plus a language prerequisite. Course lists come from the department's minor course-list PDF (sas.rochester.edu/lacx/assets/pdf/lacx-minor-courses.pdf), not from the minor page itself.",
+    "DIVISION IS DETERMINED BY YOUR COURSEWORK: 'The division of the minor (humanities or social sciences) will be that in which the student takes three courses.' Filed here under humanities.",
+    "For a course to qualify, roughly 50 percent of its content must relate to Latin America.",
+    "Up to two study-abroad courses may count with the approval of your minor advisor, and the minor must be approved by the designated program coordinator.",
+    "PETITIONS: a student may petition for a course not previously identified as a Latin American studies course by submitting its syllabus; the program coordinator decides whether it counts as listed or requires specific Latin America-related research.",
+    "The DANC options (DANC 171, 197, 271) are 2-credit courses.",
+    "There are currently NO approved LACX clusters; the page recommends Indigenous Studies (S1INT021), Hispanic Film and Popular Culture (H1SP003), Literature and Identity in Hispanic Societies (H1SP001) and Latin American History and Culture (S1HIS019) instead."
+  ],
+  "requirementGroups": [
+    {
+      "id": "language-prereq",
+      "label": "Prerequisite: Spanish or Portuguese through the 152 level",
+      "rule": {
+        "type": "sequence_one_of",
+        "sequences": [
+          [
+            "SPAN 151",
+            "SPAN 152"
+          ],
+          [
+            "SPAN 153"
+          ],
+          [
+            "PORT 151",
+            "PORT 152"
+          ],
+          [
+            "SPAN 200"
+          ]
+        ]
+      },
+      "sourceQuote": "Prerequisite: Students must complete SPAN 151 and 152, SP 153, or PORT 151 and 152. Students who are placed in SPAN 200 may use that course as their language prerequisite."
+    },
+    {
+      "id": "courses",
+      "label": "Five Latin American, Caribbean and Latinx studies courses",
+      "rule": {
+        "type": "n_of",
+        "n": 5,
+        "options": [
+          "AHST 125",
+          "ATHS 221",
+          "ATHS 222",
+          "ATHS 223",
+          "DANC 171",
+          "DANC 197",
+          "DANC 271",
+          "PORT 101",
+          "PORT 102",
+          "PORT 151",
+          "PORT 152",
+          "SPAN 101",
+          "SPAN 102",
+          "SPAN 151",
+          "SPAN 152",
+          "SPAN 159",
+          "SPAN 200",
+          "AHST 247",
+          "AHST 398",
+          "CLTR 201",
+          "CLTR 216A",
+          "CLTR 260",
+          "FREN 271",
+          "RELC 234",
+          "RELC 277",
+          "RELC 284",
+          "SPAN 204",
+          "SPAN 206",
+          "SPAN 235",
+          "SPAN 248",
+          "SPAN 251",
+          "SPAN 255",
+          "SPAN 262",
+          "SPAN 266",
+          "SPAN 270",
+          "SPAN 273",
+          "SPAN 275",
+          "SPAN 287A",
+          "HIST 149",
+          "HIST 150",
+          "HIST 151",
+          "HIST 153",
+          "HIST 154",
+          "HIST 155",
+          "HIST 158",
+          "ANTH 224",
+          "ANTH 231",
+          "ANTH 239",
+          "ANTH 252",
+          "BLST 216",
+          "BLST 237",
+          "BLST 281",
+          "BLST 381",
+          "GSWS 206",
+          "HIST 248",
+          "HIST 250",
+          "HIST 251",
+          "HIST 252",
+          "HIST 254",
+          "HIST 255",
+          "HIST 351W",
+          "HIST 353W",
+          "HIST 357W",
+          "HIST 386W",
+          "HIST 387W",
+          "INTR 255",
+          "PSCI 261",
+          "PSCI 262"
+        ]
+      },
+      "sourceQuote": "A total of five courses related to Latin American and Caribbean people and their diasporas, their languages, and their cultures are required for the minor. Two courses must be taken from different areas, such as anthropology, business, economics, history, international relations, political science, Portuguese, religion, or Spanish.",
+      "note": "Two of the five must come from different areas - the planner cannot check that spread."
+    }
+  ],
+  "upperLevelWriting": null
+}

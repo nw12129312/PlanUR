@@ -1,0 +1,200 @@
+{
+  "id": "major-epid-ba",
+  "type": "major",
+  "name": "Epidemiology",
+  "degree": "BA",
+  "school": "sas",
+  "division": "social-sciences",
+  "departments": [
+    "PHLT"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/ph/undergraduate/majors/epidemiology.html",
+  "snapshot": "data-src/pages/ph/ph_undergraduate_majors_epidemiology.html",
+  "sourcedOn": "2026-08-14",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": [
+    "humanities",
+    "natural-sciences"
+  ],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": 2,
+  "programChecks": {
+    "totalCourses": 13,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Thirteen required courses plus two recommended mathematics courses. The major leads to a BA and satisfies the social sciences requirement of the Rochester Curriculum.",
+    "RECOMMENDED (not required): MATH 161 and MATH 162, or the MATH 141-143 sequence.",
+    "Prerequisites of the individual courses are not counted toward the major.",
+    "PHLT 102 (Introduction to Public Health II) stopped being a required course in spring 2024 and is no longer offered. Students already declared in the EPD major continue on the program they declared under; anyone who completed PHLT 102 intending to use it should ask the undergraduate public health program to incorporate it.",
+    "STAT 212 was valid until spring 2024; STAT 180 is the current introductory statistics course (valid from fall 2024).",
+    "PM COURSE NUMBERING: the department page writes the School of Medicine courses with a 'U' suffix (PM 412U, PM 414U, and so on) but the catalog and the other public-health programs in this planner carry most of them without it (PM 412, PM 414, PM 418 and its W section PM 418W). The catalog form is used here so a course placed for one public-health program is recognized by the others; PM 415U keeps its U because that is the form the catalog carries. PM 413 (Field Epidemiology), PM 442 (Nutritional Epidemiology) and PM 470 (Environmental and Occupational Epidemiology) appear in no harvested schedule at all.",
+    "No more than TWO courses may overlap between a public health major and another major. The introductory STAT course (STAT 212 or STAT 180) is not counted in that overlap.",
+    "Students may major, OR minor, OR complete a cluster within the public health-related programs - but not more than one of those.",
+    "Students may use up to two transfer courses toward the program with their public health faculty advisor's approval, and up to two PHLT internship courses toward the major.",
+    "GROUP III ELECTIVE: the same course may not satisfy both a Group I or Group II elective and the Group III elective. The groups below do not share courses, which matches that rule.",
+    "PHLT 397W (Community Engagement Internship) is open to juniors, seniors, Take 5, and e5 public health majors and requires the permission of an EPD faculty advisor.",
+    "For each PM (W) course there is a cap of five students who can register for the writing component - register early for the W section."
+  ],
+  "requirementGroups": [
+    {
+      "id": "ph-core",
+      "label": "Public health general core",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "PHLT 101",
+          "PHLT 103"
+        ]
+      },
+      "sourceQuote": "Public Health General Core (Four Courses): PHLT 101: Introduction to Public Health I; PHLT 103: Concepts of Epidemiology"
+    },
+    {
+      "id": "ph-stat",
+      "label": "Introductory statistics",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "STAT 180",
+          "STAT 212"
+        ]
+      },
+      "sourceQuote": "STAT 212: Applied Statistics I (valid until spring 2024) or STAT 180: Introduction to Applied Statistical Methodology (valid beginning fall 2024)"
+    },
+    {
+      "id": "ph-ethics",
+      "label": "Public health or medical ethics",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "PHIL 228W",
+          "PHIL 228",
+          "PHIL 225"
+        ]
+      },
+      "sourceQuote": "PHIL 228 (PHIL 228W): Public Health Ethics or PHIL 225: Ethical Decisions in Medicine"
+    },
+    {
+      "id": "specific-core",
+      "label": "Epidemiology core",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "PM 414",
+          "PM 415U",
+          "STAT 216",
+          "STAT 218"
+        ]
+      },
+      "sourceQuote": "Specific Core Requirements (Four Courses): PM 414U: History of Epidemiology; PM 415U: Principles of Epidemiology; STAT 216: Applied Statistical Models I; STAT 218: Categorical Data Analysis"
+    },
+    {
+      "id": "electives-epi",
+      "label": "Group I: epidemiology electives (three)",
+      "rule": {
+        "type": "n_of",
+        "n": 3,
+        "options": [
+          "PM 412",
+          "PM 413",
+          "PM 418",
+          "PM 418W",
+          "PM 424",
+          "PM 424W",
+          "PM 442",
+          "PM 451",
+          "PM 451W",
+          "PM 470",
+          "PM 489",
+          "PM 489W",
+          "BST 465",
+          "EESC 251",
+          "PHLT 201W",
+          "PHLT 397W"
+        ]
+      },
+      "sourceQuote": "Electives (Five Courses) I. Epidemiology (3 courses). Choose three of the following: PM 412U: Survey Research; PM 413U (H): Field Epidemiology; PM 418U (W): Cardiovascular Epidemiology; PM 424U (W): Chronic Diseases Epidemiology; PM 442U (W)(H): Nutritional Epidemiology; PM 451U (W): Epidemiology of Infectious Diseases; PM 470U (W): Environmental and Occupational Epidemiology; PM 489U (W): Injury Epidemiology and Emergency Care Research Methods; BST 465: Design of Clinical Trials; EESC 251: Introduction to Geographic Systems; PHLT 201W: Environmental Health; PHLT 397W: Community Engagement Internship",
+      "note": "W sections are listed alongside their base courses; take the W section of two of these to satisfy the major's writing requirement."
+    },
+    {
+      "id": "electives-stat",
+      "label": "Group II: statistics elective",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "MATH 218",
+          "MATH 201",
+          "STAT 201",
+          "MATH 203",
+          "STAT 203",
+          "STAT 217",
+          "STAT 219",
+          "STAT 221W",
+          "STAT 276",
+          "STAT 277"
+        ]
+      },
+      "sourceQuote": "II. Statistics (1 course). Choose one of the following: MATH 218: Intro to Mathematical Models in the Life; MATH/STAT 201: Introduction to Probability; MATH/STAT 203: Introduction to Mathematical Statistics; STAT 217: Applied Statistical Methods II; STAT 219: Nonparametic Inference; STAT 221W: Sampling Techniques; STAT 276: Statistical Computing in R; STAT 277: Introduction to Statistical Software and Exploratory Data Analysis",
+      "note": "MATH 201/STAT 201 and MATH 203/STAT 203 are the same cross-listed courses."
+    },
+    {
+      "id": "electives-additional",
+      "label": "Group III: one further epidemiology or statistics elective",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "PM 412",
+          "PM 413",
+          "PM 418",
+          "PM 418W",
+          "PM 424",
+          "PM 424W",
+          "PM 442",
+          "PM 451",
+          "PM 451W",
+          "PM 470",
+          "PM 489",
+          "PM 489W",
+          "BST 465",
+          "EESC 251",
+          "PHLT 201W",
+          "PHLT 397W",
+          "MATH 218",
+          "MATH 201",
+          "STAT 201",
+          "MATH 203",
+          "STAT 203",
+          "STAT 217",
+          "STAT 219",
+          "STAT 221W",
+          "STAT 276",
+          "STAT 277"
+        ]
+      },
+      "sourceQuote": "III. Additional Epidemiology or Statistics Elective (1 course). The same course may not be used to satisfy a Group I or Group II elective course and a Group III elective course."
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "Two upper-level writing courses within the major",
+    "rule": {
+      "type": "n_from_filter",
+      "n": 2,
+      "filter": {
+        "depts": [
+          "PM",
+          "PHLT"
+        ],
+        "minNumber": 200,
+        "maxNumber": 499,
+        "wOnly": true
+      }
+    },
+    "sourceQuote": "Upper-Level Writing Requirement: Students are required to register for two upper-level writing courses within this major. The courses designated with (W) have writing requirements that would satisfy the Rochester Curriculum's upper-level writing requirement. Students should register for the \"W\" section; for each PM (W) course there is a cap of five students who can register for the writing component."
+  }
+}

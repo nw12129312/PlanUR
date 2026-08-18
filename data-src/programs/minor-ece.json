@@ -1,0 +1,77 @@
+{
+  "id": "minor-ece",
+  "type": "minor",
+  "name": "Electrical and Computer Engineering",
+  "degree": "Minor",
+  "school": "hajim",
+  "division": "engineering",
+  "departments": [
+    "ECE"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.hajim.rochester.edu/ece/undergraduate/minor.html",
+  "sourcedOn": "2026-08-01",
+  "snapshot": "data-src/pages/ece/ece_undergraduate_minor.html",
+  "programChecks": {
+    "totalCourses": 5,
+    "minFromDepts": {
+      "depts": [
+        "ECE"
+      ],
+      "n": 5
+    },
+    "max100Level": null
+  },
+  "notes": [
+    "Five 4-credit ECE courses. The page gives five recommended five-course programs of study (Digital Audio and Music; Integrated Circuits; Waves, Fields, and Devices; Signals and Communications; Robotics), and students may instead arrange an individualized program with an ECE advisor and the approval of the ECE undergraduate committee.",
+    "Because an individualized program is explicitly allowed, the five named tracks are modeled as a track choice rather than as the only option."
+  ],
+  "requirementGroups": [
+    {
+      "id": "program-of-study",
+      "label": "Five-course program of study",
+      "rule": {
+        "type": "track_n_of",
+        "n": 5,
+        "tracks": {
+          "Digital Audio and Music": [
+            "ECE 113",
+            "ECE 114",
+            "ECE 140",
+            "ECE 223",
+            "ECE 240"
+          ],
+          "Integrated Circuits": [
+            "ECE 112",
+            "ECE 113",
+            "ECE 221",
+            "ECE 222",
+            "ECE 260"
+          ],
+          "Waves, Fields, and Devices": [
+            "ECE 113",
+            "ECE 221",
+            "ECE 222",
+            "ECE 223",
+            "ECE 230"
+          ],
+          "Signals and Communications": [
+            "ECE 113",
+            "ECE 114",
+            "ECE 240",
+            "ECE 245",
+            "ECE 246"
+          ],
+          "Robotics": [
+            "ECE 112",
+            "ECE 113",
+            "ECE 114",
+            "ECE 216",
+            "ECE 217"
+          ]
+        }
+      },
+      "sourceQuote": "The ECE minor gives students the opportunity to design a flexible program of study to achieve either breadth or depth ... normally requiring the equivalent of five 4-credit hour courses in ECE. Recommended programs of study: Digital Audio and Music - ECE 113, ECE 114, ECE 140, ECE 223, ECE 240; Integrated Circuits - ECE 112, ECE 113, ECE 221, ECE 222, ECE 260; Waves, Fields, and Devices - ECE 113, ECE 221, ECE 222, ECE 223, ECE 230; Signals and Communications - ECE 113, ECE 114, ECE 240, ECE 245, ECE 246; Robotics - ECE 112, ECE 113, ECE 114, ECE 216, ECE 217"
+    }
+  ]
+}

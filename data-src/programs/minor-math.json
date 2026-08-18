@@ -1,0 +1,58 @@
+{
+  "id": "minor-math",
+  "type": "minor",
+  "name": "Mathematics",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "natural-sciences",
+  "departments": ["MATH"],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/mth/undergraduate/minor-clusters.html",
+  "sourcedOn": "2026-08-01",
+  "snapshot": "data-src/pages/mth/mth_undergraduate_minor-clusters.html",
+  "programChecks": { "totalCourses": 7, "minFromDepts": null, "max100Level": null },
+  "notes": [
+    "Foundational courses must be completed before acceptance into the minor.",
+    "Equivalent substitutions the page allows: MATH 163 for MATH 165; MATH 171/172/174 for MATH 161/162/164; MATH 173 for MATH 165; MATH 141-143 for MATH 161-162. The calculus sequence alternatives are handled by the app's calc-sequence equivalency group; the MATH 163 / 173 substitutions for MATH 165 are modeled as options.",
+    "AP credit may satisfy foundational requirements. MATH 150A may NOT be used for foundational requirements.",
+    "MATH 235 may instead be satisfied by MATH 173.",
+    "An advanced course is any mathematics course numbered 200 or above except MATH 235."
+  ],
+  "requirementGroups": [
+    {
+      "id": "found-calc",
+      "label": "Foundational calculus",
+      "rule": { "type": "sequence_one_of", "sequences": [
+        ["MATH 161", "MATH 162"],
+        ["MATH 171", "MATH 172"],
+        ["MATH 141", "MATH 142", "MATH 143"]] },
+      "sourceQuote": "MATH 161: Calculus IA; MATH 162: Calculus IIA ... Equivalent courses can be substituted: MATH 171, 172, and 174 for the equivalent MATH 161, 162, and 164; MATH 141-143 for MATH 161-162"
+    },
+    {
+      "id": "found-linear",
+      "label": "Linear algebra with differential equations",
+      "rule": { "type": "n_of", "n": 1, "options": ["MATH 165", "MATH 163", "MATH 173"] },
+      "sourceQuote": "MATH 165: Linear Algebra with Differential Equations ... MATH 163 for MATH 165 ... MATH 173 for MATH 165"
+    },
+    {
+      "id": "found-choice",
+      "label": "Discrete mathematics or multidimensional calculus",
+      "rule": { "type": "n_of", "n": 1, "options": ["MATH 150", "MATH 164", "MATH 174"] },
+      "sourceQuote": "One of the following: MATH 150: Discrete Mathematics; MATH 164: Multidimensional Calculus. Equivalent courses can be substituted: MATH 171, 172, and 174 for the equivalent MATH 161, 162, and 164. Math 150A may not be used to satisfy foundational requirements."
+    },
+    {
+      "id": "advanced-linear",
+      "label": "Linear algebra (MATH 235)",
+      "rule": { "type": "n_of", "n": 1, "options": ["MATH 235", "MATH 173"] },
+      "sourceQuote": "MATH 235: Linear Algebra. The requirement that MATH 235 be taken can also be satisfied by completing MATH 173."
+    },
+    {
+      "id": "advanced",
+      "label": "Advanced mathematics courses (2)",
+      "rule": { "type": "n_from_filter", "n": 2,
+                "filter": { "depts": ["MATH"], "minNumber": 200, "maxNumber": 399,
+                            "minCredits": 4, "exclude": ["MATH 235"] } },
+      "sourceQuote": "Two 4-credit advanced mathematics courses. Any mathematics course numbered 200 or above (except MATH 235) qualifies as an advanced mathematics course."
+    }
+  ]
+}

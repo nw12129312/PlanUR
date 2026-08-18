@@ -1,0 +1,92 @@
+{
+  "id": "minor-gsws-h",
+  "type": "minor",
+  "name": "Gender, Sexuality, and Women's Studies (Humanities)",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "humanities",
+  "departments": [
+    "GSWS"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/gsw/undergraduate/minor-clusters.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/gsw/gsw_undergraduate_minor-clusters.html",
+  "programChecks": {
+    "totalCourses": 5,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Five GSWS courses (20 credits). SBAI offers TWO GSWS minors, one in the humanities and one in the social sciences; each is a separate entry here (minor-gsws-h and minor-gsws-ss).",
+    "Students may apply up to two courses taken abroad toward the GSW minor.",
+    "Core courses used for the minor must NOT be the required courses: the department states 'If you are completing a minor or major, you must take core courses that are not the required courses (GSWS 105, GSWS 200).' GSWS 105 and GSWS 200 are therefore excluded from the core group.",
+    "GSWS 100 (Topics in GSW) changes topic by semester and its humanities/social-science designation changes with it. Students may only take GSWS 100 once.",
+    "TRACK DESIGNATION NOT ENFORCEABLE for the two electives: the catalog records no H or SS designation per course, so the elective group accepts any GSWS course. One of the two must match your track - check the designation with SBAI.",
+    "The department page writes 'GSW' where the registrar's catalog uses GSWS.",
+    "The GSWS MAJORS are separate entries (major-gsws-h-ba and major-gsws-ss-ba)."
+  ],
+  "requirementGroups": [
+    {
+      "id": "intro",
+      "label": "GSWS 105: Sex and Power",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "GSWS 105"
+        ]
+      },
+      "sourceQuote": "Required Courses: GSW 105: Sex and Power"
+    },
+    {
+      "id": "colloquium",
+      "label": "GSWS 200: History of Feminism (colloquium)",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "GSWS 200W",
+          "GSWS 200"
+        ]
+      },
+      "sourceQuote": "GSW 200: History of Feminism: Colloquium",
+      "note": "GSWS 200W is the W section of the same course."
+    },
+    {
+      "id": "core",
+      "label": "One core course in the humanities",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "GSWS 100",
+          "GSWS 189",
+          "GSWS 212",
+          "GSWS 215",
+          "GSWS 218",
+          "GSWS 232",
+          "GSWS 280"
+        ]
+      },
+      "sourceQuote": "Humanities minor: One core course in the humanities. [Core Courses page] Humanities: GSWS 100: Topics in GSW; GSWS 105: Sex and Power; GSWS 189: Sexuality in World Religions; GSWS 212: Queer Theory; GSWS 215: LGBTQ+ Histories and Cultures in the US; GSWS 218: Gender and Disability; GSWS 232: Body and Sexuality; GSWS 280: Intersectionality: The History of an Idea"
+    },
+    {
+      "id": "electives",
+      "label": "Two GSWS electives",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 2,
+        "filter": {
+          "depts": [
+            "GSWS"
+          ],
+          "minNumber": 100,
+          "maxNumber": 389
+        }
+      },
+      "sourceQuote": "Two GSW elective courses, one must be a humanitie course",
+      "note": "One of the two must be a humanities course - see the program notes."
+    }
+  ],
+  "upperLevelWriting": null
+}

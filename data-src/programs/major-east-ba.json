@@ -1,0 +1,128 @@
+{
+  "type": "major",
+  "degree": "BA",
+  "school": "sas",
+  "division": "humanities",
+  "status": "ACTIVE",
+  "sourcedOn": "2026-08-01",
+  "clustersRequired": 2,
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "id": "major-east-ba",
+  "name": "East Asian Studies",
+  "departments": [
+    "CHIN",
+    "JPNS",
+    "KORE"
+  ],
+  "allowedClusterDivisions": [
+    "humanities",
+    "social-sciences",
+    "natural-sciences"
+  ],
+  "sourceUrl": "https://www.sas.rochester.edu/mlc/undergraduate/east-asian-studies.html",
+  "snapshot": "data-src/pages/mlc/mlc_undergraduate_east-asian-studies.html",
+  "programChecks": {
+    "totalCourses": 10,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Ten courses: two language courses at the 151 level or above, three foundational courses, four electives, one capstone.",
+    "NEEDS VERIFICATION - cluster divisions: EST majors meet EITHER the humanities OR the social science division depending on their course choices, so the app cannot know which division the major occupies. All three are permitted here to avoid blocking a valid plan.",
+    "Students must take classes from at least THREE departments (art and art history, anthropology, history, modern languages and cultures, religion and classics). Chinese, Japanese, and Korean do NOT count as separate departments - all are housed in MLC. Not auto-enforced.",
+    "A student who places out of the available language courses may waive the language requirement with EST advisor approval but must still take ten classes.",
+    "At least two of the ten courses must satisfy the upper-level writing requirement; the capstone counts as one of them.",
+    "NEEDS VERIFICATION: the page does not enumerate which courses count as foundational versus elective, so both are modeled as East-Asia-relevant courses across the listed departments.",
+    "East Asian Studies is an interdisciplinary program with no course prefix of its own; every course counted toward it is owned by a contributing department (MLC languages, history, art history, anthropology, religion and classics)."
+  ],
+  "requirementGroups": [
+    {
+      "id": "language",
+      "label": "East Asian language at 151 or above (2)",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 2,
+        "filter": {
+          "depts": [
+            "CHIN",
+            "JPNS",
+            "KORE"
+          ],
+          "minNumber": 151,
+          "maxNumber": 399
+        }
+      },
+      "sourceQuote": "Two courses in Chinese, Japanese, or Korean language at the 151 level or above"
+    },
+    {
+      "id": "foundational",
+      "label": "Foundational courses (3)",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 3,
+        "filter": {
+          "depts": [
+            "CHIN",
+            "JPNS",
+            "KORE",
+            "HIST",
+            "AHST",
+            "ANTH",
+            "RELC"
+          ],
+          "minNumber": 100,
+          "maxNumber": 399
+        }
+      },
+      "sourceQuote": "Three foundational courses",
+      "note": "NEEDS VERIFICATION - the foundational list is not enumerated on this page."
+    },
+    {
+      "id": "electives",
+      "label": "Electives (4)",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 4,
+        "filter": {
+          "depts": [
+            "CHIN",
+            "JPNS",
+            "KORE",
+            "HIST",
+            "AHST",
+            "ANTH",
+            "RELC"
+          ],
+          "minNumber": 100,
+          "maxNumber": 399
+        }
+      },
+      "sourceQuote": "Four electives"
+    },
+    {
+      "id": "capstone",
+      "label": "Capstone",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 1,
+        "filter": {
+          "depts": [
+            "CHIN",
+            "JPNS",
+            "KORE",
+            "HIST",
+            "AHST",
+            "ANTH",
+            "RELC"
+          ],
+          "minNumber": 300,
+          "maxNumber": 399
+        }
+      },
+      "sourceQuote": "One capstone. At least two of the ten courses taken must satisfy the University's upper-level writing requirement. (The capstone will count as one of these two courses.)",
+      "note": "NEEDS VERIFICATION - the page names no capstone course, and East Asian Studies has no course prefix of its own in the registrar catalog (there are no EST courses), so the capstone is modeled as any 300-level course in the contributing departments. Confirm the actual capstone with the EST advisor."
+    }
+  ],
+  "upperLevelWriting": null
+}

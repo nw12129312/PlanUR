@@ -1,0 +1,42 @@
+{
+  "id": "minor-blst",
+  "type": "minor",
+  "name": "Black Studies",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "humanities",
+  "departments": ["BLST"],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/aas/undergraduate/minor-clusters.html",
+  "sourcedOn": "2026-08-01",
+  "snapshot": "data-src/pages/aas/aas_undergraduate_minor-clusters.html",
+  "programChecks": { "totalCourses": 6, "minFromDepts": { "depts": ["BLST"], "n": 6 }, "max100Level": 3 },
+  "notes": [
+    "A minimum of six courses (24 credit hours): BLST 110, three divisional courses, two electives.",
+    "The three divisional courses must all come from EITHER the humanities OR the social sciences side of the BLST offerings - not auto-enforced.",
+    "The six courses must include courses from at least two different disciplines - not auto-enforced (BLST courses are cross-listed from many home departments).",
+    "max100Level 3 is the aggregate of the page's per-group caps (BLST 110, at most one 100-level divisional course, at most one 100-level elective)."
+  ],
+  "requirementGroups": [
+    {
+      "id": "intro",
+      "label": "Introductory course",
+      "rule": { "type": "all_of", "courses": ["BLST 110"] },
+      "sourceQuote": "BLST 110: Introduction to Black Studies"
+    },
+    {
+      "id": "divisional",
+      "label": "Divisional courses (3)",
+      "rule": { "type": "n_from_filter", "n": 3,
+                "filter": { "depts": ["BLST"], "minNumber": 101, "maxNumber": 399, "exclude": ["BLST 110"] } },
+      "sourceQuote": "Three divisional courses - Students must choose three BLST courses from either the humanities or social sciences. No more than one of these courses can be at the 100-level."
+    },
+    {
+      "id": "electives",
+      "label": "Elective courses (2)",
+      "rule": { "type": "n_from_filter", "n": 2,
+                "filter": { "depts": ["BLST"], "minNumber": 101, "maxNumber": 399, "exclude": ["BLST 110"] } },
+      "sourceQuote": "Two elective courses - Students must choose two BLST courses as electives. No more than one of these courses can be at the 100-level."
+    }
+  ]
+}

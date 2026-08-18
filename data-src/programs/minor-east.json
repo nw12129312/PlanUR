@@ -1,0 +1,130 @@
+{
+  "id": "minor-east",
+  "type": "minor",
+  "name": "East Asian Studies",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "humanities",
+  "departments": [
+    "CHIN",
+    "JPNS",
+    "KORE",
+    "HIST",
+    "AHST",
+    "ANTH",
+    "RELC"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/mlc/undergraduate/east-asian-studies.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/mlc/mlc_undergraduate_east-asian-studies.html",
+  "programChecks": {
+    "totalCourses": 5,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Five courses (three foundational surveys, two electives) and no prerequisites. Designed for students with a strong interest in East Asia who are not planning to learn an East Asian language.",
+    "THERE IS NO 'EST' COURSE PREFIX: East Asian Studies is interdisciplinary and every course belongs to a contributing department (AHST, ANTH, CHIN, HIST, JPNS, RELC).",
+    "Language courses cannot count toward the elective requirement, and no course may serve as both a foundational survey and an elective - the groups below do not share courses.",
+    "Several HIST options were last offered in 2024-25 (HIST 143, 145, 195, 200, 346)."
+  ],
+  "requirementGroups": [
+    {
+      "id": "group-a",
+      "label": "Foundational survey: pre-modern East Asia",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "AHST 142",
+          "AHST 115",
+          "CHIN 214",
+          "CHIN 216",
+          "CHIN 219",
+          "HIST 195",
+          "RELC 105",
+          "RELC 106",
+          "RELC 174",
+          "RELC 269"
+        ]
+      },
+      "sourceQuote": "Students must take three foundational survey courses, one each group (A, B, and C). Group A-Pre-modern East Asia: AHST 142: Arts of East Asia; AHST 115: Arts of China; CHIN 214: Dream of the Red Chamber; CHIN 216: Social Turmoil and Civic Responsibility; CHIN 219: Monsters, Ghosts, Fairies, and Gods; HIST 195: Premodern Japan (last offered 2024-5); RELC 105: Asian Search for Self; RELC 106: From Confucius to Zen; RELC 174: Chinese Religions; RELC 269: Reinventing Bodhisattvas and God in China"
+    },
+    {
+      "id": "group-b",
+      "label": "Foundational survey: modern East Asia",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "AHST 268",
+          "CHIN 217",
+          "CHIN 222",
+          "HIST 143",
+          "HIST 145",
+          "HIST 200",
+          "HIST 346",
+          "JPNS 214",
+          "JPNS 219",
+          "JPNS 226"
+        ]
+      },
+      "sourceQuote": "Group B-Modern East Asia: AHST 268: Media, Reform and Revolution in China; CHIN 217: Volatility and Change in 20th Century Chinese Literature; CHIN 222: Gender, Sexuality, and Desire in 20th Century Chinese Literature; HIST 143: Modern China; HIST 145: Modern Japan; HIST 200: Gateway: Japanese Empire and its Afterlives; HIST 346: East Asia and the Cold War; JPNS 214: Atomic Creatures: Godzilla; JPNS 219: Tourist Japan; JPNS 226: I am a Cat: Self-Writing in Japanese Literature"
+    },
+    {
+      "id": "group-c",
+      "label": "Foundational survey: contemporary East Asia",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "ANTH 257",
+          "CHIN 223",
+          "JPNS 237",
+          "JPNS 245",
+          "JPNS 293",
+          "RELC 175"
+        ]
+      },
+      "sourceQuote": "Group C-Contemporary East Asia: ANTH 257: Contemporary Chinese Society; CHIN 223: Memory and Meaning in Post-Mao Literature; JPNS 237: East Asian Metropolises in Literature and Film; JPNS 245: Japanese Science Fiction and Planetary Possible Futures; JPNS 293: Life and Anime; RELC 175: Religion and Chinese Society"
+    },
+    {
+      "id": "electives",
+      "label": "Two electives at the 200 level or higher",
+      "rule": {
+        "type": "n_of",
+        "n": 2,
+        "options": [
+          "AHST 255",
+          "ANTH 257",
+          "CHIN 214",
+          "CHIN 216",
+          "CHIN 217",
+          "CHIN 219",
+          "CHIN 222",
+          "CHIN 223",
+          "CHIN 224",
+          "HIST 200",
+          "HIST 346",
+          "JPNS 209",
+          "JPNS 214",
+          "JPNS 219",
+          "JPNS 225",
+          "JPNS 226",
+          "JPNS 229",
+          "JPNS 237",
+          "JPNS 245",
+          "JPNS 293",
+          "AHST 268",
+          "RELC 174",
+          "RELC 175",
+          "RELC 269"
+        ]
+      },
+      "sourceQuote": "Electives (Two Courses): Students should choose two electives at the 200 level or higher from the list below. Language courses cannot be counted toward fulfilling the elective requirement for the minor. The same course cannot be used both as a foundational core course and an elective course.",
+      "note": "The page calls its elective list a sample - ask your EST faculty advisor about anything not on it."
+    }
+  ],
+  "upperLevelWriting": null
+}

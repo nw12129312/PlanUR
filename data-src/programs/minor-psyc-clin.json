@@ -1,0 +1,75 @@
+{
+  "id": "minor-psyc-clin",
+  "type": "minor",
+  "name": "Clinical Psychology",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "social-sciences",
+  "departments": [
+    "PSYC"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/psy/undergraduate/minor.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/psy/psy_undergraduate_minor.html",
+  "programChecks": {
+    "totalCourses": 5,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "RETIRED MINOR - only available to students who declared it before Fall 2023. Every other student takes the single Psychology minor introduced that term (minor-psyc), which the department encourages even for earlier declarers. It is encoded here because the University's official program list still carries it and students who declared in time may still finish it. DO NOT DECLARE THIS AS A NEW STUDENT.",
+    "Five courses. This minor satisfies a social science divisional requirement.",
+    "The split between core and elective is flexible: two core plus two electives, or three core plus one elective. The planner models the two-and-two path.",
+    "PSYC 368 (Seminar in Humanistic Psychology) has not been offered since 2016.",
+    "PSYC 101 may be replaced by its equivalent, including a grade of B- or higher in PSYC 101A, a 4 or 5 on the AP psychology test, or a 6 or better on the higher-level IB psychology exam. PSYC 101A is not in the 2025-26 catalog.",
+    "Up to two transferred psychology courses, in addition to Introduction to Psychology, may be used in the minor plan.",
+    "SOCIAL VS NATURAL SCIENCE: social-science psychology courses are PSYC courses NOT cross-listed with BCSC; natural-science ones ARE cross-listed with BCSC. The exceptions run both ways - PSYC 170/BCSC 170, PSYC 210/BCSC 185 and PSYC 248/BCSC 278 count as social science and not as natural science. The catalog does not record cross-listing, so the planner cannot enforce the split."
+  ],
+  "requirementGroups": [
+    {
+      "id": "intro",
+      "label": "Introduction to Psychology",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "PSYC 101"
+        ]
+      },
+      "sourceQuote": "PSYC 101: Introduction to Psychology or the equivalent (which may include a grade of B- or higher in PSYC 101A)"
+    },
+    {
+      "id": "core",
+      "label": "Two clinical core courses",
+      "rule": {
+        "type": "n_of",
+        "n": 2,
+        "options": [
+          "PSYC 181",
+          "PSYC 280",
+          "PSYC 282"
+        ]
+      },
+      "sourceQuote": "At least two of the following: PSYC 181: Theories of Personality and Psychotherapy; PSYC 280: Clinical Psychology; PSYC 282: Psychopathology (formerly Abnormal Psychology)"
+    },
+    {
+      "id": "electives",
+      "label": "Two clinical electives",
+      "rule": {
+        "type": "n_of",
+        "n": 2,
+        "options": [
+          "PSYC 283",
+          "PSYC 289",
+          "PSYC 381",
+          "PSYC 242",
+          "PSYC 246",
+          "PSYC 368"
+        ]
+      },
+      "sourceQuote": "One or two of the following: PSYC 283: Behavioral Medicine; PSYC 289: Developmental Child Psychopathology; PSYC 368: Seminar in Humanistic Psychology (no longer offered after 2016); PSYC 381: Seminar in Neurodevelopmental Disabilities; PSYC 242: Neuropsychology; PSYC 246: Biology of Mental Disorders",
+      "note": "The page asks for 'one or two' here and 'at least two' above, to a total of five courses. Taking a third core course lets you drop to one elective."
+    }
+  ],
+  "upperLevelWriting": null
+}

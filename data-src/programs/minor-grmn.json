@@ -1,0 +1,42 @@
+{
+  "id": "minor-grmn",
+  "type": "minor",
+  "name": "German",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "humanities",
+  "departments": [
+    "GRMN"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/mlc/undergraduate/german.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/mlc/mlc_undergraduate_german.html",
+  "programChecks": {
+    "totalCourses": 5,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Five fixed courses - the German minor names every one of them.",
+    "The program runs a four-week summer study-abroad in Berlin worth 4 credits that count toward or substitute for minor requirements, and awards one junior or graduating senior a fellowship-supported post-baccalaureate year at the University of Cologne."
+  ],
+  "requirementGroups": [
+    {
+      "id": "core",
+      "label": "Required German courses",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "GRMN 151",
+          "GRMN 152",
+          "GRMN 200",
+          "GRMN 202",
+          "GRMN 203"
+        ]
+      },
+      "sourceQuote": "The German minor has a total of 5 required courses. GRMN 151: Intermediate German I; GRMN 152: Intermediate German II; GRMN 200: Composition and Conversation; GRMN 202: Introduction to German Cultural Studies; GRMN 203: Introduction to German Literature"
+    }
+  ],
+  "upperLevelWriting": null
+}

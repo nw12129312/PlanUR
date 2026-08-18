@@ -1,0 +1,52 @@
+{
+  "id": "minor-asl",
+  "type": "minor",
+  "name": "American Sign Language",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "humanities",
+  "departments": ["ASLA"],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/asl/undergraduate/minor-clusters.html",
+  "sourcedOn": "2026-08-01",
+  "snapshot": "data-src/pages/asl/asl_undergraduate_minor-clusters.html",
+  "programChecks": { "totalCourses": 6, "minFromDepts": null, "max100Level": null },
+  "notes": [
+    "Six classes: two intermediate-level language classes and four electives.",
+    "ASLA 101 and ASLA 102 should be completed before declaring the minor; they are prerequisites, not part of the six.",
+    "At least two of the four electives must have an ASLA course number - modeled as its own group.",
+    "No more than two of these courses can be conducted in spoken English - not auto-enforced.",
+    "ASLA 106 requires a permission code from the program advisor; ASLA 102-106 and 200-level courses require a preceding all-ASL course or instructor permission. Not auto-enforced."
+  ],
+  "requirementGroups": [
+    {
+      "id": "core",
+      "label": "Core courses",
+      "rule": { "type": "all_of", "courses": ["ASLA 105", "ASLA 106"] },
+      "sourceQuote": "Core Courses. Both of the following courses are required: ASLA 105: Intermediate ASLA I; ASLA 106: Intermediate ASLA II"
+    },
+    {
+      "id": "electives-asla",
+      "label": "Electives with an ASLA number (2)",
+      "rule": { "type": "n_of", "n": 2, "options": [
+        "ASLA 110", "ASLA 113", "ASLA 200", "ASLA 201", "ASLA 202", "ASLA 203",
+        "ASLA 204", "ASLA 205", "ASLA 208", "ASLA 209", "ASLA 222", "ASLA 250",
+        "ASLA 260", "ASLA 280"] },
+      "sourceQuote": "Choose four of the following courses, with at least two courses having an ASLA course number"
+    },
+    {
+      "id": "electives-any",
+      "label": "Electives, any listed course (2)",
+      "rule": { "type": "n_of", "n": 2, "options": [
+        "ASLA 110", "ASLA 113", "ASLA 200", "ASLA 201", "ASLA 202", "ASLA 203",
+        "ASLA 204", "ASLA 205", "ASLA 208", "ASLA 209", "ASLA 222", "ASLA 250",
+        "ASLA 260", "ASLA 280",
+        "BCSC 172", "ANTH 101", "LING 110", "CLTR 200", "CLTR 389",
+        "GSWS 105", "GSWS 200", "GSWS 205", "GSWS 218", "GSWS 296",
+        "HIST 259", "HIST 303W", "HIST 402",
+        "AAAS 183", "AAAS 207", "PSCI 224", "PSCI 228", "PSCI 267", "RELC 183",
+        "PHIL 171", "PHIL 223", "PHIL 226", "PHIL 247"] },
+      "sourceQuote": "Elective Courses: Choose four of the following courses, with at least two courses having an ASLA course number: ASLA 203W; ASLA 200; ASLA 201; ASLA 202; ASLA 205W; ASLA 250; ASLA 110; ASLA 113; ASLA 204; ASLA 209; ASLA 222; ASLA 280; BCSC/PSYC 172; ANTH 101; ASLA 208; ASLA 260; LING 110; CLTR 200; CLTR 389; GSWS 105; GSWS 200; GSWS 205; GSWS 296; GSWS 218; HIST 259; HIST 303W; HIST 402; AAAS 207; AAAS 183; PSCI/INTR 267; PSCI/INTR 224; PSCI/INTR 228; RELC 183; PHIL 171; PHIL 247; PHIL 223; PHIL 226"
+    }
+  ]
+}

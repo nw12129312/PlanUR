@@ -1,0 +1,12 @@
+{
+ "builtOn": "2026-07-03",
+ "counts": {
+  "courses": 4498,
+  "stubCourses": 1316,
+  "clusters": 198,
+  "programs": 183,
+  "activePrograms": 182,
+  "equivalencyGroups": 6,
+  "activeEquivalencyGroups": 4
+ }
+}

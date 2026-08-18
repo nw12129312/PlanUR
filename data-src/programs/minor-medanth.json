@@ -1,0 +1,80 @@
+{
+  "id": "minor-medanth",
+  "type": "minor",
+  "name": "Medical Anthropology",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "social-sciences",
+  "departments": [
+    "ANTH"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/ant/undergraduate/minor-clusters.html",
+  "sourcedOn": "2026-08-01",
+  "snapshot": "data-src/pages/ant/ant_undergraduate_minor-clusters.html",
+  "programChecks": {
+    "totalCourses": 6,
+    "minFromDepts": {
+      "depts": [
+        "ANTH"
+      ],
+      "n": 6
+    },
+    "max100Level": null
+  },
+  "notes": [
+    "Six courses: two theory courses from ANTH 200-210 plus three from the medical-anthropology list.",
+    "NEEDS VERIFICATION: the page lists two theory courses plus three topic courses, which accounts for five of the six. The sixth is modeled as any further anthropology course - confirm with the department."
+  ],
+  "requirementGroups": [
+    {
+      "id": "theory",
+      "label": "Theory courses (2)",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 2,
+        "filter": {
+          "depts": [
+            "ANTH"
+          ],
+          "minNumber": 200,
+          "maxNumber": 210
+        }
+      },
+      "sourceQuote": "Two of the following courses: ANTH 200 - 210"
+    },
+    {
+      "id": "medical",
+      "label": "Medical anthropology courses (3)",
+      "rule": {
+        "type": "n_of",
+        "n": 3,
+        "options": [
+          "ANTH 101",
+          "ANTH 102",
+          "ANTH 212",
+          "ANTH 214",
+          "ANTH 216"
+        ]
+      },
+      "sourceQuote": "Three of the following courses: ANTH 101: Cultural Anthropology; ANTH 102: Introduction to Medical Anthropology; ANTH 212: Emotion as Social Life; ANTH 214: Aging and Global Health in the Contemporary World; ANTH 216: Medical Anthropology"
+    },
+    {
+      "id": "additional",
+      "label": "Additional anthropology course",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 1,
+        "filter": {
+          "depts": [
+            "ANTH"
+          ],
+          "minNumber": 102,
+          "maxNumber": 399
+        }
+      },
+      "sourceQuote": "Six courses are required",
+      "note": "NEEDS VERIFICATION - the page's named groups cover only five courses."
+    }
+  ]
+}

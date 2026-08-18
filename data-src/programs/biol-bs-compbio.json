@@ -1,0 +1,293 @@
+{
+ "id": "biol-bs-compbio",
+ "type": "major",
+ "name": "Biological Sciences: Computational Biology (BCB) Track",
+ "degree": "BS",
+ "school": "sas",
+ "division": "natural-sciences",
+ "departments": [
+  "BIOL"
+ ],
+ "status": "ACTIVE",
+ "sourceUrl": "https://www.sas.rochester.edu/bio/undergraduate/bcb.html",
+ "sourcedOn": "2026-07-06",
+ "last_verified": "2026-07-06",
+ "snapshot": "data-src/pages/bio/bio_undergraduate_bcb.html",
+ "clustersRequired": 2,
+ "allowedClusterDivisions": [
+  "humanities",
+  "social-sciences"
+ ],
+ "totalCreditsOverride": null,
+ "overlapCapOverride": null,
+ "apIbCreditExcluded": true,
+ "minMajorGPA": 2.0,
+ "minPctFromHomeInstitution": 50,
+ "notes": [
+  "AP Biology (4/5) and IB Biology HL (6/7) earn general credit only - never major/minor requirements (encoded: apIbCreditExcluded).",
+  "UR courses must fulfill at least half the concentration requirements; ancillary-field courses are exempt (encoded: minPctFromHomeInstitution + per-group ancillary flags).",
+  "Maintain a 2.0 GPA within the major, excluding allied/ancillary field courses (minMajorGPA - informational: the app does not track grades)."
+ ],
+ "requirementGroups": [
+  {
+   "id": "intro",
+   "label": "Introductory biology",
+   "rule": {
+    "type": "all_of",
+    "courses": [
+     "BIOL 110L",
+     "BIOL 111L"
+    ]
+   },
+   "sourceQuote": "BIOL 110L/098: Principles of Biology I with Lab; BIOL 111L/099: Principles of Biology II with Lab"
+  },
+  {
+   "id": "genetics",
+   "label": "Genetics",
+   "rule": {
+    "type": "n_of",
+    "n": 1,
+    "options": [
+     "BIOL 198",
+     "BIOL 190"
+    ]
+   },
+   "sourceQuote": "BIOL 198 & 198P: Principles of Genetics with Lab; BIOL 190 & 198P: Genetics: From Mendel to Molecules with Lab",
+   "note": "Judgment call: modeled as a one-slot choice (n_of), not an equivalency group - both feed the same downstream requirements."
+  },
+  {
+   "id": "genetics-lab",
+   "label": "Genetics lab",
+   "rule": {
+    "type": "all_of",
+    "courses": [
+     "BIOL 198P"
+    ]
+   },
+   "sourceQuote": "BIOL 198 & 198P ... BIOL 190 & 198P (both intro options include 198P)"
+  },
+  {
+   "id": "stat",
+   "label": "Statistics (one path)",
+   "rule": {
+    "type": "sequence_one_of",
+    "sequences": [
+     [
+      "STAT 190"
+     ],
+     [
+      "STAT 180",
+      "STAT 216"
+     ]
+    ]
+   },
+   "sourceQuote": "One of the following options: STAT 190; STAT 180 AND STAT 216: Applied Statistics Methods",
+   "ancillary": true
+  },
+  {
+   "id": "comp-core",
+   "label": "Computational biology core",
+   "rule": {
+    "type": "all_of",
+    "courses": [
+     "BIOL 253L",
+     "BIOL 257L"
+    ]
+   },
+   "sourceQuote": "Plus: BIOL 253L: Computational Biology with Lab ... Plus: BIOL 257L: Applied Genomics with Lab"
+  },
+  {
+   "id": "programming",
+   "label": "Programming",
+   "rule": {
+    "type": "n_of",
+    "n": 1,
+    "options": [
+     "CSC 171",
+     "CSC 161"
+    ]
+   },
+   "sourceQuote": "Plus one of the following: CSC 171: Introduction to Computer Science; CSC 161: Introduction to Programming"
+  },
+  {
+   "id": "bio-elective",
+   "label": "Biology elective",
+   "rule": {
+    "type": "n_of",
+    "n": 1,
+    "options": [
+     "BIOL 202",
+     "BIOL 205",
+     "BIOL 243",
+     "BIOL 250",
+     "BIOL 252",
+     "BIOL 263",
+     "BIOL 266",
+     "BIOL 267"
+    ]
+   },
+   "sourceQuote": "Plus one of the following biology electives: BIOL 202; BIOL 205; BIOL 243; BIOL 250; BIOL 252; BIOL 263; BIOL 266; BIOL 267"
+  },
+  {
+   "id": "comp-elective",
+   "label": "Computational elective",
+   "rule": {
+    "type": "n_of",
+    "n": 1,
+    "options": [
+     "CSC 172",
+     "CSC 240",
+     "BIOL 219L",
+     "DSCC 201"
+    ]
+   },
+   "sourceQuote": "Plus one of the following computational electives: CSC 172; CSC 240; BIOL 219L; DSCC 201 (only open to non-DSCC majors in the spring)"
+  },
+  {
+   "id": "extra-elective",
+   "label": "Additional bio/computational elective",
+   "rule": {
+    "type": "n_of",
+    "n": 1,
+    "options": [
+     "BIOL 202",
+     "BIOL 205",
+     "BIOL 243",
+     "BIOL 250",
+     "BIOL 252",
+     "BIOL 263",
+     "BIOL 266",
+     "BIOL 267",
+     "CSC 172",
+     "CSC 240",
+     "BIOL 219L",
+     "DSCC 201"
+    ]
+   },
+   "sourceQuote": "Plus one additional elective from either the biology or computational electives listed above."
+  },
+  {
+   "id": "diversification",
+   "label": "Diversification elective (1, outside BCB)",
+   "rule": {
+    "type": "n_of",
+    "n": 1,
+    "optionsRef": "bio-div:bcb"
+   },
+   "sourceQuote": "One 200-level course outside of the BCB major track, chosen from the BCB diversification electives list."
+  },
+  {
+   "id": "chem-gen",
+   "label": "General chemistry",
+   "rule": {
+    "type": "all_of",
+    "courses": [
+     "CHEM 131",
+     "CHEM 132"
+    ]
+   },
+   "sourceQuote": "Both of the following general chemistry courses: CHEM 131: Chemical Concepts I with Lab; CHEM 132: Chemical Concepts II with Lab",
+   "ancillary": true
+  },
+  {
+   "id": "orgo-1",
+   "label": "Organic chemistry I (one path)",
+   "rule": {
+    "type": "sequence_one_of",
+    "sequences": [
+     [
+      "CHEM 203",
+      "CHEM 207"
+     ],
+     [
+      "CHEM 171",
+      "CHEM 173"
+     ]
+    ]
+   },
+   "sourceQuote": "One of the following organic chemistry I courses: CHEM 203/207: Organic Chemistry I with Lab; CHEM 171/173: First Year Organic Chemistry I with Lab",
+   "note": "Alternate-rigor paths - also enforced by the orgo-sequence equivalency group (mixing paths is flagged).",
+   "ancillary": true
+  },
+  {
+   "id": "phys-1",
+   "label": "Physics I",
+   "rule": {
+    "type": "n_of",
+    "n": 1,
+    "options": [
+     "PHYS 113",
+     "PHYS 121",
+     "PHYS 141"
+    ]
+   },
+   "sourceQuote": "One of the following physics I courses: PHYS 113: General Physics I with Lab; PHYS 121: Mechanics with Lab; PHYS 141: Mechanics (Honors) with Lab",
+   "note": "Alternate-rigor variants - also enforced by the intro-physics equivalency group.",
+   "ancillary": true
+  },
+  {
+   "id": "calc-1",
+   "label": "Calculus I",
+   "rule": {
+    "type": "n_of",
+    "n": 1,
+    "options": [
+     "MATH 141",
+     "MATH 161",
+     "MATH 171"
+    ]
+   },
+   "sourceQuote": "One of the following calculus I courses: MATH 141: Calculus I; MATH 161: Calculus IA; MATH 171Q: Honors Calculus I",
+   "note": "Page lists MATH 171Q; the catalog code is MATH 171. Only Calc I is required here (not the full sequence); the calc-sequence equivalency group still prevents mixing paths.",
+   "ancillary": true
+  },
+  {
+   "id": "calc-2",
+   "label": "Calculus II",
+   "rule": {
+    "type": "n_of",
+    "n": 1,
+    "options": [
+     "MATH 142",
+     "MATH 162",
+     "MATH 172"
+    ]
+   },
+   "sourceQuote": "One of the following calculus II courses: MATH 142: Calculus II; MATH 162: Calculus IIA; MATH 172Q: Honors Calculus II",
+   "note": "Page lists MATH 172Q; catalog code MATH 172.",
+   "ancillary": true
+  },
+  {
+   "id": "discrete",
+   "label": "Discrete mathematics",
+   "rule": {
+    "type": "all_of",
+    "courses": [
+     "MATH 150"
+    ]
+   },
+   "sourceQuote": "And: MATH 150: Discrete Mathematics",
+   "ancillary": true
+  }
+ ],
+ "upperLevelWriting": {
+  "label": "Two ULW courses (biological/natural sciences)",
+  "rule": {
+   "type": "n_from_filter",
+   "n": 2,
+   "filter": {
+    "depts": [
+     "BIOL",
+     "BCH",
+     "MBI",
+     "NSCI"
+    ],
+    "minNumber": 200,
+    "maxNumber": 499,
+    "wOnly": true
+   }
+  },
+  "sourceQuote": "All biology majors must complete two ULW courses. ... Writing courses within the humanities and social sciences cannot be applied to the biology major.",
+  "note": "Department-scoped filter: one natural-sciences W course outside these departments may count with adviser permission (CHEM 210W for biochemistry majors); humanities/social-science W courses never count."
+ }
+}

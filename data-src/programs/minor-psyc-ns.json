@@ -1,0 +1,75 @@
+{
+  "id": "minor-psyc-ns",
+  "type": "minor",
+  "name": "Psychology as a Natural Science",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "natural-sciences",
+  "departments": [
+    "PSYC"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/psy/undergraduate/minor.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/psy/psy_undergraduate_minor.html",
+  "programChecks": {
+    "totalCourses": 5,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "RETIRED MINOR - only available to students who declared it before Fall 2023. Every other student takes the single Psychology minor introduced that term (minor-psyc), which the department encourages even for earlier declarers. It is encoded here because the University's official program list still carries it and students who declared in time may still finish it. DO NOT DECLARE THIS AS A NEW STUDENT.",
+    "Five courses. This minor satisfies a natural science divisional requirement.",
+    "PSYC 101 may be replaced by its equivalent, including a grade of B- or higher in PSYC 101A, a 4 or 5 on the AP psychology test, or a 6 or better on the higher-level IB psychology exam. PSYC 101A is not in the 2025-26 catalog.",
+    "Up to two transferred psychology courses, in addition to Introduction to Psychology, may be used in the minor plan.",
+    "SOCIAL VS NATURAL SCIENCE: social-science psychology courses are PSYC courses NOT cross-listed with BCSC; natural-science ones ARE cross-listed with BCSC. The exceptions run both ways - PSYC 170/BCSC 170, PSYC 210/BCSC 185 and PSYC 248/BCSC 278 count as social science and not as natural science. The catalog does not record cross-listing, so the planner cannot enforce the split."
+  ],
+  "requirementGroups": [
+    {
+      "id": "intro",
+      "label": "Introduction to Psychology",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "PSYC 101"
+        ]
+      },
+      "sourceQuote": "PSYC 101: Introduction to Psychology or the equivalent (which may include a grade of B- or higher in PSYC 101A)"
+    },
+    {
+      "id": "core",
+      "label": "One natural-science psychology core course",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "PSYC 110",
+          "PSYC 111"
+        ]
+      },
+      "sourceQuote": "One natural science psychology core course: PSYC 110: Neural Foundations of Behavior; PSYC 111: Foundations of Cognitive Science"
+    },
+    {
+      "id": "additional",
+      "label": "Three further natural-science psychology courses",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 3,
+        "filter": {
+          "depts": [
+            "PSYC"
+          ],
+          "minNumber": 102,
+          "maxNumber": 399,
+          "exclude": [
+            "PSYC 110",
+            "PSYC 111"
+          ]
+        }
+      },
+      "sourceQuote": "At least three additional natural science psychology courses (courses cross-listed as BCSC courses), one of which must be at the 200 level or above - independent study courses are acceptable.",
+      "note": "Must be BCSC-cross-listed PSYC courses and one must be at the 200 level or above; the planner checks neither."
+    }
+  ],
+  "upperLevelWriting": null
+}

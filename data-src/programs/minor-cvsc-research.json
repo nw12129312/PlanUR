@@ -1,0 +1,86 @@
+{
+  "id": "minor-cvsc-research",
+  "type": "minor",
+  "name": "Research in Visual Science",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "natural-sciences",
+  "departments": [
+    "CVSC",
+    "BCSC"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/bcs/undergraduate/minors.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/bcs/bcs_undergraduate_minors.html",
+  "programChecks": {
+    "totalCourses": 5,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Five courses. NEEDS VERIFICATION: the department page names only the foundation course and the two research semesters, then states a five-course total without saying what the other two are.",
+    "The two research semesters may be with the same CVS faculty member or with two different faculty."
+  ],
+  "requirementGroups": [
+    {
+      "id": "foundation",
+      "label": "One foundation course",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "CVSC 110",
+          "BCSC 110",
+          "BCSC 111",
+          "CVSC 151",
+          "BCSC 151",
+          "OPT 248"
+        ]
+      },
+      "sourceQuote": "Research Minor in Visual Science. Five courses are required. One of the following: CVSC/BCSC 110: Neural Foundations of Behavior; CVSC/BCSC 111: Foundations of Cognitive Science; CVSC/BCSC 151: Perception & Action; OPT 248/448: Vision and the Eye"
+    },
+    {
+      "id": "research",
+      "label": "Two semesters of independent research in visual science",
+      "rule": {
+        "type": "n_of",
+        "n": 2,
+        "options": [
+          "CVSC 395",
+          "BCSC 395"
+        ]
+      },
+      "sourceQuote": "Two semesters of CVSC/BCSC 395: Independent Research in Visual Science. These may be either with the same faculty member in CVS or with two different faculty.",
+      "note": "TWO SEMESTERS of the same course. The planner counts distinct course codes, so the CVSC and BCSC cross-listings stand in for the two semesters; in practice you register for CVSC 395 twice."
+    },
+    {
+      "id": "remaining",
+      "label": "Two further visual-science courses",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 2,
+        "filter": {
+          "depts": [
+            "CVSC",
+            "BCSC"
+          ],
+          "minNumber": 100,
+          "maxNumber": 399,
+          "exclude": [
+            "CVSC 110",
+            "BCSC 110",
+            "BCSC 111",
+            "CVSC 151",
+            "BCSC 151",
+            "CVSC 395",
+            "BCSC 395"
+          ]
+        }
+      },
+      "sourceQuote": "Five courses are required",
+      "note": "NEEDS VERIFICATION: the page states a five-course total but names only three of them."
+    }
+  ],
+  "upperLevelWriting": null
+}

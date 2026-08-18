@@ -1,0 +1,143 @@
+{
+  "id": "major-aat-ba",
+  "type": "major",
+  "name": "Audio Arts and Technology",
+  "degree": "BA",
+  "school": "hajim",
+  "division": "engineering",
+  "departments": [
+    "AME"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.hajim.rochester.edu/ame/undergraduate/audio-arts-and-technology.html",
+  "snapshot": "data-src/pages/ame/ame_undergraduate_audio-arts-and-technology.html",
+  "sourcedOn": "2026-08-14",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": [
+    "humanities",
+    "social-sciences"
+  ],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "programChecks": {
+    "totalCourses": null,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "The AAT BA requires 54 credit hours in the major, including a two-credit upper-level writing course. This is the BA in Audio Arts and Technology - a different degree from the BS in Audio and Music Engineering (major-ame-bs).",
+    "CLUSTERS ARE SPECIFIED: two clusters, one in the humanities and one in a social science.",
+    "PRIMARY WRITING: all students must complete WRTG 105 or its equivalent.",
+    "MATH 171 or MATH 141 can substitute for MATH 161 depending on placement by the Department of Mathematics.",
+    "The programming requirement may also be satisfied with CSC 161, but students should contact the AME 262/AME 264 instructor to demonstrate familiarity with C and C++ before taking those courses.",
+    "AME 385 (the capstone) requires instructor permission to register; the advisor you choose depends on your project proposal, and the project is typically completed in the senior year.",
+    "The program is deliberately flexible so students can combine it with music, business and economics, media studies, studio arts, English and film studies, biology, psychology or other areas.",
+    "For more detail see the AAT Curriculum Guide (PDF) linked from the department page - it is not part of this snapshot.",
+    "Group sizes here follow the page's own course counts (four AME electives, two arts-and-science electives); the page states the credit total as 54 rather than listing credits per group."
+  ],
+  "requirementGroups": [
+    {
+      "id": "math-computing",
+      "label": "Math and computing requirement",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "MATH 161"
+        ]
+      },
+      "sourceQuote": "Math and Computing Requirement. Both of the following courses: MATH 161: Calculus IA*. *MATH 171, or MATH 141 can also be used to meet this requirement, depending on placement by the Department of Mathematics."
+    },
+    {
+      "id": "programming",
+      "label": "Programming requirement",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "ECE 114",
+          "CSC 161"
+        ]
+      },
+      "sourceQuote": "ECE 114: Intro to C/C++ Programming**. **The computer programming requirement also may be satisfied by completing CSC 161, however students should contact the AME 262/AME 264 instructor to demonstrate their familiarity with the C and C++ programming languages before taking these courses."
+    },
+    {
+      "id": "pre-major",
+      "label": "Pre-major requirements",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "AME 140",
+          "AME 141",
+          "AME 191",
+          "AME 193"
+        ]
+      },
+      "sourceQuote": "Pre-Major Requirements. All of the following courses are required: AME 140: Introduction to Audio and Music Engineering; AME 141: Fundamentals of the Digital Audio; AME 191: Art and Technology of Recording; AME 193: Sound Design"
+    },
+    {
+      "id": "ame-electives",
+      "label": "Four AME electives",
+      "rule": {
+        "type": "n_of",
+        "n": 4,
+        "options": [
+          "AME 196",
+          "AME 227",
+          "AME 240",
+          "AME 242",
+          "AME 244",
+          "AME 247",
+          "AME 262",
+          "AME 264"
+        ]
+      },
+      "sourceQuote": "AME Elective Courses. Choose four courses: AME 196: Interactive Computer Music; AME 227: Podcasting History: Hear UR; AME 240: Revolutions in Sound; AME 242: Listening and Audio Production; AME 244: Audio for Visual Media; AME 247: Audio for Gaming; AME 262: Audio Software Design I; AME 264: Audio Software Design II"
+    },
+    {
+      "id": "as-electives",
+      "label": "Two arts and science electives",
+      "rule": {
+        "type": "n_of",
+        "n": 2,
+        "options": [
+          "ENGL 255",
+          "ENGL 259",
+          "ENGL 260",
+          "ENGL 261",
+          "FMST 161",
+          "MUSC 101",
+          "MUSC 110",
+          "MUSC 111",
+          "MUSC 134",
+          "SART 151",
+          "SART 153"
+        ]
+      },
+      "sourceQuote": "Arts and Science Elective Courses. Choose two of the following courses: ENGL 255: Film History: Ealy Cinema; ENGL 259: Popular Film Genres; ENGL 260: Film History: 1989-Present; ENGL 261: Film Theory; FMST 161: Introduction to Video Art; MUSC 101: Elements of Music; MUSC 110: Introduction to Music Theory; MUSC 111: Theory I; MUSC 134: Style and Genres: Introduction to Music History; SART 151: New Media and Emerging Practice 1; SART 153: Introduction to Sound Art"
+    },
+    {
+      "id": "capstone",
+      "label": "Capstone project",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "AME 385"
+        ]
+      },
+      "sourceQuote": "Capstone Project. Students are required to take and complete AME 385: Capstone Project in Audio Arts and Technology. Projects will be of the students' choosing in consultation with an AME 385 advisor. Typically, the capstone project will be completed in the senior year."
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "WRTG 273/277: Communicating Your Professional Identity",
+    "rule": {
+      "type": "n_of",
+      "n": 1,
+      "options": [
+        "WRTG 273",
+        "WRTG 277"
+      ]
+    },
+    "sourceQuote": "Upper-Level Writing Requirement. Most AAT students will take WRTG 273/277: Communicating Your Professional Identity to complete their upper-level writing requirements, however, student may substitute this for another writing course, so long as they get approval from the undergraduate coordinator.",
+    "note": "This is the two-credit writing course counted in the major's 54 credit hours. Another writing course may be substituted with the undergraduate coordinator's approval."
+  }
+}

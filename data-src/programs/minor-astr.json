@@ -1,0 +1,95 @@
+{
+  "id": "minor-astr",
+  "type": "minor",
+  "name": "Astronomy",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "natural-sciences",
+  "departments": [
+    "ASTR",
+    "PHYS"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.pas.rochester.edu/undergraduate/minors.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/pas/pas_undergraduate_minors.html",
+  "programChecks": {
+    "totalCourses": 7,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Seven courses: a three-course introductory physics sequence, ASTR 142, two 200-level astronomy courses, and one further introductory astronomy course.",
+    "DEPARTMENT-CODE TRANSLATION: the PAS pages write 'AST' and 'PHY' where the registrar's catalog uses ASTR and PHYS.",
+    "A student must attain an average of at least 2.0 in all introductory 100-level astronomy, physics and mathematics courses. Physics majors CAN minor in astronomy.",
+    "The undergraduate astronomy advisor must approve all course choices."
+  ],
+  "requirementGroups": [
+    {
+      "id": "physics",
+      "label": "Introductory physics sequence",
+      "rule": {
+        "type": "sequence_one_of",
+        "sequences": [
+          [
+            "PHYS 121",
+            "PHYS 122",
+            "PHYS 123"
+          ],
+          [
+            "PHYS 141",
+            "PHYS 142",
+            "PHYS 143"
+          ]
+        ]
+      },
+      "sourceQuote": "One of the following introductory sequences: PHYS 121, 122 and 123; PHYS 141, 142 and 143"
+    },
+    {
+      "id": "astrophysics",
+      "label": "Elementary astrophysics",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "ASTR 142"
+        ]
+      },
+      "sourceQuote": "AST 142: Elementary Astrophysics",
+      "note": "The department page writes 'AST 142'; the registrar's catalog prefix is ASTR."
+    },
+    {
+      "id": "upper",
+      "label": "Two 200-level astronomy courses",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 2,
+        "filter": {
+          "depts": [
+            "ASTR"
+          ],
+          "minNumber": 200,
+          "maxNumber": 299
+        }
+      },
+      "sourceQuote": "Two 200-level astronomy courses."
+    },
+    {
+      "id": "intro-astr",
+      "label": "One additional introductory astronomy course",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "ASTR 111",
+          "ASTR 102",
+          "ASTR 104",
+          "ASTR 105",
+          "ASTR 106"
+        ]
+      },
+      "sourceQuote": "One additional introductory astronomy course: ASTR 102: Relativity, Black Holes and The Big Bang; ASTR 104: The Solar System; ASTR 105: Milkyway Galaxy; ASTR 106: Cosmic Origins of Life; ASTR 111: The Solar System and Its Origin*. *ASTR 111 covers the material in more depth than ASTR 104, and is recommended for the minor.",
+      "note": "ASTR 111 is listed first because the department recommends it over ASTR 104."
+    }
+  ],
+  "upperLevelWriting": null
+}

@@ -1,0 +1,94 @@
+{
+  "id": "major-psc-bs",
+  "type": "major",
+  "name": "Political Science",
+  "degree": "BS",
+  "school": "sas",
+  "division": "social-sciences",
+  "departments": ["PSCI", "INTR"],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/psc/undergraduate/major-psc-bs.html",
+  "sourcedOn": "2026-07-05",
+  "snapshot": "data-src/pages/psc/psc_undergraduate_major-psc-bs.html",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": ["humanities", "natural-sciences"],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "programChecks": { "totalCourses": 15, "minFromDepts": { "depts": ["PSCI", "INTR"], "n": 12 }, "max100Level": 4 },
+  "notes": [
+    "At least 15 courses (not counting prerequisites), minimum 2.0 GPA; at least 12 of 15 listed as INTR or PSCI; no S/F courses.",
+    "Prerequisites should be done by end of junior year. If CSC 161 or CSC 171 is used as a prerequisite, that same course may not also count anywhere in the body of the major.",
+    "MATH 165 requires a full calculus sequence first (14x users must take MATH 141-143).",
+    "At least one statistics or modeling tools course must be at the 3XX+ level - not auto-enforced.",
+    "Tools courses cannot double-count toward core track, breadth, or electives.",
+    "Transfer: none for tools/writing/team-learning; max two toward the core track; max three total; no online courses.",
+    "AP Government (4-5) or IB Global Politics HL (5-7) grants four credits, counted as elective + introductory + transfer.",
+    "Majors declared on/before April 15 2023 may count PSCI 282 as a modeling tools course."
+  ],
+  "requirementGroups": [
+    {
+      "id": "prereq-calc",
+      "label": "Prerequisite: two-semester calculus sequence",
+      "rule": { "type": "sequence_one_of", "sequences": [
+        ["MATH 141", "MATH 142"], ["MATH 161", "MATH 162"], ["MATH 171", "MATH 172"]] },
+      "sourceQuote": "Take two courses in one of the following calculus sequences: MATH 141-143 ...; MATH 161-162 ...; MATH 171-172"
+    },
+    {
+      "id": "prereq-computing",
+      "label": "Prerequisite: programming or linear algebra",
+      "rule": { "type": "n_of", "n": 1, "options": ["CSC 161", "CSC 171", "MATH 165"] },
+      "sourceQuote": "Take one of the following courses: CSC 161: Introduction to Programming; CSC 171: Introduction to Computer Science; MATH 165: Linear Algebra and Differential Equations"
+    },
+    {
+      "id": "tools-argument",
+      "label": "Tools: argument",
+      "rule": { "type": "all_of", "courses": ["PSCI 202W"] },
+      "sourceQuote": "Students must take PSCI 202W: Argument in Political Science."
+    },
+    {
+      "id": "tools-stats",
+      "label": "Tools: data analysis & statistics (2)",
+      "rule": { "type": "n_of", "n": 2, "options": ["PSCI 200", "PSCI 203W", "PSCI 205", "PSCI 404", "PSCI 405"] },
+      "sourceQuote": "Take two of the following courses in data analysis and statistics: PSCI 200; PSCI 203W; PSCI 205; PSCI 404: Probability and Inference; PSCI 405: Causal Inference"
+    },
+    {
+      "id": "tools-modeling",
+      "label": "Tools: modeling (2)",
+      "rule": { "type": "n_of", "n": 2, "options": ["PSCI 107", "PSCI 281", "PSCI 288", "PSCI 407", "PSCI 408"] },
+      "sourceQuote": "Take two of the following courses in modeling: PSCI 107; PSCI 281; PSCI 288; PSCI 407: Mathematical Modeling; PSCI 408: Positive Political Theory"
+    },
+    {
+      "id": "core-track",
+      "label": "Core track (5 courses from one field)",
+      "rule": { "type": "track_n_of", "n": 5, "tracksRef": "psc-tracks" },
+      "sourceQuote": "Core Track (Five Courses from One Track): Data and Modeling; Elections and Government; Philosophy, Law, and Public Policy; Political Economy and Development; Race, Ethnicity, and Identity; War, Violence, and Cooperation"
+    },
+    {
+      "id": "breadth",
+      "label": "Breadth (2 courses outside your core track)",
+      "rule": { "type": "breadth_outside_track", "n": 2, "trackGroupId": "core-track" },
+      "sourceQuote": "Select two track courses that are not in your core track."
+    },
+    {
+      "id": "electives",
+      "label": "Electives (3)",
+      "rule": { "type": "n_from_filter", "n": 3,
+                "filter": { "depts": ["PSCI", "INTR", "ECON", "HIST", "PHIL"], "minNumber": 100, "maxNumber": 399 } },
+      "sourceQuote": "Courses may be drawn from any offerings in the six tracks or any other courses in PSCI, INTR, ECON, HIST, or PHIL."
+    },
+    {
+      "id": "team-learning",
+      "label": "Team learning (1+)",
+      "rule": { "type": "n_from_filter", "n": 1,
+                "filter": { "depts": ["PSCI", "INTR"], "minNumber": 380, "maxNumber": 399 } },
+      "sourceQuote": "Select at least one team learning course. ... Options include research seminars, experiential learning, supervised teaching, independent study, directed research, senior honors project, and internships.",
+      "note": "NEEDS VERIFICATION: the qualifying list is department-maintained; this filter is an approximation."
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "Two W-designated courses in INTR or PSCI",
+    "rule": { "type": "n_from_filter", "n": 2,
+              "filter": { "depts": ["PSCI", "INTR"], "minNumber": 200, "maxNumber": 399, "wOnly": true } },
+    "sourceQuote": "Select any two W-designated courses in INTR or PSCI. Included in the 15 courses listed above. No more than one of these courses may be used to satisfy the writing requirement in a second or third major."
+  }
+}

@@ -1,0 +1,303 @@
+{
+  "id": "major-esci-ba",
+  "type": "major",
+  "name": "Engineering Science",
+  "degree": "BA",
+  "school": "hajim",
+  "division": "engineering",
+  "departments": [
+    "EAS"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.hajim.rochester.edu/undergraduate/es-ba.html",
+  "snapshot": "data-src/pages/hajim/undergraduate_es-ba.html",
+  "sourcedOn": "2026-08-14",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": [
+    "humanities",
+    "social-sciences"
+  ],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "programChecks": {
+    "totalCourses": null,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "A multidisciplinary Hajim School degree: a broad foundation in the sciences and mathematics that underlie engineering, with depth chosen through technical electives. It is a different degree from the BS in Engineering Science (major-eas-bs), which is the individually designed engineering major.",
+    "NOT ABET-ACCREDITED: 'Because no single standardized curriculum exists, the engineering science major is not ABET-accredited. Engineering science students who intend to seek licensure as a professional engineer should be aware that this non-accredited degree program will require additional education, work, and/or experience to qualify to take the Fundamentals of Engineering examination.'",
+    "CLUSTERS ARE SPECIFIED: 'All engineering science students are required to complete at least two clusters, one in the humanities and one in the social sciences.'",
+    "PRIMARY WRITING: WRTG 105 must be completed by the time the engineering science major is officially declared; all students are advised to finish it by the end of the first year.",
+    "MATH 141, 142 and 143 are equivalent to MATH 161 and 162; students also have the option of the honors sequence MATH 171, 172, 173. Only the MATH 161/162 and MATH 141/142/143 paths are modeled as alternatives - if you take the honors sequence, ask your advisor to substitute it.",
+    "NO TRACKS: 'Since BA-ES students are not required to follow tracks', the page's focus areas (Engineering Ethics, Engineering in the Business World, and others) are sample four-year plans only, not requirements.",
+    "ECE 111 is no longer offered as of fall 2021; students who took it before then may still count it toward the circuits category.",
+    "Hajim electives 'should be chosen in consultation with a faculty advisor and may include upper-level writing courses. At least one of the courses should be 200-level.' The planner cannot check the 200-level condition inside a four-course filter - confirm it yourself.",
+    "NEEDS VERIFICATION: several courses named in the upper-level writing list are absent from the 2025-26 catalog (AME 192, CSC 298W, CSC 299, ECE 399, ME 206W, ME 242), and the page writes WRT 273 where the catalog carries WRTG 273. Should any department in the College offer a generalized technical writing course, the page says it would also be acceptable pending review."
+  ],
+  "requirementGroups": [
+    {
+      "id": "prereq-math",
+      "label": "Prerequisite: calculus and linear algebra",
+      "rule": {
+        "type": "sequence_one_of",
+        "sequences": [
+          [
+            "MATH 161",
+            "MATH 162",
+            "MATH 165"
+          ],
+          [
+            "MATH 141",
+            "MATH 142",
+            "MATH 143",
+            "MATH 165"
+          ]
+        ]
+      },
+      "sourceQuote": "Prerequisites. All the following courses: MATH 161: Calculus IA*; MATH 162: Calculus IIA*; MATH 165: Linear Algebra with Differential Equations. *MATH 141, 142, and 143 are equivalent to MATH 161 and 162. Note: Students also have the option of taking the honors calculus sequence: MATH 171, MATH 172, and MATH 173."
+    },
+    {
+      "id": "prereq-physics",
+      "label": "Prerequisite: physics sequence",
+      "rule": {
+        "type": "sequence_one_of",
+        "sequences": [
+          [
+            "PHYS 121",
+            "PHYS 122"
+          ],
+          [
+            "PHYS 113",
+            "PHYS 122"
+          ],
+          [
+            "PHYS 141",
+            "PHYS 142"
+          ]
+        ]
+      },
+      "sourceQuote": "Plus, one of the following physics sequences: PHYS 113: General Physics I or PHYS 121: Mechanics; and PHYS 122: Electricity and Magnetism; PHYS 141: Mechanics (Honors) and PHYS 142: Electricity and Magnetism (Honors)"
+    },
+    {
+      "id": "prereq-chem",
+      "label": "Prerequisite: chemistry",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "CHEM 131",
+          "CHEM 137"
+        ]
+      },
+      "sourceQuote": "Plus, one of the following chemistry courses: CHEM 131: Chemical Concepts, System, Practice I; CHEM 137: Chemical Principles for Engineers"
+    },
+    {
+      "id": "programming",
+      "label": "One computer programming course",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "CSC 161",
+          "CSC 170",
+          "CSC 171",
+          "BME 221",
+          "ECE 114"
+        ]
+      },
+      "sourceQuote": "Required Hajim School Courses. One computer programming course: CSC 161: Introduction to Programming; CSC 170: Introduction to Web Development; CSC 171: Introduction to Computer Science; BME 221: Biomedical Computation and Statistics; ECE 114: Introduction to Computers and Programming"
+    },
+    {
+      "id": "intro-engineering",
+      "label": "One introduction to engineering course",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "BME 101",
+          "EAS 101",
+          "CHE 150",
+          "EAS 102",
+          "AME 140",
+          "EAS 103",
+          "ME 104",
+          "EAS 104",
+          "OPT 101",
+          "EAS 105",
+          "ECE 101",
+          "EAS 108"
+        ]
+      },
+      "sourceQuote": "Plus, one introduction to engineering course: BME 101/EAS 101: Introduction to Biomedical Engineering; CHE 150/EAS 102: Introduction to Sustainable Energy; AME 140/EAS 103: Introduction to Audio Music and Engineering; ME 104/EAS 104: The Engineering of Bridges; OPT 101/EAS 105: Introduction to Optics; ECE 101/EAS 108: Introduction to Electrical and Computer Engineering",
+      "note": "Each of these is cross-listed under both its department code and an EAS number; either code counts."
+    },
+    {
+      "id": "mechanics",
+      "label": "One engineering mechanics course",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "BME 201",
+          "ME 120"
+        ]
+      },
+      "sourceQuote": "Plus, one engineering mechanics course: BME 201: Fundamentals of Biomechanics; ME 120: Engineering Mechanics"
+    },
+    {
+      "id": "core-hajim",
+      "label": "Core Hajim courses: one each from any two categories",
+      "rule": {
+        "type": "n_of",
+        "n": 2,
+        "options": [
+          "BME 210",
+          "ECE 210",
+          "OPT 210",
+          "CHE 243",
+          "ME 225",
+          "ME 226",
+          "CHE 225",
+          "ME 123",
+          "OPT 241"
+        ]
+      },
+      "sourceQuote": "Core Hajim School Courses. Choose one course from any two categories below: Circuits: BME 210: Biosystems and Circuits, ECE 210: Circuit Analysis for System Thinking or OPT 210: Circuit Analysis for System Thinking; Mechanics of Fluids/Solids: CHE 243: Fluid Dynamics, ME 225: Introduction to Fluid Dynamics, or ME 226: Introduction to Solid Mechanics; Thermodynamics: CHE 225: Thermodynamics I or ME 123: Thermodynamics; Optics: OPT 241: Geometrical Optics",
+      "note": "The two courses must come from two DIFFERENT categories (circuits / mechanics of fluids and solids / thermodynamics / optics). The planner accepts any two from the combined list, so check that yours are in different categories."
+    },
+    {
+      "id": "hajim-electives",
+      "label": "Four Hajim School electives",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 4,
+        "filter": {
+          "depts": [
+            "AME",
+            "BME",
+            "CHE",
+            "CSC",
+            "DSCC",
+            "EAS",
+            "ECE",
+            "ME",
+            "OPT"
+          ],
+          "minNumber": 100,
+          "maxNumber": 399,
+          "minCredits": 4,
+          "exclude": [
+            "CSC 161",
+            "CSC 170",
+            "CSC 171",
+            "BME 221",
+            "ECE 114",
+            "BME 101",
+            "EAS 101",
+            "CHE 150",
+            "EAS 102",
+            "AME 140",
+            "EAS 103",
+            "ME 104",
+            "EAS 104",
+            "OPT 101",
+            "EAS 105",
+            "ECE 101",
+            "EAS 108",
+            "BME 201",
+            "ME 120",
+            "BME 210",
+            "ECE 210",
+            "OPT 210",
+            "CHE 243",
+            "ME 225",
+            "ME 226",
+            "CHE 225",
+            "ME 123",
+            "OPT 241"
+          ]
+        }
+      },
+      "sourceQuote": "Hajim School Electives: Any four four-credit Hajim School course except those listed above as required or core courses. These courses should be chosen in consultation with a faculty advisor and may include upper-level writing courses. At least one of the courses should be 200-level."
+    },
+    {
+      "id": "natural-science",
+      "label": "Two natural science electives",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 2,
+        "filter": {
+          "depts": [
+            "ASTR",
+            "BIOL",
+            "CHEM",
+            "EESC",
+            "MATH",
+            "PHYS",
+            "STAT"
+          ],
+          "minNumber": 100,
+          "maxNumber": 399,
+          "minCredits": 4,
+          "exclude": [
+            "MATH 161",
+            "MATH 162",
+            "MATH 165",
+            "MATH 141",
+            "MATH 142",
+            "MATH 143",
+            "MATH 171",
+            "MATH 172",
+            "MATH 173",
+            "PHYS 113",
+            "PHYS 121",
+            "PHYS 122",
+            "PHYS 141",
+            "PHYS 142",
+            "CHEM 131",
+            "CHEM 137"
+          ]
+        }
+      },
+      "sourceQuote": "Natural Science Electives: Any two four-credit courses in astronomy, biology, chemistry, earth and environmental sciences, mathematics, physics, or statistics except those listed above as prerequisite courses."
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "Two Hajim School upper-level writing courses",
+    "rule": {
+      "type": "n_of",
+      "n": 2,
+      "options": [
+        "AME 192",
+        "AME 193",
+        "AME 233",
+        "AME 262",
+        "AME 386",
+        "BME 221",
+        "BME 230",
+        "BME 260",
+        "CHE 246",
+        "CHE 255",
+        "CSC 298W",
+        "CSC 299",
+        "ECE 112",
+        "ECE 113",
+        "ECE 399",
+        "ME 204",
+        "ME 205",
+        "ME 206W",
+        "ME 241",
+        "ME 242",
+        "ME 251",
+        "OPT 201",
+        "OPT 202",
+        "OPT 203",
+        "OPT 204",
+        "WRTG 273"
+      ]
+    },
+    "sourceQuote": "The engineering science upper-level writing requirement will be met by satisfactorily completing two of the following Hajim School courses: AME 192, AME 193, AME 233, AME 262, AME 386; BME 221, BME 230, BME 260; CHE 246, CHE 255; CSC 298W, CSC 299; ECE 112, ECE 113, ECE 399; ME 204, ME 205, ME 206W, ME 241, ME 242, ME 251; OPT 201, OPT 202, OPT 203, OPT 204; WRT 273: Communicating Your Professional Identity in Engineering",
+    "note": "These are ordinary Hajim courses that carry the writing designation, not separately numbered W sections; several may also count as Hajim electives."
+  }
+}

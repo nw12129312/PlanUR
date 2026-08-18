@@ -1,0 +1,3730 @@
+[
+ {
+  "dept": "aah",
+  "url": "https://www.sas.rochester.edu/aah/",
+  "file": "aah/aah.html",
+  "title": "Department of Art and Art History : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 40652
+ },
+ {
+  "dept": "aah",
+  "url": "https://www.sas.rochester.edu/aah/undergraduate/",
+  "file": "aah/aah_undergraduate.html",
+  "title": "Undergraduate Program : Department of Art and Art History : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 38328
+ },
+ {
+  "dept": "aah",
+  "url": "https://www.sas.rochester.edu/aah/undergraduate/ah-major.html",
+  "file": "aah/aah_undergraduate_ah-major.html",
+  "title": "Major in Art History : Undergraduate Program : Department of Art and Art History : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 37639
+ },
+ {
+  "dept": "aah",
+  "url": "https://www.sas.rochester.edu/aah/undergraduate/index.html",
+  "file": "aah/aah_undergraduate_index.html",
+  "title": "Undergraduate Program : Department of Art and Art History : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 38328
+ },
+ {
+  "dept": "aah",
+  "url": "https://www.sas.rochester.edu/aah/undergraduate/minors-clusters.html",
+  "file": "aah/aah_undergraduate_minors-clusters.html",
+  "title": "Minors and Clusters : Undergraduate Program : Department of Art and Art History : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 37259
+ },
+ {
+  "dept": "aah",
+  "url": "https://www.sas.rochester.edu/aah/undergraduate/sa-major.html",
+  "file": "aah/aah_undergraduate_sa-major.html",
+  "title": "Major in Studio Arts : Undergraduate Program : Department of Art and Art History : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 39260
+ },
+ {
+  "dept": "aas",
+  "url": "https://www.sas.rochester.edu/aas/",
+  "file": "aas/aas.html",
+  "title": "Frederick Douglass Institute and Department of Black Studies : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 40755
+ },
+ {
+  "dept": "aas",
+  "url": "https://www.sas.rochester.edu/aas/undergraduate/",
+  "file": "aas/aas_undergraduate.html",
+  "title": "Undergraduate Program : Frederick Douglass Institute and Department of Black Studies : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 36083
+ },
+ {
+  "dept": "aas",
+  "url": "https://www.sas.rochester.edu/aas/undergraduate/advising.html",
+  "file": "aas/aas_undergraduate_advising.html",
+  "title": "Advising : Undergraduate Program : Frederick Douglass Institute and Department of Black Studies : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 35909
+ },
+ {
+  "dept": "aas",
+  "url": "https://www.sas.rochester.edu/aas/undergraduate/index.html",
+  "file": "aas/aas_undergraduate_index.html",
+  "title": "Undergraduate Program : Frederick Douglass Institute and Department of Black Studies : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 36083
+ },
+ {
+  "dept": "aas",
+  "url": "https://www.sas.rochester.edu/aas/undergraduate/major.html",
+  "file": "aas/aas_undergraduate_major.html",
+  "title": "Major Requirements : Undergraduate Program : Frederick Douglass Institute and Department of Black Studies : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 42486
+ },
+ {
+  "dept": "aas",
+  "url": "https://www.sas.rochester.edu/aas/undergraduate/minor-clusters.html",
+  "file": "aas/aas_undergraduate_minor-clusters.html",
+  "title": "Minor and Cluster Requirements : Undergraduate Program : Frederick Douglass Institute and Department of Black Studies : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 38527
+ },
+ {
+  "dept": "ame",
+  "url": "https://www.hajim.rochester.edu/ame/",
+  "file": "ame/ame.html",
+  "title": "Department of Audio and Music Engineering / Audio Arts and Technology : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 44830
+ },
+ {
+  "dept": "ame",
+  "url": "https://www.hajim.rochester.edu/ame/undergraduate/",
+  "file": "ame/ame_undergraduate.html",
+  "title": "Undergraduate Program : Audio and Music Engineering / Audio Arts and Technology : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 35484
+ },
+ {
+  "dept": "ame",
+  "url": "https://www.hajim.rochester.edu/ame/undergraduate/advising.html",
+  "file": "ame/ame_undergraduate_advising.html",
+  "title": "Advising : Undergraduate Program : Audio and Music Engineering / Audio Arts and Technology : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 36700
+ },
+ {
+  "dept": "ame",
+  "url": "https://www.hajim.rochester.edu/ame/undergraduate/audio-arts-and-technology.html",
+  "file": "ame/ame_undergraduate_audio-arts-and-technology.html",
+  "title": "BA in Audio Arts and Technology : Undergraduate Program : Audio and Music Engineering / Audio Arts and Technology : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 39775
+ },
+ {
+  "dept": "ame",
+  "url": "https://www.hajim.rochester.edu/ame/undergraduate/index.html",
+  "file": "ame/ame_undergraduate_index.html",
+  "title": "Undergraduate Program : Audio and Music Engineering / Audio Arts and Technology : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 35484
+ },
+ {
+  "dept": "ame",
+  "url": "https://www.hajim.rochester.edu/ame/undergraduate/major.html",
+  "file": "ame/ame_undergraduate_major.html",
+  "title": "BS in Audio and Music Engineering : Undergraduate Program : Audio and Music Engineering / Audio Arts and Technology : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 42681
+ },
+ {
+  "dept": "ame",
+  "url": "https://www.hajim.rochester.edu/ame/undergraduate/minor.html",
+  "file": "ame/ame_undergraduate_minor.html",
+  "title": "AME Minor : Undergraduate Program : Audio and Music Engineering / Audio Arts and Technology : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 36797
+ },
+ {
+  "dept": "ant",
+  "url": "https://www.sas.rochester.edu/ant/",
+  "file": "ant/ant.html",
+  "title": "Department of Anthropology : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 41130
+ },
+ {
+  "dept": "ant",
+  "url": "https://www.sas.rochester.edu/ant/undergraduate/",
+  "file": "ant/ant_undergraduate.html",
+  "title": "Undergraduate Program : Department of Anthropology : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 36511
+ },
+ {
+  "dept": "ant",
+  "url": "https://www.sas.rochester.edu/ant/undergraduate/honors.html",
+  "file": "ant/ant_undergraduate_honors.html",
+  "title": "Honors Program : Undergraduate Program : Department of Anthropology : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 38498
+ },
+ {
+  "dept": "ant",
+  "url": "https://www.sas.rochester.edu/ant/undergraduate/index.html",
+  "file": "ant/ant_undergraduate_index.html",
+  "title": "Undergraduate Program : Department of Anthropology : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 36511
+ },
+ {
+  "dept": "ant",
+  "url": "https://www.sas.rochester.edu/ant/undergraduate/major.html",
+  "file": "ant/ant_undergraduate_major.html",
+  "title": "Major Requirements : Undergraduate Program : Department of Anthropology : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 40739
+ },
+ {
+  "dept": "ant",
+  "url": "https://www.sas.rochester.edu/ant/undergraduate/minor-clusters.html",
+  "file": "ant/ant_undergraduate_minor-clusters.html",
+  "title": "Minor and Cluster Requirements : Undergraduate Program : Department of Anthropology : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 37446
+ },
+ {
+  "dept": "asl",
+  "url": "https://www.sas.rochester.edu/asl/",
+  "file": "asl/asl.html",
+  "title": "American Sign Language Program : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 39745
+ },
+ {
+  "dept": "asl",
+  "url": "https://www.sas.rochester.edu/asl/undergraduate/",
+  "file": "asl/asl_undergraduate.html",
+  "title": "Undergraduate Program : American Sign Language Program : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 33538
+ },
+ {
+  "dept": "asl",
+  "url": "https://www.sas.rochester.edu/asl/undergraduate/advising.html",
+  "file": "asl/asl_undergraduate_advising.html",
+  "title": "Advising : Undergraduate Program : American Sign Language Program : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 39384
+ },
+ {
+  "dept": "asl",
+  "url": "https://www.sas.rochester.edu/asl/undergraduate/index.html",
+  "file": "asl/asl_undergraduate_index.html",
+  "title": "Undergraduate Program : American Sign Language Program : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 33538
+ },
+ {
+  "dept": "asl",
+  "url": "https://www.sas.rochester.edu/asl/undergraduate/major.html",
+  "file": "asl/asl_undergraduate_major.html",
+  "title": "Major Requirements : Undergraduate Program : American Sign Language Program : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 36155
+ },
+ {
+  "dept": "asl",
+  "url": "https://www.sas.rochester.edu/asl/undergraduate/minor-clusters.html",
+  "file": "asl/asl_undergraduate_minor-clusters.html",
+  "title": "Minor and Clusters : Undergraduate Program : American Sign Language Program : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 37593
+ },
+ {
+  "dept": "aths",
+  "url": "https://www.sas.rochester.edu/aths/",
+  "file": "aths/aths.html",
+  "title": "Archaeology, Technology, and Historical Structures : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 45703
+ },
+ {
+  "dept": "aths",
+  "url": "https://www.sas.rochester.edu/aths/undergraduate/categories.html",
+  "file": "aths/aths_undergraduate_categories.html",
+  "title": "Course Categories  : Undergraduate Program : Archaeology, Technology, and Historical Structures : University of Rochester",
+  "fetchedOn": "2026-08-14",
+  "bytes": 42113
+ },
+ {
+  "dept": "aths",
+  "url": "https://www.sas.rochester.edu/aths/undergraduate/courses.html",
+  "file": "aths/aths_undergraduate_courses.html",
+  "title": "Courses : Undergraduate Program : Archaeology, Technology, and Historical Structures : University of Rochester",
+  "fetchedOn": "2026-08-14",
+  "bytes": 34474
+ },
+ {
+  "dept": "aths",
+  "url": "https://www.sas.rochester.edu/aths/undergraduate/index.html",
+  "file": "aths/aths_undergraduate_index.html",
+  "title": "Undergraduate Program : Archaeology, Technology, and Historical Structures : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 36478
+ },
+ {
+  "dept": "aths",
+  "url": "https://www.sas.rochester.edu/aths/undergraduate/major.html",
+  "file": "aths/aths_undergraduate_major.html",
+  "title": "Major Requirements : Undergraduate Program : Archaeology, Technology, and Historical Structures : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 37568
+ },
+ {
+  "dept": "aths",
+  "url": "https://www.sas.rochester.edu/aths/undergraduate/minor.html",
+  "file": "aths/aths_undergraduate_minor.html",
+  "title": "Minor Requirements : Undergraduate Program : Archaeology, Technology, and Historical Structures : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 34886
+ },
+ {
+  "dept": "aths",
+  "url": "https://www.sas.rochester.edu/aths/undergraduate/research.html",
+  "file": "aths/aths_undergraduate_research.html",
+  "title": "Research Opportunities : Undergraduate Program : Archaeology, Technology, and Historical Structures : University of Rochester",
+  "fetchedOn": "2026-08-14",
+  "bytes": 35111
+ },
+ {
+  "dept": "bcs",
+  "url": "https://www.sas.rochester.edu/bcs/",
+  "file": "bcs/bcs.html",
+  "title": "Department of Brain and Cognitive Sciences : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 47524
+ },
+ {
+  "dept": "bcs",
+  "url": "https://www.sas.rochester.edu/bcs/neuro/index.html",
+  "file": "bcs/bcs_neuro_index.html",
+  "title": "Neuroscience : Undergraduate Programs : Brain and Cognitive Sciences : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 36153
+ },
+ {
+  "dept": "bcs",
+  "url": "https://www.sas.rochester.edu/bcs/neuro/requirements.html",
+  "file": "bcs/bcs_neuro_requirements.html",
+  "title": "Neuroscience : Undergraduate Programs : Brain and Cognitive Sciences : University of Rochester",
+  "fetchedOn": "2026-08-14",
+  "bytes": 44207
+ },
+ {
+  "dept": "bcs",
+  "url": "https://www.sas.rochester.edu/bcs/undergraduate/",
+  "file": "bcs/bcs_undergraduate.html",
+  "title": "Undergraduate Programs : Brain and Cognitive Sciences : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 39299
+ },
+ {
+  "dept": "bcs",
+  "url": "https://www.sas.rochester.edu/bcs/undergraduate/../neuro/advising.html",
+  "file": "bcs/bcs_undergraduate_.._neuro_advising.html",
+  "title": "Neuroscience : Undergraduate Programs : Brain and Cognitive Sciences : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 45079
+ },
+ {
+  "dept": "bcs",
+  "url": "https://www.sas.rochester.edu/bcs/undergraduate/../neuro/index.html",
+  "file": "bcs/bcs_undergraduate_.._neuro_index.html",
+  "title": "Neuroscience : Undergraduate Programs : Brain and Cognitive Sciences : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 36153
+ },
+ {
+  "dept": "bcs",
+  "url": "https://www.sas.rochester.edu/bcs/undergraduate/../neuro/requirements.html",
+  "file": "bcs/bcs_undergraduate_.._neuro_requirements.html",
+  "title": "Neuroscience : Undergraduate Programs : Brain and Cognitive Sciences : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 44207
+ },
+ {
+  "dept": "bcs",
+  "url": "https://www.sas.rochester.edu/bcs/undergraduate/BAdegree.html",
+  "file": "bcs/bcs_undergraduate_BAdegree.html",
+  "title": "BA in Brain and Cognitive Sciences : Undergraduate Programs : Brain and Cognitive Sciences : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 40453
+ },
+ {
+  "dept": "bcs",
+  "url": "https://www.sas.rochester.edu/bcs/undergraduate/BSdegree.html",
+  "file": "bcs/bcs_undergraduate_BSdegree.html",
+  "title": "BS in Brain and Cognitive Sciences : Undergraduate Programs : Brain and Cognitive Sciences : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 43512
+ },
+ {
+  "dept": "bcs",
+  "url": "https://www.sas.rochester.edu/bcs/undergraduate/declaring.html",
+  "file": "bcs/bcs_undergraduate_declaring.html",
+  "title": "BCS Advising : Undergraduate Programs : Brain and Cognitive Sciences : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 46250
+ },
+ {
+  "dept": "bcs",
+  "url": "https://www.sas.rochester.edu/bcs/undergraduate/honors.html",
+  "file": "bcs/bcs_undergraduate_honors.html",
+  "title": "BCS Honors Research : Undergraduate Programs : Brain and Cognitive Sciences : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 40568
+ },
+ {
+  "dept": "bcs",
+  "url": "https://www.sas.rochester.edu/bcs/undergraduate/index.html",
+  "file": "bcs/bcs_undergraduate_index.html",
+  "title": "Undergraduate Programs : Brain and Cognitive Sciences : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 39299
+ },
+ {
+  "dept": "bcs",
+  "url": "https://www.sas.rochester.edu/bcs/undergraduate/minors.html",
+  "file": "bcs/bcs_undergraduate_minors.html",
+  "title": "Minors and Clusters : Undergraduate Programs : Brain and Cognitive Sciences : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 41347
+ },
+ {
+  "dept": "bcs",
+  "url": "https://www.sas.rochester.edu/bcs/undergraduate/overview.html",
+  "file": "bcs/bcs_undergraduate_overview.html",
+  "title": "Brain and Cognitive Sciences : Undergraduate Programs : Brain and Cognitive Sciences : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 35703
+ },
+ {
+  "dept": "bio",
+  "url": "https://www.sas.rochester.edu/bio/",
+  "file": "bio/bio.html",
+  "title": "Department of Biology : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 45618
+ },
+ {
+  "dept": "bio",
+  "url": "https://www.sas.rochester.edu/bio/undergraduate/",
+  "file": "bio/bio_undergraduate.html",
+  "title": "Undergraduate Program : Department of Biology : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 39640
+ },
+ {
+  "dept": "bio",
+  "url": "https://www.sas.rochester.edu/bio/undergraduate/advising.html",
+  "file": "bio/bio_undergraduate_advising.html",
+  "title": "Advising : Undergraduate Program : Department of Biology : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 51464
+ },
+ {
+  "dept": "bio",
+  "url": "https://www.sas.rochester.edu/bio/undergraduate/bbc.html",
+  "file": "bio/bio_undergraduate_bbc.html",
+  "title": "BS in Biological Sciences: Biochemistry (BBC) Track : Undergraduate Program : Department of Biology : University of Rochester",
+  "fetchedOn": "2026-08-14",
+  "bytes": 47474
+ },
+ {
+  "dept": "bio",
+  "url": "https://www.sas.rochester.edu/bio/undergraduate/bcb.html",
+  "file": "bio/bio_undergraduate_bcb.html",
+  "title": "BS in Biological Sciences: Computational Biology (BCB) Track : Undergraduate Program : Department of Biology : University of Rochester",
+  "fetchedOn": "2026-08-14",
+  "bytes": 45633
+ },
+ {
+  "dept": "bio",
+  "url": "https://www.sas.rochester.edu/bio/undergraduate/bcd.html",
+  "file": "bio/bio_undergraduate_bcd.html",
+  "title": "BS in Biological Sciences: Cell and Developmental Biology (BCD) Track : Undergraduate Program : Department of Biology : University of Rochester",
+  "fetchedOn": "2026-08-14",
+  "bytes": 46228
+ },
+ {
+  "dept": "bio",
+  "url": "https://www.sas.rochester.edu/bio/undergraduate/beb.html",
+  "file": "bio/bio_undergraduate_beb.html",
+  "title": "BS in Biological Sciences: Ecology and Evolutionary Biology (BEB) Track : Undergraduate Program : Department of Biology : University of Rochester",
+  "fetchedOn": "2026-08-14",
+  "bytes": 45501
+ },
+ {
+  "dept": "bio",
+  "url": "https://www.sas.rochester.edu/bio/undergraduate/bio.html",
+  "file": "bio/bio_undergraduate_bio.html",
+  "title": "BA in Biology : Undergraduate Program : Department of Biology : University of Rochester",
+  "fetchedOn": "2026-08-14",
+  "bytes": 46957
+ },
+ {
+  "dept": "bio",
+  "url": "https://www.sas.rochester.edu/bio/undergraduate/bmb.html",
+  "file": "bio/bio_undergraduate_bmb.html",
+  "title": "BS in Biological Sciences: Microbiology (BMB) Track : Undergraduate Program : Department of Biology : University of Rochester",
+  "fetchedOn": "2026-08-14",
+  "bytes": 45212
+ },
+ {
+  "dept": "bio",
+  "url": "https://www.sas.rochester.edu/bio/undergraduate/bmg.html",
+  "file": "bio/bio_undergraduate_bmg.html",
+  "title": "BS in Biological Sciences: Molecular Genetics (BMG) Track : Undergraduate Program : Department of Biology : University of Rochester",
+  "fetchedOn": "2026-08-14",
+  "bytes": 46261
+ },
+ {
+  "dept": "bio",
+  "url": "https://www.sas.rochester.edu/bio/undergraduate/bsg.html",
+  "file": "bio/bio_undergraduate_bsg.html",
+  "title": "BS in Biological Sciences: General (BSG) Track : Undergraduate Program : Department of Biology : University of Rochester",
+  "fetchedOn": "2026-08-14",
+  "bytes": 48314
+ },
+ {
+  "dept": "bio",
+  "url": "https://www.sas.rochester.edu/bio/undergraduate/certificates-clusters.html",
+  "file": "bio/bio_undergraduate_certificates-clusters.html",
+  "title": "Certificate and Clusters : Undergraduate Program : Department of Biology : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 42081
+ },
+ {
+  "dept": "bio",
+  "url": "https://www.sas.rochester.edu/bio/undergraduate/index.html",
+  "file": "bio/bio_undergraduate_index.html",
+  "title": "Undergraduate Program : Department of Biology : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 39640
+ },
+ {
+  "dept": "bio",
+  "url": "https://www.sas.rochester.edu/bio/undergraduate/majors.html",
+  "file": "bio/bio_undergraduate_majors.html",
+  "title": "Majors : Undergraduate Program : Department of Biology : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 46672
+ },
+ {
+  "dept": "bio",
+  "url": "https://www.sas.rochester.edu/bio/undergraduate/minors.html",
+  "file": "bio/bio_undergraduate_minors.html",
+  "title": "Minors : Undergraduate Program : Department of Biology : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 39744
+ },
+ {
+  "dept": "bio",
+  "url": "https://www.sas.rochester.edu/bio/undergraduate/pre-major-students.html",
+  "file": "bio/bio_undergraduate_pre-major-students.html",
+  "title": "Preparing Pre-Major Students  : Undergraduate Program : Department of Biology : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 39485
+ },
+ {
+  "dept": "bme",
+  "url": "https://www.hajim.rochester.edu/bme/",
+  "file": "bme/bme.html",
+  "title": "Department of Biomedical Engineering : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 48633
+ },
+ {
+  "dept": "bme",
+  "url": "https://www.hajim.rochester.edu/bme/undergraduate/",
+  "file": "bme/bme_undergraduate.html",
+  "title": "Undergraduate Program : Department of Biomedical Engineering : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 50783
+ },
+ {
+  "dept": "bme",
+  "url": "https://www.hajim.rochester.edu/bme/undergraduate/index.html",
+  "file": "bme/bme_undergraduate_index.html",
+  "title": "Undergraduate Program : Department of Biomedical Engineering : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 50783
+ },
+ {
+  "dept": "bme",
+  "url": "https://www.hajim.rochester.edu/bme/undergraduate/minor.html",
+  "file": "bme/bme_undergraduate_minor.html",
+  "title": "Minor and Cluster Requirements : Undergraduate Program : Department of Biomedical Engineering : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 43577
+ },
+ {
+  "dept": "bme",
+  "url": "https://www.hajim.rochester.edu/bme/undergraduate/requirements.html",
+  "file": "bme/bme_undergraduate_requirements.html",
+  "title": "BS Degree Requirements : Undergraduate Program : Department of Biomedical Engineering : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 52012
+ },
+ {
+  "dept": "bsb",
+  "url": "https://www.sas.rochester.edu/bsb/index.html",
+  "file": "bsb/bsb_index.html",
+  "title": "Barry Florescue Undergraduate Business Program : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 40773
+ },
+ {
+  "dept": "bsb",
+  "url": "https://www.sas.rochester.edu/bsb/undergraduate/advising.html",
+  "file": "bsb/bsb_undergraduate_advising.html",
+  "title": "Advising : Undergraduate Program : Barry Florescue Undergraduate Business Program : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 38847
+ },
+ {
+  "dept": "bsb",
+  "url": "https://www.sas.rochester.edu/bsb/undergraduate/ba-degree.html",
+  "file": "bsb/bsb_undergraduate_ba-degree.html",
+  "title": "BA Business Major : Undergraduate Program : Barry Florescue Undergraduate Business Program : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 45285
+ },
+ {
+  "dept": "bsb",
+  "url": "https://www.sas.rochester.edu/bsb/undergraduate/bs-degree.html",
+  "file": "bsb/bsb_undergraduate_bs-degree.html",
+  "title": "BS Business Major : Undergraduate Program : Barry Florescue Undergraduate Business Program : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 57178
+ },
+ {
+  "dept": "bsb",
+  "url": "https://www.sas.rochester.edu/bsb/undergraduate/index.html",
+  "file": "bsb/bsb_undergraduate_index.html",
+  "title": "Undergraduate Business Program Overview : Undergraduate Program : Barry Florescue Undergraduate Business Program : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 36195
+ },
+ {
+  "dept": "bsb",
+  "url": "https://www.sas.rochester.edu/bsb/undergraduate/minor.html",
+  "file": "bsb/bsb_undergraduate_minor.html",
+  "title": "Business Minor : Undergraduate Program : Barry Florescue Undergraduate Business Program : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 50518
+ },
+ {
+  "dept": "ccas",
+  "url": "https://www.rochester.edu/college/ccas/handbook/index.html",
+  "file": "ccas/college_ccas_handbook_index.html",
+  "title": "Index : Undergraduate Academic Policies and Advising Handbook : Center for Advising Services : University of Rochester",
+  "fetchedOn": "2026-08-14",
+  "bytes": 40825
+ },
+ {
+  "dept": "ccas",
+  "url": "https://www.rochester.edu/college/ccas/handbook/interdepartmental-studies.html",
+  "file": "ccas/college_ccas_handbook_interdepartmental-studies.html",
+  "title": "Interdepartmental Major : Advising Handbook : Center for Advising Services : University of Rochester",
+  "fetchedOn": "2026-08-14",
+  "bytes": 33190
+ },
+ {
+  "dept": "che",
+  "url": "https://www.hajim.rochester.edu/che/",
+  "file": "che/che.html",
+  "title": "Department of Chemical and Sustainability Engineering : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 46450
+ },
+ {
+  "dept": "che",
+  "url": "https://www.hajim.rochester.edu/che/undergraduate/",
+  "file": "che/che_undergraduate.html",
+  "title": "Undergraduate Program : Department of Chemical and Sustainability Engineering : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 42008
+ },
+ {
+  "dept": "che",
+  "url": "https://www.hajim.rochester.edu/che/undergraduate/index.html",
+  "file": "che/che_undergraduate_index.html",
+  "title": "Undergraduate Program : Department of Chemical and Sustainability Engineering : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 42008
+ },
+ {
+  "dept": "che",
+  "url": "https://www.hajim.rochester.edu/che/undergraduate/major.html",
+  "file": "che/che_undergraduate_major.html",
+  "title": "Major Requirements : Undergraduate Program : Department of Chemical and Sustainability Engineering : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 39890
+ },
+ {
+  "dept": "che",
+  "url": "https://www.hajim.rochester.edu/che/undergraduate/minor.html",
+  "file": "che/che_undergraduate_minor.html",
+  "title": "Minor and Cluster Requirements : Undergraduate Program : Department of Chemical and Sustainability Engineering : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 42417
+ },
+ {
+  "dept": "chm",
+  "url": "https://www.sas.rochester.edu/chm/",
+  "file": "chm/chm.html",
+  "title": "Department of Chemistry : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 47709
+ },
+ {
+  "dept": "chm",
+  "url": "https://www.sas.rochester.edu/chm/undergraduate/",
+  "file": "chm/chm_undergraduate.html",
+  "title": "Undergraduate Program : Department of Chemistry : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 43886
+ },
+ {
+  "dept": "chm",
+  "url": "https://www.sas.rochester.edu/chm/undergraduate/advising-pre-health.html",
+  "file": "chm/chm_undergraduate_advising-pre-health.html",
+  "title": "Advising\u2014Pre-Health : Undergraduate Program : Department of Chemistry : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 43208
+ },
+ {
+  "dept": "chm",
+  "url": "https://www.sas.rochester.edu/chm/undergraduate/advising.html",
+  "file": "chm/chm_undergraduate_advising.html",
+  "title": "Advising  : Undergraduate Program : Department of Chemistry : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 45837
+ },
+ {
+  "dept": "chm",
+  "url": "https://www.sas.rochester.edu/chm/undergraduate/ba-biological.html",
+  "file": "chm/chm_undergraduate_ba-biological.html",
+  "title": "BA in Chemistry: Biological Chemistry Track : Undergraduate Program : Department of Chemistry : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 46322
+ },
+ {
+  "dept": "chm",
+  "url": "https://www.sas.rochester.edu/chm/undergraduate/ba-inorganic.html",
+  "file": "chm/chm_undergraduate_ba-inorganic.html",
+  "title": "BA in Chemistry: Inorganic Chemistry  Track : Undergraduate Program : Department of Chemistry : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 46726
+ },
+ {
+  "dept": "chm",
+  "url": "https://www.sas.rochester.edu/chm/undergraduate/ba-organic.html",
+  "file": "chm/chm_undergraduate_ba-organic.html",
+  "title": "BA in Chemistry: Organic Chemistry Track : Undergraduate Program : Department of Chemistry : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 46328
+ },
+ {
+  "dept": "chm",
+  "url": "https://www.sas.rochester.edu/chm/undergraduate/ba-physical.html",
+  "file": "chm/chm_undergraduate_ba-physical.html",
+  "title": "BA in Chemistry: Physical Chemistry Track : Undergraduate Program : Department of Chemistry : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 46806
+ },
+ {
+  "dept": "chm",
+  "url": "https://www.sas.rochester.edu/chm/undergraduate/ba-requirements.html",
+  "file": "chm/chm_undergraduate_ba-requirements.html",
+  "title": "BA in Chemistry : Undergraduate Program : Department of Chemistry : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 46471
+ },
+ {
+  "dept": "chm",
+  "url": "https://www.sas.rochester.edu/chm/undergraduate/bs-requirements.html",
+  "file": "chm/chm_undergraduate_bs-requirements.html",
+  "title": "BS in Chemistry : Undergraduate Program : Department of Chemistry : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 47192
+ },
+ {
+  "dept": "chm",
+  "url": "https://www.sas.rochester.edu/chm/undergraduate/index.html",
+  "file": "chm/chm_undergraduate_index.html",
+  "title": "Undergraduate Program : Department of Chemistry : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 43886
+ },
+ {
+  "dept": "chm",
+  "url": "https://www.sas.rochester.edu/chm/undergraduate/minor-clusters.html",
+  "file": "chm/chm_undergraduate_minor-clusters.html",
+  "title": "Minor and Cluster Requirements : Undergraduate Program : Department of Chemistry : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 44227
+ },
+ {
+  "dept": "chm",
+  "url": "https://www.sas.rochester.edu/chm/undergraduate/ms-degree.html",
+  "file": "chm/chm_undergraduate_ms-degree.html",
+  "title": "Five-Year MS Program : Undergraduate Program : Department of Chemistry : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 45676
+ },
+ {
+  "dept": "csc",
+  "url": "https://www.cs.rochester.edu/",
+  "file": "csc/index.html",
+  "title": "Department of Computer Science : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 45218
+ },
+ {
+  "dept": "csc",
+  "url": "https://www.cs.rochester.edu/undergraduate/",
+  "file": "csc/undergraduate.html",
+  "title": "Undergraduate Program : Department of Computer Science : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 53206
+ },
+ {
+  "dept": "csc",
+  "url": "https://www.cs.rochester.edu/undergraduate/advising.html",
+  "file": "csc/undergraduate_advising.html",
+  "title": "Advising : Undergraduate Program : Department of Computer Science : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 52219
+ },
+ {
+  "dept": "csc",
+  "url": "https://www.cs.rochester.edu/undergraduate/ba-requirements.html",
+  "file": "csc/undergraduate_ba-requirements.html",
+  "title": "BA in Computer Science : Undergraduate Program : Department of Computer Science : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 42041
+ },
+ {
+  "dept": "csc",
+  "url": "https://www.cs.rochester.edu/undergraduate/bs-requirements.html",
+  "file": "csc/undergraduate_bs-requirements.html",
+  "title": "BS in Computer Science : Undergraduate Program : Department of Computer Science : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 48152
+ },
+ {
+  "dept": "csc",
+  "url": "https://www.cs.rochester.edu/undergraduate/honors.html",
+  "file": "csc/undergraduate_honors.html",
+  "title": "Honors Research in Computer Science : Undergraduate Program : Department of Computer Science : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 38160
+ },
+ {
+  "dept": "csc",
+  "url": "https://www.cs.rochester.edu/undergraduate/index.html",
+  "file": "csc/undergraduate_index.html",
+  "title": "Undergraduate Program : Department of Computer Science : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 53206
+ },
+ {
+  "dept": "csc",
+  "url": "https://www.cs.rochester.edu/undergraduate/minor-clusters.html",
+  "file": "csc/undergraduate_minor-clusters.html",
+  "title": "Minor and Clusters : Undergraduate Program : Department of Computer Science : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 37793
+ },
+ {
+  "dept": "cvs",
+  "url": "https://www.cvs.rochester.edu/training/programs.html",
+  "file": "cvs/training_programs.html",
+  "title": "Programs for Trainees | Center for Visual Science",
+  "fetchedOn": "2026-08-01",
+  "bytes": 8178
+ },
+ {
+  "dept": "cvs",
+  "url": "https://www.cvs.rochester.edu/training/undergraduate.html",
+  "file": "cvs/training_undergraduate.html",
+  "title": "Undergraduate Research | Center for Visual Science",
+  "fetchedOn": "2026-08-01",
+  "bytes": 10076
+ },
+ {
+  "dept": "dan",
+  "url": "https://www.sas.rochester.edu/dan/",
+  "file": "dan/dan.html",
+  "title": "Program of Dance and Movement : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 39803
+ },
+ {
+  "dept": "dan",
+  "url": "https://www.sas.rochester.edu/dan/undergraduate/",
+  "file": "dan/dan_undergraduate.html",
+  "title": "Undergraduate Program : Program of Dance and Movement : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 35308
+ },
+ {
+  "dept": "dan",
+  "url": "https://www.sas.rochester.edu/dan/undergraduate/clusters.html",
+  "file": "dan/dan_undergraduate_clusters.html",
+  "title": "Clusters : Undergraduate Program : Program of Dance and Movement : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 35839
+ },
+ {
+  "dept": "dan",
+  "url": "https://www.sas.rochester.edu/dan/undergraduate/honors.html",
+  "file": "dan/dan_undergraduate_honors.html",
+  "title": "Honors in Research in Dance : Undergraduate Program : Program of Dance and Movement : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 36204
+ },
+ {
+  "dept": "dan",
+  "url": "https://www.sas.rochester.edu/dan/undergraduate/index.html",
+  "file": "dan/dan_undergraduate_index.html",
+  "title": "Undergraduate Program : Program of Dance and Movement : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 35308
+ },
+ {
+  "dept": "dan",
+  "url": "https://www.sas.rochester.edu/dan/undergraduate/major.html",
+  "file": "dan/dan_undergraduate_major.html",
+  "title": "Major Requirements : Undergraduate Program : Program of Dance and Movement : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 61979
+ },
+ {
+  "dept": "dan",
+  "url": "https://www.sas.rochester.edu/dan/undergraduate/minors.html",
+  "file": "dan/dan_undergraduate_minors.html",
+  "title": "Minors : Undergraduate Program : Program of Dance and Movement : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 47480
+ },
+ {
+  "dept": "dms",
+  "url": "https://www.sas.rochester.edu/dms/",
+  "file": "dms/dms.html",
+  "title": "Undergraduate Program in Digital Media Studies : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 37919
+ },
+ {
+  "dept": "dms",
+  "url": "https://www.sas.rochester.edu/dms/undergraduate/",
+  "file": "dms/dms_undergraduate.html",
+  "title": "Undergraduate Program : Undergraduate Program in Digital Media Studies : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 33880
+ },
+ {
+  "dept": "dms",
+  "url": "https://www.sas.rochester.edu/dms/undergraduate/advising.html",
+  "file": "dms/dms_undergraduate_advising.html",
+  "title": "Advising : Undergraduate Program : Undergraduate Program in Digital Media Studies : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 32308
+ },
+ {
+  "dept": "dms",
+  "url": "https://www.sas.rochester.edu/dms/undergraduate/certificate.html",
+  "file": "dms/dms_undergraduate_certificate.html",
+  "title": "User Experience (UX)/User-Centered Design : Undergraduate Program : Undergraduate Program in Digital Media Studies : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 35247
+ },
+ {
+  "dept": "dms",
+  "url": "https://www.sas.rochester.edu/dms/undergraduate/curriculum.html",
+  "file": "dms/dms_undergraduate_curriculum.html",
+  "title": "Major Requirements : Undergraduate Program : Undergraduate Program in Digital Media Studies : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 47823
+ },
+ {
+  "dept": "dms",
+  "url": "https://www.sas.rochester.edu/dms/undergraduate/index.html",
+  "file": "dms/dms_undergraduate_index.html",
+  "title": "Undergraduate Program : Undergraduate Program in Digital Media Studies : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 33880
+ },
+ {
+  "dept": "dms",
+  "url": "https://www.sas.rochester.edu/dms/undergraduate/minors.html",
+  "file": "dms/dms_undergraduate_minors.html",
+  "title": "Minor Requirements : Undergraduate Program : Undergraduate Program in Digital Media Studies : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 39338
+ },
+ {
+  "dept": "dsc",
+  "url": "https://www.hajim.rochester.edu/dsc/",
+  "file": "dsc/dsc.html",
+  "title": "Goergen Institute for Data Science and Artificial Intelligence : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 50344
+ },
+ {
+  "dept": "dsc",
+  "url": "https://www.hajim.rochester.edu/dsc/undergraduate/",
+  "file": "dsc/dsc_undergraduate.html",
+  "title": "Undergraduate Program : Goergen Institute for Data Science and Artificial Intelligence : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 47430
+ },
+ {
+  "dept": "dsc",
+  "url": "https://www.hajim.rochester.edu/dsc/undergraduate/index.html",
+  "file": "dsc/dsc_undergraduate_index.html",
+  "title": "Undergraduate Program : Goergen Institute for Data Science and Artificial Intelligence : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 47430
+ },
+ {
+  "dept": "dsc",
+  "url": "https://www.hajim.rochester.edu/dsc/undergraduate/major.html",
+  "file": "dsc/dsc_undergraduate_major.html",
+  "title": "BA and BS Major Requirements : Undergraduate Program : Goergen Institute for Data Science and Artificial Intelligence : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 63147
+ },
+ {
+  "dept": "ece",
+  "url": "https://www.hajim.rochester.edu/ece/",
+  "file": "ece/ece.html",
+  "title": "Department of Electrical and Computer Engineering : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 51549
+ },
+ {
+  "dept": "ece",
+  "url": "https://www.hajim.rochester.edu/ece/undergraduate/",
+  "file": "ece/ece_undergraduate.html",
+  "title": "Undergraduate Program : Department of Electrical and Computer Engineering : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 42032
+ },
+ {
+  "dept": "ece",
+  "url": "https://www.hajim.rochester.edu/ece/undergraduate/index.html",
+  "file": "ece/ece_undergraduate_index.html",
+  "title": "Undergraduate Program : Department of Electrical and Computer Engineering : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 42032
+ },
+ {
+  "dept": "ece",
+  "url": "https://www.hajim.rochester.edu/ece/undergraduate/major.html",
+  "file": "ece/ece_undergraduate_major.html",
+  "title": "Major Requirements : Undergraduate Program : Department of Electrical and Computer Engineering : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 50458
+ },
+ {
+  "dept": "ece",
+  "url": "https://www.hajim.rochester.edu/ece/undergraduate/minor.html",
+  "file": "ece/ece_undergraduate_minor.html",
+  "title": "Minor Requirements : Undergraduate Program : Department of Electrical and Computer Engineering : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 38144
+ },
+ {
+  "dept": "eco",
+  "url": "https://www.sas.rochester.edu/eco/",
+  "file": "eco/eco.html",
+  "title": "Department of Economics : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 43452
+ },
+ {
+  "dept": "eco",
+  "url": "https://www.sas.rochester.edu/eco/undergraduate/",
+  "file": "eco/eco_undergraduate.html",
+  "title": "Undergraduate Program : Department of Economics : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 38213
+ },
+ {
+  "dept": "eco",
+  "url": "https://www.sas.rochester.edu/eco/undergraduate/advising.html",
+  "file": "eco/eco_undergraduate_advising.html",
+  "title": "Advising : Undergraduate Program : Department of Economics : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 36013
+ },
+ {
+  "dept": "eco",
+  "url": "https://www.sas.rochester.edu/eco/undergraduate/career/index.html",
+  "file": "eco/eco_undergraduate_career_index.html",
+  "title": "Preparing for Careers and Graduate School : Undergraduate Program : Department of Economics : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 37466
+ },
+ {
+  "dept": "eco",
+  "url": "https://www.sas.rochester.edu/eco/undergraduate/honors-awards.html",
+  "file": "eco/eco_undergraduate_honors-awards.html",
+  "title": "Honors and Awards : Undergraduate Program : Department of Economics : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 38463
+ },
+ {
+  "dept": "eco",
+  "url": "https://www.sas.rochester.edu/eco/undergraduate/index.html",
+  "file": "eco/eco_undergraduate_index.html",
+  "title": "Undergraduate Program : Department of Economics : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 38213
+ },
+ {
+  "dept": "eco",
+  "url": "https://www.sas.rochester.edu/eco/undergraduate/major.html",
+  "file": "eco/eco_undergraduate_major.html",
+  "title": "Major Requirements : Undergraduate Program : Department of Economics : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 51486
+ },
+ {
+  "dept": "eco",
+  "url": "https://www.sas.rochester.edu/eco/undergraduate/minor-clusters.html",
+  "file": "eco/eco_undergraduate_minor-clusters.html",
+  "title": "Minor and Cluster Requirements : Undergraduate Program : Department of Economics : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 37039
+ },
+ {
+  "dept": "ees",
+  "url": "https://www.sas.rochester.edu/ees/",
+  "file": "ees/ees.html",
+  "title": "Department of Earth and Environmental Sciences : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 41376
+ },
+ {
+  "dept": "ees",
+  "url": "https://www.sas.rochester.edu/ees/major-minor/environmental-geology-minor.html",
+  "file": "ees/ees_major-minor_environmental-geology-minor.html",
+  "title": "Minors : Undergraduate Program : Department of Earth and Environmental Sciences : University of Rochester",
+  "fetchedOn": "2026-08-14",
+  "bytes": 46376
+ },
+ {
+  "dept": "ees",
+  "url": "https://www.sas.rochester.edu/ees/undergraduate/",
+  "file": "ees/ees_undergraduate.html",
+  "title": "Undergraduate Program : Department of Earth and Environmental Sciences : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 42554
+ },
+ {
+  "dept": "ees",
+  "url": "https://www.sas.rochester.edu/ees/undergraduate/earth-environmental-and-planetary.html",
+  "file": "ees/ees_undergraduate_earth-environmental-and-planetary.html",
+  "title": "BS in Earth, Environmental, and Planetary Science : Undergraduate Program : Department of Earth and Environmental Sciences : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 48261
+ },
+ {
+  "dept": "ees",
+  "url": "https://www.sas.rochester.edu/ees/undergraduate/environmental-sciences-bs.html",
+  "file": "ees/ees_undergraduate_environmental-sciences-bs.html",
+  "title": "BS in Environmental Science (EVS) : Undergraduate Program : Department of Earth and Environmental Sciences : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 47604
+ },
+ {
+  "dept": "ees",
+  "url": "https://www.sas.rochester.edu/ees/undergraduate/environmental-studies-ba.html",
+  "file": "ees/ees_undergraduate_environmental-studies-ba.html",
+  "title": "BA in Environmental Studies (ESP) : Undergraduate Program : Department of Earth and Environmental Sciences : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 44594
+ },
+ {
+  "dept": "ees",
+  "url": "https://www.sas.rochester.edu/ees/undergraduate/environmental.html",
+  "file": "ees/ees_undergraduate_environmental.html",
+  "title": "Environmental Majors : Undergraduate Program : Department of Earth and Environmental Sciences : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 37417
+ },
+ {
+  "dept": "ees",
+  "url": "https://www.sas.rochester.edu/ees/undergraduate/geological-sciences-ba.html",
+  "file": "ees/ees_undergraduate_geological-sciences-ba.html",
+  "title": "BA in Geological Sciences : Undergraduate Program : Department of Earth and Environmental Sciences : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 37921
+ },
+ {
+  "dept": "ees",
+  "url": "https://www.sas.rochester.edu/ees/undergraduate/geological-sciences-bs.html",
+  "file": "ees/ees_undergraduate_geological-sciences-bs.html",
+  "title": "BS in Geological Sciences : Undergraduate Program : Department of Earth and Environmental Sciences : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 41053
+ },
+ {
+  "dept": "ees",
+  "url": "https://www.sas.rochester.edu/ees/undergraduate/geological.html",
+  "file": "ees/ees_undergraduate_geological.html",
+  "title": "Geological Majors : Undergraduate Program : Department of Earth and Environmental Sciences : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 37239
+ },
+ {
+  "dept": "ees",
+  "url": "https://www.sas.rochester.edu/ees/undergraduate/geomechanics.html",
+  "file": "ees/ees_undergraduate_geomechanics.html",
+  "title": "BS in Geomechanics : Undergraduate Program : Department of Earth and Environmental Sciences : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 39121
+ },
+ {
+  "dept": "ees",
+  "url": "https://www.sas.rochester.edu/ees/undergraduate/index.html",
+  "file": "ees/ees_undergraduate_index.html",
+  "title": "Undergraduate Program : Department of Earth and Environmental Sciences : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 42554
+ },
+ {
+  "dept": "ehu",
+  "url": "https://www.sas.rochester.edu/ehu/",
+  "file": "ehu/ehu.html",
+  "title": "Environmental Humanities Program : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 36214
+ },
+ {
+  "dept": "ehu",
+  "url": "https://www.sas.rochester.edu/ehu/academics/clusters.html",
+  "file": "ehu/ehu_academics_clusters.html",
+  "title": "Clusters : Academics : Environmental Humanities Program : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 32737
+ },
+ {
+  "dept": "ehu",
+  "url": "https://www.sas.rochester.edu/ehu/academics/major.html",
+  "file": "ehu/ehu_academics_major.html",
+  "title": "Major : Academics : Environmental Humanities Program : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 31252
+ },
+ {
+  "dept": "ehu",
+  "url": "https://www.sas.rochester.edu/ehu/academics/minor.html",
+  "file": "ehu/ehu_academics_minor.html",
+  "title": "Minor Requirements : Academics : Environmental Humanities Program : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 35046
+ },
+ {
+  "dept": "eng",
+  "url": "https://www.sas.rochester.edu/eng/",
+  "file": "eng/eng.html",
+  "title": "Department of English : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 45416
+ },
+ {
+  "dept": "eng",
+  "url": "https://www.sas.rochester.edu/eng/undergraduate/",
+  "file": "eng/eng_undergraduate.html",
+  "title": "Undergraduate Program : Department of English : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 39421
+ },
+ {
+  "dept": "eng",
+  "url": "https://www.sas.rochester.edu/eng/undergraduate/clusters.html",
+  "file": "eng/eng_undergraduate_clusters.html",
+  "title": "Clusters : Undergraduate Program : Department of English : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 40877
+ },
+ {
+  "dept": "eng",
+  "url": "https://www.sas.rochester.edu/eng/undergraduate/honors.html",
+  "file": "eng/eng_undergraduate_honors.html",
+  "title": "Honors Program : Undergraduate Program : Department of English : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 39151
+ },
+ {
+  "dept": "eng",
+  "url": "https://www.sas.rochester.edu/eng/undergraduate/index.html",
+  "file": "eng/eng_undergraduate_index.html",
+  "title": "Undergraduate Program : Department of English : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 39421
+ },
+ {
+  "dept": "eng",
+  "url": "https://www.sas.rochester.edu/eng/undergraduate/majors/creative-writing.html",
+  "file": "eng/eng_undergraduate_majors_creative-writing.html",
+  "title": "Creative Writing : Undergraduate Program : Department of English : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 40590
+ },
+ {
+  "dept": "eng",
+  "url": "https://www.sas.rochester.edu/eng/undergraduate/majors/index.html",
+  "file": "eng/eng_undergraduate_majors_index.html",
+  "title": "Major Tracks : Undergraduate Program : Department of English : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 38357
+ },
+ {
+  "dept": "eng",
+  "url": "https://www.sas.rochester.edu/eng/undergraduate/majors/language-media-communication.html",
+  "file": "eng/eng_undergraduate_majors_language-media-communication.html",
+  "title": "Language, Media, and Communication : Undergraduate Program : Department of English : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 44021
+ },
+ {
+  "dept": "eng",
+  "url": "https://www.sas.rochester.edu/eng/undergraduate/majors/literature.html",
+  "file": "eng/eng_undergraduate_majors_literature.html",
+  "title": "British and American Literature : Undergraduate Program : Department of English : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 39807
+ },
+ {
+  "dept": "eng",
+  "url": "https://www.sas.rochester.edu/eng/undergraduate/majors/theater.html",
+  "file": "eng/eng_undergraduate_majors_theater.html",
+  "title": "Theater : Undergraduate Program : Department of English : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 43238
+ },
+ {
+  "dept": "eng",
+  "url": "https://www.sas.rochester.edu/eng/undergraduate/minors/",
+  "file": "eng/eng_undergraduate_minors.html",
+  "title": "Minors : Undergraduate Program : Department of English : University of Rochester",
+  "fetchedOn": "2026-08-14",
+  "bytes": 43601
+ },
+ {
+  "dept": "eng",
+  "url": "https://www.sas.rochester.edu/eng/undergraduate/minors/index.html",
+  "file": "eng/eng_undergraduate_minors_index.html",
+  "title": "Minors : Undergraduate Program : Department of English : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 43601
+ },
+ {
+  "dept": "esm",
+  "url": "https://www.esm.rochester.edu/academic-affairs/esmstudents/dual-degree-program/",
+  "file": "esm/academic-affairs_esmstudents_dual-degree-program.html",
+  "title": "Dual Degree Program \u2013 Eastman School of Music",
+  "fetchedOn": "2026-08-01",
+  "bytes": 255290
+ },
+ {
+  "dept": "esm",
+  "url": "https://www.esm.rochester.edu/academics-and-programs/",
+  "file": "esm/academics-and-programs.html",
+  "title": "Academics and Programs \u2013 Eastman School of Music",
+  "fetchedOn": "2026-08-01",
+  "bytes": 356190
+ },
+ {
+  "dept": "esm",
+  "url": "https://www.esm.rochester.edu/admissions/conservatory-exchange/",
+  "file": "esm/admissions_conservatory-exchange.html",
+  "title": "Conservatory Exchange Program \u2013 Eastman School of Music",
+  "fetchedOn": "2026-08-01",
+  "bytes": 288818
+ },
+ {
+  "dept": "esm",
+  "url": "https://www.esm.rochester.edu/admissions/international/",
+  "file": "esm/admissions_international.html",
+  "title": "International Applicants \u2013 Eastman School of Music",
+  "fetchedOn": "2026-08-01",
+  "bytes": 272698
+ },
+ {
+  "dept": "esm",
+  "url": "https://www.esm.rochester.edu/admissions/repertoire/",
+  "file": "esm/admissions_repertoire.html",
+  "title": "Prescreening, Audition, and Interview Requirements \u2013 Eastman School of Music",
+  "fetchedOn": "2026-08-01",
+  "bytes": 272626
+ },
+ {
+  "dept": "esm",
+  "url": "https://www.esm.rochester.edu/admissions/ugrad/",
+  "file": "esm/admissions_ugrad.html",
+  "title": "Undergraduate Admissions \u2013 Eastman School of Music",
+  "fetchedOn": "2026-08-01",
+  "bytes": 358740
+ },
+ {
+  "dept": "esm",
+  "url": "https://www.esm.rochester.edu/certificates/chamber-music/",
+  "file": "esm/certificates_chamber-music.html",
+  "title": "Certificate of Achievement in Chamber Music \u2013 Eastman School of Music",
+  "fetchedOn": "2026-08-01",
+  "bytes": 257276
+ },
+ {
+  "dept": "esm",
+  "url": "https://www.esm.rochester.edu/certificates/music-theory-pedagogy/",
+  "file": "esm/certificates_music-theory-pedagogy.html",
+  "title": "Certificate of Advanced Achievement in Music Theory Pedagogy \u2013 Eastman School of Music",
+  "fetchedOn": "2026-08-01",
+  "bytes": 257296
+ },
+ {
+  "dept": "esm",
+  "url": "https://www.esm.rochester.edu/certificates/performance-practice/",
+  "file": "esm/certificates_performance-practice.html",
+  "title": "Certificate of Achievement in Performance Practice \u2013 Eastman School of Music",
+  "fetchedOn": "2026-08-01",
+  "bytes": 258793
+ },
+ {
+  "dept": "esm",
+  "url": "https://www.esm.rochester.edu/certificates/world-music/",
+  "file": "esm/certificates_world-music.html",
+  "title": "Certificate of Achievement in World Music \u2013 Eastman School of Music",
+  "fetchedOn": "2026-08-01",
+  "bytes": 255748
+ },
+ {
+  "dept": "esm",
+  "url": "https://www.esm.rochester.edu/composition/",
+  "file": "esm/composition.html",
+  "title": "Composition \u2013 Eastman School of Music",
+  "fetchedOn": "2026-08-01",
+  "bytes": 339092
+ },
+ {
+  "dept": "esm",
+  "url": "https://www.esm.rochester.edu/composition/degrees-offered/",
+  "file": "esm/composition_degrees-offered.html",
+  "title": "Degrees Offered \u2013 Eastman School of Music",
+  "fetchedOn": "2026-08-01",
+  "bytes": 258281
+ },
+ {
+  "dept": "esm",
+  "url": "https://www.esm.rochester.edu/degrees/",
+  "file": "esm/degrees.html",
+  "title": "Degrees and Certificates \u2013 Eastman School of Music",
+  "fetchedOn": "2026-08-01",
+  "bytes": 294155
+ },
+ {
+  "dept": "esm",
+  "url": "https://www.esm.rochester.edu/esm_news/bob-sneider-honors-chuck-mangione-at-eastman-with-inventive-tribute/",
+  "file": "esm/esm_news_bob-sneider-honors-chuck-mangione-at-eastman-with-inventive-tribute.html",
+  "title": "Bob Sneider Honors Chuck Mangione at Eastman with Inventive Tribute \u2013 Eastman School of Music",
+  "fetchedOn": "2026-08-01",
+  "bytes": 277000
+ },
+ {
+  "dept": "esm",
+  "url": "https://www.esm.rochester.edu/go/soundarts/music-technology/",
+  "file": "esm/go_soundarts_music-technology.html",
+  "title": "Music Creation and Technology - Eastman School of Music",
+  "fetchedOn": "2026-08-01",
+  "bytes": 74397
+ },
+ {
+  "dept": "esm",
+  "url": "https://www.esm.rochester.edu/jazz/",
+  "file": "esm/jazz.html",
+  "title": "Jazz Studies and Contemporary Media \u2013 Eastman School of Music",
+  "fetchedOn": "2026-08-01",
+  "bytes": 401090
+ },
+ {
+  "dept": "esm",
+  "url": "https://www.esm.rochester.edu/jazz/jazz-voice/",
+  "file": "esm/jazz_jazz-voice.html",
+  "title": "Jazz Voice \u2013 Eastman School of Music",
+  "fetchedOn": "2026-08-01",
+  "bytes": 275205
+ },
+ {
+  "dept": "esm",
+  "url": "https://www.esm.rochester.edu/mtl/",
+  "file": "esm/mtl.html",
+  "title": "Music Teaching and Learning \u2013 Eastman School of Music",
+  "fetchedOn": "2026-08-01",
+  "bytes": 389509
+ },
+ {
+  "dept": "esm",
+  "url": "https://www.esm.rochester.edu/mtl/summers-only/",
+  "file": "esm/mtl_summers-only.html",
+  "title": "Summers-Only Study Program \u2013 Eastman School of Music",
+  "fetchedOn": "2026-08-01",
+  "bytes": 267653
+ },
+ {
+  "dept": "esm",
+  "url": "https://www.esm.rochester.edu/portfolio/composition/",
+  "file": "esm/portfolio_composition.html",
+  "title": "Composition \u2013 Eastman School of Music",
+  "fetchedOn": "2026-08-01",
+  "bytes": 268107
+ },
+ {
+  "dept": "esm",
+  "url": "https://www.esm.rochester.edu/portfolio/theory/",
+  "file": "esm/portfolio_theory.html",
+  "title": "Theory \u2013 Eastman School of Music",
+  "fetchedOn": "2026-08-01",
+  "bytes": 265449
+ },
+ {
+  "dept": "esm",
+  "url": "https://www.esm.rochester.edu/registrar/policy/04-00/",
+  "file": "esm/registrar_policy_04-00.html",
+  "title": "04.00 Undergraduate Academic Policy & Curriculum \u2013 Registrar \u2013 Eastman School of Music",
+  "fetchedOn": "2026-08-01",
+  "bytes": 267236
+ },
+ {
+  "dept": "esm",
+  "url": "https://www.esm.rochester.edu/theory/",
+  "file": "esm/theory.html",
+  "title": "Music Theory \u2013 Eastman School of Music",
+  "fetchedOn": "2026-08-01",
+  "bytes": 422631
+ },
+ {
+  "dept": "fms",
+  "url": "https://www.sas.rochester.edu/fms/",
+  "file": "fms/fms.html",
+  "title": "Film and Media Studies : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 42439
+ },
+ {
+  "dept": "fms",
+  "url": "https://www.sas.rochester.edu/fms/undergraduate/",
+  "file": "fms/fms_undergraduate.html",
+  "title": "Undergraduate Program : Film and Media Studies : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 33767
+ },
+ {
+  "dept": "fms",
+  "url": "https://www.sas.rochester.edu/fms/undergraduate/course-categories.html",
+  "file": "fms/fms_undergraduate_course-categories.html",
+  "title": "Course Categories : Undergraduate Program : Film and Media Studies : University of Rochester",
+  "fetchedOn": "2026-08-14",
+  "bytes": 33293
+ },
+ {
+  "dept": "fms",
+  "url": "https://www.sas.rochester.edu/fms/undergraduate/film_major.html",
+  "file": "fms/fms_undergraduate_film_major.html",
+  "title": "Major Requirements : Undergraduate Program : Film and Media Studies : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 33338
+ },
+ {
+  "dept": "fms",
+  "url": "https://www.sas.rochester.edu/fms/undergraduate/film_minor.html",
+  "file": "fms/fms_undergraduate_film_minor.html",
+  "title": "Minor and Cluster Requirements : Undergraduate Program : Film and Media Studies : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 34344
+ },
+ {
+  "dept": "fms",
+  "url": "https://www.sas.rochester.edu/fms/undergraduate/index.html",
+  "file": "fms/fms_undergraduate_index.html",
+  "title": "Undergraduate Program : Film and Media Studies : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 33767
+ },
+ {
+  "dept": "gsw",
+  "url": "https://www.sas.rochester.edu/gsw/",
+  "file": "gsw/gsw.html",
+  "title": "Susan B. Anthony Institute : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 40920
+ },
+ {
+  "dept": "gsw",
+  "url": "https://www.sas.rochester.edu/gsw/undergraduate/",
+  "file": "gsw/gsw_undergraduate.html",
+  "title": "Undergraduate Program : Susan B. Anthony Institute for Gender, Sexuality, and Women's Studies : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 36708
+ },
+ {
+  "dept": "gsw",
+  "url": "https://www.sas.rochester.edu/gsw/undergraduate/advising.html",
+  "file": "gsw/gsw_undergraduate_advising.html",
+  "title": "Advising : Undergraduate Program : Susan B. Anthony Institute for Gender, Sexuality, and Women's Studies : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 36797
+ },
+ {
+  "dept": "gsw",
+  "url": "https://www.sas.rochester.edu/gsw/undergraduate/core-courses.html",
+  "file": "gsw/gsw_undergraduate_core-courses.html",
+  "title": "Core Courses : Undergraduate : Susan B. Anthony Institute for Gender, Sexuality, and Women's Studies : University of Rochester",
+  "fetchedOn": "2026-08-14",
+  "bytes": 37630
+ },
+ {
+  "dept": "gsw",
+  "url": "https://www.sas.rochester.edu/gsw/undergraduate/index.html",
+  "file": "gsw/gsw_undergraduate_index.html",
+  "title": "Undergraduate Program : Susan B. Anthony Institute for Gender, Sexuality, and Women's Studies : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 36708
+ },
+ {
+  "dept": "gsw",
+  "url": "https://www.sas.rochester.edu/gsw/undergraduate/major.html",
+  "file": "gsw/gsw_undergraduate_major.html",
+  "title": "Major Requirements : Undergraduate Program : Susan B. Anthony Institute for Gender, Sexuality, and Women's Studies : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 39901
+ },
+ {
+  "dept": "gsw",
+  "url": "https://www.sas.rochester.edu/gsw/undergraduate/minor-clusters.html",
+  "file": "gsw/gsw_undergraduate_minor-clusters.html",
+  "title": "Minors and Clusters : Undergraduate Program : Susan B. Anthony Institute for Gender, Sexuality, and Women's Studies : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 37867
+ },
+ {
+  "dept": "hajim",
+  "url": "http://www.hajim.rochester.edu/undergraduate/es-ba.html",
+  "file": "hajim/undergraduate_es-ba.html",
+  "title": "BA in Engineering Sciences : Undergraduate : Hajim School of Engineering & Applied Sciences  : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 56651
+ },
+ {
+  "dept": "hajim",
+  "url": "http://www.hajim.rochester.edu/undergraduate/programs.html",
+  "file": "hajim/undergraduate_programs.html",
+  "title": "Programs of Study : Undergraduate : Hajim School of Engineering & Applied Sciences  : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 35072
+ },
+ {
+  "dept": "hajim",
+  "url": "http://www.hajim.rochester.edu/undergraduate/special-programs/index.html",
+  "file": "hajim/undergraduate_special-programs_index.html",
+  "title": "Special Programs : Undergraduate : Hajim School of Engineering & Applied Sciences  : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 43950
+ },
+ {
+  "dept": "hajim",
+  "url": "https://www.hajim.rochester.edu/undergraduate/",
+  "file": "hajim/undergraduate.html",
+  "title": "Undergraduate Education : Hajim School of Engineering & Applied Sciences : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 42763
+ },
+ {
+  "dept": "hajim",
+  "url": "https://www.hajim.rochester.edu/undergraduate/eas-application.html",
+  "file": "hajim/undergraduate_eas-application.html",
+  "title": "Applying for a BS in Engineering and Applied Sciences : Undergraduate : Hajim School of Engineering & Applied Sciences  : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 38946
+ },
+ {
+  "dept": "hajim",
+  "url": "https://www.hajim.rochester.edu/undergraduate/eas-bs.html",
+  "file": "hajim/undergraduate_eas-bs.html",
+  "title": "BS in Engineering and Applied Sciences : Undergraduate : Hajim School of Engineering & Applied Sciences : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 44129
+ },
+ {
+  "dept": "hajim",
+  "url": "https://www.hajim.rochester.edu/undergraduate/programs.html",
+  "file": "hajim/undergraduate_programs.html",
+  "title": "Programs of Study : Undergraduate : Hajim School of Engineering & Applied Sciences  : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 35072
+ },
+ {
+  "dept": "hajim",
+  "url": "https://www.hajim.rochester.edu/undergraduate/special-programs/index.html",
+  "file": "hajim/undergraduate_special-programs_index.html",
+  "title": "Special Programs : Undergraduate : Hajim School of Engineering & Applied Sciences  : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 43950
+ },
+ {
+  "dept": "his",
+  "url": "https://www.sas.rochester.edu/his/",
+  "file": "his/his.html",
+  "title": "Department of History : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 45677
+ },
+ {
+  "dept": "his",
+  "url": "https://www.sas.rochester.edu/his/undergraduate/",
+  "file": "his/his_undergraduate.html",
+  "title": "Undergraduate Program : Department of History : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 39999
+ },
+ {
+  "dept": "his",
+  "url": "https://www.sas.rochester.edu/his/undergraduate/declare.html",
+  "file": "his/his_undergraduate_declare.html",
+  "title": "Declaring a Major or Minor : Undergraduate Program : Department of History : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 40588
+ },
+ {
+  "dept": "his",
+  "url": "https://www.sas.rochester.edu/his/undergraduate/honors.html",
+  "file": "his/his_undergraduate_honors.html",
+  "title": "Honors Program and Lasch Fellowship : Undergraduate Program : Department of History : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 39341
+ },
+ {
+  "dept": "his",
+  "url": "https://www.sas.rochester.edu/his/undergraduate/index.html",
+  "file": "his/his_undergraduate_index.html",
+  "title": "Undergraduate Program : Department of History : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 39999
+ },
+ {
+  "dept": "his",
+  "url": "https://www.sas.rochester.edu/his/undergraduate/major.html",
+  "file": "his/his_undergraduate_major.html",
+  "title": "Major Requirements : Undergraduate Program : Department of History : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 41906
+ },
+ {
+  "dept": "his",
+  "url": "https://www.sas.rochester.edu/his/undergraduate/minor.html",
+  "file": "his/his_undergraduate_minor.html",
+  "title": "Minor and Clusters : Undergraduate Program : Department of History : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 42509
+ },
+ {
+  "dept": "interdepartmental",
+  "url": "https://www.sas.rochester.edu/interdepartmental/index.html",
+  "file": "interdepartmental/interdepartmental_index.html",
+  "title": "Interdepartmental Studies Major : School of Arts & Sciences : University of Rochester",
+  "fetchedOn": "2026-08-14",
+  "bytes": 37953
+ },
+ {
+  "dept": "jst",
+  "url": "http://www.sas.rochester.edu/jst/undergrad/clusters.html",
+  "file": "jst/jst_undergrad_clusters.html",
+  "title": "Clusters in Jewish Studies : Undergraduate Programs : Center for Jewish Studies : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 32127
+ },
+ {
+  "dept": "jst",
+  "url": "http://www.sas.rochester.edu/jst/undergrad/index.html",
+  "file": "jst/jst_undergrad_index.html",
+  "title": "Undergraduate Programs : Center for Jewish Studies : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 33498
+ },
+ {
+  "dept": "jst",
+  "url": "http://www.sas.rochester.edu/jst/undergrad/minors.html",
+  "file": "jst/jst_undergrad_minors.html",
+  "title": "Minors : Undergraduate Programs : Center for Jewish Studies : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 31779
+ },
+ {
+  "dept": "jst",
+  "url": "https://www.sas.rochester.edu/jst/",
+  "file": "jst/jst.html",
+  "title": "Center for Jewish Studies : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 39792
+ },
+ {
+  "dept": "jst",
+  "url": "https://www.sas.rochester.edu/jst/undergrad/clusters.html",
+  "file": "jst/jst_undergrad_clusters.html",
+  "title": "Clusters in Jewish Studies : Undergraduate Programs : Center for Jewish Studies : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 32127
+ },
+ {
+  "dept": "jst",
+  "url": "https://www.sas.rochester.edu/jst/undergrad/minors.html",
+  "file": "jst/jst_undergrad_minors.html",
+  "title": "Minors : Undergraduate Programs : Center for Jewish Studies : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 31779
+ },
+ {
+  "dept": "lacx",
+  "url": "https://www.sas.rochester.edu/lacx/",
+  "file": "lacx/lacx.html",
+  "title": "Study Latin America, the Caribbean, and their Diasporas with Purpose : Latin American, Caribbean, and Latinx Studies (LACX) : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 37053
+ },
+ {
+  "dept": "lacx",
+  "url": "https://www.sas.rochester.edu/lacx/undergraduate/courses.html",
+  "file": "lacx/lacx_undergraduate_courses.html",
+  "title": "Courses : Undergraduate Program : Latin American, Caribbean, and Latinx Studies (LACX) : University of Rochester",
+  "fetchedOn": "2026-08-14",
+  "bytes": 33594
+ },
+ {
+  "dept": "lacx",
+  "url": "https://www.sas.rochester.edu/lacx/undergraduate/index.html",
+  "file": "lacx/lacx_undergraduate_index.html",
+  "title": "Undergraduate Program : Latin American, Caribbean, and Latinx Studies (LACX) : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 32133
+ },
+ {
+  "dept": "lacx",
+  "url": "https://www.sas.rochester.edu/lacx/undergraduate/major.html",
+  "file": "lacx/lacx_undergraduate_major.html",
+  "title": "Major Requirements : Undergraduate Program : Latin American, Caribbean, and Latinx Studies (LACX) : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 33875
+ },
+ {
+  "dept": "lacx",
+  "url": "https://www.sas.rochester.edu/lacx/undergraduate/minor.html",
+  "file": "lacx/lacx_undergraduate_minor.html",
+  "title": "Minor and Clusters : Undergraduate Program : Latin American, Caribbean, and Latinx Studies (LACX) : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 33078
+ },
+ {
+  "dept": "lin",
+  "url": "https://www.sas.rochester.edu/lin/",
+  "file": "lin/lin.html",
+  "title": "Department of Linguistics : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 50697
+ },
+ {
+  "dept": "lin",
+  "url": "https://www.sas.rochester.edu/lin/undergraduate/",
+  "file": "lin/lin_undergraduate.html",
+  "title": "Undergraduate Program : Department of Linguistics : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 37489
+ },
+ {
+  "dept": "lin",
+  "url": "https://www.sas.rochester.edu/lin/undergraduate/honors.html",
+  "file": "lin/lin_undergraduate_honors.html",
+  "title": "Honors Program : Undergraduate Program : Department of Linguistics : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 40460
+ },
+ {
+  "dept": "lin",
+  "url": "https://www.sas.rochester.edu/lin/undergraduate/index.html",
+  "file": "lin/lin_undergraduate_index.html",
+  "title": "Undergraduate Program : Department of Linguistics : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 37489
+ },
+ {
+  "dept": "lin",
+  "url": "https://www.sas.rochester.edu/lin/undergraduate/major.html",
+  "file": "lin/lin_undergraduate_major.html",
+  "title": "Undergraduate Program : Department of Linguistics : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 54509
+ },
+ {
+  "dept": "lin",
+  "url": "https://www.sas.rochester.edu/lin/undergraduate/minor.html",
+  "file": "lin/lin_undergraduate_minor.html",
+  "title": "Undergraduate Program : Department of Linguistics : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 48195
+ },
+ {
+  "dept": "mas",
+  "url": "https://www.rochester.edu/college/mas/",
+  "file": "mas/college_mas.html",
+  "title": "Undergraduate Program : Music and Sound Initiative : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 35143
+ },
+ {
+  "dept": "mas",
+  "url": "https://www.rochester.edu/college/mas/index.html",
+  "file": "mas/college_mas_index.html",
+  "title": "Undergraduate Program : Music and Sound Initiative : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 35143
+ },
+ {
+  "dept": "mas",
+  "url": "https://www.rochester.edu/college/mas/minor.html",
+  "file": "mas/college_mas_minor.html",
+  "title": "Undergraduate Program : Music and Sound Initiative : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 35143
+ },
+ {
+  "dept": "matsci",
+  "url": "https://www.hajim.rochester.edu/matsci/",
+  "file": "matsci/matsci.html",
+  "title": "Materials Science Program : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 42655
+ },
+ {
+  "dept": "matsci",
+  "url": "https://www.hajim.rochester.edu/matsci/index.html",
+  "file": "matsci/matsci_index.html",
+  "title": "Materials Science Program : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 42655
+ },
+ {
+  "dept": "matsci",
+  "url": "https://www.hajim.rochester.edu/matsci/undergraduate/minor.html",
+  "file": "matsci/matsci_undergraduate_minor.html",
+  "title": "Minor : Undergraduate : Materials Science Program : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 38197
+ },
+ {
+  "dept": "me",
+  "url": "https://www.hajim.rochester.edu/me/",
+  "file": "me/me.html",
+  "title": "Department of Mechanical Engineering : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 47198
+ },
+ {
+  "dept": "me",
+  "url": "https://www.hajim.rochester.edu/me/undergraduate/",
+  "file": "me/me_undergraduate.html",
+  "title": "Undergraduate Program : Department of Mechanical Engineering : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 38018
+ },
+ {
+  "dept": "me",
+  "url": "https://www.hajim.rochester.edu/me/undergraduate/advising.html",
+  "file": "me/me_undergraduate_advising.html",
+  "title": "Advising : Undergraduate Program : Department of Mechanical Engineering : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 75004
+ },
+ {
+  "dept": "me",
+  "url": "https://www.hajim.rochester.edu/me/undergraduate/cluster.html",
+  "file": "me/me_undergraduate_cluster.html",
+  "title": "Cluster : Undergraduate Program : Department of Mechanical Engineering : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 39009
+ },
+ {
+  "dept": "me",
+  "url": "https://www.hajim.rochester.edu/me/undergraduate/index.html",
+  "file": "me/me_undergraduate_index.html",
+  "title": "Undergraduate Program : Department of Mechanical Engineering : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 38018
+ },
+ {
+  "dept": "me",
+  "url": "https://www.hajim.rochester.edu/me/undergraduate/major.html",
+  "file": "me/me_undergraduate_major.html",
+  "title": "Major Requirements : Undergraduate Program : Department of Mechanical Engineering : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 49716
+ },
+ {
+  "dept": "me",
+  "url": "https://www.hajim.rochester.edu/me/undergraduate/minor.html",
+  "file": "me/me_undergraduate_minor.html",
+  "title": "Minor Requirements : Undergraduate Program : Department of Mechanical Engineering : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 49090
+ },
+ {
+  "dept": "mlc",
+  "url": "https://www.sas.rochester.edu/mlc/",
+  "file": "mlc/mlc.html",
+  "title": "Department of Modern Languages and Cultures : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 51350
+ },
+ {
+  "dept": "mlc",
+  "url": "https://www.sas.rochester.edu/mlc/undergraduate/",
+  "file": "mlc/mlc_undergraduate.html",
+  "title": "Overview of the MLC Majors and Minors : Undergraduate Program : Department of Modern Languages and Cultures : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 45742
+ },
+ {
+  "dept": "mlc",
+  "url": "https://www.sas.rochester.edu/mlc/undergraduate/chinese.html",
+  "file": "mlc/mlc_undergraduate_chinese.html",
+  "title": "Chinese : Undergraduate Program : Department of Modern Languages and Cultures : University of Rochester",
+  "fetchedOn": "2026-08-14",
+  "bytes": 53183
+ },
+ {
+  "dept": "mlc",
+  "url": "https://www.sas.rochester.edu/mlc/undergraduate/clusters.html",
+  "file": "mlc/mlc_undergraduate_clusters.html",
+  "title": "Clusters : Undergraduate Program : Department of Modern Languages and Cultures : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 49929
+ },
+ {
+  "dept": "mlc",
+  "url": "https://www.sas.rochester.edu/mlc/undergraduate/complit.html",
+  "file": "mlc/mlc_undergraduate_complit.html",
+  "title": "Comparative Literature  : Undergraduate Program : Department of Modern Languages and Cultures : University of Rochester",
+  "fetchedOn": "2026-08-14",
+  "bytes": 47657
+ },
+ {
+  "dept": "mlc",
+  "url": "https://www.sas.rochester.edu/mlc/undergraduate/east-asian-studies.html",
+  "file": "mlc/mlc_undergraduate_east-asian-studies.html",
+  "title": "East Asian Studies  : Undergraduate Program : Department of Modern Languages and Cultures : University of Rochester",
+  "fetchedOn": "2026-08-14",
+  "bytes": 56265
+ },
+ {
+  "dept": "mlc",
+  "url": "https://www.sas.rochester.edu/mlc/undergraduate/french.html",
+  "file": "mlc/mlc_undergraduate_french.html",
+  "title": "French : Undergraduate Program : Department of Modern Languages and Cultures : University of Rochester",
+  "fetchedOn": "2026-08-14",
+  "bytes": 49121
+ },
+ {
+  "dept": "mlc",
+  "url": "https://www.sas.rochester.edu/mlc/undergraduate/german.html",
+  "file": "mlc/mlc_undergraduate_german.html",
+  "title": "German : Undergraduate Program : Department of Modern Languages and Cultures : University of Rochester",
+  "fetchedOn": "2026-08-14",
+  "bytes": 50054
+ },
+ {
+  "dept": "mlc",
+  "url": "https://www.sas.rochester.edu/mlc/undergraduate/honors-societies.html",
+  "file": "mlc/mlc_undergraduate_honors-societies.html",
+  "title": "Honor Societies : Undergraduate Program : Department of Modern Languages and Cultures : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 56066
+ },
+ {
+  "dept": "mlc",
+  "url": "https://www.sas.rochester.edu/mlc/undergraduate/honors.html",
+  "file": "mlc/mlc_undergraduate_honors.html",
+  "title": "Honors : Undergraduate Program : Department of Modern Languages and Cultures : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 41668
+ },
+ {
+  "dept": "mlc",
+  "url": "https://www.sas.rochester.edu/mlc/undergraduate/index.html",
+  "file": "mlc/mlc_undergraduate_index.html",
+  "title": "Overview of the MLC Majors and Minors : Undergraduate Program : Department of Modern Languages and Cultures : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 45742
+ },
+ {
+  "dept": "mlc",
+  "url": "https://www.sas.rochester.edu/mlc/undergraduate/italian.html",
+  "file": "mlc/mlc_undergraduate_italian.html",
+  "title": "Italian : Undergraduate Program : Department of Modern Languages and Cultures : University of Rochester",
+  "fetchedOn": "2026-08-14",
+  "bytes": 50279
+ },
+ {
+  "dept": "mlc",
+  "url": "https://www.sas.rochester.edu/mlc/undergraduate/japanese.html",
+  "file": "mlc/mlc_undergraduate_japanese.html",
+  "title": "Japanese : Undergraduate Program : Department of Modern Languages and Cultures : University of Rochester",
+  "fetchedOn": "2026-08-14",
+  "bytes": 54443
+ },
+ {
+  "dept": "mlc",
+  "url": "https://www.sas.rochester.edu/mlc/undergraduate/korean.html",
+  "file": "mlc/mlc_undergraduate_korean.html",
+  "title": "Korean : Undergraduate Program : Department of Modern Languages and Cultures : University of Rochester",
+  "fetchedOn": "2026-08-15",
+  "bytes": 49640
+ },
+ {
+  "dept": "mlc",
+  "url": "https://www.sas.rochester.edu/mlc/undergraduate/russian-studies.html",
+  "file": "mlc/mlc_undergraduate_russian-studies.html",
+  "title": "Russian Studies : Undergraduate Program : Department of Modern Languages and Cultures : University of Rochester",
+  "fetchedOn": "2026-08-14",
+  "bytes": 51109
+ },
+ {
+  "dept": "mlc",
+  "url": "https://www.sas.rochester.edu/mlc/undergraduate/russian.html",
+  "file": "mlc/mlc_undergraduate_russian.html",
+  "title": "Russian : Undergraduate Program : Department of Modern Languages and Cultures : University of Rochester",
+  "fetchedOn": "2026-08-14",
+  "bytes": 49592
+ },
+ {
+  "dept": "mlc",
+  "url": "https://www.sas.rochester.edu/mlc/undergraduate/spanish.html",
+  "file": "mlc/mlc_undergraduate_spanish.html",
+  "title": "Spanish : Undergraduate Program : Department of Modern Languages and Cultures : University of Rochester",
+  "fetchedOn": "2026-08-14",
+  "bytes": 47943
+ },
+ {
+  "dept": "msc",
+  "url": "https://www.rochester.edu/college/ccas/handbook/authorized-approval-list.html",
+  "file": "msc/college_ccas_handbook_authorized-approval-list.html",
+  "title": "Authorized Approval List : Advising Handbook : Center for Advising Services : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 31979
+ },
+ {
+  "dept": "msc",
+  "url": "https://www.rochester.edu/college/msc/certificates/../index.html",
+  "file": "msc/college_msc_certificates_.._index.html",
+  "title": "Multidisciplinary Studies Center : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 27269
+ },
+ {
+  "dept": "msc",
+  "url": "https://www.rochester.edu/college/msc/certificates/actuarial.html",
+  "file": "msc/college_msc_certificates_actuarial.html",
+  "title": "Actuarial Studies Certificate : Program in Statistics : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 31811
+ },
+ {
+  "dept": "msc",
+  "url": "https://www.rochester.edu/college/msc/certificates/user-experience.html",
+  "file": "msc/college_msc_certificates_user-experience.html",
+  "title": "User Experience (UX)/User-Centered Design : Undergraduate Program : Undergraduate Program in Digital Media Studies : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 35061
+ },
+ {
+  "dept": "msc",
+  "url": "https://www.rochester.edu/college/msc/index.html",
+  "file": "msc/college_msc_index.html",
+  "title": "Multidisciplinary Studies Center : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 27269
+ },
+ {
+  "dept": "msc",
+  "url": "https://www.rochester.edu/college/msc/major-minor/../index.html",
+  "file": "msc/college_msc_major-minor_.._index.html",
+  "title": "Multidisciplinary Studies Center : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 27269
+ },
+ {
+  "dept": "msc",
+  "url": "https://www.rochester.edu/college/msc/major-minor/clinical-translational-sciences.html",
+  "file": "msc/college_msc_major-minor_clinical-translational-sciences.html",
+  "title": "BS in Clinical and Translational Sciences : Undergraduate Program : Department of Biology : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 46005
+ },
+ {
+  "dept": "msc",
+  "url": "https://www.rochester.edu/college/msc/major-minor/latin-american-studies-minor.html",
+  "file": "msc/college_msc_major-minor_latin-american-studies-minor.html",
+  "title": "Minor and Clusters : Undergraduate Program : Latin American, Caribbean, and Latinx Studies (LACX) : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 33078
+ },
+ {
+  "dept": "mth",
+  "url": "https://www.sas.rochester.edu/mth/",
+  "file": "mth/mth.html",
+  "title": "Department of Mathematics : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 42930
+ },
+ {
+  "dept": "mth",
+  "url": "https://www.sas.rochester.edu/mth/undergraduate/",
+  "file": "mth/mth_undergraduate.html",
+  "title": "Undergraduate Program : Department of Mathematics : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 38506
+ },
+ {
+  "dept": "mth",
+  "url": "https://www.sas.rochester.edu/mth/undergraduate/advising.html",
+  "file": "mth/mth_undergraduate_advising.html",
+  "title": "Advising : Undergraduate Program : Department of Mathematics : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 39231
+ },
+ {
+  "dept": "mth",
+  "url": "https://www.sas.rochester.edu/mth/undergraduate/ba-honors.html",
+  "file": "mth/mth_undergraduate_ba-honors.html",
+  "title": "Honors BA Requirements : Undergraduate Program : Department of Mathematics : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 38642
+ },
+ {
+  "dept": "mth",
+  "url": "https://www.sas.rochester.edu/mth/undergraduate/ba-requirements.html",
+  "file": "mth/mth_undergraduate_ba-requirements.html",
+  "title": "BA in Mathematics Requirements : Undergraduate Program : Department of Mathematics : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 38694
+ },
+ {
+  "dept": "mth",
+  "url": "https://www.sas.rochester.edu/mth/undergraduate/bs-applied-math.html",
+  "file": "mth/mth_undergraduate_bs-applied-math.html",
+  "title": "BS in Applied Math Requirements : Undergraduate Program : Department of Mathematics : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 39039
+ },
+ {
+  "dept": "mth",
+  "url": "https://www.sas.rochester.edu/mth/undergraduate/bs-honors.html",
+  "file": "mth/mth_undergraduate_bs-honors.html",
+  "title": "Honors BS Requirements : Undergraduate Program : Department of Mathematics : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 39223
+ },
+ {
+  "dept": "mth",
+  "url": "https://www.sas.rochester.edu/mth/undergraduate/bs-requirements.html",
+  "file": "mth/mth_undergraduate_bs-requirements.html",
+  "title": "BS in Math Requirements : Undergraduate Program : Department of Mathematics : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 38277
+ },
+ {
+  "dept": "mth",
+  "url": "https://www.sas.rochester.edu/mth/undergraduate/handbook/index.html",
+  "file": "mth/mth_undergraduate_handbook_index.html",
+  "title": "Undergraduate Handbook : Department of Mathematics : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 35074
+ },
+ {
+  "dept": "mth",
+  "url": "https://www.sas.rochester.edu/mth/undergraduate/handbook/placement.html",
+  "file": "mth/mth_undergraduate_handbook_placement.html",
+  "title": "Mathematics Placement : Undergraduate Program : Department of Mathematics : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 45883
+ },
+ {
+  "dept": "mth",
+  "url": "https://www.sas.rochester.edu/mth/undergraduate/honors-papers-plans.html",
+  "file": "mth/mth_undergraduate_honors-papers-plans.html",
+  "title": "Honors Papers and Future Plans : Undergraduate Program : Department of Mathematics : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 80745
+ },
+ {
+  "dept": "mth",
+  "url": "https://www.sas.rochester.edu/mth/undergraduate/index.html",
+  "file": "mth/mth_undergraduate_index.html",
+  "title": "Undergraduate Program : Department of Mathematics : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 38506
+ },
+ {
+  "dept": "mth",
+  "url": "https://www.sas.rochester.edu/mth/undergraduate/majors.html",
+  "file": "mth/mth_undergraduate_majors.html",
+  "title": "Degrees in Mathematics : Undergraduate Program : Department of Mathematics : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 42408
+ },
+ {
+  "dept": "mth",
+  "url": "https://www.sas.rochester.edu/mth/undergraduate/minor-clusters.html",
+  "file": "mth/mth_undergraduate_minor-clusters.html",
+  "title": "Minor and Cluster Requirements  : Undergraduate Program : Department of Mathematics : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 37222
+ },
+ {
+  "dept": "mth",
+  "url": "https://www.sas.rochester.edu/mth/undergraduate/operations-certificate.html",
+  "file": "mth/mth_undergraduate_operations-certificate.html",
+  "title": "Operations Research Certificate : Undergraduate Program : Department of Mathematics : University of Rochester",
+  "fetchedOn": "2026-08-14",
+  "bytes": 40407
+ },
+ {
+  "dept": "mth",
+  "url": "https://www.sas.rochester.edu/mth/undergraduate/phil.html",
+  "file": "mth/mth_undergraduate_phil.html",
+  "title": "Philosophy Minor for the Humanities Requirement : Undergraduate Program : Department of Mathematics : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 42275
+ },
+ {
+  "dept": "mur",
+  "url": "https://www.sas.rochester.edu/mur/",
+  "file": "mur/mur.html",
+  "title": "Arthur Satz Department of Music : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 44338
+ },
+ {
+  "dept": "mur",
+  "url": "https://www.sas.rochester.edu/mur/undergraduate/",
+  "file": "mur/mur_undergraduate.html",
+  "title": "Undergraduate Program : Arthur Satz Department of Music : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 38821
+ },
+ {
+  "dept": "mur",
+  "url": "https://www.sas.rochester.edu/mur/undergraduate/advising.html",
+  "file": "mur/mur_undergraduate_advising.html",
+  "title": "Advising : Undergraduate Program : Arthur Satz Department of Music : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 35791
+ },
+ {
+  "dept": "mur",
+  "url": "https://www.sas.rochester.edu/mur/undergraduate/index.html",
+  "file": "mur/mur_undergraduate_index.html",
+  "title": "Undergraduate Program : Arthur Satz Department of Music : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 38821
+ },
+ {
+  "dept": "mur",
+  "url": "https://www.sas.rochester.edu/mur/undergraduate/minor-clusters.html",
+  "file": "mur/mur_undergraduate_minor-clusters.html",
+  "title": "Minor and Clusters : Undergraduate Program : Arthur Satz Department of Music : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 37775
+ },
+ {
+  "dept": "mur",
+  "url": "https://www.sas.rochester.edu/mur/undergraduate/requirements.html",
+  "file": "mur/mur_undergraduate_requirements.html",
+  "title": "Major Requirements : Undergraduate Program : Arthur Satz Department of Music : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 48420
+ },
+ {
+  "dept": "optics",
+  "url": "https://www.hajim.rochester.edu/optics/",
+  "file": "optics/optics.html",
+  "title": "The Institute of Optics : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 59131
+ },
+ {
+  "dept": "optics",
+  "url": "https://www.hajim.rochester.edu/optics/undergraduate/",
+  "file": "optics/optics_undergraduate.html",
+  "title": "Undergraduate Program : The Institute of Optics : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 51472
+ },
+ {
+  "dept": "optics",
+  "url": "https://www.hajim.rochester.edu/optics/undergraduate/advising.html",
+  "file": "optics/optics_undergraduate_advising.html",
+  "title": "Applying : Undergraduate Program : The Institute of Optics : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 50595
+ },
+ {
+  "dept": "optics",
+  "url": "https://www.hajim.rochester.edu/optics/undergraduate/index.html",
+  "file": "optics/optics_undergraduate_index.html",
+  "title": "Undergraduate Program : The Institute of Optics : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 51472
+ },
+ {
+  "dept": "optics",
+  "url": "https://www.hajim.rochester.edu/optics/undergraduate/major.html",
+  "file": "optics/optics_undergraduate_major.html",
+  "title": "Major Requirements : Undergraduate Program : The Institute of Optics : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 50839
+ },
+ {
+  "dept": "optics",
+  "url": "https://www.hajim.rochester.edu/optics/undergraduate/minor.html",
+  "file": "optics/optics_undergraduate_minor.html",
+  "title": "Minor Requirements : Undergraduate Program : The Institute of Optics : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 44971
+ },
+ {
+  "dept": "pas",
+  "url": "https://www.sas.rochester.edu/pas/",
+  "file": "pas/pas.html",
+  "title": "Department of Physics and Astronomy : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 51305
+ },
+ {
+  "dept": "pas",
+  "url": "https://www.sas.rochester.edu/pas/undergraduate/",
+  "file": "pas/pas_undergraduate.html",
+  "title": "Undergraduate Program : Department of Physics and Astronomy : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 40391
+ },
+ {
+  "dept": "pas",
+  "url": "https://www.sas.rochester.edu/pas/undergraduate/BA-physics-astronomy.html",
+  "file": "pas/pas_undergraduate_BA-physics-astronomy.html",
+  "title": "BA in Physics and Astronomy : Undergraduate Program : Department of Physics and Astronomy : University of Rochester",
+  "fetchedOn": "2026-08-14",
+  "bytes": 39158
+ },
+ {
+  "dept": "pas",
+  "url": "https://www.sas.rochester.edu/pas/undergraduate/BA-physics.html",
+  "file": "pas/pas_undergraduate_BA-physics.html",
+  "title": "BA in Physics : Undergraduate Program : Department of Physics and Astronomy : University of Rochester",
+  "fetchedOn": "2026-08-14",
+  "bytes": 38724
+ },
+ {
+  "dept": "pas",
+  "url": "https://www.sas.rochester.edu/pas/undergraduate/BS-physics-astronomy.html",
+  "file": "pas/pas_undergraduate_BS-physics-astronomy.html",
+  "title": "BS in Physics and Astronomy : Undergraduate Program : Department of Physics and Astronomy : University of Rochester",
+  "fetchedOn": "2026-08-14",
+  "bytes": 40244
+ },
+ {
+  "dept": "pas",
+  "url": "https://www.sas.rochester.edu/pas/undergraduate/BS-physics.html",
+  "file": "pas/pas_undergraduate_BS-physics.html",
+  "title": "BS in Physics : Undergraduate Program : Department of Physics and Astronomy : University of Rochester",
+  "fetchedOn": "2026-08-14",
+  "bytes": 39801
+ },
+ {
+  "dept": "pas",
+  "url": "https://www.sas.rochester.edu/pas/undergraduate/advising.html",
+  "file": "pas/pas_undergraduate_advising.html",
+  "title": "Advising : Undergraduate Program : Department of Physics and Astronomy : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 38550
+ },
+ {
+  "dept": "pas",
+  "url": "https://www.sas.rochester.edu/pas/undergraduate/index.html",
+  "file": "pas/pas_undergraduate_index.html",
+  "title": "Undergraduate Program : Department of Physics and Astronomy : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 40391
+ },
+ {
+  "dept": "pas",
+  "url": "https://www.sas.rochester.edu/pas/undergraduate/minors.html",
+  "file": "pas/pas_undergraduate_minors.html",
+  "title": "Minor in Physics or in Astronomy : Undergraduate Program : Department of Physics and Astronomy : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 40885
+ },
+ {
+  "dept": "pas",
+  "url": "https://www.sas.rochester.edu/pas/undergraduate/requirements.html",
+  "file": "pas/pas_undergraduate_requirements.html",
+  "title": "Major Requirements : Undergraduate Program : Department of Physics and Astronomy : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 37162
+ },
+ {
+  "dept": "ph",
+  "url": "https://www.sas.rochester.edu/ph/",
+  "file": "ph/ph.html",
+  "title": "Undergraduate Program in Public Health : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 43524
+ },
+ {
+  "dept": "ph",
+  "url": "https://www.sas.rochester.edu/ph/undergraduate/",
+  "file": "ph/ph_undergraduate.html",
+  "title": "Undergraduate Programs : Undergraduate Program in Public Health : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 36745
+ },
+ {
+  "dept": "ph",
+  "url": "https://www.sas.rochester.edu/ph/undergraduate/clusters.html",
+  "file": "ph/ph_undergraduate_clusters.html",
+  "title": "Clusters : Undergraduate Programs : Undergraduate Program in Public Health : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 37112
+ },
+ {
+  "dept": "ph",
+  "url": "https://www.sas.rochester.edu/ph/undergraduate/honors.html",
+  "file": "ph/ph_undergraduate_honors.html",
+  "title": "Research Honors Program : Undergraduate Programs : Undergraduate Program in Public Health : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 40150
+ },
+ {
+  "dept": "ph",
+  "url": "https://www.sas.rochester.edu/ph/undergraduate/index.html",
+  "file": "ph/ph_undergraduate_index.html",
+  "title": "Undergraduate Programs : Undergraduate Program in Public Health : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 36745
+ },
+ {
+  "dept": "ph",
+  "url": "https://www.sas.rochester.edu/ph/undergraduate/majors/bioethics.html",
+  "file": "ph/ph_undergraduate_majors_bioethics.html",
+  "title": "BA in Bioethics : Undergraduate Programs : Undergraduate Program in Public Health : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 39900
+ },
+ {
+  "dept": "ph",
+  "url": "https://www.sas.rochester.edu/ph/undergraduate/majors/core-requirements.html",
+  "file": "ph/ph_undergraduate_majors_core-requirements.html",
+  "title": "Core Requirements : Undergraduate Programs : Undergraduate Program in Public Health : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 34437
+ },
+ {
+  "dept": "ph",
+  "url": "https://www.sas.rochester.edu/ph/undergraduate/majors/environmental-health.html",
+  "file": "ph/ph_undergraduate_majors_environmental-health.html",
+  "title": "BS in Environmental Health : Undergraduate Programs : Undergraduate Program in Public Health : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 39111
+ },
+ {
+  "dept": "ph",
+  "url": "https://www.sas.rochester.edu/ph/undergraduate/majors/epidemiology.html",
+  "file": "ph/ph_undergraduate_majors_epidemiology.html",
+  "title": "BA in Epidemiology : Undergraduate Programs : Undergraduate Program in Public Health : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 38634
+ },
+ {
+  "dept": "ph",
+  "url": "https://www.sas.rochester.edu/ph/undergraduate/majors/health-behavior-society.html",
+  "file": "ph/ph_undergraduate_majors_health-behavior-society.html",
+  "title": "BA in Health, Behavior, and Society : Undergraduate Programs : Undergraduate Program in Public Health : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 39485
+ },
+ {
+  "dept": "ph",
+  "url": "https://www.sas.rochester.edu/ph/undergraduate/majors/health-policy.html",
+  "file": "ph/ph_undergraduate_majors_health-policy.html",
+  "title": "BA in Health Policy : Undergraduate Programs : Undergraduate Program in Public Health : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 40014
+ },
+ {
+  "dept": "ph",
+  "url": "https://www.sas.rochester.edu/ph/undergraduate/majors/index.html",
+  "file": "ph/ph_undergraduate_majors_index.html",
+  "title": "Majors : Undergraduate Programs : Undergraduate Program in Public Health : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 40574
+ },
+ {
+  "dept": "ph",
+  "url": "https://www.sas.rochester.edu/ph/undergraduate/minors.html",
+  "file": "ph/ph_undergraduate_minors.html",
+  "title": "Minors : Undergraduate Programs : Undergraduate Program in Public Health : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 42034
+ },
+ {
+  "dept": "phl",
+  "url": "https://www.sas.rochester.edu/phl/",
+  "file": "phl/phl.html",
+  "title": "Department of Philosophy : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 41754
+ },
+ {
+  "dept": "phl",
+  "url": "https://www.sas.rochester.edu/phl/undergraduate/",
+  "file": "phl/phl_undergraduate.html",
+  "title": "Undergraduate Program : Department of Philosophy : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 43266
+ },
+ {
+  "dept": "phl",
+  "url": "https://www.sas.rochester.edu/phl/undergraduate/index.html",
+  "file": "phl/phl_undergraduate_index.html",
+  "title": "Undergraduate Program : Department of Philosophy : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 43266
+ },
+ {
+  "dept": "phl",
+  "url": "https://www.sas.rochester.edu/phl/undergraduate/legal-studies.html",
+  "file": "phl/phl_undergraduate_legal-studies.html",
+  "title": "Legal Studies Minor : Undergraduate Program : Department of Philosophy : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 40655
+ },
+ {
+  "dept": "phl",
+  "url": "https://www.sas.rochester.edu/phl/undergraduate/major.html",
+  "file": "phl/phl_undergraduate_major.html",
+  "title": "Major Requirements : Undergraduate Program : Department of Philosophy : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 41238
+ },
+ {
+  "dept": "phl",
+  "url": "https://www.sas.rochester.edu/phl/undergraduate/minor.html",
+  "file": "phl/phl_undergraduate_minor.html",
+  "title": "Minor and Cluster Requirements : Undergraduate Program : Department of Philosophy : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 38924
+ },
+ {
+  "dept": "phl",
+  "url": "https://www.sas.rochester.edu/phl/undergraduate/ppe-major.html",
+  "file": "phl/phl_undergraduate_ppe-major.html",
+  "title": "Politics, Philosophy & Economics Major : Undergraduate Program : Department of Philosophy : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 35826
+ },
+ {
+  "dept": "phlt",
+  "url": "https://www.rochester.edu/college/ph/undergrad/",
+  "file": "phlt/college_ph_undergrad.html",
+  "title": "Undergraduate Programs : Undergraduate Program in Public Health : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 36745
+ },
+ {
+  "dept": "phlt",
+  "url": "https://www.rochester.edu/college/ph/undergrad/clusters.html",
+  "file": "phlt/college_ph_undergrad_clusters.html",
+  "title": "Clusters : Undergraduate Programs : Undergraduate Program in Public Health : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 37112
+ },
+ {
+  "dept": "phlt",
+  "url": "https://www.rochester.edu/college/ph/undergrad/heal.html",
+  "file": "phlt/college_ph_undergrad_heal.html",
+  "title": "Health and Epidemiology Advanced Learning : Undergraduate Programs : Undergraduate Program in Public Health : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 34905
+ },
+ {
+  "dept": "phlt",
+  "url": "https://www.rochester.edu/college/ph/undergrad/honors.html",
+  "file": "phlt/college_ph_undergrad_honors.html",
+  "title": "Research Honors Program : Undergraduate Programs : Undergraduate Program in Public Health : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 40150
+ },
+ {
+  "dept": "phlt",
+  "url": "https://www.rochester.edu/college/ph/undergrad/index.html",
+  "file": "phlt/college_ph_undergrad_index.html",
+  "title": "Undergraduate Programs : Undergraduate Program in Public Health : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 36745
+ },
+ {
+  "dept": "phlt",
+  "url": "https://www.rochester.edu/college/ph/undergrad/majors/../../index.html",
+  "file": "phlt/college_ph_undergrad_majors_.._.._index.html",
+  "title": "Undergraduate Program in Public Health : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 43524
+ },
+ {
+  "dept": "phlt",
+  "url": "https://www.rochester.edu/college/ph/undergrad/majors/../abroad.html",
+  "file": "phlt/college_ph_undergrad_majors_.._abroad.html",
+  "title": "Study Abroad : Undergraduate Program : Undergraduate Program in Public Health : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 36106
+ },
+ {
+  "dept": "phlt",
+  "url": "https://www.rochester.edu/college/ph/undergrad/majors/../awards.html",
+  "file": "phlt/college_ph_undergrad_majors_.._awards.html",
+  "title": "Awards : Undergraduate Programs : Undergraduate Program in Public Health : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 36205
+ },
+ {
+  "dept": "phlt",
+  "url": "https://www.rochester.edu/college/ph/undergrad/majors/../clusters.html",
+  "file": "phlt/college_ph_undergrad_majors_.._clusters.html",
+  "title": "Clusters : Undergraduate Programs : Undergraduate Program in Public Health : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 37112
+ },
+ {
+  "dept": "phlt",
+  "url": "https://www.rochester.edu/college/ph/undergrad/majors/../courses.html",
+  "file": "phlt/college_ph_undergrad_majors_.._courses.html",
+  "title": "Courses : Undergraduate Programs : Undergraduate Program in Public Health : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 34090
+ },
+ {
+  "dept": "phlt",
+  "url": "https://www.rochester.edu/college/ph/undergrad/majors/../heal.html",
+  "file": "phlt/college_ph_undergrad_majors_.._heal.html",
+  "title": "Health and Epidemiology Advanced Learning : Undergraduate Programs : Undergraduate Program in Public Health : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 34905
+ },
+ {
+  "dept": "phlt",
+  "url": "https://www.rochester.edu/college/ph/undergrad/majors/../honors.html",
+  "file": "phlt/college_ph_undergrad_majors_.._honors.html",
+  "title": "Research Honors Program : Undergraduate Programs : Undergraduate Program in Public Health : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 40150
+ },
+ {
+  "dept": "phlt",
+  "url": "https://www.rochester.edu/college/ph/undergrad/majors/../index.html",
+  "file": "phlt/college_ph_undergrad_majors_.._index.html",
+  "title": "Undergraduate Programs : Undergraduate Program in Public Health : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 36745
+ },
+ {
+  "dept": "phlt",
+  "url": "https://www.rochester.edu/college/ph/undergrad/majors/../internships.html",
+  "file": "phlt/college_ph_undergrad_majors_.._internships.html",
+  "title": "Internships : Undergraduate Programs : Undergraduate Program in Public Health : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 38728
+ },
+ {
+  "dept": "phlt",
+  "url": "https://www.rochester.edu/college/ph/undergrad/majors/../minors.html",
+  "file": "phlt/college_ph_undergrad_majors_.._minors.html",
+  "title": "Minors : Undergraduate Programs : Undergraduate Program in Public Health : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 42034
+ },
+ {
+  "dept": "phlt",
+  "url": "https://www.rochester.edu/college/ph/undergrad/majors/bioethics.html",
+  "file": "phlt/college_ph_undergrad_majors_bioethics.html",
+  "title": "BA in Bioethics : Undergraduate Programs : Undergraduate Program in Public Health : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 39900
+ },
+ {
+  "dept": "phlt",
+  "url": "https://www.rochester.edu/college/ph/undergrad/majors/core-requirements.html",
+  "file": "phlt/college_ph_undergrad_majors_core-requirements.html",
+  "title": "Core Requirements : Undergraduate Programs : Undergraduate Program in Public Health : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 34437
+ },
+ {
+  "dept": "phlt",
+  "url": "https://www.rochester.edu/college/ph/undergrad/majors/environmental-health.html",
+  "file": "phlt/college_ph_undergrad_majors_environmental-health.html",
+  "title": "BS in Environmental Health : Undergraduate Programs : Undergraduate Program in Public Health : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 39111
+ },
+ {
+  "dept": "phlt",
+  "url": "https://www.rochester.edu/college/ph/undergrad/majors/epidemiology.html",
+  "file": "phlt/college_ph_undergrad_majors_epidemiology.html",
+  "title": "BA in Epidemiology : Undergraduate Programs : Undergraduate Program in Public Health : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 38634
+ },
+ {
+  "dept": "phlt",
+  "url": "https://www.rochester.edu/college/ph/undergrad/majors/health-behavior-society.html",
+  "file": "phlt/college_ph_undergrad_majors_health-behavior-society.html",
+  "title": "BA in Health, Behavior, and Society : Undergraduate Programs : Undergraduate Program in Public Health : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 39485
+ },
+ {
+  "dept": "phlt",
+  "url": "https://www.rochester.edu/college/ph/undergrad/majors/health-policy.html",
+  "file": "phlt/college_ph_undergrad_majors_health-policy.html",
+  "title": "BA in Health Policy : Undergraduate Programs : Undergraduate Program in Public Health : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 40014
+ },
+ {
+  "dept": "phlt",
+  "url": "https://www.rochester.edu/college/ph/undergrad/majors/index.html",
+  "file": "phlt/college_ph_undergrad_majors_index.html",
+  "title": "Majors : Undergraduate Programs : Undergraduate Program in Public Health : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 40574
+ },
+ {
+  "dept": "phlt",
+  "url": "https://www.rochester.edu/college/ph/undergrad/minors.html",
+  "file": "phlt/college_ph_undergrad_minors.html",
+  "title": "Minors : Undergraduate Programs : Undergraduate Program in Public Health : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 42034
+ },
+ {
+  "dept": "psc",
+  "url": "https://www.sas.rochester.edu/psc/",
+  "file": "psc/psc.html",
+  "title": "Department of Political Science : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 55718
+ },
+ {
+  "dept": "psc",
+  "url": "https://www.sas.rochester.edu/psc/courses/tracks.php?dept=ir",
+  "file": "psc/psc_courses_tracks.php_dept_ir.html",
+  "title": "International Relations Tracks: Department of Political Science : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 42399
+ },
+ {
+  "dept": "psc",
+  "url": "https://www.sas.rochester.edu/psc/courses/tracks.php?dept=psc",
+  "file": "psc/psc_courses_tracks.php_dept_psc.html",
+  "title": "Political Science Tracks: Department of Political Science : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 42792
+ },
+ {
+  "dept": "psc",
+  "url": "https://www.sas.rochester.edu/psc/undergraduate/",
+  "file": "psc/psc_undergraduate.html",
+  "title": "Undergraduate Program : Department of Political Science : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 43647
+ },
+ {
+  "dept": "psc",
+  "url": "https://www.sas.rochester.edu/psc/undergraduate/advising.html",
+  "file": "psc/psc_undergraduate_advising.html",
+  "title": "Advising : Undergraduate Program : Department of Political Science : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 46608
+ },
+ {
+  "dept": "psc",
+  "url": "https://www.sas.rochester.edu/psc/undergraduate/clusters-cert.html",
+  "file": "psc/psc_undergraduate_clusters-cert.html",
+  "title": "Clusters and Certificates : Undergraduate Program : Department of Political Science : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 46650
+ },
+ {
+  "dept": "psc",
+  "url": "https://www.sas.rochester.edu/psc/undergraduate/honors.html",
+  "file": "psc/psc_undergraduate_honors.html",
+  "title": "Honors Program : Undergraduate Program : Department of Political Science : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 46757
+ },
+ {
+  "dept": "psc",
+  "url": "https://www.sas.rochester.edu/psc/undergraduate/index.html",
+  "file": "psc/psc_undergraduate_index.html",
+  "title": "Undergraduate Program : Department of Political Science : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 43647
+ },
+ {
+  "dept": "psc",
+  "url": "https://www.sas.rochester.edu/psc/undergraduate/ir-minor.html",
+  "file": "psc/psc_undergraduate_ir-minor.html",
+  "title": "Minor in International Relations : Undergraduate Program : Department of Political Science : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 47115
+ },
+ {
+  "dept": "psc",
+  "url": "https://www.sas.rochester.edu/psc/undergraduate/major-ir.html",
+  "file": "psc/psc_undergraduate_major-ir.html",
+  "title": "Major in International Relations (BA) : Undergraduate Program : Department of Political Science : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 49881
+ },
+ {
+  "dept": "psc",
+  "url": "https://www.sas.rochester.edu/psc/undergraduate/major-ppe.html",
+  "file": "psc/psc_undergraduate_major-ppe.html",
+  "title": "Major in Politics, Philosophy, and Economics (BA) : Undergraduate Program : Department of Political Science : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 50898
+ },
+ {
+  "dept": "psc",
+  "url": "https://www.sas.rochester.edu/psc/undergraduate/major-psc-ba.html",
+  "file": "psc/psc_undergraduate_major-psc-ba.html",
+  "title": "Major in Political Science (BA) : Undergraduate Program : Department of Political Science : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 48425
+ },
+ {
+  "dept": "psc",
+  "url": "https://www.sas.rochester.edu/psc/undergraduate/major-psc-bs.html",
+  "file": "psc/psc_undergraduate_major-psc-bs.html",
+  "title": "Major in Political Science (BS) : Undergraduate Program : Department of Political Science : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 51005
+ },
+ {
+  "dept": "psc",
+  "url": "https://www.sas.rochester.edu/psc/undergraduate/psc-minor.html",
+  "file": "psc/psc_undergraduate_psc-minor.html",
+  "title": "Minor in Political Science : Undergraduate Program : Department of Political Science : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 47316
+ },
+ {
+  "dept": "psy",
+  "url": "https://www.sas.rochester.edu/psy/",
+  "file": "psy/psy.html",
+  "title": "Department of Psychology : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 43960
+ },
+ {
+  "dept": "psy",
+  "url": "https://www.sas.rochester.edu/psy/undergraduate/",
+  "file": "psy/psy_undergraduate.html",
+  "title": "Undergraduate Program : Department of Psychology : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 37628
+ },
+ {
+  "dept": "psy",
+  "url": "https://www.sas.rochester.edu/psy/undergraduate/advising.html",
+  "file": "psy/psy_undergraduate_advising.html",
+  "title": "Advising : Undergraduate Program : Department of Psychology : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 47270
+ },
+ {
+  "dept": "psy",
+  "url": "https://www.sas.rochester.edu/psy/undergraduate/clusters.html",
+  "file": "psy/psy_undergraduate_clusters.html",
+  "title": "Cluster Requirements : Undergraduate Program : Department of Psychology : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 38364
+ },
+ {
+  "dept": "psy",
+  "url": "https://www.sas.rochester.edu/psy/undergraduate/honors.html",
+  "file": "psy/psy_undergraduate_honors.html",
+  "title": "Honors Program : Undergraduate Program : Department of Psychology : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 40433
+ },
+ {
+  "dept": "psy",
+  "url": "https://www.sas.rochester.edu/psy/undergraduate/index.html",
+  "file": "psy/psy_undergraduate_index.html",
+  "title": "Undergraduate Program : Department of Psychology : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 37628
+ },
+ {
+  "dept": "psy",
+  "url": "https://www.sas.rochester.edu/psy/undergraduate/major.html",
+  "file": "psy/psy_undergraduate_major.html",
+  "title": "Major Requirements : Undergraduate Program : Department of Psychology : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 44975
+ },
+ {
+  "dept": "psy",
+  "url": "https://www.sas.rochester.edu/psy/undergraduate/minor.html",
+  "file": "psy/psy_undergraduate_minor.html",
+  "title": "Minor Requirements : Undergraduate Program : Department of Psychology : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 47385
+ },
+ {
+  "dept": "rel",
+  "url": "https://www.sas.rochester.edu/rel/",
+  "file": "rel/rel.html",
+  "title": "Department of Religion and Classics : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 45590
+ },
+ {
+  "dept": "rel",
+  "url": "https://www.sas.rochester.edu/rel/undergraduate/",
+  "file": "rel/rel_undergraduate.html",
+  "title": "Undergraduate Program : Department of Religion and Classics : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 37907
+ },
+ {
+  "dept": "rel",
+  "url": "https://www.sas.rochester.edu/rel/undergraduate/classical-civilization.html",
+  "file": "rel/rel_undergraduate_classical-civilization.html",
+  "title": "Classical Civilization Major Requirements : Undergraduate Program : Department of Religion and Classics : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 37435
+ },
+ {
+  "dept": "rel",
+  "url": "https://www.sas.rochester.edu/rel/undergraduate/classics.html",
+  "file": "rel/rel_undergraduate_classics.html",
+  "title": "Classics Major Requirements : Undergraduate Program : Department of Religion and Classics : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 37625
+ },
+ {
+  "dept": "rel",
+  "url": "https://www.sas.rochester.edu/rel/undergraduate/clusters.html",
+  "file": "rel/rel_undergraduate_clusters.html",
+  "title": "Clusters in Religion and Classics : Undergraduate Program : Department of Religion and Classics : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 37510
+ },
+ {
+  "dept": "rel",
+  "url": "https://www.sas.rochester.edu/rel/undergraduate/index.html",
+  "file": "rel/rel_undergraduate_index.html",
+  "title": "Undergraduate Program : Department of Religion and Classics : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 37907
+ },
+ {
+  "dept": "rel",
+  "url": "https://www.sas.rochester.edu/rel/undergraduate/minors.html",
+  "file": "rel/rel_undergraduate_minors.html",
+  "title": "Requirements for Minors : Undergraduate Program : Department of Religion and Classics : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 35385
+ },
+ {
+  "dept": "rel",
+  "url": "https://www.sas.rochester.edu/rel/undergraduate/religion.html",
+  "file": "rel/rel_undergraduate_religion.html",
+  "title": "Religion Major Requirements : Undergraduate Program : Department of Religion and Classics : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 48213
+ },
+ {
+  "dept": "son",
+  "url": "https://son.rochester.edu/academics/accelerated-nursing-programs/absn/12-month-curriculum.html",
+  "file": "son/academics_accelerated-nursing-programs_absn_12-month-curriculum.html",
+  "title": "12-Month ABSN Curriculum\n\t\t\t| University of Rochester School of Nursing",
+  "fetchedOn": "2026-08-01",
+  "bytes": 111838
+ },
+ {
+  "dept": "son",
+  "url": "https://son.rochester.edu/academics/accelerated-nursing-programs/absn/24-month-pathway.html",
+  "file": "son/academics_accelerated-nursing-programs_absn_24-month-pathway.html",
+  "title": "24-Month Accelerated Bachelor's in Nursing Program (ABSN)\n\t\t\t| University of Rochester School of Nursing",
+  "fetchedOn": "2026-08-01",
+  "bytes": 147324
+ },
+ {
+  "dept": "son",
+  "url": "https://son.rochester.edu/academics/accelerated-nursing-programs/absn/admissions.html",
+  "file": "son/academics_accelerated-nursing-programs_absn_admissions.html",
+  "title": "How to Apply to the ABSN\n\t\t\t| University of Rochester School of Nursing",
+  "fetchedOn": "2026-08-01",
+  "bytes": 99239
+ },
+ {
+  "dept": "son",
+  "url": "https://son.rochester.edu/academics/accelerated-nursing-programs/absn/financing-accelerated-nursing-program.html",
+  "file": "son/academics_accelerated-nursing-programs_absn_financing-accelerated-nursing-progra.html",
+  "title": "Financing the Accelerated Nursing Program\n\t\t\t| University of Rochester School of Nursing",
+  "fetchedOn": "2026-08-01",
+  "bytes": 109186
+ },
+ {
+  "dept": "son",
+  "url": "https://son.rochester.edu/academics/accelerated-nursing-programs/absn/index.html",
+  "file": "son/academics_accelerated-nursing-programs_absn_index.html",
+  "title": "Accelerated Bachelor's in Nursing (ABSN) Program\n\t\t\t| University of Rochester School of Nursing",
+  "fetchedOn": "2026-08-01",
+  "bytes": 103454
+ },
+ {
+  "dept": "son",
+  "url": "https://son.rochester.edu/academics/accelerated-nursing-programs/absn/orientation.html",
+  "file": "son/academics_accelerated-nursing-programs_absn_orientation.html",
+  "title": "ABSN Onboarding & Orientation\n\t\t\t| University of Rochester School of Nursing",
+  "fetchedOn": "2026-08-01",
+  "bytes": 91172
+ },
+ {
+  "dept": "son",
+  "url": "https://son.rochester.edu/academics/accelerated-nursing-programs/absn/outcomes.html",
+  "file": "son/academics_accelerated-nursing-programs_absn_outcomes.html",
+  "title": "Learning Outcomes\n\t\t\t| University of Rochester School of Nursing",
+  "fetchedOn": "2026-08-01",
+  "bytes": 112846
+ },
+ {
+  "dept": "son",
+  "url": "https://son.rochester.edu/academics/accelerated-nursing-programs/absn/prerequisite-requirements.html",
+  "file": "son/academics_accelerated-nursing-programs_absn_prerequisite-requirements.html",
+  "title": "Prerequisite Requirements | University of Rochester School of Nursing",
+  "fetchedOn": "2026-08-01",
+  "bytes": 92581
+ },
+ {
+  "dept": "son",
+  "url": "https://son.rochester.edu/academics/accelerated-nursing-programs/absn/student-ambassadors.html",
+  "file": "son/academics_accelerated-nursing-programs_absn_student-ambassadors.html",
+  "title": "Student Ambassadors\n\t\t\t| University of Rochester School of Nursing",
+  "fetchedOn": "2026-08-01",
+  "bytes": 95331
+ },
+ {
+  "dept": "son",
+  "url": "https://son.rochester.edu/academics/accelerated-nursing-programs/index.html",
+  "file": "son/academics_accelerated-nursing-programs_index.html",
+  "title": "Accelerated Nursing Programs | University of Rochester School of Nursing",
+  "fetchedOn": "2026-08-01",
+  "bytes": 113145
+ },
+ {
+  "dept": "son",
+  "url": "https://son.rochester.edu/academics/accelerated-nursing-programs/masters-direct-entry/index.html",
+  "file": "son/academics_accelerated-nursing-programs_masters-direct-entry_index.html",
+  "title": "Master\u2019s Direct Entry into Nursing Practice\n\t\t\t| University of Rochester School of Nursing",
+  "fetchedOn": "2026-08-01",
+  "bytes": 136153
+ },
+ {
+  "dept": "son",
+  "url": "https://son.rochester.edu/academics/accelerated-nursing-programs/student-stories/index.html",
+  "file": "son/academics_accelerated-nursing-programs_student-stories_index.html",
+  "title": "Accelerated Nursing Students | University of Rochester School of Nursing",
+  "fetchedOn": "2026-08-01",
+  "bytes": 101600
+ },
+ {
+  "dept": "son",
+  "url": "https://son.rochester.edu/academics/advanced-certificate-programs/index.html",
+  "file": "son/academics_advanced-certificate-programs_index.html",
+  "title": "Advanced Certificate in Nursing Programs (Post-Master's)\n\t\t\t| University of Rochester School of Nursing",
+  "fetchedOn": "2026-08-01",
+  "bytes": 92297
+ },
+ {
+  "dept": "son",
+  "url": "https://son.rochester.edu/academics/center-lifelong-learning/care-management/index.html",
+  "file": "son/academics_center-lifelong-learning_care-management_index.html",
+  "title": "Online Care Management Education Program\n\t\t\t| University of Rochester School of Nursing",
+  "fetchedOn": "2026-08-01",
+  "bytes": 90755
+ },
+ {
+  "dept": "son",
+  "url": "https://son.rochester.edu/academics/center-lifelong-learning/rnfa/index.html",
+  "file": "son/academics_center-lifelong-learning_rnfa_index.html",
+  "title": "RN First Assistant Program (RNFA)\n\t\t\t| University of Rochester School of Nursing",
+  "fetchedOn": "2026-08-01",
+  "bytes": 98929
+ },
+ {
+  "dept": "son",
+  "url": "https://son.rochester.edu/academics/doctoral/doctor-nursing-practice-program/index.html",
+  "file": "son/academics_doctoral_doctor-nursing-practice-program_index.html",
+  "title": "Doctor of Nursing Practice Program\n\t\t\t| University of Rochester School of Nursing",
+  "fetchedOn": "2026-08-01",
+  "bytes": 102767
+ },
+ {
+  "dept": "son",
+  "url": "https://son.rochester.edu/academics/doctoral/phd-nursing-program/index.html",
+  "file": "son/academics_doctoral_phd-nursing-program_index.html",
+  "title": "PhD in Nursing and Health Science Program\n\t\t\t| University of Rochester School of Nursing",
+  "fetchedOn": "2026-08-01",
+  "bytes": 113735
+ },
+ {
+  "dept": "son",
+  "url": "https://son.rochester.edu/academics/faqs.html",
+  "file": "son/academics_faqs.html",
+  "title": "Academic Program FAQs | University of Rochester School of Nursing",
+  "fetchedOn": "2026-08-01",
+  "bytes": 96796
+ },
+ {
+  "dept": "son",
+  "url": "https://son.rochester.edu/academics/graduate-programs/index.html",
+  "file": "son/academics_graduate-programs_index.html",
+  "title": "Graduate Degree Programs | University of Rochester School of Nursing",
+  "fetchedOn": "2026-08-01",
+  "bytes": 90809
+ },
+ {
+  "dept": "son",
+  "url": "https://son.rochester.edu/academics/index.html",
+  "file": "son/academics_index.html",
+  "title": "Academic Programs | University of Rochester School of Nursing",
+  "fetchedOn": "2026-08-01",
+  "bytes": 91551
+ },
+ {
+  "dept": "son",
+  "url": "https://son.rochester.edu/academics/masters/clinical-nurse-leader-program/index.html",
+  "file": "son/academics_masters_clinical-nurse-leader-program_index.html",
+  "title": "Clinical Nurse Leader Program\n\t\t\t| University of Rochester School of Nursing",
+  "fetchedOn": "2026-08-01",
+  "bytes": 100954
+ },
+ {
+  "dept": "son",
+  "url": "https://son.rochester.edu/academics/masters/leadership-health-care-systems-program/index.html",
+  "file": "son/academics_masters_leadership-health-care-systems-program_index.html",
+  "title": "Leadership in Healthcare Systems Program\n\t\t\t| University of Rochester School of Nursing",
+  "fetchedOn": "2026-08-01",
+  "bytes": 100413
+ },
+ {
+  "dept": "son",
+  "url": "https://son.rochester.edu/academics/masters/nurse-practitioner-programs/index.html",
+  "file": "son/academics_masters_nurse-practitioner-programs_index.html",
+  "title": "Nurse Practitioner Programs | University of Rochester School of Nursing",
+  "fetchedOn": "2026-08-01",
+  "bytes": 113246
+ },
+ {
+  "dept": "son",
+  "url": "https://son.rochester.edu/academics/masters/nursing-education-program/index.html",
+  "file": "son/academics_masters_nursing-education-program_index.html",
+  "title": "Master's in Nursing Education Program\n\t\t\t| University of Rochester School of Nursing",
+  "fetchedOn": "2026-08-01",
+  "bytes": 107351
+ },
+ {
+  "dept": "son",
+  "url": "https://son.rochester.edu/academics/rn-bs-completion-program/index.html",
+  "file": "son/academics_rn-bs-completion-program_index.html",
+  "title": "RN to BS Program\n\t\t\t| University of Rochester School of Nursing",
+  "fetchedOn": "2026-08-01",
+  "bytes": 106198
+ },
+ {
+  "dept": "stt",
+  "url": "https://www.sas.rochester.edu/mth/undergraduate/ba-joint.html",
+  "file": "stt/mth_undergraduate_ba-joint.html",
+  "title": "Joint BA in Mathematics and Statistics Requirements : Undergraduate Program : Department of Mathematics : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 37846
+ },
+ {
+  "dept": "stt",
+  "url": "https://www.sas.rochester.edu/stt/",
+  "file": "stt/stt.html",
+  "title": "Statistics Program : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 35755
+ },
+ {
+  "dept": "stt",
+  "url": "https://www.sas.rochester.edu/stt/actuarial-studies/requirements.html",
+  "file": "stt/stt_actuarial-studies_requirements.html",
+  "title": "Requirements : Actuarial Studies Certificate : Program in Statistics : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 32933
+ },
+ {
+  "dept": "stt",
+  "url": "https://www.sas.rochester.edu/stt/requirements.html",
+  "file": "stt/stt_requirements.html",
+  "title": "BA in Statistics Requirements : Undergraduate Program : Statistics Program : University of Rochester",
+  "fetchedOn": "2026-08-14",
+  "bytes": 39101
+ },
+ {
+  "dept": "stt",
+  "url": "https://www.sas.rochester.edu/stt/undergraduate/",
+  "file": "stt/stt_undergraduate.html",
+  "title": "Undergraduate Program : Statistics Program : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 32841
+ },
+ {
+  "dept": "stt",
+  "url": "https://www.sas.rochester.edu/stt/undergraduate/../bsrequirements.html",
+  "file": "stt/stt_undergraduate_.._bsrequirements.html",
+  "title": "BS in Statistics Requirements : Undergraduate Program : Statistics Program : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 36580
+ },
+ {
+  "dept": "stt",
+  "url": "https://www.sas.rochester.edu/stt/undergraduate/../requirements.html",
+  "file": "stt/stt_undergraduate_.._requirements.html",
+  "title": "BA in Statistics Requirements : Undergraduate Program : Statistics Program : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 39101
+ },
+ {
+  "dept": "stt",
+  "url": "https://www.sas.rochester.edu/stt/undergraduate/advising.html",
+  "file": "stt/stt_undergraduate_advising.html",
+  "title": "Advising : Undergraduate Program : Statistics Program : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 34544
+ },
+ {
+  "dept": "stt",
+  "url": "https://www.sas.rochester.edu/stt/undergraduate/barequirements.html",
+  "file": "stt/stt_undergraduate_barequirements.html",
+  "title": "BA in Statistics Requirements : Undergraduate Program : Statistics Program : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 39101
+ },
+ {
+  "dept": "stt",
+  "url": "https://www.sas.rochester.edu/stt/undergraduate/bsrequirements.html",
+  "file": "stt/stt_undergraduate_bsrequirements.html",
+  "title": "BS in Statistics Requirements : Undergraduate Program : Statistics Program : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 36580
+ },
+ {
+  "dept": "stt",
+  "url": "https://www.sas.rochester.edu/stt/undergraduate/index.html",
+  "file": "stt/stt_undergraduate_index.html",
+  "title": "Undergraduate Program : Statistics Program : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 32841
+ },
+ {
+  "dept": "stt",
+  "url": "https://www.sas.rochester.edu/stt/undergraduate/minor-cluster.html",
+  "file": "stt/stt_undergraduate_minor-cluster.html",
+  "title": "Minors & Cluster Requirements : Undergraduate Program : Statistics Program : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 31865
+ },
+ {
+  "dept": "sus",
+  "url": "https://www.sas.rochester.edu/ees/undergraduate/clusters.html",
+  "file": "sus/ees_undergraduate_clusters.html",
+  "title": "Clusters : Undergraduate Program : Department of Earth and Environmental Sciences : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 39840
+ },
+ {
+  "dept": "sus",
+  "url": "https://www.sas.rochester.edu/ees/undergraduate/majors.html",
+  "file": "sus/ees_undergraduate_majors.html",
+  "title": "Majors : Undergraduate Program : Department of Earth and Environmental Sciences : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 38545
+ },
+ {
+  "dept": "sus",
+  "url": "https://www.sas.rochester.edu/ees/undergraduate/minors.html",
+  "file": "sus/ees_undergraduate_minors.html",
+  "title": "Minors : Undergraduate Program : Department of Earth and Environmental Sciences : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 46376
+ },
+ {
+  "dept": "sus",
+  "url": "https://www.sas.rochester.edu/sus/",
+  "file": "sus/sus.html",
+  "title": "Minors : Undergraduate Program : Department of Earth and Environmental Sciences : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 46376
+ },
+ {
+  "dept": "sus",
+  "url": "https://www.sas.rochester.edu/sus/clusters.html",
+  "file": "sus/sus_clusters.html",
+  "title": "Minors : Undergraduate Program : Department of Earth and Environmental Sciences : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 46376
+ },
+ {
+  "dept": "sus",
+  "url": "https://www.sas.rochester.edu/sus/earth-environmental-and-planetary.html",
+  "file": "sus/sus_earth-environmental-and-planetary.html",
+  "title": "Minors : Undergraduate Program : Department of Earth and Environmental Sciences : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 46376
+ },
+ {
+  "dept": "sus",
+  "url": "https://www.sas.rochester.edu/sus/environmental-sciences-bs.html",
+  "file": "sus/sus_environmental-sciences-bs.html",
+  "title": "Minors : Undergraduate Program : Department of Earth and Environmental Sciences : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 46376
+ },
+ {
+  "dept": "sus",
+  "url": "https://www.sas.rochester.edu/sus/environmental-studies-ba.html",
+  "file": "sus/sus_environmental-studies-ba.html",
+  "title": "Minors : Undergraduate Program : Department of Earth and Environmental Sciences : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 46376
+ },
+ {
+  "dept": "sus",
+  "url": "https://www.sas.rochester.edu/sus/geological-sciences-ba.html",
+  "file": "sus/sus_geological-sciences-ba.html",
+  "title": "Minors : Undergraduate Program : Department of Earth and Environmental Sciences : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 46376
+ },
+ {
+  "dept": "sus",
+  "url": "https://www.sas.rochester.edu/sus/geological-sciences-bs.html",
+  "file": "sus/sus_geological-sciences-bs.html",
+  "title": "Minors : Undergraduate Program : Department of Earth and Environmental Sciences : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 46376
+ },
+ {
+  "dept": "sus",
+  "url": "https://www.sas.rochester.edu/sus/geomechanics.html",
+  "file": "sus/sus_geomechanics.html",
+  "title": "Minors : Undergraduate Program : Department of Earth and Environmental Sciences : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 46376
+ },
+ {
+  "dept": "sus",
+  "url": "https://www.sas.rochester.edu/sus/index.html",
+  "file": "sus/sus_index.html",
+  "title": "Minors : Undergraduate Program : Department of Earth and Environmental Sciences : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 46376
+ },
+ {
+  "dept": "sus",
+  "url": "https://www.sas.rochester.edu/sus/majors.html",
+  "file": "sus/sus_majors.html",
+  "title": "Minors : Undergraduate Program : Department of Earth and Environmental Sciences : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 46376
+ },
+ {
+  "dept": "sus",
+  "url": "https://www.sas.rochester.edu/sus/minors.html",
+  "file": "sus/sus_minors.html",
+  "title": "Minors : Undergraduate Program : Department of Earth and Environmental Sciences : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 46376
+ },
+ {
+  "dept": "sus",
+  "url": "https://www.sas.rochester.edu/sus/undergraduate/",
+  "file": "sus/sus_undergraduate.html",
+  "title": "Minors : Undergraduate Program : Department of Earth and Environmental Sciences : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 46376
+ },
+ {
+  "dept": "sus",
+  "url": "https://www.sas.rochester.edu/sus/undergraduate/clusters.html",
+  "file": "sus/sus_undergraduate_clusters.html",
+  "title": "Minors : Undergraduate Program : Department of Earth and Environmental Sciences : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 46376
+ },
+ {
+  "dept": "sus",
+  "url": "https://www.sas.rochester.edu/sus/undergraduate/earth-environmental-and-planetary.html",
+  "file": "sus/sus_undergraduate_earth-environmental-and-planetary.html",
+  "title": "Minors : Undergraduate Program : Department of Earth and Environmental Sciences : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 46376
+ },
+ {
+  "dept": "sus",
+  "url": "https://www.sas.rochester.edu/sus/undergraduate/environmental-sciences-bs.html",
+  "file": "sus/sus_undergraduate_environmental-sciences-bs.html",
+  "title": "Minors : Undergraduate Program : Department of Earth and Environmental Sciences : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 46376
+ },
+ {
+  "dept": "sus",
+  "url": "https://www.sas.rochester.edu/sus/undergraduate/environmental-studies-ba.html",
+  "file": "sus/sus_undergraduate_environmental-studies-ba.html",
+  "title": "Minors : Undergraduate Program : Department of Earth and Environmental Sciences : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 46376
+ },
+ {
+  "dept": "sus",
+  "url": "https://www.sas.rochester.edu/sus/undergraduate/geological-sciences-ba.html",
+  "file": "sus/sus_undergraduate_geological-sciences-ba.html",
+  "title": "Minors : Undergraduate Program : Department of Earth and Environmental Sciences : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 46376
+ },
+ {
+  "dept": "sus",
+  "url": "https://www.sas.rochester.edu/sus/undergraduate/geological-sciences-bs.html",
+  "file": "sus/sus_undergraduate_geological-sciences-bs.html",
+  "title": "Minors : Undergraduate Program : Department of Earth and Environmental Sciences : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 46376
+ },
+ {
+  "dept": "sus",
+  "url": "https://www.sas.rochester.edu/sus/undergraduate/geomechanics.html",
+  "file": "sus/sus_undergraduate_geomechanics.html",
+  "title": "Minors : Undergraduate Program : Department of Earth and Environmental Sciences : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 46376
+ },
+ {
+  "dept": "sus",
+  "url": "https://www.sas.rochester.edu/sus/undergraduate/index.html",
+  "file": "sus/sus_undergraduate_index.html",
+  "title": "Minors : Undergraduate Program : Department of Earth and Environmental Sciences : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 46376
+ },
+ {
+  "dept": "sus",
+  "url": "https://www.sas.rochester.edu/sus/undergraduate/majors.html",
+  "file": "sus/sus_undergraduate_majors.html",
+  "title": "Minors : Undergraduate Program : Department of Earth and Environmental Sciences : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 46376
+ },
+ {
+  "dept": "sus",
+  "url": "https://www.sas.rochester.edu/sus/undergraduate/minors.html",
+  "file": "sus/sus_undergraduate_minors.html",
+  "title": "Minors : Undergraduate Program : Department of Earth and Environmental Sciences : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 46376
+ },
+ {
+  "dept": "theatre",
+  "url": "https://www.sas.rochester.edu/theatre/academics/",
+  "file": "theatre/theatre_academics.html",
+  "title": "Academics : International Theatre Program : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 37541
+ },
+ {
+  "dept": "theatre",
+  "url": "https://www.sas.rochester.edu/theatre/academics/clusters.html",
+  "file": "theatre/theatre_academics_clusters.html",
+  "title": "Theatre Clusters : Academics : International Theatre Program : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 37411
+ },
+ {
+  "dept": "theatre",
+  "url": "https://www.sas.rochester.edu/theatre/academics/major-theater-track.html",
+  "file": "theatre/theatre_academics_major-theater-track.html",
+  "title": "Theater Major (English Major/Theatre Track) : Academics : International Theatre Program : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 37044
+ },
+ {
+  "dept": "theatre",
+  "url": "https://www.sas.rochester.edu/theatre/academics/minor.html",
+  "file": "theatre/theatre_academics_minor.html",
+  "title": "Minor in Theater : Academics : International Theatre Program : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 36876
+ },
+ {
+  "dept": "theatre",
+  "url": "https://www.sas.rochester.edu/theatre/academics/stage-management.html",
+  "file": "theatre/theatre_academics_stage-management.html",
+  "title": "Stage Management Certificate : Academics : International Theatre Program : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 39653
+ },
+ {
+  "dept": "theatre",
+  "url": "https://www.sas.rochester.edu/theatre/index.html",
+  "file": "theatre/theatre_index.html",
+  "title": "International Theatre Program : University of Rochester",
+  "fetchedOn": "2026-08-01",
+  "bytes": 46934
+ },
+ {
+  "dept": "warner",
+  "url": "https://admissions.rochester.edu/academics/combined-degree-programs/",
+  "file": "warner/academics_combined-degree-programs.html",
+  "title": "Combined Degree Programs - Undergraduate Admissions",
+  "fetchedOn": "2026-08-01",
+  "bytes": 73707
+ },
+ {
+  "dept": "warner",
+  "url": "https://admissions.rochester.edu/academics/grade/",
+  "file": "warner/academics_grade.html",
+  "title": "Guaranteed Rochester Accelerated Degree in Education (GRADE) - Undergraduate Admissions",
+  "fetchedOn": "2026-08-01",
+  "bytes": 78344
+ },
+ {
+  "dept": "warner",
+  "url": "https://admissions.rochester.edu/academics/majors-and-minors/",
+  "file": "warner/academics_majors-and-minors.html",
+  "title": "Majors and Minors - Undergraduate Admissions",
+  "fetchedOn": "2026-08-01",
+  "bytes": 71962
+ },
+ {
+  "dept": "warner",
+  "url": "https://admissions.rochester.edu/academics/rochester-curriculum/",
+  "file": "warner/academics_rochester-curriculum.html",
+  "title": "The Rochester Curriculum - Undergraduate Admissions",
+  "fetchedOn": "2026-08-01",
+  "bytes": 80681
+ },
+ {
+  "dept": "warner",
+  "url": "https://admissions.rochester.edu/pre-college/",
+  "file": "warner/pre-college.html",
+  "title": "Pre-college - Undergraduate Admissions",
+  "fetchedOn": "2026-08-01",
+  "bytes": 68114
+ },
+ {
+  "dept": "wrt",
+  "url": "https://writing.rochester.edu/",
+  "file": "wrt/index.html",
+  "title": "Writing, Speaking, and Argument Program : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 45102
+ },
+ {
+  "dept": "wrt",
+  "url": "https://writing.rochester.edu/undergraduate/",
+  "file": "wrt/undergraduate.html",
+  "title": "Primary Writing Requirement : Undergraduate : Writing, Speaking, and Argument Program : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 41747
+ },
+ {
+  "dept": "wrt",
+  "url": "https://writing.rochester.edu/undergraduate/clusters.html",
+  "file": "wrt/undergraduate_clusters.html",
+  "title": "Writing Studies Clusters : Undergraduate : Writing, Speaking, and Argument Program : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 42848
+ },
+ {
+  "dept": "wrt",
+  "url": "https://writing.rochester.edu/undergraduate/goals-criteria.html",
+  "file": "wrt/undergraduate_goals-criteria.html",
+  "title": "Learning Objectives for Primary Writing Requirement Courses : Undergraduate : Writing, Speaking, and Argument Program : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 41984
+ },
+ {
+  "dept": "wrt",
+  "url": "https://writing.rochester.edu/undergraduate/index.html",
+  "file": "wrt/undergraduate_index.html",
+  "title": "Primary Writing Requirement : Undergraduate : Writing, Speaking, and Argument Program : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 41747
+ },
+ {
+  "dept": "wrt",
+  "url": "https://writing.rochester.edu/undergraduate/minor.html",
+  "file": "wrt/undergraduate_minor.html",
+  "title": "Writing Studies Minor : Undergraduate : Writing, Speaking, and Argument Program : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 54406
+ },
+ {
+  "dept": "wrt",
+  "url": "https://writing.rochester.edu/undergraduate/upper.html",
+  "file": "wrt/undergraduate_upper.html",
+  "title": "Upper-Level Writing Requirement : Undergraduate : Writing, Speaking, and Argument Program : University of Rochester",
+  "fetchedOn": "2026-07-05",
+  "bytes": 48198
+ }
+]

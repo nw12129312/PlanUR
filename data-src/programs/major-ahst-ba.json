@@ -1,0 +1,111 @@
+{
+  "type": "major",
+  "degree": "BA",
+  "school": "sas",
+  "division": "humanities",
+  "status": "ACTIVE",
+  "sourcedOn": "2026-08-01",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": [
+    "social-sciences",
+    "natural-sciences"
+  ],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "id": "major-ahst-ba",
+  "name": "Art History",
+  "departments": [
+    "AHST"
+  ],
+  "sourceUrl": "https://www.sas.rochester.edu/aah/undergraduate/ah-major.html",
+  "snapshot": "data-src/pages/aah/aah_undergraduate_ah-major.html",
+  "programChecks": {
+    "totalCourses": 10,
+    "minFromDepts": null,
+    "max100Level": 3
+  },
+  "notes": [
+    "Ten courses. Students shape the major around a region, period, theme, or conceptual framework with a department advisor.",
+    "AHST 100 and AHST 101 are named as the two introductory courses that best frame the major, but the requirement is any three 100-level courses in the program.",
+    "One of the four 200/400-level program courses may be an independent study or internship.",
+    "Honors requires a 3.5 GPA within the major - not modeled."
+  ],
+  "requirementGroups": [
+    {
+      "id": "intro",
+      "label": "100-level art history courses (3)",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 3,
+        "filter": {
+          "depts": [
+            "AHST"
+          ],
+          "minNumber": 100,
+          "maxNumber": 199
+        }
+      },
+      "sourceQuote": "Any three 100-level courses in the major. The two introductory courses that best frame your studies are: AHST 100: Introduction to Visual and Cultural Studies; AHST 101: Introduction to Art History"
+    },
+    {
+      "id": "program",
+      "label": "200/400-level program courses (4)",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 4,
+        "filter": {
+          "depts": [
+            "AHST"
+          ],
+          "minNumber": 200,
+          "maxNumber": 499,
+          "exclude": [
+            "AHST 209",
+            "AHST 398"
+          ]
+        }
+      },
+      "sourceQuote": "Four 200/400-level program courses, one of which may be an independent study or internship"
+    },
+    {
+      "id": "writing",
+      "label": "Writing on Art and Senior Seminar",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "AHST 209",
+          "AHST 398"
+        ]
+      },
+      "sourceQuote": "AHST 209: Writing on Art (sophomore/junior seminar); AHST 398: Senior Seminar"
+    },
+    {
+      "id": "studio",
+      "label": "One course in studio art",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 1,
+        "filter": {
+          "depts": [
+            "SART"
+          ],
+          "minNumber": 100,
+          "maxNumber": 399
+        }
+      },
+      "sourceQuote": "One course in studio art"
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "AHST 209 and AHST 398",
+    "rule": {
+      "type": "all_of",
+      "courses": [
+        "AHST 209",
+        "AHST 398"
+      ]
+    },
+    "sourceQuote": "AHST 209: Writing on Art (sophomore/junior seminar); AHST 398: Senior Seminar",
+    "note": "NEEDS VERIFICATION: the page does not state the ULW policy explicitly; these are the major's two writing-intensive seminars."
+  }
+}

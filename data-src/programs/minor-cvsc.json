@@ -1,0 +1,102 @@
+{
+  "id": "minor-cvsc",
+  "type": "minor",
+  "name": "Visual Science",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "natural-sciences",
+  "departments": [
+    "CVSC",
+    "BCSC"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/bcs/undergraduate/minors.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/bcs/bcs_undergraduate_minors.html",
+  "programChecks": {
+    "totalCourses": 5,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Five courses. NEEDS VERIFICATION: the department page specifies only two of the five (one foundation course and one upper-level course) and does not say what the other three are. The third group below is the planner's placeholder for them - confirm with the Center for Visual Science before relying on it.",
+    "There is NO minor in neuroscience; neuroscience courses may be used as electives toward either the BCS minor or the biology minor.",
+    "CVSC 111, CVSC 153, CVSC 504 and CVSC 505 are absent from the 2025-26 catalog under those codes; their BCSC cross-listings are used where the catalog has them."
+  ],
+  "requirementGroups": [
+    {
+      "id": "foundation",
+      "label": "One foundation course",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "CVSC 110",
+          "BCSC 110",
+          "BCSC 111",
+          "BCSC 153",
+          "BCSC 240",
+          "NSCI 201",
+          "CVSC 151",
+          "BCSC 151",
+          "OPT 248"
+        ]
+      },
+      "sourceQuote": "Minor in Visual Science. Five courses are required. One of the following: CVSC/BCSC 110: Neural Foundations of Behavior; CVSC/BCSC 111: Foundations of Cognitive Science; CVSC/BCSC 153: Cognition; BCSC 240/NSCI 201: Basic Neurobiology; CVSC/BCSC 151: Perception & Action; OPT 248/448: Vision and the Eye",
+      "note": "Each of these is cross-listed under both CVSC and BCSC; either code counts. The catalog carries CVSC 110, CVSC 151, and the BCSC forms of the rest."
+    },
+    {
+      "id": "upper",
+      "label": "One upper-level visual-science course",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "CVSC 220",
+          "BCSC 220",
+          "CVSC 245",
+          "BCSC 245",
+          "CVSC 391",
+          "BCSC 391",
+          "CVSC 504",
+          "CVSC 505"
+        ]
+      },
+      "sourceQuote": "One of the following upper-level courses: CVSC/BCSC 220: The Intelligent Eye; CVSC/BCSC 245: Sensory & Motor Neuroscience; CVSC/BCSC 504: Sensory Systems (with permission of instructor); CVSC/BCSC 505: Perception & Motor Systems (with permission of instructor); CVSC/BCSC 391: Independent Study (one semester only)",
+      "note": "CVSC 504 and 505 need the instructor's permission; CVSC/BCSC 391 counts for one semester only."
+    },
+    {
+      "id": "remaining",
+      "label": "Three further visual-science courses",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 3,
+        "filter": {
+          "depts": [
+            "CVSC",
+            "BCSC"
+          ],
+          "minNumber": 100,
+          "maxNumber": 399,
+          "exclude": [
+            "CVSC 110",
+            "BCSC 110",
+            "BCSC 111",
+            "BCSC 153",
+            "CVSC 151",
+            "BCSC 151",
+            "CVSC 220",
+            "BCSC 220",
+            "CVSC 245",
+            "BCSC 245",
+            "CVSC 391",
+            "BCSC 391"
+          ]
+        }
+      },
+      "sourceQuote": "Five courses are required",
+      "note": "NEEDS VERIFICATION: the page names only the two required categories above and states a five-course total without listing what the other three should be. Confirm the remaining three with the Center for Visual Science."
+    }
+  ],
+  "upperLevelWriting": null
+}

@@ -1,0 +1,86 @@
+{
+  "id": "major-chem-ba",
+  "type": "major",
+  "name": "Chemistry",
+  "degree": "BA",
+  "school": "sas",
+  "division": "natural-sciences",
+  "departments": ["CHEM"],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/chm/undergraduate/ba-requirements.html",
+  "sourcedOn": "2026-08-01",
+  "snapshot": "data-src/pages/chm/chm_undergraduate_ba-requirements.html",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": ["humanities", "social-sciences"],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "minMajorGPA": 2.0,
+  "programChecks": { "totalCourses": null, "minFromDepts": null, "max100Level": null },
+  "notes": [
+    "At least 39 credit hours in chemistry and at least 59 credit hours overall. A 2.0 GPA must be maintained in the major, excluding allied field courses.",
+    "The department also offers four focused BA tracks (biological, inorganic, organic, physical chemistry); this entry is the general BA.",
+    "CHEM 210W partially satisfies the Organic Chemistry, Upper-Level Laboratory, and Upper-Level Writing requirements at once. The app models the upper-level laboratory as ONE course; the page requires two unless CHEM 210W was completed, so if you take CHEM 208 rather than CHEM 210W you owe a second upper-level lab that the app will not prompt for.",
+    "The two organic sequences are alternatives, handled by the app's orgo-sequence equivalency group.",
+    "The upper-level courses group allows 'other science courses approved by the Undergraduate Studies Committee'; only chemistry courses are modeled. No credits may come from independent research.",
+    "STAT 180 and STAT 190 are the current numbers for the former STAT 211 and STAT 212."
+  ],
+  "requirementGroups": [
+    {
+      "id": "general",
+      "label": "General chemistry",
+      "rule": { "type": "all_of", "courses": ["CHEM 131"] },
+      "sourceQuote": "General Chemistry (4-5 credits): CHEM 131: Chemical Concepts I (or equivalent AP credit)"
+    },
+    {
+      "id": "organic",
+      "label": "Organic chemistry sequence",
+      "rule": { "type": "sequence_one_of", "sequences": [
+        ["CHEM 203", "CHEM 204", "CHEM 207", "CHEM 208"],
+        ["CHEM 171", "CHEM 172", "CHEM 173", "CHEM 210W"]] },
+      "sourceQuote": "Standard Sequence: CHEM 203: Organic Chemistry I; CHEM 204: Organic Chemistry II; CHEM 207: Organic Chemistry Lab I; CHEM 208: Organic Chemistry Lab II OR CHEM 210W: Honors Organic Chemistry Lab II. Or First-Year Organic Sequence: CHEM 171; CHEM 172; CHEM 173; CHEM 210/210W"
+    },
+    {
+      "id": "theory",
+      "label": "Theory courses (3)",
+      "rule": { "type": "n_of", "n": 3, "options": ["CHEM 132", "CHEM 211", "CHEM 251", "CHEM 252"] },
+      "sourceQuote": "Theory (12 credits). Three of the following theory courses: CHEM 132: Chemical Concepts II; CHEM 211: Inorganic Chemistry; CHEM 251: Physical Chemistry I; CHEM 252: Physical Chemistry II"
+    },
+    {
+      "id": "upper-lab",
+      "label": "Upper-level laboratory",
+      "rule": { "type": "n_of", "n": 1, "options": [
+        "CHEM 231W", "CHEM 232", "CHEM 232W", "CHEM 234", "CHEM 234W", "CHEM 244", "CHEM 244W"] },
+      "sourceQuote": "Upper-Level Laboratory (4-8 credits). One (if you have completed CHEM 210W) or two (if you have completed CHEM 208) of the following: CHEM 231W: Chemical Instrumentation; CHEM 232/232W: Molecular Spectroscopy; CHEM 234/234W: Advanced Laboratory Techniques; CHEM 244/244W: ANSEL",
+      "note": "Modeled as one course; a second is required if you took CHEM 208 instead of CHEM 210W."
+    },
+    {
+      "id": "upper-courses",
+      "label": "Upper-level chemistry courses (2)",
+      "rule": { "type": "n_from_filter", "n": 2,
+                "filter": { "depts": ["CHEM"], "minNumber": 200, "maxNumber": 399, "minCredits": 4 } },
+      "sourceQuote": "Upper-Level Courses (8 credits). Complete two additional 200-level (or higher) chemistry courses or other science courses approved by the Undergraduate Studies Committee. No credits can be from independent research."
+    },
+    {
+      "id": "math-calc",
+      "label": "Calculus sequence",
+      "rule": { "type": "sequence_one_of", "sequences": [
+        ["MATH 141", "MATH 142", "MATH 143"],
+        ["MATH 161", "MATH 162"]] },
+      "sourceQuote": "One of the following math sequences: MATH 141, MATH 142, and MATH 143 (Calculus I, II, and III); MATH 161 and MATH 162 (Calculus IA and IIA)"
+    },
+    {
+      "id": "math-plus",
+      "label": "Additional mathematics, computing, or statistics",
+      "rule": { "type": "n_of", "n": 1, "options": [
+        "MATH 165", "MATH 163", "CSC 161", "CSC 171", "STAT 180", "STAT 190", "STAT 201"] },
+      "sourceQuote": "Plus one of the following: MATH 165: Linear Algebra With Differential Equations; MATH 163: Ordinary Differential Equations I; CSC 161: Intro to Programming; CSC 171: Intro to Computer Science; STAT 180; STAT 190; STAT 201: Introduction to Probability"
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "Two upper-level writing courses (at least one in chemistry)",
+    "rule": { "type": "n_of", "n": 2, "options": [
+      "CHEM 210W", "CHEM 231W", "CHEM 232W", "CHEM 234W"] },
+    "sourceQuote": "All chemistry majors are required to complete two upper-level writing courses ('W' courses). At least one of these courses must be a chemistry department course selected from the following: CHEM 210W; CHEM 231W; CHEM 232W; CHEM 234W. Student may select another course from above or a writing course from another department to fulfill the second writing course requirement.",
+    "note": "Only one of the two must be a chemistry course; the second may be any department's W course. Modeled as two chemistry W courses so the plan is self-contained."
+  }
+}

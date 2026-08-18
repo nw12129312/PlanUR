@@ -1,0 +1,140 @@
+{
+  "id": "major-rust-ba",
+  "type": "major",
+  "name": "Russian Studies",
+  "degree": "BA",
+  "school": "sas",
+  "division": "humanities",
+  "departments": [
+    "RUSS",
+    "HIST",
+    "PSCI"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/mlc/undergraduate/russian-studies.html",
+  "snapshot": "data-src/pages/mlc/mlc_undergraduate_russian-studies.html",
+  "sourcedOn": "2026-08-14",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": [
+    "social-sciences",
+    "natural-sciences"
+  ],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "programChecks": {
+    "totalCourses": 10,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Russian Studies is an interdisciplinary program drawing on three core departments - Modern Languages and Cultures, History, and Political Science - and is a DIFFERENT major from Russian (major-russ-ba), which is the MLC language-and-literature major. Its coursework also includes courses in or cross-listed with religion and classics, Judaic studies, Polish and Central European studies, film studies, gender/sexuality and women's studies, comparative literature, art and art history, and economics.",
+    "The major has ten required courses in total.",
+    "DIVISION IS THE STUDENT'S CHOICE: 'The Russian studies major and minor can be counted in either humanities or social sciences, depending on your choice of courses (to count as social science, the majority of courses must be taken in history, international relations and political science).' This entry is filed under humanities; if the majority of your courses are history/IR/political science it counts as social science instead and your cluster requirement shifts accordingly.",
+    "COURSE LISTS ARE NOT PUBLISHED ON THIS PAGE - NEEDS VERIFICATION: the page states the CATEGORIES (Russian literature, Russian history, political science) but points to a separate 'complete list of Russian courses' PDF for the actual courses, which is not part of this snapshot. The groups below therefore accept any RUSS course, any HIST course and any PSCI course respectively. That is looser than the real requirement: your history and political-science courses must have a Russian, Eurasian or international-relations focus, and your RUSS courses must be literature rather than language. Check every choice against the department PDF or with a Russian advisor - the planner cannot tell a Russia-focused history course from any other.",
+    "PROFICIENCY IN RUSSIAN: coursework through RUSS 152 (Intermediate Russian II), or approved equivalent coursework. Earlier RUSS language courses are prerequisites to it rather than separate requirements. Placement is by online exam; students with no previous Russian may register for RUSS 101 without one.",
+    "SENIOR THESIS - NEEDS VERIFICATION: the page lists a senior thesis among the two-to-three foundation courses but gives it no course number, and the catalog has no RUSS thesis course. The MLC research seminar CLTR 389 and honors thesis CLTR 393H are the department's nearest thesis-bearing courses and are offered as the options here; confirm the right registration with the program director.",
+    "STUDY ABROAD: students can study Russian in Estonia, Armenia or Kazakhstan for a summer or a semester through American Councils or CIEE. Ask a Russian advisor how courses taken abroad count toward the major.",
+    "There is also a Russian Studies cluster in each of the humanities and social-science divisions (H1RST005 for humanities)."
+  ],
+  "requirementGroups": [
+    {
+      "id": "proficiency",
+      "label": "Proficiency in Russian (through RUSS 152)",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "RUSS 152"
+        ]
+      },
+      "sourceQuote": "Foundation Courses (two-three courses): Proficiency in Russian: Coursework through RUSS 152 (or approved equivalent coursework)"
+    },
+    {
+      "id": "thesis",
+      "label": "Senior thesis",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "CLTR 389",
+          "CLTR 393H"
+        ]
+      },
+      "sourceQuote": "Foundation Courses (two-three courses): ... Senior Thesis",
+      "note": "The page gives the senior thesis no course number - see the program notes."
+    },
+    {
+      "id": "core-literature",
+      "label": "Two courses in Russian literature",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 2,
+        "filter": {
+          "depts": [
+            "RUSS"
+          ],
+          "minNumber": 200,
+          "maxNumber": 399,
+          "exclude": [
+            "RUSS 390",
+            "RUSS 390B"
+          ]
+        }
+      },
+      "sourceQuote": "Core Courses (six courses): Two courses in Russian literature",
+      "note": "Must be literature rather than language courses - the planner cannot tell them apart. See the program notes."
+    },
+    {
+      "id": "core-history",
+      "label": "Two courses in Russian history",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 2,
+        "filter": {
+          "depts": [
+            "HIST"
+          ],
+          "minNumber": 100,
+          "maxNumber": 399
+        }
+      },
+      "sourceQuote": "Core Courses (six courses): ... Two courses in Russian history",
+      "note": "Must be Russia-focused history courses - the planner accepts any HIST course. See the program notes."
+    },
+    {
+      "id": "core-psci",
+      "label": "Two courses in political science",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 2,
+        "filter": {
+          "depts": [
+            "PSCI"
+          ],
+          "minNumber": 100,
+          "maxNumber": 399
+        }
+      },
+      "sourceQuote": "Core Courses (six courses): ... Two courses in Political science",
+      "note": "Should carry a Russian or international-relations focus, as the minor's parallel requirement spells out. See the program notes."
+    },
+    {
+      "id": "elective",
+      "label": "One elective in literature, language, history or political science",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 1,
+        "filter": {
+          "depts": [
+            "RUSS",
+            "HIST",
+            "PSCI"
+          ],
+          "minNumber": 100,
+          "maxNumber": 399
+        }
+      },
+      "sourceQuote": "Elective Course(s) (one or more courses): One (or more) elective in literature, language, history or political science"
+    }
+  ],
+  "upperLevelWriting": null
+}

@@ -1,0 +1,59 @@
+{
+  "id": "major-ir-ba",
+  "type": "major",
+  "name": "International Relations",
+  "degree": "BA",
+  "school": "sas",
+  "division": "social-sciences",
+  "departments": ["INTR", "PSCI"],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/psc/undergraduate/major-ir.html",
+  "sourcedOn": "2026-07-05",
+  "snapshot": "data-src/pages/psc/psc_undergraduate_major-ir.html",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": ["humanities", "natural-sciences"],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "programChecks": { "totalCourses": 12, "minFromDepts": { "depts": ["INTR", "PSCI"], "n": 9 }, "max100Level": 4 },
+  "notes": [
+    "At least 12 courses, minimum 2.0 GPA; at least 9 of 12 listed as INTR or PSCI; no S/F courses. Requirements apply to the Class of 2021 and later.",
+    "STUDY ABROAD REQUIRED: a semester in an organized education-abroad program (waived for students who lived outside the US for 2+ of the 4 years before matriculation) - not auto-checked.",
+    "LANGUAGE REQUIRED: two college-level courses taught in a modern spoken language other than English, IN ADDITION to the 12 major courses; both intro courses must be the same language; AP may not satisfy it; language courses may double-count with a humanities cluster - not auto-checked.",
+    "Tools courses cannot double-count toward core track, breadth, or electives.",
+    "Transfer: none for tools or writing; max two toward the core track; max three total; no online courses.",
+    "AP Government/History or IB Global Politics/History HL grants four credits (elective + introductory + transfer)."
+  ],
+  "requirementGroups": [
+    {
+      "id": "tools",
+      "label": "Tools of political analysis (2)",
+      "rule": { "type": "n_of", "n": 2, "options": ["PSCI 107", "PSCI 200", "PSCI 202W", "PSCI 203W", "PSCI 205", "PSCI 281", "PSCI 288"] },
+      "sourceQuote": "Tools of Political Analysis (Two Courses): PSCI 107; PSCI 200; PSCI 202W; PSCI 203W; PSCI 205; PSCI 281; PSCI 288"
+    },
+    {
+      "id": "core-track",
+      "label": "Core track (5 courses from one field)",
+      "rule": { "type": "track_n_of", "n": 5, "tracksRef": "ir-tracks" },
+      "sourceQuote": "Core Track (Five Courses from One Track): Governance of Nations; Peace and Conflict; Politics, Policy, and Development"
+    },
+    {
+      "id": "breadth",
+      "label": "Breadth (2 courses outside your core track)",
+      "rule": { "type": "breadth_outside_track", "n": 2, "trackGroupId": "core-track" },
+      "sourceQuote": "Select two track courses that are not in your core track."
+    },
+    {
+      "id": "electives",
+      "label": "Electives (3)",
+      "rule": { "type": "n_from_filter", "n": 3,
+                "filter": { "depts": ["INTR", "PSCI", "ECON", "HIST"], "minNumber": 100, "maxNumber": 399 } },
+      "sourceQuote": "Courses may be drawn from any offerings in the three tracks or any other courses in INTR, PSCI, ECON, or HIST."
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "Two W-designated courses",
+    "rule": { "type": "n_from_filter", "n": 2,
+              "filter": { "depts": ["INTR", "PSCI"], "minNumber": 200, "maxNumber": 399, "wOnly": true } },
+    "sourceQuote": "Select any two W-designated courses. Included in the 12 courses listed above. No more than one of these courses may be used to satisfy the writing requirement in a second or third major."
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "id": "minor-opt",
+  "type": "minor",
+  "name": "Optics",
+  "degree": "Minor",
+  "school": "hajim",
+  "division": "engineering",
+  "departments": [
+    "OPT"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.hajim.rochester.edu/optics/undergraduate/minor.html",
+  "sourcedOn": "2026-08-01",
+  "snapshot": "data-src/pages/optics/optics_undergraduate_minor.html",
+  "programChecks": {
+    "totalCourses": 5,
+    "minFromDepts": {
+      "depts": [
+        "OPT"
+      ],
+      "n": 5
+    },
+    "max100Level": null
+  },
+  "notes": [
+    "Five optics courses, one of which must be laboratory-based. A grade of C or better is required in each.",
+    "Independent research for credit may substitute for the laboratory course - not modeled.",
+    "The two free electives must be 200-level four-credit optics courses, excluding OPT 287."
+  ],
+  "requirementGroups": [
+    {
+      "id": "required",
+      "label": "Required optics courses",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "OPT 241",
+          "OPT 261"
+        ]
+      },
+      "sourceQuote": "Complete both required optics courses: OPT 241: Geometrical Optics; OPT 261: Interference and Diffraction"
+    },
+    {
+      "id": "lab",
+      "label": "Optics laboratory",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "OPT 201",
+          "OPT 202",
+          "OPT 203",
+          "OPT 204"
+        ]
+      },
+      "sourceQuote": "Plus one of following optics labs: OPT 201: Geometrical Optics Lab; OPT 202: Physical Optics Lab; OPT 203: Instrumentation Lab; OPT 204: Sources and Detectors Lab; Independent research for credit"
+    },
+    {
+      "id": "electives",
+      "label": "200-level optics electives (2)",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 2,
+        "filter": {
+          "depts": [
+            "OPT"
+          ],
+          "minNumber": 200,
+          "maxNumber": 299,
+          "minCredits": 4,
+          "exclude": [
+            "OPT 241",
+            "OPT 261",
+            "OPT 287"
+          ]
+        }
+      },
+      "sourceQuote": "Plus two 200-level, four-credit optics (with the exception of OPT 287)."
+    }
+  ]
+}

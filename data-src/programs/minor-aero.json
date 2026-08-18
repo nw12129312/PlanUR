@@ -1,0 +1,76 @@
+{
+  "id": "minor-aero",
+  "type": "minor",
+  "name": "Aerospace Engineering",
+  "degree": "Minor",
+  "school": "hajim",
+  "division": "engineering",
+  "departments": [
+    "ME"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.hajim.rochester.edu/me/undergraduate/minor.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/me/me_undergraduate_minor.html",
+  "programChecks": {
+    "totalCourses": 4,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Four courses. Non-ME majors take three aerospace core courses and one mechanical engineering course; ME majors take all four from the aerospace core list.",
+    "Open to all majors and particularly compatible with mechanical engineering, physics, optical engineering, chemical engineering, and electrical and computer engineering.",
+    "SENIOR DESIGN: students not taking a senior design course as part of their major must take ME 205 (Advanced Mechanical Design) and complete the aerospace design project in that class. The instructor issues a letter certifying the project - that is also what makes ME 205 count as an aerospace core course.",
+    "Up to two courses from the minor can be used toward a separate major or minor - EXCEPT for the mechanical engineering major, which may overlap only one course.",
+    "Students cannot declare a minor until accepted into a major, and cannot elect the satisfactory/fail option for minor courses.",
+    "Contact Professor John Lambropoulos, who evaluates and manages all ME minors, before declaring."
+  ],
+  "requirementGroups": [
+    {
+      "id": "core",
+      "label": "Three aerospace core courses",
+      "rule": {
+        "type": "n_of",
+        "n": 3,
+        "options": [
+          "ME 205",
+          "ME 214",
+          "ME 222",
+          "ME 227",
+          "ME 231",
+          "ME 232",
+          "ME 246",
+          "ME 254"
+        ]
+      },
+      "sourceQuote": "Aerospace Core Courses. At least three of the following courses*: ME 205: Advanced Mechanical Design**; ME 214/407: Advanced Dynamics; ME 222/424: Introduction to Robust Design and Quality Engineering; ME 227/427: Introduction to Aerodynamics; ME 231/431: Feedback Control of Dynamic Systems; ME 232/432: Opto-Mechanical Design; ME 246/446: Aerospace Structures; ME 254/441: Finite Element Methods. *Mechanical engineering majors must choose all four of their minor courses from this list."
+    },
+    {
+      "id": "me-course",
+      "label": "One mechanical engineering course",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "ME 204",
+          "ME 213",
+          "ME 225",
+          "ME 226",
+          "CHE 268",
+          "ME 280",
+          "ME 436",
+          "ME 437",
+          "ME 439",
+          "ME 440",
+          "ME 444",
+          "ME 449",
+          "ME 459",
+          "ME 481"
+        ]
+      },
+      "sourceQuote": "Mechanical Engineering Courses. One of the following*: ME 204: Mechanical Design; ME 213: Mechanical Systems and Vibrations; ME 225: Introduction to Fluid Dynamics; ME 226: Introduction to Solid Mechanics; CHE 268: Fundamentals of Computational Fluid Dynamics; ME 280: Materials Science; ME 436: Compressible Flow; ME 437: Incompressible Flow; ME 439: Turbulence; ME 440: Mechanics of Structures; ME 444: Continuum Mechanics; ME 449: Elasticity; ME 459: Applied Finite Elements; ME 481: Mechanical Properties of Solids. *Mechanical engineering majors must select all four courses from the core aerospace course list.",
+      "note": "MECHANICAL ENGINEERING MAJORS take a fourth AEROSPACE CORE course here instead."
+    }
+  ],
+  "upperLevelWriting": null
+}

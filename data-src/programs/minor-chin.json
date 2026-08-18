@@ -1,0 +1,64 @@
+{
+  "id": "minor-chin",
+  "type": "minor",
+  "name": "Chinese",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "humanities",
+  "departments": [
+    "CHIN"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/mlc/undergraduate/chinese.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/mlc/mlc_undergraduate_chinese.html",
+  "programChecks": {
+    "totalCourses": 5,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "THE NEW CURRICULUM (effective fall 2026) is encoded: five courses total. The old requirement, in effect through spring 2026, was SIX courses - a three-course language sequence plus three additional courses in Chinese language, culture, literature, art, history or politics.",
+    "PLACEMENT EXCEPTIONS: students who place into or above the 205 level may complete the minor with five four-credit courses in Chinese language, literature, culture, art, history or religion. Students placing beyond the 206 level may take no language coursework at all and complete the minor with five content courses.",
+    "No more than two courses total may be transferred in from other institutions or taken in non-MLC departments (HIST, ANTH, RELC, AHST and so on). Courses cross-listed with CHIN but parented in another department count as outside courses - except CHIN 215, CHIN 225 and CHIN 238 (parented as JPNS 217, JPNS 225 and JPNS 237), which count as normal CHIN courses.",
+    "CHIN 391 (independent study) may count with advisor approval; CHIN 390 (supervised teaching) may not. No two-credit courses count toward the minor - hence the 4-credit floor on both groups."
+  ],
+  "requirementGroups": [
+    {
+      "id": "language",
+      "label": "Chinese language sequence (three courses)",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 3,
+        "filter": {
+          "depts": [
+            "CHIN"
+          ],
+          "minNumber": 101,
+          "maxNumber": 399,
+          "minCredits": 4
+        }
+      },
+      "sourceQuote": "Chinese Minor Requirements - Effective beginning fall 2026. Five Courses Total. Core: A Chinese language sequence of three four- or six-credit language courses.",
+      "note": "Must be a consecutive language sequence; the planner accepts any three 4+ credit CHIN courses."
+    },
+    {
+      "id": "electives",
+      "label": "Two Chinese electives",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 2,
+        "filter": {
+          "depts": [
+            "CHIN"
+          ],
+          "minNumber": 101,
+          "maxNumber": 399,
+          "minCredits": 4
+        }
+      },
+      "sourceQuote": "Electives: Two additional four- or six-credit courses in Chinese language, literature, culture, art, history, or religion."
+    }
+  ],
+  "upperLevelWriting": null
+}

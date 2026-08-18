@@ -1,0 +1,84 @@
+{
+  "id": "major-math-ba",
+  "type": "major",
+  "name": "Mathematics",
+  "degree": "BA",
+  "school": "sas",
+  "division": "natural-sciences",
+  "departments": ["MATH"],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/mth/undergraduate/ba-requirements.html",
+  "sourcedOn": "2026-07-05",
+  "snapshot": "data-src/pages/mth/mth_undergraduate_ba-requirements.html",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": ["humanities", "social-sciences"],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "notes": [
+    "Foundational courses must be completed before acceptance into the major; AP credit may satisfy foundational requirements.",
+    "An honors version of a course can always be substituted for a listed course.",
+    "MATH 235 should be taken early in the major program."
+  ],
+  "requirementGroups": [
+    {
+      "id": "calc-1-2",
+      "label": "Foundations: Calculus I-II",
+      "rule": { "type": "sequence_one_of", "sequences": [
+        ["MATH 161", "MATH 162"], ["MATH 141", "MATH 142", "MATH 143"], ["MATH 171", "MATH 172"]] },
+      "sourceQuote": "MATH 161: Calculus IA; MATH 162: Calculus IIA ... MATH 171, 172, and 174 for the equivalent MATH 161, 162, and 164; MATH 141-143 for MATH 161-162"
+    },
+    {
+      "id": "multivar",
+      "label": "Foundations: multidimensional calculus",
+      "rule": { "type": "n_of", "n": 1, "options": ["MATH 164", "MATH 174"] },
+      "sourceQuote": "MATH 164: Multidimensional Calculus (MATH 171, 172, and 174 for the equivalent MATH 161, 162, and 164)"
+    },
+    {
+      "id": "linalg-de",
+      "label": "Foundations: linear algebra with differential equations",
+      "rule": { "type": "n_of", "n": 1, "options": ["MATH 165", "MATH 163", "MATH 173"] },
+      "sourceQuote": "MATH 165: Linear Algebra with Differential Equations (MATH 163 for MATH 165; MATH 173 for MATH 165)"
+    },
+    {
+      "id": "core-linalg",
+      "label": "Core I: linear algebra",
+      "rule": { "type": "n_of", "n": 1, "options": ["MATH 235", "MATH 173"] },
+      "sourceQuote": "I. MATH 235: Linear Algebra* ... The requirement that MATH 235 be taken can also be satisfied by completing MATH 173."
+    },
+    {
+      "id": "core-structures",
+      "label": "Core II: algebra or topology",
+      "rule": { "type": "n_of", "n": 1, "options": ["MATH 236", "MATH 240"] },
+      "sourceQuote": "II. One of the following: MATH 236: Introduction to Algebra; MATH 240: Introduction to Topology"
+    },
+    {
+      "id": "core-analysis",
+      "label": "Core III: one further core area",
+      "rule": { "type": "n_of", "n": 1, "options": ["MATH 201", "MATH 255", "MATH 265", "MATH 263", "MATH 282", "MATH 285"] },
+      "sourceQuote": "III. One of the following: MATH 201 ...; MATH 255 ...; MATH 265 ...; MATH 263 ...; MATH 282 ...; MATH 285 ..."
+    },
+    {
+      "id": "advanced-math",
+      "label": "Advanced mathematics courses (3)",
+      "rule": { "type": "n_from_filter", "n": 3,
+                "filter": { "depts": ["MATH"], "minNumber": 200, "maxNumber": 499,
+                            "exclude": ["MATH 235", "MATH 236", "MATH 240", "MATH 201", "MATH 255", "MATH 265", "MATH 263", "MATH 282", "MATH 285"] } },
+      "sourceQuote": "Three advanced mathematics courses* ... Any mathematics course numbered 200 or above (excepting courses used to satisfy the core course requirement and 500+ level) qualifies"
+    },
+    {
+      "id": "advanced-related",
+      "label": "Advanced courses with substantial mathematical content (2)",
+      "rule": { "type": "n_from_filter", "n": 2,
+                "filter": { "depts": ["MATH", "STAT", "CSC", "PHYS", "DSCC", "ECE", "ECON", "OPT", "ME"], "minNumber": 200, "maxNumber": 499 } },
+      "sourceQuote": "Two additional advanced courses with substantial mathematical content",
+      "note": "NEEDS VERIFICATION: which departments/courses count as 'substantial mathematical content' is adviser-approved; the department filter here is an approximation."
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "Two upper-level writing courses",
+    "rule": { "type": "n_from_filter", "n": 2,
+              "filter": { "depts": ["MATH"], "minNumber": 200, "maxNumber": 499, "wOnly": true } },
+    "sourceQuote": "students must pass two upper level writing courses of a certain type",
+    "note": "NEEDS VERIFICATION: the handbook defines which writing courses qualify; W-suffix MATH courses are an approximation."
+  }
+}

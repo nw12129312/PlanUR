@@ -1,0 +1,134 @@
+{
+  "id": "minor-sus",
+  "type": "minor",
+  "name": "Sustainability",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "natural-sciences",
+  "departments": [
+    "EESC",
+    "PHIL",
+    "ANTH",
+    "ECON",
+    "PSCI"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/ees/undergraduate/minors.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/ees/ees_undergraduate_minors.html",
+  "programChecks": {
+    "totalCourses": 6,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Six courses: three core and three electives, at least one elective in science or engineering.",
+    "DIVISION IS DETERMINED BY YOUR COURSEWORK: 'Beginning in fall 2016, and moving forward, the sustainability minor satisfies either the social science (SS) or natural science (NS) requirement of the Rochester Curriculum if at least three courses are taken from the respective division.' Filed here under natural sciences.",
+    "The minor is deliberately interdisciplinary, with core classes from the sciences, social sciences and humanities. Its humanities elective list is still pending approval.",
+    "Other sustainability-related courses, including those taken abroad or offered occasionally, may be eligible - contact Professor Karen Berger, the program advisor.",
+    "Some courses have prerequisites; AP equivalents or instructor approval are acceptable."
+  ],
+  "requirementGroups": [
+    {
+      "id": "core-required",
+      "label": "Required core course",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "EESC 103"
+        ]
+      },
+      "sourceQuote": "CORE (Three courses). Required: EESC 103: Introduction to Environmental Science (N)"
+    },
+    {
+      "id": "core-choice",
+      "label": "Two further core courses",
+      "rule": {
+        "type": "n_of",
+        "n": 2,
+        "options": [
+          "PHIL 230",
+          "HIST 300W",
+          "PHIL 135",
+          "ANTH 224",
+          "ECON 238",
+          "GSWS 213",
+          "PSCI 247",
+          "PSCI 246",
+          "PSCI 243"
+        ]
+      },
+      "sourceQuote": "Choose two from the following list:* PHIL 230: Environmental Justice (H) OR HIST 300W: History of Nature (S) OR PHIL 135: Environmental Ethics (H); ANTH 224: Anthropology of Development (S); ECON 238: Environmental Economics (S) (Note: this course has two ECO pre-requisites); GSWS 213 Politics of Nature (S); PSCI 247: Green Markets (S) OR PSCI 246: Environmental Law and Policy (S) OR PSCI 243: Environmental Politics (S). *If more than two are taken, they may be counted as electives.",
+      "note": "The first bullet (PHIL 230 / HIST 300W / PHIL 135) and the last (PSCI 247 / 246 / 243) are each a single choice on the page - pick at most one from each triple."
+    },
+    {
+      "id": "science-elective",
+      "label": "At least one science or engineering elective",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "BIOL 104K",
+          "BIOL 263",
+          "CHE 150",
+          "CHE 260",
+          "CHE 264",
+          "CHEM 286",
+          "EESC 105",
+          "EESC 212",
+          "EESC 213",
+          "EESC 119",
+          "EESC 219",
+          "EESC 265",
+          "EESC 310",
+          "EESC 320"
+        ]
+      },
+      "sourceQuote": "ELECTIVES (Three courses). Choose three from the following lists. At least one elective must be in science or engineering (N). ... Natural sciences: BIOL 104K: Ecosystem Conservation and Human Society OR BIO 263: Ecology; CHE 150: Green Energy; CHE 260: Solar Cells; CHE 264: Biofuels; CHEM 286: Energy: Science, Technology and Society; EESC 105: Introduction to Climate Change; EESC 212: Climate Change from an Oceanography Perspective; EESC 213: Hydrology and Water Resources; EESC 119/219: Energy and Society; EESC 265: Paleoclimate; EESC 310: Science and Sustainability; EESC 320: Sustainable Systems"
+    },
+    {
+      "id": "electives",
+      "label": "Two further electives",
+      "rule": {
+        "type": "n_of",
+        "n": 2,
+        "options": [
+          "ANTH 243",
+          "HIST 226",
+          "HIST 263",
+          "INTR 205",
+          "PHLT 232",
+          "PHLT 238",
+          "PSCI 235",
+          "PSCI 239",
+          "BIOL 104K",
+          "BIOL 263",
+          "CHE 150",
+          "CHE 260",
+          "CHE 264",
+          "CHEM 286",
+          "EESC 105",
+          "EESC 212",
+          "EESC 213",
+          "EESC 119",
+          "EESC 219",
+          "EESC 265",
+          "EESC 310",
+          "EESC 320",
+          "PHIL 230",
+          "HIST 300W",
+          "PHIL 135",
+          "ANTH 224",
+          "ECON 238",
+          "GSWS 213",
+          "PSCI 247",
+          "PSCI 246",
+          "PSCI 243"
+        ]
+      },
+      "sourceQuote": "Social sciences: ANTH 243: Energy and Power; HIST 226: Exploration, Science, and Adventure; HIST 263: Global History of Food; INTR 205: Global Sustainable Development; PHLT 232: Environmental Health Policy; PHLT 238: Environmental Health and Justice in the Rochester Community; PSCI 235: The Political Economy of US Food; PSCI 239: International Environmental Law. Humanities: New humanities courses are pending approval.",
+      "note": "Extra core courses beyond the two required may be counted here as electives."
+    }
+  ],
+  "upperLevelWriting": null
+}

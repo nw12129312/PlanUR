@@ -1,0 +1,131 @@
+{
+  "id": "minor-danc-ms",
+  "type": "minor",
+  "name": "Movement Studies",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "humanities",
+  "departments": [
+    "DANC"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/dan/undergraduate/minors.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/dan/dan_undergraduate_minors.html",
+  "programChecks": {
+    "totalCourses": null,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "The movement studies minor consists of a minimum of 26 credits: at least 10 in foundations, at least 4 in embodied practices/dance appreciation, and the remainder from movement studies/somatic awareness.",
+    "Requirements are stated in CREDITS and many DANC courses are 1-2 credits rather than 4. Each group below converts its credit minimum into a course count using the modal credit value of that group's own option list; confirm your credit totals with the program.",
+    "The third group is the page's explicit top-up category ('use the following courses to complete the remaining 26 credits'), so its course count is the roughest conversion in this entry.",
+    "NOT A COURSE REQUIREMENT: Experience in Technical Production - a combination of red (13+ hours), yellow (6-12 hours) and green (0-5 hours) jobs on program productions. For movement studies: one green job, one yellow job, and either one red job or an additional green and yellow job.",
+    "NOT A COURSE REQUIREMENT: students enrolled in any dance course must attend at least two program-sponsored performances and two program-sponsored workshops each semester."
+  ],
+  "requirementGroups": [
+    {
+      "id": "foundations",
+      "label": "Foundations (10 credits)",
+      "rule": {
+        "type": "n_of",
+        "n": 3,
+        "options": [
+          "DANC 170",
+          "DANC 195",
+          "DANC 200",
+          "DANC 204",
+          "DANC 211",
+          "DANC 230",
+          "DANC 288",
+          "DANC 102"
+        ]
+      },
+      "sourceQuote": "Foundations. Choose at least 10 credits from the following: DANC 102: Fundamentals of Movement (2 credits); DANC 170: Embodied Resourcing Through Somatic Practices (4 credits); DANC 195: World Dance: Movement as Culture (4 credits); DANC 200: Anatomy and Kinesiology (4 credits); DANC 204: Contact Improvisation and Culture (4 credits); DANC 211: Tai Chi: Explorations (4 credits); DANC 230: Living Anatomy, Living Yoga (4 credits); DANC 288: Movement Analysis and Integration (4 credits)",
+      "note": "Almost all of these are 4 credits, so three of them clear the 10-credit floor."
+    },
+    {
+      "id": "practice",
+      "label": "Embodied practices / dance appreciation (4 credits)",
+      "rule": {
+        "type": "n_of",
+        "n": 2,
+        "options": [
+          "DANC 104",
+          "DANC 109",
+          "DANC 110",
+          "DANC 116",
+          "DANC 126",
+          "DANC 140",
+          "DANC 145",
+          "DANC 150",
+          "DANC 155",
+          "DANC 160",
+          "DANC 171",
+          "DANC 181",
+          "DANC 182",
+          "DANC 185",
+          "DANC 187",
+          "DANC 188",
+          "DANC 189",
+          "DANC 190",
+          "DANC 197",
+          "DANC 212",
+          "DANC 253",
+          "DANC 266",
+          "DANC 267",
+          "DANC 268",
+          "DANC 269",
+          "DANC 273",
+          "DANC 278",
+          "DANC 279",
+          "DANC 281",
+          "DANC 283",
+          "DANC 285",
+          "DANC 290",
+          "DANC 296",
+          "DANC 365A",
+          "DANC 365B",
+          "DANC 365C",
+          "DANC 377",
+          "DANC 378",
+          "DANC 379",
+          "DANC 380",
+          "DANC 397",
+          "DANC 398"
+        ]
+      },
+      "sourceQuote": "Embodied Practices/Dance Appreciation. Choose at least four credits from the following: DANC 104; DANC 109; DANC 110; DANC 116; DANC 126; DANC 140; DANC 145; DANC 150; DANC 155; DANC 160; DANC 171; DANC 181; DANC 182; DANC 185; DANC 187; DANC 188; DANC 189; DANC 190; DANC 197; DANC 212; DANC 253; DANC 266; DANC 267; DANC 268; DANC 269; DANC 273; DANC 278; DANC 279; DANC 281; DANC 283; DANC 285; DANC 290; DANC 296; DANC 365; DANC 377; DANC 378; DANC 379; DANC 380; DANC 397; DANC 398",
+      "note": "Most of this list is 2 credits, so two courses reach the 4-credit floor."
+    },
+    {
+      "id": "somatic",
+      "label": "Movement studies / somatic awareness (remaining credits)",
+      "rule": {
+        "type": "n_of",
+        "n": 4,
+        "options": [
+          "DANC 106",
+          "DANC 114",
+          "DANC 115",
+          "DANC 130",
+          "DANC 167M",
+          "DANC 202",
+          "DANC 208",
+          "DANC 209",
+          "DANC 218",
+          "DANC 225",
+          "DANC 233",
+          "DANC 235",
+          "DANC 258",
+          "DANC 271",
+          "DANC 305"
+        ]
+      },
+      "sourceQuote": "Movement Studies/Somatic Awareness. Use the following courses to complete the remaining 26 credits: DANC 106; DANC 114; DANC 115; DANC 130; DANC 167M; DANC 202; DANC 208; DANC 209; DANC 218; DANC 225; DANC 233; DANC 235; DANC 258; DANC 271; DANC 305",
+      "note": "This category is explicitly the top-up to 26 credits: about 12 credits remain after foundations and embodied practice, which four courses from this mixed 2-and-4-credit list roughly supply."
+    }
+  ],
+  "upperLevelWriting": null
+}

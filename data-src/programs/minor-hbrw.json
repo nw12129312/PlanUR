@@ -1,0 +1,71 @@
+{
+  "id": "minor-hbrw",
+  "type": "minor",
+  "name": "Hebrew",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "humanities",
+  "departments": [
+    "HBRW"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/rel/undergraduate/minors.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/rel/rel_undergraduate_minors.html",
+  "programChecks": {
+    "totalCourses": 6,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Six courses: a three-course Hebrew language sequence chosen with the Hebrew instructor, plus three more.",
+    "The three additional courses may be Hebrew language, Hebrew literature in translation, or Jewish culture and civilization courses built on Hebrew texts - and at most two may be LING 101, LING 110 or LTST 200.",
+    "LING 101 is named on the page but is absent from the 2025-26 catalog."
+  ],
+  "requirementGroups": [
+    {
+      "id": "sequence",
+      "label": "A three-course Hebrew language sequence",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 3,
+        "filter": {
+          "depts": [
+            "HBRW"
+          ],
+          "minNumber": 100,
+          "maxNumber": 399
+        }
+      },
+      "sourceQuote": "Minor in Hebrew: Any three-course Hebrew language sequence, selected in consultation with the Hebrew instructor. Available courses include: HBRW 101, HBRW 102, HBRW 103, HBRW 104, HBRW 204, HBRW 391."
+    },
+    {
+      "id": "additional",
+      "label": "Three additional Hebrew or Hebrew-text courses",
+      "rule": {
+        "type": "n_of",
+        "n": 3,
+        "options": [
+          "HBRW 104",
+          "HBRW 151",
+          "HBRW 204",
+          "HBRW 391",
+          "RELC 101",
+          "JWST 106",
+          "RELC 213",
+          "JWST 213",
+          "RELC 181",
+          "JWST 181",
+          "RELC 222",
+          "JWST 222",
+          "LING 101",
+          "LING 110",
+          "LTST 200"
+        ]
+      },
+      "sourceQuote": "Three additional courses selected among courses in Hebrew language or courses in Hebrew literature in translation or Jewish culture and civilization in which texts originally written in Hebrew are studied (e.g., RELC 101/JWST106, RELC/JWST 213, RELC/JWST 181, RELC/JWST 222), or among at most two of the following courses in linguistics and literary translation theories: LING 101, LING 110, or LTST 200.",
+      "note": "At most two of the three may be the linguistics/translation-theory options (LING 101, LING 110, LTST 200). The RELC/JWST examples are the page's, not a closed list."
+    }
+  ],
+  "upperLevelWriting": null
+}

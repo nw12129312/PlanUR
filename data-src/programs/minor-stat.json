@@ -1,0 +1,83 @@
+{
+  "id": "minor-stat",
+  "type": "minor",
+  "name": "Statistics",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "natural-sciences",
+  "departments": [
+    "STAT"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/stt/undergraduate/minor-cluster.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/stt/stt_undergraduate_minor-cluster.html",
+  "programChecks": {
+    "totalCourses": 5,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Five statistics courses.",
+    "Students must achieve an overall grade of C or better in the courses used for the minor.",
+    "At least four of the five courses must be STAT-listed - so at most one CSC substitution."
+  ],
+  "requirementGroups": [
+    {
+      "id": "intro",
+      "label": "Introductory statistics",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "STAT 180",
+          "STAT 190",
+          "STAT 212",
+          "STAT 213"
+        ]
+      },
+      "sourceQuote": "The minor in statistics requires five courses in statistics: STAT 180 (formerly STAT 212), STAT 190 (formerly STAT 213), or equivalent"
+    },
+    {
+      "id": "computing",
+      "label": "Statistical computing",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "STAT 275",
+          "STAT 276",
+          "STAT 277",
+          "CSC 171",
+          "CSC 172"
+        ]
+      },
+      "sourceQuote": "STAT 275, STAT 276, or STAT 277 (CSC 171 or CSC 172 may be permitted with advisor permission)",
+      "note": "CSC 171 or CSC 172 need advisor permission."
+    },
+    {
+      "id": "upper",
+      "label": "Three additional 200-level statistics courses",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 3,
+        "filter": {
+          "depts": [
+            "STAT"
+          ],
+          "minNumber": 200,
+          "maxNumber": 299,
+          "exclude": [
+            "STAT 212",
+            "STAT 213",
+            "STAT 275",
+            "STAT 276",
+            "STAT 277"
+          ]
+        }
+      },
+      "sourceQuote": "Three additional 200-level STAT courses."
+    }
+  ],
+  "upperLevelWriting": null
+}

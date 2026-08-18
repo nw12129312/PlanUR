@@ -1,0 +1,104 @@
+{
+  "id": "major-eesc-bs",
+  "type": "major",
+  "name": "Earth, Environmental, and Planetary Sciences",
+  "degree": "BS",
+  "school": "sas",
+  "division": "natural-sciences",
+  "departments": ["EESC"],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/ees/undergraduate/earth-environmental-and-planetary.html",
+  "sourcedOn": "2026-08-01",
+  "snapshot": "data-src/pages/ees/ees_undergraduate_earth-environmental-and-planetary.html",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": ["humanities", "social-sciences"],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "programChecks": { "totalCourses": 19, "minFromDepts": null, "max100Level": null },
+  "notes": [
+    "This is the department's current BS, replacing the retired BS in Environmental Science (EVS), which is no longer offered to new students and is deliberately absent from this app.",
+    "19 courses total, with a choice of three tracks: Climate and Environmental Sciences, Geosciences, or Earth and Planetary Sciences.",
+    "The three tracks differ in how their 19 courses are apportioned (Climate: 4 advanced core + 4 technical electives; Geosciences: 4 advanced core + 3 technical electives; Earth and Planetary: 3 advanced core + 5 technical electives). The app models the advanced core as a track choice and then a shared block of four technical electives drawn from the union of the three track lists - so the exact per-track elective count is approximate. Confirm your track's split with the department.",
+    "The Geosciences track additionally requires four one-credit 200-level labs, at least three from EES Department courses. Lab components are marked (L) on the page and are not separately modeled.",
+    "Up to two 200-level courses in biology, chemistry, chemical engineering, earth and environmental sciences, or physics may be substituted for a technical elective with advisor approval. Additional advanced core or closure courses may also count as technical electives.",
+    "EESC 201, EESC 211, and EESC 223 may substitute for an advanced core course in the Climate track with advisor approval via the course-approval form.",
+    "AP credit is acceptable for the supporting science and math courses upon approval.",
+    "Possible substitutions for the introductory sequence, with approval: EESC 100, EESC 103, EESC 129, EESC 201."
+  ],
+  "requirementGroups": [
+    {
+      "id": "chemistry",
+      "label": "Chemistry",
+      "rule": { "type": "all_of", "courses": ["CHEM 131", "CHEM 132"] },
+      "sourceQuote": "Chemistry: CHEM 131: Chemical Concepts, Systems, and Practices I; CHEM 132: Chemical Concepts, Systems, and Practices II"
+    },
+    {
+      "id": "math",
+      "label": "Mathematics",
+      "rule": { "type": "sequence_one_of", "sequences": [
+        ["MATH 161", "MATH 162", "MATH 165"],
+        ["MATH 141", "MATH 142", "MATH 143", "MATH 165"]] },
+      "sourceQuote": "Series one (all three courses are required for this series): MATH 161: Calculus lA; MATH 162: Calculus IIA; MATH 165: Linear Algebra with Differential Equations (or MATH 163). Series two (all four courses are required for this series): MATH 141; MATH 142; MATH 143; MATH 165"
+    },
+    {
+      "id": "physics",
+      "label": "Physics",
+      "rule": { "type": "sequence_one_of", "sequences": [
+        ["PHYS 121", "PHYS 122"],
+        ["PHYS 113", "PHYS 114"]] },
+      "sourceQuote": "Physics: PHYS 113 or 121: General Physics I / Mechanics; PHYS 114 or 122: General Physics II / Electricity and Magnetism"
+    },
+    {
+      "id": "intro-sequence",
+      "label": "Introductory sequence",
+      "rule": { "type": "all_of", "courses": ["EESC 101", "EESC 105"] },
+      "sourceQuote": "Both of the following courses: EESC 101: Introduction to Earth Science; EESC 105: Introduction to Climate Change. Possible substitutions with approval: EESC 100, EESC 103, EESC 129, EESC 201"
+    },
+    {
+      "id": "advanced-core",
+      "label": "Advanced core courses (track)",
+      "rule": { "type": "track_n_of", "n": 3, "tracks": {
+        "Climate and Environmental Sciences": [
+          "EESC 212", "EESC 213", "EESC 213W", "EESC 216", "EESC 218", "EESC 235",
+          "EESC 236", "EESC 236W"],
+        "Geosciences": [
+          "EESC 201", "EESC 203", "EESC 204", "EESC 212", "EESC 216", "EESC 218", "EESC 223"],
+        "Earth and Planetary Sciences": [
+          "EESC 204", "EESC 204W", "EESC 205", "EESC 209", "EESC 229", "EESC 255"]
+      } },
+      "sourceQuote": "Students must complete one of the following tracks. Track: Climate and Environmental Sciences - Choose four advanced core courses. Track: Geosciences - Choose four of the following advanced core courses. Track: Earth and Planetary Sciences - Choose three of the following advanced core courses.",
+      "note": "Modeled at the smallest track requirement (3); the Climate and Geosciences tracks require 4."
+    },
+    {
+      "id": "skills",
+      "label": "Skills course",
+      "rule": { "type": "n_of", "n": 1, "options": [
+        "EESC 214", "EESC 251", "CSC 161", "STAT 180"] },
+      "sourceQuote": "Choose one of the following skills courses: EESC 214: Earth Science Data Analysis; EESC 251: Intro to Geographic Information Systems; CSC 161: Introduction to Programming; STAT 180: Introduction to Applied Statistical Methodology"
+    },
+    {
+      "id": "technical-electives",
+      "label": "Technical electives (4)",
+      "rule": { "type": "n_from_filter", "n": 4,
+                "filter": { "depts": ["EESC"], "minNumber": 205, "maxNumber": 299,
+                            "exclude": ["EESC 214", "EESC 251"] } },
+      "sourceQuote": "Choose four technical electives (Climate) / Choose three of the following technical electives (Geosciences) / Choose five of the following technical electives (Earth and Planetary). Up to two 200-level courses in biology, chemistry, chemical engineering, earth and environmental sciences, or physics can be substituted for a technical elective with the approval from advisor.",
+      "note": "Per-track counts differ (3-5); modeled as four 200-level EESC courses."
+    },
+    {
+      "id": "closure",
+      "label": "Closure course",
+      "rule": { "type": "n_of", "n": 1, "options": [
+        "EESC 299", "EESC 306", "EESC 307", "EESC 312", "EESC 312W", "EESC 320", "EESC 320W",
+        "EESC 368", "EESC 391", "EESC 391W", "EESC 393W", "EESC 394", "EESC 395W"] },
+      "sourceQuote": "Choose one of the following closure courses: EESC 299(L): Field Experience; EESC 306: Atmospheric Research; EESC 307: Advanced Seminar on Climate and Environmental Change; EESC 312(W): Research in Ocean Biogeochemistry; EESC 320(W): Sustainable Systems; EESC 368(W): Principles of Experimental Geochemistry; EESC 391(W): Independent Study; EESC 393W(L): Senior Thesis; EESC 394: Internship in Environmental Sciences; EESC 395W: Independent Research",
+      "note": "Union of the three tracks' closure lists."
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "Two upper-level writing courses within the major",
+    "rule": { "type": "n_from_filter", "n": 2,
+              "filter": { "depts": ["EESC"], "minNumber": 200, "maxNumber": 399, "wOnly": true } },
+    "sourceQuote": "Writing Requirement: Two of the courses for the major must be taken as upper-level writing courses, indicated by a 'W' after the course number."
+  }
+}

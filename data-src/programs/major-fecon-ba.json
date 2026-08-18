@@ -1,0 +1,65 @@
+{
+  "id": "major-fecon-ba",
+  "type": "major",
+  "name": "Financial Economics",
+  "degree": "BA",
+  "school": "sas",
+  "division": "social-sciences",
+  "departments": ["ECON"],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/eco/undergraduate/major.html",
+  "sourcedOn": "2026-07-05",
+  "snapshot": "data-src/pages/eco/eco_undergraduate_major.html",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": ["humanities", "natural-sciences"],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "notes": [
+    "STEM-designated major offered by the Department of Economics.",
+    "FIN 205 and FIN 206 are prerequisites for MATH 210 (math majors may take MATH 210 concurrently with FIN 206). FIN 204 cannot be used for this degree.",
+    "FIN/ACC courses are Simon School offerings - their schedule data is not in the AS&E harvest, so they appear as flagged stubs.",
+    "ECON 108 cannot be taken after ECON 207; honors equivalents accepted for 207/209 and MATH 210.",
+    "An honors variant exists (ECON 207H/208/219, 389W or 289W) - not separately modeled."
+  ],
+  "requirementGroups": [
+    {
+      "id": "core",
+      "label": "Economics core",
+      "rule": { "type": "all_of", "courses": ["ECON 108", "ECON 207", "ECON 209", "ECON 231W"] },
+      "sourceQuote": "ECON 108 ...; ECON 207 ...; ECON 209 ...; ECON 231W: Econometrics"
+    },
+    {
+      "id": "stat",
+      "label": "Statistics (ECON 230 or substitute)",
+      "rule": { "type": "n_of", "n": 1, "options": ["ECON 230", "STAT 190", "MATH 203", "DSCC 262"] },
+      "sourceQuote": "The following can be used to substitute for ECON 230: STAT 190 ..., MATH 203 ..., or DSCC 262"
+    },
+    {
+      "id": "finance",
+      "label": "Finance and accounting",
+      "rule": { "type": "all_of", "courses": ["FIN 205", "FIN 206", "MATH 210", "ACC 201", "ACC 221"] },
+      "sourceQuote": "FIN 205: Financial Management; FIN 206: Investments; MATH 210: Introduction to Financial Mathematics; ACC 201: Financial Accounting; ACC 221: Managerial Accounting"
+    },
+    {
+      "id": "calculus",
+      "label": "Calculus sequence",
+      "rule": { "type": "sequence_one_of", "sequences": [
+        ["MATH 141", "MATH 142", "MATH 143"], ["MATH 161", "MATH 162"], ["MATH 171", "MATH 172"]] },
+      "sourceQuote": "Students are required to complete one of the following calculus sequences: MATH 141, MATH 142 and MATH 143; MATH 161 and MATH 162; MATH 171 and MATH 172"
+    },
+    {
+      "id": "electives",
+      "label": "Economics electives (3)",
+      "rule": { "type": "n_from_filter", "n": 3,
+                "filter": { "depts": ["ECON"], "minNumber": 200, "maxNumber": 399,
+                            "exclude": ["ECON 207", "ECON 209", "ECON 230", "ECON 231W", "ECON 394"] } },
+      "sourceQuote": "Three economics electives. Suggested electives are: ECON 211, ECON 217, ECON 232, ECON 233, ECON 263, ECON 268, ECON 270, ECON 271, ECON 274, ECON 277."
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "Two of the major's courses taken for W credit",
+    "rule": { "type": "n_from_filter", "n": 2,
+              "filter": { "depts": ["ECON"], "minNumber": 200, "maxNumber": 399, "wOnly": true } },
+    "sourceQuote": "Upper-level writing requirement (two of the above courses must be taken for W credit)"
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "id": "minor-fmst",
+  "type": "minor",
+  "name": "Film and Media Studies",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "humanities",
+  "departments": [
+    "FMST"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/fms/undergraduate/film/minor.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/fms/fms_undergraduate_film_minor.html",
+  "programChecks": {
+    "totalCourses": 6,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Six courses. Students are admitted to the minor on the recommendation of the FMS Director, and individualized concentrations for studying motion pictures may also be proposed.",
+    "DEPARTMENT CODE: the minor page writes 'FMS 131' and 'FMS 132'; the registrar's catalog prefix is FMST.",
+    "CATEGORY LISTS ARE TERM-DEPENDENT - NEEDS VERIFICATION: the department's course-categories page lists only the courses offered in the captured term, and several of its numbers are absent from the 2025-26 catalog. Confirm the current lists with the program.",
+    "The FMS MAJOR is a separate pair of entries (major-fmst-theory-ba and major-fmst-production-ba)."
+  ],
+  "requirementGroups": [
+    {
+      "id": "intro",
+      "label": "Core introductory course",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "FMST 131",
+          "FMST 132"
+        ]
+      },
+      "sourceQuote": "One of the following core introductory courses: FMS 131: Introduction to Media Studies; FMS 132: Introduction to the Art of Film"
+    },
+    {
+      "id": "history",
+      "label": "One course in film/media history",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "FMST 224",
+          "FMST 245"
+        ]
+      },
+      "sourceQuote": "One course in film/media history. [Course Categories] History Courses: FMST 224: American Experiments: Film and Art of the 1930s; FMST 245: American Movies in their Moment: Silver Age 1968-1980"
+    },
+    {
+      "id": "theory",
+      "label": "One course in film/media theory",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "FMST 107",
+          "FMST 205",
+          "FMST 225",
+          "FMST 235",
+          "FMST 236",
+          "FMST 243",
+          "FMST 270",
+          "FMST 274",
+          "FMST 277",
+          "FMST 288"
+        ]
+      },
+      "sourceQuote": "One course in film/media theory. [Course Categories] Analysis and Criticism Courses: FMST 107; FMST 205; FMST 224; FMST 225; FMST 235; FMST 236; FMST 243; FMST 245; FMST 270; FMST 274; FMST 277; FMST 288"
+    },
+    {
+      "id": "director-choice",
+      "label": "Three courses chosen with the FMS Director",
+      "rule": {
+        "type": "n_from_filter",
+        "filter": {
+          "depts": [
+            "FMST"
+          ],
+          "minNumber": 100,
+          "maxNumber": 399
+        },
+        "n": 3
+      },
+      "sourceQuote": "Three courses in consultation with the FMS Director"
+    }
+  ],
+  "upperLevelWriting": null
+}

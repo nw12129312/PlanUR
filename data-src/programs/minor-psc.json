@@ -1,0 +1,45 @@
+{
+  "id": "minor-psc",
+  "type": "minor",
+  "name": "Political Science",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "social-sciences",
+  "departments": ["PSCI", "INTR"],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/psc/undergraduate/psc-minor.html",
+  "sourcedOn": "2026-08-01",
+  "snapshot": "data-src/pages/psc/psc_undergraduate_psc-minor.html",
+  "minMajorGPA": 2.0,
+  "programChecks": { "totalCourses": 6, "minFromDepts": { "depts": ["PSCI", "INTR"], "n": 5 }, "max100Level": 2 },
+  "notes": [
+    "Requirements apply to the Class of 2021 and later; earlier classes may follow the old requirements, which are not modeled.",
+    "At least five of the six courses must be PSCI or INTR courses taken in residence at the University of Rochester. None may be taken S/F.",
+    "Courses used for tools of political analysis cannot also satisfy the core track or breadth - the app keeps groups disjoint by default, so this holds.",
+    "No more than two introductory courses may count. In most departments all 100-level courses are introductory; in History only a specific list is (HIST 102, 103, 104, 120, 121, 134, 135, 140, 141, 150, 151, 160, 161, 176, 183, 184). Modeled as the program-wide max100Level of 2.",
+    "Transfer courses may not satisfy tools of political analysis, and no more than one transfer course may be used. PSCI/INTR 394A is treated as in-residence, not transfer.",
+    "AP American or Comparative Government (4-5) or Higher Level IB Global Politics (5-7) grants four credits, counted as introductory and transfer; only one exam may be credited.",
+    "College overlap policy: no more than two courses may overlap between a minor and a major or another minor."
+  ],
+  "requirementGroups": [
+    {
+      "id": "tools",
+      "label": "Tools of political analysis (2)",
+      "rule": { "type": "n_of", "n": 2, "options": [
+        "PSCI 107", "PSCI 200", "PSCI 202W", "PSCI 203W", "PSCI 205", "PSCI 281", "PSCI 288"] },
+      "sourceQuote": "Tools of Political Analysis (Two Courses). Courses used to satisfy tools of political analysis cannot also be used to satisfy requirements for the core track, breadth, or electives. PSCI 107: Introduction to Positive Political Theory; PSCI 200: Data Analysis I; PSCI 202W: Argument in Political Science; PSCI 203W: Survey Research Methods; PSCI 205: Data Analysis II; PSCI 281: Formal Models in Political Science; PSCI 288: Game Theory"
+    },
+    {
+      "id": "core-track",
+      "label": "Core track (3 courses from one track)",
+      "rule": { "type": "track_n_of", "n": 3, "tracksRef": "psc-tracks" },
+      "sourceQuote": "Core Track (Three Courses from One Track): Data and Modeling; Elections and Government; Philosophy, Law, and Public Policy; Political Economy and Development; Race, Ethnicity, and Identity; War, Violence, and Cooperation"
+    },
+    {
+      "id": "breadth",
+      "label": "Breadth (1 course outside your core track)",
+      "rule": { "type": "breadth_outside_track", "n": 1, "trackGroupId": "core-track" },
+      "sourceQuote": "Breadth (One Courses). Select one track course that is not in your core track."
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "__instructions": [
+    "Copy this template to add or complete a major/minor without touching app code.",
+    "1. Fill in the fields below from the program's official requirements page.",
+    "2. Set status to ACTIVE (placeholders use NEEDS_DATA_ENTRY).",
+    "3. Paste the object into the programs list in tools/build_data.py (or replace a placeholder with the same id), run `python3 tools/build_data.py`, then `npm run build`.",
+    "Rule types for requirementGroups[].rule:",
+    "  all_of            {type, courses: [codes]}                          - every course required",
+    "  n_of              {type, n, options: [codes]}                       - choose n from the list",
+    "  sequence_one_of   {type, sequences: [[codes], [codes]]}             - complete every course of ONE sequence",
+    "  n_from_filter     {type, n, filter:{depts, minNumber, maxNumber, minCredits?, wOnly?, exclude?}}",
+    "  track_n_of        {type, n, tracks: {trackName: [codes]}}           - n courses all from one track",
+    "  breadth_outside_track {type, n, trackGroupId}                       - n courses from tracks other than the chosen one",
+    "Course codes must match the catalog form: 'DEPT NNN' or 'DEPT NNNW' (e.g. 'CSC 172', 'PSCI 202W').",
+    "If a referenced course is missing from src/data/courses.json, add it there too (or it will be treated as unplaceable).",
+    "Schema extensions (added for the Biology batch): apIbCreditExcluded (AP/IB-bucket courses never fill this program's groups), minPctFromHomeInstitution (warns when transfer credit exceeds the allowed share of non-ancillary requirements; mark exempt groups with \"ancillary\": true), minMajorGPA (informational - the app does not track grades). Groups may also set \"allowReuse\": true (course may satisfy this group AND others in the same program) and rules may use \"optionsRef\" for shared option lists."
+  ],
+  "id": "major-xxxx-ba",
+  "type": "major",
+  "name": "Program Name",
+  "degree": "BA",
+  "school": "sas",
+  "division": "humanities | social-sciences | natural-sciences | engineering",
+  "departments": ["DEPT"],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/...",
+  "sourcedOn": "YYYY-MM-DD",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": ["humanities", "social-sciences"],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "apIbCreditExcluded": false,
+  "minMajorGPA": null,
+  "minPctFromHomeInstitution": null,
+  "programChecks": {
+    "totalCourses": null,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "GPA / progression / transfer rules stated on the official page, quoted or paraphrased."
+  ],
+  "requirementGroups": [
+    {
+      "id": "core",
+      "label": "Core courses",
+      "rule": { "type": "all_of", "courses": ["DEPT 101", "DEPT 102"] },
+      "note": "Optional clarification shown in the UI."
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "Two upper-level writing courses approved by the department",
+    "rule": { "type": "n_from_filter", "n": 2, "filter": { "depts": ["DEPT"], "minNumber": 200, "maxNumber": 399, "wOnly": true } },
+    "note": "Adjust to the department's actual ULW policy."
+  }
+}

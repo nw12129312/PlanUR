@@ -1,0 +1,42 @@
+{
+  "id": "minor-engl-creative-writing",
+  "type": "minor",
+  "name": "English: Creative Writing",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "humanities",
+  "departments": ["ENGL"],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/eng/undergraduate/minors/",
+  "sourcedOn": "2026-08-01",
+  "snapshot": "data-src/pages/eng/eng_undergraduate_minors.html",
+  "programChecks": { "totalCourses": 6, "minFromDepts": { "depts": ["ENGL"], "n": 6 }, "max100Level": 3 },
+  "notes": [
+    "Six courses, five of which must be taken while at the University of Rochester. No more than two courses in one's major may overlap with the minor.",
+    "The three remaining courses may be chosen from the department's writing offerings or from its 200- and 300-level literature offerings."
+  ],
+  "requirementGroups": [
+    {
+      "id": "intro",
+      "label": "Introductory creative writing (2)",
+      "rule": { "type": "n_of", "n": 2, "options": ["ENGL 121", "ENGL 122", "ENGL 123", "ENGL 125"] },
+      "sourceQuote": "Two creative writing courses at the introductory level: ENGL 121: Creative Writing: Fiction; ENGL 122: Creative Writing: Poetry; ENGL 123: Playwriting; ENGL 125: Speculative Fiction"
+    },
+    {
+      "id": "advanced",
+      "label": "Advanced creative writing",
+      "rule": { "type": "n_of", "n": 1, "options": [
+        "ENGL 275", "ENGL 276", "ENGL 277", "ENGL 281", "ENGL 375", "ENGL 376"] },
+      "sourceQuote": "At least one advanced creative writing course: ENGL 275: Advanced Creative Writing: Fiction; ENGL 276: Advanced Creative Writing: Poetry; ENGL 277: Topics in Screenwriting; ENGL 281: Creative Nonfiction; ENGL 375: Seminar in Fiction Writing; ENGL 376: Seminar in Poetry Writing"
+    },
+    {
+      "id": "additional",
+      "label": "Writing or 200-300 level literature courses (3)",
+      "rule": { "type": "n_from_filter", "n": 3,
+                "filter": { "depts": ["ENGL"], "minNumber": 200, "maxNumber": 399,
+                            "exclude": ["ENGL 275", "ENGL 276", "ENGL 277", "ENGL 281",
+                                        "ENGL 375", "ENGL 376"] } },
+      "sourceQuote": "Additional courses can be chosen from the department's offerings in writing, or from its 200- and 300-level offerings in literature."
+    }
+  ]
+}

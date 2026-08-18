@@ -1,0 +1,43 @@
+{
+  "id": "minor-ital",
+  "type": "minor",
+  "name": "Italian",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "humanities",
+  "departments": [
+    "ITAL"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/mlc/undergraduate/italian.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/mlc/mlc_undergraduate_italian.html",
+  "programChecks": {
+    "totalCourses": 5,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Five courses, usually starting with ITAL 151. The page names no fixed list beyond that, so any ITAL course at 151 or above counts here.",
+    "ITAL 207 is the summer program in Italy."
+  ],
+  "requirementGroups": [
+    {
+      "id": "courses",
+      "label": "Five Italian courses",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 5,
+        "filter": {
+          "depts": [
+            "ITAL"
+          ],
+          "minNumber": 151,
+          "maxNumber": 399
+        }
+      },
+      "sourceQuote": "The minor in Italian requires five courses, usually starting with ITAL 151: Intermediate Italian I. This may include ITAL 152: Intermediate Italian II, ITAL 207: Sustainability, Food & Local Cultures (Summer Program in Italy), and a variety of other options from 200-level Italian courses."
+    }
+  ],
+  "upperLevelWriting": null
+}

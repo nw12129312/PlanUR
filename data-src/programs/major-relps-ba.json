@@ -1,0 +1,125 @@
+{
+  "id": "major-relps-ba",
+  "type": "major",
+  "name": "Religion, Politics, and Society",
+  "degree": "BA",
+  "school": "sas",
+  "division": "humanities",
+  "departments": [
+    "RELC"
+  ],
+  "status": "ACTIVE",
+  "sourcedOn": "2026-08-01",
+  "sourceUrl": "https://www.sas.rochester.edu/rel/undergraduate/religion.html",
+  "snapshot": "data-src/pages/rel/rel_undergraduate_religion.html",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": [
+    "social-sciences",
+    "natural-sciences"
+  ],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "programChecks": {
+    "totalCourses": 10,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "The Religion, Politics, and Society track attends to religion's social and political aspects, particularly in the contemporary world, and often intersects with FDI, SBAI, anthropology, and political science.",
+    "The program has two tracks sharing the same four required courses; this entry is one of them.",
+    "NEEDS VERIFICATION: the page states the four shared required courses and describes six electives, but does not enumerate which courses count for each track. Electives are modeled as any RELC course - select them with your major advisor.",
+    "Students may enroll in selected courses at Colgate Rochester Divinity School / Bexley Hall / Crozer Theological Seminary."
+  ],
+  "requirementGroups": [
+    {
+      "id": "foundational-text",
+      "label": "Foundational text course",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "RELC 101",
+          "RELC 102"
+        ]
+      },
+      "sourceQuote": "A Course focused on a Foundational Text: RELC 101; RELC 102; Quran; Mahabharata; BhagadVita",
+      "note": "The page also names Quran, Mahabharata and Bhagavad Gita courses without course numbers; only the numbered options are modeled."
+    },
+    {
+      "id": "tradition",
+      "label": "Overview of a religious tradition",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "RELC 103",
+          "RELC 104",
+          "RELC 106",
+          "RELC 107"
+        ]
+      },
+      "sourceQuote": "A Course focused on an overview of a particular religious tradition: RELC 103; RELC 104; RELC 106; RELC 107"
+    },
+    {
+      "id": "theory",
+      "label": "Theory and method",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "RELC 293W"
+        ]
+      },
+      "sourceQuote": "Theory and Method in the Study of Religion (typically taken in Fall of Junior year): RELC 293W"
+    },
+    {
+      "id": "seminar",
+      "label": "Senior seminar or thesis",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "RELC 389W",
+          "RELC 383W"
+        ]
+      },
+      "sourceQuote": "Senior Seminar or Senior Thesis: RELC 389W or RELC 383W"
+    },
+    {
+      "id": "electives",
+      "label": "Electives (6)",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 6,
+        "filter": {
+          "depts": [
+            "RELC"
+          ],
+          "minNumber": 110,
+          "maxNumber": 399,
+          "exclude": [
+            "RELC 293W",
+            "RELC 389W",
+            "RELC 383W"
+          ]
+        }
+      },
+      "sourceQuote": "In their six electives, students may choose to hone their expertise in a particular religious tradition, but they are also encouraged broaden their field of inquiry across time, space, and tradition. Students should select their electives in consultation with their major advisor in the department."
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "RELC 293W plus the senior seminar or thesis",
+    "rule": {
+      "type": "n_from_filter",
+      "n": 2,
+      "filter": {
+        "depts": [
+          "RELC"
+        ],
+        "minNumber": 200,
+        "maxNumber": 399,
+        "wOnly": true
+      }
+    },
+    "sourceQuote": "Theory and Method in the Study of Religion: RELC 293W ... Senior Seminar or Senior Thesis: RELC 389W or RELC 383W"
+  }
+}

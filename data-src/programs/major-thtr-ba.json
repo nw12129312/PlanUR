@@ -1,0 +1,149 @@
+{
+  "id": "major-thtr-ba",
+  "type": "major",
+  "name": "Theater",
+  "degree": "BA",
+  "school": "sas",
+  "division": "humanities",
+  "departments": [
+    "ENGL"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/eng/undergraduate/majors/theater.html",
+  "snapshot": "data-src/pages/eng/eng_undergraduate_majors_theater.html",
+  "sourcedOn": "2026-08-14",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": [
+    "social-sciences",
+    "natural-sciences"
+  ],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "programChecks": {
+    "totalCourses": null,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "A special major offered by the English department in conjunction with the University's International Theatre Program. All of its courses carry ENGL numbers - the THTR numbers introduced for summer 2026 are not used by this page and are not in the 2025-26 catalog.",
+    "A minimum of ten courses (at least 40 credit hours) in English and theater are required.",
+    "The page lists spring-semester course numbers in parentheses beside the fall numbers (for example ENGL 184 in fall, ENGL 185 in spring). Both numbers of each pair are listed as options here; several of the spring numbers (ENGL 155, 171, 175, 179, 185) do not appear in the 2025-26 catalog.",
+    "NOT A COURSE REQUIREMENT: within the sixteen production credits, each student must work on at least four productions and serve in stage management or as an assistant director for at least one of them.",
+    "In cases where some courses are unavailable, students should consult the director of undergraduate studies for possible substitutions. Other courses in the English department relating to drama and/or theater may from time to time be valid additions to the method/performance list, and ENGL 398 (Internship in Theater), ENGL 391 (Independent Study), ENGL 380 (Advanced Seminar) or ENGL 396 (Honors Seminar) with a dramatic-literature or theatrical focus might also count. Study abroad in London and Bath focused on dramatic or theatrical work may also count.",
+    "Students wanting a dramatic-literature course outside the listed five must get the program director's approval in advance of registering.",
+    "NEEDS VERIFICATION - UPPER-LEVEL WRITING: the page states no ULW policy for this major, and the 2025-26 catalog contains no W-suffixed ENGL courses at the 200-399 level, so none is encoded. Confirm with the director of undergraduate studies how you will satisfy the College ULW requirement.",
+    "ENGL 154/155 (Intro to Design for the Stage) is a 2-credit course, so a student who uses it toward the eight method/performance credits needs a third course in that category."
+  ],
+  "requirementGroups": [
+    {
+      "id": "survey",
+      "label": "One literature survey course",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "ENGL 112",
+          "ENGL 113",
+          "ENGL 114",
+          "ENGL 115",
+          "ENGL 116"
+        ]
+      },
+      "sourceQuote": "One Survey Course. Students must take one of the following: ENGL 112: Classical and Scriptural Backgrounds; ENGL 113: British Literature I; ENGL 114: British Literature II; ENGL 115: American Literature; ENGL 116: Intro to African American Literature"
+    },
+    {
+      "id": "production",
+      "label": "Sixteen credit hours in theater production",
+      "rule": {
+        "type": "n_of",
+        "n": 4,
+        "options": [
+          "ENGL 184",
+          "ENGL 185",
+          "ENGL 292",
+          "ENGL 293",
+          "ENGL 294",
+          "ENGL 295",
+          "ENGL 296",
+          "ENGL 297"
+        ]
+      },
+      "sourceQuote": "Sixteen Credit Hours in Theater Production. Sixteen credit hours must be in theater production, either onstage or backstage. Each student must work on at least four productions, serving in stage management or as an assistant director for at least one. Students can choose from the following (Spring course numbers in parentheses): ENGL 184 (185): Intro to Theater; ENGL 292 (293)/ 294 (295): Plays in Performance: Name of Play; ENGL 296 (297): Stage Management",
+      "note": "Sixteen credits at 4 credits each = four courses, matching the four productions each student must work on."
+    },
+    {
+      "id": "method",
+      "label": "Eight credit hours in theater method/performance",
+      "rule": {
+        "type": "n_of",
+        "n": 2,
+        "options": [
+          "ENGL 123",
+          "ENGL 124",
+          "ENGL 154",
+          "ENGL 155",
+          "ENGL 156",
+          "ENGL 164",
+          "ENGL 165",
+          "ENGL 170",
+          "ENGL 171",
+          "ENGL 172",
+          "ENGL 173",
+          "ENGL 174",
+          "ENGL 175",
+          "ENGL 176",
+          "ENGL 177",
+          "ENGL 178",
+          "ENGL 179",
+          "ENGL 180",
+          "ENGL 181",
+          "ENGL 182",
+          "ENGL 252",
+          "ENGL 270",
+          "ENGL 271",
+          "ENGL 272",
+          "ENGL 273",
+          "ENGL 278",
+          "ENGL 279",
+          "ENGL 290",
+          "ENGL 291",
+          "ENGL 360"
+        ]
+      },
+      "sourceQuote": "Eight Credit Hours in Theater Method/Performance. Eight hours of credit must be in theater method and/or performance courses, choosing from the following (Spring course numbers in parentheses): ENGL 123: Playwriting; ENGL 124: Intro to Stage Lighting; ENGL 154 (155): Intro to Design for the Stage - 2 credits; ENGL 156; ENGL 164; ENGL 165; ENGL 170 (171); ENGL 172 (173); ENGL 174 (175); ENGL 176; ENGL 177; ENGL 178 (179); ENGL 180; ENGL 181; ENGL 182; ENGL 252; ENGL 270; ENGL 271; ENGL 272; ENGL 273; ENGL 278; ENGL 279; ENGL 290; ENGL 291; ENGL 360: Special Projects: Theater; Other classes offered occasionally may also fill this requirment"
+    },
+    {
+      "id": "drama-pre1800",
+      "label": "Dramatic literature written before 1800",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "ENGL 203",
+          "ENGL 208",
+          "ENGL 210",
+          "ENGL 217"
+        ]
+      },
+      "sourceQuote": "Twelve Credit Hours in Literature. Three courses in dramatic literature, at least one of which must cover literature written before 1800. ... Dramatic Literature Courses: ENGL 203: Medieval Drama; ENGL 208 Renaissance Drama (Topics); ENGL 210 Shakespeare; ENGL 217 Restoration and Eighteenth-Century Drama; ENGL 235 Post-1800 Drama (Topics)",
+      "note": "The four pre-1800 options are the medieval, Renaissance, Shakespeare and Restoration/eighteenth-century courses; ENGL 235 covers post-1800 drama."
+    },
+    {
+      "id": "drama-literature",
+      "label": "Two further courses in dramatic literature",
+      "rule": {
+        "type": "n_of",
+        "n": 2,
+        "options": [
+          "ENGL 203",
+          "ENGL 208",
+          "ENGL 210",
+          "ENGL 217",
+          "ENGL 235"
+        ]
+      },
+      "sourceQuote": "Three courses in dramatic literature, at least one of which must cover literature written before 1800. Students desiring to take a course outside the list of dramatic literature courses should consult with the program director to receive approval in advance of registering for the course."
+    }
+  ],
+  "upperLevelWriting": null
+}

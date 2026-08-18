@@ -1,0 +1,90 @@
+{
+  "id": "minor-anth",
+  "type": "minor",
+  "name": "Anthropology",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "social-sciences",
+  "departments": [
+    "ANTH"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/ant/undergraduate/minor-clusters.html",
+  "sourcedOn": "2026-08-01",
+  "snapshot": "data-src/pages/ant/ant_undergraduate_minor-clusters.html",
+  "programChecks": {
+    "totalCourses": 6,
+    "minFromDepts": {
+      "depts": [
+        "ANTH"
+      ],
+      "n": 6
+    },
+    "max100Level": null
+  },
+  "notes": [
+    "Six courses. The department also offers a separate Medical Anthropology minor, encoded as minor-medanth.",
+    "Of the three additional courses, two must be at the 200 level or above."
+  ],
+  "requirementGroups": [
+    {
+      "id": "intro",
+      "label": "Cultural Anthropology",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "ANTH 101"
+        ]
+      },
+      "sourceQuote": "ANTH 101: Cultural Anthropology"
+    },
+    {
+      "id": "theory",
+      "label": "Theory courses (2)",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 2,
+        "filter": {
+          "depts": [
+            "ANTH"
+          ],
+          "minNumber": 200,
+          "maxNumber": 210
+        }
+      },
+      "sourceQuote": "Two of the following courses: ANTH 200 - 210"
+    },
+    {
+      "id": "advanced",
+      "label": "Additional anthropology at the 200 level or above (2)",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 2,
+        "filter": {
+          "depts": [
+            "ANTH"
+          ],
+          "minNumber": 211,
+          "maxNumber": 399
+        }
+      },
+      "sourceQuote": "Three additional courses in anthropology, two of which must be at the 200-level or above"
+    },
+    {
+      "id": "additional",
+      "label": "Additional anthropology course",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 1,
+        "filter": {
+          "depts": [
+            "ANTH"
+          ],
+          "minNumber": 102,
+          "maxNumber": 399
+        }
+      },
+      "sourceQuote": "Three additional courses in anthropology, two of which must be at the 200-level or above"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "id": "minor-engl",
+  "type": "minor",
+  "name": "English Literature",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "humanities",
+  "departments": ["ENGL"],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/eng/undergraduate/minors/",
+  "sourcedOn": "2026-08-01",
+  "snapshot": "data-src/pages/eng/eng_undergraduate_minors.html",
+  "programChecks": { "totalCourses": 6, "minFromDepts": { "depts": ["ENGL"], "n": 6 }, "max100Level": 3 },
+  "notes": [
+    "The department offers four minors (creative writing, English literature, journalism, theater). This entry is the English Literature minor; creative writing and journalism are encoded separately as minor-engl-creative-writing and minor-engl-journalism.",
+    "The theater minor is NOT encoded: it is specified in credits against THTR course numbers introduced in Summer 2026, and the harvested 2025-26 catalog contains no THTR courses to match against.",
+    "All four minors require a minimum of six courses, five of which must be taken while at the University of Rochester.",
+    "No more than two courses in one's major may overlap with the minor.",
+    "Students majoring in one English track may minor in another area - literature majors may minor in creative writing, journalism, or theater."
+  ],
+  "requirementGroups": [
+    {
+      "id": "surveys",
+      "label": "Survey courses (2)",
+      "rule": { "type": "n_of", "n": 2, "options": ["ENGL 113", "ENGL 114", "ENGL 115", "ENGL 116"] },
+      "sourceQuote": "Two Survey Courses from the following: ENGL 113: British Literature I; ENGL 114: British Literature II; ENGL 115: American Literature; ENGL 116: Intro to African American Literature"
+    },
+    {
+      "id": "advanced",
+      "label": "British or American literature at the 200-300 level (3)",
+      "rule": { "type": "n_from_filter", "n": 3,
+                "filter": { "depts": ["ENGL"], "minNumber": 200, "maxNumber": 399 } },
+      "sourceQuote": "Four additional courses in British or American literature, three of which must be at the 200 or 300 level"
+    },
+    {
+      "id": "additional",
+      "label": "One further literature course",
+      "rule": { "type": "n_from_filter", "n": 1,
+                "filter": { "depts": ["ENGL"], "minNumber": 113, "maxNumber": 399,
+                            "exclude": ["ENGL 113", "ENGL 114", "ENGL 115", "ENGL 116"] } },
+      "sourceQuote": "Four additional courses in British or American literature, three of which must be at the 200 or 300 level"
+    }
+  ]
+}

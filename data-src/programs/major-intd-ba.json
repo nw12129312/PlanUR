@@ -1,0 +1,57 @@
+{
+  "id": "major-intd-ba",
+  "type": "major",
+  "name": "Interdepartmental Studies",
+  "degree": "BA",
+  "school": "sas",
+  "division": "humanities",
+  "departments": [],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/interdepartmental/index.html",
+  "snapshot": "data-src/pages/interdepartmental/interdepartmental_index.html",
+  "sourcedOn": "2026-08-14",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": [
+    "humanities",
+    "social-sciences",
+    "natural-sciences"
+  ],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "programChecks": {
+    "totalCourses": null,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "AN INDIVIDUALLY DESIGNED MAJOR. Only the structural counts the College publishes are modeled - ten core courses from at least two departments, plus up to four optional supplementary courses. The specific courses are whatever the student's own proposal names, approved by the Committee on Individualized Interdepartmental Programs (CIIP) and supervised by two faculty advisors. The approved proposal, not this entry, is the student's actual degree requirement.",
+    "This is the School of Arts & Sciences side of the University's interdepartmental degree program. The Hajim School equivalent is the BS in Engineering and Applied Sciences (major-eas-bs), which is a separate entry.",
+    "The only degree option for this program is a bachelor of arts.",
+    "'AT LEAST TWO DEPARTMENTS' IS NOT ENFORCED: the core group below accepts ten courses from anywhere in the catalog, because the departments differ with every proposal. Check the spread yourself.",
+    "AUTO-GENERATE IS NOT USEFUL HERE: because the ten core courses may come from any department, the generator will fill them with ten arbitrary four-credit courses. Place the courses from your approved proposal yourself and use this entry to track the count. Generation is also slow for the same reason - the scheduler scores the whole catalog.",
+    "The four supplementary courses are optional (the page says 'up to four'), so they are not modeled as a requirement group.",
+    "APPLY EARLY: 'Because individualized majors require more time to organize than traditional majors or minors, interested students should begin their preparation as early as possible. Students can apply up until second semester of their junior year.' Beginning in fall 2021 seniors are not eligible to apply, and beginning in fall 2024 proposals for interdepartmental MINORS are no longer accepted.",
+    "Ask yourself first whether some combination of existing majors, minors or certificates would serve - an interdepartmental proposal is for interests that existing programs cannot meet. Degrees or minors of a pre-professional nature (for example pre-med or physical therapy) cannot be approved.",
+    "DEADLINES: the Interdepartmental Faculty Recommender Agreement Form (one per faculty advisor, two advisors required) is due October 1 for the fall semester or March 1 for the spring; the full application - proposal form, proposal essays and faculty recommendation forms - is due October 15 or March 15. Incomplete proposals are not reviewed.",
+    "Amy Fisher is the interdepartmental studies program advisor and the contact point for all forms.",
+    "Interdepartmental clusters (cluster IDs containing 'INT') remain available through the cluster search engine."
+  ],
+  "requirementGroups": [
+    {
+      "id": "core",
+      "label": "Ten core courses from at least two departments",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 10,
+        "filter": {
+          "minNumber": 100,
+          "maxNumber": 399,
+          "minCredits": 4
+        }
+      },
+      "sourceQuote": "Interdepartmental Major Requirements: An interdepartmental major mus consist of ten core courses (40 credits) from at least two departments, and up to four supplementary courses. The major is supervised by two faculty advisors, and is approved by the Committee on Individualized Interdepartmental Programs (CIIP).",
+      "note": "Ten courses at 40 credits means four-credit courses. See the program notes - the two-department spread is not checked here."
+    }
+  ],
+  "upperLevelWriting": null
+}

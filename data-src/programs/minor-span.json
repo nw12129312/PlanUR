@@ -1,0 +1,62 @@
+{
+  "id": "minor-span",
+  "type": "minor",
+  "name": "Spanish",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "humanities",
+  "departments": [
+    "SPAN"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/mlc/undergraduate/spanish.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/mlc/mlc_undergraduate_spanish.html",
+  "programChecks": {
+    "totalCourses": 5,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Five courses in Spanish language, literature and culture, selected with the Spanish advisor.",
+    "SPAN 101 and SPAN 102 do NOT count toward the Spanish minor - the groups below start at SPAN 151.",
+    "The Spanish minor allows a maximum of TWO transfer courses (AP, IB or education abroad).",
+    "The one four-credit SPAN 202+ course must be taken at the University of Rochester regardless of study-abroad credits - the planner cannot tell where a course was taken."
+  ],
+  "requirementGroups": [
+    {
+      "id": "upper-elective",
+      "label": "One 4-credit SPAN course numbered 202 or above, taken at UR",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 1,
+        "filter": {
+          "depts": [
+            "SPAN"
+          ],
+          "minNumber": 202,
+          "maxNumber": 399,
+          "minCredits": 4
+        }
+      },
+      "sourceQuote": "All minors, regardless of study-abroad credits, must take a minimum of one four-credit Spanish elective course numbered SPAN 202 or above at the University of Rochester."
+    },
+    {
+      "id": "courses",
+      "label": "Four further Spanish courses",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 4,
+        "filter": {
+          "depts": [
+            "SPAN"
+          ],
+          "minNumber": 151,
+          "maxNumber": 399
+        }
+      },
+      "sourceQuote": "A total of five courses in Spanish language, literature, and culture, to be selected in consultation with the Spanish advisor. A minor may start with SPAN 151 and can include SPAN 152, SP 200, and other 200-level courses."
+    }
+  ],
+  "upperLevelWriting": null
+}

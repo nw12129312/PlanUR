@@ -1,0 +1,60 @@
+{
+  "id": "minor-mas-ling",
+  "type": "minor",
+  "name": "Music and Linguistics",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "social-sciences",
+  "departments": [
+    "BCSC",
+    "LING",
+    "MUSC"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.rochester.edu/college/mas/minor.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/mas/college_mas_minor.html",
+  "programChecks": {
+    "totalCourses": 6,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Six courses. Offered through the Music and Sound Initiative; satisfies the social sciences division of the Rochester Curriculum.",
+    "DEPARTMENT-CODE TRANSLATION: the Music and Sound Initiative page writes 'BCS', 'LIN' and 'MUR' where the registrar's catalog uses BCSC, LING and MUSC. All codes here are translated.",
+    "No more than two courses may overlap with the student's major or another minor.",
+    "Eastman School music theory courses are acceptable in place of MUSC 111 or MUSC 112."
+  ],
+  "requirementGroups": [
+    {
+      "id": "core",
+      "label": "Required courses",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "BCSC 260",
+          "LING 110",
+          "MUSC 111",
+          "MUSC 112"
+        ]
+      },
+      "sourceQuote": "Music and Linguistics Minor ... All four of the following: BCS 260: Music and the Mind; LIN 110: Introduction to Linguistic Analysis; MUR 111: Theory I; MUR 112: Theory II"
+    },
+    {
+      "id": "electives",
+      "label": "Two linguistics electives",
+      "rule": {
+        "type": "n_of",
+        "n": 2,
+        "options": [
+          "LING 210",
+          "LING 220",
+          "LING 225",
+          "LING 227"
+        ]
+      },
+      "sourceQuote": "Plus two of the following: LIN 210: Introduction to Language Sound Systems; LIN 220: Introduction to Grammatical Systems; LIN 225: Introduction to Semantic Analysis; LIN 227: Topics in Phonetics and Phonology"
+    }
+  ],
+  "upperLevelWriting": null
+}

@@ -1,0 +1,114 @@
+{
+  "id": "minor-rust",
+  "type": "minor",
+  "name": "Russian Studies",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "humanities",
+  "departments": [
+    "RUSS",
+    "HIST",
+    "PSCI"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/mlc/undergraduate/russian-studies.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/mlc/mlc_undergraduate_russian-studies.html",
+  "programChecks": {
+    "totalCourses": 5,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Five courses. This is the interdisciplinary Russian Studies minor, distinct from the Russian language minor (minor-russ) and from the Russian Studies MAJOR (major-rust-ba).",
+    "DIVISION IS YOUR CHOICE: 'The Russian studies major and minor can be counted in either humanities or social sciences, depending on your choice of courses (to count as social science, the majority of courses must be taken in history, international relations and political science).' Filed here under humanities.",
+    "COURSE LISTS ARE IN AN UNCAPTURED PDF - NEEDS VERIFICATION: the page names the categories but points to a 'complete list of Russian courses' PDF for the courses themselves. The history and political-science groups therefore accept any HIST or PSCI course; check every choice against the department list or with a Russian advisor."
+  ],
+  "requirementGroups": [
+    {
+      "id": "language",
+      "label": "One Russian language course at the 151 level or higher",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 1,
+        "filter": {
+          "depts": [
+            "RUSS"
+          ],
+          "minNumber": 151,
+          "maxNumber": 399
+        }
+      },
+      "sourceQuote": "One Russian language course at the 151-level or higher"
+    },
+    {
+      "id": "literature",
+      "label": "One survey course in Russian literature",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 1,
+        "filter": {
+          "depts": [
+            "RUSS"
+          ],
+          "minNumber": 200,
+          "maxNumber": 399
+        }
+      },
+      "sourceQuote": "One survey course in Russian literature",
+      "note": "Must be a literature survey - the planner accepts any 200-level RUSS course."
+    },
+    {
+      "id": "history",
+      "label": "One survey course in Russian history",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 1,
+        "filter": {
+          "depts": [
+            "HIST"
+          ],
+          "minNumber": 100,
+          "maxNumber": 399
+        }
+      },
+      "sourceQuote": "One survey course in Russian history",
+      "note": "Must be Russia-focused - the planner accepts any HIST course."
+    },
+    {
+      "id": "specialized",
+      "label": "One specialized course in Russian history or literature",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 1,
+        "filter": {
+          "depts": [
+            "RUSS",
+            "HIST"
+          ],
+          "minNumber": 200,
+          "maxNumber": 399
+        }
+      },
+      "sourceQuote": "One course in a more specialized area of Russian history or literature"
+    },
+    {
+      "id": "psci",
+      "label": "One political science course with a Russian or IR focus",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 1,
+        "filter": {
+          "depts": [
+            "PSCI"
+          ],
+          "minNumber": 100,
+          "maxNumber": 399
+        }
+      },
+      "sourceQuote": "One political science course with a Russian or international relations focus",
+      "note": "Must carry a Russian or international-relations focus - the planner accepts any PSCI course."
+    }
+  ],
+  "upperLevelWriting": null
+}

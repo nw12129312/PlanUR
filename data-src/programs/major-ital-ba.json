@@ -1,0 +1,93 @@
+{
+  "type": "major",
+  "degree": "BA",
+  "school": "sas",
+  "division": "humanities",
+  "status": "ACTIVE",
+  "sourcedOn": "2026-08-01",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": [
+    "social-sciences",
+    "natural-sciences"
+  ],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "id": "major-ital-ba",
+  "name": "Italian",
+  "departments": [
+    "ITAL"
+  ],
+  "sourceUrl": "https://www.sas.rochester.edu/mlc/undergraduate/italian.html",
+  "snapshot": "data-src/pages/mlc/mlc_undergraduate_italian.html",
+  "programChecks": {
+    "totalCourses": 11,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Eleven courses: two foundation, five core, four electives.",
+    "NOT auto-enforced: at least one elective should be in literature prior to the 16th century.",
+    "The page also lists Eastman (HUM 281-x) and other-department courses eligible as electives; only ITAL courses are modeled."
+  ],
+  "requirementGroups": [
+    {
+      "id": "foundation",
+      "label": "Foundation courses (fulfil upper-level writing)",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "CLTR 200",
+          "CLTR 389"
+        ]
+      },
+      "sourceQuote": "FOUNDATION COURSES (fulfills upper level writing): CLTR 200: Topics in Critical Thinking; CLTR 389: MLC Research Seminar"
+    },
+    {
+      "id": "core",
+      "label": "Core courses",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "ITAL 151",
+          "ITAL 152",
+          "ITAL 200",
+          "ITAL 202",
+          "ITAL 203",
+          "ITAL 220"
+        ]
+      },
+      "sourceQuote": "CORE COURSES (five): ITAL 151: Intermediate Italian I; ITAL 152: Intermediate Italian II; ITAL 200: Advanced Italian Composition and Conversation; ITAL 202: Introduction to Italian Culture in Italian; ITAL 203: Introduction to Italian Literature; ITAL 220: Dante's Divine Comedy Part I"
+    },
+    {
+      "id": "electives",
+      "label": "Italian electives (4)",
+      "rule": {
+        "type": "n_of",
+        "n": 4,
+        "options": [
+          "ITAL 207",
+          "ITAL 221",
+          "ITAL 222",
+          "ITAL 229",
+          "ITAL 242",
+          "ITAL 243",
+          "ITAL 246",
+          "ITAL 247",
+          "ITAL 260"
+        ]
+      },
+      "sourceQuote": "ELECTIVE COURSES (four): Students can choose any four courses among the following. At least one of these should be in literature prior to the 16th century. ITAL 207; ITAL 221; ITAL 222; ITAL 229; ITAL 242; ITAL 243; ITAL 246; ITAL 247; ITAL 260"
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "CLTR 200 and CLTR 389",
+    "rule": {
+      "type": "all_of",
+      "courses": [
+        "CLTR 200",
+        "CLTR 389"
+      ]
+    },
+    "sourceQuote": "FOUNDATION COURSES (fulfill upper level writing)"
+  }
+}

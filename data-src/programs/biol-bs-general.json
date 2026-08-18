@@ -1,0 +1,301 @@
+{
+ "id": "biol-bs-general",
+ "type": "major",
+ "name": "Biological Sciences: General (BSG) Track",
+ "degree": "BS",
+ "school": "sas",
+ "division": "natural-sciences",
+ "departments": [
+  "BIOL"
+ ],
+ "status": "ACTIVE",
+ "sourceUrl": "https://www.sas.rochester.edu/bio/undergraduate/bsg.html",
+ "sourcedOn": "2026-07-06",
+ "last_verified": "2026-07-06",
+ "snapshot": "data-src/pages/bio/bio_undergraduate_bsg.html",
+ "clustersRequired": 2,
+ "allowedClusterDivisions": [
+  "humanities",
+  "social-sciences"
+ ],
+ "totalCreditsOverride": null,
+ "overlapCapOverride": null,
+ "apIbCreditExcluded": true,
+ "minMajorGPA": 2.0,
+ "minPctFromHomeInstitution": 50,
+ "notes": [
+  "AP Biology (4/5) and IB Biology HL (6/7) earn general credit only - never major/minor requirements (encoded: apIbCreditExcluded).",
+  "UR courses must fulfill at least half the concentration requirements; ancillary-field courses are exempt (encoded: minPctFromHomeInstitution + per-group ancillary flags).",
+  "Maintain a 2.0 GPA within the major, excluding allied/ancillary field courses (minMajorGPA - informational: the app does not track grades).",
+  "The BSG track does not count PHLT 394E toward the ULW requirement."
+ ],
+ "requirementGroups": [
+  {
+   "id": "intro",
+   "label": "Introductory biology",
+   "rule": {
+    "type": "all_of",
+    "courses": [
+     "BIOL 110L",
+     "BIOL 111L"
+    ]
+   },
+   "sourceQuote": "BIOL 110L/098: Principles of Biology I with Lab; BIOL 111L/099: Principles of Biology II with Lab"
+  },
+  {
+   "id": "genetics",
+   "label": "Genetics",
+   "rule": {
+    "type": "n_of",
+    "n": 1,
+    "options": [
+     "BIOL 198",
+     "BIOL 190"
+    ]
+   },
+   "sourceQuote": "BIOL 198 & 198P: Principles of Genetics with Lab; BIOL 190 & 198P: Genetics: From Mendel to Molecules with Lab",
+   "note": "Judgment call: modeled as a one-slot choice (n_of), not an equivalency group - both feed the same downstream requirements."
+  },
+  {
+   "id": "genetics-lab",
+   "label": "Genetics lab",
+   "rule": {
+    "type": "all_of",
+    "courses": [
+     "BIOL 198P"
+    ]
+   },
+   "sourceQuote": "BIO 198P: Principles of Genetics Lab"
+  },
+  {
+   "id": "lab-2",
+   "label": "Second laboratory experience",
+   "rule": {
+    "type": "n_of",
+    "n": 1,
+    "options": [
+     "BIOL 225",
+     "MBI 221W",
+     "BIOL 268",
+     "BCH 308",
+     "NSCI 203"
+    ]
+   },
+   "sourceQuote": "Plus, one of the following: BIOL 225; MBI 221W; BIOL 268; BCH 308; NSCI 203; #### 395: Independent Research",
+   "note": "Independent research (395) also qualifies with approval - not auto-modeled."
+  },
+  {
+   "id": "core-biochem",
+   "label": "Core: biochemistry",
+   "rule": {
+    "type": "n_of",
+    "n": 1,
+    "options": [
+     "BIOL 250",
+     "BIOL 250P",
+     "BIOL 252"
+    ]
+   },
+   "sourceQuote": "Select one of the following Biochemistry courses: BIOL 250; BIOL 250P; BIOL 252"
+  },
+  {
+   "id": "core-eco",
+   "label": "Core: evolution/ecology",
+   "rule": {
+    "type": "n_of",
+    "n": 1,
+    "options": [
+     "BIOL 205",
+     "BIOL 260",
+     "BIOL 263",
+     "BIOL 267"
+    ]
+   },
+   "sourceQuote": "Select one of the following: BIOL 205: Evolution; BIOL 260: Animal Behavior; BIOL 263: Ecology; BIOL 267: Human Evolutionary Genetics"
+  },
+  {
+   "id": "core-cell",
+   "label": "Core: physiology/cell/development",
+   "rule": {
+    "type": "n_of",
+    "n": 1,
+    "options": [
+     "BIOL 204",
+     "BIOL 210",
+     "BIOL 226"
+    ]
+   },
+   "sourceQuote": "Select one of the following: BIOL 204: Principles of Physiology; BIOL 210: Cell Biology; BIOL 226: Developmental Biology"
+  },
+  {
+   "id": "advanced",
+   "label": "Advanced electives (3)",
+   "rule": {
+    "type": "n_of",
+    "n": 3,
+    "optionsRef": "bio-div:bsg"
+   },
+   "sourceQuote": "Select three courses from the BSG advanced electives list.",
+   "note": "Options from the BSG page's Fall/Spring advanced electives list; at least one advanced/core course must emphasize primary literature (coordinator-determined, not auto-enforced)."
+  },
+  {
+   "id": "chem-gen",
+   "label": "General chemistry",
+   "rule": {
+    "type": "all_of",
+    "courses": [
+     "CHEM 131",
+     "CHEM 132"
+    ]
+   },
+   "sourceQuote": "Both of the following general chemistry courses: CHEM 131: Chemical Concepts I with Lab; CHEM 132: Chemical Concepts II with Lab",
+   "ancillary": true
+  },
+  {
+   "id": "chem-2-alt",
+   "label": "General chemistry II alternative",
+   "rule": {
+    "type": "n_of",
+    "n": 1,
+    "options": [
+     "CHEM 132",
+     "CHEM 171"
+    ]
+   },
+   "sourceQuote": "One of the following general chemistry II courses: CHEM 132; CHEM 171",
+   "note": "Overlaps general chemistry above per the page's CHEM 171/172 first-year-organic pathway.",
+   "ancillary": true,
+   "allowReuse": true
+  },
+  {
+   "id": "orgo-1",
+   "label": "Organic chemistry I (one path)",
+   "rule": {
+    "type": "sequence_one_of",
+    "sequences": [
+     [
+      "CHEM 203",
+      "CHEM 207"
+     ],
+     [
+      "CHEM 171",
+      "CHEM 173"
+     ]
+    ]
+   },
+   "sourceQuote": "One of the following organic chemistry I courses: CHEM 203/207: Organic Chemistry I with Lab; CHEM 171/173: First Year Organic Chemistry I with Lab",
+   "note": "Alternate-rigor paths - also enforced by the orgo-sequence equivalency group (mixing paths is flagged).",
+   "ancillary": true
+  },
+  {
+   "id": "phys-1",
+   "label": "Physics I",
+   "rule": {
+    "type": "n_of",
+    "n": 1,
+    "options": [
+     "PHYS 113",
+     "PHYS 121",
+     "PHYS 141"
+    ]
+   },
+   "sourceQuote": "One of the following physics I courses: PHYS 113: General Physics I with Lab; PHYS 121: Mechanics with Lab; PHYS 141: Mechanics (Honors) with Lab",
+   "note": "Alternate-rigor variants - also enforced by the intro-physics equivalency group.",
+   "ancillary": true
+  },
+  {
+   "id": "phys-prog",
+   "label": "Physics II or programming (within ancillary electives)",
+   "rule": {
+    "type": "n_of",
+    "n": 2,
+    "options": [
+     "MATH 150",
+     "MATH 164",
+     "MATH 165",
+     "BIOL 208",
+     "CSC 161",
+     "CSC 170",
+     "CSC 171",
+     "CHEM 204",
+     "CHEM 208",
+     "PHYS 114",
+     "PHYS 122",
+     "PHYS 142",
+     "STAT 201",
+     "STAT 216",
+     "STAT 277",
+     "EESC 201"
+    ]
+   },
+   "sourceQuote": "Select two of the following ancillary electives: Math: MATH 150, 164, or 165; Computer programming: BIOL 208, CSC 161, 170, or 171; Organic chemistry: CHEM 204 ..., 208, or 172/210; Physics: PHYS 114, 122, or 142; Statistics: STAT 201, 216, or 277; Earth and environmental science: EESC 201",
+   "ancillary": true
+  },
+  {
+   "id": "calc-1",
+   "label": "Calculus I",
+   "rule": {
+    "type": "n_of",
+    "n": 1,
+    "options": [
+     "MATH 141",
+     "MATH 161",
+     "MATH 171"
+    ]
+   },
+   "sourceQuote": "One of the following calculus I courses: MATH 141: Calculus I; MATH 161: Calculus IA; MATH 171Q: Honors Calculus I",
+   "note": "Page lists MATH 171Q; the catalog code is MATH 171. Only Calc I is required here (not the full sequence); the calc-sequence equivalency group still prevents mixing paths.",
+   "ancillary": true
+  },
+  {
+   "id": "calc-2",
+   "label": "Calculus II",
+   "rule": {
+    "type": "n_of",
+    "n": 1,
+    "options": [
+     "MATH 142",
+     "MATH 162",
+     "MATH 172"
+    ]
+   },
+   "sourceQuote": "One of the following calculus II courses: MATH 142: Calculus II; MATH 162: Calculus IIA; MATH 172Q: Honors Calculus II",
+   "note": "Page lists MATH 172Q; catalog code MATH 172.",
+   "ancillary": true
+  },
+  {
+   "id": "stat",
+   "label": "Statistics",
+   "rule": {
+    "type": "n_of",
+    "n": 1,
+    "options": [
+     "STAT 180",
+     "STAT 190"
+    ]
+   },
+   "sourceQuote": "One of the following statistics courses: STAT 180 (formerly STAT 212); STAT 190 (formerly STAT 213)",
+   "ancillary": true
+  }
+ ],
+ "upperLevelWriting": {
+  "label": "Two ULW courses (biological/natural sciences)",
+  "rule": {
+   "type": "n_from_filter",
+   "n": 2,
+   "filter": {
+    "depts": [
+     "BIOL",
+     "BCH",
+     "MBI",
+     "NSCI"
+    ],
+    "minNumber": 200,
+    "maxNumber": 499,
+    "wOnly": true
+   }
+  },
+  "sourceQuote": "All biology majors must complete two ULW courses. ... Writing courses within the humanities and social sciences cannot be applied to the biology major.",
+  "note": "Department-scoped filter: one natural-sciences W course outside these departments may count with adviser permission (CHEM 210W for biochemistry majors); humanities/social-science W courses never count."
+ }
+}

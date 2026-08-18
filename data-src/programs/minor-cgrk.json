@@ -1,0 +1,42 @@
+{
+  "id": "minor-cgrk",
+  "type": "minor",
+  "name": "Greek",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "humanities",
+  "departments": [
+    "CGRK"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/rel/undergraduate/minors.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/rel/rel_undergraduate_minors.html",
+  "programChecks": {
+    "totalCourses": 6,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Six CGRK courses; the elementary sequence (CGRK 101 and 102) counts."
+  ],
+  "requirementGroups": [
+    {
+      "id": "courses",
+      "label": "Six Greek courses",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 6,
+        "filter": {
+          "depts": [
+            "CGRK"
+          ],
+          "minNumber": 100,
+          "maxNumber": 399
+        }
+      },
+      "sourceQuote": "Minor In Greek: Six courses in Greek (CGRK); may include 101 and 102."
+    }
+  ],
+  "upperLevelWriting": null
+}

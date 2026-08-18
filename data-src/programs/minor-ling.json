@@ -1,0 +1,34 @@
+{
+  "id": "minor-ling",
+  "type": "minor",
+  "name": "Linguistics",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "social-sciences",
+  "departments": ["LING"],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/lin/undergraduate/minor.html",
+  "sourcedOn": "2026-08-01",
+  "snapshot": "data-src/pages/lin/lin_undergraduate_minor.html",
+  "programChecks": { "totalCourses": 5, "minFromDepts": null, "max100Level": null },
+  "notes": [
+    "Five courses: the four introductory core courses plus one linguistics elective.",
+    "The department offers both technical 200+ level courses and 100-level courses that need no technical background; either may serve as the elective."
+  ],
+  "requirementGroups": [
+    {
+      "id": "core",
+      "label": "Core courses",
+      "rule": { "type": "all_of", "courses": ["LING 110", "LING 210", "LING 220", "LING 225"] },
+      "sourceQuote": "Minor Courses: LING 110 Intro to Linguistic Analysis; LING 210(W) Intro to Language Sound Systems; LING 220 Intro to Syntax; LING 225 Intro to Semantic Analysis"
+    },
+    {
+      "id": "elective",
+      "label": "Linguistics elective",
+      "rule": { "type": "n_from_filter", "n": 1,
+                "filter": { "depts": ["LING"], "minNumber": 102, "maxNumber": 399,
+                            "exclude": ["LING 110", "LING 210", "LING 220", "LING 225"] } },
+      "sourceQuote": "One linguistics elective. The Department of Linguistics offers both technical courses in formal linguistics (200+ level) and courses that do not require technical background in linguistics and address issues in human society from a linguist's perspective (100 level)."
+    }
+  ]
+}

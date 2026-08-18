@@ -1,0 +1,83 @@
+{
+  "id": "minor-relc",
+  "type": "minor",
+  "name": "Religion",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "humanities",
+  "departments": [
+    "RELC"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/rel/undergraduate/minors.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/rel/rel_undergraduate_minors.html",
+  "programChecks": {
+    "totalCourses": 5,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Five courses: a scripture course, a religious-history course, and three further religion courses chosen with your departmental advisor.",
+    "RELC 293 (Theories of Religion) is named on the page but is absent from the 2025-26 catalog."
+  ],
+  "requirementGroups": [
+    {
+      "id": "scripture",
+      "label": "Hebrew Bible or New Testament",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "RELC 101",
+          "RELC 102"
+        ]
+      },
+      "sourceQuote": "Minor in Religion: RELC 101: Introduction to the Hebrew Bible or RELC 102: Introduction to the New Testament"
+    },
+    {
+      "id": "tradition",
+      "label": "One course in the history of a religious tradition",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "RELC 103",
+          "RELC 104",
+          "RELC 105",
+          "RELC 106",
+          "RELC 107",
+          "RELC 293"
+        ]
+      },
+      "sourceQuote": "One course in the history of a religious tradition: RELC 103: History of Judaism; RELC 104: History of Christianity; RELC 105: Asian Search for Self; RELC 106: From Confucius to Zen; RELC 107: History of Islam; RELC 293: Theories of Religion"
+    },
+    {
+      "id": "electives",
+      "label": "Three further religion courses",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 3,
+        "filter": {
+          "depts": [
+            "RELC"
+          ],
+          "minNumber": 100,
+          "maxNumber": 399,
+          "exclude": [
+            "RELC 101",
+            "RELC 102",
+            "RELC 103",
+            "RELC 104",
+            "RELC 105",
+            "RELC 106",
+            "RELC 107",
+            "RELC 293"
+          ]
+        }
+      },
+      "sourceQuote": "Three other courses in religion, selected in consultation with the student's advisor in the department"
+    }
+  ],
+  "upperLevelWriting": null
+}

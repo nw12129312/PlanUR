@@ -1,0 +1,82 @@
+{
+  "id": "minor-ame",
+  "type": "minor",
+  "name": "Audio and Music Engineering",
+  "degree": "Minor",
+  "school": "hajim",
+  "division": "engineering",
+  "departments": [
+    "AME"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.hajim.rochester.edu/ame/undergraduate/minor.html",
+  "sourcedOn": "2026-08-01",
+  "snapshot": "data-src/pages/ame/ame_undergraduate_minor.html",
+  "programChecks": {
+    "totalCourses": 5,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "18-20 credit hours in AME and closely related fields. AME 140 is required of all minors and is modeled separately, so each track below lists the four courses that follow it.",
+    "The Recording and Sound Design and Musical Acoustics tracks additionally require 'one additional track course' from the department's Additional Track Courses list - NOT modeled, so those two tracks are one course short of the published total.",
+    "AME 227 can also fulfil upper-level writing if taken as HIST 227W.",
+    "The Audio Electronics and Audio Computing tracks list 'ECE 141'; the Audio Signal Processing track lists the same course as 'AME 141'. AME 141 is used here, matching the major's course list.",
+    "ECE 114 may be replaced by CSC 171 in the Audio Computing track."
+  ],
+  "requirementGroups": [
+    {
+      "id": "basic",
+      "label": "Basic requirement",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "AME 140"
+        ]
+      },
+      "sourceQuote": "All students declaring a minor in AME must complete the following course: AME 140: Introduction to Audio and Music Engineering"
+    },
+    {
+      "id": "track",
+      "label": "AME minor track",
+      "rule": {
+        "type": "track_n_of",
+        "n": 4,
+        "tracks": {
+          "Recording and Sound Design": [
+            "AME 191",
+            "AME 193",
+            "AME 242",
+            "AME 227",
+            "AME 244"
+          ],
+          "Audio Signal Processing": [
+            "AME 141",
+            "ECE 241",
+            "AME 272",
+            "AME 294"
+          ],
+          "Audio Electronics": [
+            "AME 141",
+            "ECE 113",
+            "AME 223",
+            "AME 295"
+          ],
+          "Audio Computing and Software Design": [
+            "AME 141",
+            "ECE 114",
+            "AME 262",
+            "AME 264"
+          ],
+          "Musical Acoustics": [
+            "AME 191",
+            "AME 233",
+            "AME 292"
+          ]
+        }
+      },
+      "sourceQuote": "Students must then choose one of the following AME minor tracks and corresponding course sequences: Recording and Sound Design (20 Credits Total) AME 140, AME 191, AME 193, AME 242, AME 227, AME 244, One additional track course. Audio Signal Processing (18 Credits) AME 140, AME 141, ECE 241, AME 272, AME 294. Audio Electronics (18 Credits) AME 140, ECE 141, ECE 113, AME 223, AME 295. Audio Computing and Software Design (20 Credits) AME 140, ECE 141, ECE 114 (or CSC 171), AME 262, AME 264. Musical Acoustics (18 Credits) AME 140, AME 191, AME 233, AME 292, One additional track course.",
+      "note": "AME 140 is counted in the basic-requirement group; the Musical Acoustics track lists only 3 further named courses plus an unlisted additional track course."
+    }
+  ]
+}

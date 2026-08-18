@@ -1,0 +1,112 @@
+{
+  "id": "minor-bme",
+  "type": "minor",
+  "name": "Biomedical Engineering",
+  "degree": "Minor",
+  "school": "hajim",
+  "division": "engineering",
+  "departments": [
+    "BME"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.hajim.rochester.edu/bme/undergraduate/minor.html",
+  "sourcedOn": "2026-08-01",
+  "snapshot": "data-src/pages/bme/bme_undergraduate_minor.html",
+  "programChecks": {
+    "totalCourses": 6,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "Open to all majors. No more than two of the minor's courses may also satisfy requirements in the student's major.",
+    "All students must fulfil the basic math requirement (MATH 161/162/165, or MATH 141/142/143, or these combined with Math AP credit) - these are prerequisites, not part of the minor's courses.",
+    "BME 101 may be substituted by another four-credit BME-related course at a faculty adviser's discretion.",
+    "BME 211, BME 258, and BME 459 count as LIFE SCIENCE courses and cannot be used for the engineering requirement.",
+    "The engineering requirement is 12 credits: eight BME credits plus four additional engineering credits. 400-level BME and cross-listed courses may be included."
+  ],
+  "requirementGroups": [
+    {
+      "id": "math",
+      "label": "Basic mathematics",
+      "rule": {
+        "type": "sequence_one_of",
+        "sequences": [
+          [
+            "MATH 161",
+            "MATH 162",
+            "MATH 165"
+          ],
+          [
+            "MATH 141",
+            "MATH 142",
+            "MATH 143"
+          ]
+        ]
+      },
+      "sourceQuote": "All students that propose a minor in biomedical engineering must fulfill the basic math requirements (MATH 161, MATH 162, MATH 165 or MATH 141, MATH 142, MATH 143 or these in combination with Math AP credit)."
+    },
+    {
+      "id": "life-science-intro",
+      "label": "Introductory life science",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "BIOL 110",
+          "BIOL 110L",
+          "BIOL 112",
+          "BIOL 112L"
+        ]
+      },
+      "sourceQuote": "Students must complete two life science courses (i.e., biology, microbiology, neuroscience). Students can use one of the following: BIOL 110: Principles of Biology I; BIOL 112; AP Biology"
+    },
+    {
+      "id": "life-science-second",
+      "label": "Second life science course",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "BME 211",
+          "BME 258",
+          "BIOL 111",
+          "BIOL 111L",
+          "BIOL 113L"
+        ]
+      },
+      "sourceQuote": "Plus, one other life science to meet the two life science course requirement, including BME 211: Cellular and Molecular Biology Foundations, or BME 258: Human Anatomy."
+    },
+    {
+      "id": "intro",
+      "label": "Introduction to Biomedical Engineering",
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "BME 101"
+        ]
+      },
+      "sourceQuote": "BME 101: Introduction to Biomedical Engineering (four credits) is a first-year or sophomore course. Faculty advisers have the flexibility of substituting this requirement for another four credit BME-related course."
+    },
+    {
+      "id": "engineering",
+      "label": "Engineering courses (12 credits)",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 3,
+        "filter": {
+          "depts": [
+            "BME"
+          ],
+          "minNumber": 200,
+          "maxNumber": 399,
+          "exclude": [
+            "BME 211",
+            "BME 258"
+          ]
+        }
+      },
+      "sourceQuote": "Engineering Courses (12 Credit Hours): Eight biomedical engineering credits and four additional engineering credits are required. BME 211, BME 258, and BME 459 can NOT be used for this requirement, as they are life science courses.",
+      "note": "Stated in credits; modeled as three 4-credit courses. The page allows the fourth-credit block to come from another engineering department."
+    }
+  ]
+}

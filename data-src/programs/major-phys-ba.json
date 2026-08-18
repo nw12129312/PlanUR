@@ -1,0 +1,79 @@
+{
+  "id": "major-phys-ba",
+  "type": "major",
+  "name": "Physics",
+  "degree": "BA",
+  "school": "sas",
+  "division": "natural-sciences",
+  "departments": ["PHYS"],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/pas/undergraduate/BA-physics.html",
+  "sourcedOn": "2026-08-01",
+  "snapshot": "data-src/pages/pas/pas_undergraduate_BA-physics.html",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": ["humanities", "social-sciences"],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "minMajorGPA": 2.0,
+  "programChecks": { "totalCourses": null, "minFromDepts": null, "max100Level": null },
+  "notes": [
+    "The department page writes course codes as PHY / MTH; the registrar catalog this app is built from uses PHYS / MATH, which is the form used here.",
+    "At least a 2.0 (C) average in astronomy, physics and mathematics courses must be maintained. All course choices must be approved by the undergraduate physics advisor.",
+    "The BA is the broader, more flexible degree; students aiming at graduate school in physics should consider the BS.",
+    "The 'eight additional credit hours' group is modeled as two 200-300 level technical courses in physics, astronomy, mathematics, or another science/engineering department - the page states credit hours rather than a course count.",
+    "Graduate-level courses generally cannot be substituted for undergraduate core requirements."
+  ],
+  "requirementGroups": [
+    {
+      "id": "precon-calc",
+      "label": "Pre-concentration: calculus sequence",
+      "rule": { "type": "sequence_one_of", "sequences": [
+        ["MATH 161", "MATH 162", "MATH 164", "MATH 165"],
+        ["MATH 171", "MATH 172", "MATH 173", "MATH 174"]] },
+      "sourceQuote": "One of the following calculus sequences: MTH 161, 162, 164, and 165; MTH 171, 172, 173, and 174"
+    },
+    {
+      "id": "precon-physics",
+      "label": "Pre-concentration: introductory physics (3)",
+      "rule": { "type": "sequence_one_of", "sequences": [
+        ["PHYS 121", "PHYS 122", "PHYS 123"],
+        ["PHYS 141", "PHYS 142", "PHYS 143"]] },
+      "sourceQuote": "Three introductory physics courses: PHY 121 or PHY 141; PHY 122 or PHY 142; PHY 123 or PHY 143"
+    },
+    {
+      "id": "core",
+      "label": "Core physics courses",
+      "rule": { "type": "all_of", "courses": ["PHYS 217", "PHYS 235W", "PHYS 237"] },
+      "sourceQuote": "PHY 217: Electricity and Magnetism I; PHY 235W: Classical Mechanics; PHY 237: Quantum Mechanics of Physical Systems"
+    },
+    {
+      "id": "core-choice",
+      "label": "One further core course",
+      "rule": { "type": "n_of", "n": 1, "options": [
+        "PHYS 218", "PHYS 227", "PHYS 243W", "PHYS 245W", "PHYS 246"] },
+      "sourceQuote": "One of the following: PHY 218: Electricity and Magnetism II; PHY 227: Thermodynamics and Statistical Mechanics; PHY 243W: Advanced Experimental Techniques I; PHY 245W: The Advanced Nuclear Science Education Laboratory; PHY 246: Quantum Theory"
+    },
+    {
+      "id": "phys-astr-elective",
+      "label": "One 200-300 level physics or astronomy course",
+      "rule": { "type": "n_from_filter", "n": 1,
+                "filter": { "depts": ["PHYS", "ASTR"], "minNumber": 200, "maxNumber": 399, "minCredits": 4 } },
+      "sourceQuote": "One four-credit 200-300 level physics and/or astronomy course."
+    },
+    {
+      "id": "technical-electives",
+      "label": "Eight additional credit hours of 200-300 level technical courses",
+      "rule": { "type": "n_from_filter", "n": 2,
+                "filter": { "depts": ["PHYS", "ASTR", "MATH", "CHEM", "BIOL", "EESC", "OPT", "ME", "ECE", "BME", "CHE", "CSC"],
+                            "minNumber": 200, "maxNumber": 399, "minCredits": 4 } },
+      "sourceQuote": "Eight additional credit hours, which can be 200- or 300-level technical courses in: Physics; Astronomy; Mathematics; Another science or engineering",
+      "note": "Stated as 8 credit hours; modeled as two 4-credit courses."
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "Upper-level writing within the major",
+    "rule": { "type": "n_of", "n": 2, "options": ["PHYS 235W", "PHYS 243W", "PHYS 245W"] },
+    "sourceQuote": "PHY 235W: Classical Mechanics ... PHY 243W: Advanced Experimental Techniques I ... PHY 245W: The Advanced Nuclear Science Education Laboratory",
+    "note": "NEEDS VERIFICATION: the page does not state the ULW policy explicitly; modeled as the College's two-course norm satisfied by the major's W-designated courses."
+  }
+}

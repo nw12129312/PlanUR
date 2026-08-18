@@ -1,0 +1,78 @@
+{
+  "id": "major-math-bs",
+  "type": "major",
+  "name": "Mathematics",
+  "degree": "BS",
+  "school": "sas",
+  "division": "natural-sciences",
+  "departments": ["MATH"],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/mth/undergraduate/bs-requirements.html",
+  "sourcedOn": "2026-07-05",
+  "snapshot": "data-src/pages/mth/mth_undergraduate_bs-requirements.html",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": ["humanities", "social-sciences"],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "notes": [
+    "Foundational courses must be completed before acceptance into the major; AP credit may satisfy foundational requirements.",
+    "An honors version of a course can always be substituted for a listed course.",
+    "MATH 235 should be taken early in the major program."
+  ],
+  "requirementGroups": [
+    {
+      "id": "calc-1-2",
+      "label": "Foundations: Calculus I-II",
+      "rule": { "type": "sequence_one_of", "sequences": [
+        ["MATH 161", "MATH 162"], ["MATH 141", "MATH 142", "MATH 143"], ["MATH 171", "MATH 172"]] },
+      "sourceQuote": "MATH 161: Calculus IA; MATH 162: Calculus IIA ... MATH 141-143 for MATH 161-162"
+    },
+    {
+      "id": "multivar",
+      "label": "Foundations: multidimensional calculus",
+      "rule": { "type": "n_of", "n": 1, "options": ["MATH 164", "MATH 174"] },
+      "sourceQuote": "MATH 164: Multidimensional Calculus (MATH 171, 172, and 174 for the equivalent MATH 161, 162, and 164)"
+    },
+    {
+      "id": "linalg-de",
+      "label": "Foundations: linear algebra with differential equations",
+      "rule": { "type": "n_of", "n": 1, "options": ["MATH 165", "MATH 163", "MATH 173"] },
+      "sourceQuote": "MATH 165: Linear Algebra with Differential Equations (MATH 163 for MATH 165; MATH 173 for MATH 165)"
+    },
+    {
+      "id": "core-linalg",
+      "label": "Core: linear algebra",
+      "rule": { "type": "n_of", "n": 1, "options": ["MATH 235", "MATH 173"] },
+      "sourceQuote": "MATH 235: Linear Algebra* ... can also be satisfied by completing MATH 173"
+    },
+    {
+      "id": "core",
+      "label": "Core: algebra, topology, analysis, complex variables",
+      "rule": { "type": "all_of", "courses": ["MATH 236", "MATH 240", "MATH 265", "MATH 282"] },
+      "sourceQuote": "Students must complete the following five courses: MATH 235 ...; MATH 236: Introduction to Algebra I; MATH 240: Introduction to Topology; MATH 265: Functions of a Real Variable I; MATH 282: Introduction to Complex Variables with Applications"
+    },
+    {
+      "id": "advanced-math",
+      "label": "Advanced mathematics courses (4)",
+      "rule": { "type": "n_from_filter", "n": 4,
+                "filter": { "depts": ["MATH"], "minNumber": 200, "maxNumber": 499, "minCredits": 4,
+                            "exclude": ["MATH 235", "MATH 236", "MATH 240", "MATH 265", "MATH 282"] } },
+      "sourceQuote": "students must complete six 4-credit advanced courses as follows: Four advanced mathematics courses* ... Any mathematics course numbered 200 or above (excluding core and 500+ level courses)"
+    },
+    {
+      "id": "advanced-related",
+      "label": "Advanced courses with substantial mathematical content (2)",
+      "rule": { "type": "n_from_filter", "n": 2,
+                "filter": { "depts": ["MATH", "STAT", "CSC", "PHYS", "DSCC", "ECE", "ECON", "OPT", "ME"], "minNumber": 200, "maxNumber": 499, "minCredits": 4 } },
+      "sourceQuote": "Two additional advanced courses with substantial mathematical content",
+      "note": "NEEDS VERIFICATION: which departments/courses count as 'substantial mathematical content' is adviser-approved; the department filter here is an approximation."
+    }
+  ],
+  "upperLevelWriting": {
+    "label": "Two upper-level writing courses",
+    "rule": { "type": "n_from_filter", "n": 2,
+              "filter": { "depts": ["MATH"], "minNumber": 200, "maxNumber": 499, "wOnly": true } },
+    "sourceQuote": "students must pass two upper level writing courses of a certain type",
+    "note": "NEEDS VERIFICATION: the handbook defines which writing courses qualify; W-suffix MATH courses are an approximation."
+  }
+}

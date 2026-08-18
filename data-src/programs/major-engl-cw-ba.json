@@ -1,0 +1,124 @@
+{
+  "type": "major",
+  "degree": "BA",
+  "school": "sas",
+  "division": "humanities",
+  "status": "ACTIVE",
+  "sourcedOn": "2026-08-01",
+  "clustersRequired": 2,
+  "allowedClusterDivisions": [
+    "social-sciences",
+    "natural-sciences"
+  ],
+  "totalCreditsOverride": null,
+  "overlapCapOverride": null,
+  "sourceUrl": "https://www.sas.rochester.edu/eng/undergraduate/majors/creative-writing.html",
+  "id": "major-engl-cw-ba",
+  "name": "English: Creative Writing",
+  "departments": [
+    "ENGL"
+  ],
+  "snapshot": "data-src/pages/eng/eng_undergraduate_majors_creative-writing.html",
+  "programChecks": {
+    "totalCourses": 10,
+    "minFromDepts": {
+      "depts": [
+        "ENGL"
+      ],
+      "n": 10
+    },
+    "max100Level": null
+  },
+  "notes": [
+    "Ten 4-credit courses (40 credit hours). The upper-level writing requirement is fulfilled by completion of the major.",
+    "Students must APPLY to the creative writing advisor and receive written approval to pursue this track.",
+    "NOT auto-enforced: of the four upper-level courses, two must be in British or American literature BEFORE 1800 and two AFTER 1800. The catalog records no period per course - see the department's pre-/post-1800 list.",
+    "Upper-level writing carries NO separate course requirement here: the department states it is 'fulfilled by completion of the major'. (The harvested catalog also contains no W-designated ENGL courses at the 200-300 level, so a wOnly rule could not be satisfied in any case.)"
+  ],
+  "requirementGroups": [
+    {
+      "id": "cw-intro",
+      "label": "Introductory creative writing (2)",
+      "rule": {
+        "type": "n_of",
+        "n": 2,
+        "options": [
+          "ENGL 121",
+          "ENGL 122",
+          "ENGL 123",
+          "ENGL 125"
+        ]
+      },
+      "sourceQuote": "Two of the following: ENGL 121: Creative Writing: Fiction; ENGL 122: Creative Writing: Poetry; ENGL 123: Playwriting; ENGL 125: Speculative Fiction"
+    },
+    {
+      "id": "cw-advanced",
+      "label": "Advanced creative writing",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "ENGL 275",
+          "ENGL 276",
+          "ENGL 277",
+          "ENGL 281"
+        ]
+      },
+      "sourceQuote": "One of the following courses: ENGL 275: Advanced Creative Writing: Fiction; ENGL 276: Advanced Creative Writing: Poetry; ENGL 277: Screenwriting; ENGL 281: Creative Nonfiction"
+    },
+    {
+      "id": "cw-seminar",
+      "label": "Creative writing seminar",
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "ENGL 375",
+          "ENGL 376"
+        ]
+      },
+      "sourceQuote": "One of the following: ENGL 375: Seminar in Fiction Writing; ENGL 376: Seminar in Poetry Writing"
+    },
+    {
+      "id": "surveys",
+      "label": "Survey courses (2)",
+      "rule": {
+        "type": "n_of",
+        "n": 2,
+        "options": [
+          "ENGL 112",
+          "ENGL 113",
+          "ENGL 114",
+          "ENGL 115",
+          "ENGL 116"
+        ]
+      },
+      "sourceQuote": "Two Survey Courses. Two of the following courses: ENGL 112: Classical and Scriptural Backgrounds; ENGL 113: British Literature I; ENGL 114: British Literature II; ENGL 115: American Literature; ENGL 116: Intro to African American Literature"
+    },
+    {
+      "id": "upper",
+      "label": "Upper-level literature (4)",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 4,
+        "filter": {
+          "depts": [
+            "ENGL"
+          ],
+          "minNumber": 200,
+          "maxNumber": 399,
+          "exclude": [
+            "ENGL 275",
+            "ENGL 276",
+            "ENGL 277",
+            "ENGL 281",
+            "ENGL 375",
+            "ENGL 376"
+          ]
+        }
+      },
+      "sourceQuote": "Four Upper Level Courses. Four English courses at the 200 or 300 level: Two in British or American literature before 1800; Two in British or American literature after 1800"
+    }
+  ],
+  "upperLevelWriting": null
+}

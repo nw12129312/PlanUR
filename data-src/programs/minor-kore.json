@@ -1,0 +1,67 @@
+{
+  "id": "minor-kore",
+  "type": "minor",
+  "name": "Korean",
+  "degree": "Minor",
+  "school": "sas",
+  "division": "humanities",
+  "departments": [
+    "KORE"
+  ],
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/mlc/undergraduate/korean.html",
+  "sourcedOn": "2026-08-15",
+  "snapshot": "data-src/pages/mlc/mlc_undergraduate_korean.html",
+  "programChecks": {
+    "totalCourses": 5,
+    "minFromDepts": null,
+    "max100Level": null
+  },
+  "notes": [
+    "The Korean minor takes effect in fall 2026. Five four-credit courses.",
+    "TRANSFER: one language course or one Korean/East Asian culture-and-history course may be transferred from another institution or a semester abroad; language transfer requires passing the Korean placement test.",
+    "One summer study-abroad program (KORE 107, KORE 157 or KORE 207) may replace one language course or one culture/history course.",
+    "MLC also awards a Korean Language Distinction Certificate for six or more language courses with a GPA of at least 3.3; students doing the language-only track of the minor are eligible."
+  ],
+  "requirementGroups": [
+    {
+      "id": "language",
+      "label": "Four consecutive Korean language courses",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 4,
+        "filter": {
+          "depts": [
+            "KORE"
+          ],
+          "minNumber": 101,
+          "maxNumber": 399,
+          "minCredits": 4
+        }
+      },
+      "sourceQuote": "The minor in Korean requires five four-credit courses. Students have the choice of the following two options: Option one: Take five consecutive language courses from the list of Korean language courses. Option two: Take a minimum of four consecutive Korean language courses from the list of Korean language courses, plus a minimum of one course in Korean/East Asian culture and history offered by the Department of Modern Languages and Cultures or the Program of East Asian Studies.",
+      "note": "Both options share these four; the language courses must be consecutive, which the planner cannot check."
+    },
+    {
+      "id": "fifth",
+      "label": "Fifth course: a further language course or an East Asian culture/history course",
+      "rule": {
+        "type": "n_from_filter",
+        "n": 1,
+        "filter": {
+          "depts": [
+            "KORE",
+            "CHIN",
+            "JPNS"
+          ],
+          "minNumber": 101,
+          "maxNumber": 399,
+          "minCredits": 4
+        }
+      },
+      "sourceQuote": "Option one: Take five consecutive language courses ... Option two: ... plus a minimum of one course in Korean/East Asian culture and history offered by the Department of Modern Languages and Cultures or the Program of East Asian Studies.",
+      "note": "Option two's culture/history course may also come from the East Asian Studies program outside MLC; consult the Korean program faculty when choosing it."
+    }
+  ],
+  "upperLevelWriting": null
+}
