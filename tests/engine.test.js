@@ -51,10 +51,35 @@ describe('checkPrerequisites', () => {
     expect(checkPrerequisites(plan, DATA)).toEqual([]);
   });
   it('downgrades unverified prereqs to warnings', () => {
-    const plan = fill(planWith(), 0, ['CHEM 132']); // CHEM 131 sequence, verified:false
+    const plan = fill(planWith(), 0, ['BIOL 111L']); // intro sequence, verified:false
     const vs = checkPrerequisites(plan, DATA);
     expect(byRule(vs, 'PREREQ_UNVERIFIED').length).toBe(1);
     expect(vs[0].severity).toBe('warning');
+  });
+});
+
+describe('CDCS Public Notes prerequisites', () => {
+  it('loads CSC 252 from CDCS notes (MATH 150 and CSC 172)', () => {
+    const c = coursesData['CSC 252'];
+    expect(c.prereqs).toEqual([['MATH 150'], ['CSC 172']]);
+    expect(c.prereqsVerified).toBe(true);
+    expect(c.prereqSource).toMatch(/CDCS/);
+  });
+  it('loads CSC 280 from CDCS notes (CSC 173 and MATH 150)', () => {
+    expect(coursesData['CSC 280'].prereqs).toEqual([['CSC 173'], ['MATH 150']]);
+  });
+  it('loads PHYS 113 calculus I as an OR group', () => {
+    expect(new Set(coursesData['PHYS 113'].prereqs[0])).toEqual(
+      new Set(['MATH 141', 'MATH 161', 'MATH 171']),
+    );
+  });
+  it('leaves MATH 141 and MATH 161 empty (high-school placement, not a UR course)', () => {
+    expect(coursesData['MATH 141'].prereqs).toEqual([]);
+    expect(coursesData['MATH 161'].prereqs).toEqual([]);
+  });
+  it('keeps curated CSC 171 → 172 → 173 over the CDCS MATH 150 add-on on 173', () => {
+    expect(coursesData['CSC 172'].prereqs).toEqual([['CSC 171']]);
+    expect(coursesData['CSC 173'].prereqs).toEqual([['CSC 172']]);
   });
 });
 
@@ -369,12 +394,12 @@ describe('full CS BS plan integration', () => {
       clusterIds: ['H1ENG015', 'S1ASL001'],
     });
     fill(plan, 0, ['CSC 171', 'MATH 150', 'WRTG 105', 'ENGL 121']);          // Fall 1
-    fill(plan, 1, ['CSC 172', 'MATH 161', 'ENGL 122', 'ASLA 201']);          // Spring 1
-    fill(plan, 2, ['CSC 173', 'CSC 242', 'MATH 162', 'ASLA 202']);           // Fall 2
+    fill(plan, 1, ['CSC 172', 'MATH 161', 'ENGL 122', 'ASLA 106']);          // Spring 1
+    fill(plan, 2, ['CSC 173', 'CSC 242', 'MATH 162', 'ASLA 201']);           // Fall 2
     fill(plan, 3, ['CSC 252', 'CSC 282', 'MATH 165', 'ENGL 123']);           // Spring 2
     fill(plan, 4, ['CSC 254', 'CSC 280', 'STAT 190', 'ASLA 250']);           // Fall 3
     fill(plan, 5, ['CSC 240', 'CSC 246', 'CSC 299W', 'PSCI 101']);           // Spring 3
-    fill(plan, 6, ['CSC 256', 'CSC 261', 'CSC 273W', 'HIST 200']);           // Fall 4
+    fill(plan, 6, ['CSC 256', 'CSC 261', 'CSC 273W', 'ASLA 202']);           // Fall 4
     fill(plan, 7, ['PHIL 101', 'ECON 108', 'ANTH 101', 'PSCI 106']);         // Spring 4
     const { progress, violations } = checkAll(plan, DATA);
 
