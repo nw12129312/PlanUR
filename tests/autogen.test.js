@@ -66,6 +66,29 @@ describe('autoGenerate: full plan from selections', () => {
     });
   });
 
+  it('orders CDCS-gated CS courses after their Public Notes prerequisites', () => {
+    const idx = (cid) => {
+      const i = result.plan.semesters.findIndex((s) => s.courseIds.includes(cid));
+      return i;
+    };
+    if (idx('CSC 252') >= 0) {
+      expect(idx('CSC 172')).toBeGreaterThanOrEqual(0);
+      expect(idx('MATH 150')).toBeGreaterThanOrEqual(0);
+      expect(idx('CSC 172')).toBeLessThan(idx('CSC 252'));
+      expect(idx('MATH 150')).toBeLessThan(idx('CSC 252'));
+    }
+    if (idx('CSC 280') >= 0) {
+      expect(idx('CSC 173')).toBeLessThan(idx('CSC 280'));
+      expect(idx('MATH 150')).toBeLessThan(idx('CSC 280'));
+    }
+    if (idx('STAT 190') >= 0) {
+      const calcIdx = ['MATH 141', 'MATH 161', 'MATH 171']
+        .map(idx).filter((i) => i >= 0);
+      expect(calcIdx.length).toBeGreaterThan(0);
+      expect(Math.min(...calcIdx)).toBeLessThan(idx('STAT 190'));
+    }
+  });
+
   it('tags every auto placement with a reason, unlocked', () => {
     expect(result.placements.length).toBeGreaterThan(10);
     for (const pl of result.placements) {

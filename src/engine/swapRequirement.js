@@ -314,3 +314,52 @@ export function applyRequirementOption(plan, data, { programId, groupId, courseI
     prereqsAdded,
   };
 }
+
+// Place a course from search / a plain audit add, inserting any missing
+// CDCS (or curated) prerequisites into earlier semesters.
+export function placeCourseWithPrereqs(plan, data, cid, { preferSemesterId } = {}) {
+  if (plannedCourseIds(plan).includes(cid) || plan.transfer.some((t) => t.courseId === cid)) {
+    return { plan, added: [], prereqsAdded: [], error: null };
+  }
+  let next = clonePlan(plan);
+  const added = [];
+  const reasons = new Map();
+  const prefer = [];
+  if (preferSemesterId) {
+    const i = next.semesters.findIndex((s) => s.id === preferSemesterId);
+    if (i >= 0) prefer.push(i);
+  }
+  next = ensurePlaced(next, data, cid, { prefer, added, reasons, guard: new Set() });
+  if (!plannedCourseIds(next).includes(cid)) {
+    return { plan, added: [], prereqsAdded: [], error: `Could not find a semester for ${cid}.` };
+  }
+  return {
+    plan: next,
+    added,
+    prereqsAdded: added.filter((c) => c !== cid),
+    error: null,
+  };
+}
+
+// Drag an already-placed course onto another semester. If that landing
+// would sit before a CDCS/curated prerequisite, snap to the first legal slot.
+export function relocateCourseRespectingPrereqs(plan, data, cid, semId) {
+  let next = clonePlan(plan);
+  const meta = { ...(next.courseMeta?.[cid] || {}), locked: true };
+  next = {
+    ...next,
+    semesters: next.semesters.map((s) => ({ ...s, courseIds: s.courseIds.filter((x) => x !== cid) })),
+  };
+  const want = next.semesters.findIndex((s) => s.id === semId);
+  if (want < 0) return { plan, error: 'Semester not found.' };
+  let minIdx = minIndexAfterPrereqs(next, cid, data);
+  let idx = pickSlot(next, data, cid, minIdx, [want]);
+  let safety = 4;
+  while (idx < 0 && safety-- > 0) {
+    next = addSemester(next);
+    minIdx = minIndexAfterPrereqs(next, cid, data);
+    idx = pickSlot(next, data, cid, minIdx, [want]);
+  }
+  if (idx < 0) return { plan, error: `Could not find a semester for ${cid}.` };
+  return { plan: placeIn(next, cid, idx, meta), error: null };
+}
