@@ -381,7 +381,7 @@ function generateOnce(plan, data, { scope, targetLoad, maxLoad, bans, pathPrefer
       }
     };
     for (const e of entries) {
-      if (e.kind !== 'program' && e.kind !== 'pwr') continue;
+      if (e.kind !== 'program' && e.kind !== 'pwr' && e.kind !== 'cluster') continue;
       for (const cid of e.candidates.slice(0, e.need + 2)) needSupport(cid, cid, new Set());
     }
     const allEntries = [...support, ...entries];
