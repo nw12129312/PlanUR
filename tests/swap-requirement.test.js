@@ -9,7 +9,7 @@ import { newPlan, plannedCourseIds, semesterIndexOf } from '../src/engine/model.
 import { computeProgress } from '../src/engine/progress.js';
 import { checkPrerequisites } from '../src/engine/constraints.js';
 import { checkEquivalencyConflicts } from '../src/engine/equivalency.js';
-import { describeOptionAction, applyRequirementOption } from '../src/engine/swapRequirement.js';
+import { describeOptionAction, applyRequirementOption, placeCourseWithPrereqs, relocateCourseRespectingPrereqs } from '../src/engine/swapRequirement.js';
 
 const DATA = {
   courses: coursesData, programs: programsData, clusters: clustersData,
@@ -129,5 +129,38 @@ describe('applyRequirementOption', () => {
     expect(semesterIndexOf(result.plan, 'MATH 172'))
       .toBeLessThan(semesterIndexOf(result.plan, 'MATH 173'));
     expect(checkPrerequisites(result.plan, DATA).filter((v) => v.severity === 'error')).toEqual([]);
+  });
+});
+
+describe('placeCourseWithPrereqs (CDCS ordering)', () => {
+  it('inserts CSC 172 and MATH 150 before CSC 252', () => {
+    const plan = planWith([]);
+    const result = placeCourseWithPrereqs(plan, DATA, 'CSC 252');
+    expect(result.error).toBeNull();
+    expect(result.prereqsAdded).toEqual(expect.arrayContaining(['CSC 172', 'MATH 150']));
+    expect(semesterIndexOf(result.plan, 'CSC 172'))
+      .toBeLessThan(semesterIndexOf(result.plan, 'CSC 252'));
+    expect(semesterIndexOf(result.plan, 'MATH 150'))
+      .toBeLessThan(semesterIndexOf(result.plan, 'CSC 252'));
+    expect(checkPrerequisites(result.plan, DATA).filter((v) => v.severity === 'error')).toEqual([]);
+  });
+
+  it('inserts a calculus I course before STAT 190', () => {
+    const plan = planWith([]);
+    const result = placeCourseWithPrereqs(plan, DATA, 'STAT 190');
+    expect(result.error).toBeNull();
+    const calc = ['MATH 141', 'MATH 161', 'MATH 171'];
+    expect(result.prereqsAdded.some((c) => calc.includes(c))).toBe(true);
+    const calcIdx = Math.min(...calc.map((c) => semesterIndexOf(result.plan, c)).filter((i) => i >= 0));
+    expect(calcIdx).toBeLessThan(semesterIndexOf(result.plan, 'STAT 190'));
+  });
+
+  it('snaps a drag that would land before a CDCS prerequisite', () => {
+    const plan = planWith([['CSC 171'], ['CSC 172', 'MATH 150'], ['CSC 252']]);
+    const fall1 = plan.semesters[0].id;
+    const result = relocateCourseRespectingPrereqs(plan, DATA, 'CSC 252', fall1);
+    expect(result.error).toBeNull();
+    expect(semesterIndexOf(result.plan, 'CSC 252'))
+      .toBeGreaterThan(semesterIndexOf(result.plan, 'CSC 172'));
   });
 });

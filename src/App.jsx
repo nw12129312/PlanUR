@@ -5,7 +5,7 @@ import { withProgramSwap } from './engine/pathways.js';
 import { checkAll, resolveRequiredCredits } from './engine/constraints.js';
 import { autoGenerate } from './engine/autogen.js';
 import { conflictForAdd } from './engine/equivalency.js';
-import { applyRequirementOption } from './engine/swapRequirement.js';
+import { applyRequirementOption, placeCourseWithPrereqs, relocateCourseRespectingPrereqs } from './engine/swapRequirement.js';
 import { divisionalCoverageForPlan } from './engine/coverage.js';
 // dataStore is the ONLY module that touches window.storage (and the only
 // place App reads bundled data from); see src/storage/dataStore.js.
@@ -134,16 +134,12 @@ export default function App() {
 
   const addCourse = (cid, semId) => {
     if (blockedByEquivalency(cid)) return;
-    setPlan((p) => {
-      if (p.semesters.some((s) => s.courseIds.includes(cid)) || p.transfer.some((t) => t.courseId === cid)) return p;
-      const target = semId || activeSemesterId || p.semesters.find((s) => s.courseIds.length < 5)?.id || p.semesters[0]?.id;
-      const next = {
-        ...p,
-        semesters: p.semesters.map((s) => (s.id === target ? { ...s, courseIds: [...s.courseIds, cid] } : s)),
-      };
-      // manually placed courses are locked by default
-      return touch(withCourseMeta(next, cid, { source: 'manual', locked: true, reason: null }));
-    });
+    const p = planRef.current;
+    if (p.semesters.some((s) => s.courseIds.includes(cid)) || p.transfer.some((t) => t.courseId === cid)) return;
+    const target = semId || activeSemesterId || p.semesters.find((s) => s.courseIds.length < 5)?.id || p.semesters[0]?.id;
+    const result = placeCourseWithPrereqs(p, DATA, cid, { preferSemesterId: target });
+    if (result.error) { showBlock(result.error); return; }
+    setPlan(touch(result.plan));
   };
 
   const pickRequirementOption = ({ programId, groupId, courseId }) => {
@@ -173,19 +169,18 @@ export default function App() {
 
   const dropCourse = (cid, semId, origin) => {
     if (origin === 'search' && blockedByEquivalency(cid)) return;
-    setPlan((p) => {
-      let next = { ...p, semesters: p.semesters.map((s) => ({ ...s, courseIds: s.courseIds.filter((x) => x !== cid) })) };
-      if (origin === 'search' && p.transfer.some((t) => t.courseId === cid)) return p;
-      next = {
-        ...next,
-        semesters: next.semesters.map((s) => (s.id === semId ? { ...s, courseIds: [...s.courseIds, cid] } : s)),
-      };
-      // a manual drag counts as a manual edit: lock it so regenerate keeps it
-      const meta = origin === 'search'
-        ? { source: 'manual', locked: true, reason: null }
-        : { locked: true };
-      return touch(withCourseMeta(next, cid, meta));
-    });
+    const p = planRef.current;
+    if (origin === 'search' && p.transfer.some((t) => t.courseId === cid)) return;
+    const already = p.semesters.some((s) => s.courseIds.includes(cid));
+    if (origin === 'search' && !already) {
+      const result = placeCourseWithPrereqs(p, DATA, cid, { preferSemesterId: semId });
+      if (result.error) { showBlock(result.error); return; }
+      setPlan(touch(result.plan));
+      return;
+    }
+    const result = relocateCourseRespectingPrereqs(p, DATA, cid, semId);
+    if (result.error) { showBlock(result.error); return; }
+    setPlan(touch(result.plan));
   };
 
   const toggleLock = (cid) => {
