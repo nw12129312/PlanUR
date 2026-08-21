@@ -3,7 +3,8 @@
 
 Raw inputs (provenance):
   ur-catalog-raw.json   - parsed from CDCS (cdcs.ur.rochester.edu), the Registrar's
-                          official course description system, Fall 2025 + Spring 2026.
+                          official course description system, Fall 2025 + Spring 2026
+                          + Fall 2026 (Public Notes harvested for prerequisites).
   clusters-parsed.json  - parsed from the official Cluster Search Engine PDF
                           "Cluster Offerings by Department [2025-2026]"
                           (secure1.rochester.edu/registrar/CSE/).
@@ -15,6 +16,10 @@ verified:false flag and, where useful, a note. Nothing is invented.
 import json, re, os, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+if HERE not in sys.path:
+    sys.path.insert(0, HERE)
+from parse_cdcs_prereqs import parse_catalog
+
 SRC = os.path.join(HERE, '..', 'data-src')
 OUT = os.path.join(HERE, '..', 'src', 'data')
 FETCH_DATE = '2026-07-03'
@@ -91,13 +96,44 @@ CURATED_PREREQS = {
                  'note': 'Taken after intro biology per Biology BA page sequencing; verify.'},
 }
 
+# Course codes named as prerequisites in CDCS Public Notes / descriptions.
+# Curated verified entries above still win; this fills the rest so auto-generate
+# can order them. MATH 141/161 stay empty when CDCS only cites high-school placement.
+CDCS_PREREQS = parse_catalog(catalog)
+
+def expand_intro_programming_prereqs(prereqs):
+    # CSC 171 covers a CSC 161 prerequisite; CSC 161 does not cover CSC 171.
+    out = []
+    for g in prereqs:
+        ng = list(g)
+        if 'CSC 161' in ng and 'CSC 171' not in ng:
+            ng.append('CSC 171')
+        out.append(ng)
+    return out
+
+def prereq_fields(code):
+    cur = CURATED_PREREQS.get(code)
+    parsed = CDCS_PREREQS.get(code)
+    if cur and cur.get('verified'):
+        src = cur
+    elif parsed:
+        src = parsed
+    else:
+        src = cur or {}
+    return {
+        'prereqs': expand_intro_programming_prereqs(src.get('prereqs', [])),
+        'prereqsVerified': src.get('verified', False),
+        'prereqNote': src.get('note'),
+        'prereqSource': src.get('source'),
+    }
+
 courses = {}
 for code, e in catalog.items():
     dept, num, suffix = parse_code(code)
     if dept is None:
         continue
-    cur = CURATED_PREREQS.get(code, {})
     offered = e.get('terms_seen') or []
+    fields = prereq_fields(code)
     courses[code] = {
         'id': code, 'dept': dept, 'number': num, 'suffix': suffix,
         'title': e.get('title') or code,
@@ -106,12 +142,12 @@ for code, e in catalog.items():
         'offered': offered,
         'offeredClaim': offered_from_claim(e.get('offered_field', [])),
         'offeredVerified': bool(offered),
-        'prereqs': cur.get('prereqs', []),
-        'prereqsVerified': cur.get('verified', False),
-        'prereqNote': cur.get('note'),
-        'prereqSource': cur.get('source'),
+        'prereqs': fields['prereqs'],
+        'prereqsVerified': fields['prereqsVerified'],
+        'prereqNote': fields['prereqNote'],
+        'prereqSource': fields['prereqSource'],
         'description': (e.get('desc') or '')[:260],
-        'source': 'CDCS (Registrar) Fall 2025 / Spring 2026 schedules',
+        'source': 'CDCS (Registrar) Fall 2025 / Spring 2026 / Fall 2026 schedules',
         'stub': False,
     }
 
