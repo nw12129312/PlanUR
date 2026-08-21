@@ -77,13 +77,14 @@ describe('UI render smoke', () => {
     const grid = renderToString(
       <SemesterGrid
         data={DATA} plan={plan} activeSemesterId={null}
-        onSetActive={() => {}} onDropCourse={() => {}} onRemoveCourse={() => {}}
+        onSetActive={() => {}} onDropOnCourse={() => {}} onMoveToSemester={() => {}} onRemoveCourse={() => {}}
         onAddSemester={() => {}} onRemoveSemester={() => {}}
         violationsByCourse={byCourse} violationsBySemester={bySem}
         courseUses={progress.courseUses} onAddTransfer={() => {}} onRemoveTransfer={() => {}}
       />,
     );
     expect(grid).toContain('CSC 171');
+    expect(grid).toContain('Drop here to move without swapping');
     expect(grid).toContain('Transfer');
 
     const search = renderToString(

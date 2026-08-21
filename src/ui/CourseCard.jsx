@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { SevChip, Tag, IconButton } from './bits.jsx';
 import { ruleInfo } from '../engine/rules.js';
 import { groupsForCourse } from '../engine/equivalency.js';
@@ -45,15 +45,31 @@ function detailsTitle(c) {
 }
 
 // One course, either in search results (compact) or placed in a semester.
-export function CourseCard({ course: c, placed, uses = [], violations = [], meta, onToggleLock, onRemove, onAdd, draggable, onDragStart }) {
+export function CourseCard({ course: c, placed, uses = [], violations = [], meta, onToggleLock, onRemove, onAdd, draggable, onDragStart, onDropOnCourse }) {
+  const [dropOver, setDropOver] = useState(false);
   const title = detailsTitle(c) + (meta?.reason ? `\n\nAuto-placed: ${meta.reason}` : '');
+  const swapTarget = placed && typeof onDropOnCourse === 'function';
   return (
     <div
       draggable={draggable}
       onDragStart={onDragStart}
+      onDragOver={swapTarget ? (e) => { e.preventDefault(); e.stopPropagation(); e.dataTransfer.dropEffect = 'move'; setDropOver(true); } : undefined}
+      onDragLeave={swapTarget ? () => setDropOver(false) : undefined}
+      onDrop={swapTarget ? (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setDropOver(false);
+        const cid = e.dataTransfer.getData('text/course');
+        const origin = e.dataTransfer.getData('text/origin');
+        if (cid && cid !== c.id) onDropOnCourse(cid, c.id, origin);
+      } : undefined}
       title={title}
       style={{ transitionDuration: 'var(--dur)' }}
-      className={`group rounded-md border border-line bg-surface px-2 py-1.5 text-sm transition-colors hover:border-accent ${draggable ? 'cursor-grab active:cursor-grabbing' : ''}`}
+      className={`group rounded-md border bg-surface px-2 py-1.5 text-sm transition-colors ${
+        dropOver
+          ? 'border-accent bg-accent-soft ring-2 ring-accent/30'
+          : 'border-line hover:border-accent'
+      } ${draggable ? 'cursor-grab active:cursor-grabbing' : ''}`}
     >
       <div className="flex items-center gap-2">
         <span className="code shrink-0 rounded bg-surface-2 px-1.5 py-0.5 text-ink">{c.id}</span>
@@ -69,6 +85,9 @@ export function CourseCard({ course: c, placed, uses = [], violations = [], meta
             aria-pressed={!!meta?.locked}
             className={meta?.locked ? 'text-accent' : 'text-ink-3 opacity-45 group-hover:opacity-100'}
           />
+        )}
+        {dropOver && (
+          <span className="shrink-0 text-[10px] font-semibold uppercase tracking-wider text-accent">Swap</span>
         )}
         {onAdd && <IconButton icon="plus" label={`Add ${c.id}`} tone="accent" onClick={onAdd} />}
         {onRemove && (
