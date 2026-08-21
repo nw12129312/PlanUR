@@ -77,13 +77,19 @@ function fillProgram(program, available, ctx) {
       }
     } else if (rule.type === 'track_n_of') {
       need = rule.n;
-      let best = null;
-      for (const [name, codes] of Object.entries(rule.tracks)) {
-        const have = codes.filter((cid) => canUse(cid) && !take.includes(cid));
-        if (!best || have.length > best.have.length) best = { name, have };
+      const declared = ctx.plan.trackChoices?.[program.id]?.[g.id];
+      if (declared && rule.tracks[declared]) {
+        chosenTrack = declared;
+        take.push(...(rule.tracks[declared] || []).filter((cid) => canUse(cid)).slice(0, need));
+      } else {
+        let best = null;
+        for (const [name, codes] of Object.entries(rule.tracks)) {
+          const have = codes.filter((cid) => canUse(cid) && !take.includes(cid));
+          if (!best || have.length > best.have.length) best = { name, have };
+        }
+        chosenTrack = best?.name || null;
+        take.push(...(best?.have.slice(0, need) || []));
       }
-      chosenTrack = best?.name || null;
-      take.push(...(best?.have.slice(0, need) || []));
     } else if (rule.type === 'breadth_outside_track') {
       need = rule.n;
       const coreGroup = (program.requirementGroups || []).find((x) => x.id === rule.trackGroupId);

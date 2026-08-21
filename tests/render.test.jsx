@@ -41,7 +41,7 @@ function loadedPlan() {
 describe('UI render smoke', () => {
   it('renders the full App tree (empty initial plan)', () => {
     const html = renderToString(<App />);
-    expect(html).toContain('PlanUR');
+    expect(html).toContain('Planur');
     expect(html).toContain('UR Schedule Builder');
     expect(html).toContain('Save plan');
     expect(html).toContain('Export PDF');
@@ -71,6 +71,8 @@ describe('UI render smoke', () => {
     );
     expect(checklist).toContain('Computer Science');
     expect(checklist).toContain('credit hours');
+    expect(checklist).toContain('Biology (BA)');
+    expect(checklist).toContain('Track');
 
     const grid = renderToString(
       <SemesterGrid
@@ -148,5 +150,17 @@ describe('UI render smoke', () => {
       <SetupPanel data={DATA} plan={plan} clustersNeeded={2} coverage={ok} onChange={() => {}} />,
     );
     expect(setup2).not.toContain('generally expects');
+  });
+
+  it('renders a Political Science concentration picker in the audit', () => {
+    const plan = newPlan('psc', 2026);
+    plan.majorIds = ['major-psc-ba'];
+    const { progress, violations } = checkAll(plan, DATA);
+    const html = renderToString(
+      <Checklist data={DATA} plan={plan} progress={progress} violations={violations} clustersNeeded={2} />,
+    );
+    expect(html).toContain('Choose a track');
+    expect(html).toContain('Data and Modeling');
+    expect(html).toContain('Elections and Government');
   });
 });

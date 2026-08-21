@@ -115,7 +115,7 @@ function buildLedger(plan, data, scope) {
       const cands = def.rule.type === 'sequence_one_of' &&
                     !equivalencyGoverns(def.rule.sequences.flat(), data)
         ? bansafe(pickSequence(def.rule.sequences, data, placed))
-        : bansafe(groupCandidates(def, data, { program, chosenTrack: r.chosenTrack }));
+        : bansafe(groupCandidates(def, data, { program, chosenTrack: g.chosenTrack || r.chosenTrack }));
       const flexible = def.rule.type !== 'all_of' && def.rule.type !== 'sequence_one_of';
       // programs with a 100-level cap: once the cap is used up, stop
       // offering further 100-level candidates for their groups
@@ -621,7 +621,7 @@ function requirementOptionSets(plan, data) {
         ? { rule: program.upperLevelWriting?.rule }
         : (program.requirementGroups || []).find((x) => x.id === g.id);
       if (!def?.rule) continue;
-      const options = groupCandidates(def, data, { program, chosenTrack: r.chosenTrack })
+      const options = groupCandidates(def, data, { program, chosenTrack: g.chosenTrack || r.chosenTrack })
         .filter((c) => data.courses[c]);
       if (options.length) out.push({ options: new Set(options), need: g.need });
     }

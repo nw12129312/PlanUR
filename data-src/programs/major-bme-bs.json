@@ -5,13 +5,18 @@
   "degree": "BS",
   "school": "hajim",
   "division": "engineering",
-  "departments": ["BME"],
+  "departments": [
+    "BME"
+  ],
   "status": "ACTIVE",
   "sourceUrl": "https://www.hajim.rochester.edu/bme/undergraduate/requirements.html",
   "sourcedOn": "2026-07-05",
   "snapshot": "data-src/pages/bme/bme_undergraduate_requirements.html",
   "clustersRequired": 1,
-  "allowedClusterDivisions": ["humanities", "social-sciences"],
+  "allowedClusterDivisions": [
+    "humanities",
+    "social-sciences"
+  ],
   "totalCreditsOverride": 132,
   "overlapCapOverride": null,
   "notes": [
@@ -25,58 +30,163 @@
     {
       "id": "core",
       "label": "BME core courses",
-      "rule": { "type": "all_of", "courses": [
-        "BME 101", "BME 201", "BME 201P", "BME 210", "BME 221", "BME 230",
-        "BME 245", "BME 260", "BME 295", "BME 296"] },
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "BME 101",
+          "BME 201",
+          "BME 201P",
+          "BME 210",
+          "BME 221",
+          "BME 230",
+          "BME 245",
+          "BME 260",
+          "BME 295",
+          "BME 296"
+        ]
+      },
       "sourceQuote": "All of the following courses are required: BME 101/EAS 101; BME 201; BME 201P; BME 210; BME 221; BME 230; BME 245; BME 260; BME 295; BME 296"
     },
     {
       "id": "math",
       "label": "Mathematics",
-      "rule": { "type": "all_of", "courses": ["MATH 161", "MATH 162", "MATH 164", "MATH 165"] },
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "MATH 161",
+          "MATH 162",
+          "MATH 164",
+          "MATH 165"
+        ]
+      },
       "sourceQuote": "Four math courses: MATH 161: Calculus IA*; MATH 162: Calculus IIA*; MATH 165: Linear Algebra with Differential Equations; MATH 164: Multidimensional Calculus (*MATH 141, 142, and 143 are equivalent to MATH 161 and 162)"
     },
     {
       "id": "chemistry",
       "label": "Chemistry",
-      "rule": { "type": "all_of", "courses": ["CHEM 131", "CHEM 132"] },
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "CHEM 131",
+          "CHEM 132"
+        ]
+      },
       "sourceQuote": "Two chemistry courses: CHEM 131: CHM Concepts, Systems, Practice I; CHEM 132: CHM Concepts, Systems, Practice II"
     },
     {
       "id": "physics",
       "label": "Physics",
-      "rule": { "type": "all_of", "courses": ["PHYS 121", "PHYS 122"] },
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "PHYS 121",
+          "PHYS 122"
+        ]
+      },
       "sourceQuote": "Two physics courses: PHYS 121 or PHYS 121P: Mechanics or PHYS 113, if taking MATH 140 series; PHYS 122 or PHYS 122P: Electricity and Magnetism"
     },
     {
       "id": "biology",
       "label": "Biology",
-      "rule": { "type": "n_of", "n": 1, "options": ["BIOL 110L", "BIOL 110"] },
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "BIOL 110L",
+          "BIOL 110"
+        ]
+      },
       "sourceQuote": "One biology course: BIOL 110: Principles of Biology I"
     },
     {
       "id": "basic-sci-elective",
       "label": "Basic science electives (2)",
-      "rule": { "type": "n_from_filter", "n": 2,
-                "filter": { "depts": ["BIOL", "MBI", "EESC", "NSCI", "CHEM", "PHYS", "BCSC", "ASTR", "BME"], "minNumber": 110, "maxNumber": 499,
-                            "exclude": ["BIOL 112L", "BIOL 214", "BIOL 253L", "CHEM 137", "PHYS 252", "PHYS 257"] } },
+      "rule": {
+        "type": "n_from_filter",
+        "n": 2,
+        "filter": {
+          "depts": [
+            "BIOL",
+            "MBI",
+            "EESC",
+            "NSCI",
+            "CHEM",
+            "PHYS",
+            "BCSC",
+            "ASTR",
+            "BME"
+          ],
+          "minNumber": 110,
+          "maxNumber": 499,
+          "exclude": [
+            "BIOL 112L",
+            "BIOL 214",
+            "BIOL 253L",
+            "CHEM 137",
+            "PHYS 252",
+            "PHYS 257"
+          ]
+        }
+      },
       "sourceQuote": "All students must complete at least two additional courses (at least eight credit hours) in the basic sciences ... Most natural science courses with a number of 110 or higher (biology, microbiology, environmental science, neuroscience, chemistry, physics, or selected courses from brain and cognitive sciences) may be used",
       "note": "NEEDS nuance: department maintains approved/not-approved lists (only one cell-biology and one anatomy course count); no independent studies. Modeled as a filtered natural-science group."
     },
     {
       "id": "concentration",
       "label": "BME concentration (16 credits, one area)",
-      "rule": { "type": "n_from_filter", "n": 4,
-                "filter": { "depts": ["BME"], "minNumber": 200, "maxNumber": 499, "minCredits": 4,
-                            "exclude": ["BME 201", "BME 210", "BME 221", "BME 230", "BME 245", "BME 260", "BME 295", "BME 296"] } },
-      "sourceQuote": "Students can then choose which area of biomedical engineering they want to specialize in ... Biomedical engineering concentration courses: 16 credits",
-      "note": "NEEDS VERIFICATION: concentration-specific course lists (biomechanics / biosignals / cell & tissue / medical optics) are in the BME Curriculum Guide PDF; modeled as 16 credits of advanced BME."
+      "rule": {
+        "type": "track_n_of",
+        "n": 4,
+        "tracks": {
+          "Biomechanics": [
+            "ME 226",
+            "ME 225",
+            "ME 123",
+            "BME 283",
+            "BME 212"
+          ],
+          "Biosignals and Biosystems": [
+            "ECE 230",
+            "ECE 221",
+            "BME 228",
+            "ECE 246",
+            "BME 251",
+            "ECE 452",
+            "BME 218"
+          ],
+          "Cell and Tissue Engineering": [
+            "CHE 243",
+            "CHE 244",
+            "ME 123",
+            "CHE 225",
+            "BME 262"
+          ],
+          "Medical Optics": [
+            "BME 270",
+            "OPT 241",
+            "OPT 261",
+            "BME 255",
+            "BME 272"
+          ]
+        }
+      },
+      "sourceQuote": "Students can then choose which area of biomedical engineering they want to specialize in by choosing one of the following concentration areas: Biomechanics; Biosignals and biosystems; Cell and tissue engineering; Medical optics. Biomedical engineering concentration courses: 16 credits.",
+      "note": "Each concentration is three named courses plus one upper-level BME (examples from the requirements page). Other upper-level BME courses and a custom concentration by petition may also count \u2014 confirm with the BME Curriculum Guide."
     }
   ],
   "upperLevelWriting": {
     "label": "Upper-level BME course (BME 221/230/260/296 or any upper-level BME)",
-    "rule": { "type": "n_from_filter", "n": 1,
-              "filter": { "depts": ["BME"], "minNumber": 200, "maxNumber": 499 } },
+    "rule": {
+      "type": "n_from_filter",
+      "n": 1,
+      "filter": {
+        "depts": [
+          "BME"
+        ],
+        "minNumber": 200,
+        "maxNumber": 499
+      }
+    },
     "sourceQuote": "The following courses, as well as any upper-level BME course, will satisfy this requirement including: BME 221; BME 230; BME 260; BME 296",
     "note": "BME also requires a separate 2-credit professional writing requirement (WRTG 273) and the Primary Writing Requirement, counted separately in the 132-credit total."
   }
