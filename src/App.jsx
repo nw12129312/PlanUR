@@ -5,7 +5,8 @@ import { withProgramSwap } from './engine/pathways.js';
 import { checkAll, resolveRequiredCredits } from './engine/constraints.js';
 import { autoGenerate } from './engine/autogen.js';
 import { conflictForAdd } from './engine/equivalency.js';
-import { applyRequirementOption, placeCourseWithPrereqs, relocateCourseRespectingPrereqs } from './engine/swapRequirement.js';
+import { applyRequirementOption, placeCourseWithPrereqs } from './engine/swapRequirement.js';
+import { swapPlacedCourses, moveCourseToSemester, placementWarnings } from './engine/courseMove.js';
 import { divisionalCoverageForPlan } from './engine/coverage.js';
 // dataStore is the ONLY module that touches window.storage (and the only
 // place App reads bundled data from); see src/storage/dataStore.js.
@@ -43,14 +44,28 @@ export default function App() {
   const [genResult, setGenResult] = useState(null); // {base, result} pending diff review
   const [genBusy, setGenBusy] = useState(false);
   const [blockNotice, setBlockNotice] = useState(null); // blocked-add explanation
+  const [moveNotice, setMoveNotice] = useState(null);   // post-drop placement warnings
   const [setupOpen, setSetupOpen] = useState(true);      // setup band expanded?
   const [auditOpen, setAuditOpen] = useState(true);      // right rail visible?
   const blockTimer = useRef(null);
+  const moveTimer = useRef(null);
 
   const showBlock = (message) => {
     setBlockNotice(message);
     clearTimeout(blockTimer.current);
     blockTimer.current = setTimeout(() => setBlockNotice(null), 8000);
+  };
+
+  const showMoveWarning = (message) => {
+    setMoveNotice(message);
+    clearTimeout(moveTimer.current);
+    moveTimer.current = setTimeout(() => setMoveNotice(null), 10000);
+  };
+
+  const warnPlacement = (next, courseIds, semesterIds) => {
+    const hits = placementWarnings(next, DATA, courseIds, semesterIds);
+    if (!hits.length) { setMoveNotice(null); return; }
+    showMoveWarning(hits.map((v) => v.message).join(' '));
   };
 
   // Blocks an add that would mix equivalency-group paths, with an explanation.
@@ -167,20 +182,35 @@ export default function App() {
     }, cid, null)));
   };
 
-  const dropCourse = (cid, semId, origin) => {
-    if (origin === 'search' && blockedByEquivalency(cid)) return;
+  const dropOnCourse = (cid, targetCid, origin) => {
+    if (cid === targetCid) return;
     const p = planRef.current;
-    if (origin === 'search' && p.transfer.some((t) => t.courseId === cid)) return;
-    const already = p.semesters.some((s) => s.courseIds.includes(cid));
-    if (origin === 'search' && !already) {
-      const result = placeCourseWithPrereqs(p, DATA, cid, { preferSemesterId: semId });
-      if (result.error) { showBlock(result.error); return; }
-      setPlan(touch(result.plan));
+    const placed = p.semesters.some((s) => s.courseIds.includes(cid));
+    if (origin === 'search' && !placed) {
+      if (blockedByEquivalency(cid)) return;
+      if (p.transfer.some((t) => t.courseId === cid)) return;
+      const targetSem = p.semesters.find((s) => s.courseIds.includes(targetCid));
+      if (!targetSem) return;
+      const next = moveCourseToSemester(p, cid, targetSem.id);
+      setPlan(touch(next));
+      warnPlacement(next, [cid], [targetSem.id]);
       return;
     }
-    const result = relocateCourseRespectingPrereqs(p, DATA, cid, semId);
-    if (result.error) { showBlock(result.error); return; }
-    setPlan(touch(result.plan));
+    const next = swapPlacedCourses(p, cid, targetCid);
+    const destA = next.semesters.find((s) => s.courseIds.includes(cid))?.id;
+    const destB = next.semesters.find((s) => s.courseIds.includes(targetCid))?.id;
+    setPlan(touch(next));
+    warnPlacement(next, [cid, targetCid], [destA, destB]);
+  };
+
+  const moveToSemester = (cid, semId, origin) => {
+    const p = planRef.current;
+    const placed = p.semesters.some((s) => s.courseIds.includes(cid));
+    if (origin === 'search' && !placed && blockedByEquivalency(cid)) return;
+    if (origin === 'search' && p.transfer.some((t) => t.courseId === cid)) return;
+    const next = moveCourseToSemester(p, cid, semId);
+    setPlan(touch(next));
+    warnPlacement(next, [cid], [semId]);
   };
 
   const toggleLock = (cid) => {
@@ -395,6 +425,12 @@ export default function App() {
           <button type="button" className="ml-2 underline hover:no-underline" onClick={() => setBlockNotice(null)}>Dismiss</button>
         </div>
       )}
+      {moveNotice && (
+        <div className="banner banner-warn" role="status">
+          <span className="font-semibold">Placement warning: </span>{moveNotice}
+          <button type="button" className="ml-2 underline hover:no-underline" onClick={() => setMoveNotice(null)}>Dismiss</button>
+        </div>
+      )}
 
       <div className="mx-auto w-full max-w-[1600px] px-3 pt-2 lg:px-4">
         {setupOpen ? (
@@ -460,7 +496,8 @@ export default function App() {
               plan={plan}
               activeSemesterId={activeSemesterId}
               onSetActive={(id) => setActiveSemesterId((x) => (x === id ? null : id))}
-              onDropCourse={dropCourse}
+              onDropOnCourse={dropOnCourse}
+              onMoveToSemester={moveToSemester}
               onRemoveCourse={removeCourse}
               onToggleLock={toggleLock}
               onAddSemester={onAddSemester}
