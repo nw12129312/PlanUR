@@ -26,9 +26,26 @@ export function newPlan(name = 'Untitled plan', startYear = new Date().getFullYe
     // per-pair exceptions to the same-department ascending-number rule:
     // [{ lower: 'BIOL 111L', higher: 'BIOL 250' }]
     sequencingOverrides: [],
+    // declared concentration / track / theme inside a program:
+    // { [programId]: { [groupId]: trackName } }
+    trackChoices: {},
     createdAt: Date.now(),
     lastEdited: Date.now(),
   };
+}
+
+export function getTrackChoice(plan, programId, groupId) {
+  return plan?.trackChoices?.[programId]?.[groupId] || '';
+}
+
+export function withTrackChoice(plan, programId, groupId, trackName) {
+  const byProg = { ...(plan.trackChoices || {}) };
+  const byGroup = { ...(byProg[programId] || {}) };
+  if (!trackName) delete byGroup[groupId];
+  else byGroup[groupId] = trackName;
+  if (Object.keys(byGroup).length) byProg[programId] = byGroup;
+  else delete byProg[programId];
+  return { ...plan, trackChoices: byProg };
 }
 
 // Course metadata with a legacy-safe default: plans saved before courseMeta

@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 
-import { newPlan, addSemester, withCourseMeta, getCourseMeta } from './engine/model.js';
+import { newPlan, addSemester, withCourseMeta, getCourseMeta, withTrackChoice } from './engine/model.js';
+import { withProgramSwap } from './engine/pathways.js';
 import { checkAll, resolveRequiredCredits } from './engine/constraints.js';
 import { autoGenerate } from './engine/autogen.js';
 import { conflictForAdd } from './engine/equivalency.js';
@@ -153,6 +154,14 @@ export default function App() {
       return;
     }
     setPlan(touch(result.plan));
+  };
+
+  const chooseTrack = ({ programId, groupId, trackName }) => {
+    setPlan((p) => touch(withTrackChoice(p, programId, groupId, trackName || null)));
+  };
+
+  const swapProgram = ({ fromId, toId }) => {
+    setPlan((p) => touch(withProgramSwap(p, fromId, toId)));
   };
 
   const removeCourse = (cid, semId) => {
@@ -336,9 +345,8 @@ export default function App() {
       <header className="site-header">
         <div className="mx-auto flex w-full max-w-[1600px] flex-wrap items-center gap-x-3 gap-y-1.5 px-3 py-2 lg:px-4">
           <div className="flex shrink-0 items-center">
-            <h1 className="text-[22px] font-extrabold leading-none tracking-[-0.04em] text-ink">
-              PlanUR
-              <span className="sr-only"> — UR Schedule Builder</span>
+            <h1 className="text-[22px] font-extrabold leading-none tracking-[-0.04em] text-ink" aria-label="Planur — UR Schedule Builder">
+              Plan<span className="wordmark-u">u</span><span className="wordmark-r">r</span>
             </h1>
           </div>
 
@@ -476,7 +484,8 @@ export default function App() {
             <aside className="w-full overflow-hidden">
               <Checklist data={DATA} plan={plan} progress={progress} violations={violations} clustersNeeded={clustersNeeded}
                 onAutoFill={autoFillGroup} onAllowSequencing={allowSequencing} onRemoveSequencingOverride={removeSequencingOverride}
-                onHide={() => setAuditOpen(false)} placedSet={placedSet} onPickOption={pickRequirementOption} />
+                onHide={() => setAuditOpen(false)} placedSet={placedSet}
+                onPickOption={pickRequirementOption} onChooseTrack={chooseTrack} onSwapProgram={swapProgram} />
             </aside>
           )}
       </main>

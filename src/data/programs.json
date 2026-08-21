@@ -1000,29 +1000,43 @@
     "id": "concentration",
     "label": "BME concentration (16 credits, one area)",
     "rule": {
-     "type": "n_from_filter",
+     "type": "track_n_of",
      "n": 4,
-     "filter": {
-      "depts": [
-       "BME"
+     "tracks": {
+      "Biomechanics": [
+       "ME 226",
+       "ME 225",
+       "ME 123",
+       "BME 283",
+       "BME 212"
       ],
-      "minNumber": 200,
-      "maxNumber": 499,
-      "minCredits": 4,
-      "exclude": [
-       "BME 201",
-       "BME 210",
-       "BME 221",
-       "BME 230",
-       "BME 245",
-       "BME 260",
-       "BME 295",
-       "BME 296"
+      "Biosignals and Biosystems": [
+       "ECE 230",
+       "ECE 221",
+       "BME 228",
+       "ECE 246",
+       "BME 251",
+       "ECE 452",
+       "BME 218"
+      ],
+      "Cell and Tissue Engineering": [
+       "CHE 243",
+       "CHE 244",
+       "ME 123",
+       "CHE 225",
+       "BME 262"
+      ],
+      "Medical Optics": [
+       "BME 270",
+       "OPT 241",
+       "OPT 261",
+       "BME 255",
+       "BME 272"
       ]
      }
     },
-    "sourceQuote": "Students can then choose which area of biomedical engineering they want to specialize in ... Biomedical engineering concentration courses: 16 credits",
-    "note": "NEEDS VERIFICATION: concentration-specific course lists (biomechanics / biosignals / cell & tissue / medical optics) are in the BME Curriculum Guide PDF; modeled as 16 credits of advanced BME."
+    "sourceQuote": "Students can then choose which area of biomedical engineering they want to specialize in by choosing one of the following concentration areas: Biomechanics; Biosignals and biosystems; Cell and tissue engineering; Medical optics. Biomedical engineering concentration courses: 16 credits.",
+    "note": "Each concentration is three named courses plus one upper-level BME (examples from the requirements page). Other upper-level BME courses and a custom concentration by petition may also count \u2014 confirm with the BME Curriculum Guide."
    }
   ],
   "upperLevelWriting": {
@@ -1998,7 +2012,7 @@
    "The DSCC core courses are cross-listed with computer science: DSCC/CSC 242, DSCC/CSC 240, DSCC/CSC 261.",
    "One core option is a PAIR - STAT 216 together with either STAT 217 or STAT 226W - rather than a single course. The app models the single-course alternative DSCC 265; if you take the STAT route it consumes two courses the app counts as one.",
    "STAT 190 replaces the former DSCC/CSC/STAT 262 and STAT 213; STAT 180 replaces the former STAT 212.",
-   "Each concentration requires three courses from one of ten application areas (AI, biology, biomedical signals and imaging, brain and cognitive sciences, computer science/statistics/mathematics, earth and environmental science, linguistics, physics, economics and business, political science). The page does not enumerate the courses per area on this page, so the concentration is modeled as three courses drawn from the union of those departments - NEEDS VERIFICATION against the per-area course lists."
+   "Each concentration (application area) requires three courses from one of ten lists on the Goergen Institute BA/BS page. The audit picker records the area and fills from that list. Some areas have internal BOTH/ONE-OF structure that the planner approximates as three courses from the union. A course taken for the BS supplementary requirement should not also fill the Computer science, statistics, and mathematics concentration."
   ],
   "requirementGroups": [
    {
@@ -2121,38 +2135,157 @@
     "id": "concentration",
     "label": "Concentration / application area (3)",
     "rule": {
-     "type": "n_from_filter",
+     "type": "track_n_of",
      "n": 3,
-     "filter": {
-      "depts": [
-       "CSC",
-       "DSCC",
-       "STAT",
-       "MATH",
-       "BIOL",
-       "BME",
-       "BCSC",
-       "EESC",
-       "LING",
-       "PHYS",
-       "ECON",
-       "PSCI"
+     "tracks": {
+      "Artificial Intelligence": [
+       "CSC 277",
+       "CSC 290",
+       "CSC 245",
+       "CSC 246",
+       "CSC 247",
+       "CSC 249"
       ],
-      "minNumber": 200,
-      "maxNumber": 399,
-      "exclude": [
-       "DSCC 242",
-       "DSCC 240",
-       "DSCC 261",
-       "DSCC 265",
+      "Biology": [
+       "BIOL 110",
+       "BIOL 110L",
+       "BIOL 112",
+       "BIOL 112L",
+       "BIOL 111",
+       "BIOL 111L",
+       "BIOL 113",
+       "BIOL 113L",
+       "BIOL 190",
+       "BIOL 198",
+       "BIOL 205",
+       "BIOL 205W",
+       "BIOL 206",
+       "BIOL 206W",
+       "BIOL 253",
+       "BIOL 253W",
+       "BIOL 265",
+       "BIOL 265W"
+      ],
+      "Biomedical Signals and Imaging": [
+       "BME 101",
+       "BME 210",
+       "BME 230",
+       "BME 253",
+       "BME 274",
+       "CSC 249"
+      ],
+      "Brain and Cognitive Sciences": [
+       "BCSC 151",
+       "BCSC 152",
+       "BCSC 153",
+       "BCSC 221",
+       "BCSC 229",
+       "BCSC 244",
+       "BCSC 245",
+       "BCSC 265",
+       "BCSC 247"
+      ],
+      "Computer Science, Statistics, and Mathematics": [
+       "CSC 229",
+       "CSC 245",
+       "CSC 246",
+       "CSC 247",
+       "CSC 248",
+       "CSC 249",
+       "CSC 254",
+       "CSC 252",
+       "CSC 253",
+       "CSC 256",
+       "CSC 258",
+       "CSC 263",
+       "CSC 280",
+       "CSC 282",
+       "CSC 298",
        "DSCC 201",
+       "DSCC 202",
+       "DSCC 210",
        "DSCC 275",
-       "CSC 282"
+       "MATH 201",
+       "MATH 202",
+       "MATH 203",
+       "MATH 208",
+       "MATH 215",
+       "MATH 218",
+       "MATH 230",
+       "MATH 233",
+       "STAT 221W"
+      ],
+      "Earth and Environmental Science": [
+       "EESC 101",
+       "EESC 103",
+       "EESC 105",
+       "EESC 211",
+       "EESC 211W",
+       "EESC 212",
+       "EESC 218",
+       "EESC 233",
+       "EESC 234",
+       "EESC 235",
+       "EESC 236",
+       "EESC 251"
+      ],
+      "Linguistics": [
+       "LING 110",
+       "LING 210",
+       "LING 220",
+       "LING 224",
+       "LING 225",
+       "LING 247",
+       "CSC 247",
+       "LING 248",
+       "CSC 248",
+       "LING 250",
+       "LING 268",
+       "LING 281"
+      ],
+      "Physics": [
+       "MATH 281",
+       "PHYS 237",
+       "PHYS 227",
+       "PHYS 235W",
+       "PHYS 373"
+      ],
+      "Economics and Business": [
+       "ECON 207",
+       "ECON 209",
+       "ECON 214",
+       "ECON 217",
+       "ECON 217W",
+       "ECON 231W",
+       "ECON 288",
+       "ECON 288W",
+       "PSCI 288",
+       "ACC 201",
+       "CIS 220",
+       "CIS 240",
+       "CIS 242",
+       "MATH 210",
+       "MKT 203"
+      ],
+      "Political Science": [
+       "PSCI 107",
+       "PSCI 200",
+       "PSCI 205",
+       "PSCI 248",
+       "PSCI 270",
+       "INTR 270",
+       "PSCI 278",
+       "INTR 278",
+       "PSCI 281",
+       "PSCI 287",
+       "PSCI 288",
+       "ECON 288",
+       "ECON 288W"
       ]
      }
     },
     "sourceQuote": "Students can choose from one of the following concentrations (application areas): Artificial Intelligence (AI); Biology; Biomedical signals and imaging; Brain and cognitive sciences; Computer science, statistics, and mathematics; Earth and environmental science; Linguistics; Physics; Economics and business; Political science. Each concentration requires students to take three courses.",
-    "note": "NEEDS VERIFICATION - per-area course lists are not on this page; modeled as three 200+ courses from the listed departments."
+    "note": "Course lists copied from the BA/BS requirements page. Areas that say BOTH of X plus ONE of Y are modeled as any three from the combined list."
    }
   ],
   "upperLevelWriting": {
@@ -5130,7 +5263,7 @@
      }
     },
     "sourceQuote": "Five history courses in one of the following focus areas: National or regional; Topical; Methodological.",
-    "note": "NEEDS VERIFICATION: focus-area membership is department-maintained. Overlaps with the other distribution groups (allowReuse); the 10-course major total is the binding count."
+    "note": "Focus-area membership is department-maintained (see the concentration PDF). The audit picker records which kind of focus you are pursuing; any HIST course still fills the five-course count. Overlaps with the other distribution groups (allowReuse); the 10-course major total is the binding count."
    }
   ],
   "upperLevelWriting": {
@@ -5149,6 +5282,15 @@
    },
    "sourceQuote": "Two upper-level writing ('W') history courses, one of which must be at the 300-level, and one of which must be in the student's area of focus.",
    "note": "The 300-level and focus-area constraints are not auto-enforced."
+  },
+  "pathways": {
+   "id": "focus",
+   "noun": "Focus area",
+   "options": [
+    "National or regional",
+    "Topical",
+    "Methodological"
+   ]
   }
  },
  {
@@ -5317,6 +5459,15 @@
    },
    "sourceQuote": "At least one advanced philosophy course designated with a 'W', to indicate upper-level writing credit.",
    "note": "The department states one advanced W course; the University's two-ULW-course norm is satisfied through the major's writing-intensive seminars per department policy."
+  },
+  "pathways": {
+   "id": "emphasis",
+   "noun": "Emphasis",
+   "options": [
+    "Law and ethics",
+    "History of philosophy",
+    "Logic and philosophy of science"
+   ]
   }
  },
  {
@@ -13149,7 +13300,7 @@
    "This is a different major from Classics (major-clst-ba), which requires Greek or Latin language work.",
    "Some courses overlap categories - for example Ancient Greek and Roman Historiography (CLST 220) may satisfy either the History or the Literature requirement, but not both. The groups below do not share courses, which matches that rule.",
    "The literature subject group also admits any LATN or CGRK course at the 200 level or above; those are not enumerable as a fixed list here, so the literature group lists only the CLST courses the page names.",
-   "CONCENTRATION COURSES - NEEDS VERIFICATION: two additional courses both drawn from ONE of the three subject areas, determined with the major advisor, at least one at the 200 level. The planner cannot enforce 'both from the same area', so the group below accepts any two subject-area courses with at least one at the 200 level. Confirm your pair with your advisor.",
+   "CONCENTRATION COURSES: two additional courses both drawn from ONE of the three subject areas, determined with the major advisor, at least one at the 200 level. The audit picker records the area and fills from that subject list. The 200-level minimum is not auto-enforced.",
    "CAPSTONE: the capstone experience is a four-credit course or equivalent with a significant writing component, built on an area of strength already demonstrated through coursework - it is proposed by the student rather than being a fixed course. Only the accompanying one-credit Senior Capstone Workshop (CLST 389) is a fixed course code, so it is what the capstone group checks. Work in the two concentration courses should ideally feed the capstone.",
    "NEEDS VERIFICATION: several course numbers the page lists (CLST 123, 130, 132, 160, 232, 234, 265, 290, 291, 292, and CLST 167a/167b which the catalog carries as CLST 167M) are absent from the 2025-26 catalog under those numbers. They are kept as options because the page names them.",
    "NEEDS VERIFICATION - UPPER-LEVEL WRITING: the page states no ULW policy beyond the capstone's 'significant writing component'. The catalog does carry W-suffixed classics courses (CLST 233W, 298W, 393W); confirm with the department which one satisfies the College requirement."
@@ -13239,18 +13390,53 @@
     "id": "concentration",
     "label": "Two concentration courses in one subject area (one at the 200 level)",
     "rule": {
-     "type": "n_from_filter",
+     "type": "track_n_of",
      "n": 2,
-     "filter": {
-      "depts": [
-       "CLST"
+     "tracks": {
+      "Literature": [
+       "CLST 110",
+       "CLST 140",
+       "CLST 160",
+       "CLST 210",
+       "CLST 211",
+       "CLST 212",
+       "CLST 213",
+       "CLST 265"
       ],
-      "minNumber": 110,
-      "maxNumber": 299
+      "History": [
+       "CLST 120",
+       "CLST 121",
+       "CLST 123",
+       "CLST 124",
+       "CLST 167M",
+       "CLST 220",
+       "CLST 221",
+       "CLST 222",
+       "CLST 223",
+       "CLST 224",
+       "CLST 225"
+      ],
+      "Archaeology and Culture": [
+       "CLST 130",
+       "CLST 131",
+       "CLST 132",
+       "CLST 208",
+       "CLST 230",
+       "CLST 231",
+       "CLST 232",
+       "CLST 233W",
+       "CLST 234",
+       "CLST 240",
+       "CLST 241",
+       "CLST 244",
+       "CLST 290",
+       "CLST 291",
+       "CLST 292"
+      ]
      }
     },
-    "sourceQuote": "(3) Concentration Courses (2 courses): Two additional courses, both drawn from one of the subject areas listed above, determined in consultation with the major advisor. At least one of these courses must be at the 200-level. Work completed in these two courses will ideally contribute to the Senior Capstone Experience.",
-    "note": "See the program note - 'both from the same subject area' and 'at least one at the 200 level' cannot be enforced by the planner."
+    "sourceQuote": "(3) Concentration Courses (2 courses): Two additional courses, both drawn from one of the subject areas listed above, determined in consultation with the major advisor. At least one of these courses must be at the 200-level.",
+    "note": "At least one of the two concentration courses must be at the 200 level \u2014 not auto-enforced."
    },
    {
     "id": "electives",
@@ -17284,7 +17470,7 @@
   },
   "notes": [
    "Ten courses: five core courses plus five electives, at least three of the electives at the 200 level or above.",
-   "NEEDS VERIFICATION - tracks: the page says four of the five electives must fit either a pre-approved track (Linguistic Theory, Language Documentation and Description, Language Variation and Change, and two others) OR a specialized track arranged with the undergraduate advisor. Because individualized tracks are explicitly allowed, the track structure is NOT modeled as a hard requirement here - only the 200-level minimum is enforced. Plan your track with the Director of Undergraduate Studies.",
+   "Four of the five electives should fit a suggested track (Linguistic Theory; Language Documentation and Description; Language Variation and Change; Computational Linguistics; Language and the Mind) or an individualized track approved by the Director of Undergraduate Studies. The audit picker records a suggested track and fills four electives from that track's named courses; the fifth elective stays open. Individualized tracks are not a closed list \u2014 leave the picker unset and plan those electives with the DUS.",
    "LING 214 Statistical Methods in Linguistics is recommended, not required."
   ],
   "requirementGroups": [
@@ -17304,33 +17490,89 @@
     "sourceQuote": "All majors must take our five core courses: LING 110 Intro to Linguistic Analysis; LING 210(W) Intro to Language Sound Systems; LING 220 Intro to Syntax; LING 225 Intro to Semantic Analysis; LING 389 Senior Seminar"
    },
    {
-    "id": "electives-advanced",
-    "label": "Electives at the 200 level or above (3)",
+    "id": "electives-track",
+    "label": "Track electives (4 of 5)",
     "rule": {
-     "type": "n_from_filter",
-     "n": 3,
-     "filter": {
-      "depts": [
-       "LING"
+     "type": "track_n_of",
+     "n": 4,
+     "tracks": {
+      "Linguistic Theory": [
+       "LING 226",
+       "LING 227",
+       "LING 237",
+       "LING 228",
+       "LING 265",
+       "LING 265W",
+       "LING 266",
+       "LING 267",
+       "LING 260",
+       "LING 260W",
+       "LING 261"
       ],
-      "minNumber": 200,
-      "maxNumber": 399,
-      "exclude": [
-       "LING 210",
-       "LING 220",
-       "LING 225",
-       "LING 389"
+      "Language Documentation and Description": [
+       "LING 104",
+       "LING 226",
+       "LING 270",
+       "LING 270W",
+       "LING 102",
+       "LING 107",
+       "LING 205",
+       "LING 215",
+       "LING 227",
+       "LING 237",
+       "LING 228",
+       "LING 240",
+       "LING 240W",
+       "LING 288"
+      ],
+      "Language Variation and Change": [
+       "LING 102",
+       "LING 162",
+       "LING 240",
+       "LING 240W",
+       "LING 205",
+       "LING 214",
+       "LING 227",
+       "LING 237",
+       "LING 270",
+       "LING 270W",
+       "LING 288"
+      ],
+      "Computational Linguistics": [
+       "LING 214",
+       "LING 224",
+       "LING 247",
+       "LING 250",
+       "LING 268",
+       "LING 282",
+       "LING 228",
+       "LING 260",
+       "LING 260W",
+       "LING 261",
+       "LING 265",
+       "LING 265W",
+       "LING 266"
+      ],
+      "Language and the Mind": [
+       "LING 104",
+       "LING 228",
+       "LING 266",
+       "LING 267",
+       "LING 245",
+       "LING 265",
+       "LING 265W"
       ]
      }
     },
-    "sourceQuote": "Students must also take five additional electives, at least three of which must be at the 200-level or above."
+    "sourceQuote": "Students are encouraged to choose one of the 5 thematic tracks suggested below. Alternatively, students may propose a track organized around a different theme. Individualized tracks must be consulted with and approved by the Director of Undergraduate Studies. Four of the five electives must fit the track.",
+    "note": "Each suggested track has internal ALL-OF / ONE-OF structure; the planner asks for four courses from that track's named list. At least three of the five electives must still be 200-level \u2014 not auto-enforced here."
    },
    {
     "id": "electives-any",
-    "label": "Linguistics electives (2 more)",
+    "label": "Linguistics elective (1 more)",
     "rule": {
      "type": "n_from_filter",
-     "n": 2,
+     "n": 1,
      "filter": {
       "depts": [
        "LING"
@@ -17690,6 +17932,21 @@
    },
    "sourceQuote": "*MUSC 221, 222, or 223 fulfill the ULW requirement.",
    "note": "All three surveys are required for the major anyway, so this is satisfied by the music-history group."
+  },
+  "pathways": {
+   "id": "emphasis",
+   "noun": "Emphasis",
+   "options": [
+    "Basic",
+    "Composition",
+    "History/Theory",
+    "Music in World Cultures",
+    "Musical Theater",
+    "Performance",
+    "Popular Music/Jazz",
+    "Audio and Music Engineering",
+    "Conducting"
+   ]
   }
  },
  {

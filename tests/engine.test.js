@@ -5,7 +5,8 @@ import clustersData from '../src/data/clusters.json';
 import policyData from '../src/data/policy.json';
 import equivalencyGroupsData from '../src/data/equivalency_groups.json';
 
-import { newPlan } from '../src/engine/model.js';
+import { newPlan, withTrackChoice } from '../src/engine/model.js';
+import { withProgramSwap } from '../src/engine/pathways.js';
 import { computeProgress, pwrStatus } from '../src/engine/progress.js';
 import {
   checkPrerequisites, checkOfferingSemester, checkCreditLoad, checkDuplicates,
@@ -285,6 +286,79 @@ describe('PSC BA track logic', () => {
     expect(core.complete).toBe(true);
     expect(r.groups.find((g) => g.id === 'tools').complete).toBe(true);
     expect(r.groups.find((g) => g.id === 'breadth').complete).toBe(true);
+  });
+
+  it('honors a stored concentration even with no matching courses', () => {
+    const plan = planWith({
+      majorIds: ['major-psc-ba'],
+      trackChoices: { 'major-psc-ba': { 'core-track': 'Data and Modeling' } },
+    });
+    const core = computeProgress(plan, DATA).programs[0].groups.find((g) => g.id === 'core-track');
+    expect(core.chosenTrack).toBe('Data and Modeling');
+    expect(core.have).toBe(0);
+    expect(core.complete).toBe(false);
+  });
+
+  it('does not switch away from a declared concentration that has fewer matching courses', () => {
+    const elections = ['PSCI 211', 'PSCI 215', 'PSCI 218W', 'PSCI 253', 'PSCI 260'];
+    const plan = fill(planWith({
+      majorIds: ['major-psc-ba'],
+      trackChoices: { 'major-psc-ba': { 'core-track': 'Data and Modeling' } },
+    }), 0, elections);
+    const r = computeProgress(plan, DATA).programs[0];
+    const core = r.groups.find((g) => g.id === 'core-track');
+    expect(core.chosenTrack).toBe('Data and Modeling');
+    expect(core.complete).toBe(false);
+    expect(r.groups.find((g) => g.id === 'breadth').have).toBeGreaterThan(0);
+  });
+
+  it('withTrackChoice writes and clears a pathway without mutating the original plan', () => {
+    const plan = planWith({ majorIds: ['major-psc-ba'] });
+    const next = withTrackChoice(plan, 'major-psc-ba', 'core-track', 'Data and Modeling');
+    expect(plan.trackChoices).toEqual({});
+    expect(next.trackChoices['major-psc-ba']['core-track']).toBe('Data and Modeling');
+    expect(withTrackChoice(next, 'major-psc-ba', 'core-track', '').trackChoices).toEqual({});
+  });
+});
+
+describe('in-major concentration pickers', () => {
+  it('honors a declared BME concentration', () => {
+    const plan = planWith({
+      majorIds: ['major-bme-bs'],
+      trackChoices: { 'major-bme-bs': { concentration: 'Medical Optics' } },
+    });
+    const g = computeProgress(plan, DATA).programs[0].groups.find((x) => x.id === 'concentration');
+    expect(g.chosenTrack).toBe('Medical Optics');
+    expect(g.need).toBe(4);
+  });
+
+  it('honors a declared Data Science application area', () => {
+    const plan = planWith({
+      majorIds: ['major-dsc-bs'],
+      trackChoices: { 'major-dsc-bs': { concentration: 'Artificial Intelligence' } },
+    });
+    const g = computeProgress(plan, DATA).programs[0].groups.find((x) => x.id === 'concentration');
+    expect(g.chosenTrack).toBe('Artificial Intelligence');
+    expect(g.need).toBe(3);
+  });
+});
+
+describe('program family swap', () => {
+  it('replaces a biology track and moves stored pathway choices', () => {
+    const plan = planWith({
+      majorIds: ['biol-ba', 'major-csc-bs'],
+      trackChoices: { 'biol-ba': { core: 'kept' } },
+    });
+    const next = withProgramSwap(plan, 'biol-ba', 'biol-bs-biochem');
+    expect(plan.majorIds).toEqual(['biol-ba', 'major-csc-bs']);
+    expect(next.majorIds).toEqual(['biol-bs-biochem', 'major-csc-bs']);
+    expect(next.trackChoices['biol-bs-biochem'].core).toBe('kept');
+    expect(next.trackChoices['biol-ba']).toBeUndefined();
+  });
+
+  it('refuses to swap onto a program already on the plan', () => {
+    const plan = planWith({ majorIds: ['biol-ba', 'biol-bs-biochem'] });
+    expect(withProgramSwap(plan, 'biol-ba', 'biol-bs-biochem')).toBe(plan);
   });
 });
 

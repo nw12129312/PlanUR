@@ -5,93 +5,315 @@
   "degree": "BS",
   "school": "hajim",
   "division": "natural-sciences",
-  "departments": ["DSCC"],
+  "departments": [
+    "DSCC"
+  ],
   "status": "ACTIVE",
   "sourceUrl": "https://www.hajim.rochester.edu/dsc/undergraduate/major.html",
   "sourcedOn": "2026-08-01",
   "snapshot": "data-src/pages/dsc/dsc_undergraduate_major.html",
   "clustersRequired": 2,
-  "allowedClusterDivisions": ["humanities", "social-sciences"],
+  "allowedClusterDivisions": [
+    "humanities",
+    "social-sciences"
+  ],
   "totalCreditsOverride": null,
   "overlapCapOverride": null,
-  "programChecks": { "totalCourses": null, "minFromDepts": null, "max100Level": null },
+  "programChecks": {
+    "totalCourses": null,
+    "minFromDepts": null,
+    "max100Level": null
+  },
   "notes": [
     "The Goergen Institute page lists the BA and BS together; this entry encodes the shared requirements. Any BS-only additions beyond these are NOT captured - confirm with gids-undergrad@rochester.edu.",
     "Prerequisite courses must be complete or in progress before declaring the major, and cannot be taken Satisfactory/Fail. They may be satisfied by AP credit or by testing.",
     "The DSCC core courses are cross-listed with computer science: DSCC/CSC 242, DSCC/CSC 240, DSCC/CSC 261.",
     "One core option is a PAIR - STAT 216 together with either STAT 217 or STAT 226W - rather than a single course. The app models the single-course alternative DSCC 265; if you take the STAT route it consumes two courses the app counts as one.",
     "STAT 190 replaces the former DSCC/CSC/STAT 262 and STAT 213; STAT 180 replaces the former STAT 212.",
-    "Each concentration requires three courses from one of ten application areas (AI, biology, biomedical signals and imaging, brain and cognitive sciences, computer science/statistics/mathematics, earth and environmental science, linguistics, physics, economics and business, political science). The page does not enumerate the courses per area on this page, so the concentration is modeled as three courses drawn from the union of those departments - NEEDS VERIFICATION against the per-area course lists."
+    "Each concentration (application area) requires three courses from one of ten lists on the Goergen Institute BA/BS page. The audit picker records the area and fills from that list. Some areas have internal BOTH/ONE-OF structure that the planner approximates as three courses from the union. A course taken for the BS supplementary requirement should not also fill the Computer science, statistics, and mathematics concentration."
   ],
   "requirementGroups": [
     {
       "id": "prereq-discrete",
       "label": "Prerequisite: discrete mathematics",
-      "rule": { "type": "n_of", "n": 1, "options": ["MATH 150", "MATH 150A"] },
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "MATH 150",
+          "MATH 150A"
+        ]
+      },
       "sourceQuote": "MATH 150: Discrete Mathematics OR MATH 150A: Discrete Math Module for MATH171"
     },
     {
       "id": "prereq-programming",
       "label": "Prerequisite: programming",
-      "rule": { "type": "all_of", "courses": ["CSC 171", "CSC 172"] },
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "CSC 171",
+          "CSC 172"
+        ]
+      },
       "sourceQuote": "CSC 171: Intro to Computer Science; CSC 172: Data Structures and Algorithms"
     },
     {
       "id": "prereq-calc",
       "label": "Prerequisite: calculus sequence",
-      "rule": { "type": "sequence_one_of", "sequences": [
-        ["MATH 161", "MATH 162"],
-        ["MATH 141", "MATH 142", "MATH 143"],
-        ["MATH 171", "MATH 172"]] },
+      "rule": {
+        "type": "sequence_one_of",
+        "sequences": [
+          [
+            "MATH 161",
+            "MATH 162"
+          ],
+          [
+            "MATH 141",
+            "MATH 142",
+            "MATH 143"
+          ],
+          [
+            "MATH 171",
+            "MATH 172"
+          ]
+        ]
+      },
       "sourceQuote": "Students must also complete ONE of the following sequences: MATH 161 and MATH 162; MATH 141, MATH 142, and MATH 143; MATH 171 and MATH 172"
     },
     {
       "id": "core",
       "label": "Core data science courses",
-      "rule": { "type": "all_of", "courses": ["DSCC 242", "DSCC 240", "DSCC 261", "DSCC 383W"] },
+      "rule": {
+        "type": "all_of",
+        "courses": [
+          "DSCC 242",
+          "DSCC 240",
+          "DSCC 261",
+          "DSCC 383W"
+        ]
+      },
       "sourceQuote": "ALL OF THE FOLLOWING: DSCC/CSC 242: Introduction to Artificial Intelligence; DSCC/CSC 240: Data Mining; DSCC/CSC 261: Database Systems; DSCC 383W: Data Science Capstone"
     },
     {
       "id": "linear-algebra",
       "label": "Linear algebra",
-      "rule": { "type": "n_of", "n": 1, "options": ["MATH 165", "MATH 173"] },
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "MATH 165",
+          "MATH 173"
+        ]
+      },
       "sourceQuote": "Plus ONE of the following: MATH 165: Linear Algebra with Differential Equations; MATH 173: Calculus III (Honors)"
     },
     {
       "id": "statistics",
       "label": "Introductory statistics",
-      "rule": { "type": "n_of", "n": 1, "options": ["STAT 190", "STAT 180"] },
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "STAT 190",
+          "STAT 180"
+        ]
+      },
       "sourceQuote": "Plus ONE of the following: STAT 190: Introduction to Statistical Methodology; STAT 180: Introduction to Applied Statistical Methodology"
     },
     {
       "id": "machine-learning",
       "label": "Statistical machine learning",
-      "rule": { "type": "n_of", "n": 1, "options": ["DSCC 265", "STAT 216"] },
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "DSCC 265",
+          "STAT 216"
+        ]
+      },
       "sourceQuote": "Plus ONE of the following: DSCC 265: Introduction to Statistical Machine Learning; Both STAT 216: Intermediate Statistical Methodology and STAT 217: Advanced Statistical Methodology OR STAT 226W: Linear Models",
       "note": "The STAT 216 route additionally requires STAT 217 or STAT 226W; only the first course of that pair is modeled."
     },
     {
       "id": "tools",
       "label": "Tools, time series, or algorithms",
-      "rule": { "type": "n_of", "n": 1, "options": ["DSCC 201", "DSCC 275", "CSC 282"] },
+      "rule": {
+        "type": "n_of",
+        "n": 1,
+        "options": [
+          "DSCC 201",
+          "DSCC 275",
+          "CSC 282"
+        ]
+      },
       "sourceQuote": "Plus ONE of the following: DSCC 201: Tools for Data Science; DSCC 275: Time Series Analysis & Forecasting in Data Science; CSC 282: Design and Analysis of Efficient Algorithms"
     },
     {
       "id": "concentration",
       "label": "Concentration / application area (3)",
-      "rule": { "type": "n_from_filter", "n": 3,
-                "filter": { "depts": ["CSC", "DSCC", "STAT", "MATH", "BIOL", "BME", "BCSC",
-                                      "EESC", "LING", "PHYS", "ECON", "PSCI"],
-                            "minNumber": 200, "maxNumber": 399,
-                            "exclude": ["DSCC 242", "DSCC 240", "DSCC 261", "DSCC 265",
-                                        "DSCC 201", "DSCC 275", "CSC 282"] } },
+      "rule": {
+        "type": "track_n_of",
+        "n": 3,
+        "tracks": {
+          "Artificial Intelligence": [
+            "CSC 277",
+            "CSC 290",
+            "CSC 245",
+            "CSC 246",
+            "CSC 247",
+            "CSC 249"
+          ],
+          "Biology": [
+            "BIOL 110",
+            "BIOL 110L",
+            "BIOL 112",
+            "BIOL 112L",
+            "BIOL 111",
+            "BIOL 111L",
+            "BIOL 113",
+            "BIOL 113L",
+            "BIOL 190",
+            "BIOL 198",
+            "BIOL 205",
+            "BIOL 205W",
+            "BIOL 206",
+            "BIOL 206W",
+            "BIOL 253",
+            "BIOL 253W",
+            "BIOL 265",
+            "BIOL 265W"
+          ],
+          "Biomedical Signals and Imaging": [
+            "BME 101",
+            "BME 210",
+            "BME 230",
+            "BME 253",
+            "BME 274",
+            "CSC 249"
+          ],
+          "Brain and Cognitive Sciences": [
+            "BCSC 151",
+            "BCSC 152",
+            "BCSC 153",
+            "BCSC 221",
+            "BCSC 229",
+            "BCSC 244",
+            "BCSC 245",
+            "BCSC 265",
+            "BCSC 247"
+          ],
+          "Computer Science, Statistics, and Mathematics": [
+            "CSC 229",
+            "CSC 245",
+            "CSC 246",
+            "CSC 247",
+            "CSC 248",
+            "CSC 249",
+            "CSC 254",
+            "CSC 252",
+            "CSC 253",
+            "CSC 256",
+            "CSC 258",
+            "CSC 263",
+            "CSC 280",
+            "CSC 282",
+            "CSC 298",
+            "DSCC 201",
+            "DSCC 202",
+            "DSCC 210",
+            "DSCC 275",
+            "MATH 201",
+            "MATH 202",
+            "MATH 203",
+            "MATH 208",
+            "MATH 215",
+            "MATH 218",
+            "MATH 230",
+            "MATH 233",
+            "STAT 221W"
+          ],
+          "Earth and Environmental Science": [
+            "EESC 101",
+            "EESC 103",
+            "EESC 105",
+            "EESC 211",
+            "EESC 211W",
+            "EESC 212",
+            "EESC 218",
+            "EESC 233",
+            "EESC 234",
+            "EESC 235",
+            "EESC 236",
+            "EESC 251"
+          ],
+          "Linguistics": [
+            "LING 110",
+            "LING 210",
+            "LING 220",
+            "LING 224",
+            "LING 225",
+            "LING 247",
+            "CSC 247",
+            "LING 248",
+            "CSC 248",
+            "LING 250",
+            "LING 268",
+            "LING 281"
+          ],
+          "Physics": [
+            "MATH 281",
+            "PHYS 237",
+            "PHYS 227",
+            "PHYS 235W",
+            "PHYS 373"
+          ],
+          "Economics and Business": [
+            "ECON 207",
+            "ECON 209",
+            "ECON 214",
+            "ECON 217",
+            "ECON 217W",
+            "ECON 231W",
+            "ECON 288",
+            "ECON 288W",
+            "PSCI 288",
+            "ACC 201",
+            "CIS 220",
+            "CIS 240",
+            "CIS 242",
+            "MATH 210",
+            "MKT 203"
+          ],
+          "Political Science": [
+            "PSCI 107",
+            "PSCI 200",
+            "PSCI 205",
+            "PSCI 248",
+            "PSCI 270",
+            "INTR 270",
+            "PSCI 278",
+            "INTR 278",
+            "PSCI 281",
+            "PSCI 287",
+            "PSCI 288",
+            "ECON 288",
+            "ECON 288W"
+          ]
+        }
+      },
       "sourceQuote": "Students can choose from one of the following concentrations (application areas): Artificial Intelligence (AI); Biology; Biomedical signals and imaging; Brain and cognitive sciences; Computer science, statistics, and mathematics; Earth and environmental science; Linguistics; Physics; Economics and business; Political science. Each concentration requires students to take three courses.",
-      "note": "NEEDS VERIFICATION - per-area course lists are not on this page; modeled as three 200+ courses from the listed departments."
+      "note": "Course lists copied from the BA/BS requirements page. Areas that say BOTH of X plus ONE of Y are modeled as any three from the combined list."
     }
   ],
   "upperLevelWriting": {
     "label": "Data Science Capstone (DSCC 383W)",
-    "rule": { "type": "all_of", "courses": ["DSCC 383W"] },
+    "rule": {
+      "type": "all_of",
+      "courses": [
+        "DSCC 383W"
+      ]
+    },
     "sourceQuote": "DSCC 383W: Data Science Capstone (typically taken fall or spring of senior year)",
     "note": "NEEDS VERIFICATION: the page states no explicit ULW policy; DSCC 383W is the major's only W-designated course."
   }

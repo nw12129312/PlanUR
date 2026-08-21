@@ -10,7 +10,7 @@
 //
 // Pure functions; no UI or storage imports.
 
-import { plannedCourseIds, semesterIndexOf, withCourseMeta, addSemester } from './model.js';
+import { plannedCourseIds, semesterIndexOf, withCourseMeta, addSemester, withTrackChoice } from './model.js';
 import { computeProgress } from './progress.js';
 import { isLevelEntry, levelTag, levelSatisfied } from './equivalency.js';
 import { placementViolatesDeptOrder } from './deptSequencing.js';
@@ -23,6 +23,9 @@ function clonePlan(plan) {
     semesters: plan.semesters.map((s) => ({ ...s, courseIds: [...s.courseIds] })),
     transfer: plan.transfer.map((t) => ({ ...t })),
     courseMeta: { ...(plan.courseMeta || {}) },
+    trackChoices: Object.fromEntries(
+      Object.entries(plan.trackChoices || {}).map(([pid, groups]) => [pid, { ...groups }]),
+    ),
   };
 }
 
@@ -298,6 +301,10 @@ export function applyRequirementOption(plan, data, { programId, groupId, courseI
   }
 
   const prereqsAdded = added.filter((c) => !action.incoming.includes(c));
+  if (rule.type === 'track_n_of') {
+    const targetTrack = trackOf(rule, action.incoming[0]);
+    if (targetTrack) next = withTrackChoice(next, programId, groupId, targetTrack);
+  }
   return {
     kind: 'swap',
     plan: next,

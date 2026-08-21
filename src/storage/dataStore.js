@@ -193,7 +193,14 @@ const LEGACY_PROGRAM_IDS = {
 function migrateLegacyIds(plan) {
   if (!plan) return plan;
   const map = (ids) => (ids || []).map((id) => LEGACY_PROGRAM_IDS[id] || id);
-  return { ...plan, majorIds: map(plan.majorIds), minorIds: map(plan.minorIds) };
+  const srcChoices = plan.trackChoices && typeof plan.trackChoices === 'object' ? plan.trackChoices : {};
+  const trackChoices = {};
+  for (const [pid, groups] of Object.entries(srcChoices)) {
+    if (!groups || typeof groups !== 'object') continue;
+    const nid = LEGACY_PROGRAM_IDS[pid] || pid;
+    trackChoices[nid] = { ...(trackChoices[nid] || {}), ...groups };
+  }
+  return { ...plan, majorIds: map(plan.majorIds), minorIds: map(plan.minorIds), trackChoices };
 }
 
 // Fetch one plan (or null).

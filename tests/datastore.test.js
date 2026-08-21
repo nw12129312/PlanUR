@@ -94,6 +94,15 @@ describe('dataStore plan persistence', () => {
     const parsed = JSON.parse(raw);
     expect(parsed).toEqual(JSON.parse(JSON.stringify(plan)));
   });
+
+  it('defaults missing trackChoices on load so older saves still open', async () => {
+    const plan = newPlan('No tracks', 2026);
+    const raw = { ...plan };
+    delete raw.trackChoices;
+    kv.set(`plans:${plan.id}`, JSON.stringify(raw));
+    const loaded = await store.loadPlan(store.LOCAL_USER, plan.id);
+    expect(loaded.trackChoices).toEqual({});
+  });
 });
 
 describe('dataStore degradation without window.storage', () => {

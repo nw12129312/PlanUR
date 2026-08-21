@@ -29,7 +29,7 @@
     "This is a different major from Classics (major-clst-ba), which requires Greek or Latin language work.",
     "Some courses overlap categories - for example Ancient Greek and Roman Historiography (CLST 220) may satisfy either the History or the Literature requirement, but not both. The groups below do not share courses, which matches that rule.",
     "The literature subject group also admits any LATN or CGRK course at the 200 level or above; those are not enumerable as a fixed list here, so the literature group lists only the CLST courses the page names.",
-    "CONCENTRATION COURSES - NEEDS VERIFICATION: two additional courses both drawn from ONE of the three subject areas, determined with the major advisor, at least one at the 200 level. The planner cannot enforce 'both from the same area', so the group below accepts any two subject-area courses with at least one at the 200 level. Confirm your pair with your advisor.",
+    "CONCENTRATION COURSES: two additional courses both drawn from ONE of the three subject areas, determined with the major advisor, at least one at the 200 level. The audit picker records the area and fills from that subject list. The 200-level minimum is not auto-enforced.",
     "CAPSTONE: the capstone experience is a four-credit course or equivalent with a significant writing component, built on an area of strength already demonstrated through coursework - it is proposed by the student rather than being a fixed course. Only the accompanying one-credit Senior Capstone Workshop (CLST 389) is a fixed course code, so it is what the capstone group checks. Work in the two concentration courses should ideally feed the capstone.",
     "NEEDS VERIFICATION: several course numbers the page lists (CLST 123, 130, 132, 160, 232, 234, 265, 290, 291, 292, and CLST 167a/167b which the catalog carries as CLST 167M) are absent from the 2025-26 catalog under those numbers. They are kept as options because the page names them.",
     "NEEDS VERIFICATION - UPPER-LEVEL WRITING: the page states no ULW policy beyond the capstone's 'significant writing component'. The catalog does carry W-suffixed classics courses (CLST 233W, 298W, 393W); confirm with the department which one satisfies the College requirement."
@@ -119,18 +119,53 @@
       "id": "concentration",
       "label": "Two concentration courses in one subject area (one at the 200 level)",
       "rule": {
-        "type": "n_from_filter",
+        "type": "track_n_of",
         "n": 2,
-        "filter": {
-          "depts": [
-            "CLST"
+        "tracks": {
+          "Literature": [
+            "CLST 110",
+            "CLST 140",
+            "CLST 160",
+            "CLST 210",
+            "CLST 211",
+            "CLST 212",
+            "CLST 213",
+            "CLST 265"
           ],
-          "minNumber": 110,
-          "maxNumber": 299
+          "History": [
+            "CLST 120",
+            "CLST 121",
+            "CLST 123",
+            "CLST 124",
+            "CLST 167M",
+            "CLST 220",
+            "CLST 221",
+            "CLST 222",
+            "CLST 223",
+            "CLST 224",
+            "CLST 225"
+          ],
+          "Archaeology and Culture": [
+            "CLST 130",
+            "CLST 131",
+            "CLST 132",
+            "CLST 208",
+            "CLST 230",
+            "CLST 231",
+            "CLST 232",
+            "CLST 233W",
+            "CLST 234",
+            "CLST 240",
+            "CLST 241",
+            "CLST 244",
+            "CLST 290",
+            "CLST 291",
+            "CLST 292"
+          ]
         }
       },
-      "sourceQuote": "(3) Concentration Courses (2 courses): Two additional courses, both drawn from one of the subject areas listed above, determined in consultation with the major advisor. At least one of these courses must be at the 200-level. Work completed in these two courses will ideally contribute to the Senior Capstone Experience.",
-      "note": "See the program note - 'both from the same subject area' and 'at least one at the 200 level' cannot be enforced by the planner."
+      "sourceQuote": "(3) Concentration Courses (2 courses): Two additional courses, both drawn from one of the subject areas listed above, determined in consultation with the major advisor. At least one of these courses must be at the 200-level.",
+      "note": "At least one of the two concentration courses must be at the 200 level \u2014 not auto-enforced."
     },
     {
       "id": "electives",
