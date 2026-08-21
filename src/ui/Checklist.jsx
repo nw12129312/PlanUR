@@ -1,6 +1,8 @@
 import React, { useMemo, useState } from 'react';
 import { Icon } from './icons.jsx';
-import { Meter, SevChip, Tag, IconButton, Panel } from './bits.jsx';
+import { Meter, SevChip, Tag, IconButton, Panel, Select } from './bits.jsx';
+import { getTrackChoice } from '../engine/model.js';
+import { familyForProgram } from '../engine/pathways.js';
 import { describeRequirement } from '../engine/requirementOptions.js';
 import { describeOptionAction } from '../engine/swapRequirement.js';
 import { ruleInfo } from '../engine/rules.js';
@@ -38,6 +40,64 @@ function OptionChip({ cid, data, placedSet, action, onPick }) {
   );
 }
 
+function pathwayNoun(group, fallback = 'Concentration') {
+  const t = `${group?.id || ''} ${group?.label || ''}`.toLowerCase();
+  if (t.includes('theme')) return 'Theme';
+  if (t.includes('emphasis')) return 'Emphasis';
+  if (t.includes('focus')) return 'Focus area';
+  if (t.includes('program of study')) return 'Program of study';
+  if (t.includes('application')) return 'Application area';
+  if (t.includes('concentration')) return 'Concentration';
+  if (t.includes('track')) return 'Track';
+  return fallback;
+}
+
+function choosePrompt(noun) {
+  const n = noun.toLowerCase();
+  const article = /^[aeiou]/.test(n) ? 'an' : 'a';
+  return `Choose ${article} ${n}…`;
+}
+
+function PathwaySelect({ noun, label, value, names, onChange }) {
+  return (
+    <label className="mt-1 flex min-w-0 flex-col gap-0.5" onClick={(e) => e.preventDefault()}>
+      <span className="label-caps">{noun}</span>
+      <Select aria-label={label} value={value || ''} onChange={(e) => onChange?.(e.target.value)}>
+        <option value="">{choosePrompt(noun)}</option>
+        {names.map((name) => (
+          <option key={name} value={name}>{name}</option>
+        ))}
+      </Select>
+    </label>
+  );
+}
+
+function FamilyPicker({ family, program, programs, excludeIds, onSwapProgram }) {
+  const options = family.members
+    .map((id) => programs.find((p) => p.id === id))
+    .filter(Boolean);
+  return (
+    <label className="mt-1 flex min-w-0 flex-col gap-0.5">
+      <span className="label-caps">{family.noun}</span>
+      <Select
+        aria-label={`${family.noun} for ${program.name}`}
+        value={program.id}
+        onChange={(e) => onSwapProgram?.({ fromId: program.id, toId: e.target.value })}
+      >
+        {options.map((p) => (
+          <option
+            key={p.id}
+            value={p.id}
+            disabled={excludeIds?.includes(p.id) && p.id !== program.id}
+          >
+            {p.name} ({p.degree})
+          </option>
+        ))}
+      </Select>
+    </label>
+  );
+}
+
 function OptionList({ courses, data, placedSet, actionFor, onPick }) {
   const [showAll, setShowAll] = useState(false);
   const shown = showAll ? courses : courses.slice(0, OPTION_CAP);
@@ -61,7 +121,7 @@ function OptionList({ courses, data, placedSet, actionFor, onPick }) {
 
 // A requirement group: meter always visible, options on demand. Only groups
 // that actually offer a choice get a disclosure — an all_of has nothing to pick.
-function RequirementRow({ group: g, program, data, placedSet, onAutoFill, onPickOption }) {
+function RequirementRow({ group: g, program, data, placedSet, onAutoFill, onPickOption, trackChoice, onChooseTrack }) {
   const spec = useMemo(() => {
     const src = g.id === '__ulw'
       ? { rule: program.upperLevelWriting?.rule }
@@ -78,10 +138,12 @@ function RequirementRow({ group: g, program, data, placedSet, onAutoFill, onPick
     ? (cid) => onPickOption({ programId: program.id, groupId: g.id, courseId: cid })
     : undefined;
 
+  const declared = program.pathways?.id === g.id ? program.pathways : null;
+  const pathwayName = trackChoice || g.chosenTrack;
   const head = (
     <>
       <span className="min-w-0 flex-1 truncate text-xs font-semibold text-ink-2" title={g.note || g.label}>
-        {g.label}{g.chosenTrack ? <span className="text-gold"> · {g.chosenTrack}</span> : null}
+        {g.label}{pathwayName ? <span className="text-gold"> · {pathwayName}</span> : null}
       </span>
       {!g.complete && onAutoFill && (
         <button
@@ -94,11 +156,75 @@ function RequirementRow({ group: g, program, data, placedSet, onAutoFill, onPick
     </>
   );
 
+  const isTrackPick = spec?.kind === 'track' && (spec.sets?.length || 0) > 1;
+  const pathwayNames = isTrackPick
+    ? spec.sets.map((s) => s.name)
+    : (declared?.options?.length > 1 ? declared.options : null);
+  const noun = pathwayNoun(g, declared?.noun || 'Concentration');
+  const picker = pathwayNames ? (
+    <PathwaySelect
+      noun={noun}
+      label={`${noun} for ${g.label}`}
+      value={trackChoice}
+      names={pathwayNames}
+      onChange={(trackName) => onChooseTrack?.({
+        programId: program.id, groupId: g.id, trackName,
+      })}
+    />
+  ) : null;
+
+  if (isTrackPick) {
+    const activeName = trackChoice || g.chosenTrack;
+    return (
+      <div>
+        <div className="mb-0.5 flex items-baseline gap-2">{head}</div>
+        {picker}
+        <Meter have={g.have} need={g.need} complete={g.complete} />
+        <details className="group/req mt-0.5">
+          <summary className="cursor-pointer list-none">
+            <div className="flex items-center gap-1">
+              <Icon name="chevronRight" size="sm"
+                className="shrink-0 text-ink-3 transition-transform group-open/req:rotate-90" />
+              <span className="text-[11px] font-semibold text-accent">{spec.summary}</span>
+            </div>
+          </summary>
+          <div className="mt-1.5 space-y-2 rounded-lg bg-surface p-2 pl-2.5">
+            {spec.sets.map((s, i) => {
+              const setAction = actionFor(s.courses.find((c) => !placedSet?.has(c)) || s.courses[0]);
+              const canSwapSet = setAction?.kind === 'swap';
+              const active = s.name === activeName;
+              return (
+                <div key={i}>
+                  <div className="label-caps mb-1 flex items-center gap-1.5">
+                    <span className={`min-w-0 flex-1 truncate ${active ? 'text-gold' : ''}`}>{s.name}</span>
+                    {canSwapSet && onPick && (
+                      <button
+                        type="button"
+                        onClick={() => onPick(s.courses.find((c) => !placedSet?.has(c)) || s.courses[0])}
+                        title={`Swap ${setAction.outgoing.join(' + ')} for ${setAction.incoming.join(' + ')}`}
+                        className="inline-flex shrink-0 items-center gap-0.5 rounded px-1 text-[10px] font-bold uppercase tracking-wide text-accent hover:bg-accent-soft"
+                      >
+                        <Icon name="swap" size="sm" /> swap
+                      </button>
+                    )}
+                  </div>
+                  <OptionList courses={s.courses} data={data} placedSet={placedSet}
+                    actionFor={actionFor} onPick={onPick} />
+                </div>
+              );
+            })}
+          </div>
+        </details>
+      </div>
+    );
+  }
+
   // Nothing to choose between: render flat.
   if (!spec || !spec.choice) {
     return (
       <div>
         <div className="mb-0.5 flex items-baseline gap-2">{head}</div>
+        {picker}
         <Meter have={g.have} need={g.need} complete={g.complete} />
       </div>
     );
@@ -112,6 +238,7 @@ function RequirementRow({ group: g, program, data, placedSet, onAutoFill, onPick
             className="mt-0.5 shrink-0 text-ink-3 transition-transform group-open/req:rotate-90" />
           {head}
         </div>
+        {picker}
         <Meter have={g.have} need={g.need} complete={g.complete} />
         <div className="mt-0.5 pl-4 text-[11px] font-semibold text-accent">{spec.summary}</div>
       </summary>
@@ -162,7 +289,7 @@ function RequirementRow({ group: g, program, data, placedSet, onAutoFill, onPick
   );
 }
 
-function ProgramCard({ program, result, data, onAutoFill, placedSet, onPickOption }) {
+function ProgramCard({ program, result, data, plan, onAutoFill, placedSet, onPickOption, onChooseTrack, onSwapProgram }) {
   if (!program) return null;
   if (result.needsData) {
     return (
@@ -180,6 +307,13 @@ function ProgramCard({ program, result, data, onAutoFill, placedSet, onPickOptio
       </div>
     );
   }
+  const family = familyForProgram(program.id);
+  const occupied = [...(plan.majorIds || []), ...(plan.minorIds || [])];
+  const cardPathway = program.pathways
+    && !result.groups.some((g) => g.id === program.pathways.id)
+    && (program.pathways.options || []).length > 1
+    ? program.pathways
+    : null;
   return (
     <div className="rounded-lg bg-surface-2 p-2">
       <div className="flex items-center gap-2">
@@ -190,6 +324,26 @@ function ProgramCard({ program, result, data, onAutoFill, placedSet, onPickOptio
           ? <Tag tone="good">complete</Tag>
           : <span className="tnum text-xs text-ink-2">{result.percent}%</span>}
       </div>
+      {family && (
+        <FamilyPicker
+          family={family}
+          program={program}
+          programs={data.programs}
+          excludeIds={occupied}
+          onSwapProgram={onSwapProgram}
+        />
+      )}
+      {cardPathway && (
+        <PathwaySelect
+          noun={cardPathway.noun || 'Concentration'}
+          label={`${cardPathway.noun || 'Concentration'} for ${program.name}`}
+          value={getTrackChoice(plan, program.id, cardPathway.id)}
+          names={cardPathway.options}
+          onChange={(trackName) => onChooseTrack?.({
+            programId: program.id, groupId: cardPathway.id, trackName,
+          })}
+        />
+      )}
       <div className="mt-2 space-y-2">
         {result.groups.map((g) => (
           <RequirementRow
@@ -200,6 +354,8 @@ function ProgramCard({ program, result, data, onAutoFill, placedSet, onPickOptio
             placedSet={placedSet}
             onAutoFill={onAutoFill}
             onPickOption={onPickOption}
+            trackChoice={getTrackChoice(plan, program.id, g.id)}
+            onChooseTrack={onChooseTrack}
           />
         ))}
       </div>
@@ -256,7 +412,7 @@ function ClusterCard({ cluster, result }) {
   );
 }
 
-export function Checklist({ data, plan, progress, violations, clustersNeeded, onAutoFill, onAllowSequencing, onRemoveSequencingOverride, onHide, placedSet, onPickOption }) {
+export function Checklist({ data, plan, progress, violations, clustersNeeded, onAutoFill, onAllowSequencing, onRemoveSequencingOverride, onHide, placedSet, onPickOption, onChooseTrack, onSwapProgram }) {
   const required = resolveRequiredCredits(plan, data);
   const placedIds = [...new Set([
     ...plan.semesters.flatMap((s) => s.courseIds),
@@ -301,7 +457,8 @@ export function Checklist({ data, plan, progress, violations, clustersNeeded, on
 
         {progress.programs.map((r) => (
           <ProgramCard key={r.programId} program={data.programs.find((p) => p.id === r.programId)} result={r}
-            data={data} onAutoFill={onAutoFill} placedSet={placedSet} onPickOption={onPickOption} />
+            data={data} plan={plan} onAutoFill={onAutoFill} placedSet={placedSet}
+            onPickOption={onPickOption} onChooseTrack={onChooseTrack} onSwapProgram={onSwapProgram} />
         ))}
         {progress.clusters.map((r) => (
           <ClusterCard key={r.clusterId} cluster={data.clusters.find((c) => c.id === r.clusterId)} result={r} />

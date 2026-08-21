@@ -190,5 +190,20 @@
     },
     "sourceQuote": "*MUSC 221, 222, or 223 fulfill the ULW requirement.",
     "note": "All three surveys are required for the major anyway, so this is satisfied by the music-history group."
+  },
+  "pathways": {
+    "id": "emphasis",
+    "noun": "Emphasis",
+    "options": [
+      "Basic",
+      "Composition",
+      "History/Theory",
+      "Music in World Cultures",
+      "Musical Theater",
+      "Performance",
+      "Popular Music/Jazz",
+      "Audio and Music Engineering",
+      "Conducting"
+    ]
   }
 }
