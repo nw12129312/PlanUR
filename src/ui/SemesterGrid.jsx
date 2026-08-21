@@ -4,27 +4,50 @@ import { CourseCard } from './CourseCard.jsx';
 import { Button, SevChip, Select, TextInput, IconButton, Panel } from './bits.jsx';
 import { ruleInfo } from '../engine/rules.js';
 
-function SemesterCard({ sem, data, plan, onDropCourse, onRemoveCourse, onToggleLock, violationsByCourse, semViolations, courseUses, active, onSetActive, onRemoveSemester }) {
+function MoveHereSlot({ empty, label, onDrop }) {
   const [over, setOver] = useState(false);
+  return (
+    <div
+      role="group"
+      aria-label={label}
+      onDragOver={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        e.dataTransfer.dropEffect = 'move';
+        setOver(true);
+      }}
+      onDragLeave={() => setOver(false)}
+      onDrop={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setOver(false);
+        const cid = e.dataTransfer.getData('text/course');
+        const origin = e.dataTransfer.getData('text/origin');
+        if (cid) onDrop(cid, origin);
+      }}
+      className={`flex min-h-11 items-center justify-center rounded-md border border-dashed px-2 py-1.5 text-center text-[11px] transition ${
+        over
+          ? 'border-accent bg-accent-soft text-accent ring-2 ring-accent/30'
+          : 'border-line text-ink-3'
+      }`}
+    >
+      {over
+        ? (empty ? 'Drop to add here' : 'Drop to move here (no swap)')
+        : (empty ? 'Drop a course here' : 'Drop here to move without swapping')}
+    </div>
+  );
+}
+
+function SemesterCard({ sem, data, plan, onDropOnCourse, onMoveToSemester, onRemoveCourse, onToggleLock, violationsByCourse, semViolations, courseUses, active, onSetActive, onRemoveSemester }) {
   const credits = sem.courseIds.reduce((a, cid) => a + (data.courses[cid]?.credits ?? 4), 0);
 
   return (
     <section
       aria-label={sem.label}
-      onDragOver={(e) => { e.preventDefault(); setOver(true); }}
-      onDragLeave={() => setOver(false)}
-      onDrop={(e) => {
-        e.preventDefault(); setOver(false);
-        const cid = e.dataTransfer.getData('text/course');
-        const origin = e.dataTransfer.getData('text/origin');
-        if (cid) onDropCourse(cid, sem.id, origin);
-      }}
       className={`group flex min-w-0 flex-col gap-1.5 rounded-lg border p-2 transition ${
-        over
-          ? 'border-accent bg-accent-soft ring-2 ring-accent/30'
-          : active
-            ? 'border-accent bg-surface shadow-md'
-            : 'border-line bg-surface shadow-sm hover:border-ink-3/30 hover:shadow-md'
+        active
+          ? 'border-accent bg-surface shadow-md'
+          : 'border-line bg-surface shadow-sm hover:border-ink-3/30 hover:shadow-md'
       }`}
     >
       <header className="flex items-baseline gap-2">
@@ -69,18 +92,22 @@ function SemesterCard({ sem, data, plan, onDropCourse, onRemoveCourse, onToggleL
               violations={(violationsByCourse.get(cid) || []).filter((v) => v.semesterId === sem.id || !v.semesterId)}
               draggable
               onDragStart={(e) => {
+                e.dataTransfer.effectAllowed = 'move';
                 e.dataTransfer.setData('text/course', cid);
                 e.dataTransfer.setData('text/origin', sem.id);
               }}
+              onDropOnCourse={onDropOnCourse}
               onRemove={() => onRemoveCourse(cid, sem.id)}
             />
           );
         })}
-        {sem.courseIds.length === 0 && (
-          <div className="rounded-md border border-dashed border-line px-2 py-1.5 text-center text-[11px] text-ink-3">
-            Drop a course here
-          </div>
-        )}
+        <MoveHereSlot
+          empty={sem.courseIds.length === 0}
+          label={sem.courseIds.length === 0
+            ? `Drop a course onto ${sem.label}`
+            : `Drop a course onto ${sem.label} without swapping`}
+          onDrop={(cid, origin) => onMoveToSemester(cid, sem.id, origin)}
+        />
       </div>
     </section>
   );
@@ -147,7 +174,7 @@ function groupIntoYears(semesters) {
   return years;
 }
 
-export function SemesterGrid({ data, plan, activeSemesterId, onSetActive, onDropCourse, onRemoveCourse, onToggleLock, onAddSemester, onRemoveSemester, violationsByCourse, violationsBySemester, courseUses, onAddTransfer, onRemoveTransfer, auditOpen, onToggleAudit }) {
+export function SemesterGrid({ data, plan, activeSemesterId, onSetActive, onDropOnCourse, onMoveToSemester, onRemoveCourse, onToggleLock, onAddSemester, onRemoveSemester, violationsByCourse, violationsBySemester, courseUses, onAddTransfer, onRemoveTransfer, auditOpen, onToggleAudit }) {
   const years = groupIntoYears(plan.semesters);
   return (
     <Panel
@@ -188,7 +215,8 @@ export function SemesterGrid({ data, plan, activeSemesterId, onSetActive, onDrop
                   plan={plan}
                   active={activeSemesterId === sem.id}
                   onSetActive={() => onSetActive(sem.id)}
-                  onDropCourse={onDropCourse}
+                  onDropOnCourse={onDropOnCourse}
+                  onMoveToSemester={onMoveToSemester}
                   onRemoveCourse={onRemoveCourse}
                   onToggleLock={onToggleLock}
                   onRemoveSemester={() => onRemoveSemester(sem.id)}
