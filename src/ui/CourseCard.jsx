@@ -4,9 +4,13 @@ import { SevChip, Tag, IconButton } from './bits.jsx';
 import { Icon } from './icons.jsx';
 import { ruleInfo } from '../engine/rules.js';
 import { groupsForCourse } from '../engine/equivalency.js';
-import { getEquivalencyGroups } from '../storage/dataStore.js';
+import { getEquivalencyGroups, getRmp } from '../storage/dataStore.js';
+import {
+  rmpAriaSummary, rmpCompactLine, rmpDetailLines, rmpForInstructor, rmpPageUrl,
+} from '../engine/rmp.js';
 
 const equivalencyGroupsData = getEquivalencyGroups();
+const rmpDirectory = getRmp();
 const useIsoLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 
 // courseId -> {name, pathNames, title} for equivalency badge (built once).
@@ -57,6 +61,36 @@ function detailsTitle(c) {
   return parts.join('\n');
 }
 
+function InstructorMetrics({ rec, compact }) {
+  if (compact) {
+    const line = rmpCompactLine(rec);
+    if (!line) return null;
+    return (
+      <span className="tnum shrink-0 text-[11px] font-semibold text-ink-3">{line}</span>
+    );
+  }
+  const lines = rmpDetailLines(rec);
+  const href = rmpPageUrl(rec);
+  return (
+    <div className="mt-1 flex flex-col gap-0.5 text-[11px] leading-snug text-ink-2">
+      {lines.map((line) => (
+        <div key={line} className="tnum">{line}</div>
+      ))}
+      {href && (
+        <a
+          href={href}
+          target="_blank"
+          rel="noreferrer"
+          className="mt-0.5 font-medium text-accent underline-offset-2 hover:underline"
+          onClick={(e) => e.stopPropagation()}
+        >
+          Open RateMyProfessors
+        </a>
+      )}
+    </div>
+  );
+}
+
 function InstructorChip({ courseId, names }) {
   const uid = useId();
   const listId = `${uid}-instructors`;
@@ -64,15 +98,20 @@ function InstructorChip({ courseId, names }) {
   const panelRef = useRef(null);
   const [open, setOpen] = useState(false);
   const [pos, setPos] = useState(null);
+  const single = names.length === 1;
+  const label = single ? names[0] : 'Multiple Instructors';
+  const aria = single
+    ? rmpAriaSummary(names[0], rmpForInstructor(names[0], rmpDirectory))
+    : `Instructors for ${courseId}`;
 
   const updatePos = () => {
     const el = btnRef.current;
     if (!el) return;
     const r = el.getBoundingClientRect();
     const gap = 4;
-    const width = Math.max(r.width, 176);
+    const width = Math.max(r.width, single ? 220 : 260);
     const spaceBelow = window.innerHeight - r.bottom - 8;
-    const openUp = spaceBelow < 120 && r.top > spaceBelow;
+    const openUp = spaceBelow < 160 && r.top > spaceBelow;
     let left = Math.round(r.left);
     if (left + width > window.innerWidth - 8) {
       left = Math.max(8, window.innerWidth - width - 8);
@@ -118,13 +157,6 @@ function InstructorChip({ courseId, names }) {
   }, [open]);
 
   if (!names.length) return null;
-  if (names.length === 1) {
-    return (
-      <Tag tone="neutral" icon="user" title={names[0]}>
-        {names[0]}
-      </Tag>
-    );
-  }
 
   const panel = open && pos && typeof document !== 'undefined'
     ? createPortal(
@@ -132,18 +164,25 @@ function InstructorChip({ courseId, names }) {
         ref={panelRef}
         id={listId}
         role="dialog"
-        aria-label={`Instructors for ${courseId}`}
+        aria-label={single ? `RateMyProfessors ratings for ${names[0]}` : `Instructors for ${courseId}`}
         tabIndex={-1}
-        className="fixed z-[70] max-h-60 overflow-auto rounded-md border border-line bg-surface p-2 shadow-lg outline-none"
+        className="fixed z-[70] max-h-72 overflow-auto rounded-md border border-line bg-surface p-2 shadow-lg outline-none"
         style={{ left: pos.left, width: pos.width, top: pos.top, bottom: pos.bottom }}
       >
         <ul className="m-0 flex list-none flex-col gap-0.5 p-0">
-          {names.map((name) => (
-            <li key={name} className="flex items-center gap-1.5 rounded px-1.5 py-1 text-[12px] font-medium text-ink">
-              <Icon name="user" size="sm" />
-              <span>{name}</span>
-            </li>
-          ))}
+          {names.map((name) => {
+            const rec = rmpForInstructor(name, rmpDirectory);
+            return (
+              <li key={name} className="flex flex-col rounded px-1.5 py-1">
+                <div className="flex items-center gap-1.5 text-[12px] font-medium text-ink">
+                  <Icon name="user" size="sm" />
+                  <span className="min-w-0 flex-1 truncate">{name}</span>
+                  {!single && <InstructorMetrics rec={rec} compact />}
+                </div>
+                {single && <InstructorMetrics rec={rec} />}
+              </li>
+            );
+          })}
         </ul>
       </div>,
       document.body,
@@ -155,6 +194,7 @@ function InstructorChip({ courseId, names }) {
       <button
         ref={btnRef}
         type="button"
+        aria-label={aria}
         aria-expanded={open}
         aria-haspopup="dialog"
         aria-controls={listId}
@@ -167,7 +207,7 @@ function InstructorChip({ courseId, names }) {
         className="chip-line min-h-6 cursor-pointer gap-1 rounded-full bg-surface-2 px-2.5 py-0.5 text-[11px] font-medium text-ink-2 hover:bg-line active:brightness-95"
       >
         <Icon name="user" size="sm" />
-        <span className="chip-text">Multiple Instructors</span>
+        <span className="chip-text">{label}</span>
       </button>
       {panel}
     </>
