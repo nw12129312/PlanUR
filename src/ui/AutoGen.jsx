@@ -2,12 +2,15 @@ import React, { useMemo, useState } from 'react';
 import { Icon } from './icons.jsx';
 import { Button, Select, SevChip, Tag } from './bits.jsx';
 import { ruleInfo } from '../engine/rules.js';
+import { SCHEDULE_STYLES, styleOf } from '../engine/scheduleStyle.js';
 
 // Toolbar: scope + target load + generate + lock controls.
-export function GenerateBar({ plan, data, onGenerate, onLockAll, busy }) {
+export function GenerateBar({ plan, data, onGenerate, onLockAll, busy, onScheduleStyle }) {
   const [scopeKey, setScopeKey] = useState('all');
   const [target, setTarget] = useState('16');
   const [accelerated, setAccelerated] = useState(false);
+  const scheduleStyle = styleOf(plan);
+  const styleMeta = SCHEDULE_STYLES.find((s) => s.id === scheduleStyle) || SCHEDULE_STYLES[0];
 
   const scopeOptions = useMemo(() => {
     const opts = [{ key: 'all', label: 'Everything unlocked' }];
@@ -43,6 +46,20 @@ export function GenerateBar({ plan, data, onGenerate, onLockAll, busy }) {
         className="w-auto! min-w-28">
         {[14, 15, 16, 17, 18].map((n) => <option key={n} value={n}>{n} cr / sem</option>)}
       </Select>
+      <label className="flex min-w-0 items-center gap-1.5 text-xs text-ink-2">
+        <span className="shrink-0 font-medium text-ink">Schedule style</span>
+        <Select
+          value={scheduleStyle}
+          onChange={(e) => onScheduleStyle?.(e.target.value)}
+          aria-label="Schedule style"
+          title={styleMeta.blurb}
+          className="w-auto! min-w-40"
+        >
+          {SCHEDULE_STYLES.map((s) => (
+            <option key={s.id} value={s.id}>{s.label}</option>
+          ))}
+        </Select>
+      </label>
       <label className="flex items-center gap-1.5 text-xs text-ink-2"
         title="When alternative course sequences exist (e.g. honors calculus), prefer the accelerated path.">
         <input type="checkbox" checked={accelerated} onChange={(e) => setAccelerated(e.target.checked)} />
@@ -51,6 +68,7 @@ export function GenerateBar({ plan, data, onGenerate, onLockAll, busy }) {
       <span className="flex-1" />
       <Button kind="quiet" onClick={() => onLockAll(true)} title="Lock every placed course (regenerate touches nothing)">Lock all</Button>
       <Button kind="quiet" onClick={() => onLockAll(false)} title="Unlock every placed course (full clean regenerate)">Unlock all</Button>
+      <p className="basis-full m-0 text-[11px] leading-snug text-ink-3">{styleMeta.blurb}</p>
     </div>
   );
 }

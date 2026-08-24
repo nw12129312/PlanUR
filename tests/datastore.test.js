@@ -103,6 +103,15 @@ describe('dataStore plan persistence', () => {
     const loaded = await store.loadPlan(store.LOCAL_USER, plan.id);
     expect(loaded.trackChoices).toEqual({});
   });
+
+  it('defaults missing schedule-style preferences on load so older saves still open', async () => {
+    const plan = newPlan('No prefs', 2026);
+    const raw = { ...plan };
+    delete raw.preferences;
+    kv.set(`plans:${plan.id}`, JSON.stringify(raw));
+    const loaded = await store.loadPlan(store.LOCAL_USER, plan.id);
+    expect(loaded.preferences).toEqual({ scheduleStyle: 'balanced' });
+  });
 });
 
 describe('dataStore degradation without window.storage', () => {

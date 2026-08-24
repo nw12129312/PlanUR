@@ -21,6 +21,7 @@ import {
   describePrereqEntry,
 } from './equivalency.js';
 import { placementViolatesDeptOrder, parseCourseCode } from './deptSequencing.js';
+import { deptDivisionIndex, majorDepartments, styleOf, styleScore } from './scheduleStyle.js';
 
 // ---------------------------------------------------------------- helpers ---
 
@@ -245,7 +246,7 @@ function chainString(cid, data, placedSet) {
 
 // -------------------------------------------------------------- one pass ----
 
-function generateOnce(plan, data, { scope, targetLoad, maxLoad, bans, pathPreference, relaxDeptOrder = false }) {
+function generateOnce(plan, data, { scope, targetLoad, maxLoad, bans, pathPreference, scheduleStyle, relaxDeptOrder = false }) {
   const warnings = [];
   const placements = [];
   const eqGroups = data.equivalencyGroups || [];
@@ -260,6 +261,9 @@ function generateOnce(plan, data, { scope, targetLoad, maxLoad, bans, pathPrefer
   const startIdx = scope.kind === 'fromSemester' ? Math.min(scope.index, p.semesters.length) : 0;
   const lastIdx = p.semesters.length - 1;
   const term = (i) => p.semesters[i].term;
+  const packStyle = scheduleStyle || styleOf(p);
+  const divIndex = deptDivisionIndex(data);
+  const majorDepts = majorDepartments(p, data);
 
   // `mandatory` marks a placement the retry loop must never ban: the course is
   // the only way to satisfy some non-flexible entry (all_of / sequence_one_of
@@ -494,6 +498,13 @@ function generateOnce(plan, data, { scope, targetLoad, maxLoad, bans, pathPrefer
             -(gating.get(cid) ?? 0),                        // (b) unlock prerequisites early
             -(c.offeredVerified && c.offered.length === 1 && c.offered[0] === term(s) ? 1 : 0), // scarce offerings now
             c.stub ? 1 : 0,                                 // verified data first
+            styleScore(cid, {
+              style: packStyle,
+              semesterIds: p.semesters[s].courseIds,
+              majorDepts,
+              divIndex,
+              data,
+            }),
             // lower course numbers first: keeps the department-ascending
             // hard rule feasible under forward semester filling (placing a
             // high number early would strand its lower-numbered siblings)
@@ -660,9 +671,11 @@ export function autoGenerate(plan, data, opts = {}) {
     maxLoad = 18,
     maxRetries = 50,
     pathPreference = 'auto', // 'auto' | 'accelerated'
+    scheduleStyle,
   } = opts;
+  const style = scheduleStyle || styleOf(plan);
 
-  const strict = runPhase(plan, data, { scope, targetLoad, maxLoad, maxRetries, pathPreference, relaxDeptOrder: false });
+  const strict = runPhase(plan, data, { scope, targetLoad, maxLoad, maxRetries, pathPreference, scheduleStyle: style, relaxDeptOrder: false });
   if (!strict.infeasible.length) return strict;
 
   // The same-department ascending rule is advisory (checkDepartmentSequencing
@@ -672,7 +685,7 @@ export function autoGenerate(plan, data, opts = {}) {
   // offerings simply don't fit 8 semesters. Finishing the degree outranks the
   // heuristic, so retry without it and let the ordering surface as the
   // warnings it actually is.
-  const relaxed = runPhase(plan, data, { scope, targetLoad, maxLoad, maxRetries, pathPreference, relaxDeptOrder: true });
+  const relaxed = runPhase(plan, data, { scope, targetLoad, maxLoad, maxRetries, pathPreference, scheduleStyle: style, relaxDeptOrder: true });
   const errs = (r) => r.violations.filter((v) => v.severity === 'error').length;
   if (cmp([errs(relaxed), relaxed.infeasible.length], [errs(strict), strict.infeasible.length]) >= 0) return strict;
 
@@ -686,7 +699,7 @@ export function autoGenerate(plan, data, opts = {}) {
   return relaxed;
 }
 
-function runPhase(plan, data, { scope, targetLoad, maxLoad, maxRetries, pathPreference, relaxDeptOrder }) {
+function runPhase(plan, data, { scope, targetLoad, maxLoad, maxRetries, pathPreference, scheduleStyle, relaxDeptOrder }) {
   const bans = new Set();
   const optionSets = requirementOptionSets(plan, data);
   const tryBan = (cid) => {
@@ -697,7 +710,7 @@ function runPhase(plan, data, { scope, targetLoad, maxLoad, maxRetries, pathPref
   let best = null;
 
   for (let attempt = 1; attempt <= Math.max(1, maxRetries); attempt++) {
-    const result = generateOnce(plan, data, { scope, targetLoad, maxLoad, bans, pathPreference, relaxDeptOrder });
+    const result = generateOnce(plan, data, { scope, targetLoad, maxLoad, bans, pathPreference, scheduleStyle, relaxDeptOrder });
     const { violations } = checkAll(result.plan, data);
     const autoIds = new Set(result.placements.map((x) => x.courseId));
     const errors = violations.filter((v) => v.severity === 'error');
