@@ -5,6 +5,7 @@ import { getTrackChoice } from '../engine/model.js';
 import { familyForProgram } from '../engine/pathways.js';
 import { describeRequirement } from '../engine/requirementOptions.js';
 import { describeOptionAction } from '../engine/swapRequirement.js';
+import { coversCourse } from '../engine/crossList.js';
 import { ruleInfo } from '../engine/rules.js';
 import { resolveRequiredCredits } from '../engine/constraints.js';
 
@@ -16,7 +17,7 @@ const OPTION_CAP = 14;
 // in the plan, and offers a one-click add when it is not.
 function OptionChip({ cid, data, placedSet, action, onPick }) {
   const c = data.courses[cid];
-  const placed = placedSet?.has(cid);
+  const placed = coversCourse(placedSet, cid, data.courses);
   const swap = action?.kind === 'swap';
   return (
     <li className="flex items-center gap-1.5">
@@ -133,7 +134,7 @@ function RequirementRow({ group: g, program, data, placedSet, onAutoFill, onPick
     ? program.upperLevelWriting?.rule
     : (program.requirementGroups || []).find((x) => x.id === g.id)?.rule;
 
-  const actionFor = (cid) => describeOptionAction(g, rule, cid);
+  const actionFor = (cid) => describeOptionAction(g, rule, cid, data.courses);
   const onPick = onPickOption
     ? (cid) => onPickOption({ programId: program.id, groupId: g.id, courseId: cid })
     : undefined;

@@ -10,6 +10,7 @@ import { applyRequirementOption, placeCourseWithPrereqs } from './engine/swapReq
 import { swapPlacedCourses, moveCourseToSemester, placementWarnings } from './engine/courseMove.js';
 import { applyRecordedExams, previewExamAdd, removeExamsFromPlan, upsertRecordedExam } from './engine/examCredit.js';
 import { divisionalCoverageForPlan } from './engine/coverage.js';
+import { listingOnPlan } from './engine/crossList.js';
 // dataStore is the ONLY module that touches window.storage (and the only
 // place App reads bundled data from); see src/storage/dataStore.js.
 import * as store from './storage/dataStore.js';
@@ -153,7 +154,11 @@ export default function App() {
   const addCourse = (cid, semId) => {
     if (blockedByEquivalency(cid)) return;
     const p = planRef.current;
-    if (p.semesters.some((s) => s.courseIds.includes(cid)) || p.transfer.some((t) => t.courseId === cid)) return;
+    const already = listingOnPlan(p, cid, DATA.courses);
+    if (already) {
+      if (already !== cid) showBlock(`${cid} is already on the plan as ${already} (cross-listed).`);
+      return;
+    }
     const target = semId || activeSemesterId || p.semesters.find((s) => s.courseIds.length < 5)?.id || p.semesters[0]?.id;
     const result = placeCourseWithPrereqs(p, DATA, cid, { preferSemesterId: target });
     if (result.error) { showBlock(result.error); return; }
@@ -290,7 +295,7 @@ export default function App() {
   const addTransfer = (cid, kind) => {
     if (blockedByEquivalency(cid)) return;
     setPlan((p) => {
-      if (p.transfer.some((t) => t.courseId === cid) || p.semesters.some((s) => s.courseIds.includes(cid))) return p;
+      if (listingOnPlan(p, cid, DATA.courses)) return p;
       return touch({ ...p, transfer: [...p.transfer, { courseId: cid, kind }] });
     });
   };

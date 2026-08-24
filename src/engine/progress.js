@@ -4,6 +4,7 @@
 // Pure functions; no UI or storage imports.
 
 import { buildContext, isTransfer, transferKind, isWrtgPwr } from './model.js';
+import { listingsOf, familyUsed } from './crossList.js';
 
 function matchesFilter(course, filter) {
   if (!course) return false;
@@ -14,6 +15,14 @@ function matchesFilter(course, filter) {
   if (filter.wOnly && !course.suffix.includes('W')) return false;
   if (filter.exclude && filter.exclude.includes(course.id)) return false;
   return true;
+}
+
+function placedListing(ctx, cid) {
+  return listingsOf(ctx.courses, cid).find((id) => ctx.placedSet.has(id)) || null;
+}
+
+function familyMatchesFilter(ctx, cid, filter) {
+  return listingsOf(ctx.courses, cid).some((id) => matchesFilter(ctx.course(id), filter));
 }
 
 // Fill one program's requirement groups from available courses.
@@ -44,25 +53,35 @@ function fillProgram(program, available, ctx) {
 
   for (const g of allGroups) {
     const rule = g.rule;
-    const canUse = (cid) => (g.allowReuse ? true : !used.has(cid)) &&
-      ctx.placedSet.has(cid) && !apIbBlocked(cid);
+    const canUse = (cid) => {
+      const actual = placedListing(ctx, cid);
+      if (!actual) return false;
+      if (!g.allowReuse && familyUsed(used, cid, ctx.courses)) return false;
+      return !apIbBlocked(actual);
+    };
+    const takeActual = (cid) => placedListing(ctx, cid) || cid;
     const take = [];
     let need = 0;
 
     if (rule.type === 'all_of') {
       need = rule.courses.length;
-      for (const cid of rule.courses) if (canUse(cid)) take.push(cid);
+      for (const cid of rule.courses) {
+        if (canUse(cid) && !familyUsed(new Set(take), cid, ctx.courses)) take.push(takeActual(cid));
+      }
     } else if (rule.type === 'n_of') {
       need = rule.n;
       for (const cid of rule.options) {
         if (take.length >= need) break;
-        if (canUse(cid)) take.push(cid);
+        if (canUse(cid) && !familyUsed(new Set(take), cid, ctx.courses)) take.push(takeActual(cid));
       }
     } else if (rule.type === 'sequence_one_of') {
       // Pick the sequence with the most progress; need = its length.
       let best = null;
       for (const seq of rule.sequences) {
-        const have = seq.filter((cid) => canUse(cid));
+        const have = [];
+        for (const cid of seq) {
+          if (canUse(cid) && !familyUsed(new Set(have), cid, ctx.courses)) have.push(takeActual(cid));
+        }
         const score = have.length / seq.length;
         if (!best || score > best.score) best = { seq, have, score };
       }
@@ -72,19 +91,27 @@ function fillProgram(program, available, ctx) {
       need = rule.n;
       for (const cid of ctx.placed) {
         if (take.length >= need) break;
-        if (!canUse(cid) || take.includes(cid)) continue;
-        if (matchesFilter(ctx.course(cid), rule.filter)) take.push(cid);
+        if (!canUse(cid) || familyUsed(new Set(take), cid, ctx.courses)) continue;
+        if (familyMatchesFilter(ctx, cid, rule.filter)) take.push(cid);
       }
     } else if (rule.type === 'track_n_of') {
       need = rule.n;
       const declared = ctx.plan.trackChoices?.[program.id]?.[g.id];
       if (declared && rule.tracks[declared]) {
         chosenTrack = declared;
-        take.push(...(rule.tracks[declared] || []).filter((cid) => canUse(cid)).slice(0, need));
+        const ids = [];
+        for (const cid of rule.tracks[declared] || []) {
+          if (ids.length >= need) break;
+          if (canUse(cid) && !familyUsed(new Set(ids), cid, ctx.courses)) ids.push(takeActual(cid));
+        }
+        take.push(...ids);
       } else {
         let best = null;
         for (const [name, codes] of Object.entries(rule.tracks)) {
-          const have = codes.filter((cid) => canUse(cid) && !take.includes(cid));
+          const have = [];
+          for (const cid of codes) {
+            if (canUse(cid) && !familyUsed(new Set(have), cid, ctx.courses)) have.push(takeActual(cid));
+          }
           if (!best || have.length > best.have.length) best = { name, have };
         }
         chosenTrack = best?.name || null;
@@ -98,7 +125,7 @@ function fillProgram(program, available, ctx) {
         if (name === chosenTrack) continue;
         for (const cid of codes) {
           if (take.length >= need) break;
-          if (canUse(cid) && !take.includes(cid)) take.push(cid);
+          if (canUse(cid) && !familyUsed(new Set(take), cid, ctx.courses)) take.push(takeActual(cid));
         }
       }
     }
@@ -135,12 +162,16 @@ function fillCluster(cluster, ctx, usedByPrograms, usedByOtherClusters) {
   const groups = [];
   const usedHere = new Set();
 
-  const eligible = (cid) =>
-    ctx.placedSet.has(cid) &&
-    !isWrtgPwr(policy, cid) &&
-    !isTransfer(plan, cid) &&
-    !usedByOtherClusters.has(cid) &&
-    !usedHere.has(cid);
+  const placedCode = (listed) => listingsOf(ctx.courses, listed).find((id) => ctx.placedSet.has(id));
+
+  const eligible = (cid) => {
+    const actual = placedCode(cid);
+    return !!actual &&
+      !isWrtgPwr(policy, actual) &&
+      !isTransfer(plan, actual) &&
+      !familyUsed(usedByOtherClusters, actual, ctx.courses) &&
+      !familyUsed(usedHere, actual, ctx.courses);
+  };
 
   let sharedUsed = 0;
   const cap = policy.overlapCaps.clusterProgram;
@@ -154,9 +185,10 @@ function fillCluster(cluster, ctx, usedByPrograms, usedByOtherClusters) {
 
     // two passes: unique-first, then shared (respecting the 1-shared cap)
     const grab = (cid) => {
-      take.push(cid);
-      usedHere.add(cid);
-      if (usedByPrograms.has(cid)) sharedUsed++;
+      const actual = placedCode(cid) || cid;
+      take.push(actual);
+      usedHere.add(actual);
+      if (familyUsed(usedByPrograms, actual, ctx.courses)) sharedUsed++;
     };
     for (const pass of ['unique', 'shared']) {
       let got = take.reduce((a, c) => a + value(c), 0);
@@ -164,18 +196,19 @@ function fillCluster(cluster, ctx, usedByPrograms, usedByOtherClusters) {
       for (const opt of g.options) {
         got = take.reduce((a, c) => a + value(c), 0);
         if (got >= need) break;
-        const codes = opt.codes.filter(eligible).filter((c) => !take.includes(c));
+        const codes = opt.codes.filter(eligible)
+          .filter((c) => !familyUsed(usedHere, c, ctx.courses));
         if (opt.mode === 'all') {
           // compound option ("X and Y"): every code must be assignable together
           if (codes.length !== opt.codes.length) continue;
-          const sharedCodes = codes.filter((c) => usedByPrograms.has(c));
+          const sharedCodes = codes.filter((c) => familyUsed(usedByPrograms, c, ctx.courses));
           if (pass === 'unique' && sharedCodes.length) continue;
           if (pass === 'shared' && (sharedCodes.length === 0 || sharedUsed + sharedCodes.length > cap)) continue;
           codes.forEach(grab);
         } else {
           // alternatives: take the first code allowed in this pass
           const pick = codes.find((cid) => {
-            const shared = usedByPrograms.has(cid);
+            const shared = familyUsed(usedByPrograms, cid, ctx.courses);
             return pass === 'unique' ? !shared : (shared && sharedUsed < cap);
           });
           if (pick) grab(pick);

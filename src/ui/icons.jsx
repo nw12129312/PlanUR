@@ -34,6 +34,20 @@ const PATHS = {
       <path d="M20 16H7m3.5-3.5L7 16l3.5 3.5" />
     </>
   ),
+  // CDCS instructor chip on course cards
+  user: (
+    <>
+      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+      <circle cx="12" cy="7" r="4" />
+    </>
+  ),
+  // cross-listed course (same class, two department codes)
+  link: (
+    <>
+      <path d="M10 13a5 5 0 0 0 7.54.54l1.96-1.96a5 5 0 0 0-7.07-7.07L11.2 5.74" />
+      <path d="M14 11a5 5 0 0 0-7.54-.54L4.5 12.42a5 5 0 0 0 7.07 7.07L13 18.06" />
+    </>
+  ),
   plus: <path d="M12 5v14M5 12h14" />,
   close: <path d="M6 6l12 12M18 6 6 18" />,
   check: <path d="m4.5 12.5 5 5 10-11" />,

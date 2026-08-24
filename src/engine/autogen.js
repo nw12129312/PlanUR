@@ -22,6 +22,7 @@ import {
 } from './equivalency.js';
 import { placementViolatesDeptOrder, parseCourseCode } from './deptSequencing.js';
 import { deptDivisionIndex, majorDepartments, styleOf, styleScore } from './scheduleStyle.js';
+import { coversCourse, expandPlacedSet } from './crossList.js';
 
 // ---------------------------------------------------------------- helpers ---
 
@@ -195,10 +196,11 @@ function buildLedger(plan, data, scope) {
 
 // -------------------------------------------------- prerequisite machinery ---
 
-function orGroupSatisfied(orGroup, placedBeforeSet, eqGroups) {
+function orGroupSatisfied(orGroup, placedBeforeSet, eqGroups, courses) {
+  const fam = courses ? expandPlacedSet(placedBeforeSet, courses) : placedBeforeSet;
   return orGroup.some((p) => (isLevelEntry(p)
-    ? levelSatisfied(levelTag(p), placedBeforeSet, eqGroups)
-    : placedBeforeSet.has(p)));
+    ? levelSatisfied(levelTag(p), fam, eqGroups)
+    : fam.has(p)));
 }
 
 // Choose which member of an OR-group to schedule when none is placed:
@@ -234,7 +236,7 @@ function chainString(cid, data, placedSet) {
   let cur = data.courses[cid];
   const guard = new Set([cid]);
   while (cur?.prereqs?.length) {
-    const g = cur.prereqs.find((x) => !x.some((p) => placedSet.has(p)));
+    const g = cur.prereqs.find((x) => !x.some((p) => coversCourse(placedSet, p, data.courses)));
     if (!g) break;
     const next = pickOrMember(g, data, guard);
     if (!next || guard.has(next)) break;
@@ -298,7 +300,7 @@ function generateOnce(plan, data, { scope, targetLoad, maxLoad, bans, pathPrefer
     for (const g of equivGroupsActive) {
       if (pathChoice.has(g.id)) continue;
       if (!g.paths.some((p) => p.courses.some((c) => candidateSet.has(c)))) continue;
-      const possible = consistentPaths(g, placedSet);
+      const possible = consistentPaths(g, expandPlacedSet(placedSet, data.courses));
       if (possible.size === 0) continue; // pre-existing conflict: not ours to resolve
       let options = g.paths.filter((p) =>
         possible.has(p.id) &&
@@ -312,7 +314,7 @@ function generateOnce(plan, data, { scope, targetLoad, maxLoad, bans, pathPrefer
       const withCandidates = options.filter((p) => p.courses.some((c) => candidateSet.has(c)));
       if (withCandidates.length) options = withCandidates;
       const scorePath = (p) => {
-        const firstUnplaced = p.courses.find((c) => !placedSet.has(c));
+        const firstUnplaced = p.courses.find((c) => !coversCourse(placedSet, c, data.courses));
         const fc = firstUnplaced ? data.courses[firstUnplaced] : null;
         const offeredNow = fc && fc.offeredVerified && !fc.offered.includes(currentTerm) ? 1 : 0;
         const credits = p.courses.reduce((a, c) => a + (data.courses[c]?.credits ?? 4), 0);
@@ -338,7 +340,7 @@ function generateOnce(plan, data, { scope, targetLoad, maxLoad, bans, pathPrefer
     for (const { group, paths } of groupsForCourse(eqGroups, cid)) {
       const chosen = pathChoice.get(group.id);
       if (chosen && !paths.some((p) => p.id === chosen)) return false;
-      const possible = consistentPaths(group, placedSet);
+      const possible = consistentPaths(group, expandPlacedSet(placedSet, data.courses));
       if (possible.size && !paths.some((p) => possible.has(p.id))) return false;
     }
     return true;
@@ -374,7 +376,7 @@ function generateOnce(plan, data, { scope, targetLoad, maxLoad, bans, pathPrefer
       for (const g of c.prereqs || []) {
         if (g.some((x) => isLevelEntry(x)
           ? levelSatisfied(levelTag(x), placedAll, eqGroups)
-          : (placedAll.has(x) || poolSet.has(x) || support.some((e) => e.candidates[0] === x)))) continue;
+          : (coversCourse(placedAll, x, data.courses) || poolSet.has(x) || support.some((e) => e.candidates[0] === x)))) continue;
         const allowed = g.filter((x) => !isLevelEntry(x) && eligibleByEquiv(x, placedAll));
         const member = pickOrMember(allowed, data, depthGuard);
         if (!member) continue;
@@ -429,7 +431,7 @@ function generateOnce(plan, data, { scope, targetLoad, maxLoad, bans, pathPrefer
 
     // (c) PWR first, in the first scoped semester
     const pwrEntry = allEntries.find((e) => e.kind === 'pwr');
-    if (pwrEntry && s === startIdx && !placedAll.has('WRTG 105') &&
+    if (pwrEntry && s === startIdx && !coversCourse(placedAll, 'WRTG 105', data.courses) &&
         credits() + (data.courses['WRTG 105']?.credits ?? 4) <= maxLoad) {
       place('WRTG 105', s, 'Primary Writing Requirement — placed first', true);
       pwrEntry.need = 0;
@@ -443,13 +445,13 @@ function generateOnce(plan, data, { scope, targetLoad, maxLoad, bans, pathPrefer
       for (const e of allEntries) {
         if (e.need <= 0) continue;
         for (const cid of e.candidates) {
-          if (placedNow.has(cid) || bans.has(cid)) continue;
+          if (coversCourse(placedNow, cid, data.courses) || bans.has(cid)) continue;
           const c = data.courses[cid];
           if (!c) continue;
           if (!offeredOk(c, term(s))) continue;
           if (credits() + c.credits > maxLoad) continue;
           if (!eligibleByEquiv(cid, placedNow)) continue;
-          if ((c.prereqs || []).some((g) => !orGroupSatisfied(g, placedBefore, eqGroups))) continue;
+          if ((c.prereqs || []).some((g) => !orGroupSatisfied(g, placedBefore, eqGroups, data.courses))) continue;
           // HARD constraint (same tier as offering/prerequisites): never
           // place a course where it would break same-department ascending-
           // number order against anything already in the plan - including
@@ -473,7 +475,7 @@ function generateOnce(plan, data, { scope, targetLoad, maxLoad, bans, pathPrefer
                 let fut = 0;   // candidates still placeable AFTER cid lands here
                 let avail = 0; // candidates available regardless of the ordering rule
                 for (const c2 of e2.candidates) {
-                  if (c2 === cid || placedNow.has(c2) || bans.has(c2)) continue;
+                  if (c2 === cid || coversCourse(placedNow, c2, data.courses) || bans.has(c2)) continue;
                   avail++;
                   const p2 = parseCourseCode(c2);
                   if (!p2 || p2.dept !== me.dept || p2.number >= me.number) fut++;
@@ -558,7 +560,7 @@ function generateOnce(plan, data, { scope, targetLoad, maxLoad, bans, pathPrefer
         break;
       }
       const levelBlocked = (data.courses[cid]?.prereqs || [])
-        .find((g) => g.some(isLevelEntry) && !orGroupSatisfied(g, placedSet, data.equivalencyGroups || []));
+        .find((g) => g.some(isLevelEntry) && !orGroupSatisfied(g, placedSet, data.equivalencyGroups || [], data.courses));
       if (levelBlocked) {
         why = `${cid} requires ${levelBlocked.map((x) => describePrereqEntry(x, data.equivalencyGroups || [])).join(' or ')}, which the plan does not yet complete`;
         break;
