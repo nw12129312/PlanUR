@@ -30,6 +30,7 @@ import clustersData from '../data/clusters.json';
 import policyData from '../data/policy.json';
 import equivalencyGroupsData from '../data/equivalency_groups.json';
 import examCreditData from '../data/exam_credit.json';
+import rmpData from '../data/rmp.json';
 import metaData from '../data/meta.json';
 
 export const LOCAL_USER = 'local-user';
@@ -42,6 +43,7 @@ export const getPrograms = () => programsData;
 export const getCourses = () => coursesData;
 export const getEquivalencyGroups = () => equivalencyGroupsData;
 export const getExamCredit = () => examCreditData;
+export const getRmp = () => rmpData;
 export const getClusters = () => clustersData;
 export const getPolicy = () => policyData;
 export const getMeta = () => metaData;
