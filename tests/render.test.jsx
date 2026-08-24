@@ -43,6 +43,8 @@ describe('UI render smoke', () => {
   it('renders the full App tree (empty initial plan)', () => {
     const html = renderToString(<App />);
     expect(html).toContain('Planur');
+    expect(html).toContain('wordmark-u');
+    expect(html).toContain('wordmark-r');
     expect(html).toContain('UR Schedule Builder');
     expect(html).toContain('Save plan');
     expect(html).toContain('Export PDF');

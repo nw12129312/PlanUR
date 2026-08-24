@@ -225,8 +225,17 @@ body {
   -webkit-backdrop-filter: blur(10px);
 }
 
-.wordmark-u { color: var(--accent); }
-.wordmark-r { color: var(--dandelion); }
+.wordmark {
+  font-family: "Times New Roman", Times, Georgia, serif !important;
+  font-weight: 600 !important;
+  font-size: 22px !important;
+  line-height: 1;
+  letter-spacing: 0;
+  color: var(--ink);
+}
+/* Baby blue / Dandelion #FFC200 — brand hex, not theme tokens. */
+.wordmark-u { color: #89CFF0 !important; }
+.wordmark-r { color: #FFC200 !important; }
 
 .site-footer {
   border-top: 1px solid var(--line);
