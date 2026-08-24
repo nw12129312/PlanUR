@@ -29,6 +29,7 @@ export function newPlan(name = 'Untitled plan', startYear = new Date().getFullYe
     // declared concentration / track / theme inside a program:
     // { [programId]: { [groupId]: trackName } }
     trackChoices: {},
+    preferences: { scheduleStyle: 'balanced' },
     createdAt: Date.now(),
     lastEdited: Date.now(),
   };
