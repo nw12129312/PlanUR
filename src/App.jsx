@@ -399,8 +399,18 @@ export default function App() {
       <header className="site-header">
         <div className="mx-auto flex w-full max-w-[1600px] flex-wrap items-center gap-x-3 gap-y-1.5 px-3 py-2 lg:px-4">
           <div className="flex shrink-0 items-center">
-            <h1 className="text-[22px] font-extrabold leading-none tracking-[-0.04em] text-ink" aria-label="Planur — UR Schedule Builder">
-              Plan<span className="wordmark-u">u</span><span className="wordmark-r">r</span>
+            <h1
+              className="wordmark"
+              aria-label="Planur — UR Schedule Builder"
+              style={{
+                fontFamily: '"Times New Roman", Times, Georgia, serif',
+                fontWeight: 600,
+                fontSize: 22,
+                lineHeight: 1,
+                letterSpacing: 0,
+              }}
+            >
+              Plan<span className="wordmark-u" style={{ color: '#89CFF0' }}>u</span><span className="wordmark-r" style={{ color: '#FFC200' }}>r</span>
             </h1>
           </div>
 
