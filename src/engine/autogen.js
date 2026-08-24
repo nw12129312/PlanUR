@@ -32,6 +32,7 @@ function clonePlan(plan) {
     ...plan,
     semesters: plan.semesters.map((s) => ({ ...s, courseIds: [...s.courseIds] })),
     transfer: plan.transfer.map((t) => ({ ...t })),
+    transferExams: (plan.transferExams || []).map((e) => ({ ...e })),
     courseMeta: { ...(plan.courseMeta || {}) },
   };
 }

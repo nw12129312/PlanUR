@@ -642,5 +642,10 @@ json.dump(clusters, open(os.path.join(OUT, 'clusters.json'), 'w'), separators=('
 json.dump(programs, open(os.path.join(OUT, 'programs.json'), 'w'), indent=1)
 json.dump(policy, open(os.path.join(OUT, 'policy.json'), 'w'), indent=1)
 json.dump(equivalency_groups, open(os.path.join(OUT, 'equivalency_groups.json'), 'w'), indent=1)
+exam_credit_src = os.path.join(SRC, 'exam-credit.json')
+if os.path.exists(exam_credit_src):
+    exam_credit = json.load(open(exam_credit_src))
+    json.dump(exam_credit, open(os.path.join(OUT, 'exam_credit.json'), 'w'), indent=1)
+    meta['counts']['examCredit'] = len(exam_credit.get('exams') or [])
 json.dump(meta, open(os.path.join(OUT, 'meta.json'), 'w'), indent=1)
 print(json.dumps(meta, indent=1))

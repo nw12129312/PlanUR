@@ -1,0 +1,453 @@
+{
+  "sourceUrl": "https://www.rochester.edu/college/ccas/handbook/ap.html",
+  "sourcedOn": "2026-08-23",
+  "sourceNote": "College Center for Advising Services Advanced Placement handbook. Only named UR course codes from this table are auto-awarded. Consultation, placement-only, general-credit, and 'credit after a later course' rows are recorded as notes and never invented as catalog codes.",
+  "exams": [
+    {
+      "id": "ap-aaas",
+      "system": "ap",
+      "kind": "ap",
+      "label": "African American Studies",
+      "group": "African and African-American Studies",
+      "scores": [4, 5],
+      "note": "Four credits in African and African-American Studies awarded. Students who choose to major or minor in African and African-American Studies can use this credit to fulfill a 100-level elective. This credit will not substitute for an introductory course.",
+      "sourceQuote": "Four credits in African and African-American Studies awarded."
+    },
+    {
+      "id": "ap-arth",
+      "system": "ap",
+      "kind": "ap",
+      "label": "Art History",
+      "group": "Art and Art History",
+      "scores": [4, 5],
+      "note": "Credit awarded after consultation with department.",
+      "sourceQuote": "Credit awarded after consultation with department."
+    },
+    {
+      "id": "ap-studio",
+      "system": "ap",
+      "kind": "ap",
+      "label": "Studio Arts",
+      "group": "Art and Art History",
+      "scores": [4, 5],
+      "note": "A maximum of four credits in studio arts awarded upon completion of 100-level course with \"B\" or better.",
+      "sourceQuote": "A maximum of four credits in studio arts awarded upon completion of 100-level course with \"B\" or better."
+    },
+    {
+      "id": "ap-bio",
+      "system": "ap",
+      "kind": "ap",
+      "label": "Biology",
+      "group": "Biology",
+      "scores": [4, 5],
+      "note": "Students who scored a 4 or 5 on Advanced Placement biology exams receive four general credits; however, it cannot be used to satisfy any of the requirements for the biology major or minor.",
+      "sourceQuote": "Students who scored a 4 or 5 on Advanced Placement biology exams receive four general credits; however, it cannot be used to satisfy any of the requirements for the biology major or minor."
+    },
+    {
+      "id": "ap-chem",
+      "system": "ap",
+      "kind": "ap",
+      "label": "Chemistry",
+      "group": "Chemistry",
+      "scores": [4, 5],
+      "note": "Award four credits for CHEM 131. Eligible to either enroll in CHEM 171 in the fall or go into CHEM 132 in spring. Students taking CHEM 131 will forfeit AP/IB credit.",
+      "sourceQuote": "Award four credits for CHEM 131.",
+      "awards": [
+        { "minScore": 4, "courses": ["CHEM 131"] }
+      ]
+    },
+    {
+      "id": "ap-csp",
+      "system": "ap",
+      "kind": "ap",
+      "label": "Computer Science Principles",
+      "group": "Computer Science",
+      "keywords": "CSP",
+      "scores": [4, 5],
+      "note": "Credit for CSC 161.",
+      "sourceQuote": "Credit for CSC 161.",
+      "awards": [
+        { "minScore": 4, "courses": ["CSC 161"] }
+      ]
+    },
+    {
+      "id": "ap-csa",
+      "system": "ap",
+      "kind": "ap",
+      "label": "Computer Science A",
+      "group": "Computer Science",
+      "keywords": "CSA CS A",
+      "scores": [4, 5],
+      "note": "Credit for CSC 171.",
+      "sourceQuote": "Credit for CSC 171.",
+      "awards": [
+        { "minScore": 4, "courses": ["CSC 171"] }
+      ]
+    },
+    {
+      "id": "ib-cs-hl",
+      "system": "ib",
+      "kind": "ib",
+      "label": "Computer Science HL",
+      "group": "Computer Science",
+      "keywords": "higher level IB CS",
+      "scores": [5, 6, 7],
+      "note": "Credit for CSC 171.",
+      "sourceQuote": "Credit for CSC 171.",
+      "awards": [
+        { "minScore": 5, "courses": ["CSC 171"] }
+      ]
+    },
+    {
+      "id": "alevel-cs",
+      "system": "alevel",
+      "kind": "transfer",
+      "label": "Computer Science",
+      "group": "Computer Science",
+      "scores": ["A"],
+      "note": "Credit for CSC 171.",
+      "sourceQuote": "Credit for CSC 171.",
+      "awards": [
+        { "minScore": "A", "courses": ["CSC 171"] }
+      ]
+    },
+    {
+      "id": "ap-eesc",
+      "system": "ap",
+      "kind": "ap",
+      "label": "Earth and Environmental Science",
+      "group": "Earth and Environmental Science",
+      "keywords": "environmental science",
+      "scores": [4, 5],
+      "note": "Credit for EESC 103.",
+      "sourceQuote": "Credit for EESC 103.",
+      "awards": [
+        { "minScore": 4, "courses": ["EESC 103"] }
+      ]
+    },
+    {
+      "id": "ap-econ-micro",
+      "system": "ap",
+      "kind": "ap",
+      "label": "Microeconomics",
+      "group": "Economics",
+      "keywords": "micro econ",
+      "scores": [4, 5],
+      "note": "Credit for ECON 108 for 4 or 5 in Microeconomics plus 3, 4, 5 in Macroeconomics.",
+      "sourceQuote": "Credit for ECON 108 for 4 or 5 in Microeconomics plus 3, 4, 5 in Macroeconomics."
+    },
+    {
+      "id": "ap-econ-macro",
+      "system": "ap",
+      "kind": "ap",
+      "label": "Macroeconomics",
+      "group": "Economics",
+      "keywords": "macro econ",
+      "scores": [3, 4, 5],
+      "note": "Credit for ECON 108 for 4 or 5 in Microeconomics plus 3, 4, 5 in Macroeconomics.",
+      "sourceQuote": "Credit for ECON 108 for 4 or 5 in Microeconomics plus 3, 4, 5 in Macroeconomics."
+    },
+    {
+      "id": "ap-engl-lang",
+      "system": "ap",
+      "kind": "ap",
+      "label": "English Language and Composition",
+      "group": "English",
+      "keywords": "PWR writing",
+      "scores": [4, 5],
+      "note": "No credit. See primary writing requirement.",
+      "sourceQuote": "No credit. See primary writing requirement."
+    },
+    {
+      "id": "ap-engl-lit",
+      "system": "ap",
+      "kind": "ap",
+      "label": "English Literature",
+      "group": "English",
+      "scores": [4, 5],
+      "note": "Upon completion of a literature course offered by the English department with a grade of “B” or better, four hours of elective English credit will be awarded (not for major).",
+      "sourceQuote": "Upon completion of a literature course offered by the English department with a grade of “B” or better, four hours of elective English credit will be awarded (not for major)."
+    },
+    {
+      "id": "ap-hist",
+      "system": "ap",
+      "kind": "ap",
+      "label": "American, European, or World History",
+      "group": "History",
+      "keywords": "US history APUSH",
+      "scores": [5],
+      "note": "Elective credit granted for score of 5 on the American History, European History, or World History exams. A maximum of four credits in History will be awarded. Credit cannot be used to satisfy the requirements of the history major or minor.",
+      "sourceQuote": "Elective credit granted for score of 5 on the American History, European History, or World History exams. A maximum of four credits in History will be awarded."
+    },
+    {
+      "id": "ap-hum-geo",
+      "system": "ap",
+      "kind": "ap",
+      "label": "Human Geography",
+      "group": "Human Geography",
+      "keywords": "anthropology ANTH",
+      "scores": [4, 5],
+      "note": "Four credits in Anthropology awarded. Students who choose to major or minor in Anthropology can use this credit to fulfill a 100-level elective course. This credit will not substitute for ANTH 101.",
+      "sourceQuote": "Four credits in Anthropology awarded. This credit will not substitute for ANTH 101."
+    },
+    {
+      "id": "ap-calc-ab",
+      "system": "ap",
+      "kind": "ap",
+      "label": "Calculus AB",
+      "group": "Mathematics",
+      "keywords": "calc AB math 161",
+      "scores": [3, 4, 5],
+      "note": "Score of 3: no AP credit; student will be placed in MATH 161. Score of 4 or 5: AP credit for MATH 161; student will be placed in MATH 162 or 171.",
+      "sourceQuote": "No AP credit awarded. Student will be placed in MATH 161. AP credit for MATH 161. Student will be placed in MATH 162 or 171.",
+      "awards": [
+        { "minScore": 4, "courses": ["MATH 161"] }
+      ]
+    },
+    {
+      "id": "ap-calc-bc",
+      "system": "ap",
+      "kind": "ap",
+      "label": "Calculus BC",
+      "group": "Mathematics",
+      "keywords": "calc BC math 161 162",
+      "scores": [3, 4, 5],
+      "note": "Score of 3: AP credit for MATH 161. Score of 4 or 5: AP credit for MATH 161 and 162.",
+      "sourceQuote": "AP credit for MATH 161. Student will be placed in MATH 162 or 171. AP credit for MATH 161 and 162.",
+      "awards": [
+        { "minScore": 3, "maxScore": 3, "courses": ["MATH 161"] },
+        { "minScore": 4, "courses": ["MATH 161", "MATH 162"] }
+      ]
+    },
+    {
+      "id": "ap-chin",
+      "system": "ap",
+      "kind": "ap",
+      "label": "Chinese",
+      "group": "Modern Languages and Cultures",
+      "scores": [4, 5],
+      "note": "Potential placement by department; credit for earlier Chinese courses is granted only after completing the placed course with the stated grade. Actual placement is subject to the department placement test.",
+      "sourceQuote": "Potential placement by department into CHIN 151, with credit granted for CHIN 102 upon completion of CHIN 151 with grade of B+ or better."
+    },
+    {
+      "id": "ap-fren",
+      "system": "ap",
+      "kind": "ap",
+      "label": "French (Literature and Languages)",
+      "group": "Modern Languages and Cultures",
+      "scores": [4, 5],
+      "note": "Placement by department in FREN 200. Credit granted for FREN 153 upon completion of FREN 200 with grade of “A-” or better.",
+      "sourceQuote": "Placement by department in FREN 200. Credit granted for FREN 153 upon completion of FREN 200 with grade of “A-” or better."
+    },
+    {
+      "id": "ap-grmn",
+      "system": "ap",
+      "kind": "ap",
+      "label": "German (Literature and Languages)",
+      "group": "Modern Languages and Cultures",
+      "scores": [4, 5],
+      "note": "Placement by department in 152 or 200. Credit granted for 151 upon completion of 152 with grade of “B+” or better. Credit granted for 151 and 152 upon completion of 200 with “B+” or better.",
+      "sourceQuote": "Placement by department in 152 or 200. Credit granted for 151 upon completion of 152 with grade of “B+” or better."
+    },
+    {
+      "id": "ap-ital",
+      "system": "ap",
+      "kind": "ap",
+      "label": "Italian",
+      "group": "Modern Languages and Cultures",
+      "scores": [4, 5],
+      "note": "Placement by department; credit for earlier Italian courses is granted only after completing the placed course with the stated grade.",
+      "sourceQuote": "Placement by department in ITAL 152. Credit granted for ITAL 151 upon completion of ITAL 152 with grade of “B+” or higher."
+    },
+    {
+      "id": "ap-jpns",
+      "system": "ap",
+      "kind": "ap",
+      "label": "Japanese",
+      "group": "Modern Languages and Cultures",
+      "scores": [4, 5],
+      "note": "Potential placement by department; credit for earlier Japanese courses is granted only after completing the placed course with the stated grade. Actual placement is subject to the department placement test.",
+      "sourceQuote": "Potential placement into JPNS 152, credit granted for 151 upon completion of 152 with grade of B+ or higher."
+    },
+    {
+      "id": "ap-span",
+      "system": "ap",
+      "kind": "ap",
+      "label": "Spanish (Literature and Languages)",
+      "group": "Modern Languages and Cultures",
+      "scores": [4, 5],
+      "note": "Placement by department; credit for earlier Spanish courses is granted only after completing the placed course with the stated grade. All students are required to take the MLC placement exam.",
+      "sourceQuote": "Placement by department in SPAN 152. Credit granted for SPAN 151 upon completion of SPAN 152 with grade of “B+” or better."
+    },
+    {
+      "id": "ap-musc",
+      "system": "ap",
+      "kind": "ap",
+      "label": "Music Theory",
+      "group": "Music",
+      "scores": [4, 5],
+      "note": "Credit for MUSC 110.",
+      "sourceQuote": "Credit for MUSC 110.",
+      "awards": [
+        { "minScore": 4, "courses": ["MUSC 110"] }
+      ]
+    },
+    {
+      "id": "ap-phys-c-mech",
+      "system": "ap",
+      "kind": "ap",
+      "label": "Physics C: Mechanics",
+      "group": "Physics",
+      "keywords": "PHYS 113 PHYS 121",
+      "scores": [4, 5],
+      "note": "Credit (score 5) or conditional credit (score 4) for PHYS 113 or PHYS 121. Conditional credit is granted if at least a grade of B- is received in the course into which the student is placed.",
+      "sourceQuote": "Conditional credit granted for PHYS 113 or PHYS 121. Credit granted for PHYS 113 or PHYS 121.",
+      "awards": [
+        {
+          "minScore": 4,
+          "maxScore": 4,
+          "chooseOne": ["PHYS 113", "PHYS 121"],
+          "conditional": true,
+          "note": "Conditional credit granted for PHYS 113 or PHYS 121."
+        },
+        {
+          "minScore": 5,
+          "chooseOne": ["PHYS 113", "PHYS 121"],
+          "note": "Credit granted for PHYS 113 or PHYS 121."
+        }
+      ]
+    },
+    {
+      "id": "ap-phys-c-em",
+      "system": "ap",
+      "kind": "ap",
+      "label": "Physics C: Electricity and Magnetism",
+      "group": "Physics",
+      "keywords": "E&M PHYS 114 PHYS 122",
+      "scores": [4, 5],
+      "note": "Score of 4: conditional credit for PHYS 122. Score of 5: credit for PHYS 114; PHYS 122 remains conditional. Conditional credit is granted if at least a grade of B- is received in the course into which the student is placed.",
+      "sourceQuote": "Conditional credit granted for PHYS 122. Credit for PHYS 114, conditional credit for PHYS 122.",
+      "awards": [
+        {
+          "minScore": 4,
+          "maxScore": 4,
+          "courses": ["PHYS 122"],
+          "conditional": true,
+          "note": "Conditional credit granted for PHYS 122."
+        },
+        {
+          "minScore": 5,
+          "courses": ["PHYS 114"],
+          "note": "Credit for PHYS 114, conditional credit for PHYS 122."
+        }
+      ]
+    },
+    {
+      "id": "ap-phys-b",
+      "system": "ap",
+      "kind": "ap",
+      "label": "Physics B (General)",
+      "group": "Physics",
+      "scores": [5],
+      "note": "Four general college hour credits; these credits cannot be used to satisfy any of the requirements for the PHYS/ASTR major or minor.",
+      "sourceQuote": "Four general college hour credits; these credits cannot be used to satisfy any of the requirements for the PHYS/ASTR major or minor."
+    },
+    {
+      "id": "ap-phys-1",
+      "system": "ap",
+      "kind": "ap",
+      "label": "Physics 1 (Mechanics)",
+      "group": "Physics",
+      "scores": [5],
+      "note": "Four general college hour credits; these credits cannot be used to satisfy any of the requirements for the PHYS/ASTR major or minor.",
+      "sourceQuote": "Four general college hour credits; these credits cannot be used to satisfy any of the requirements for the PHYS/ASTR major or minor."
+    },
+    {
+      "id": "ap-phys-2",
+      "system": "ap",
+      "kind": "ap",
+      "label": "Physics 2 (Electromagnetism)",
+      "group": "Physics",
+      "scores": [5],
+      "note": "Four general college hour credits; these credits cannot be used to satisfy any of the requirements for the PHYS/ASTR major or minor.",
+      "sourceQuote": "Four general college hour credits; these credits cannot be used to satisfy any of the requirements for the PHYS/ASTR major or minor."
+    },
+    {
+      "id": "ap-psci",
+      "system": "ap",
+      "kind": "ap",
+      "label": "Comparative or US Government and Politics",
+      "group": "Political Science",
+      "keywords": "APUSH government AP Gov",
+      "scores": [4, 5],
+      "note": "Four credits in political science for either exam. No additional credit if both exams are taken.",
+      "sourceQuote": "Four credits in political science for either exam. No additional credit if both exams are taken."
+    },
+    {
+      "id": "ap-psyc",
+      "system": "ap",
+      "kind": "ap",
+      "label": "Psychology",
+      "group": "Psychology",
+      "scores": [3, 4, 5],
+      "note": "PSYC 101 no longer waived for a score of 3. Credit for PSYC 101 with a score of 4 or 5.",
+      "sourceQuote": "PSYC 101 no longer waived for a score of 3. Credit for PSYC 101.",
+      "awards": [
+        { "minScore": 4, "courses": ["PSYC 101"] }
+      ]
+    },
+    {
+      "id": "ap-latn",
+      "system": "ap",
+      "kind": "ap",
+      "label": "Latin",
+      "group": "Religion and Classics",
+      "scores": [4, 5],
+      "note": "Credit for LATN 102. Students who complete a second Latin AP examination with a score of 4 or 5 may earn credit for LATN 208 upon completion of a Latin course numbered 103 or above with a minimum grade of “B.”",
+      "sourceQuote": "Credit for LATN 102.",
+      "awards": [
+        { "minScore": 4, "courses": ["LATN 102"] }
+      ]
+    },
+    {
+      "id": "ap-stat",
+      "system": "ap",
+      "kind": "ap",
+      "label": "Statistics",
+      "group": "Statistics",
+      "keywords": "STAT 180 AP stats",
+      "scores": [4, 5],
+      "note": "Credit awarded for STAT 180. Students can earn credit for only one of STAT 180, STAT 190, PSCI 200, STAT 212, STAT 213, and BIOL/STAT 214.",
+      "sourceQuote": "Credit awarded for STAT 180.",
+      "awards": [
+        { "minScore": 4, "courses": ["STAT 180"] }
+      ]
+    },
+    {
+      "id": "ap-sus",
+      "system": "ap",
+      "kind": "ap",
+      "label": "Sustainability",
+      "group": "Sustainability",
+      "scores": [4, 5],
+      "note": "Credit awarded for EESC 103.",
+      "sourceQuote": "Credit awarded for EESC 103.",
+      "awards": [
+        { "minScore": 4, "courses": ["EESC 103"] }
+      ]
+    }
+  ],
+  "combos": [
+    {
+      "id": "econ-108",
+      "kind": "ap",
+      "courses": ["ECON 108"],
+      "note": "Credit for ECON 108 for 4 or 5 in Microeconomics plus 3, 4, 5 in Macroeconomics.",
+      "sourceQuote": "Credit for ECON 108 for 4 or 5 in Microeconomics plus 3, 4, 5 in Macroeconomics.",
+      "allOf": [
+        { "examId": "ap-econ-micro", "minScore": 4 },
+        { "examId": "ap-econ-macro", "minScore": 3 }
+      ]
+    }
+  ]
+}
