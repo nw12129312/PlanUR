@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 
 import { newPlan, addSemester, withCourseMeta, getCourseMeta, withTrackChoice } from './engine/model.js';
+import { withScheduleStyle } from './engine/scheduleStyle.js';
 import { withProgramSwap } from './engine/pathways.js';
 import { checkAll, resolveRequiredCredits } from './engine/constraints.js';
 import { autoGenerate } from './engine/autogen.js';
@@ -241,7 +242,10 @@ export default function App() {
     setTimeout(() => {
       try {
         const base = planRef.current;
-        const result = autoGenerate(base, DATA, { scope, targetLoad, pathPreference });
+        const result = autoGenerate(base, DATA, {
+          scope, targetLoad, pathPreference,
+          scheduleStyle: base.preferences?.scheduleStyle,
+        });
         setGenResult({ base, result });
       } finally {
         setGenBusy(false);
@@ -490,7 +494,9 @@ export default function App() {
           </aside>
 
           <div className="@container min-w-0 space-y-2">
-            <GenerateBar plan={plan} data={DATA} onGenerate={runGenerate} onLockAll={lockAll} busy={genBusy} />
+            <GenerateBar plan={plan} data={DATA} onGenerate={runGenerate} onLockAll={lockAll}
+              onScheduleStyle={(id) => setPlan((p) => touch(withScheduleStyle(p, id)))}
+              busy={genBusy} />
             <SemesterGrid
               data={DATA}
               plan={plan}

@@ -200,7 +200,14 @@ function migrateLegacyIds(plan) {
     const nid = LEGACY_PROGRAM_IDS[pid] || pid;
     trackChoices[nid] = { ...(trackChoices[nid] || {}), ...groups };
   }
-  return { ...plan, majorIds: map(plan.majorIds), minorIds: map(plan.minorIds), trackChoices };
+  const preferences = {
+    scheduleStyle: 'balanced',
+    ...(plan.preferences && typeof plan.preferences === 'object' ? plan.preferences : {}),
+  };
+  if (!['balanced', 'focused', 'frontload-major'].includes(preferences.scheduleStyle)) {
+    preferences.scheduleStyle = 'balanced';
+  }
+  return { ...plan, majorIds: map(plan.majorIds), minorIds: map(plan.minorIds), trackChoices, preferences };
 }
 
 // Fetch one plan (or null).

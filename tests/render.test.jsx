@@ -116,6 +116,8 @@ describe('UI render smoke', () => {
       <GenerateBar plan={plan} data={DATA} onGenerate={() => {}} onLockAll={() => {}} busy={false} />,
     );
     expect(bar).toContain('Auto-generate');
+    expect(bar).toContain('Schedule style');
+    expect(bar).toContain('Mixed subjects');
 
     const result = autoGenerate(plan, DATA);
     const modal = renderToString(
