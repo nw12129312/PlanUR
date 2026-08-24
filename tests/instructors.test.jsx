@@ -35,6 +35,8 @@ describe('CourseCard instructor chip', () => {
     const html = renderToString(<CourseCard course={course({ instructors: ['Ted Pawlicki'] })} />);
     expect(html).toContain('Ted Pawlicki');
     expect(html).not.toContain('Multiple Instructors');
+    expect(html).toContain('aria-haspopup="dialog"');
+    expect(html).toMatch(/RateMyProfessors 2\.1\/5/);
   });
 
   it('collapses several instructors behind a clickable Multiple Instructors control', () => {
