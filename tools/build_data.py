@@ -146,7 +146,10 @@ for code, e in catalog.items():
         'prereqsVerified': fields['prereqsVerified'],
         'prereqNote': fields['prereqNote'],
         'prereqSource': fields['prereqSource'],
+        'instructors': list(e.get('instructors') or []),
         'description': (e.get('desc') or '')[:260],
+        'crossListings': [],
+        'crossListingSource': None,
         'source': 'CDCS (Registrar) Fall 2025 / Spring 2026 / Fall 2026 schedules',
         'stub': False,
     }
@@ -170,7 +173,10 @@ for cl in clusters_raw:
                     'credits': 4, 'creditsVerified': False,
                     'offered': [], 'offeredClaim': [], 'offeredVerified': False,
                     'prereqs': [], 'prereqsVerified': False, 'prereqNote': None, 'prereqSource': None,
+                    'instructors': [],
                     'description': '',
+                    'crossListings': [],
+                    'crossListingSource': None,
                     'source': 'Referenced by cluster listing (CSE PDF 2025-26); details not yet sourced',
                     'stub': True,
                 }
@@ -624,10 +630,113 @@ for code in sorted(referenced):
         'credits': 4, 'creditsVerified': False,
         'offered': [], 'offeredClaim': [], 'offeredVerified': False,
         'prereqs': [], 'prereqsVerified': False, 'prereqNote': None, 'prereqSource': None,
+        'instructors': [],
         'description': '',
+        'crossListings': [],
+        'crossListingSource': None,
         'source': 'Listed in program requirements; not scheduled in harvested terms',
         'stub': True,
     }
+
+# Cross-listings: the same class under two (or more) department codes.
+# CDCS Co-Located is the registrar's official pairing. Matching title +
+# description catches listings that share a blurb but weren't tagged in every
+# harvested section. Independent-study / dissertation boilerplates are skipped
+# so 70 department-specific 391s are not treated as one course.
+_COLOC_CODE = re.compile(r'([A-Z]{2,5})\s+(\d{3}[A-Z]{0,2})')
+_GENERIC_TITLE = re.compile(
+    r'independent (study|research|work)|phd (research|readings)|'
+    r'doctoral dissertation|continuation of (masters|doctoral)|'
+    r'masters (dissertation|research|readings?|thesis)|'
+    r'supervised teaching|visiting student|senior project|'
+    r'^(fall|spring) 20\d{2}$',
+    re.I,
+)
+
+def _norm_title(t):
+    t = re.sub(r'\s+', ' ', (t or '').lower()).strip()
+    return re.sub(r'[^a-z0-9 +&/-]', '', t)
+
+def _norm_desc_key(d):
+    return re.sub(r'\s+', ' ', (d or '').lower()).strip()[:200]
+
+def attach_cross_listings(courses, catalog):
+    parent = {cid: cid for cid in courses}
+
+    def find(a):
+        while parent[a] != a:
+            parent[a] = parent[parent[a]]
+            a = parent[a]
+        return a
+
+    def union(a, b):
+        if a not in parent or b not in parent or a == b:
+            return
+        ra, rb = find(a), find(b)
+        if ra != rb:
+            parent[rb] = ra
+
+    coloc_edges = set()
+    for cid, e in catalog.items():
+        loc = e.get('colocated') or ''
+        if not loc:
+            continue
+        partners = {f'{m.group(1)} {m.group(2)}' for m in _COLOC_CODE.finditer(loc)}
+        partners.add(cid)
+        live = sorted(c for c in partners if c in courses)
+        for i, a in enumerate(live):
+            for b in live[i + 1:]:
+                union(a, b)
+                coloc_edges.add(tuple(sorted((a, b))))
+
+    title_edges = set()
+    by_key = {}
+    for cid, c in courses.items():
+        if c.get('stub'):
+            continue
+        raw = catalog.get(cid) or {}
+        title = _norm_title(c.get('title') or raw.get('title'))
+        desc = _norm_desc_key(raw.get('desc') or c.get('description'))
+        if not title or len(title) < 8 or _GENERIC_TITLE.search(title):
+            continue
+        if not desc or len(desc) < 60:
+            continue
+        if 'opportunity to pursue' in desc or 'made arrangements with a faculty' in desc:
+            continue
+        by_key.setdefault((title, desc), []).append(cid)
+    for ids in by_key.values():
+        uniq = sorted(set(ids))
+        if len(uniq) < 2:
+            continue
+        for i, a in enumerate(uniq):
+            for b in uniq[i + 1:]:
+                union(a, b)
+                title_edges.add(tuple(sorted((a, b))))
+
+    buckets = {}
+    for cid in courses:
+        buckets.setdefault(find(cid), []).append(cid)
+    n_families = 0
+    for members in buckets.values():
+        members = sorted(members)
+        if len(members) < 2:
+            continue
+        n_families += 1
+        member_set = set(members)
+        has_coloc = any(a in member_set and b in member_set for a, b in coloc_edges)
+        has_title = any(a in member_set and b in member_set for a, b in title_edges)
+        bits = []
+        if has_coloc:
+            bits.append('CDCS Co-Located')
+        if has_title:
+            bits.append('matching title and description')
+        source = '; '.join(bits) or 'matching title and description'
+        for cid in members:
+            courses[cid]['crossListings'] = [x for x in members if x != cid]
+            courses[cid]['crossListingSource'] = source
+    return n_families
+
+cross_list_families = attach_cross_listings(courses, catalog)
 
 os.makedirs(OUT, exist_ok=True)
 meta = {'builtOn': FETCH_DATE, 'counts': {
@@ -636,6 +745,7 @@ meta = {'builtOn': FETCH_DATE, 'counts': {
     'activePrograms': sum(1 for p in programs if p['status'] == 'ACTIVE'),
     'equivalencyGroups': len(equivalency_groups),
     'activeEquivalencyGroups': sum(1 for g in equivalency_groups if g['status'] == 'ACTIVE'),
+    'crossListFamilies': cross_list_families,
 }}
 json.dump(courses, open(os.path.join(OUT, 'courses.json'), 'w'), separators=(',', ':'))
 json.dump(clusters, open(os.path.join(OUT, 'clusters.json'), 'w'), separators=(',', ':'))

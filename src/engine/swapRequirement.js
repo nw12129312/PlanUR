@@ -14,6 +14,7 @@ import { plannedCourseIds, semesterIndexOf, withCourseMeta, addSemester, withTra
 import { computeProgress } from './progress.js';
 import { isLevelEntry, levelTag, levelSatisfied } from './equivalency.js';
 import { placementViolatesDeptOrder } from './deptSequencing.js';
+import { coversCourse, expandPlacedSet, listingOnPlan, listingsOf } from './crossList.js';
 
 const MAX_LOAD = 18;
 
@@ -90,9 +91,12 @@ function outgoingCourses(rule, courseId, group) {
   return [];
 }
 
-export function describeOptionAction(group, rule, courseId) {
+export function describeOptionAction(group, rule, courseId, courses) {
   const current = group?.satisfiedBy || [];
-  if (current.includes(courseId)) return { kind: 'placed', incoming: [courseId], outgoing: [] };
+  const already = courses
+    ? current.some((id) => listingsOf(courses, id).includes(courseId))
+    : current.includes(courseId);
+  if (already) return { kind: 'placed', incoming: [courseId], outgoing: [] };
   const outgoing = outgoingCourses(rule, courseId, group);
   if (outgoing.length) {
     return { kind: 'swap', incoming: incomingCourses(rule, courseId), outgoing };
@@ -118,16 +122,17 @@ function earlierSet(plan, semIdx) {
   return s;
 }
 
-function orGroupSatisfied(orGroup, placed, eqGroups) {
+function orGroupSatisfied(orGroup, placed, eqGroups, courses) {
+  const fam = courses ? expandPlacedSet(placed, courses) : placed;
   return orGroup.some((p) => (isLevelEntry(p)
-    ? levelSatisfied(levelTag(p), placed, eqGroups)
-    : placed.has(p)));
+    ? levelSatisfied(levelTag(p), fam, eqGroups)
+    : fam.has(p)));
 }
 
 function prereqsOk(cid, earlier, data, eqGroups) {
   const c = data.courses[cid];
   if (!c?.prereqs?.length) return true;
-  return c.prereqs.every((g) => orGroupSatisfied(g, earlier, eqGroups));
+  return c.prereqs.every((g) => orGroupSatisfied(g, earlier, eqGroups, data.courses));
 }
 
 function chainDepth(cid, data, seen = new Set()) {
@@ -148,7 +153,7 @@ function chainDepth(cid, data, seen = new Set()) {
 
 function pickPrereqMember(orGroup, data, plan) {
   const placed = new Set(plannedCourseIds(plan));
-  const already = orGroup.find((p) => !isLevelEntry(p) && placed.has(p));
+  const already = orGroup.find((p) => !isLevelEntry(p) && coversCourse(placed, p, data.courses));
   if (already) return already;
   const scored = orGroup
     .filter((p) => !isLevelEntry(p) && data.courses[p])
@@ -218,14 +223,20 @@ function minIndexAfterPrereqs(plan, cid, data) {
   let min = 0;
   for (const g of c.prereqs) {
     const members = g.filter((p) => !isLevelEntry(p));
-    const idxs = members.map((p) => semesterIndexOf(plan, p)).filter((i) => i >= 0);
+    const idxs = members.map((p) => {
+      const family = listingsOf(data.courses, p);
+      for (let i = 0; i < plan.semesters.length; i++) {
+        if (plan.semesters[i].courseIds.some((id) => family.includes(id))) return i;
+      }
+      return -1;
+    }).filter((i) => i >= 0);
     if (idxs.length) min = Math.max(min, Math.max(...idxs) + 1);
   }
   return min;
 }
 
 function ensurePlaced(plan, data, cid, { prefer, added, reasons, guard }) {
-  if (plannedCourseIds(plan).includes(cid)) return plan;
+  if (listingOnPlan(plan, cid, data.courses)) return plan;
   if (guard.has(cid)) return plan;
   guard.add(cid);
 
@@ -234,7 +245,7 @@ function ensurePlaced(plan, data, cid, { prefer, added, reasons, guard }) {
   const placedNow = () => new Set(plannedCourseIds(plan));
 
   for (const g of c?.prereqs || []) {
-    if (orGroupSatisfied(g, placedNow(), eqGroups)) continue;
+    if (orGroupSatisfied(g, placedNow(), eqGroups, data.courses)) continue;
     const member = pickPrereqMember(g, data, plan);
     if (!member) continue;
     if (!reasons.has(member)) reasons.set(member, `Prerequisite for ${cid}`);
@@ -243,7 +254,7 @@ function ensurePlaced(plan, data, cid, { prefer, added, reasons, guard }) {
     });
   }
 
-  if (plannedCourseIds(plan).includes(cid)) return plan;
+  if (listingOnPlan(plan, cid, data.courses)) return plan;
 
   let minIdx = minIndexAfterPrereqs(plan, cid, data);
   let idx = pickSlot(plan, data, cid, minIdx, prefer);
@@ -277,7 +288,7 @@ export function applyRequirementOption(plan, data, { programId, groupId, courseI
     .find((g) => g.id === groupId);
   if (!group) return { error: 'Requirement not found.' };
 
-  const action = describeOptionAction(group, rule, courseId);
+  const action = describeOptionAction(group, rule, courseId, data.courses);
   if (action.kind === 'placed') return { ...action, plan };
   if (action.kind === 'add') return action;
 
@@ -319,8 +330,11 @@ export function applyRequirementOption(plan, data, { programId, groupId, courseI
 // Place a course from search / a plain audit add, inserting any missing
 // CDCS (or curated) prerequisites into earlier semesters.
 export function placeCourseWithPrereqs(plan, data, cid, { preferSemesterId } = {}) {
-  if (plannedCourseIds(plan).includes(cid) || plan.transfer.some((t) => t.courseId === cid)) {
-    return { plan, added: [], prereqsAdded: [], error: null };
+  const existing = listingOnPlan(plan, cid, data.courses);
+  if (existing) {
+    return existing === cid
+      ? { plan, added: [], prereqsAdded: [], error: null }
+      : { plan, added: [], prereqsAdded: [], error: `${cid} is already on the plan as ${existing} (cross-listed).` };
   }
   let next = clonePlan(plan);
   const added = [];
