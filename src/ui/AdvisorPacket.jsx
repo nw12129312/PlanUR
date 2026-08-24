@@ -1,8 +1,8 @@
 import React from 'react';
 import { ruleInfo } from '../engine/rules.js';
+import { KIND_LABEL, emptyExamTable, transferCreditGroups } from '../engine/examCredit.js';
 
 const YEAR_NAMES = ['First year', 'Sophomore year', 'Junior year', 'Senior year', 'Fifth year', 'Sixth year'];
-const KIND_LABEL = { ap: 'AP', ib: 'IB', transfer: 'Transfer' };
 
 function groupIntoYears(semesters) {
   const years = [];
@@ -162,12 +162,13 @@ export function AdvisorPacket({
 
       <section>
         <h2>AP · IB · Transfer credit</h2>
-        {plan.transfer.length === 0 ? (
+        {plan.transfer.length === 0 && !(plan.transferExams || []).length ? (
           <p>None recorded.</p>
         ) : (
           <table>
             <thead>
               <tr>
+                <th>Exam / source</th>
                 <th>Code</th>
                 <th>Title</th>
                 <th>Type</th>
@@ -175,16 +176,30 @@ export function AdvisorPacket({
               </tr>
             </thead>
             <tbody>
-              {plan.transfer.map((t) => {
-                const c = data.courses[t.courseId];
-                return (
-                  <tr key={t.courseId}>
-                    <td className="ap-code">{t.courseId}</td>
-                    <td>{c?.title || t.courseId}</td>
-                    <td>{KIND_LABEL[t.kind] || t.kind}</td>
-                    <td className="ap-cr">{c?.credits ?? 4}</td>
-                  </tr>
-                );
+              {transferCreditGroups(plan, data.examCredit || emptyExamTable()).map((g) => {
+                if (g.courses.length === 0) {
+                  return (
+                    <tr key={g.key}>
+                      <td>{g.title}</td>
+                      <td className="ap-code">—</td>
+                      <td>{g.note || 'No named UR course'}</td>
+                      <td>{KIND_LABEL[g.kind] || g.kind}</td>
+                      <td className="ap-cr">—</td>
+                    </tr>
+                  );
+                }
+                return g.courses.map((t, i) => {
+                  const c = data.courses[t.courseId];
+                  return (
+                    <tr key={`${g.key}-${t.courseId}`}>
+                      <td>{i === 0 ? g.title : ''}</td>
+                      <td className="ap-code">{t.courseId}</td>
+                      <td>{c?.title || t.courseId}{t.conditional ? ' (conditional)' : ''}</td>
+                      <td>{KIND_LABEL[t.kind] || t.kind}</td>
+                      <td className="ap-cr">{c?.credits ?? 4}</td>
+                    </tr>
+                  );
+                });
               })}
             </tbody>
           </table>

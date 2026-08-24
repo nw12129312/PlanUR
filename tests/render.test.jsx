@@ -10,6 +10,7 @@ import programsData from '../src/data/programs.json';
 import clustersData from '../src/data/clusters.json';
 import policyData from '../src/data/policy.json';
 import equivalencyGroupsData from '../src/data/equivalency_groups.json';
+import examCreditData from '../src/data/exam_credit.json';
 import { newPlan } from '../src/engine/model.js';
 import { checkAll } from '../src/engine/constraints.js';
 
@@ -23,7 +24,7 @@ import { AdvisorPacket } from '../src/ui/AdvisorPacket.jsx';
 import { autoGenerate } from '../src/engine/autogen.js';
 import { divisionalCoverageForPlan } from '../src/engine/coverage.js';
 
-const DATA = { courses: coursesData, programs: programsData, clusters: clustersData, policy: policyData, equivalencyGroups: equivalencyGroupsData };
+const DATA = { courses: coursesData, programs: programsData, clusters: clustersData, policy: policyData, equivalencyGroups: equivalencyGroupsData, examCredit: examCreditData };
 
 function loadedPlan() {
   const plan = newPlan('smoke', 2026);
@@ -86,6 +87,8 @@ describe('UI render smoke', () => {
     expect(grid).toContain('CSC 171');
     expect(grid).toContain('Drop here to move without swapping');
     expect(grid).toContain('Transfer');
+    expect(grid).toContain('From exam');
+    expect(grid).toContain('MATH 141');
 
     const search = renderToString(
       <CourseSearch

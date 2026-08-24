@@ -20,7 +20,8 @@ export function newPlan(name = 'Untitled plan', startYear = new Date().getFullYe
     clusterIds: [],
     doubleDegree: false,
     semesters,
-    transfer: [], // [{courseId, kind: 'ap'|'ib'|'transfer'}]
+    transfer: [], // [{courseId, kind: 'ap'|'ib'|'transfer', examId?, examIds?}]
+    transferExams: [], // [{examId, score, choice?}] from the CCAS AP handbook
     // per placed course: { source: 'manual'|'auto', locked: boolean, reason?: string }
     courseMeta: {},
     // per-pair exceptions to the same-department ascending-number rule:
