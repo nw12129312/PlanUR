@@ -8,6 +8,7 @@ import { autoGenerate } from './engine/autogen.js';
 import { conflictForAdd } from './engine/equivalency.js';
 import { applyRequirementOption, placeCourseWithPrereqs } from './engine/swapRequirement.js';
 import { swapPlacedCourses, moveCourseToSemester, placementWarnings } from './engine/courseMove.js';
+import { applyRecordedExams, previewExamAdd, removeExamsFromPlan, upsertRecordedExam } from './engine/examCredit.js';
 import { divisionalCoverageForPlan } from './engine/coverage.js';
 // dataStore is the ONLY module that touches window.storage (and the only
 // place App reads bundled data from); see src/storage/dataStore.js.
@@ -29,6 +30,7 @@ const DATA = {
   clusters: store.getClusters(),
   policy: store.getPolicy(),
   equivalencyGroups: store.getEquivalencyGroups(),
+  examCredit: store.getExamCredit(),
 };
 const metaData = store.getMeta();
 // Placeholder until real accounts exist; dataStore signatures already take it.
@@ -292,7 +294,30 @@ export default function App() {
       return touch({ ...p, transfer: [...p.transfer, { courseId: cid, kind }] });
     });
   };
-  const removeTransfer = (cid) => setPlan((p) => touch({ ...p, transfer: p.transfer.filter((t) => t.courseId !== cid) }));
+  const addExamCredit = (examId, score, choice) => {
+    const p = planRef.current;
+    const recorded = p.transferExams || [];
+    const preview = previewExamAdd(DATA.examCredit, recorded, examId, score, choice);
+    if (preview.needsChoice) {
+      showBlock('Choose which UR course this exam should list.');
+      return;
+    }
+    for (const c of preview.newCourses) {
+      if (p.semesters.some((s) => s.courseIds.includes(c.courseId))) {
+        showBlock(`${c.courseId} is already on your schedule. Remove it from a semester first to list it as exam credit.`);
+        return;
+      }
+      if (blockedByEquivalency(c.courseId)) return;
+    }
+    setPlan((cur) => touch(applyRecordedExams(cur, DATA.examCredit, upsertRecordedExam(cur.transferExams || [], { examId, score, choice }))));
+  };
+  const removeExamCredit = (examIds) => setPlan((p) => touch(removeExamsFromPlan(p, DATA.examCredit, examIds)));
+  const removeTransfer = (cid) => setPlan((p) => {
+    const row = (p.transfer || []).find((t) => t.courseId === cid);
+    const examIds = row?.examIds || (row?.examId ? [row.examId] : []);
+    if (examIds.length) return touch(removeExamsFromPlan(p, DATA.examCredit, examIds));
+    return touch({ ...p, transfer: p.transfer.filter((t) => t.courseId !== cid) });
+  });
 
   const onAddSemester = () => setPlan((p) => touch(addSemester(p)));
   const onRemoveSemester = (semId) => setPlan((p) => {
@@ -512,6 +537,8 @@ export default function App() {
               violationsBySemester={violationsBySemester}
               courseUses={progress.courseUses}
               onAddTransfer={addTransfer}
+              onAddExamCredit={addExamCredit}
+              onRemoveExamCredit={removeExamCredit}
               onRemoveTransfer={removeTransfer}
               auditOpen={auditOpen}
               onToggleAudit={() => setAuditOpen((x) => !x)}

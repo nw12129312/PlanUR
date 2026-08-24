@@ -133,6 +133,7 @@ describe('dataStore static data accessors', () => {
     expect(store.getPrograms().some((p) => p.id === 'major-csc-bs')).toBe(true);
     expect(store.getCourses()['CSC 172'].credits).toBe(4);
     expect(store.getEquivalencyGroups().some((g) => g.id === 'calc-sequence')).toBe(true);
+    expect(store.getExamCredit().exams.some((e) => e.id === 'ap-csa')).toBe(true);
     expect(store.getClusters().length).toBeGreaterThan(100);
     expect(store.getPolicy().standardTotalCredits).toBe(128);
   });
