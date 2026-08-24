@@ -72,6 +72,49 @@ def merge_text(old, new):
         return new
     return old + ' | ' + new
 
+# CDCS uses Staff/TBA when a section has no named instructor — drop those, never invent.
+_INSTRUCTOR_PLACEHOLDER = re.compile(
+    r'^(staff|tba|tbd|n/?a|none|unknown|to be (announced|assigned|determined)|'
+    r'see (notes|department)|the instructor|[\-\.]+)$',
+    re.I,
+)
+
+def split_instructors(raw):
+    """Turn a CDCS Instructors cell into unique real names.
+
+    Cells are usually one 'First Last' name. Team-taught sections separate
+    people with semicolons, slashes, or 'and'. Do not split on commas —
+    CDCS also uses 'Last, First'.
+    """
+    if not raw:
+        return []
+    raw = html.unescape(raw)
+    parts = re.split(r'\s*(?:;|/|\band\b|&)\s*', raw)
+    names, seen = [], set()
+    for part in parts:
+        name = re.sub(r'\s+', ' ', part).strip(' ,')
+        if not name or _INSTRUCTOR_PLACEHOLDER.match(name):
+            continue
+        key = name.casefold()
+        if key in seen:
+            continue
+        seen.add(key)
+        names.append(name)
+    return names
+
+def merge_instructors(old, new):
+    names, seen = [], set()
+    for name in (old or []) + (new or []):
+        n = re.sub(r'\s+', ' ', str(name)).strip()
+        if not n:
+            continue
+        key = n.casefold()
+        if key in seen:
+            continue
+        seen.add(key)
+        names.append(n)
+    return names
+
 def parse(src, term):
     text = re.sub(r'<script.*?</script>|<style.*?</style>', '', src, flags=re.S)
     text = re.sub(r'<[^>]+>', '\n', text)
@@ -93,7 +136,9 @@ def parse(src, term):
                 'title': title or '', 'credits': None, 'desc': '',
                 'public_notes': '', 'restrictions': '', 'colocated': '',
                 'offered_field': [], 'terms_seen': [term], 'dept': m.group(1),
+                'instructors': [],
             })
+            e.setdefault('instructors', [])
             if credits and (e['credits'] is None or credits > e['credits']): e['credits'] = credits
             if title and len(title) > len(e['title']): e['title'] = title
             cur = e
@@ -109,6 +154,10 @@ def parse(src, term):
             cur['colocated'] = merge_text(cur.get('colocated', ''), loc)
         elif l == 'Restrictions:' and cur:
             cur['restrictions'] = merge_text(cur['restrictions'], collect_field(lines, i))
+        elif l == 'Instructors:' and cur:
+            cur['instructors'] = merge_instructors(
+                cur.get('instructors'), split_instructors(collect_field(lines, i)),
+            )
     return catalog
 
 def merge(into, add):
@@ -117,10 +166,12 @@ def merge(into, add):
             'title': '', 'credits': None, 'desc': '',
             'public_notes': '', 'restrictions': '', 'colocated': '',
             'offered_field': [], 'terms_seen': [], 'dept': e['dept'],
+            'instructors': [],
         })
         t.setdefault('public_notes', '')
         t.setdefault('restrictions', '')
         t.setdefault('colocated', '')
+        t.setdefault('instructors', [])
         if e.get('credits') and (t['credits'] is None or e['credits'] > t['credits']):
             t['credits'] = e['credits']
         if len(e.get('title', '')) > len(t['title']): t['title'] = e['title']
@@ -128,6 +179,7 @@ def merge(into, add):
         t['public_notes'] = merge_text(t.get('public_notes', ''), e.get('public_notes', ''))
         t['restrictions'] = merge_text(t.get('restrictions', ''), e.get('restrictions', ''))
         t['colocated'] = merge_text(t.get('colocated', ''), e.get('colocated', ''))
+        t['instructors'] = merge_instructors(t.get('instructors'), e.get('instructors'))
         for x in e.get('offered_field', []):
             if x not in t['offered_field']: t['offered_field'].append(x)
         for x in e.get('terms_seen', []):
@@ -161,7 +213,13 @@ def main():
         out = os.path.join(work, f'cdcs-full-{slug}.json')
         if os.path.exists(out):
             part = json.load(open(out))
+            sample = next(iter(part.values()), {})
+            # Older dumps parsed every CDCS column except Instructors.
+            if 'instructors' not in sample:
+                part = None
         else:
+            part = None
+        if part is None:
             body = dict(form); body['ddlTerm'] = term_value
             print(f'POST {term_value} …', flush=True)
             resp = curl(['-b', cookies, '--data-raw', urllib.parse.urlencode(body), BASE])
@@ -170,13 +228,16 @@ def main():
             json.dump(part, open(out, 'w'))
             time.sleep(1)
         notes = sum(1 for e in part.values() if e.get('public_notes'))
-        print(f'{term_value}: {len(part)} courses, {notes} with public notes')
+        named = sum(1 for e in part.values() if e.get('instructors'))
+        print(f'{term_value}: {len(part)} courses, {notes} with public notes, {named} with instructors')
         catalog = merge(catalog, part)
     for e in catalog.values():
         e['terms_seen'] = sorted(set(e['terms_seen']))
+        e['instructors'] = sorted(e.get('instructors') or [], key=str.casefold)
     json.dump(catalog, open(RAW, 'w'), indent=1)
     depts = len({e['dept'] for e in catalog.values()})
-    print(f'merged catalog: {len(catalog)} courses across {depts} departments -> {RAW}')
+    named = sum(1 for e in catalog.values() if e.get('instructors'))
+    print(f'merged catalog: {len(catalog)} courses across {depts} departments, {named} with instructors -> {RAW}')
 
 if __name__ == '__main__':
     main()

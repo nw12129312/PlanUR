@@ -4,6 +4,7 @@ import { CourseCard } from './CourseCard.jsx';
 import { Select, TextInput, Panel } from './bits.jsx';
 import { groupCandidates, namedCandidates } from '../engine/candidates.js';
 import { groupsForCourseSet } from '../engine/equivalency.js';
+import { coversCourse } from '../engine/crossList.js';
 import { getEquivalencyGroups } from '../storage/dataStore.js';
 
 const equivalencyGroupsData = getEquivalencyGroups();
@@ -135,16 +136,17 @@ export function CourseSearch({ data, plan, selectedPrograms, selectedClusters, p
             || g.paths.some((p) => p.courses.some((c) => resultIds.has(c))));
           const groupedIds = new Set(sections.flatMap((g) => g.paths.flatMap((p) => p.courses)));
           const rest = results.filter((c) => !groupedIds.has(c.id));
+          const isPlaced = (c) => coversCourse(placedSet, c.id, data.courses);
           const card = (c) => (
-            <div key={c.id} className={placedSet.has(c.id) ? 'opacity-45' : ''}>
+            <div key={c.id} className={isPlaced(c) ? 'opacity-45' : ''}>
               <CourseCard
                 course={c}
-                draggable={!placedSet.has(c.id)}
+                draggable={!isPlaced(c)}
                 onDragStart={(e) => {
                   e.dataTransfer.setData('text/course', c.id);
                   e.dataTransfer.setData('text/origin', 'search');
                 }}
-                onAdd={placedSet.has(c.id) ? undefined : () => onAdd(c.id)}
+                onAdd={isPlaced(c) ? undefined : () => onAdd(c.id)}
               />
             </div>
           );

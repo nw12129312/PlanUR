@@ -8,6 +8,7 @@ import {
   checkEquivalencyConflicts, levelSatisfied, isLevelEntry, levelTag, describePrereqEntry,
 } from './equivalency.js';
 import { checkDepartmentSequencing } from './deptSequencing.js';
+import { coversCourse, expandPlacedSet, familyKey } from './crossList.js';
 
 const v = (ruleId, severity, message, at = {}) => ({ ruleId, severity, message, ...at });
 
@@ -18,20 +19,24 @@ export function checkPrerequisites(plan, data) {
   const ctx = buildContext(plan, data);
   const eqGroups = data.equivalencyGroups || [];
   const out = [];
-  const earlier = new Set(plan.transfer.map((t) => t.courseId)); // transfer counts as before semester 1
+  const earlier = new Set();
+  for (const t of plan.transfer) earlier.add(t.courseId);
+  const earlierFam = () => expandPlacedSet(earlier, ctx.courses);
   const seen = new Set();
-  const entrySatisfied = (p) => (isLevelEntry(p)
-    ? levelSatisfied(levelTag(p), earlier, eqGroups)
-    : earlier.has(p));
+  const entrySatisfied = (p, fam) => (isLevelEntry(p)
+    ? levelSatisfied(levelTag(p), fam, eqGroups)
+    : coversCourse(fam, p, ctx.courses));
 
   plan.semesters.forEach((sem) => {
+    const fam = earlierFam();
     for (const cid of sem.courseIds) {
       const c = ctx.course(cid);
       if (!c || seen.has(cid)) continue;
       seen.add(cid);
       for (const orGroup of c.prereqs || []) {
-        if (orGroup.some(entrySatisfied)) continue;
-        const inSame = orGroup.some((p) => !isLevelEntry(p) && sem.courseIds.includes(p));
+        if (orGroup.some((p) => entrySatisfied(p, fam))) continue;
+        const semSet = new Set(sem.courseIds);
+        const inSame = orGroup.some((p) => !isLevelEntry(p) && coversCourse(semSet, p, ctx.courses));
         const names = orGroup.map((p) => describePrereqEntry(p, eqGroups)).join(' or ');
         const sev = c.prereqsVerified ? 'error' : 'warning';
         out.push(v(
@@ -99,19 +104,26 @@ export function checkCreditLoad(plan, data, max = 18, min = 12) {
 }
 
 // -- duplicates --------------------------------------------------------------
-export function checkDuplicates(plan) {
+export function checkDuplicates(plan, data = {}) {
+  const courses = data.courses || {};
   const seen = new Map();
   const out = [];
   const spots = [];
   plan.semesters.forEach((s) => s.courseIds.forEach((c) => spots.push([c, s])));
   plan.transfer.forEach((t) => spots.push([t.courseId, null]));
   for (const [cid, sem] of spots) {
-    if (seen.has(cid)) {
+    const key = familyKey(courses, cid);
+    if (seen.has(key)) {
+      const first = seen.get(key);
+      const sameCode = first === cid;
       out.push(v('DUPLICATE_COURSE', 'error',
-        `${cid} appears more than once in the plan.`,
+        sameCode
+          ? `${cid} appears more than once in the plan.`
+          : `${cid} is the same cross-listed course as ${first} — count it once.`,
         { courseId: cid, semesterId: sem?.id }));
+    } else {
+      seen.set(key, cid);
     }
-    seen.set(cid, true);
   }
   return out;
 }
@@ -403,7 +415,7 @@ export function checkAll(plan, data) {
   return {
     progress,
     violations: [
-      ...checkDuplicates(plan),
+      ...checkDuplicates(plan, data),
       ...checkEquivalencyConflicts(plan, data.equivalencyGroups || []),
       ...checkDepartmentSequencing(plan),
       ...checkPrerequisites(plan, data),

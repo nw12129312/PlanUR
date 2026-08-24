@@ -29,7 +29,7 @@ export const RULES = {
   },
   DUPLICATE_COURSE: {
     title: 'Duplicate course',
-    text: 'The same course appears more than once in the plan.',
+    text: 'The same course appears more than once in the plan, including when two department codes are cross-listed as one class.',
   },
   EQUIV_CONFLICT: {
     title: 'Equivalent-path conflict',
