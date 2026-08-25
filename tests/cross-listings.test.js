@@ -53,6 +53,31 @@ describe('catalog cross-listings', () => {
     );
   });
 
+  // Stubs carry no description and no CDCS Co-Located string, so neither
+  // automatic pass can see them; CROSS_LIST_OVERRIDES in build_data.py links
+  // the ones an official page writes as a single listing.
+  it('links stub pairs that only an official program page names together', () => {
+    for (const [a, b] of [['PSCI 270', 'INTR 270'], ['LING 248', 'CSC 248']]) {
+      expect(coursesData[a].crossListings, a).toContain(b);
+      expect(coursesData[b].crossListings, b).toContain(a);
+      expect(coursesData[a].crossListingSource, a).toMatch(/official program page/);
+    }
+  });
+
+  it('never links a W variant to its non-W sibling, which would satisfy wOnly filters', () => {
+    for (const id of Object.keys(coursesData)) {
+      if (!id.endsWith('W')) continue;
+      const base = id.slice(0, -1).trimEnd();
+      if (!coursesData[base]) continue;
+      const family = listingsOf(coursesData, base);
+      if (!family.includes(id)) continue;
+      // Pre-existing families from CDCS/title matching are grandfathered; the
+      // manual override list must never add to them.
+      expect(coursesData[base].crossListingSource || '', `${base} + ${id}`)
+        .not.toMatch(/official program page/);
+    }
+  });
+
   it('does not lump independent-study 391s into one family', () => {
     const indep = Object.values(coursesData).filter((c) =>
       !c.stub && /independent (study|research)/i.test(c.title || ''));

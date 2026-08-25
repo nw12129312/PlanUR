@@ -2010,7 +2010,7 @@
    "The Goergen Institute page lists the BA and BS together; this entry encodes the shared requirements. Any BS-only additions beyond these are NOT captured - confirm with gids-undergrad@rochester.edu.",
    "Prerequisite courses must be complete or in progress before declaring the major, and cannot be taken Satisfactory/Fail. They may be satisfied by AP credit or by testing.",
    "The DSCC core courses are cross-listed with computer science: DSCC/CSC 242, DSCC/CSC 240, DSCC/CSC 261.",
-   "One core option is a PAIR - STAT 216 together with either STAT 217 or STAT 226W - rather than a single course. The app models the single-course alternative DSCC 265; if you take the STAT route it consumes two courses the app counts as one.",
+   "One core option is a PAIR - STAT 216 together with either STAT 217 or STAT 226W - rather than a single course. Both routes are modeled: the one-course DSCC 265 path or the two-course STAT path.",
    "STAT 190 replaces the former DSCC/CSC/STAT 262 and STAT 213; STAT 180 replaces the former STAT 212.",
    "Each concentration (application area) requires three courses from one of ten lists on the Goergen Institute BA/BS page. The audit picker records the area and fills from that list. Some areas have internal BOTH/ONE-OF structure that the planner approximates as three courses from the union. A course taken for the BS supplementary requirement should not also fill the Computer science, statistics, and mathematics concentration."
   ],
@@ -2107,15 +2107,23 @@
     "id": "machine-learning",
     "label": "Statistical machine learning",
     "rule": {
-     "type": "n_of",
-     "n": 1,
-     "options": [
-      "DSCC 265",
-      "STAT 216"
+     "type": "sequence_one_of",
+     "sequences": [
+      [
+       "DSCC 265"
+      ],
+      [
+       "STAT 216",
+       "STAT 217"
+      ],
+      [
+       "STAT 216",
+       "STAT 226W"
+      ]
      ]
     },
     "sourceQuote": "Plus ONE of the following: DSCC 265: Introduction to Statistical Machine Learning; Both STAT 216: Intermediate Statistical Methodology and STAT 217: Advanced Statistical Methodology OR STAT 226W: Linear Models",
-    "note": "The STAT 216 route additionally requires STAT 217 or STAT 226W; only the first course of that pair is modeled."
+    "note": "The STAT route is a PAIR: STAT 216 plus either STAT 217 or STAT 226W. STAT 216 alone does not satisfy this requirement. NEEDS VERIFICATION: the page's \"Both STAT 216 and STAT 217 OR STAT 226W\" is read here as STAT 216 + (STAT 217 or STAT 226W); if STAT 226W alone also counts, confirm with gids-undergrad@rochester.edu."
    },
    {
     "id": "tools",
@@ -2285,7 +2293,7 @@
      }
     },
     "sourceQuote": "Students can choose from one of the following concentrations (application areas): Artificial Intelligence (AI); Biology; Biomedical signals and imaging; Brain and cognitive sciences; Computer science, statistics, and mathematics; Earth and environmental science; Linguistics; Physics; Economics and business; Political science. Each concentration requires students to take three courses.",
-    "note": "Course lists copied from the BA/BS requirements page. Areas that say BOTH of X plus ONE of Y are modeled as any three from the combined list."
+    "note": "Course lists are copied from the BA/BS requirements page, but this rule can only check \"any three from the area's list\" - it cannot enforce an area's internal structure, so CHECK THESE BY HAND. Artificial Intelligence requires BOTH CSC 277 and CSC 290, plus one of CSC 245/246/247/249 (or another AI-related CSC/DSCC course with the program director's permission, which cannot be listed here). Biomedical Signals and Imaging requires BOTH BME 101 and BME 210, plus one of BME 230/253/274 or CSC 249. Linguistics REQUIRES LING 110, plus one of LING 210/220/224/225, plus one of LING 247/248/250/268/281. Biology takes one or two intro courses (BIOL 110/112, BIOL 111/113) plus one or two advanced. Earth and Environmental Science allows at most two of EESC 101/103/105 and at most two from the advanced list. Two further gaps: the Computer Science, Statistics, and Mathematics area excludes courses used for the BS supplementary requirement (which includes MATH 201 and MATH 203, both on this list), and the Economics and Business bullet \"ECON 214 ... OR ECON 217/217W\" can still be counted more than once, because linking a W variant to its non-W sibling would wrongly let the non-W course satisfy upper-level-writing filters. The PSCI 270 / INTR 270 and LING 248 / CSC 248 bullets are cross-linked in the catalog and do count once."
    }
   ],
   "upperLevelWriting": {

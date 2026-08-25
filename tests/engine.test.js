@@ -357,6 +357,53 @@ describe('in-major concentration pickers', () => {
     expect(g.need).toBe(4);
   });
 
+  it('treats the Data Science STAT machine-learning route as a two-course pair', () => {
+    const mlGroup = (plan) => computeProgress(plan, DATA).programs[0].groups
+      .find((g) => g.id === 'machine-learning');
+
+    const dscc = mlGroup(fill(planWith({ majorIds: ['major-dsc-bs'] }), 0, ['DSCC 265']));
+    expect(dscc.need).toBe(1);
+    expect(dscc.complete).toBe(true);
+
+    // STAT 216 on its own is NOT a substitute for DSCC 265.
+    const alone = mlGroup(fill(planWith({ majorIds: ['major-dsc-bs'] }), 0, ['STAT 216']));
+    expect(alone.need).toBe(2);
+    expect(alone.have).toBe(1);
+    expect(alone.complete).toBe(false);
+
+    for (const second of ['STAT 217', 'STAT 226W']) {
+      let plan = planWith({ majorIds: ['major-dsc-bs'] });
+      fill(plan, 0, ['STAT 216']);
+      fill(plan, 1, [second]);
+      const g = mlGroup(plan);
+      expect(g.complete, `STAT 216 + ${second}`).toBe(true);
+      expect(g.satisfiedBy).toEqual(['STAT 216', second]);
+    }
+  });
+
+  it('counts a cross-listed application-area pair once, not twice', () => {
+    const area = (name, ids) => {
+      let plan = planWith({
+        majorIds: ['major-dsc-bs'],
+        trackChoices: { 'major-dsc-bs': { concentration: name } },
+      });
+      fill(plan, 0, ids.slice(0, 2));
+      fill(plan, 1, ids.slice(2));
+      return computeProgress(plan, DATA).programs[0].groups
+        .find((g) => g.id === 'concentration');
+    };
+
+    // The page lists "PSCI/INTR 270" and "LING 248/CSC 248" as one course each,
+    // so each pair may only fill one of the three slots.
+    const psci = area('Political Science', ['PSCI 270', 'INTR 270', 'PSCI 107']);
+    expect(psci.have).toBe(2);
+    expect(psci.complete).toBe(false);
+
+    const ling = area('Linguistics', ['LING 248', 'CSC 248', 'LING 250']);
+    expect(ling.have).toBe(2);
+    expect(ling.complete).toBe(false);
+  });
+
   it('honors a declared Data Science application area', () => {
     const plan = planWith({
       majorIds: ['major-dsc-bs'],

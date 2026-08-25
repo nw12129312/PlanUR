@@ -807,6 +807,32 @@ _GENERIC_TITLE = re.compile(
     re.I,
 )
 
+# Manual cross-list pairs, for classes the automatic passes cannot reach.
+# Stubs are excluded from title matching (they carry no description), and a
+# class never scheduled in a harvested term has no CDCS Co-Located string
+# either, so a stub cross-listing is invisible to both passes. Without these
+# edges a requirement list naming both codes counts one class twice.
+#
+# Every entry needs an official page writing the codes as ONE listing. Only
+# same-suffix pairs belong here: linking a W variant to its non-W sibling
+# would make the non-W course satisfy a wOnly filter, because
+# familyMatchesFilter accepts a match from any member of the family.
+CROSS_LIST_OVERRIDES = [
+    {
+        'codes': ['PSCI 270', 'INTR 270'],
+        'why': 'Goergen Institute data science page lists "PSCI/INTR 270 Mechanisms of '
+               'International Relations" as one course; both catalog titles read '
+               '"Mechanisms of International Relations (INTR 270)". Matches the already '
+               'linked PSCI 278 / INTR 278 pair.',
+    },
+    {
+        'codes': ['LING 248', 'CSC 248'],
+        'why': 'Goergen Institute data science page lists "LING 248/CSC 248: Statistical '
+               'Speech and Language Processing" as one course, the same way it lists the '
+               'already linked LING 247 / CSC 247 pair.',
+    },
+]
+
 def _norm_title(t):
     t = re.sub(r'\s+', ' ', (t or '').lower()).strip()
     return re.sub(r'[^a-z0-9 +&/-]', '', t)
@@ -829,6 +855,17 @@ def attach_cross_listings(courses, catalog):
         ra, rb = find(a), find(b)
         if ra != rb:
             parent[rb] = ra
+
+    manual_edges = set()
+    for entry in CROSS_LIST_OVERRIDES:
+        live = sorted(c for c in entry['codes'] if c in courses)
+        missing = [c for c in entry['codes'] if c not in courses]
+        if missing:
+            print(f"  cross-list override skipped (unknown codes {missing}): {entry['codes']}")
+        for i, a in enumerate(live):
+            for b in live[i + 1:]:
+                union(a, b)
+                manual_edges.add(tuple(sorted((a, b))))
 
     coloc_edges = set()
     for cid, e in catalog.items():
@@ -879,11 +916,14 @@ def attach_cross_listings(courses, catalog):
         member_set = set(members)
         has_coloc = any(a in member_set and b in member_set for a, b in coloc_edges)
         has_title = any(a in member_set and b in member_set for a, b in title_edges)
+        has_manual = any(a in member_set and b in member_set for a, b in manual_edges)
         bits = []
         if has_coloc:
             bits.append('CDCS Co-Located')
         if has_title:
             bits.append('matching title and description')
+        if has_manual:
+            bits.append('official program page listing the codes together')
         source = '; '.join(bits) or 'matching title and description'
         for cid in members:
             courses[cid]['crossListings'] = [x for x in members if x != cid]
