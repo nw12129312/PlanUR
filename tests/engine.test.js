@@ -6,7 +6,7 @@ import policyData from '../src/data/policy.json';
 import equivalencyGroupsData from '../src/data/equivalency_groups.json';
 
 import { newPlan, withTrackChoice } from '../src/engine/model.js';
-import { withProgramSwap } from '../src/engine/pathways.js';
+import { switchTrackChoice, withProgramSwap } from '../src/engine/pathways.js';
 import { computeProgress, pwrStatus } from '../src/engine/progress.js';
 import {
   checkPrerequisites, checkOfferingSemester, checkCreditLoad, checkDuplicates,
@@ -368,6 +368,58 @@ describe('in-major concentration pickers', () => {
   });
 });
 
+describe('switching a concentration drops the previous area\'s courses', () => {
+  const placed = (plan) => plan.semesters.flatMap((s) => s.courseIds);
+
+  it('removes Data Science application-area courses that are not on the new list', () => {
+    const plan = fill(planWith({
+      majorIds: ['major-dsc-bs'],
+      trackChoices: { 'major-dsc-bs': { concentration: 'Artificial Intelligence' } },
+    }), 0, ['CSC 171', 'CSC 246', 'CSC 247']);
+    const next = switchTrackChoice(plan, DATA, 'major-dsc-bs', 'concentration', 'Biology');
+    expect(placed(next)).toEqual(['CSC 171']);
+    expect(next.trackChoices['major-dsc-bs'].concentration).toBe('Biology');
+  });
+
+  it('keeps a BME course that appears on both concentrations', () => {
+    const plan = fill(planWith({
+      majorIds: ['major-bme-bs'],
+      trackChoices: { 'major-bme-bs': { concentration: 'Biomechanics' } },
+    }), 0, ['ME 123', 'ME 226']);
+    const next = switchTrackChoice(plan, DATA, 'major-bme-bs', 'concentration', 'Cell and Tissue Engineering');
+    expect(placed(next)).toEqual(['ME 123']);
+    expect(next.trackChoices['major-bme-bs'].concentration).toBe('Cell and Tissue Engineering');
+  });
+
+  it('does not strip courses when the picker is cleared', () => {
+    const plan = fill(planWith({
+      majorIds: ['major-dsc-bs'],
+      trackChoices: { 'major-dsc-bs': { concentration: 'Artificial Intelligence' } },
+    }), 0, ['CSC 171', 'CSC 246']);
+    const next = switchTrackChoice(plan, DATA, 'major-dsc-bs', 'concentration', '');
+    expect(placed(next)).toEqual(['CSC 171', 'CSC 246']);
+    expect(next.trackChoices).toEqual({});
+  });
+
+  it('uses the inferred area when none was declared yet', () => {
+    const plan = fill(planWith({ majorIds: ['major-dsc-bs'] }), 0, ['CSC 246', 'CSC 247']);
+    const next = switchTrackChoice(plan, DATA, 'major-dsc-bs', 'concentration', 'Biology');
+    expect(placed(next)).toEqual([]);
+    expect(next.trackChoices['major-dsc-bs'].concentration).toBe('Biology');
+  });
+
+  it('leaves AP/transfer credit in the bucket when the area changes', () => {
+    const plan = fill(planWith({
+      majorIds: ['major-dsc-bs'],
+      trackChoices: { 'major-dsc-bs': { concentration: 'Artificial Intelligence' } },
+      transfer: [{ courseId: 'CSC 246', kind: 'ap' }],
+    }), 0, ['CSC 247']);
+    const next = switchTrackChoice(plan, DATA, 'major-dsc-bs', 'concentration', 'Biology');
+    expect(placed(next)).toEqual([]);
+    expect(next.transfer).toEqual([{ courseId: 'CSC 246', kind: 'ap' }]);
+  });
+});
+
 describe('program family swap', () => {
   it('replaces a biology track and moves stored pathway choices', () => {
     const plan = planWith({
@@ -384,6 +436,13 @@ describe('program family swap', () => {
   it('refuses to swap onto a program already on the plan', () => {
     const plan = planWith({ majorIds: ['biol-ba', 'biol-bs-biochem'] });
     expect(withProgramSwap(plan, 'biol-ba', 'biol-bs-biochem')).toBe(plan);
+  });
+
+  it('drops courses that only counted toward the outgoing program', () => {
+    const plan = fill(planWith({ majorIds: ['biol-ba'] }), 0, ['BIOL 110L', 'BIOL 204P']);
+    const next = withProgramSwap(plan, 'biol-ba', 'biol-bs-biochem', DATA);
+    expect(next.majorIds).toEqual(['biol-bs-biochem']);
+    expect(next.semesters[0].courseIds).toEqual(['BIOL 110L']);
   });
 });
 
