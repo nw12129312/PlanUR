@@ -488,6 +488,25 @@ equivalency_groups = [
             {'id': '17x', 'name': 'Honors (MATH 171-172)', 'courses': ['MATH 171', 'MATH 172'], 'accelerated': True},
         ],
     },
+    # CSC 161 and CSC 171 are alternate intro-programming / intro-CS courses
+    # (both Python). CDCS says 161 cannot count for a CSC major or minor if
+    # taken after or alongside 171; requirement pages across the college list
+    # them as a single "choose one" slot. CSC 162 is not in the current catalog.
+    # This group blocks placing both on a plan. It does NOT make 161 satisfy
+    # CSC 172 or the CS BA/BS "CSC 171" core — those pages name 171 specifically.
+    {
+        'id': 'intro-cs',
+        'name': 'Introductory computer science',
+        'status': 'ACTIVE',
+        'sourceUrl': URLS['cdcs'],
+        'sourceQuote': 'This course may not be used for CSC major or minor credit if completed after or at the same time as CSC171.',
+        'sourcedOn': '2026-08-24',
+        'satisfiesPrereqLevel': 'intro_cs_complete',
+        'paths': [
+            {'id': '161', 'name': 'CSC 161 (intro programming)', 'courses': ['CSC 161'], 'accelerated': False},
+            {'id': '171', 'name': 'CSC 171 (intro CS)', 'courses': ['CSC 171'], 'accelerated': False},
+        ],
+    },
     {
         'id': 'intro-biology',
         'name': 'Introductory biology sequence',
