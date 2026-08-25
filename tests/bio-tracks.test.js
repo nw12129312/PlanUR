@@ -69,7 +69,7 @@ describe('new equivalency groups (orgo, physics)', () => {
     const c = conflictForAdd(p, 'PHYS 113', equivalencyGroupsData);
     expect(c).not.toBeNull();
     expect(c.message).toContain('PHYS 121');
-    expect(conflictForAdd(p, 'PHYS 122', equivalencyGroupsData)).toBeNull(); // not in the group
+    expect(conflictForAdd(p, 'PHYS 122', equivalencyGroupsData)).toBeNull(); // Physics II is a separate group
   });
 });
 

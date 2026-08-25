@@ -120,10 +120,88 @@
     "accelerated": false
    },
    {
+    "id": "121p",
+    "name": "PHYS 121P (self-paced)",
+    "courses": [
+     "PHYS 121P"
+    ],
+    "accelerated": false
+   },
+   {
     "id": "141",
     "name": "PHYS 141 (honors)",
     "courses": [
      "PHYS 141"
+    ],
+    "accelerated": true
+   }
+  ]
+ },
+ {
+  "id": "physics-ii",
+  "name": "Introductory physics (Physics II)",
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/bio/undergraduate/bio.html",
+  "sourceQuote": "Physics: PHYS 114, 122, or 142",
+  "sourcedOn": "2026-08-25",
+  "satisfiesPrereqLevel": "physics_ii_complete",
+  "paths": [
+   {
+    "id": "114",
+    "name": "PHYS 114 (general)",
+    "courses": [
+     "PHYS 114"
+    ],
+    "accelerated": false
+   },
+   {
+    "id": "122",
+    "name": "PHYS 122 (E&M)",
+    "courses": [
+     "PHYS 122"
+    ],
+    "accelerated": false
+   },
+   {
+    "id": "122p",
+    "name": "PHYS 122P (self-paced)",
+    "courses": [
+     "PHYS 122P"
+    ],
+    "accelerated": false
+   },
+   {
+    "id": "142",
+    "name": "PHYS 142 (honors)",
+    "courses": [
+     "PHYS 142"
+    ],
+    "accelerated": true
+   }
+  ]
+ },
+ {
+  "id": "physics-iii",
+  "name": "Introductory physics (Physics III)",
+  "status": "ACTIVE",
+  "sourceUrl": "https://cdcs.ur.rochester.edu/",
+  "sourceQuote": "Topics are the same as PHYS 123 but in greater depth.",
+  "sourcedOn": "2026-08-25",
+  "satisfiesPrereqLevel": "physics_iii_complete",
+  "paths": [
+   {
+    "id": "123",
+    "name": "PHYS 123",
+    "courses": [
+     "PHYS 123"
+    ],
+    "accelerated": false
+   },
+   {
+    "id": "143",
+    "name": "PHYS 143 (honors)",
+    "courses": [
+     "PHYS 143"
     ],
     "accelerated": true
    }
@@ -159,23 +237,257 @@
   ]
  },
  {
+  "id": "orgo-ii",
+  "name": "Organic chemistry II sequence",
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/chm/undergraduate/ba-requirements.html",
+  "sourceQuote": "Standard Sequence: CHEM 203: Organic Chemistry I; CHEM 204: Organic Chemistry II; CHEM 207: Organic Chemistry Lab I; CHEM 208: Organic Chemistry Lab II OR CHEM 210W: Honors Organic Chemistry Lab II. Or First-Year Organic Sequence: CHEM 171; CHEM 172; CHEM 173; CHEM 210/210W",
+  "sourcedOn": "2026-08-25",
+  "satisfiesPrereqLevel": "orgo_ii_complete",
+  "paths": [
+   {
+    "id": "204",
+    "name": "CHEM 204 (standard)",
+    "courses": [
+     "CHEM 204"
+    ],
+    "accelerated": false
+   },
+   {
+    "id": "172",
+    "name": "CHEM 172 (first-year)",
+    "courses": [
+     "CHEM 172"
+    ],
+    "accelerated": true
+   }
+  ]
+ },
+ {
   "id": "intro-chemistry",
   "name": "Introductory / first-year chemistry",
-  "status": "NEEDS_DATA_ENTRY",
-  "sourceUrl": "https://www.sas.rochester.edu/chm/",
-  "sourceQuote": "Bio BA page notes CHEM 171/173 + 172/210 with AP credit can replace CHEM 131-132; exact path structure unconfirmed",
-  "sourcedOn": null,
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.hajim.rochester.edu/me/undergraduate/major.html",
+  "sourceQuote": "CHEM 137: Chemical Principles for Engineers* ... Students may take CHEM 131 in place of CHEM 137",
+  "sourcedOn": "2026-08-25",
   "satisfiesPrereqLevel": "intro_chem_complete",
-  "paths": []
+  "paths": [
+   {
+    "id": "131",
+    "name": "CHEM 131",
+    "courses": [
+     "CHEM 131"
+    ],
+    "accelerated": false
+   },
+   {
+    "id": "137",
+    "name": "CHEM 137 (engineers)",
+    "courses": [
+     "CHEM 137"
+    ],
+    "accelerated": false
+   }
+  ]
  },
  {
   "id": "intro-statistics",
   "name": "Introductory statistics",
-  "status": "NEEDS_DATA_ENTRY",
-  "sourceUrl": "https://www.sas.rochester.edu/mth/",
-  "sourceQuote": null,
-  "sourcedOn": null,
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.hajim.rochester.edu/dsc/undergraduate/major.html",
+  "sourceQuote": "Plus ONE of the following: STAT 190: Introduction to Statistical Methodology; STAT 180: Introduction to Applied Statistical Methodology",
+  "sourcedOn": "2026-08-25",
   "satisfiesPrereqLevel": "intro_stat_complete",
-  "paths": []
+  "paths": [
+   {
+    "id": "180",
+    "name": "STAT 180 (applied)",
+    "courses": [
+     "STAT 180"
+    ],
+    "accelerated": false
+   },
+   {
+    "id": "190",
+    "name": "STAT 190",
+    "courses": [
+     "STAT 190"
+    ],
+    "accelerated": false
+   }
+  ]
+ },
+ {
+  "id": "dev-psych",
+  "name": "Developmental psychology",
+  "status": "ACTIVE",
+  "sourceUrl": "https://www.sas.rochester.edu/psy/undergraduate/minor.html",
+  "sourceQuote": "Students may not receive credit for both PSYC 170 and PSYC 171",
+  "sourcedOn": "2026-08-25",
+  "satisfiesPrereqLevel": "dev_psych_complete",
+  "paths": [
+   {
+    "id": "170",
+    "name": "PSYC 170 (child development)",
+    "courses": [
+     "PSYC 170",
+     "BCSC 170"
+    ],
+    "accelerated": false
+   },
+   {
+    "id": "171",
+    "name": "PSYC 171 (social and emotional)",
+    "courses": [
+     "PSYC 171",
+     "PSYC 171W"
+    ],
+    "accelerated": false
+   }
+  ]
+ },
+ {
+  "id": "intro-genetics",
+  "name": "Introductory genetics",
+  "status": "ACTIVE",
+  "sourceUrl": "https://cdcs.ur.rochester.edu/",
+  "sourceQuote": "A student cannot receive credit for both BIOL 190 and BIOL 198.",
+  "sourcedOn": "2026-08-25",
+  "satisfiesPrereqLevel": "intro_genetics_complete",
+  "paths": [
+   {
+    "id": "190",
+    "name": "BIOL 190",
+    "courses": [
+     "BIOL 190"
+    ],
+    "accelerated": false
+   },
+   {
+    "id": "198",
+    "name": "BIOL 198",
+    "courses": [
+     "BIOL 198"
+    ],
+    "accelerated": false
+   }
+  ]
+ },
+ {
+  "id": "intro-anatomy",
+  "name": "Human anatomy",
+  "status": "ACTIVE",
+  "sourceUrl": "https://cdcs.ur.rochester.edu/",
+  "sourceQuote": "STUDENTS CANNOT RECEIVE CREDIT FOR BIOL 217L AND BME 258.",
+  "sourcedOn": "2026-08-25",
+  "satisfiesPrereqLevel": "intro_anatomy_complete",
+  "paths": [
+   {
+    "id": "217",
+    "name": "BIOL 217L",
+    "courses": [
+     "BIOL 217L"
+    ],
+    "accelerated": false
+   },
+   {
+    "id": "258",
+    "name": "BME 258",
+    "courses": [
+     "BME 258"
+    ],
+    "accelerated": false
+   }
+  ]
+ },
+ {
+  "id": "intro-music-theory",
+  "name": "Introductory music theory",
+  "status": "ACTIVE",
+  "sourceUrl": "https://cdcs.ur.rochester.edu/",
+  "sourceQuote": "Students who complete MUSC 110 may NOT enroll in MUSC 101, credit will NOT be given for both.",
+  "sourcedOn": "2026-08-25",
+  "satisfiesPrereqLevel": "intro_music_theory_complete",
+  "paths": [
+   {
+    "id": "101",
+    "name": "MUSC 101 (elements)",
+    "courses": [
+     "MUSC 101"
+    ],
+    "accelerated": false
+   },
+   {
+    "id": "110",
+    "name": "MUSC 110 (intro theory)",
+    "courses": [
+     "MUSC 110"
+    ],
+    "accelerated": false
+   }
+  ]
+ },
+ {
+  "id": "intermediate-micro",
+  "name": "Intermediate microeconomics",
+  "status": "ACTIVE",
+  "sourceUrl": "https://cdcs.ur.rochester.edu/",
+  "sourceQuote": "In comparison to other sections of ECO 207, this section develops these choices more formally and mathematically.",
+  "sourcedOn": "2026-08-25",
+  "satisfiesPrereqLevel": "intermediate_micro_complete",
+  "paths": [
+   {
+    "id": "207",
+    "name": "ECON 207",
+    "courses": [
+     "ECON 207"
+    ],
+    "accelerated": false
+   },
+   {
+    "id": "207h",
+    "name": "ECON 207H (honors)",
+    "courses": [
+     "ECON 207H"
+    ],
+    "accelerated": true
+   }
+  ]
+ },
+ {
+  "id": "primary-writing",
+  "name": "Primary writing requirement",
+  "status": "ACTIVE",
+  "sourceUrl": "https://writing.rochester.edu/undergraduate/index.html",
+  "sourceQuote": "Complete WRTG 105, WRTG 105E, or both WRTG 105A and 105B with a grade of C or better.",
+  "sourcedOn": "2026-08-25",
+  "satisfiesPrereqLevel": "pwr_complete",
+  "paths": [
+   {
+    "id": "105",
+    "name": "WRTG 105",
+    "courses": [
+     "WRTG 105"
+    ],
+    "accelerated": false
+   },
+   {
+    "id": "105e",
+    "name": "WRTG 105E",
+    "courses": [
+     "WRTG 105E"
+    ],
+    "accelerated": false
+   },
+   {
+    "id": "105ab",
+    "name": "WRTG 105A + 105B",
+    "courses": [
+     "WRTG 105A",
+     "WRTG 105B"
+    ],
+    "accelerated": false
+   }
+  ]
  }
 ]
