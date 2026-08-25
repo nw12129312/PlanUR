@@ -53,6 +53,17 @@ describe('checkEquivalencyConflicts', () => {
     const plan = fill(planWith(), 0, ['BIOL 110L', 'BIOL 113L']);
     expect(checkEquivalencyConflicts(plan, equivalencyGroupsData).length).toBe(2);
   });
+  it('treats CSC 161 and CSC 171 as one intro-CS path, not two courses', () => {
+    const plan = fill(planWith(), 0, ['CSC 161', 'CSC 171']);
+    const vs = checkEquivalencyConflicts(plan, equivalencyGroupsData);
+    expect(new Set(vs.map((v) => v.courseId))).toEqual(new Set(['CSC 161', 'CSC 171']));
+    for (const v of vs) {
+      expect(v.ruleId).toBe('EQUIV_CONFLICT');
+      expect(v.message).toContain('Introductory computer science');
+    }
+    expect(checkEquivalencyConflicts(fill(planWith(), 0, ['CSC 161']), equivalencyGroupsData)).toEqual([]);
+    expect(checkEquivalencyConflicts(fill(planWith(), 0, ['CSC 171', 'CSC 172']), equivalencyGroupsData)).toEqual([]);
+  });
   it('runs as part of checkAll (same trigger points as other checks)', () => {
     const plan = fill(planWith(), 0, ['MATH 171', 'MATH 142']);
     expect(byRule(checkAll(plan, DATA).violations, 'EQUIV_CONFLICT').length).toBe(2);
@@ -73,6 +84,11 @@ describe('conflictForAdd (blocking manual adds)', () => {
     expect(conflictForAdd(plan, 'MATH 172', equivalencyGroupsData)).toBeNull();
     expect(conflictForAdd(plan, 'CSC 171', equivalencyGroupsData)).toBeNull();
     expect(conflictForAdd(planWith(), 'MATH 141', equivalencyGroupsData)).toBeNull();
+  });
+  it('blocks adding CSC 171 once CSC 161 is on the plan, and vice versa', () => {
+    expect(conflictForAdd(fill(planWith(), 0, ['CSC 161']), 'CSC 171', equivalencyGroupsData)).not.toBeNull();
+    expect(conflictForAdd(fill(planWith(), 0, ['CSC 171']), 'CSC 161', equivalencyGroupsData)).not.toBeNull();
+    expect(conflictForAdd(fill(planWith(), 0, ['CSC 171']), 'CSC 172', equivalencyGroupsData)).toBeNull();
   });
   it('does not double-block a plan that is already conflicted', () => {
     const plan = fill(planWith(), 0, ['MATH 171', 'MATH 142']);

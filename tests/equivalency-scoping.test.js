@@ -36,8 +36,8 @@ describe('equivalency blocks are scoped to the selected program', () => {
     expect(groupsForCourseSet(equivalencyGroupsData, new Set())).toEqual([]);
   });
 
-  it('CS BS depends on the calculus sequence and nothing else', () => {
-    expect(groupsFor('major-csc-bs')).toEqual(['calc-sequence']);
+  it('CS BS depends on the calculus sequence and intro CS (CSC 171 vs 161)', () => {
+    expect(groupsFor('major-csc-bs')).toEqual(['calc-sequence', 'intro-cs']);
   });
 
   it('Biology BA depends on the biology and organic-chemistry sequences', () => {

@@ -39,6 +39,33 @@
   ]
  },
  {
+  "id": "intro-cs",
+  "name": "Introductory computer science",
+  "status": "ACTIVE",
+  "sourceUrl": "https://cdcs.ur.rochester.edu/",
+  "sourceQuote": "This course may not be used for CSC major or minor credit if completed after or at the same time as CSC171.",
+  "sourcedOn": "2026-08-24",
+  "satisfiesPrereqLevel": "intro_cs_complete",
+  "paths": [
+   {
+    "id": "161",
+    "name": "CSC 161 (intro programming)",
+    "courses": [
+     "CSC 161"
+    ],
+    "accelerated": false
+   },
+   {
+    "id": "171",
+    "name": "CSC 171 (intro CS)",
+    "courses": [
+     "CSC 171"
+    ],
+    "accelerated": false
+   }
+  ]
+ },
+ {
   "id": "intro-biology",
   "name": "Introductory biology sequence",
   "status": "ACTIVE",
