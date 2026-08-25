@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 
-import { newPlan, addSemester, withCourseMeta, getCourseMeta, withTrackChoice } from './engine/model.js';
+import { newPlan, addSemester, withCourseMeta, getCourseMeta } from './engine/model.js';
 import { withScheduleStyle } from './engine/scheduleStyle.js';
-import { withProgramSwap } from './engine/pathways.js';
+import { switchTrackChoice, withProgramSwap } from './engine/pathways.js';
 import { checkAll, resolveRequiredCredits } from './engine/constraints.js';
 import { autoGenerate } from './engine/autogen.js';
 import { conflictForAdd } from './engine/equivalency.js';
@@ -176,11 +176,11 @@ export default function App() {
   };
 
   const chooseTrack = ({ programId, groupId, trackName }) => {
-    setPlan((p) => touch(withTrackChoice(p, programId, groupId, trackName || null)));
+    setPlan((p) => touch(switchTrackChoice(p, DATA, programId, groupId, trackName || null)));
   };
 
   const swapProgram = ({ fromId, toId }) => {
-    setPlan((p) => touch(withProgramSwap(p, fromId, toId)));
+    setPlan((p) => touch(withProgramSwap(p, fromId, toId, DATA)));
   };
 
   const removeCourse = (cid, semId) => {
