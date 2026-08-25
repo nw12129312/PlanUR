@@ -90,6 +90,35 @@ describe('conflictForAdd (blocking manual adds)', () => {
     expect(conflictForAdd(fill(planWith(), 0, ['CSC 171']), 'CSC 161', equivalencyGroupsData)).not.toBeNull();
     expect(conflictForAdd(fill(planWith(), 0, ['CSC 171']), 'CSC 172', equivalencyGroupsData)).toBeNull();
   });
+  it('blocks every sourced alternate-sequence pair', () => {
+    const pairs = [
+      ['PSYC 170', 'PSYC 171'],
+      ['BCSC 170', 'PSYC 171'],
+      ['PSYC 170', 'PSYC 171W'],
+      ['BIOL 190', 'BIOL 198'],
+      ['BIOL 217L', 'BME 258'],
+      ['MUSC 101', 'MUSC 110'],
+      ['CHEM 131', 'CHEM 137'],
+      ['STAT 180', 'STAT 190'],
+      ['ECON 207', 'ECON 207H'],
+      ['PHYS 121', 'PHYS 121P'],
+      ['PHYS 114', 'PHYS 122'],
+      ['PHYS 122', 'PHYS 142'],
+      ['PHYS 122', 'PHYS 122P'],
+      ['PHYS 123', 'PHYS 143'],
+      ['CHEM 204', 'CHEM 172'],
+      ['WRTG 105', 'WRTG 105E'],
+      ['WRTG 105', 'WRTG 105A'],
+    ];
+    for (const [a, b] of pairs) {
+      const c = conflictForAdd(fill(planWith(), 0, [a]), b, equivalencyGroupsData);
+      expect(c, `${a} vs ${b}`).not.toBeNull();
+    }
+    expect(conflictForAdd(fill(planWith(), 0, ['CHEM 204', 'CHEM 208']), 'CHEM 207', equivalencyGroupsData)).toBeNull();
+    expect(conflictForAdd(fill(planWith(), 0, ['WRTG 105A']), 'WRTG 105B', equivalencyGroupsData)).toBeNull();
+    expect(conflictForAdd(fill(planWith(), 0, ['PHYS 121']), 'PHYS 122', equivalencyGroupsData)).toBeNull();
+    expect(conflictForAdd(fill(planWith(), 0, ['CHEM 172']), 'CHEM 208', equivalencyGroupsData)).toBeNull();
+  });
   it('does not double-block a plan that is already conflicted', () => {
     const plan = fill(planWith(), 0, ['MATH 171', 'MATH 142']);
     expect(conflictForAdd(plan, 'MATH 143', equivalencyGroupsData)).toBeNull();

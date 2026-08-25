@@ -34,6 +34,10 @@ URLS = {
     'cse': 'https://secure1.rochester.edu/registrar/CSE/',
     'ccas_clusters': 'https://www.rochester.edu/college/ccas/undergraduate/curriculum/clusters.html',
     'majors_index': 'https://www.rochester.edu/college/ccas/undergraduate/curriculum/index.html',
+    'psy_minor': 'https://www.sas.rochester.edu/psy/undergraduate/minor.html',
+    'chem_ba': 'https://www.sas.rochester.edu/chm/undergraduate/ba-requirements.html',
+    'me_bs': 'https://www.hajim.rochester.edu/me/undergraduate/major.html',
+    'dsc_bs': 'https://www.hajim.rochester.edu/dsc/undergraduate/major.html',
 }
 
 catalog = json.load(open(os.path.join(SRC, 'ur-catalog-raw.json')))
@@ -520,14 +524,14 @@ equivalency_groups = [
             {'id': '112', 'name': 'BIOL 112L-113L', 'courses': ['BIOL 112L', 'BIOL 113L'], 'accelerated': False},
         ],
     },
-    # Plausible families that must be confirmed before getting course lists —
-    # consistent with the Program model's NEEDS_DATA_ENTRY convention.
     # JUDGMENT CALL (flagged per Bio-track spec): PHYS 113 / 121 / 141 are
     # modeled as an EquivalencyGroup because the Biology pages present them as
     # alternate-rigor variants of the same intro-physics slot ("one of the
-    # following physics I courses"). Sourced from the Biology requirement
-    # pages, NOT the Physics department's own page - if PAS policy allows
-    # credit for more than one of these, downgrade this to plain n_of choices.
+    # following physics I courses"). BME also lists the self-paced PHYS 121P
+    # as a variant of 121, so it is a fourth path (taking 121 and 121P both
+    # would otherwise look consistent). Sourced from Biology / BME pages, NOT
+    # the Physics department's own page. Optics explicitly allows mixing
+    # PHYS 113 with PHYS 122-123, so Physics II/III are separate groups.
     {
         'id': 'intro-physics', 'name': 'Introductory physics (Physics I)',
         'status': 'ACTIVE',
@@ -538,14 +542,38 @@ equivalency_groups = [
         'paths': [
             {'id': '113', 'name': 'PHYS 113 (general)', 'courses': ['PHYS 113'], 'accelerated': False},
             {'id': '121', 'name': 'PHYS 121 (mechanics)', 'courses': ['PHYS 121'], 'accelerated': False},
+            {'id': '121p', 'name': 'PHYS 121P (self-paced)', 'courses': ['PHYS 121P'], 'accelerated': False},
             {'id': '141', 'name': 'PHYS 141 (honors)', 'courses': ['PHYS 141'], 'accelerated': True},
         ],
     },
+    {
+        'id': 'physics-ii', 'name': 'Introductory physics (Physics II)',
+        'status': 'ACTIVE',
+        'sourceUrl': URLS['bio_ba'],
+        'sourceQuote': 'Physics: PHYS 114, 122, or 142',
+        'sourcedOn': '2026-08-25',
+        'satisfiesPrereqLevel': 'physics_ii_complete',
+        'paths': [
+            {'id': '114', 'name': 'PHYS 114 (general)', 'courses': ['PHYS 114'], 'accelerated': False},
+            {'id': '122', 'name': 'PHYS 122 (E&M)', 'courses': ['PHYS 122'], 'accelerated': False},
+            {'id': '122p', 'name': 'PHYS 122P (self-paced)', 'courses': ['PHYS 122P'], 'accelerated': False},
+            {'id': '142', 'name': 'PHYS 142 (honors)', 'courses': ['PHYS 142'], 'accelerated': True},
+        ],
+    },
+    {
+        'id': 'physics-iii', 'name': 'Introductory physics (Physics III)',
+        'status': 'ACTIVE',
+        'sourceUrl': URLS['cdcs'],
+        'sourceQuote': 'Topics are the same as PHYS 123 but in greater depth.',
+        'sourcedOn': '2026-08-25',
+        'satisfiesPrereqLevel': 'physics_iii_complete',
+        'paths': [
+            {'id': '123', 'name': 'PHYS 123', 'courses': ['PHYS 123'], 'accelerated': False},
+            {'id': '143', 'name': 'PHYS 143 (honors)', 'courses': ['PHYS 143'], 'accelerated': True},
+        ],
+    },
     # Organic chemistry I: two alternate-rigor sequences covering the same
-    # material - exactly the pattern the equivalency-group feature was built
-    # for (vs. the intro-biology 198/190 choice, which stays a plain n_of
-    # inside programs because it is one requirement slot, not a multi-course
-    # rigor path).
+    # material. Genetics (BIOL 190 / 198) is a separate single-slot group.
     {
         'id': 'orgo-sequence', 'name': 'Organic chemistry I sequence',
         'status': 'ACTIVE',
@@ -558,6 +586,21 @@ equivalency_groups = [
             {'id': '171', 'name': 'First-year organic (CHEM 171 + 173)', 'courses': ['CHEM 171', 'CHEM 173'], 'accelerated': True},
         ],
     },
+    # Organic II lectures are the fork; labs (208 / 210 / 210W) can pair with
+    # either lecture per Biology and Chemistry pages, so they stay off the
+    # paths. Mixing CHEM 204 with CHEM 172 is what this group forbids.
+    {
+        'id': 'orgo-ii', 'name': 'Organic chemistry II sequence',
+        'status': 'ACTIVE',
+        'sourceUrl': URLS['chem_ba'],
+        'sourceQuote': 'Standard Sequence: CHEM 203: Organic Chemistry I; CHEM 204: Organic Chemistry II; CHEM 207: Organic Chemistry Lab I; CHEM 208: Organic Chemistry Lab II OR CHEM 210W: Honors Organic Chemistry Lab II. Or First-Year Organic Sequence: CHEM 171; CHEM 172; CHEM 173; CHEM 210/210W',
+        'sourcedOn': '2026-08-25',
+        'satisfiesPrereqLevel': 'orgo_ii_complete',
+        'paths': [
+            {'id': '204', 'name': 'CHEM 204 (standard)', 'courses': ['CHEM 204'], 'accelerated': False},
+            {'id': '172', 'name': 'CHEM 172 (first-year)', 'courses': ['CHEM 172'], 'accelerated': True},
+        ],
+    },
     # NOTE on calculus (verified, no change needed): the Biology pages require
     # only ONE calculus course (MATH 141 / 161 / 171Q -> our MATH 171), i.e. a
     # Calc-I-level slot, NOT "calc_sequence_complete". Programs model that as
@@ -566,14 +609,106 @@ equivalency_groups = [
     # and its terminal-course level tag is simply not referenced by Biology.
     {
         'id': 'intro-chemistry', 'name': 'Introductory / first-year chemistry',
-        'status': 'NEEDS_DATA_ENTRY', 'sourceUrl': S + 'chm/', 'sourceQuote':
-            'Bio BA page notes CHEM 171/173 + 172/210 with AP credit can replace CHEM 131-132; exact path structure unconfirmed',
-        'sourcedOn': None, 'satisfiesPrereqLevel': 'intro_chem_complete', 'paths': [],
+        'status': 'ACTIVE',
+        'sourceUrl': URLS['me_bs'],
+        'sourceQuote': 'CHEM 137: Chemical Principles for Engineers* ... Students may take CHEM 131 in place of CHEM 137',
+        'sourcedOn': '2026-08-25',
+        'satisfiesPrereqLevel': 'intro_chem_complete',
+        'paths': [
+            {'id': '131', 'name': 'CHEM 131', 'courses': ['CHEM 131'], 'accelerated': False},
+            {'id': '137', 'name': 'CHEM 137 (engineers)', 'courses': ['CHEM 137'], 'accelerated': False},
+        ],
     },
     {
         'id': 'intro-statistics', 'name': 'Introductory statistics',
-        'status': 'NEEDS_DATA_ENTRY', 'sourceUrl': S + 'mth/', 'sourceQuote': None,
-        'sourcedOn': None, 'satisfiesPrereqLevel': 'intro_stat_complete', 'paths': [],
+        'status': 'ACTIVE',
+        'sourceUrl': URLS['dsc_bs'],
+        'sourceQuote': 'Plus ONE of the following: STAT 190: Introduction to Statistical Methodology; STAT 180: Introduction to Applied Statistical Methodology',
+        'sourcedOn': '2026-08-25',
+        'satisfiesPrereqLevel': 'intro_stat_complete',
+        'paths': [
+            {'id': '180', 'name': 'STAT 180 (applied)', 'courses': ['STAT 180'], 'accelerated': False},
+            {'id': '190', 'name': 'STAT 190', 'courses': ['STAT 190'], 'accelerated': False},
+        ],
+    },
+    {
+        'id': 'dev-psych', 'name': 'Developmental psychology',
+        'status': 'ACTIVE',
+        'sourceUrl': URLS['psy_minor'],
+        'sourceQuote': 'Students may not receive credit for both PSYC 170 and PSYC 171',
+        'sourcedOn': '2026-08-25',
+        'satisfiesPrereqLevel': 'dev_psych_complete',
+        # BCSC 170 is the CDCS co-located listing of PSYC 170; PSYC 171W is
+        # the writing-intensive listing of 171. Same path so mixing 170/171
+        # is caught even when the plan uses the alias code.
+        'paths': [
+            {'id': '170', 'name': 'PSYC 170 (child development)', 'courses': ['PSYC 170', 'BCSC 170'], 'accelerated': False},
+            {'id': '171', 'name': 'PSYC 171 (social and emotional)', 'courses': ['PSYC 171', 'PSYC 171W'], 'accelerated': False},
+        ],
+    },
+    {
+        'id': 'intro-genetics', 'name': 'Introductory genetics',
+        'status': 'ACTIVE',
+        'sourceUrl': URLS['cdcs'],
+        'sourceQuote': 'A student cannot receive credit for both BIOL 190 and BIOL 198.',
+        'sourcedOn': '2026-08-25',
+        'satisfiesPrereqLevel': 'intro_genetics_complete',
+        'paths': [
+            {'id': '190', 'name': 'BIOL 190', 'courses': ['BIOL 190'], 'accelerated': False},
+            {'id': '198', 'name': 'BIOL 198', 'courses': ['BIOL 198'], 'accelerated': False},
+        ],
+    },
+    {
+        'id': 'intro-anatomy', 'name': 'Human anatomy',
+        'status': 'ACTIVE',
+        'sourceUrl': URLS['cdcs'],
+        'sourceQuote': 'STUDENTS CANNOT RECEIVE CREDIT FOR BIOL 217L AND BME 258.',
+        'sourcedOn': '2026-08-25',
+        'satisfiesPrereqLevel': 'intro_anatomy_complete',
+        'paths': [
+            {'id': '217', 'name': 'BIOL 217L', 'courses': ['BIOL 217L'], 'accelerated': False},
+            {'id': '258', 'name': 'BME 258', 'courses': ['BME 258'], 'accelerated': False},
+        ],
+    },
+    {
+        'id': 'intro-music-theory', 'name': 'Introductory music theory',
+        'status': 'ACTIVE',
+        'sourceUrl': URLS['cdcs'],
+        'sourceQuote': 'Students who complete MUSC 110 may NOT enroll in MUSC 101, credit will NOT be given for both.',
+        'sourcedOn': '2026-08-25',
+        'satisfiesPrereqLevel': 'intro_music_theory_complete',
+        'paths': [
+            {'id': '101', 'name': 'MUSC 101 (elements)', 'courses': ['MUSC 101'], 'accelerated': False},
+            {'id': '110', 'name': 'MUSC 110 (intro theory)', 'courses': ['MUSC 110'], 'accelerated': False},
+        ],
+    },
+    {
+        'id': 'intermediate-micro', 'name': 'Intermediate microeconomics',
+        'status': 'ACTIVE',
+        'sourceUrl': URLS['cdcs'],
+        'sourceQuote': 'In comparison to other sections of ECO 207, this section develops these choices more formally and mathematically.',
+        'sourcedOn': '2026-08-25',
+        'satisfiesPrereqLevel': 'intermediate_micro_complete',
+        'paths': [
+            {'id': '207', 'name': 'ECON 207', 'courses': ['ECON 207'], 'accelerated': False},
+            {'id': '207h', 'name': 'ECON 207H (honors)', 'courses': ['ECON 207H'], 'accelerated': True},
+        ],
+    },
+    # College PWR: one of WRTG 105, 105E, or the two-semester 105A+105B path.
+    # Already modeled in policy.pwr.satisfiedBy; the group stops a plan from
+    # stacking those variants.
+    {
+        'id': 'primary-writing', 'name': 'Primary writing requirement',
+        'status': 'ACTIVE',
+        'sourceUrl': 'https://writing.rochester.edu/undergraduate/index.html',
+        'sourceQuote': 'Complete WRTG 105, WRTG 105E, or both WRTG 105A and 105B with a grade of C or better.',
+        'sourcedOn': '2026-08-25',
+        'satisfiesPrereqLevel': 'pwr_complete',
+        'paths': [
+            {'id': '105', 'name': 'WRTG 105', 'courses': ['WRTG 105'], 'accelerated': False},
+            {'id': '105e', 'name': 'WRTG 105E', 'courses': ['WRTG 105E'], 'accelerated': False},
+            {'id': '105ab', 'name': 'WRTG 105A + 105B', 'courses': ['WRTG 105A', 'WRTG 105B'], 'accelerated': False},
+        ],
     },
 ]
 
