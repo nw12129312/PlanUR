@@ -541,22 +541,12 @@ export default function App() {
 
       <main className={`mx-auto grid w-full max-w-[1600px] items-start grid-cols-1 gap-3 px-3 pb-4 lg:px-4 ${
         auditOpen
-          ? 'lg:grid-cols-[minmax(220px,260px)_minmax(0,1fr)_minmax(240px,280px)] xl:grid-cols-[minmax(240px,280px)_minmax(0,1fr)_minmax(260px,300px)]'
-          : 'lg:grid-cols-[minmax(240px,300px)_minmax(0,1fr)]'
+          ? 'lg:grid-cols-[minmax(0,1fr)_minmax(260px,300px)] xl:grid-cols-[minmax(0,1fr)_minmax(280px,320px)]'
+          : ''
       }`}>
-          <aside className="w-full overflow-hidden">
-            <CourseSearch
-              data={DATA}
-              plan={plan}
-              selectedPrograms={selectedPrograms}
-              selectedClusters={selectedClusters}
-              placedSet={placedSet}
-              onAdd={(cid) => addCourse(cid)}
-              targetLabel={plan.semesters.find((s) => s.id === activeSemesterId)?.label || 'first open semester'}
-            />
-          </aside>
-
-          <div className="@container min-w-0">
+          {/* Schedule first, catalog under it: pick programs, auto-generate,
+              then browse the catalog to adjust. */}
+          <div className="@container flex min-w-0 flex-col gap-3">
             <SemesterGrid
               toolbar={(
                 <GenerateBar plan={plan} data={DATA} onGenerate={runGenerate} onLockAll={lockAll}
@@ -586,6 +576,15 @@ export default function App() {
               onRemoveTransfer={removeTransfer}
               auditOpen={auditOpen}
               onToggleAudit={() => setAuditOpen((x) => !x)}
+            />
+            <CourseSearch
+              data={DATA}
+              plan={plan}
+              selectedPrograms={selectedPrograms}
+              selectedClusters={selectedClusters}
+              placedSet={placedSet}
+              onAdd={(cid) => addCourse(cid)}
+              targetLabel={plan.semesters.find((s) => s.id === activeSemesterId)?.label || 'first open semester'}
             />
           </div>
 

@@ -101,6 +101,7 @@ export function CourseSearch({ data, plan, selectedPrograms, selectedClusters, p
       )}
       bodyClassName="flex flex-col gap-1.5 !p-2"
     >
+      <div className="grid gap-1.5 @min-[640px]:grid-cols-[minmax(0,1fr)_minmax(0,22rem)]">
       <TextInput
         value={q}
         onChange={(e) => setQ(e.target.value)}
@@ -121,7 +122,8 @@ export function CourseSearch({ data, plan, selectedPrograms, selectedClusters, p
           {reqOptions.map((o) => <option key={o.key} value={o.key}>{o.label}</option>)}
         </Select>
       </div>
-      <div className="rail max-h-[22rem] min-h-0 space-y-1 overflow-y-auto overscroll-contain pr-1">
+      </div>
+      <div className="rail grid max-h-[26rem] min-h-0 content-start gap-1 overflow-y-auto overscroll-contain pr-1 @min-[640px]:grid-cols-2 @min-[960px]:grid-cols-3">
         {(() => {
           // Alternatives from the same equivalency group display together,
           // labeled by path. Only groups the SELECTED programs actually depend
@@ -156,7 +158,7 @@ export function CourseSearch({ data, plan, selectedPrograms, selectedClusters, p
                 // Equivalency groups are a decision point, not a filter result,
                 // so they sit on the pale ground like a semester does.
                 <section key={g.id}
-                  className="rounded-lg bg-ground p-1.5">
+                  className="col-span-full rounded-lg bg-ground p-1.5">
                   <header className="flex items-baseline justify-between gap-2 px-0.5 pb-1" title={g.description || ''}>
                     <span className="min-w-0 truncate text-[13px] font-semibold text-ink">{g.name}</span>
                     <span className="shrink-0 text-xs text-ink-3">pick one path</span>
@@ -167,7 +169,7 @@ export function CourseSearch({ data, plan, selectedPrograms, selectedClusters, p
                         <div className="mb-0.5 px-0.5 text-xs font-medium text-ink-3">
                           {p.name}{p.accelerated ? ' · accelerated' : ''}
                         </div>
-                        <div className="space-y-1">
+                        <div className="grid gap-1 @min-[640px]:grid-cols-2 @min-[960px]:grid-cols-3">
                           {p.courses.map((cid) => data.courses[cid]).filter(Boolean).map(card)}
                         </div>
                       </div>
@@ -177,9 +179,9 @@ export function CourseSearch({ data, plan, selectedPrograms, selectedClusters, p
               ))}
               {rest.slice(0, 120).map(card)}
               {rest.length > 120 && (
-                <div className="py-1 text-center text-xs text-ink-3">Refine the search to see more…</div>
+                <div className="col-span-full py-1 text-center text-xs text-ink-3">Refine the search to see more…</div>
               )}
-              {results.length === 0 && <div className="py-4 text-center text-xs text-ink-3">No courses match.</div>}
+              {results.length === 0 && <div className="col-span-full py-4 text-center text-xs text-ink-3">No courses match.</div>}
             </>
           );
         })()}
