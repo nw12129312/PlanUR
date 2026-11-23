@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Convert dist/index.html (vite single-file build) into dist/artifact.html:
 body-only content (title + inlined styles + root div + inlined module script)
-suitable for the claude.ai artifact wrapper, which supplies the document shell.
+suitable for embedding in a host page that supplies the document shell.
 """
 import re, os
 
