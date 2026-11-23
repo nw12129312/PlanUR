@@ -56,8 +56,17 @@ export function GenerateBar({ plan, data, onGenerate, onLockAll, busy, onSchedul
   const canGenerate = plan.majorIds.length > 0 && !busy;
   const scopeLabel = scopeOptions.find((o) => o.key === scopeKey)?.label;
 
+  const hint = plan.majorIds.length === 0
+    ? 'Choose a major above, then auto-generate your semesters'
+    : 'Fills your semesters from your major, minors and clusters';
+
+  // Centered so it reads as the next step after choosing programs; the lock
+  // toggle sits off to the right as a secondary control.
   return (
-    <div className="flex flex-wrap items-center gap-1.5">
+    <div className="grid grid-cols-1 items-center justify-items-center gap-2 @min-[560px]:grid-cols-[1fr_auto_1fr]">
+      <span aria-hidden="true" className="hidden @min-[560px]:block" />
+      <div className="flex flex-col items-center gap-1">
+      <div className="flex flex-wrap items-center justify-center gap-1.5 whitespace-nowrap">
       <Button kind="primary" disabled={!canGenerate}
         onClick={() => onGenerate(scopeFromKey(scopeKey), Number(target), accelerated ? 'accelerated' : 'auto')}>
         {busy ? 'Generating…' : <><Icon name="bolt" size="sm" /> Auto-generate</>}
@@ -76,7 +85,7 @@ export function GenerateBar({ plan, data, onGenerate, onLockAll, busy, onSchedul
           )}
           <Icon name="chevronDown" size="sm" className="text-ink-3 transition-transform group-open/opts:rotate-180" />
         </summary>
-        <div className="absolute left-0 z-30 mt-1 w-72 space-y-3 rounded-lg border border-line bg-surface p-3 shadow-lg">
+        <div className="absolute left-1/2 z-30 mt-1 w-72 -translate-x-1/2 space-y-3 rounded-lg border border-line bg-surface p-3 shadow-lg">
           <label className="block">
             <span className="mb-1 block text-xs font-semibold text-ink-2">Regenerate</span>
             <Select value={scopeKey} onChange={(e) => setScopeKey(e.target.value)} aria-label="Regeneration scope"
@@ -112,14 +121,18 @@ export function GenerateBar({ plan, data, onGenerate, onLockAll, busy, onSchedul
           </label>
         </div>
       </details>
+      </div>
+      <span className="text-center text-xs text-ink-3">{hint}</span>
+      </div>
 
-      <span className="flex-1" />
+      <div className="flex justify-center justify-self-stretch whitespace-nowrap @min-[560px]:justify-end">
       <Button kind="quiet" disabled={placed.length === 0} onClick={() => onLockAll(!allLocked)}
         title={allLocked
           ? 'Unlock every placed course (full clean regenerate)'
           : 'Lock every placed course (regenerate touches nothing)'}>
         <Icon name={allLocked ? 'unlock' : 'lock'} size="sm" /> {allLocked ? 'Unlock all' : 'Lock all'}
       </Button>
+      </div>
     </div>
   );
 }
