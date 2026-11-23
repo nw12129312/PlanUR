@@ -32,7 +32,7 @@ of every requirement as you go.
   completing with the courses you already have.
 - **Saved plans** that save automatically in your browser with no account,
   plus optional **Google sign-in** to keep them in sync across devices
-  ([setup](docs/ACCOUNTS.md)).
+  (set the `VITE_FIREBASE_*` values from `.env.example` to turn it on).
 - **PDF export** to bring to your adviser.
 
 ## Run it locally

@@ -49,8 +49,8 @@ python3 tools/make_artifact.py                 # artifact-format output
 
 Plans save to localStorage when the app runs as a normal web page, and to
 `window.storage` inside the artifact runtime. Google sign-in appears only when
-Firebase is configured; see [ACCOUNTS.md](ACCOUNTS.md) for setup and
-`VITE_CLOUD=demo` for trying it without Firebase.
+Firebase is configured (the `VITE_FIREBASE_*` values in `.env.example`, plus
+`firestore.rules`); `VITE_CLOUD=demo` tries it without Firebase.
 
 ## Adding a program (no app-code changes)
 
@@ -264,7 +264,7 @@ only file in the codebase that touches browser storage: the artifact runtime's
 `planur:`). UI components and the engine never touch storage directly (the
 engine stays pure and receives data as parameters). Plans autosave shortly
 after each edit. Optional Google sign-in sync sits on top of this in
-`src/storage/account.js`; see [ACCOUNTS.md](ACCOUNTS.md).
+`src/storage/account.js`.
 
 API: `savePlan(userId, plan)`, `loadPlan(userId, planId)`, `listPlans(userId)`,
 `deletePlan(userId, planId)`, `duplicatePlan(userId, planId)` — every
