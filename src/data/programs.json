@@ -11052,7 +11052,9 @@
       "CSC 171"
      ]
     },
-    "sourceQuote": "Basic computing requirement: students not choosing the computer science track above must also complete the basic computing requirement by taking either CSC 161 or 171."
+    "sourceQuote": "Basic computing requirement: students not choosing the computer science track above must also complete the basic computing requirement by taking either CSC 161 or 171.",
+    "allowReuse": true,
+    "note": "CSC 171 taken for the computer science track also satisfies this requirement, so it may be counted twice."
    },
    {
     "id": "core",
@@ -14870,16 +14872,17 @@
      "type": "sequence_one_of",
      "sequences": [
       [
-       "BIOL 110",
-       "BIOL 111"
+       "BIOL 110L",
+       "BIOL 111L"
       ],
       [
-       "BIOL 112",
-       "BIOL 113"
+       "BIOL 112L",
+       "BIOL 113L"
       ]
      ]
     },
-    "sourceQuote": "BIOL 110: Principles of Biology I or BIOL 112: Perspectives in Biology I; BIOL 111: Principles of Biology II or BIOL 113: Perspectives in Biology II"
+    "sourceQuote": "BIOL 110: Principles of Biology I or BIOL 112: Perspectives in Biology I; BIOL 111: Principles of Biology II or BIOL 113: Perspectives in Biology II",
+    "note": "The registrar lists the fall/spring sections as BIOL 110L-113L (the lecture-only BIOL 111 runs only in summer), the same codes the Biology programs use."
    },
    {
     "id": "prereq-chem",
