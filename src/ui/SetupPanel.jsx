@@ -96,7 +96,7 @@ export function SetupPanel({ data, plan, clustersNeeded, coverage, onChange }) {
         {plan.clusterIds.map((cid, i) => {
           const cl = data.clusters.find((c) => c.id === cid);
           return (
-            <div key={cid} className="flex min-h-9 items-center gap-1.5 rounded-md border border-line pl-2.5 pr-0.5 text-[13px]">
+            <div key={cid} className="flex min-h-9 items-center gap-1.5 rounded-md bg-ground pl-2.5 pr-0.5 text-[13px]">
               <span className="min-w-0 flex-1 truncate font-medium text-ink"
                 title={cl ? `${cid} · ${DIV_LABEL[cl.division]} — ${cl.description}` : cid}>
                 {cl?.name || cid}

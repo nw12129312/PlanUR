@@ -22,7 +22,7 @@ import { Checklist } from './ui/Checklist.jsx';
 import { PlansModal } from './ui/PlansModal.jsx';
 import { GenerateBar, DiffModal, CoverageModal } from './ui/AutoGen.jsx';
 import { AdvisorPacket, exportAdvisorPdf } from './ui/AdvisorPacket.jsx';
-import { Button, Ring, Panel } from './ui/bits.jsx';
+import { Button, Panel } from './ui/bits.jsx';
 import { Icon } from './ui/icons.jsx';
 
 const DATA = {
@@ -137,7 +137,6 @@ export default function App() {
     () => [...placedSet].reduce((a, cid) => a + (DATA.courses[cid]?.credits ?? 4), 0),
     [placedSet],
   );
-  const creditPct = requiredCredits ? Math.round((100 * plannedCredits) / requiredCredits) : 0;
   const errorCount = violations.filter((v) => v.severity === 'error').length;
 
   const clustersNeeded = useMemo(() => {
@@ -394,11 +393,9 @@ export default function App() {
               className="wordmark"
               aria-label="Planur — UR Schedule Builder"
               style={{
-                fontFamily: '"Crimson Pro", "Times New Roman", Times, Georgia, serif',
-                fontWeight: 600,
-                fontSize: 26,
+                fontWeight: 700,
+                fontSize: 22,
                 lineHeight: 1,
-                letterSpacing: '-0.01em',
               }}
             >
               Plan<span className="wordmark-u" style={{ color: '#89CFF0' }}>u</span><span className="wordmark-r" style={{ color: '#FFC200' }}>r</span>
@@ -409,12 +406,11 @@ export default function App() {
             value={plan.name}
             onChange={(e) => setPlan((p) => ({ ...p, name: e.target.value }))}
             aria-label="Plan name"
-            className="input-flat min-h-9 min-w-[10rem] flex-1 rounded-md border border-transparent bg-transparent px-2 text-[15px] font-semibold text-ink transition hover:border-line focus:border-accent focus:bg-surface focus:ring-2 focus:ring-accent/20 sm:max-w-sm"
+            className="input-flat min-h-9 min-w-[10rem] flex-1 rounded-md border border-transparent bg-transparent px-2 text-[15px] font-semibold text-ink transition hover:border-line focus:border-accent focus:bg-surface sm:max-w-sm"
           />
 
           <div className="ml-auto flex shrink-0 items-center gap-3">
             <div className="flex items-center gap-2" title={`${plannedCredits} of ${requiredCredits} credit hours planned`}>
-              <Ring pct={creditPct} label={`${plannedCredits} of ${requiredCredits} credit hours planned`} />
               <span className="tnum text-[13px] font-semibold text-ink">
                 {plannedCredits}<span className="font-normal text-ink-3"> / {requiredCredits} cr</span>
                 {errorCount > 0 && (
@@ -476,7 +472,7 @@ export default function App() {
           <button
             type="button"
             onClick={() => setSetupOpen(true)}
-            className="mb-3 flex min-h-10 w-full items-center gap-2.5 rounded-lg border border-line bg-surface px-3 py-2 text-left transition hover:border-ink-3/40"
+            className="mb-3 flex min-h-10 w-full items-center gap-2.5 rounded-lg bg-surface px-3 py-2 text-left transition hover:bg-surface-2"
           >
             <span className="min-w-0 flex-1 truncate text-[13px] text-ink-2">
               {setupSummary.length
@@ -486,7 +482,7 @@ export default function App() {
                       <span className="font-medium text-ink">{s}</span>
                     </span>
                   ))
-                : 'No programs selected — set up your degree plan'}
+                : 'No programs yet. Set up your degree'}
             </span>
             <span className="inline-flex shrink-0 items-center gap-1 text-[13px] font-semibold text-ink-2">Edit <Icon name="chevronDown" size="sm" /></span>
           </button>
@@ -552,7 +548,7 @@ export default function App() {
 
       <footer className="site-footer">
         <div className="mx-auto w-full max-w-[1600px] px-3 py-3 text-xs text-ink-3 lg:px-4">
-          <span>UR Schedule Builder · Not an official degree audit — confirm with your adviser.</span>
+          <span>Not an official degree audit. Confirm your plan with your adviser.</span>
         </div>
       </footer>
 

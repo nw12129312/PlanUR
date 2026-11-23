@@ -131,7 +131,7 @@ export function GenerateBar({ plan, data, onGenerate, onLockAll, busy, onSchedul
 export function CoverageModal({ coverage, onAdjust, onProceed }) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-ink/40 p-4 backdrop-blur-sm" role="dialog" aria-modal="true" aria-label="Divisional coverage warning" onClick={onAdjust}>
-      <div className="w-full max-w-md rounded-2xl border border-line bg-surface p-6 shadow-lg" onClick={(e) => e.stopPropagation()}>
+      <div className="w-full max-w-md rounded-lg bg-surface p-6 shadow-lg" onClick={(e) => e.stopPropagation()}>
         <h2 className="display mb-1 flex items-center gap-2 text-xl text-ink">
           <Icon name="warning" size="md" className="text-warn" /> Check your divisional coverage
         </h2>
@@ -214,8 +214,8 @@ export function DiffModal({ base, result, data, onApply, onClose }) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4" role="dialog" aria-modal="true" aria-label="Review generated changes" onClick={onClose}>
-      <div className="flex max-h-[85vh] w-full max-w-2xl flex-col rounded-2xl bg-surface shadow-lg" onClick={(e) => e.stopPropagation()}>
-        <header className="flex items-center gap-2 border-b border-line px-4 py-3">
+      <div className="flex max-h-[85vh] w-full max-w-2xl flex-col rounded-lg bg-surface shadow-lg" onClick={(e) => e.stopPropagation()}>
+        <header className="flex items-center gap-2 px-4 pb-2 pt-4">
           <h2 className="display text-xl text-ink">Review generated changes</h2>
           <span className="text-xs text-ink-3">{ops.length} change{ops.length === 1 ? '' : 's'} · attempt {result.attempts}</span>
           <span className="flex-1" />
@@ -243,7 +243,7 @@ export function DiffModal({ base, result, data, onApply, onClose }) {
                   <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-1.5 text-sm">
                       <Tag tone={st.tone}>{st.sign} {st.verb}</Tag>
-                      <span className="code rounded bg-surface-2 px-1 py-0.5">{op.cid}</span>
+                      <span className="code">{op.cid}</span>
                       <span className="min-w-0 truncate text-ink-2">{c?.title}</span>
                       <span className="text-xs text-ink-3">
                         {op.type === 'add' && `→ ${op.toLabel}`}
@@ -259,7 +259,7 @@ export function DiffModal({ base, result, data, onApply, onClose }) {
           </ul>
 
           {(result.infeasible.length > 0 || result.warnings.length > 0 || errors.length > 0) && (
-            <div className="mt-3 space-y-1.5 border-t border-line pt-2">
+            <div className="mt-4 space-y-1.5">
               {result.infeasible.map((x, i) => (
                 <div key={`inf${i}`} className="flex items-start gap-1.5">
                   <SevChip severity="warning" title="Auto-generate could not satisfy this within the current semesters.">infeasible</SevChip>
@@ -282,7 +282,7 @@ export function DiffModal({ base, result, data, onApply, onClose }) {
           )}
         </div>
 
-        <footer className="flex items-center gap-2 border-t border-line px-4 py-3">
+        <footer className="flex items-center gap-2 px-4 pb-4 pt-3">
           <span className="text-xs text-ink-3">{selected.size} of {ops.length} selected</span>
           <span className="flex-1" />
           <Button onClick={onClose}>Cancel</Button>

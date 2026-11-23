@@ -3,10 +3,11 @@
 /* =============================================================================
    UR Schedule Builder — production web UI
 
-   Design system from the ui-ux-pro-max skill ("Research Lab / University
-   Department" profile): Minimalism & Swiss Style, institutional navy with a
-   gold cluster accent, serif headings (Crimson Pro) over a hyperlegible sans
-   (Atkinson Hyperlegible Next). Dense dashboard spacing on a 4px grid.
+   Quiet-tool design: one typeface (Atkinson Hyperlegible Next) at a few
+   weights, sentence-case labels, no pills, no eyebrows, no serif display
+   face, no mono. Panels are white fields on a pale ground separated by space,
+   not boxes drawn with borders; borders are kept for form fields only.
+   Institutional navy is the one accent, gold marks clusters.
 
    Every text/background pair below is checked for WCAG AA 4.5:1 in both
    themes. In particular --ink-3 on --surface-2 was 4.08:1 before; it is now
@@ -15,7 +16,7 @@
 
 :root,
 :root[data-theme="light"] {
-  --ground: #f8fafc;
+  --ground: #f2f4f7;
   --surface: #ffffff;
   --surface-2: #e9eef5;
   --ink: #0f172a;
@@ -114,13 +115,9 @@
   --shadow-sm: var(--shadow-sm);
   --shadow-md: var(--shadow-md);
   --shadow-lg: var(--shadow-lg);
-  /* Skill pairing "Academic/Research": Crimson Pro headings, Atkinson
-     Hyperlegible body. The Next and Mono cuts are used because the UI leans
-     on 500/600 weights (the original Atkinson ships only 400/700) and the
-     Mono cut keeps course codes like BIOL 104K / CSC 171 unambiguous. */
   --font-sans: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-display: "Crimson Pro", "Times New Roman", Times, Georgia, serif;
-  --font-mono: "Atkinson Hyperlegible Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --font-display: var(--font-sans);
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 }
 
 /* ------------------------------------------------------------------ base -- */
@@ -140,69 +137,61 @@ body {
 
 /* ----------------------------------------------------------- typography -- */
 .display {
-  font-family: var(--font-display);
-  font-weight: 600;
-  letter-spacing: -0.005em;
-  line-height: 1.2;
+  font-weight: 700;
+  line-height: 1.25;
 }
 
-/* Skill rule: nothing under 12px. Small caps labels sit exactly at 12px. */
+/* Small section label. Sentence case at body weight: no all-caps eyebrows,
+   no tracking. (Class name kept so existing markup needs no churn.) */
 .label-caps {
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-size: 12px;
-  color: var(--ink-3);
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--ink-2);
 }
 
 .tnum { font-variant-numeric: tabular-nums; }
 
+/* Course codes: same family as the text, set apart by weight and tabular
+   figures rather than a monospace face. */
 .code {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
 }
 
 /* -------------------------------------------------------------- surfaces -- */
 .card {
   background: var(--surface);
-  border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
 }
 
 .card-lifted { box-shadow: var(--shadow-md); }
 
+/* A panel is a white field on the pale ground: contrast and space separate
+   it, not a drawn border, and its header is not ruled off. */
 .panel {
   position: relative;
   background: var(--surface);
-  border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
   overflow: visible;
 }
 
-/* Swiss header: same surface as the body, ruled off by a hairline. */
 .panel-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
-  min-height: 40px;
-  padding: 0.25rem 0.5rem 0.25rem 0.75rem;
-  border-bottom: 1px solid var(--line);
+  min-height: 44px;
+  padding: 0.5rem 0.5rem 0 0.75rem;
   background: var(--surface);
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
 }
 
 .panel-title {
-  font-family: var(--font-display);
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 700;
   color: var(--ink);
-  line-height: 1.2;
-  letter-spacing: -0.005em;
+  line-height: 1.25;
 }
 
 .panel-subtitle {
@@ -217,9 +206,7 @@ body {
   top: 0;
   z-index: 40;
   border-bottom: 1px solid var(--line);
-  background: color-mix(in srgb, var(--surface) 94%, transparent);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: var(--surface);
 }
 
 /* On phones the three-row header would pin ~20% of the screen; let it scroll. */
@@ -228,20 +215,18 @@ body {
 }
 
 .wordmark {
-  font-family: var(--font-display) !important;
-  font-weight: 600 !important;
-  font-size: 26px !important;
+  font-family: var(--font-sans) !important;
+  font-weight: 700 !important;
+  font-size: 22px !important;
   line-height: 1;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
   color: var(--ink);
 }
 /* Baby blue / Dandelion #FFC200 — brand hex, not theme tokens. */
 .wordmark-u { color: #89CFF0 !important; }
 .wordmark-r { color: #FFC200 !important; }
 
-.site-footer {
-  border-top: 1px solid var(--line);
-}
+.site-footer {}
 
 /* Secondary drop zones in filled semesters exist only while dragging. */
 [data-drag-only] { display: none; }
@@ -251,7 +236,6 @@ body {
   padding: 0.5rem 0.75rem;
   font-size: 0.8125rem;
   line-height: 1.45;
-  border-bottom: 1px solid color-mix(in srgb, currentColor 18%, transparent);
 }
 
 .banner-warn { background: var(--warn-soft); color: var(--warn); }
@@ -407,7 +391,6 @@ button:not(:disabled), [role="button"]:not([aria-disabled="true"]), summary { cu
   .advisor-packet h1 {
     font-size: 18pt;
     font-weight: 700;
-    letter-spacing: -0.02em;
     margin: 0.15in 0 0.05in;
   }
   .advisor-packet h2 {
@@ -436,9 +419,7 @@ button:not(:disabled), [role="button"]:not([aria-disabled="true"]), summary { cu
   .advisor-packet p { margin: 0.04in 0; }
   .ap-letterhead { margin-bottom: 0.12in; }
   .ap-kicker {
-    font-size: 8.5pt;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    font-size: 9.5pt;
     color: #1e3a5f;
     font-weight: 650;
     margin: 0;
@@ -471,7 +452,7 @@ button:not(:disabled), [role="button"]:not([aria-disabled="true"]), summary { cu
     border: 0.6pt solid #ccc;
     padding: 0.08in 0.1in;
   }
-  .ap-empty { color: #666; font-style: italic; font-size: 9.5pt; }
+  .ap-empty { color: #666; font-size: 9.5pt; }
   .advisor-packet table {
     width: 100%;
     border-collapse: collapse;
@@ -484,8 +465,8 @@ button:not(:disabled), [role="button"]:not([aria-disabled="true"]), summary { cu
     border-bottom: 0.4pt solid #ddd;
     vertical-align: top;
   }
-  .advisor-packet th { font-size: 8pt; text-transform: uppercase; letter-spacing: 0.04em; color: #555; }
-  .ap-code { font-family: ui-monospace, Menlo, Consolas, monospace; font-weight: 600; white-space: nowrap; }
+  .advisor-packet th { font-size: 9pt; font-weight: 650; color: #555; }
+  .ap-code { font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
   .ap-cr { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
   .ap-note { font-size: 9pt; color: #444; }
   .ap-prog { break-inside: avoid; margin-bottom: 0.1in; }

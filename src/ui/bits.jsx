@@ -27,17 +27,18 @@ export function Meter({ have, need, complete }) {
   );
 }
 
+// Severity reads from the icon and the text color alone: no tinted pill.
 const SEV = {
-  error: { cls: 'bg-bad-soft text-bad', icon: 'error', label: 'Error' },
-  warning: { cls: 'bg-warn-soft text-warn', icon: 'warning', label: 'Warning' },
-  info: { cls: 'bg-info-soft text-info', icon: 'info', label: 'Note' },
+  error: { cls: 'text-bad', icon: 'error', label: 'Error' },
+  warning: { cls: 'text-warn', icon: 'warning', label: 'Warning' },
+  info: { cls: 'text-info', icon: 'info', label: 'Note' },
 };
 
 export function SevChip({ severity, children, title }) {
   const s = SEV[severity] || SEV.info;
   return (
     <span
-      className={`chip-line gap-1.5 rounded-md px-2 py-0.5 text-xs font-semibold ${s.cls}`}
+      className={`chip-line gap-1 py-0.5 text-xs font-semibold ${s.cls}`}
       title={title}
     >
       <Icon name={s.icon} size="sm" />
@@ -47,20 +48,22 @@ export function SevChip({ severity, children, title }) {
   );
 }
 
+// A short status or label. Plain colored text (with an optional icon), not
+// a pill: a row of these reads as text, not as a wall of badges.
 export function Tag({ tone = 'neutral', children, title, icon }) {
   const tones = {
-    neutral: 'bg-surface-2 text-ink-2',
-    accent: 'bg-accent-soft text-accent',
-    cta: 'bg-cta-soft text-cta-strong',
-    gold: 'bg-gold-soft text-gold',
-    good: 'bg-good-soft text-good',
-    warn: 'bg-warn-soft text-warn',
-    bad: 'bg-bad-soft text-bad',
+    neutral: 'text-ink-2',
+    accent: 'text-accent',
+    cta: 'text-cta-strong',
+    gold: 'text-gold',
+    good: 'text-good',
+    warn: 'text-warn',
+    bad: 'text-bad',
   };
   return (
     <span
       title={title}
-      className={`chip-line gap-1 rounded-full px-2 py-0.5 text-xs font-medium ${tones[tone]}`}
+      className={`chip-line gap-1 py-0.5 text-xs font-semibold ${tones[tone]}`}
     >
       {icon && <Icon name={icon} size="sm" />}
       <span className="chip-text">{children}</span>
@@ -71,9 +74,9 @@ export function Tag({ tone = 'neutral', children, title, icon }) {
 
 export function Button({ kind = 'ghost', className = '', ...props }) {
   const kinds = {
-    primary: 'bg-accent text-accent-ink border border-accent hover:brightness-125 active:brightness-95 shadow-sm',
-    cta: 'bg-cta text-cta-ink border border-cta hover:brightness-110 active:brightness-95 shadow-sm',
-    ghost: 'bg-surface text-ink-2 border border-line hover:bg-surface-2 hover:text-ink hover:border-ink-3/30',
+    primary: 'bg-accent text-accent-ink border border-accent hover:brightness-125 active:brightness-95',
+    cta: 'bg-cta text-cta-ink border border-cta hover:brightness-110 active:brightness-95',
+    ghost: 'bg-surface text-ink-2 border border-line hover:bg-surface-2 hover:text-ink',
     quiet: 'bg-transparent text-ink-2 border border-transparent hover:bg-surface-2 hover:text-ink',
     danger: 'bg-transparent text-bad border border-transparent hover:bg-bad-soft',
   };
@@ -111,7 +114,7 @@ export function Select({ className = '', ...props }) {
   return (
     <select
       style={{ transitionDuration: 'var(--dur)' }}
-      className={`select-flat min-h-9 w-full rounded-md border border-line px-2.5 text-[13px] font-medium text-ink shadow-sm transition-colors hover:border-ink-3/40 focus:border-accent focus:ring-2 focus:ring-accent/20 ${className}`}
+      className={`select-flat min-h-9 w-full rounded-md border border-line px-2.5 text-[13px] font-medium text-ink transition-colors hover:border-ink-3 focus:border-accent ${className}`}
       {...props}
     />
   );
@@ -274,7 +277,7 @@ export function SearchSelect({
               aria-autocomplete="list"
               aria-controls={listId}
               aria-activedescendant={filtered[active] ? `${uid}-opt-${filtered[active].value}` : undefined}
-              className="input-flat min-h-8 w-full rounded-md border border-line py-1 pl-7 pr-2 text-[13px] font-medium text-ink shadow-none placeholder:font-normal placeholder:text-ink-3 focus:border-accent focus:ring-2 focus:ring-accent/20"
+              className="input-flat min-h-8 w-full rounded-md border border-line py-1 pl-7 pr-2 text-[13px] font-medium text-ink placeholder:font-normal placeholder:text-ink-3 focus:border-accent"
             />
           </div>
         </div>
@@ -341,7 +344,7 @@ export function SearchSelect({
     <div ref={wrapRef} className={`relative ${className}`}>
       <div
         style={{ transitionDuration: 'var(--dur)' }}
-        className="flex min-h-9 w-full items-center rounded-md border border-line bg-surface shadow-sm transition-colors hover:border-ink-3/40 focus-within:border-accent focus-within:ring-2 focus-within:ring-accent/20"
+        className="flex min-h-9 w-full items-center rounded-md border border-line bg-surface transition-colors hover:border-ink-3 focus-within:border-accent"
       >
         <button
           type="button"
@@ -379,7 +382,7 @@ export function TextInput({ className = '', ...props }) {
   return (
     <input
       style={{ transitionDuration: 'var(--dur)' }}
-      className={`input-flat min-h-9 w-full rounded-md border border-line px-2.5 text-[13px] font-medium text-ink shadow-sm transition-colors placeholder:font-normal placeholder:text-ink-3 hover:border-ink-3/40 focus:border-accent focus:ring-2 focus:ring-accent/20 ${className}`}
+      className={`input-flat min-h-9 w-full rounded-md border border-line px-2.5 text-[13px] font-medium text-ink transition-colors placeholder:font-normal placeholder:text-ink-3 hover:border-ink-3 focus:border-accent ${className}`}
       {...props}
     />
   );

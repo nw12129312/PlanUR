@@ -189,7 +189,7 @@ function RequirementRow({ group: g, program, data, placedSet, onAutoFill, onPick
               <span className="text-xs font-medium text-ink-2">{spec.summary}</span>
             </div>
           </summary>
-          <div className="mt-1.5 space-y-2 border-l border-line pl-2.5">
+          <div className="mt-1.5 space-y-2 pl-4">
             {spec.sets.map((s, i) => {
               const setAction = actionFor(s.courses.find((c) => !placedSet?.has(c)) || s.courses[0]);
               const canSwapSet = setAction?.kind === 'swap';
@@ -203,9 +203,9 @@ function RequirementRow({ group: g, program, data, placedSet, onAutoFill, onPick
                         type="button"
                         onClick={() => onPick(s.courses.find((c) => !placedSet?.has(c)) || s.courses[0])}
                         title={`Swap ${setAction.outgoing.join(' + ')} for ${setAction.incoming.join(' + ')}`}
-                        className="inline-flex shrink-0 items-center gap-0.5 rounded px-1 text-xs font-bold uppercase tracking-wide text-accent hover:bg-accent-soft"
+                        className="inline-flex shrink-0 items-center gap-0.5 rounded px-1 text-xs font-semibold text-accent hover:underline"
                       >
-                        <Icon name="swap" size="sm" /> swap
+                        <Icon name="swap" size="sm" /> Swap
                       </button>
                     )}
                   </div>
@@ -244,7 +244,7 @@ function RequirementRow({ group: g, program, data, placedSet, onAutoFill, onPick
         <div className="mt-0.5 pl-4 text-xs font-medium text-ink-2">{spec.summary}</div>
       </summary>
 
-      <div className="mt-1.5 space-y-2 border-l border-line pl-2.5">
+      <div className="mt-1.5 space-y-2 pl-4">
         {/* Named alternatives (sequences, tracks) keep their grouping — the
             student picks a SET, not individual courses. */}
         {spec.sets && spec.sets.map((s, i) => {
@@ -259,9 +259,9 @@ function RequirementRow({ group: g, program, data, placedSet, onAutoFill, onPick
                   type="button"
                   onClick={() => onPick(s.courses.find((c) => !placedSet?.has(c)) || s.courses[0])}
                   title={`Swap ${setAction.outgoing.join(' + ')} for ${setAction.incoming.join(' + ')}`}
-                  className="inline-flex shrink-0 items-center gap-0.5 rounded px-1 text-xs font-bold uppercase tracking-wide text-accent hover:bg-accent-soft"
+                  className="inline-flex shrink-0 items-center gap-0.5 rounded px-1 text-xs font-semibold text-accent hover:underline"
                 >
-                  <Icon name="swap" size="sm" /> swap
+                  <Icon name="swap" size="sm" /> Swap
                 </button>
               )}
             </div>
@@ -294,10 +294,10 @@ function ProgramCard({ program, result, data, plan, onAutoFill, placedSet, onPic
   if (!program) return null;
   if (result.needsData) {
     return (
-      <div className="border-t border-line pt-3">
+      <div>
         <div className="flex items-center gap-2">
           <span className="font-semibold text-ink">{program.name} <span className="text-ink-3 font-normal">({program.degree})</span></span>
-          <Tag tone="warn">requirements not loaded</Tag>
+          <Tag tone="warn">Requirements not loaded</Tag>
         </div>
         <p className="mt-1 text-xs leading-snug text-ink-2">
           This program is a placeholder — progress can't be checked yet.{' '}
@@ -316,7 +316,7 @@ function ProgramCard({ program, result, data, plan, onAutoFill, placedSet, onPic
     ? program.pathways
     : null;
   return (
-    <div className="border-t border-line pt-3">
+    <div>
       <div className="flex items-center gap-2">
         <span className="min-w-0 flex-1 truncate font-semibold text-ink">
           {program.name} <span className="font-normal text-ink-3">({program.degree})</span>
@@ -376,7 +376,7 @@ function ProgramCard({ program, result, data, plan, onAutoFill, placedSet, onPic
 function ClusterCard({ cluster, result }) {
   if (!cluster) return null;
   return (
-    <div className="border-t border-line pt-3">
+    <div>
       <div className="flex items-center gap-2">
         <span className="min-w-0 flex-1 truncate font-semibold text-ink" title={cluster.description}>
           {cluster.name}
@@ -389,7 +389,7 @@ function ClusterCard({ cluster, result }) {
         {cluster.homeDept} · {cluster.division.replace('-', ' ')}
       </div>
       {cluster.status === 'PARTIAL_PARSE' && (
-        <div className="mt-1"><Tag tone="warn" title={ruleInfo('CLUSTER_PARTIAL_PARSE').text}>non-standard rule — verify</Tag></div>
+        <div className="mt-1"><Tag tone="warn" title={ruleInfo('CLUSTER_PARTIAL_PARSE').text}>Non-standard rule, verify</Tag></div>
       )}
       <div className="mt-2 space-y-1.5">
         {result.groups.map((g) => (
@@ -402,7 +402,7 @@ function ClusterCard({ cluster, result }) {
         ))}
       </div>
       {result.usedCourseIds.size > 0 && (
-        <div className="mt-1.5 flex flex-wrap gap-1">
+        <div className="mt-1.5 flex flex-wrap gap-x-3">
           {[...result.usedCourseIds].map((cid) => (
             <Tag key={cid} tone={result.sharedWithPrograms.includes(cid) ? 'gold' : 'neutral'}
               title={result.sharedWithPrograms.includes(cid) ? 'Also counts toward a major/minor (max 1 shared)' : 'Unique to this cluster'}>
@@ -436,7 +436,7 @@ export function Checklist({ data, plan, progress, violations, clustersNeeded, on
       )}
       bodyClassName="flex flex-col gap-3 !p-3"
     >
-      <div className="space-y-3">
+      <div className="space-y-6">
 
         <div>
           <div className="flex items-baseline gap-1.5">
@@ -444,16 +444,16 @@ export function Checklist({ data, plan, progress, violations, clustersNeeded, on
             <span className="text-[13px] text-ink-3">/ {required} credit hours</span>
           </div>
           <div className="mt-1"><Meter have={planned} need={required} complete={planned >= required} /></div>
-          <div className="mt-2 flex flex-wrap items-center gap-1.5">
+          <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1">
             {pwr.satisfied
               ? <Tag tone="good" icon="check" title={`Satisfied via ${pwr.via.join(' + ')}`}>PWR</Tag>
               : pwr.transferOnly
                 ? <Tag tone="warn" title={ruleInfo('PWR_TRANSFER').text}>PWR: transfer only</Tag>
                 : <Tag tone="warn" title={ruleInfo('PWR_REQUIRED').text}>PWR not planned</Tag>}
             <Tag tone={plan.clusterIds.length >= clustersNeeded ? 'good' : 'warn'}>
-              clusters {plan.clusterIds.length}/{clustersNeeded}
+              Clusters {plan.clusterIds.length} of {clustersNeeded}
             </Tag>
-            {plan.doubleDegree && <Tag tone="accent">double degree · 136 cr</Tag>}
+            {plan.doubleDegree && <Tag tone="accent">Double degree, 136 cr</Tag>}
           </div>
         </div>
 
@@ -467,15 +467,15 @@ export function Checklist({ data, plan, progress, violations, clustersNeeded, on
         ))}
 
         {(plan.majorIds.length + plan.clusterIds.length) === 0 && (
-          <p className="border-t border-line pt-3 text-xs text-ink-3">
-            Pick a major and clusters above to start the audit.
+          <p className="text-xs text-ink-3">
+            Pick a major to start the audit
           </p>
         )}
 
-        <div className="border-t border-line pt-3">
+        <div>
           <h3 className="label-caps mb-2">
             Rule checks
-            {violations.length === 0 && <span className="ml-2 normal-case tracking-normal text-good">all clear</span>}
+            {violations.length === 0 && <span className="ml-2 font-normal text-good">all clear</span>}
           </h3>
           <div className="space-y-1">
             {[...errors, ...warnings, ...infos].map((x, i) => (
