@@ -8,7 +8,7 @@ export function PlansModal({ index, currentId, onLoad, onRename, onDuplicate, on
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4" role="dialog" aria-modal="true" aria-label="Saved plans" onClick={onClose}>
-      <div className="max-h-[80vh] w-full max-w-lg overflow-y-auto rounded-2xl bg-surface p-5 shadow-lg" onClick={(e) => e.stopPropagation()}>
+      <div className="max-h-[80vh] w-full max-w-lg overflow-y-auto rounded-lg bg-surface p-5 shadow-lg" onClick={(e) => e.stopPropagation()}>
         <div className="mb-3 flex items-center justify-between">
           <h2 className="display text-xl text-ink">Saved plans</h2>
           <div className="flex gap-2">
@@ -21,7 +21,7 @@ export function PlansModal({ index, currentId, onLoad, onRename, onDuplicate, on
         )}
         <ul className="space-y-2">
           {index.map((e) => (
-            <li key={e.id} className={`rounded-lg border p-2.5 ${e.id === currentId ? 'border-accent bg-accent-soft' : 'border-line'}`}>
+            <li key={e.id} className={`rounded-lg p-2.5 ${e.id === currentId ? 'bg-accent-soft' : 'bg-ground'}`}>
               {renaming === e.id ? (
                 <form
                   className="flex gap-2"

@@ -205,7 +205,7 @@ function InstructorChip({ courseId, names }) {
           e.stopPropagation();
           setOpen((v) => !v);
         }}
-        className="chip-line min-h-6 cursor-pointer gap-1 rounded-full bg-surface-2 px-2.5 py-0.5 text-xs font-medium text-ink-2 hover:bg-line active:brightness-95"
+        className="chip-line min-h-6 cursor-pointer gap-1 rounded py-0.5 text-xs font-semibold text-ink-2 hover:text-ink hover:underline"
       >
         <Icon name="user" size="sm" />
         <span className="chip-text">{label}</span>
@@ -242,15 +242,15 @@ export function CourseCard({ course: c, placed, uses = [], shortUses = false, vi
       } : undefined}
       title={title}
       style={{ transitionDuration: 'var(--dur)' }}
-      className={`group/course rounded-md border bg-surface px-2 py-1.5 text-sm transition-colors ${
+      className={`group/course rounded-md px-2 py-1.5 text-sm transition-colors ${
         dropOver
-          ? 'border-accent bg-accent-soft ring-2 ring-accent/30'
-          : 'border-line hover:border-ink-3/50'
+          ? 'bg-accent-soft outline-2 outline-accent'
+          : 'bg-surface hover:bg-surface-2'
       } ${draggable ? 'cursor-grab active:cursor-grabbing' : ''}`}
     >
       <div className="flex items-center gap-2">
-        <span className="code min-w-[4.75rem] shrink-0 whitespace-nowrap text-ink-2">{c.id}</span>
-        <span className="line-clamp-2 min-w-0 flex-1 text-[13px] font-semibold leading-snug text-ink">{c.title}</span>
+        <span className="code min-w-[4.75rem] shrink-0 whitespace-nowrap text-ink">{c.id}</span>
+        <span className="line-clamp-2 min-w-0 flex-1 text-[13px] leading-snug text-ink-2">{c.title}</span>
         <span className="tnum shrink-0 text-xs text-ink-3">{c.credits} cr</span>
         {placed && onToggleLock && (
           <IconButton
@@ -264,7 +264,7 @@ export function CourseCard({ course: c, placed, uses = [], shortUses = false, vi
           />
         )}
         {dropOver && (
-          <span className="shrink-0 text-xs font-semibold uppercase tracking-wider text-accent">Swap</span>
+          <span className="shrink-0 text-xs font-semibold text-accent">Swap</span>
         )}
         {onAdd && <IconButton icon="plus" label={`Add ${c.id}`} tone="accent" onClick={onAdd} />}
         {onRemove && (
@@ -282,7 +282,7 @@ export function CourseCard({ course: c, placed, uses = [], shortUses = false, vi
           truncates via CSS and carries its full text for assistive tech, so
           nothing is hover-only. */}
       {showChips && (
-        <div className="chip-row mt-1 flex gap-1 overflow-x-auto">
+        <div className="chip-row mt-0.5 flex gap-3 overflow-x-auto">
           {uses.slice(0, 2).map((u, i) => (
             <Tag key={i} tone={u.kind === 'cluster' ? 'gold' : 'accent'}
               icon={u.kind === 'cluster' ? 'hexagon' : undefined} title={u.label}>

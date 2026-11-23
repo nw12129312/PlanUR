@@ -30,10 +30,10 @@ function MoveHereSlot({ empty, label, onDrop }) {
         const origin = e.dataTransfer.getData('text/origin');
         if (cid) onDrop(cid, origin);
       }}
-      className={`flex min-h-10 items-center justify-center rounded-md border border-dashed px-2 py-1.5 text-center text-xs transition ${
+      className={`flex min-h-10 items-center justify-center rounded-md px-2 py-1.5 text-center text-xs transition ${
         over
-          ? 'border-accent bg-accent-soft text-accent ring-2 ring-accent/30'
-          : 'border-line text-ink-3'
+          ? 'bg-accent-soft font-semibold text-accent'
+          : 'text-ink-3'
       }`}
     >
       {over
@@ -49,8 +49,8 @@ function SemesterCard({ sem, data, plan, onDropOnCourse, onMoveToSemester, onRem
   return (
     <section
       aria-label={sem.label}
-      className={`group/sem flex min-w-0 flex-col gap-1.5 rounded-lg border bg-surface p-2 transition-colors ${
-        active ? 'border-accent ring-1 ring-accent' : 'border-line'
+      className={`group/sem flex min-w-0 flex-col gap-1.5 rounded-lg p-2 transition-colors ${
+        active ? 'bg-accent-soft' : 'bg-ground'
       }`}
     >
       <header className="flex items-baseline gap-2">
@@ -63,7 +63,7 @@ function SemesterCard({ sem, data, plan, onDropOnCourse, onMoveToSemester, onRem
           }`}
         >
           {sem.label}
-          {active && <span className="ml-1.5 align-middle text-xs font-medium uppercase tracking-wider text-accent">target</span>}
+          {active && <span className="ml-1.5 align-middle text-xs font-medium text-accent">(adding here)</span>}
         </button>
         <span className="flex-1" />
         <span className={`tnum text-xs ${credits > 18 || (sem.term !== 'summer' && credits > 0 && credits < 12) ? 'text-warn' : 'text-ink-3'}`}>
@@ -185,11 +185,11 @@ function TransferBucket({
   };
 
   return (
-    <section aria-label="AP / IB / transfer credit" className="border-t border-line pt-3">
+    <section aria-label="AP / IB / transfer credit" className="pt-2">
       <details className="group/xfer">
       <summary className="flex min-h-9 cursor-pointer list-none items-center gap-2 [&::-webkit-details-marker]:hidden">
-        <h3 className="label-caps">AP, IB &amp; Transfer credit</h3>
-        <span className="h-px flex-1 bg-line" aria-hidden="true" />
+        <h3 className="label-caps">AP, IB and Transfer credit</h3>
+        <span className="flex-1" aria-hidden="true" />
         <span className="inline-flex items-center gap-1 text-xs font-semibold text-ink-2">
           <Icon name="plus" size="sm" /> Add credit
           <Icon name="chevronDown" size="sm" className="transition-transform group-open/xfer:rotate-180" />
@@ -203,12 +203,12 @@ function TransferBucket({
         </a>.
       </p>
 
-      <div className="mb-2 inline-flex rounded-md border border-line p-0.5" role="tablist" aria-label="Credit entry mode">
+      <div className="mb-2 inline-flex rounded-md bg-surface-2 p-0.5" role="tablist" aria-label="Credit entry mode">
         <button type="button" role="tab" aria-selected={mode === 'exam'}
-          className={`rounded px-2.5 py-1 text-xs font-semibold ${mode === 'exam' ? 'bg-accent-soft text-ink' : 'text-ink-3 hover:text-ink'}`}
+          className={`rounded px-2.5 py-1 text-xs font-semibold ${mode === 'exam' ? 'bg-surface text-ink' : 'text-ink-3 hover:text-ink'}`}
           onClick={() => setMode('exam')}>From exam</button>
         <button type="button" role="tab" aria-selected={mode === 'code'}
-          className={`rounded px-2.5 py-1 text-xs font-semibold ${mode === 'code' ? 'bg-accent-soft text-ink' : 'text-ink-3 hover:text-ink'}`}
+          className={`rounded px-2.5 py-1 text-xs font-semibold ${mode === 'code' ? 'bg-surface text-ink' : 'text-ink-3 hover:text-ink'}`}
           onClick={() => setMode('code')}>Course code</button>
       </div>
 
@@ -286,11 +286,11 @@ function TransferBucket({
             else g.courses.forEach((t) => onRemoveTransfer(t.courseId));
           };
           return (
-            <div key={g.key} className="flex items-start justify-between gap-2 rounded-md border border-line px-2.5 py-1.5">
+            <div key={g.key} className="flex items-start justify-between gap-2 rounded-md bg-ground px-2.5 py-1.5">
               <div className="min-w-0">
                 <div className="flex flex-wrap items-center gap-x-1.5 gap-y-0.5">
                   <span className="text-[13px] font-semibold text-ink">{g.manual ? <span className="code">{g.title}</span> : g.title}</span>
-                  <span className="text-xs uppercase text-ink-3">{KIND_LABEL[g.kind] || g.kind}</span>
+                  <span className="text-xs text-ink-3">{KIND_LABEL[g.kind] || g.kind}</span>
                   {g.courses.some((t) => t.conditional) && <Tag tone="warn">Conditional</Tag>}
                   {g.courses.length > 0 && <span className="tnum text-xs text-ink-2">{cr} cr</span>}
                 </div>
@@ -404,18 +404,17 @@ export function SemesterGrid({ toolbar, data, plan, activeSemesterId, onSetActiv
         </div>
       }
     >
-      {toolbar && <div className="border-b border-line px-3 py-2">{toolbar}</div>}
-      <div className="flex min-h-0 flex-col gap-3 p-3">
+      {toolbar && <div className="px-3 py-2">{toolbar}</div>}
+      <div className="flex min-h-0 flex-col gap-5 p-3 pt-1">
       {years.map((yearSems, yi) => {
         const yearCredits = yearSems.reduce(
           (a, s) => a + s.courseIds.reduce((b, cid) => b + (data.courses[cid]?.credits ?? 4), 0), 0);
         return (
           <section key={yi} aria-label={YEAR_NAMES[yi] || `Year ${yi + 1}`}>
-            <div className="mb-1.5 flex items-center gap-2 px-0.5">
-              <h3 className="label-caps">
+            <div className="mb-1.5 flex items-baseline gap-2 px-0.5">
+              <h3 className="text-sm font-bold text-ink">
                 {YEAR_NAMES[yi] || `Year ${yi + 1}`}
               </h3>
-              <span className="h-px flex-1 bg-line" aria-hidden="true" />
               <span className="tnum text-xs text-ink-3">{yearCredits} cr</span>
             </div>
             <div className={`grid grid-cols-1 gap-2 @min-[600px]:grid-cols-2${yearSems.length > 2 ? ' @min-[900px]:grid-cols-3' : ''}`}>
