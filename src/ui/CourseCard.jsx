@@ -35,7 +35,8 @@ const EQUIV_BADGES = (() => {
 
 function offeredLabel(c) {
   if (!c.offeredVerified) return 'terms unverified';
-  return c.offered.map((t) => (t === 'fall' ? 'Fall' : 'Spring')).join(' · ') || '—';
+  const names = { fall: 'Fall', spring: 'Spring', summer: 'Summer' };
+  return c.offered.map((t) => names[t] || t).join(' · ') || '—';
 }
 
 export function namedInstructors(c) {
@@ -66,13 +67,13 @@ function InstructorMetrics({ rec, compact }) {
     const line = rmpCompactLine(rec);
     if (!line) return null;
     return (
-      <span className="tnum shrink-0 text-[11px] font-semibold text-ink-3">{line}</span>
+      <span className="tnum shrink-0 text-xs font-semibold text-ink-3">{line}</span>
     );
   }
   const lines = rmpDetailLines(rec);
   const href = rmpPageUrl(rec);
   return (
-    <div className="mt-1 flex flex-col gap-0.5 text-[11px] leading-snug text-ink-2">
+    <div className="mt-1 flex flex-col gap-0.5 text-xs leading-snug text-ink-2">
       {lines.map((line) => (
         <div key={line} className="tnum">{line}</div>
       ))}
@@ -99,7 +100,7 @@ function InstructorChip({ courseId, names }) {
   const [open, setOpen] = useState(false);
   const [pos, setPos] = useState(null);
   const single = names.length === 1;
-  const label = single ? names[0] : 'Multiple Instructors';
+  const label = single ? names[0] : `${names.length} instructors`;
   const aria = single
     ? rmpAriaSummary(names[0], rmpForInstructor(names[0], rmpDirectory))
     : `Instructors for ${courseId}`;
@@ -174,7 +175,7 @@ function InstructorChip({ courseId, names }) {
             const rec = rmpForInstructor(name, rmpDirectory);
             return (
               <li key={name} className="flex flex-col rounded px-1.5 py-1">
-                <div className="flex items-center gap-1.5 text-[12px] font-medium text-ink">
+                <div className="flex items-center gap-1.5 text-xs font-medium text-ink">
                   <Icon name="user" size="sm" />
                   <span className="min-w-0 flex-1 truncate">{name}</span>
                   {!single && <InstructorMetrics rec={rec} compact />}
@@ -204,7 +205,7 @@ function InstructorChip({ courseId, names }) {
           e.stopPropagation();
           setOpen((v) => !v);
         }}
-        className="chip-line min-h-6 cursor-pointer gap-1 rounded-full bg-surface-2 px-2.5 py-0.5 text-[11px] font-medium text-ink-2 hover:bg-line active:brightness-95"
+        className="chip-line min-h-6 cursor-pointer gap-1 rounded-full bg-surface-2 px-2.5 py-0.5 text-xs font-medium text-ink-2 hover:bg-line active:brightness-95"
       >
         <Icon name="user" size="sm" />
         <span className="chip-text">{label}</span>
@@ -215,15 +216,16 @@ function InstructorChip({ courseId, names }) {
 }
 
 // One course, either in search results (compact) or placed in a semester.
-export function CourseCard({ course: c, placed, uses = [], violations = [], meta, onToggleLock, onRemove, onAdd, draggable, onDragStart, onDropOnCourse }) {
+export function CourseCard({ course: c, placed, uses = [], shortUses = false, violations = [], meta, onToggleLock, onRemove, onAdd, draggable, onDragStart, onDropOnCourse }) {
   const [dropOver, setDropOver] = useState(false);
   const instructors = namedInstructors(c);
-  const crossListings = (c.crossListings || []).filter(Boolean);
-  const title = detailsTitle(c) + (meta?.reason ? `\n\nAuto-placed: ${meta.reason}` : '');
+  const title = detailsTitle(c)
+    + (EQUIV_BADGES.has(c.id) ? `\n\n${EQUIV_BADGES.get(c.id).title}` : '')
+    + (meta?.reason ? `\n\nAuto-placed: ${meta.reason}` : '');
   const swapTarget = placed && typeof onDropOnCourse === 'function';
-  const showChips = uses.length > 0 || violations.length > 0 || c.stub || meta?.source === 'auto'
-    || EQUIV_BADGES.has(c.id) || (placed && !c.offeredVerified) || instructors.length > 0
-    || crossListings.length > 0;
+  const crossListings = (c.crossListings || []).filter(Boolean);
+  const showChips = placed && (uses.length > 0 || violations.length > 0 || c.stub
+    || instructors.length > 0 || crossListings.length > 0);
   return (
     <div
       draggable={draggable}
@@ -240,16 +242,16 @@ export function CourseCard({ course: c, placed, uses = [], violations = [], meta
       } : undefined}
       title={title}
       style={{ transitionDuration: 'var(--dur)' }}
-      className={`group rounded-md border bg-surface px-2 py-1.5 text-sm transition-colors ${
+      className={`group/course rounded-md border bg-surface px-2 py-1.5 text-sm transition-colors ${
         dropOver
           ? 'border-accent bg-accent-soft ring-2 ring-accent/30'
-          : 'border-line hover:border-accent'
+          : 'border-line hover:border-ink-3/50'
       } ${draggable ? 'cursor-grab active:cursor-grabbing' : ''}`}
     >
       <div className="flex items-center gap-2">
-        <span className="code shrink-0 rounded bg-surface-2 px-1.5 py-0.5 text-ink">{c.id}</span>
-        <span className="min-w-0 flex-1 truncate text-[13px] font-medium text-ink">{c.title}</span>
-        <span className="tnum shrink-0 text-xs font-semibold text-ink-3">{c.credits}cr</span>
+        <span className="code min-w-[4.75rem] shrink-0 whitespace-nowrap text-ink-2">{c.id}</span>
+        <span className="line-clamp-2 min-w-0 flex-1 text-[13px] font-semibold leading-snug text-ink">{c.title}</span>
+        <span className="tnum shrink-0 text-xs text-ink-3">{c.credits} cr</span>
         {placed && onToggleLock && (
           <IconButton
             icon={meta?.locked ? 'lock' : 'unlock'}
@@ -258,11 +260,11 @@ export function CourseCard({ course: c, placed, uses = [], violations = [], meta
               : `${c.id} is unlocked — regenerate may replace it. Lock.`}
             onClick={onToggleLock}
             aria-pressed={!!meta?.locked}
-            className={meta?.locked ? 'text-accent' : 'text-ink-3 opacity-45 group-hover:opacity-100'}
+            className={meta?.locked ? 'text-accent' : 'reveal-on-hover group-hover/course:opacity-100 group-focus-within/course:opacity-100 text-ink-3'}
           />
         )}
         {dropOver && (
-          <span className="shrink-0 text-[10px] font-semibold uppercase tracking-wider text-accent">Swap</span>
+          <span className="shrink-0 text-xs font-semibold uppercase tracking-wider text-accent">Swap</span>
         )}
         {onAdd && <IconButton icon="plus" label={`Add ${c.id}`} tone="accent" onClick={onAdd} />}
         {onRemove && (
@@ -271,7 +273,7 @@ export function CourseCard({ course: c, placed, uses = [], violations = [], meta
             label={`Remove ${c.id}`}
             tone="danger"
             onClick={onRemove}
-            className="opacity-0 transition-opacity group-hover:opacity-100 focus-visible:opacity-100"
+            className="reveal-on-hover group-hover/course:opacity-100 group-focus-within/course:opacity-100"
           />
         )}
       </div>
@@ -280,12 +282,16 @@ export function CourseCard({ course: c, placed, uses = [], violations = [], meta
           truncates via CSS and carries its full text for assistive tech, so
           nothing is hover-only. */}
       {showChips && (
-        <div className="chip-row mt-1.5 flex gap-1 overflow-x-auto">
-          {EQUIV_BADGES.has(c.id) && (
-            <Tag tone="neutral" icon="swap" title={EQUIV_BADGES.get(c.id).title}>
-              {EQUIV_BADGES.get(c.id).name} — one path
+        <div className="chip-row mt-1 flex gap-1 overflow-x-auto">
+          {uses.slice(0, 2).map((u, i) => (
+            <Tag key={i} tone={u.kind === 'cluster' ? 'gold' : 'accent'}
+              icon={u.kind === 'cluster' ? 'hexagon' : undefined} title={u.label}>
+              {u.kind === 'cluster'
+                ? u.label.replace(/^Cluster:\s*/, '')
+                : (shortUses ? u.label.replace(/^[^:]+:\s*/, '') : u.label)}
             </Tag>
-          )}
+          ))}
+          {uses.length > 2 && <Tag title={uses.map((u) => u.label).join(' · ')}>+{uses.length - 2}</Tag>}
           <InstructorChip courseId={c.id} names={instructors} />
           {crossListings.length > 0 && (
             <Tag
@@ -298,18 +304,6 @@ export function CourseCard({ course: c, placed, uses = [], violations = [], meta
                 : `Cross-listed (${crossListings.length})`}
             </Tag>
           )}
-          {meta?.source === 'auto' && (
-            <Tag tone="cta" icon="bolt" title={meta.reason || 'Placed by auto-generate'}>
-              {meta.reason || 'auto'}
-            </Tag>
-          )}
-          {uses.slice(0, 2).map((u, i) => (
-            <Tag key={i} tone={u.kind === 'cluster' ? 'gold' : 'accent'}
-              icon={u.kind === 'cluster' ? 'hexagon' : undefined} title={u.label}>
-              {u.label}
-            </Tag>
-          ))}
-          {uses.length > 2 && <Tag title={uses.map((u) => u.label).join(' · ')}>+{uses.length - 2} more</Tag>}
           {c.stub && placed && <Tag tone="warn" title="Known only from the cluster listing; credits and terms not yet sourced.">unsourced</Tag>}
           {/* One chip per distinct rule. Department-ordering fires once per
               course pair, so an unfiltered map stacked four identical amber

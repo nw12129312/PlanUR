@@ -1,5 +1,4 @@
 import React, { useMemo, useState } from 'react';
-import { Icon } from './icons.jsx';
 import { CourseCard } from './CourseCard.jsx';
 import { Select, TextInput, Panel } from './bits.jsx';
 import { groupCandidates, namedCandidates } from '../engine/candidates.js';
@@ -94,8 +93,12 @@ export function CourseSearch({ data, plan, selectedPrograms, selectedClusters, p
   return (
     <Panel
       title="Catalog"
-      icon="search"
       className="overflow-hidden"
+      headerRight={(
+        <span className="min-w-0 truncate pr-1 text-xs text-ink-3" title="Where the + button adds a course">
+          Adds to <span className="font-semibold text-ink-2">{targetLabel}</span>
+        </span>
+      )}
       bodyClassName="flex flex-col gap-1.5 !p-2"
     >
       <TextInput
@@ -117,9 +120,6 @@ export function CourseSearch({ data, plan, selectedPrograms, selectedClusters, p
           <option value="">All reqs</option>
           {reqOptions.map((o) => <option key={o.key} value={o.key}>{o.label}</option>)}
         </Select>
-      </div>
-      <div className="text-[11px] text-ink-3">
-        {results.length === 400 ? '400+' : results.length} · to <span className="font-medium text-ink-2">{targetLabel}</span>
       </div>
       <div className="rail max-h-[22rem] min-h-0 space-y-1 overflow-y-auto overscroll-contain pr-1">
         {(() => {
@@ -158,21 +158,15 @@ export function CourseSearch({ data, plan, selectedPrograms, selectedClusters, p
                 // box. Horizontal padding is kept to a hairline + 8px because
                 // every pixel here comes off the course titles inside.
                 <section key={g.id}
-                  className="overflow-hidden rounded-lg border-2 border-accent bg-accent-soft">
-                  <header className="flex items-start gap-1.5 px-2 py-1.5" title={g.description || ''}>
-                    <Icon name="swap" size="md" className="mt-px text-accent" />
-                    <div className="min-w-0">
-                      <div className="text-[13px] font-bold leading-tight text-ink">{g.name}</div>
-                      <div className="text-[11px] font-semibold text-accent">
-                        Choose ONE path — mixing them is blocked
-                      </div>
-                    </div>
+                  className="rounded-lg border border-line bg-surface-2/60 p-1.5">
+                  <header className="flex items-baseline justify-between gap-2 px-0.5 pb-1" title={g.description || ''}>
+                    <span className="min-w-0 truncate text-[13px] font-semibold text-ink">{g.name}</span>
+                    <span className="shrink-0 text-xs text-ink-3">pick one path</span>
                   </header>
-                  <div className="space-y-1.5 bg-surface px-1.5 pb-1.5 pt-1.5">
+                  <div className="space-y-1.5">
                     {g.paths.map((p) => (
                       <div key={p.id}>
-                        <div className="label-caps mb-1 flex items-center gap-1.5">
-                          <span className="h-px w-2.5 bg-line" aria-hidden="true" />
+                        <div className="mb-0.5 px-0.5 text-xs font-medium text-ink-3">
                           {p.name}{p.accelerated ? ' · accelerated' : ''}
                         </div>
                         <div className="space-y-1">

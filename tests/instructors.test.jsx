@@ -26,27 +26,27 @@ describe('namedInstructors', () => {
 
 describe('CourseCard instructor chip', () => {
   it('omits the instructor chip when CDCS listed no names', () => {
-    const html = renderToString(<CourseCard course={course()} />);
-    expect(html).not.toContain('Multiple Instructors');
+    const html = renderToString(<CourseCard placed course={course()} />);
+    expect(html).not.toContain('instructors');
     expect(html).not.toContain('Ted Pawlicki');
   });
 
   it('shows the CDCS name next to a head icon for a single instructor', () => {
-    const html = renderToString(<CourseCard course={course({ instructors: ['Ted Pawlicki'] })} />);
+    const html = renderToString(<CourseCard placed course={course({ instructors: ['Ted Pawlicki'] })} />);
     expect(html).toContain('Ted Pawlicki');
-    expect(html).not.toContain('Multiple Instructors');
+    expect(html).not.toContain('2 instructors');
     expect(html).toContain('aria-haspopup="dialog"');
     expect(html).toMatch(/RateMyProfessors 2\.1\/5/);
   });
 
-  it('collapses several instructors behind a clickable Multiple Instructors control', () => {
+  it('collapses several instructors behind a clickable "N instructors" control', () => {
     const html = renderToString(
-      <CourseCard course={course({ instructors: ['Ted Pawlicki', 'Monika Polak'] })} />,
+      <CourseCard placed course={course({ instructors: ['Ted Pawlicki', 'Monika Polak'] })} />,
     );
-    expect(html).toContain('Multiple Instructors');
+    expect(html).toContain('2 instructors');
     expect(html).toContain('aria-expanded="false"');
     expect(html).toContain('aria-haspopup="dialog"');
-    expect(html).toMatch(/chip-text">Multiple Instructors</);
+    expect(html).toMatch(/chip-text">2 instructors</);
     expect(html).not.toMatch(/chip-text">Ted Pawlicki</);
   });
 });

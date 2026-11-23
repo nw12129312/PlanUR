@@ -7,7 +7,6 @@ import { computeProgress } from './progress.js';
 import {
   checkEquivalencyConflicts, levelSatisfied, isLevelEntry, levelTag, describePrereqEntry,
 } from './equivalency.js';
-import { checkDepartmentSequencing } from './deptSequencing.js';
 import { coversCourse, expandPlacedSet, familyKey } from './crossList.js';
 
 const v = (ruleId, severity, message, at = {}) => ({ ruleId, severity, message, ...at });
@@ -62,20 +61,13 @@ export function checkOfferingSemester(plan, data) {
     for (const cid of sem.courseIds) {
       const c = ctx.course(cid);
       if (!c) continue;
-      if (sem.term === 'summer') {
-        if (c.offeredClaim.length && !c.offeredClaim.includes('summer')) {
-          out.push(v('OFFERING_TERM', 'warning',
-            `${cid} is not listed as offered in summer.`, { courseId: cid, semesterId: sem.id }));
-        }
-        continue;
-      }
       if (!c.offeredVerified) {
         out.push(v('OFFERING_UNVERIFIED', 'info',
-          `${cid}: no 2025-26 schedule data sourced; cannot confirm it runs in ${sem.term}.`,
+          `${cid}: no harvested CDCS schedule data; cannot confirm it runs in ${sem.term}.`,
           { courseId: cid, semesterId: sem.id }));
       } else if (!c.offered.includes(sem.term)) {
         out.push(v('OFFERING_TERM', 'warning',
-          `${cid} was not scheduled in ${sem.term} in 2025-26 (ran: ${c.offered.join(', ') || 'n/a'}).`,
+          `${cid} was not scheduled in ${sem.term} in harvested CDCS terms (ran: ${c.offered.join(', ') || 'n/a'}).`,
           { courseId: cid, semesterId: sem.id }));
       }
     }
@@ -417,7 +409,6 @@ export function checkAll(plan, data) {
     violations: [
       ...checkDuplicates(plan, data),
       ...checkEquivalencyConflicts(plan, data.equivalencyGroups || []),
-      ...checkDepartmentSequencing(plan),
       ...checkPrerequisites(plan, data),
       ...checkOfferingSemester(plan, data),
       ...checkCreditLoad(plan, data, data.policy.creditLoad.max, data.policy.creditLoad.min),

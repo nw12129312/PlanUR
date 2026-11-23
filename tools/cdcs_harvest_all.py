@@ -23,11 +23,16 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 RAW = os.path.join(HERE, '..', 'data-src', 'ur-catalog-raw.json')
 BASE = 'https://cdcs.ur.rochester.edu/'
 # Fall 2026 is the current registration term; keep 2025-26 so offered terms
-# still cover the academic year the planner was built against.
+# still cover the academic year the planner was built against. Summer terms
+# are smaller than fall/spring but they are the only source of which courses
+# actually ran in summer (the Offered: field often says "Fall Spring Summer"
+# as boilerplate).
 TERMS = [
     ('D-Fall 2025', 'fall'),
     ('D-Spring 2026', 'spring'),
+    ('D-Summer 2025', 'summer'),
     ('D-Fall 2026', 'fall'),
+    ('D-Summer 2026', 'summer'),
 ]
 
 TYPES = {'Lecture','Laboratory','Lab','Recitation','Workshop','Seminar','Independent Study',
@@ -224,7 +229,8 @@ def main():
             print(f'POST {term_value} …', flush=True)
             resp = curl(['-b', cookies, '--data-raw', urllib.parse.urlencode(body), BASE])
             part = parse(resp, term)
-            assert len(part) > 500, f'{term_value} dump looks truncated ({len(part)} courses, {len(resp)} bytes)'
+            min_courses = 80 if term == 'summer' else 500
+            assert len(part) > min_courses, f'{term_value} dump looks truncated ({len(part)} courses, {len(resp)} bytes)'
             json.dump(part, open(out, 'w'))
             time.sleep(1)
         notes = sum(1 for e in part.values() if e.get('public_notes'))

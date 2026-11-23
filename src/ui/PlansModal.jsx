@@ -10,7 +10,7 @@ export function PlansModal({ index, currentId, onLoad, onRename, onDuplicate, on
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4" role="dialog" aria-modal="true" aria-label="Saved plans" onClick={onClose}>
       <div className="max-h-[80vh] w-full max-w-lg overflow-y-auto rounded-2xl bg-surface p-5 shadow-lg" onClick={(e) => e.stopPropagation()}>
         <div className="mb-3 flex items-center justify-between">
-          <h2 className="text-base font-semibold text-ink">Saved plans</h2>
+          <h2 className="display text-xl text-ink">Saved plans</h2>
           <div className="flex gap-2">
             <Button kind="primary" onClick={onNew}>{<Icon name="plus" size="sm" />} New plan</Button>
             <Button onClick={onClose}>Close</Button>
@@ -34,7 +34,7 @@ export function PlansModal({ index, currentId, onLoad, onRename, onDuplicate, on
                 <>
                   <div className="flex items-center gap-2">
                     <span className="min-w-0 flex-1 truncate font-medium text-ink">{e.name}</span>
-                    <span className="shrink-0 text-[11px] text-ink-3">
+                    <span className="shrink-0 text-xs text-ink-3">
                       {e.last_edited ? new Date(e.last_edited).toLocaleDateString() : ''}
                     </span>
                   </div>

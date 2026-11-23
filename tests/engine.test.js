@@ -5,7 +5,7 @@ import clustersData from '../src/data/clusters.json';
 import policyData from '../src/data/policy.json';
 import equivalencyGroupsData from '../src/data/equivalency_groups.json';
 
-import { newPlan, withTrackChoice } from '../src/engine/model.js';
+import { newPlan, withTrackChoice, addSummerSemester, availableSummerSlots, groupIntoYears } from '../src/engine/model.js';
 import { switchTrackChoice, withProgramSwap } from '../src/engine/pathways.js';
 import { computeProgress, pwrStatus } from '../src/engine/progress.js';
 import {
@@ -86,7 +86,7 @@ describe('CDCS Public Notes prerequisites', () => {
 describe('checkOfferingSemester', () => {
   it('warns when a course lands in a term it did not run in 2025-26', () => {
     const plan = planWith();
-    fill(plan, 1, ['BIOL 110L']); // spring semester; ran only in fall
+    fill(plan, 1, ['BIOL 110L']); // spring; harvested terms are fall + summer
     const vs = byRule(checkOfferingSemester(plan, DATA), 'OFFERING_TERM');
     expect(vs.length).toBe(1);
     expect(vs[0].severity).toBe('warning');
@@ -116,6 +116,50 @@ describe('checkCreditLoad', () => {
   });
   it('ignores empty semesters', () => {
     expect(checkCreditLoad(planWith(), DATA)).toEqual([]);
+  });
+  it('does not apply the 12-credit minimum to summer', () => {
+    const plan = addSummerSemester(planWith(), 2027);
+    const i = plan.semesters.findIndex((s) => s.term === 'summer');
+    fill(plan, i, ['MATH 161']);
+    expect(byRule(checkCreditLoad(plan, DATA), 'LOAD_MIN')).toEqual([]);
+  });
+});
+
+describe('summer semesters', () => {
+  it('inserts summer after spring of the same calendar year', () => {
+    const plan = addSummerSemester(planWith(), 2027);
+    expect(plan.semesters.slice(0, 4).map((s) => s.label))
+      .toEqual(['Fall 2026', 'Spring 2027', 'Summer 2027', 'Fall 2027']);
+  });
+  it('does not add the same summer twice', () => {
+    const plan = addSummerSemester(addSummerSemester(planWith(), 2027), 2027);
+    expect(plan.semesters.filter((s) => s.term === 'summer')).toHaveLength(1);
+  });
+  it('lists a summer slot for each academic year that does not already have one', () => {
+    expect(availableSummerSlots(planWith()).map((s) => s.year)).toEqual([2027, 2028, 2029, 2030]);
+    const withFirst = addSummerSemester(planWith(), 2027);
+    expect(availableSummerSlots(withFirst).map((s) => s.year)).toEqual([2028, 2029, 2030]);
+  });
+  it('groups summer with the preceding fall/spring academic year', () => {
+    const years = groupIntoYears(addSummerSemester(planWith(), 2027).semesters);
+    expect(years[0].map((s) => s.label)).toEqual(['Fall 2026', 'Spring 2027', 'Summer 2027']);
+    expect(years[1].map((s) => s.label)).toEqual(['Fall 2027', 'Spring 2028']);
+  });
+  it('warns when a course was not in a harvested summer CDCS term', () => {
+    const plan = addSummerSemester(planWith(), 2027);
+    const i = plan.semesters.findIndex((s) => s.term === 'summer');
+    fill(plan, i, ['BIOL 101']);
+    const vs = byRule(checkOfferingSemester(plan, DATA), 'OFFERING_TERM');
+    expect(vs.length).toBe(1);
+    expect(coursesData['BIOL 101'].offeredClaim).toContain('summer');
+    expect(coursesData['BIOL 101'].offered).not.toContain('summer');
+  });
+  it('is silent for a course that actually ran in harvested summer terms', () => {
+    const plan = addSummerSemester(planWith(), 2027);
+    const i = plan.semesters.findIndex((s) => s.term === 'summer');
+    fill(plan, i, ['MATH 161']);
+    expect(coursesData['MATH 161'].offered).toContain('summer');
+    expect(checkOfferingSemester(plan, DATA)).toEqual([]);
   });
 });
 

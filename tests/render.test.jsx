@@ -81,11 +81,14 @@ describe('UI render smoke', () => {
       <SemesterGrid
         data={DATA} plan={plan} activeSemesterId={null}
         onSetActive={() => {}} onDropOnCourse={() => {}} onMoveToSemester={() => {}} onRemoveCourse={() => {}}
-        onAddSemester={() => {}} onRemoveSemester={() => {}}
+        onAddSemester={() => {}} onAddSummer={() => {}} onRemoveSemester={() => {}}
         violationsByCourse={byCourse} violationsBySemester={bySem}
         courseUses={progress.courseUses} onAddTransfer={() => {}} onRemoveTransfer={() => {}}
       />,
     );
+    expect(grid).toContain('Add semester');
+    expect(grid).toContain('Add a summer semester');
+    expect(grid).toContain('Summer 2027');
     expect(grid).toContain('CSC 171');
     expect(grid).toContain('Drop here to move without swapping');
     expect(grid).toContain('Transfer');

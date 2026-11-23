@@ -84,6 +84,15 @@ def normalize_code(dept, num, catalog_codes=None):
     if catalog_codes is None:
         return code
     if code in catalog_codes:
+        # Bare "BIO 111" in CDCS notes is the intro sequence. Summer harvests
+        # sometimes list a lecture-only code; prefer the fall/spring lab twin
+        # so academic-year plans still satisfy the note.
+        alt_l = f'{dept} {num}L'
+        if isinstance(catalog_codes, dict) and alt_l in catalog_codes:
+            terms = set((catalog_codes.get(code) or {}).get('terms_seen') or [])
+            alt_terms = set((catalog_codes.get(alt_l) or {}).get('terms_seen') or [])
+            if terms <= {'summer'} and (alt_terms & {'fall', 'spring'}):
+                return alt_l
         return code
     # Lab/writing twin only — never a P (project) section of a different course.
     for alt in (f'{dept} {num}L', f'{dept} {num}W'):
@@ -306,19 +315,18 @@ def parse_description(desc, course_id, catalog_codes=None):
 
 
 def parse_catalog(catalog):
-    codes = set(catalog)
     out = {}
     for cid, e in catalog.items():
         # Public Notes are the registrar's section-level prereq line and win
         # over a copied description blurb (DSCC 242 vs CSC 242).
         parsed = None
-        notes = parse_description(e.get('public_notes') or '', cid, codes)
+        notes = parse_description(e.get('public_notes') or '', cid, catalog)
         if notes and notes['verified']:
             parsed = notes
         else:
-            parsed = parse_description(e.get('desc') or '', cid, codes) or notes
+            parsed = parse_description(e.get('desc') or '', cid, catalog) or notes
             if not parsed:
-                parsed = parse_description(e.get('restrictions') or '', cid, codes)
+                parsed = parse_description(e.get('restrictions') or '', cid, catalog)
         if parsed:
             out[cid] = parsed
     return out
@@ -396,6 +404,16 @@ def _self_test():
         'CSC 172': {}, 'MATH 150': {}, 'MATH 141': {}, 'MATH 161': {}, 'MATH 171': {},
     })
     assert d['DSCC 242']['prereqs'] == [['CSC 172'], ['MATH 141', 'MATH 161', 'MATH 171']], d
+    d = parse_catalog({
+        'BIOL 190': {
+            'public_notes': 'Prerequisites: BIO 110/111.',
+            'terms_seen': ['fall'],
+        },
+        'BIOL 110': {'terms_seen': ['fall']},
+        'BIOL 111': {'terms_seen': ['summer']},
+        'BIOL 111L': {'terms_seen': ['spring']},
+    })
+    assert d['BIOL 190']['prereqs'] == [['BIOL 110'], ['BIOL 111L']], d
     print('parse_cdcs_prereqs self-test ok')
 
 

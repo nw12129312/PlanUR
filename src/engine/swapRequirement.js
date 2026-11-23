@@ -13,7 +13,6 @@
 import { plannedCourseIds, semesterIndexOf, withCourseMeta, addSemester, withTrackChoice } from './model.js';
 import { computeProgress } from './progress.js';
 import { isLevelEntry, levelTag, levelSatisfied } from './equivalency.js';
-import { placementViolatesDeptOrder } from './deptSequencing.js';
 import { coversCourse, expandPlacedSet, listingOnPlan, listingsOf } from './crossList.js';
 
 const MAX_LOAD = 18;
@@ -183,14 +182,13 @@ function placeIn(plan, cid, semIdx, meta) {
   return withCourseMeta(next, cid, meta);
 }
 
-function slotOk(plan, data, cid, semIdx, { ignoreLoad = false, ignoreOrder = false } = {}) {
+function slotOk(plan, data, cid, semIdx, { ignoreLoad = false } = {}) {
   const c = data.courses[cid];
   const sem = plan.semesters[semIdx];
   if (!sem) return false;
   if (!offeredOk(c, sem.term)) return false;
   if (!prereqsOk(cid, earlierSet(plan, semIdx), data, data.equivalencyGroups || [])) return false;
   if (!ignoreLoad && creditsIn(sem, data) + (c?.credits ?? 4) > MAX_LOAD) return false;
-  if (!ignoreOrder && placementViolatesDeptOrder(plan, cid, semIdx)) return false;
   return true;
 }
 
@@ -200,7 +198,6 @@ function pickSlot(plan, data, cid, minIdx, prefer) {
     { idxs: range(Math.max(0, minIdx), plan.semesters.length), opts: {} },
     { idxs: prefer, opts: { ignoreLoad: true } },
     { idxs: range(Math.max(0, minIdx), plan.semesters.length), opts: { ignoreLoad: true } },
-    { idxs: range(Math.max(0, minIdx), plan.semesters.length), opts: { ignoreLoad: true, ignoreOrder: true } },
   ];
   for (const { idxs, opts } of attempts) {
     for (const i of idxs) {

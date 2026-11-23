@@ -1,14 +1,14 @@
 {
  "builtOn": "2026-07-03",
  "counts": {
-  "courses": 4738,
-  "stubCourses": 1200,
+  "courses": 4797,
+  "stubCourses": 1182,
   "clusters": 198,
   "programs": 183,
   "activePrograms": 182,
   "equivalencyGroups": 16,
   "activeEquivalencyGroups": 16,
-  "crossListFamilies": 647,
+  "crossListFamilies": 653,
   "examCredit": 35
  }
 }

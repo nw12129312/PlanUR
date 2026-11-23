@@ -37,7 +37,7 @@ export function SevChip({ severity, children, title }) {
   const s = SEV[severity] || SEV.info;
   return (
     <span
-      className={`chip-line gap-1.5 rounded-md px-2 py-1 text-[12px] font-medium ${s.cls}`}
+      className={`chip-line gap-1.5 rounded-md px-2 py-0.5 text-xs font-semibold ${s.cls}`}
       title={title}
     >
       <Icon name={s.icon} size="sm" />
@@ -60,7 +60,7 @@ export function Tag({ tone = 'neutral', children, title, icon }) {
   return (
     <span
       title={title}
-      className={`chip-line gap-1 rounded-full px-2.5 py-0.5 text-[11px] font-medium ${tones[tone]}`}
+      className={`chip-line gap-1 rounded-full px-2 py-0.5 text-xs font-medium ${tones[tone]}`}
     >
       {icon && <Icon name={icon} size="sm" />}
       <span className="chip-text">{children}</span>
@@ -71,7 +71,7 @@ export function Tag({ tone = 'neutral', children, title, icon }) {
 
 export function Button({ kind = 'ghost', className = '', ...props }) {
   const kinds = {
-    primary: 'bg-accent text-accent-ink border border-accent hover:brightness-110 active:brightness-95 shadow-sm',
+    primary: 'bg-accent text-accent-ink border border-accent hover:brightness-125 active:brightness-95 shadow-sm',
     cta: 'bg-cta text-cta-ink border border-cta hover:brightness-110 active:brightness-95 shadow-sm',
     ghost: 'bg-surface text-ink-2 border border-line hover:bg-surface-2 hover:text-ink hover:border-ink-3/30',
     quiet: 'bg-transparent text-ink-2 border border-transparent hover:bg-surface-2 hover:text-ink',
@@ -81,7 +81,7 @@ export function Button({ kind = 'ghost', className = '', ...props }) {
     <button
       type="button"
       style={{ transitionDuration: 'var(--dur)' }}
-      className={`inline-flex min-h-8 items-center gap-1.5 rounded-md px-2.5 py-1 text-[13px] font-semibold transition-colors disabled:opacity-40 ${kinds[kind]} ${className}`}
+      className={`btn inline-flex min-h-9 items-center justify-center gap-1.5 rounded-md px-3 py-1 text-[13px] font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-40 ${kinds[kind]} ${className}`}
       {...props}
     />
   );
@@ -99,7 +99,7 @@ export function IconButton({ icon, label, tone = 'quiet', className = '', size =
       aria-label={label}
       title={label}
       style={{ transitionDuration: 'var(--dur)' }}
-      className={`inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md transition-colors ${tones[tone]} ${className}`}
+      className={`hit-area inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-md transition-colors ${tones[tone]} ${className}`}
       {...props}
     >
       <Icon name={icon} size={size} />
@@ -111,7 +111,7 @@ export function Select({ className = '', ...props }) {
   return (
     <select
       style={{ transitionDuration: 'var(--dur)' }}
-      className={`select-flat min-h-8 w-full rounded-md border border-line px-2.5 text-[13px] font-medium text-ink shadow-sm transition-colors hover:border-ink-3/40 focus:border-accent focus:ring-2 focus:ring-accent/20 ${className}`}
+      className={`select-flat min-h-9 w-full rounded-md border border-line px-2.5 text-[13px] font-medium text-ink shadow-sm transition-colors hover:border-ink-3/40 focus:border-accent focus:ring-2 focus:ring-accent/20 ${className}`}
       {...props}
     />
   );
@@ -306,7 +306,7 @@ export function SearchSelect({
             return (
               <React.Fragment key={opt.value}>
                 {showGroup && (
-                  <li className="px-2.5 pb-0.5 pt-1.5 text-[10px] font-semibold uppercase tracking-wide text-ink-3">
+                  <li className="label-caps px-2.5 pb-0.5 pt-2">
                     {opt.group}
                   </li>
                 )}
@@ -317,7 +317,7 @@ export function SearchSelect({
                     role="option"
                     aria-selected={opt.value === value}
                     data-active={i === active ? 'true' : undefined}
-                    className={`flex w-full items-center justify-between gap-2 px-2.5 py-1.5 text-left text-[13px] ${
+                    className={`flex min-h-9 w-full items-center justify-between gap-2 px-2.5 py-1.5 text-left text-[13px] ${
                       i === active ? 'bg-accent-soft text-ink' : 'text-ink hover:bg-surface-2'
                     }`}
                     onMouseEnter={() => setActive(i)}
@@ -341,7 +341,7 @@ export function SearchSelect({
     <div ref={wrapRef} className={`relative ${className}`}>
       <div
         style={{ transitionDuration: 'var(--dur)' }}
-        className="flex min-h-8 w-full items-center rounded-md border border-line bg-surface shadow-sm transition-colors hover:border-ink-3/40 focus-within:border-accent focus-within:ring-2 focus-within:ring-accent/20"
+        className="flex min-h-9 w-full items-center rounded-md border border-line bg-surface shadow-sm transition-colors hover:border-ink-3/40 focus-within:border-accent focus-within:ring-2 focus-within:ring-accent/20"
       >
         <button
           type="button"
@@ -352,7 +352,7 @@ export function SearchSelect({
           aria-controls={listId}
           onClick={() => (open ? close() : openMenu())}
           onKeyDown={onTriggerKey}
-          className="flex min-h-8 min-w-0 flex-1 items-center px-2.5 py-1 text-left text-[13px] font-medium text-ink"
+          className="flex min-h-9 min-w-0 flex-1 items-center px-2.5 py-1 text-left text-[13px] font-medium text-ink"
         >
           <span className={`min-w-0 flex-1 truncate ${selected ? 'text-ink' : 'font-normal text-ink-3'}`}>
             {selected ? selected.label : placeholder}
@@ -363,7 +363,7 @@ export function SearchSelect({
           <button
             type="button"
             aria-label="Clear selection"
-            className="mr-1 shrink-0 rounded p-1 text-ink-3 hover:bg-surface-2 hover:text-ink"
+            className="hit-area mr-1 shrink-0 rounded p-1.5 text-ink-3 hover:bg-surface-2 hover:text-ink"
             onClick={() => { onChange(''); close(); }}
           >
             <Icon name="close" size="sm" />
@@ -379,7 +379,7 @@ export function TextInput({ className = '', ...props }) {
   return (
     <input
       style={{ transitionDuration: 'var(--dur)' }}
-      className={`input-flat min-h-8 w-full rounded-md border border-line px-2.5 text-[13px] font-medium text-ink shadow-sm transition-colors placeholder:font-normal placeholder:text-ink-3 hover:border-ink-3/40 focus:border-accent focus:ring-2 focus:ring-accent/20 ${className}`}
+      className={`input-flat min-h-9 w-full rounded-md border border-line px-2.5 text-[13px] font-medium text-ink shadow-sm transition-colors placeholder:font-normal placeholder:text-ink-3 hover:border-ink-3/40 focus:border-accent focus:ring-2 focus:ring-accent/20 ${className}`}
       {...props}
     />
   );
@@ -389,29 +389,22 @@ export function SectionTitle({ children, right, subtitle }) {
   return (
     <div className="flex items-start justify-between gap-2">
       <div className="min-w-0">
-        <h2 className="display text-[15px] text-ink">{children}</h2>
-        {subtitle && <p className="mt-0.5 text-[12px] text-ink-3">{subtitle}</p>}
+        <h2 className="text-[13px] font-semibold text-ink">{children}</h2>
+        {subtitle && <p className="text-xs text-ink-3">{subtitle}</p>}
       </div>
       {right}
     </div>
   );
 }
 
-export function Panel({ title, subtitle, icon, children, className = '', headerRight, bodyClassName = '' }) {
+export function Panel({ title, subtitle, children, className = '', headerRight, bodyClassName = '' }) {
   return (
     <section className={`panel ${className}`}>
       {(title || headerRight) && (
         <header className="panel-header">
-          <div className="flex min-w-0 items-center gap-2.5">
-            {icon && (
-              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-accent-soft text-accent">
-                <Icon name={icon} size="sm" />
-              </span>
-            )}
-            <div className="min-w-0">
-              {title && <h2 className="panel-title">{title}</h2>}
-              {subtitle && <p className="panel-subtitle">{subtitle}</p>}
-            </div>
+          <div className="min-w-0">
+            {title && <h2 className="panel-title">{title}</h2>}
+            {subtitle && <p className="panel-subtitle">{subtitle}</p>}
           </div>
           {headerRight}
         </header>
@@ -421,7 +414,7 @@ export function Panel({ title, subtitle, icon, children, className = '', headerR
   );
 }
 
-export function Ring({ pct, size = 32, label }) {
+export function Ring({ pct, size = 36, label }) {
   const r = (size - 6) / 2;
   const circ = 2 * Math.PI * r;
   const clamped = Math.max(0, Math.min(100, pct || 0));
@@ -437,7 +430,7 @@ export function Ring({ pct, size = 32, label }) {
         transform={`rotate(-90 ${size / 2} ${size / 2})`}
       />
       <text x="50%" y="50%" textAnchor="middle" dominantBaseline="central"
-        className="tnum" fontSize="10" fontWeight="600" fill="var(--ink)">{clamped}</text>
+        className="tnum" fontSize="12" fontWeight="700" fill="var(--ink)">{clamped}</text>
     </svg>
   );
 }
