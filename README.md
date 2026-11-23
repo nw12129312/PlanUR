@@ -274,6 +274,30 @@ globally via Lock all / Unlock all. Results are applied through a diff modal
 (added / moved / removed, each individually accept-or-rejectable) — generation
 never mutates the plan directly.
 
+## Course status, grades and GPA
+
+Each placed course has a status: **planned** (default), **in progress**, or
+**completed**, set from the card or with a semester's "Mark completed".
+Completed courses can carry a grade. Everything lives in `courseMeta`
+(`status`, `grade`) and the helpers are in `src/engine/grades.js`.
+
+- Grade points use the College scale from the
+  [Undergraduate Bulletin](https://www.rochester.edu/bulletin/college/grading.html):
+  A 4.0, A- 3.7, B+ 3.3, B 3.0, B- 2.7, C+ 2.3, C 2.0, C- 1.7, D+ 1.3, D 1.0,
+  D- 0.7, E 0.0. P, S, F, W, I and XF carry no grade points. Transfer and AP/IB
+  credit never counts in the GPA.
+- Completed courses with E, XE, F, XF, W or I earn no credit. They drop out
+  of requirement fill and total hours (`buildContext`), with a
+  `GRADE_NO_CREDIT` warning.
+- `MAJOR_GPA_MIN`: GPA in the courses the audit assigned to a program, minus
+  `ancillary` groups, against the program's `minMajorGPA`. It's a warning while
+  counted courses are still ungraded, and an error once the program is complete
+  and fully graded. `CUMULATIVE_GPA_MIN` warns below 2.0 overall.
+- Completed and in-progress courses are locked, and auto-generate never
+  removes them even if unlocked.
+- Grade checks only fire once grades are entered. Grades are student-entered
+  and unofficial.
+
 ## How violations work
 
 Every check returns `{ ruleId, severity, message, courseId?, semesterId?,

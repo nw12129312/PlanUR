@@ -488,3 +488,19 @@ button:not(:disabled), [role="button"]:not([aria-disabled="true"]), summary { cu
   }
   @page { margin: 0.6in; size: letter; }
 }
+
+/* Course status (planned / in progress / completed). A left rule marks the
+   card so a finished semester reads at a glance without extra chips. */
+.course-card[data-status="completed"] { box-shadow: inset 3px 0 0 var(--good); }
+.course-card[data-status="in_progress"] { box-shadow: inset 3px 0 0 var(--accent); }
+.status-select {
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline dotted;
+  text-underline-offset: 3px;
+}
+.status-select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }

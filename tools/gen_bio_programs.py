@@ -103,7 +103,7 @@ def program(id_, name, url_page, groups, ulw, extra_notes=(), departments=('BIOL
         'notes': [
             'AP Biology (4/5) and IB Biology HL (6/7) earn general credit only - never major/minor requirements (encoded: apIbCreditExcluded).',
             'UR courses must fulfill at least half the concentration requirements; ancillary-field courses are exempt (encoded: minPctFromHomeInstitution + per-group ancillary flags).',
-            'Maintain a 2.0 GPA within the major, excluding allied/ancillary field courses (minMajorGPA - informational: the app does not track grades).',
+            'Maintain a 2.0 GPA within the major, excluding allied/ancillary field courses (encoded: minMajorGPA, checked against student-entered grades).',
             *extra_notes,
         ],
         'requirementGroups': groups,
