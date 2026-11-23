@@ -1,3 +1,29 @@
+# Node / Vite
 node_modules/
 dist/
+.vite/
+*.local
+
+# Local toolchain
 .toolchain/
+
+# Python build artifacts
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# Test coverage
+coverage/
+.coverage
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editor / OS files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
