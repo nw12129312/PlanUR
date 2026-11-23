@@ -1,7 +1,7 @@
 // dataStore: the single persistence module.
 //
 // This file is the ONLY place in the codebase allowed to touch
-// window.storage. Everything else - UI components, the constraint engine,
+// window.storage or localStorage. Everything else - UI components, the constraint engine,
 // auto-generate - goes through the functions exported here. The engine
 // additionally never imports this module: it stays pure and receives data as
 // parameters; only App-level code calls the store.
@@ -18,11 +18,15 @@
 // are plain JSON-serializable objects - no framework objects, class
 // instances, functions, or storage bookkeeping mixed into the Plan itself.
 //
-// window.storage is the artifact runtime's persistent per-user store (NOT
-// localStorage). The access layer feature-detects several method shapes,
-// awaits thenables, wraps every call in try/catch, and mirrors writes into
-// an in-memory Map so a storage outage degrades to a visible status banner
-// instead of data loss mid-session.
+// Backend: the artifact runtime's window.storage when the app is embedded as
+// an artifact, otherwise the browser's localStorage (keys prefixed with
+// "planur:"), so a plan survives reloads with no account. The access layer
+// feature-detects several method shapes, awaits thenables, wraps every call
+// in try/catch, and mirrors writes into an in-memory Map so a storage outage
+// degrades to a visible status banner instead of data loss mid-session.
+//
+// Signed-in users keep a local cache of their account's plans under their
+// own userId; src/storage/account.js syncs that cache with the cloud.
 
 import programsData from '../data/programs.json';
 import coursesData from '../data/courses.json';
@@ -57,9 +61,34 @@ let available = null; // unknown until first call
 let lastError = null;
 const listeners = new Set();
 
+const LS_PREFIX = 'planur:';
+
+// localStorage wrapped in the same getItem/setItem/removeItem shape.
+function localStorageAdapter(ls) {
+  return {
+    getItem: (k) => ls.getItem(LS_PREFIX + k),
+    setItem: (k, v) => ls.setItem(LS_PREFIX + k, v),
+    removeItem: (k) => ls.removeItem(LS_PREFIX + k),
+  };
+}
+
 function backend() {
   try {
-    if (typeof window !== 'undefined' && window.storage) return window.storage;
+    if (typeof window === 'undefined') return null;
+    if (window.storage) return window.storage;
+    if (window.localStorage) return localStorageAdapter(window.localStorage);
+  } catch {
+    /* ignore: localStorage access can throw (blocked site data) */
+  }
+  return null;
+}
+
+// Where plans are kept: 'artifact', 'browser', or null (session only).
+export function storageBackendKind() {
+  try {
+    if (typeof window === 'undefined') return null;
+    if (window.storage) return 'artifact';
+    if (window.localStorage) return 'browser';
   } catch {
     /* ignore */
   }
@@ -68,11 +97,11 @@ function backend() {
 
 async function call(names, args) {
   const s = backend();
-  if (!s) throw new Error('window.storage unavailable');
+  if (!s) throw new Error('browser storage unavailable');
   for (const n of names) {
     if (typeof s[n] === 'function') return await s[n](...args);
   }
-  throw new Error(`window.storage has none of: ${names.join(', ')}`);
+  throw new Error(`storage has none of: ${names.join(', ')}`);
 }
 
 function unwrapValue(res) {
@@ -242,4 +271,27 @@ export async function duplicatePlan(userId = LOCAL_USER, planId) {
   const copy = { ...src, id: makePlanId(), name: `${src.name} (copy)`, lastEdited: Date.now() };
   const { ok, index } = await savePlan(userId, copy);
   return { ok, plan: copy, index };
+}
+
+// Every stored plan body for a user (used when merging with an account).
+export async function loadAllPlans(userId = LOCAL_USER) {
+  const index = await listPlans(userId);
+  const plans = await Promise.all(index.map((e) => loadPlan(userId, e.id)));
+  return plans.filter(Boolean);
+}
+
+// Remove every plan a user has on this device. Returns { ok }.
+export async function clearPlans(userId = LOCAL_USER) {
+  const index = await listPlans(userId);
+  const results = await Promise.all(index.map((e) => kvRemove(planKey(userId, e.id))));
+  const okIndex = await kvRemove(indexKey(userId));
+  return { ok: okIndex && results.every(Boolean) };
+}
+
+// Small per-device preferences (e.g. which plan was open last).
+export async function getSetting(name) {
+  return kvGet(`settings:${name}`);
+}
+export async function setSetting(name, value) {
+  return kvSet(`settings:${name}`, value);
 }

@@ -1,0 +1,11 @@
+rules_version = '2';
+
+// Each signed-in user can read and write only their own plans:
+//   users/{uid}/plans/{planId}
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{uid}/plans/{planId} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+  }
+}
