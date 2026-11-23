@@ -44,8 +44,12 @@ CLAUSE_STOP_RE = re.compile(
     r'\bStudents (?:can|should|who|completing|taking)\b|'
     r'\*\*)',
     re.I)
+# Entry courses a placement test admits to directly ("MUSC 101, 110 or
+# permission of instructor (placement test)"): the listed courses are one way
+# in, not a requirement, so a plan may start at the course itself.
 HS_PLACEMENT_RE = re.compile(
-    r'precalculus course in high school|\bin high school\b|high[- ]school precalculus',
+    r'precalculus course in high school|\bin high school\b|high[- ]school precalculus|'
+    r'permission of (?:the )?instructor \(placement test\)',
     re.I)
 CALC1 = ['MATH 141', 'MATH 161', 'MATH 171']
 NEGATION_RE = re.compile(
@@ -66,7 +70,7 @@ BUILDS_ON_RE = re.compile(
 RECOMMEND_RE = re.compile(r'\brecommend|\bhelpful but not required\b', re.I)
 COREQ_RE = re.compile(
     r'([A-Z]{2,5}\s?\d{3}[A-Z]{0,2})\s*\(?\s*'
-    r'(?:may be (?:a )?co-?requisite|can be concurrent|may be concurrent)',
+    r'(?:may be (?:a )?co-?requisite|(?:can|may) be (?:taken )?concurrent(?:ly)?)',
     re.I)
 MUST_TAKE_RE = re.compile(
     r'(?:must (?:have )?(?:complete|take|finish)(?:d)?|successful completion of|'
@@ -74,7 +78,21 @@ MUST_TAKE_RE = re.compile(
     r'((?:[A-Z]{2,5}\s?\d{3}[A-Z]{0,2})(?:\s+and\s+[A-Z]{2,5}\s?\d{3}[A-Z]{0,2})*)',
     re.I)
 CONCURRENT_RE = re.compile(
-    r'(?:may |can )?(?:also )?be taken concurrently with\s+(.{0,80})',
+    r'(?:may |can )?(?:also )?be taken concurrently with\s+(.{0,80})|'
+    r'concurrent (?:enrollment|registration) (?:in|with)\s+(.{0,80})',
+    re.I)
+# Banner's structured line: "Prerequisite(s): Successful completion of the
+# following is required: CHE 243 PHYS 113, 113P, 121, 121P or 141 MATH 165".
+# Juxtaposed codes are separate requirements; commas inside one requirement
+# usually list alternatives, so the generic comma-means-AND rule misreads it.
+BANNER_RE = re.compile(r'following is required\s*:?\s*(.*)', re.I | re.S)
+BANNER_TOKEN_RE = re.compile(
+    r'\b(?-i:([A-Z]{2,5}))\s?(\d{3}[A-Z]{0,2})\b|(?<![A-Z0-9])(\d{3}[A-Z]{0,2})\b|'
+    r'(\()|(\))|(,)|(/)|\b(or|and)\b',
+    re.I)
+CONCURRENT_PAREN_RE = re.compile(
+    r'\(([^()]*?)\bcan be (?:taken )?concurrent(?:ly)?(?: registered)?\s*\)|'
+    r'\(([^()]*?)\bcan be concurrently registered\s*\)',
     re.I)
 
 
@@ -106,7 +124,10 @@ def normalize_code(dept, num, catalog_codes=None):
     return None  # not in catalog — drop rather than invent a stub
 
 
-def codes_in(text, self_code, catalog_codes=None):
+def codes_in(text, self_code, catalog_codes=None, spans=None):
+    """Codes named in text, in order. `spans`, if given, collects each
+    code's character offsets so callers can tell which clause named it
+    (\"BIO 110 or 112\" names BIOL 110 and BIOL 112 without spelling either)."""
     out, seen = [], set()
     last_dept = None
     for m in TOKEN_RE.finditer(text or ''):
@@ -117,7 +138,11 @@ def codes_in(text, self_code, catalog_codes=None):
         else:
             continue
         code = normalize_code(last_dept, num, catalog_codes)
-        if not code or code == self_code or code in seen:
+        if not code or code == self_code:
+            continue
+        if spans is not None:
+            spans.setdefault(code, []).append(m.start())
+        if code in seen:
             continue
         seen.add(code)
         out.append(code)
@@ -180,14 +205,46 @@ def split_top_level_commas(text):
 def concurrent_codes(text, self_code, catalog_codes=None):
     skip = set()
     for m in CONCURRENT_RE.finditer(text or ''):
-        chunk = re.split(r'\s+if\s+|[.;]', m.group(1), maxsplit=1)[0]
+        chunk = re.split(r'\s+if\s+|[.;]', m.group(1) or m.group(2), maxsplit=1)[0]
         skip.update(codes_in(chunk, self_code, catalog_codes))
     for m in COREQ_RE.finditer(text or ''):
         skip.update(codes_in(m.group(1), self_code, catalog_codes))
     return skip
 
 
-def to_cnf(window, codes):
+# a parenthesized clause holding a course number and its own and/or
+NESTED_LOGIC_RE = re.compile(
+    r'\([^()]*\d{3}[^()]*\b(?:and|or)\b[^()]*\)|\([^()]*\b(?:and|or)\b[^()]*\d{3}[^()]*\)',
+    re.I)
+
+
+def _codes_within(text, start, end, codes, spans):
+    """Codes named between window offsets start and end."""
+    part = text[start:end]
+    compact = part.upper().replace(' ', '')
+    out = []
+    for c in codes:
+        pos = (spans or {}).get(c)
+        if pos is not None:
+            if any(start <= x < end for x in pos):
+                out.append(c)
+        elif c.replace(' ', '') in compact:
+            out.append(c)
+    return out
+
+
+def _part_offsets(window, parts):
+    offs, at = [], 0
+    for part in parts:
+        i = window.find(part, at)
+        if i < 0:
+            i = at
+        offs.append((i, i + len(part)))
+        at = i + len(part)
+    return offs
+
+
+def to_cnf(window, codes, spans=None):
     """AND of OR-groups from a clause that names `codes` in order."""
     if not codes:
         return []
@@ -200,10 +257,19 @@ def to_cnf(window, codes):
         # "MATH 143, 162, or MATH 172" is one OR group, not AND.
         if any(re.match(r'or\b', p.strip(), re.I) for p in top):
             return [list(codes)]
+        # "MATH 172, MATH 200 or MATH 235": a list of single codes whose last
+        # item is "X or Y" is one OR group ("CHEM 131, CHEM 132 or
+        # equivalent" stays a sequence).
+        offs = _part_offsets(window, top)
+        per_part = [_codes_within(window, a, b, codes, spans) for a, b in offs]
+        if (all(len(pc) == 1 for pc in per_part[:-1]) and per_part[-1] and
+                re.match(r'(?:[A-Z]{2,5}\s?)?\d{3}[A-Z]{0,2}\s+or\s+(?:[A-Z]{2,5}\s?)?\d{3}',
+                         top[-1].strip(), re.I) and
+                not any(re.search(r'\b(?:and|or)\b', p, re.I) for p in top[:-1])):
+            return [list(codes)]
         groups = []
-        for part in top:
-            compact = part.upper().replace(' ', '')
-            pcodes = [c for c in codes if c.replace(' ', '') in compact]
+        for part, (a, b) in zip(top, _part_offsets(window, top)):
+            pcodes = _codes_within(window, a, b, codes, spans)
             if not pcodes:
                 continue
             if re.search(r'\bor\b', part, re.I):
@@ -219,12 +285,18 @@ def to_cnf(window, codes):
         return [[c] for c in codes]
     if has_or and not has_and:
         return [list(codes)]
+    if has_and and has_or and NESTED_LOGIC_RE.search(window):
+        # "(MATH 173) or (MATH 164 and MATH 235)": alternatives of
+        # conjunctions do not fit one CNF row; one OR group never blocks a
+        # valid plan.
+        return [list(codes)]
     if has_and and has_or:
         # "A and B or C" is ambiguous; split on 'and' then 'or' inside each arm.
-        arms = re.split(r'\band\b|&', window, flags=re.I)
+        cuts = [0] + [x for m in re.finditer(r'\band\b|&', window, flags=re.I)
+                      for x in (m.start(), m.end())] + [len(window)]
         groups = []
-        for arm in arms:
-            arm_codes = [c for c in codes if c.split()[0] in arm.upper() or c.replace(' ', '') in arm.upper().replace(' ', '')]
+        for a, b in zip(cuts[::2], cuts[1::2]):
+            arm_codes = _codes_within(window, a, b, codes, spans)
             if not arm_codes:
                 continue
             groups.append(arm_codes)
@@ -244,10 +316,148 @@ def entry_text(entry):
     return '\n'.join(parts)
 
 
+def _banner_tokens(text, self_code, catalog_codes):
+    toks, last_dept = [], None
+    for m in BANNER_TOKEN_RE.finditer(text):
+        if m.group(1) or m.group(3):
+            explicit = bool(m.group(1))
+            if explicit:
+                last_dept, num = m.group(1).upper(), m.group(2)
+            elif last_dept:
+                num = m.group(3)
+            else:
+                continue
+            code = normalize_code(last_dept, num, catalog_codes)
+            # keep a placeholder for unknown or self codes so juxtaposition
+            # boundaries still fall in the right place
+            toks.append(('code', None if code == self_code else code, explicit))
+        elif m.group(4):
+            toks.append(('(',))
+        elif m.group(5):
+            toks.append((')',))
+        elif m.group(6):
+            toks.append(('op', ','))
+        elif m.group(7):
+            toks.append(('op', 'or'))
+        else:
+            toks.append(('op', m.group(8).lower()))
+    return toks
+
+
+def _banner_segments(toks):
+    """Split where a requirement ends and the next begins with no operator."""
+    segs, cur, depth = [], [], 0
+    for t in toks:
+        starts = t[0] == '(' or (t[0] == 'code' and t[2])
+        if cur and depth == 0 and starts and cur[-1][0] in ('code', ')'):
+            segs.append(cur)
+            cur = []
+        if t[0] == '(':
+            depth += 1
+        elif t[0] == ')':
+            depth = max(0, depth - 1)
+        cur.append(t)
+    if cur:
+        segs.append(cur)
+    return segs
+
+
+def _strip_parens(toks):
+    while len(toks) >= 2 and toks[0][0] == '(' and toks[-1][0] == ')':
+        depth = 0
+        for i, t in enumerate(toks):
+            depth += t[0] == '('
+            depth -= t[0] == ')'
+            if depth == 0 and i < len(toks) - 1:
+                return toks
+        toks = toks[1:-1]
+    return toks
+
+
+def _segment_cnf(toks):
+    toks = _strip_parens(toks)
+    codes = [t[1] for t in toks if t[0] == 'code' and t[1]]
+    if not codes:
+        return []
+    depth, top_ops = 0, set()
+    for t in toks:
+        if t[0] == '(':
+            depth += 1
+        elif t[0] == ')':
+            depth -= 1
+        elif t[0] == 'op' and depth == 0:
+            top_ops.add(t[1])
+    if 'and' in top_ops and 'or' not in top_ops:
+        groups, part, depth = [], [], 0
+        for t in toks + [('op', 'and')]:
+            if t[0] == '(':
+                depth += 1
+            elif t[0] == ')':
+                depth -= 1
+            if t[0] == 'op' and t[1] in ('and', ',') and depth == 0:
+                groups.extend(_segment_cnf(part))
+                part = []
+            else:
+                part.append(t)
+        return groups
+    if 'or' in top_ops:
+        # "A or B, C or D, E" lists alternative sequences that a CNF cannot
+        # state faithfully; one OR group never blocks a valid plan.
+        return [list(dict.fromkeys(codes))]
+    return [[c] for c in dict.fromkeys(codes)]
+
+
+def parse_banner(text, course_id, catalog_codes=None):
+    """CNF for Banner's 'Successful completion of the following is required'."""
+    m = BANNER_RE.search(text or '')
+    if not m:
+        return None
+    body = m.group(1).split(' | ')[0]
+    body = re.split(r'\bNot open to\b', body, maxsplit=1, flags=re.I)[0]
+    body = re.sub(r'\bwith an? [A-F][+-]? or better\b', ' ', body, flags=re.I)
+    # "(MATH 281 can be taken concurrently)" names the coreqs; a bare
+    # "(can be taken concurrently)" applies to the requirement just before it.
+    conc_codes, conc_marks = set(), []
+    def mark(mm):
+        inner = mm.group(1) if mm.group(1) is not None else (mm.group(2) or '')
+        named = codes_in(inner, course_id, catalog_codes)
+        if named:
+            conc_codes.update(named)
+            return ' '
+        conc_marks.append(True)
+        return ' \u2020 '
+    body = CONCURRENT_PAREN_RE.sub(mark, body)
+    pieces = body.split('\u2020')
+    groups = []
+    for i, piece in enumerate(pieces):
+        segs = _banner_segments(_banner_tokens(piece, course_id, catalog_codes))
+        for j, seg in enumerate(segs):
+            concurrent_tail = i < len(pieces) - 1 and j == len(segs) - 1
+            if concurrent_tail:
+                continue
+            for g in _segment_cnf(seg):
+                if all(c in conc_codes for c in g):
+                    continue
+                if g not in groups:
+                    groups.append(g)
+    if not groups:
+        return None
+    return {
+        'prereqs': groups,
+        'verified': True,
+        'note': 'Extracted from the CDCS registration prerequisite line.',
+        'source': 'CDCS (Registrar) Public Notes / description, Fall 2025–Fall 2026',
+        'quote': m.group(0).strip()[:240],
+    }
+
+
 def parse_description(desc, course_id, catalog_codes=None):
     """Return {prereqs, verified, note, quote} or None."""
     if not desc:
         return None
+    banner = parse_banner(desc, course_id, catalog_codes)
+    if banner:
+        return banner
     if NEGATION_RE.search(desc) and not LABELED_RE.search(desc):
         return None
     if FORWARD_RE.search(desc) and not LABELED_RE.search(desc):
@@ -277,7 +487,8 @@ def parse_description(desc, course_id, catalog_codes=None):
     groups, quotes = [], []
     seen_group = set()
     for kind, window in windows:
-        codes = codes_in(window, course_id, catalog_codes)
+        spans = {}
+        codes = codes_in(window, course_id, catalog_codes, spans)
         if kind == 'labeled':
             codes = expand_calc1_equivalent(window, codes, catalog_codes)
         if not codes:
@@ -286,7 +497,7 @@ def parse_description(desc, course_id, catalog_codes=None):
         cnf_window = window
         if kind == 'labeled' and re.search(r'\bor equivalent\b', window, re.I):
             cnf_window = window if re.search(r'\bor\b', window, re.I) else (window + ' or equivalent')
-        for g in to_cnf(cnf_window, codes):
+        for g in to_cnf(cnf_window, codes, spans):
             # Drop a concurrent course only when it is a standalone AND
             # requirement (CSC 172 + MATH 150 coreq). Keep it when it is
             # one alternative in an OR group (PHYS 113: 141 or 161 or 171).
@@ -328,8 +539,31 @@ def parse_catalog(catalog):
             if not parsed:
                 parsed = parse_description(e.get('restrictions') or '', cid, catalog)
         if parsed:
-            out[cid] = parsed
+            out[cid] = widen_with_banner(parsed, e, cid, catalog)
     return out
+
+
+def widen_with_banner(parsed, entry, cid, catalog):
+    """Add the alternatives Banner's registration line lists to the matching
+    Public Notes requirement: notes say "PHY 113, MTH 143" for CHEM 252, and
+    Banner accepts PHYS 121/141 and MATH 162/172 for the same slots. Notes
+    keep the structure, since they sometimes accept more than Banner does
+    (PHYS 113 for PHYS 122)."""
+    banner = None
+    for key in ('restrictions', 'public_notes', 'desc'):
+        banner = parse_banner(entry.get(key) or '', cid, catalog)
+        if banner:
+            break
+    if not banner or banner is parsed or parsed['note'] == banner['note']:
+        return parsed
+    groups = []
+    for g in parsed['prereqs']:
+        ng = list(g)
+        for bg in banner['prereqs']:
+            if any(c in ng for c in bg):
+                ng.extend(c for c in bg if c not in ng)
+        groups.append(ng)
+    return {**parsed, 'prereqs': groups}
 
 
 def _self_test():
@@ -414,6 +648,53 @@ def _self_test():
         'BIOL 111L': {'terms_seen': ['spring']},
     })
     assert d['BIOL 190']['prereqs'] == [['BIOL 110'], ['BIOL 111L']], d
+    phys = {c: {} for c in ['PHYS 113', 'PHYS 114', 'PHYS 121', 'PHYS 122', 'PHYS 123',
+                            'PHYS 141', 'PHYS 142', 'PHYS 143', 'MATH 281', 'CHE 243',
+                            'PHYS 113P', 'PHYS 121P', 'MATH 165', 'CHEM 132', 'MATH 161',
+                            'MATH 142', 'MATH 171', 'MATH 143', 'MATH 162', 'MATH 172']}
+    # Banner line: alternative sequences collapse to one OR group, and the
+    # "(can be taken concurrently)" requirement before it is a coreq.
+    d = parse_description(
+        'Prerequisite(s): Successful completion of the following is required: PHYS 113 or '
+        'PHYS 121, PHYS 114 or 122, 123 or PHYS 141, 142, 143 MATH 281 (can be taken concurrently)',
+        'PHYS 217', set(phys) | {'PHYS 217'})
+    assert d['prereqs'] == [['PHYS 113', 'PHYS 121', 'PHYS 114', 'PHYS 122', 'PHYS 123',
+                             'PHYS 141', 'PHYS 142', 'PHYS 143']], d
+    # juxtaposed codes are separate requirements; commas inside one list OR
+    d = parse_description(
+        'Prerequisite(s): Successful completion of the following is required: CHE 243 '
+        'PHYS 113, 113P, 121, 121P or 141 MATH 165',
+        'CHE 244', set(phys) | {'CHE 244'})
+    assert d['prereqs'] == [['CHE 243'], ['PHYS 113', 'PHYS 113P', 'PHYS 121', 'PHYS 121P', 'PHYS 141'],
+                            ['MATH 165']], d
+    d = parse_description(
+        'Prerequisite(s): Successful completion of the following is required: CHEM 132 '
+        '(MATH 161, MATH 142 OR MATH 171) AND (MATH 143, MATH 162 OR MATH 172) PHYS 113, '
+        'PHYS 113P, PHYS 121, PHYS 121P OR PHYS 141 (Can be concurrently registered)',
+        'CHE 113', set(phys) | {'CHE 113'})
+    assert d['prereqs'] == [['CHEM 132'], ['MATH 161', 'MATH 142', 'MATH 171'],
+                            ['MATH 143', 'MATH 162', 'MATH 172']], d
+    # "completion or concurrent enrollment" is a coreq
+    d = parse_description(
+        'Prerequisites: Completion or concurrent enrollment in CHEM 131 or equivalent.',
+        'BIOL 110L', set(cat) | {'BIOL 110L'})
+    assert d is None, d
+    # department carried onto bare numbers when assigning codes to clauses
+    d = parse_catalog({
+        'BIOL 210': {'public_notes': 'Prerequisites: BIO 110 or 112 and BIO 111 or 113.'},
+        'BIOL 110': {}, 'BIOL 112': {}, 'BIOL 111': {}, 'BIOL 113': {},
+    })
+    assert d['BIOL 210']['prereqs'] == [['BIOL 110', 'BIOL 112'], ['BIOL 111', 'BIOL 113']], d
+    # Banner alternatives widen a terse Public Notes requirement
+    d = parse_catalog({
+        'CHEM 252': {
+            'public_notes': 'Prerequisites: first semester physics - PHY 113, Calculus - MTH143.',
+            'restrictions': 'Prerequisite(s): Successful completion of the following is required : '
+                            'PHYS 113 OR PHYS 121 OR PHYS 141 with a C- or better MATH 143 OR MATH 162',
+        },
+        **phys,
+    })
+    assert d['CHEM 252']['prereqs'] == [['PHYS 113', 'PHYS 121', 'PHYS 141'], ['MATH 143', 'MATH 162']], d
     print('parse_cdcs_prereqs self-test ok')
 
 

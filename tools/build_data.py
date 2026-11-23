@@ -117,6 +117,29 @@ def expand_intro_programming_prereqs(prereqs):
         out.append(ng)
     return out
 
+# Catalog alternatives a prerequisite naming one member also accepts: the
+# first-year organic track (CHEM 171/172) stands in for CHEM 203/204, and
+# BIOL 198 for BIOL 190 (CDCS writes "BIO 190/198"), and MUSC 110 for MUSC 101
+# (the two entry points to the theory sequence). Each pair is also an
+# equivalency group, so a plan still takes only one of them.
+PREREQ_EQUIVALENTS = [
+    ('CHEM 203', 'CHEM 171'),
+    ('CHEM 204', 'CHEM 172'),
+    ('BIOL 190', 'BIOL 198'),
+    ('MUSC 101', 'MUSC 110'),
+]
+
+def expand_equivalent_prereqs(prereqs):
+    out = []
+    for g in prereqs:
+        ng = list(g)
+        for pair in PREREQ_EQUIVALENTS:
+            if any(c in ng for c in pair):
+                ng.extend(c for c in pair if c not in ng)
+        if not any(set(ng) == set(g2) for g2 in out):
+            out.append(ng)
+    return out
+
 def prereq_fields(code):
     cur = CURATED_PREREQS.get(code)
     parsed = CDCS_PREREQS.get(code)
@@ -127,7 +150,8 @@ def prereq_fields(code):
     else:
         src = cur or {}
     return {
-        'prereqs': expand_intro_programming_prereqs(src.get('prereqs', [])),
+        'prereqs': expand_equivalent_prereqs(
+            expand_intro_programming_prereqs(src.get('prereqs', []))),
         'prereqsVerified': src.get('verified', False),
         'prereqNote': src.get('note'),
         'prereqSource': src.get('source'),
@@ -835,6 +859,20 @@ CROSS_LIST_OVERRIDES = [
     },
 ]
 
+# Pairs the automatic passes link that a program counts as two separate
+# courses. Each needs a program page naming both codes as distinct
+# requirements.
+CROSS_LIST_EXCLUSIONS = [
+    {
+        'codes': ['CTSC 299', 'CTSC 299W'],
+        'why': 'The Clinical and Translational Sciences BS requires "both of the '
+               'following: CTSC 299W ... CTSC 299", a two-semester seminar. CDCS '
+               'co-locates the sections, but the courses are taken in different '
+               'semesters and both count.',
+    },
+]
+_EXCLUDED_PAIRS = {tuple(sorted(e['codes'])) for e in CROSS_LIST_EXCLUSIONS}
+
 def _norm_title(t):
     t = re.sub(r'\s+', ' ', (t or '').lower()).strip()
     return re.sub(r'[^a-z0-9 +&/-]', '', t)
@@ -853,6 +891,8 @@ def attach_cross_listings(courses, catalog):
 
     def union(a, b):
         if a not in parent or b not in parent or a == b:
+            return
+        if tuple(sorted((a, b))) in _EXCLUDED_PAIRS:
             return
         ra, rb = find(a), find(b)
         if ra != rb:

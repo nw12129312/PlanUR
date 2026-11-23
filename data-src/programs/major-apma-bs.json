@@ -75,7 +75,9 @@
           "CSC 171"
         ]
       },
-      "sourceQuote": "Basic computing requirement: students not choosing the computer science track above must also complete the basic computing requirement by taking either CSC 161 or 171."
+      "sourceQuote": "Basic computing requirement: students not choosing the computer science track above must also complete the basic computing requirement by taking either CSC 161 or 171.",
+      "allowReuse": true,
+      "note": "CSC 171 taken for the computer science track also satisfies this requirement, so it may be counted twice."
     },
     {
       "id": "core",
