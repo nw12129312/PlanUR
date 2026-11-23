@@ -154,11 +154,9 @@ export function CourseSearch({ data, plan, selectedPrograms, selectedClusters, p
             <>
               {sections.map((g) => (
                 // Equivalency groups are a decision point, not a filter result,
-                // so they get a full accent-edged block rather than a tinted
-                // box. Horizontal padding is kept to a hairline + 8px because
-                // every pixel here comes off the course titles inside.
+                // so they sit on the pale ground like a semester does.
                 <section key={g.id}
-                  className="rounded-lg border border-line bg-surface-2/60 p-1.5">
+                  className="rounded-lg bg-ground p-1.5">
                   <header className="flex items-baseline justify-between gap-2 px-0.5 pb-1" title={g.description || ''}>
                     <span className="min-w-0 truncate text-[13px] font-semibold text-ink">{g.name}</span>
                     <span className="shrink-0 text-xs text-ink-3">pick one path</span>
