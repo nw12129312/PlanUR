@@ -4,6 +4,7 @@ import { CourseCard } from './CourseCard.jsx';
 import { Button, SevChip, Select, TextInput, IconButton, Panel, SearchSelect, Tag } from './bits.jsx';
 import { ruleInfo } from '../engine/rules.js';
 import { ACADEMIC_YEAR_NAMES, availableSummerSlots, groupIntoYears } from '../engine/model.js';
+import { formatGpa, getCourseGrade, getCourseStatus, termGpa } from '../engine/grades.js';
 import {
   KIND_LABEL, emptyExamTable, examById, previewExamAdd, transferCreditGroups,
 } from '../engine/examCredit.js';
@@ -43,8 +44,10 @@ function MoveHereSlot({ empty, label, onDrop }) {
   );
 }
 
-function SemesterCard({ sem, data, plan, onDropOnCourse, onMoveToSemester, onRemoveCourse, onToggleLock, violationsByCourse, semViolations, courseUses, active, onSetActive, onRemoveSemester }) {
+function SemesterCard({ sem, data, plan, onDropOnCourse, onMoveToSemester, onRemoveCourse, onToggleLock, onSetStatus, onSetGrade, onSetSemesterStatus, violationsByCourse, semViolations, courseUses, active, onSetActive, onRemoveSemester }) {
   const credits = sem.courseIds.reduce((a, cid) => a + (data.courses[cid]?.credits ?? 4), 0);
+  const term = termGpa(plan, data, sem);
+  const anyPlanned = sem.courseIds.some((cid) => getCourseStatus(plan, cid) === 'planned');
 
   return (
     <section
@@ -66,6 +69,21 @@ function SemesterCard({ sem, data, plan, onDropOnCourse, onMoveToSemester, onRem
           {active && <span className="ml-1.5 align-middle text-xs font-medium text-accent">(adding here)</span>}
         </button>
         <span className="flex-1" />
+        {term.gpa != null && (
+          <span className="tnum text-xs font-semibold text-ink-2" title={`Term GPA over ${term.credits} letter-graded credit hours (student-entered)`}>
+            GPA {formatGpa(term.gpa)}
+          </span>
+        )}
+        {onSetSemesterStatus && anyPlanned && sem.courseIds.length > 0 && (
+          <button
+            type="button"
+            onClick={() => onSetSemesterStatus(sem.id, 'completed')}
+            title={`Mark every course in ${sem.label} as completed`}
+            className="reveal-on-hover rounded px-1 text-xs font-medium text-ink-3 hover:text-good group-hover/sem:opacity-100 group-focus-within/sem:opacity-100"
+          >
+            Mark completed
+          </button>
+        )}
         <span className={`tnum text-xs ${credits > 18 || (sem.term !== 'summer' && credits > 0 && credits < 12) ? 'text-warn' : 'text-ink-3'}`}>
           {credits} cr
         </span>
@@ -90,6 +108,10 @@ function SemesterCard({ sem, data, plan, onDropOnCourse, onMoveToSemester, onRem
               course={c}
               placed
               meta={(plan.courseMeta || {})[cid]}
+              status={getCourseStatus(plan, cid)}
+              grade={getCourseGrade(plan, cid)}
+              onSetStatus={onSetStatus && ((s) => onSetStatus(cid, s))}
+              onSetGrade={onSetGrade && ((g) => onSetGrade(cid, g))}
               onToggleLock={() => onToggleLock(cid)}
               uses={courseUses.get(cid) || []}
               shortUses={plan.majorIds.length + plan.minorIds.length <= 1}
@@ -363,7 +385,7 @@ function AddSemesterControls({ onAddSemester, onAddSummer, summerSlots }) {
   );
 }
 
-export function SemesterGrid({ toolbar, data, plan, activeSemesterId, onSetActive, onDropOnCourse, onMoveToSemester, onRemoveCourse, onToggleLock, onAddSemester, onAddSummer, onRemoveSemester, violationsByCourse, violationsBySemester, courseUses, onAddTransfer, onAddExamCredit, onRemoveExamCredit, onRemoveTransfer, auditOpen, onToggleAudit }) {
+export function SemesterGrid({ toolbar, data, plan, activeSemesterId, onSetActive, onDropOnCourse, onMoveToSemester, onRemoveCourse, onToggleLock, onSetStatus, onSetGrade, onSetSemesterStatus, onAddSemester, onAddSummer, onRemoveSemester, violationsByCourse, violationsBySemester, courseUses, onAddTransfer, onAddExamCredit, onRemoveExamCredit, onRemoveTransfer, auditOpen, onToggleAudit }) {
   const years = groupIntoYears(plan.semesters);
   const summerSlots = availableSummerSlots(plan);
 
@@ -430,6 +452,9 @@ export function SemesterGrid({ toolbar, data, plan, activeSemesterId, onSetActiv
                   onMoveToSemester={onMoveToSemester}
                   onRemoveCourse={onRemoveCourse}
                   onToggleLock={onToggleLock}
+                  onSetStatus={onSetStatus}
+                  onSetGrade={onSetGrade}
+                  onSetSemesterStatus={onSetSemesterStatus}
                   onRemoveSemester={() => onRemoveSemester(sem.id)}
                   violationsByCourse={violationsByCourse}
                   semViolations={violationsBySemester.get(sem.id) || []}

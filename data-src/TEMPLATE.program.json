@@ -13,7 +13,7 @@
     "  breadth_outside_track {type, n, trackGroupId}                       - n courses from tracks other than the chosen one",
     "Course codes must match the catalog form: 'DEPT NNN' or 'DEPT NNNW' (e.g. 'CSC 172', 'PSCI 202W').",
     "If a referenced course is missing from src/data/courses.json, add it there too (or it will be treated as unplaceable).",
-    "Schema extensions (added for the Biology batch): apIbCreditExcluded (AP/IB-bucket courses never fill this program's groups), minPctFromHomeInstitution (warns when transfer credit exceeds the allowed share of non-ancillary requirements; mark exempt groups with \"ancillary\": true), minMajorGPA (informational - the app does not track grades). Groups may also set \"allowReuse\": true (course may satisfy this group AND others in the same program) and rules may use \"optionsRef\" for shared option lists."
+    "Schema extensions (added for the Biology batch): apIbCreditExcluded (AP/IB-bucket courses never fill this program's groups), minPctFromHomeInstitution (warns when transfer credit exceeds the allowed share of non-ancillary requirements; mark exempt groups with \"ancillary\": true), minMajorGPA (checked against student-entered grades; ancillary groups are excluded). Groups may also set \"allowReuse\": true (course may satisfy this group AND others in the same program) and rules may use \"optionsRef\" for shared option lists."
   ],
   "id": "major-xxxx-ba",
   "type": "major",

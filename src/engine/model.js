@@ -1,5 +1,7 @@
 // Plan model helpers. Pure functions; no UI or storage imports.
 
+import { earnsNoCredit } from './grades.js';
+
 export function newPlan(name = 'Untitled plan', startYear = new Date().getFullYear()) {
   const semesters = [];
   for (let i = 0; i < 8; i++) {
@@ -22,7 +24,9 @@ export function newPlan(name = 'Untitled plan', startYear = new Date().getFullYe
     semesters,
     transfer: [], // [{courseId, kind: 'ap'|'ib'|'transfer', examId?, examIds?}]
     transferExams: [], // [{examId, score, choice?}] from the CCAS AP handbook
-    // per placed course: { source: 'manual'|'auto', locked: boolean, reason?: string }
+    // per placed course: { source: 'manual'|'auto', locked: boolean, reason?: string,
+    //   status?: 'planned'|'in_progress'|'completed', grade?: 'A'…'E'|'P'|'S'|'F'|'W'|'I'|'XE'|'XF' }
+    // (status/grade helpers live in grades.js; absent status = planned)
     courseMeta: {},
     // leftover from the retired same-department numbering rule; ignored
     sequencingOverrides: [],
@@ -199,13 +203,16 @@ export function buildContext(plan, data) {
   const majors = plan.majorIds.map((id) => programById.get(id)).filter(Boolean);
   const minors = plan.minorIds.map((id) => programById.get(id)).filter(Boolean);
   const selClusters = plan.clusterIds.map((id) => clusterById.get(id)).filter(Boolean);
+  const creditBearing = plannedCourseIds(plan).filter((cid) => !earnsNoCredit(plan, cid));
   return {
     plan, courses, policy,
     programById, clusterById,
     majors, minors, selClusters,
     course: (id) => courses[id],
-    placed: plannedCourseIds(plan),
-    placedSet: new Set(plannedCourseIds(plan)),
+    // A completed course with a failing / no-credit mark (E, F, W, I…) earns
+    // no credit, so it never fills a requirement or counts toward total hours.
+    placed: creditBearing,
+    placedSet: new Set(creditBearing),
   };
 }
 

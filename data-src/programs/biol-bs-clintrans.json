@@ -27,7 +27,7 @@
  "notes": [
   "AP Biology (4/5) and IB Biology HL (6/7) earn general credit only - never major/minor requirements (encoded: apIbCreditExcluded).",
   "UR courses must fulfill at least half the concentration requirements; ancillary-field courses are exempt (encoded: minPctFromHomeInstitution + per-group ancillary flags).",
-  "Maintain a 2.0 GPA within the major, excluding allied/ancillary field courses (minMajorGPA - informational: the app does not track grades).",
+  "Maintain a 2.0 GPA within the major, excluding allied/ancillary field courses (encoded: minMajorGPA, checked against student-entered grades).",
   "Eight full-credit required courses (CTSC 299 spans two semesters), one 1-credit lab, and four electives; satisfies the natural science division of the Rochester Curriculum per the page.",
   "Declaration requires three of PHLT 103 / STAT 180 / CHEM 203 / BIOL 198 (or 190) / BIOL 204 with a 2.0 average; S/F-graded courses cannot apply.",
   "Transfer credit must be approved BEFORE taking courses elsewhere, including ancillary requirements."
