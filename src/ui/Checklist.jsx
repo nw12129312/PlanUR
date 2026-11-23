@@ -8,6 +8,8 @@ import { describeOptionAction } from '../engine/swapRequirement.js';
 import { coversCourse } from '../engine/crossList.js';
 import { ruleInfo } from '../engine/rules.js';
 import { resolveRequiredCredits } from '../engine/constraints.js';
+import { WhatIfPanel, ClosestPanel } from './WhatIf.jsx';
+import { creditsByStatus, cumulativeGpa, formatGpa, programGpa } from '../engine/grades.js';
 
 // How many options to render before collapsing the tail. ATHS electives has 92
 // and LACX 73 — rendering those in full would swamp the rail.
@@ -290,6 +292,24 @@ function RequirementRow({ group: g, program, data, placedSet, onAutoFill, onPick
   );
 }
 
+// GPA in the courses counted for this program, against its minimum when the
+// program sets one. Hidden until at least one counted course has a grade.
+function ProgramGpaLine({ program, result, data, plan }) {
+  const g = programGpa(plan, data, program, result);
+  if (g.gpa == null) return null;
+  const min = program.minMajorGPA;
+  const below = min && g.gpa < min;
+  const noun = program.type === 'minor' ? 'Minor' : 'Major';
+  return (
+    <p className="tnum mt-0.5 text-xs text-ink-2"
+      title={`Letter-graded courses counted toward this program${(program.requirementGroups || []).some((x) => x.ancillary) ? ', excluding allied/ancillary groups' : ''}. Student-entered and unofficial.`}>
+      {noun} GPA <span className={`font-semibold ${below ? 'text-bad' : 'text-ink'}`}>{formatGpa(g.gpa)}</span>
+      {min ? <span className="text-ink-3"> · minimum {min.toFixed(1)}</span> : null}
+      <span className="text-ink-3"> · {g.graded.length} graded</span>
+    </p>
+  );
+}
+
 function ProgramCard({ program, result, data, plan, onAutoFill, placedSet, onPickOption, onChooseTrack, onSwapProgram }) {
   if (!program) return null;
   if (result.needsData) {
@@ -325,6 +345,7 @@ function ProgramCard({ program, result, data, plan, onAutoFill, placedSet, onPic
           ? <span className="inline-flex items-center gap-0.5 text-xs font-semibold text-good"><Icon name="check" size="sm" /> Done</span>
           : <span className="tnum text-xs text-ink-3">{result.percent}%</span>}
       </div>
+      <ProgramGpaLine program={program} result={result} data={data} plan={plan} />
       {family && (
         <FamilyPicker
           family={family}
@@ -415,13 +436,11 @@ function ClusterCard({ cluster, result }) {
   );
 }
 
-export function Checklist({ data, plan, progress, violations, clustersNeeded, onAutoFill, onHide, placedSet, onPickOption, onChooseTrack, onSwapProgram }) {
+export function Checklist({ data, plan, progress, violations, clustersNeeded, onAutoFill, onHide, placedSet, onPickOption, onChooseTrack, onSwapProgram, onWhatIfApply, onAddMinor, onAddCluster }) {
   const required = resolveRequiredCredits(plan, data);
-  const placedIds = [...new Set([
-    ...plan.semesters.flatMap((s) => s.courseIds),
-    ...plan.transfer.map((t) => t.courseId),
-  ])];
-  const planned = placedIds.reduce((a, cid) => a + (data.courses[cid]?.credits ?? 4), 0);
+  const byStatus = creditsByStatus(plan, data);
+  const planned = byStatus.completed + byStatus.in_progress + byStatus.planned;
+  const overall = cumulativeGpa(plan, data);
   const pwr = progress.pwr;
 
   const errors = violations.filter((x) => x.severity === 'error');
@@ -444,6 +463,24 @@ export function Checklist({ data, plan, progress, violations, clustersNeeded, on
             <span className="text-[13px] text-ink-3">/ {required} credit hours</span>
           </div>
           <div className="mt-1"><Meter have={planned} need={required} complete={planned >= required} /></div>
+          {(byStatus.completed > 0 || byStatus.in_progress > 0) && (
+            <p className="tnum mt-1 text-xs text-ink-2">
+              <span className="font-semibold text-good">{byStatus.completed}</span> completed
+              <span className="text-ink-3"> · </span>
+              <span className="font-semibold text-accent">{byStatus.in_progress}</span> in progress
+              <span className="text-ink-3"> · </span>
+              <span className="font-semibold text-ink">{byStatus.planned}</span> planned
+              {byStatus.noCredit > 0 && (
+                <><span className="text-ink-3"> · </span><span className="font-semibold text-warn">{byStatus.noCredit}</span> no credit</>
+              )}
+            </p>
+          )}
+          {overall.gpa != null && (
+            <p className="tnum mt-0.5 text-xs text-ink-2" title="Letter-graded UR courses only; transfer, AP, P/S and W don't count. Student-entered and unofficial.">
+              Cumulative GPA <span className={`font-semibold ${overall.gpa < 2 ? 'text-bad' : 'text-ink'}`}>{formatGpa(overall.gpa)}</span>
+              <span className="text-ink-3"> over {overall.credits} graded cr</span>
+            </p>
+          )}
           <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1">
             {pwr.satisfied
               ? <Tag tone="good" icon="check" title={`Satisfied via ${pwr.via.join(' + ')}`}>PWR</Tag>
@@ -471,6 +508,11 @@ export function Checklist({ data, plan, progress, violations, clustersNeeded, on
             Pick a major to start the audit
           </p>
         )}
+
+        <ClosestPanel data={data} plan={plan} clustersNeeded={clustersNeeded}
+          onAddMinor={onAddMinor} onAddCluster={onAddCluster} />
+
+        <WhatIfPanel data={data} plan={plan} onApply={onWhatIfApply} />
 
         <div>
           <h3 className="label-caps mb-2">

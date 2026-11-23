@@ -8,6 +8,7 @@ import { getEquivalencyGroups, getRmp } from '../storage/dataStore.js';
 import {
   rmpAriaSummary, rmpCompactLine, rmpDetailLines, rmpForInstructor, rmpPageUrl,
 } from '../engine/rmp.js';
+import { COURSE_STATUSES, GRADE_OPTIONS, GRADE_POINTS, NON_GPA_MARKS, STATUS_LABEL } from '../engine/grades.js';
 
 const equivalencyGroupsData = getEquivalencyGroups();
 const rmpDirectory = getRmp();
@@ -215,8 +216,45 @@ function InstructorChip({ courseId, names }) {
   );
 }
 
+const STATUS_TONE = { planned: 'text-ink-3', in_progress: 'text-accent', completed: 'text-good' };
+
+function gradeOptionLabel(g) {
+  if (g in GRADE_POINTS) return g;
+  return `${g} (${NON_GPA_MARKS[g].label})`;
+}
+
+// Status + grade, as two compact selects on the card's chip row. Picking a
+// grade marks the course completed; the grade select only shows once the
+// course is completed.
+function StatusControl({ courseId, status, grade, onSetStatus, onSetGrade }) {
+  const stop = (e) => e.stopPropagation();
+  return (
+    <span className="chip-line gap-1.5 py-0.5" onMouseDown={stop} onClick={stop}>
+      <select
+        aria-label={`Status of ${courseId}`}
+        value={status}
+        onChange={(e) => onSetStatus(e.target.value)}
+        className={`status-select text-xs font-semibold ${STATUS_TONE[status]}`}
+      >
+        {COURSE_STATUSES.map((s) => <option key={s} value={s}>{STATUS_LABEL[s]}</option>)}
+      </select>
+      {status === 'completed' && (
+        <select
+          aria-label={`Grade in ${courseId}`}
+          value={grade || ''}
+          onChange={(e) => onSetGrade(e.target.value || null)}
+          className={`status-select text-xs font-semibold ${grade ? 'text-ink' : 'text-ink-3'}`}
+        >
+          <option value="">Grade…</option>
+          {GRADE_OPTIONS.map((g) => <option key={g} value={g}>{gradeOptionLabel(g)}</option>)}
+        </select>
+      )}
+    </span>
+  );
+}
+
 // One course, either in search results (compact) or placed in a semester.
-export function CourseCard({ course: c, placed, uses = [], shortUses = false, violations = [], meta, onToggleLock, onRemove, onAdd, draggable, onDragStart, onDropOnCourse }) {
+export function CourseCard({ course: c, placed, uses = [], shortUses = false, violations = [], meta, status = 'planned', grade = null, onSetStatus, onSetGrade, onToggleLock, onRemove, onAdd, draggable, onDragStart, onDropOnCourse }) {
   const [dropOver, setDropOver] = useState(false);
   const instructors = namedInstructors(c);
   const title = detailsTitle(c)
@@ -224,7 +262,8 @@ export function CourseCard({ course: c, placed, uses = [], shortUses = false, vi
     + (meta?.reason ? `\n\nAuto-placed: ${meta.reason}` : '');
   const swapTarget = placed && typeof onDropOnCourse === 'function';
   const crossListings = (c.crossListings || []).filter(Boolean);
-  const showChips = placed && (uses.length > 0 || violations.length > 0 || c.stub
+  const hasStatus = placed && typeof onSetStatus === 'function';
+  const showChips = placed && (hasStatus || uses.length > 0 || violations.length > 0 || c.stub
     || instructors.length > 0 || crossListings.length > 0);
   return (
     <div
@@ -242,7 +281,8 @@ export function CourseCard({ course: c, placed, uses = [], shortUses = false, vi
       } : undefined}
       title={title}
       style={{ transitionDuration: 'var(--dur)' }}
-      className={`group/course rounded-md px-2 py-1.5 text-sm transition-colors ${
+      data-status={placed ? status : undefined}
+      className={`group/course course-card rounded-md px-2 py-1.5 text-sm transition-colors ${
         dropOver
           ? 'bg-accent-soft outline-2 outline-accent'
           : 'bg-surface hover:bg-surface-2'
@@ -283,6 +323,10 @@ export function CourseCard({ course: c, placed, uses = [], shortUses = false, vi
           nothing is hover-only. */}
       {showChips && (
         <div className="chip-row mt-0.5 flex gap-3 overflow-x-auto">
+          {hasStatus && (
+            <StatusControl courseId={c.id} status={status} grade={grade}
+              onSetStatus={onSetStatus} onSetGrade={onSetGrade} />
+          )}
           {uses.slice(0, 2).map((u, i) => (
             <Tag key={i} tone={u.kind === 'cluster' ? 'gold' : 'accent'}
               icon={u.kind === 'cluster' ? 'hexagon' : undefined} title={u.label}>

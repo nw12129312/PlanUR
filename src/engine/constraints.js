@@ -8,6 +8,10 @@ import {
   checkEquivalencyConflicts, levelSatisfied, isLevelEntry, levelTag, describePrereqEntry,
 } from './equivalency.js';
 import { coversCourse, expandPlacedSet, familyKey } from './crossList.js';
+import {
+  MIN_CUMULATIVE_GPA, cumulativeGpa, earnsNoCredit, formatGpa, getCourseGrade, programGpa,
+  semesterCourseIds,
+} from './grades.js';
 
 const v = (ruleId, severity, message, at = {}) => ({ ruleId, severity, message, ...at });
 
@@ -401,6 +405,46 @@ export function checkCompletion(plan, data, progress) {
   return out;
 }
 
+// -- grades + GPA ----------------------------------------------------------------
+// Only fires once the student has entered grades; a plan with no grades gets
+// no GPA flags at all.
+export function checkGrades(plan, data, progress) {
+  const ctx = buildContext(plan, data);
+  const prog = progress || computeProgress(plan, data);
+  const out = [];
+
+  for (const cid of new Set(semesterCourseIds(plan))) {
+    if (!earnsNoCredit(plan, cid)) continue;
+    out.push(v('GRADE_NO_CREDIT', 'warning',
+      `${cid} (${getCourseGrade(plan, cid)}) earns no credit, so it doesn't count toward requirements or total hours. Retake it or plan a replacement.`,
+      { courseId: cid }));
+  }
+
+  const overall = cumulativeGpa(plan, data);
+  if (overall.gpa != null && overall.gpa < MIN_CUMULATIVE_GPA) {
+    out.push(v('CUMULATIVE_GPA_MIN', 'warning',
+      `Cumulative GPA ${formatGpa(overall.gpa)} over ${overall.credits} graded credit hours is below ${MIN_CUMULATIVE_GPA.toFixed(1)}.`, {}));
+  }
+
+  for (const r of prog.programs) {
+    if (r.needsData) continue;
+    const p = ctx.programById.get(r.programId);
+    const min = p?.minMajorGPA;
+    if (!min) continue;
+    const g = programGpa(plan, data, p, r);
+    if (g.gpa == null || g.gpa >= min) continue;
+    // Still-ungraded major courses can pull it back up, so it's a warning until
+    // every course counted for the program has a grade.
+    const final = g.ungraded.length === 0 && r.complete;
+    out.push(v('MAJOR_GPA_MIN', final ? 'error' : 'warning',
+      `${p.name} (${p.degree}): GPA in courses counted for the program is ${formatGpa(g.gpa)} ` +
+      `(${g.graded.length} graded course${g.graded.length === 1 ? '' : 's'}); the minimum is ${min.toFixed(1)}.` +
+      (final ? '' : ` ${g.ungraded.length} counted course${g.ungraded.length === 1 ? '' : 's'} still ungraded.`),
+      { programId: p.id, courseIds: g.graded }));
+  }
+  return out;
+}
+
 // -- everything ----------------------------------------------------------------
 export function checkAll(plan, data) {
   const progress = computeProgress(plan, data);
@@ -417,6 +461,7 @@ export function checkAll(plan, data) {
       ...checkDepartmentCap(plan, data),
       ...checkTotalCredits(plan, data),
       ...checkCompletion(plan, data, progress),
+      ...checkGrades(plan, data, progress),
     ],
   };
 }

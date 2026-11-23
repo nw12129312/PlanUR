@@ -27,7 +27,7 @@
  "notes": [
   "AP Biology (4/5) and IB Biology HL (6/7) earn general credit only - never major/minor requirements (encoded: apIbCreditExcluded).",
   "UR courses must fulfill at least half the concentration requirements; ancillary-field courses are exempt (encoded: minPctFromHomeInstitution + per-group ancillary flags).",
-  "Maintain a 2.0 GPA within the major, excluding allied/ancillary field courses (minMajorGPA - informational: the app does not track grades).",
+  "Maintain a 2.0 GPA within the major, excluding allied/ancillary field courses (encoded: minMajorGPA, checked against student-entered grades).",
   "Administered by the Department of Brain and Cognitive Sciences; requirements sourced from the BCS neuroscience page (snapshot data-src/pages/bcs/bcs_undergraduate_.._neuro_requirements.html).",
   "Twenty courses total; independent study credits (e.g. NSCI 395) may not substitute for any major requirement.",
   "First-year organic students may substitute CHEM 172 (with CHEM 208 or CHEM 210W lab) for CHEM 132."

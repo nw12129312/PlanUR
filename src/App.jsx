@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 
 import { newPlan, addSemester, addSummerSemester, withCourseMeta, getCourseMeta } from './engine/model.js';
+import { cumulativeGpa, earnsNoCredit, formatGpa, withCourseGrade, withCourseStatus } from './engine/grades.js';
 import { withScheduleStyle } from './engine/scheduleStyle.js';
 import { switchTrackChoice, withProgramSwap } from './engine/pathways.js';
 import { checkAll, resolveRequiredCredits } from './engine/constraints.js';
@@ -134,9 +135,11 @@ export default function App() {
   // Headline progress, lifted out of the audit rail so it survives collapsing it.
   const requiredCredits = useMemo(() => resolveRequiredCredits(plan, DATA), [plan]);
   const plannedCredits = useMemo(
-    () => [...placedSet].reduce((a, cid) => a + (DATA.courses[cid]?.credits ?? 4), 0),
-    [placedSet],
+    () => [...placedSet].filter((cid) => !earnsNoCredit(plan, cid))
+      .reduce((a, cid) => a + (DATA.courses[cid]?.credits ?? 4), 0),
+    [placedSet, plan],
   );
+  const overallGpa = useMemo(() => cumulativeGpa(plan, DATA), [plan]);
   const errorCount = violations.filter((v) => v.severity === 'error').length;
 
   const clustersNeeded = useMemo(() => {
@@ -221,6 +224,48 @@ export default function App() {
 
   const toggleLock = (cid) => {
     setPlan((p) => touch(withCourseMeta(p, cid, { locked: !getCourseMeta(p, cid).locked })));
+  };
+
+  const setCourseStatus = (cid, status) => {
+    setPlan((p) => touch(withCourseStatus(p, cid, status)));
+  };
+
+  const setCourseGrade = (cid, grade) => {
+    setPlan((p) => touch(withCourseGrade(p, cid, grade)));
+  };
+
+  const setSemesterStatus = (semId, status) => {
+    setPlan((p) => {
+      const sem = p.semesters.find((s) => s.id === semId);
+      if (!sem) return p;
+      let next = p;
+      for (const cid of sem.courseIds) {
+        // Don't wipe a grade already entered on a completed course.
+        if (status === 'completed' && next.courseMeta?.[cid]?.status === 'completed') continue;
+        next = withCourseStatus(next, cid, status);
+      }
+      return touch(next);
+    });
+  };
+
+  // What-if "switch" replaces the current majors (or minors); "add" appends.
+  const applyWhatIf = (programId, mode) => {
+    const program = DATA.programs.find((p) => p.id === programId);
+    if (!program) return;
+    const key = program.type === 'minor' ? 'minorIds' : 'majorIds';
+    setPlan((p) => {
+      const list = (p[key] || []).filter((id) => id !== programId);
+      const next = mode === 'replace' ? [programId, ...list.slice(1)] : [...list, programId];
+      return touch({ ...p, [key]: next });
+    });
+  };
+
+  const addMinor = (programId) => {
+    setPlan((p) => (p.minorIds.includes(programId) ? p : touch({ ...p, minorIds: [...p.minorIds, programId] })));
+  };
+
+  const addCluster = (clusterId) => {
+    setPlan((p) => (p.clusterIds.includes(clusterId) ? p : touch({ ...p, clusterIds: [...p.clusterIds, clusterId] })));
   };
 
   const lockAll = (locked) => {
@@ -413,6 +458,11 @@ export default function App() {
             <div className="flex items-center gap-2" title={`${plannedCredits} of ${requiredCredits} credit hours planned`}>
               <span className="tnum text-[13px] font-semibold text-ink">
                 {plannedCredits}<span className="font-normal text-ink-3"> / {requiredCredits} cr</span>
+                {overallGpa.gpa != null && (
+                  <span className="ml-2" title={`Cumulative GPA over ${overallGpa.credits} letter-graded credit hours (student-entered, unofficial)`}>
+                    <span className="font-normal text-ink-3">GPA </span>{formatGpa(overallGpa.gpa)}
+                  </span>
+                )}
                 {errorCount > 0 && (
                   <span className="block text-xs font-semibold text-bad">{errorCount} {errorCount === 1 ? 'error' : 'errors'}</span>
                 )}
@@ -521,6 +571,9 @@ export default function App() {
               onMoveToSemester={moveToSemester}
               onRemoveCourse={removeCourse}
               onToggleLock={toggleLock}
+              onSetStatus={setCourseStatus}
+              onSetGrade={setCourseGrade}
+              onSetSemesterStatus={setSemesterStatus}
               onAddSemester={onAddSemester}
               onAddSummer={onAddSummer}
               onRemoveSemester={onRemoveSemester}
@@ -541,7 +594,8 @@ export default function App() {
               <Checklist data={DATA} plan={plan} progress={progress} violations={violations} clustersNeeded={clustersNeeded}
                 onAutoFill={autoFillGroup}
                 placedSet={placedSet}
-                onPickOption={pickRequirementOption} onChooseTrack={chooseTrack} onSwapProgram={swapProgram} />
+                onPickOption={pickRequirementOption} onChooseTrack={chooseTrack} onSwapProgram={swapProgram}
+                onWhatIfApply={applyWhatIf} onAddMinor={addMinor} onAddCluster={addCluster} />
             </aside>
           )}
       </main>
