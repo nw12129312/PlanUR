@@ -10,7 +10,7 @@ import { getEquivalencyGroups } from '../storage/dataStore.js';
 const equivalencyGroupsData = getEquivalencyGroups();
 
 // Courses visible before the catalog is expanded.
-const PREVIEW_COUNT = 4;
+const PREVIEW_COUNT = 8;
 
 export function CourseSearch({ data, plan, selectedPrograms, selectedClusters, placedSet, onAdd, targetLabel }) {
   // Shows a short preview by default; "Show all" expands to the full list.
