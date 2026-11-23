@@ -20,7 +20,6 @@ import {
   activeGroups, consistentPaths, groupsForCourse, levelSatisfied, isLevelEntry, levelTag,
   describePrereqEntry,
 } from './equivalency.js';
-import { placementViolatesDeptOrder, parseCourseCode } from './deptSequencing.js';
 import { deptDivisionIndex, majorDepartments, styleOf, styleScore } from './scheduleStyle.js';
 import { coversCourse, expandPlacedSet } from './crossList.js';
 
@@ -249,7 +248,7 @@ function chainString(cid, data, placedSet) {
 
 // -------------------------------------------------------------- one pass ----
 
-function generateOnce(plan, data, { scope, targetLoad, maxLoad, bans, pathPreference, scheduleStyle, relaxDeptOrder = false }) {
+function generateOnce(plan, data, { scope, targetLoad, maxLoad, bans, pathPreference, scheduleStyle }) {
   const warnings = [];
   const placements = [];
   const eqGroups = data.equivalencyGroups || [];
@@ -398,8 +397,7 @@ function generateOnce(plan, data, { scope, targetLoad, maxLoad, bans, pathPrefer
     // members of FORCED entries (every remaining candidate is needed) are
     // mandatory - treat them as maximally urgent regardless of how many
     // other groups also list them, so they can't languish behind
-    // single-purpose electives while the strand-guard holds a whole
-    // department's higher-numbered courses behind them
+    // single-purpose electives
     const forcedSet = new Set();
     for (const e of allEntries) {
       if (e.need > 0 && e.candidates.length > 0 && e.candidates.length <= e.need) {
@@ -452,48 +450,6 @@ function generateOnce(plan, data, { scope, targetLoad, maxLoad, bans, pathPrefer
           if (credits() + c.credits > maxLoad) continue;
           if (!eligibleByEquiv(cid, placedNow)) continue;
           if ((c.prereqs || []).some((g) => !orGroupSatisfied(g, placedBefore, eqGroups, data.courses))) continue;
-          // HARD constraint (same tier as offering/prerequisites): never
-          // place a course where it would break same-department ascending-
-          // number order against anything already in the plan - including
-          // locked/kept courses in later semesters. Plan-level overrides
-          // (plan.sequencingOverrides) are honored via the guard.
-          if (!relaxDeptOrder && placementViolatesDeptOrder(p, cid, s)) continue;
-          // Strand-guard: placing cid must leave every requirement group
-          // future-satisfiable. Once cid (dept D, number n) is placed in
-          // this semester, same-department candidates numbered BELOW n can
-          // only ever go in this-or-earlier semesters - so they stop
-          // counting as future capacity. Block cid if that would drop any
-          // group below its remaining need. (This is what makes the hard
-          // ascending-number rule feasible under forward semester filling.)
-          if (!relaxDeptOrder) {
-            const me = parseCourseCode(cid);
-            if (me) {
-              let strands = false;
-              for (const e2 of allEntries) {
-                const needAfter = e2 === e ? e2.need - 1 : e2.need;
-                if (needAfter <= 0) continue;
-                let fut = 0;   // candidates still placeable AFTER cid lands here
-                let avail = 0; // candidates available regardless of the ordering rule
-                for (const c2 of e2.candidates) {
-                  if (c2 === cid || coversCourse(placedNow, c2, data.courses) || bans.has(c2)) continue;
-                  avail++;
-                  const p2 = parseCourseCode(c2);
-                  if (!p2 || p2.dept !== me.dept || p2.number >= me.number) fut++;
-                }
-                // causal check: only block cid if THIS placement is what
-                // pushes the entry under its need - an entry that is short
-                // on candidates anyway (data gap, narrowed path) must not
-                // veto unrelated placements
-                if (fut < needAfter && avail >= needAfter) {
-                  if (globalThis.__AUTOGEN_DEBUG) {
-                    console.error(`[strand-guard] S${s + 1}: ${cid} blocked by entry "${e2.key}" (need ${needAfter}, future ${fut}, avail ${avail})`);
-                  }
-                  strands = true; break;
-                }
-              }
-              if (strands) continue;
-            }
-          }
           const mustNow = s + heightOf(cid) >= lastIdx ? 0 : 1;
           const score = [
             mustNow,                                        // chains that must start now
@@ -508,10 +464,6 @@ function generateOnce(plan, data, { scope, targetLoad, maxLoad, bans, pathPrefer
               divIndex,
               data,
             }),
-            // lower course numbers first: keeps the department-ascending
-            // hard rule feasible under forward semester filling (placing a
-            // high number early would strand its lower-numbered siblings)
-            parseCourseCode(cid)?.number ?? 999,
             depthOf(cid),                                   // shallow chains as final nudge
             cid,
           ];
@@ -539,26 +491,7 @@ function generateOnce(plan, data, { scope, targetLoad, maxLoad, bans, pathPrefer
   for (const e of leftover) {
     const sample = e.candidates.filter((cid) => !bans.has(cid)).slice(0, 4);
     let why = 'no eligible course fit within the remaining semesters and credit caps';
-    const creditsInSem = (i) => p.semesters[i].courseIds
-      .reduce((a, x) => a + (data.courses[x]?.credits ?? 4), 0);
     for (const cid of sample) {
-      // blocked everywhere by the department-ascending rule (a semester
-      // that is ordering-legal but already at the credit cap is just as
-      // unavailable, so count it as blocked for this diagnosis)?
-      const cCredits = data.courses[cid]?.credits ?? 4;
-      const openSems = p.semesters.map((_, i) => i).filter((i) => i >= startIdx);
-      const orderBlockedSomewhere = openSems.some((i) => placementViolatesDeptOrder(p, cid, i));
-      if (openSems.length && orderBlockedSomewhere &&
-          openSems.every((i) => placementViolatesDeptOrder(p, cid, i) ||
-                                creditsInSem(i) + cCredits > maxLoad)) {
-        const me = parseCourseCode(cid);
-        const blocker = p.semesters.flatMap((sem) => sem.courseIds)
-          .find((o) => { const x = parseCourseCode(o); return x && me && x.dept === me.dept && x.number > me.number; });
-        why = `${cid} is blocked by the same-department ordering rule` +
-          (blocker ? ` (${blocker} is already placed earlier)` : '') +
-          ` - add a sequencing override for the pair or adjust placements`;
-        break;
-      }
       const levelBlocked = (data.courses[cid]?.prereqs || [])
         .find((g) => g.some(isLevelEntry) && !orGroupSatisfied(g, placedSet, data.equivalencyGroups || [], data.courses));
       if (levelBlocked) {
@@ -678,31 +611,10 @@ export function autoGenerate(plan, data, opts = {}) {
   } = opts;
   const style = scheduleStyle || styleOf(plan);
 
-  const strict = runPhase(plan, data, { scope, targetLoad, maxLoad, maxRetries, pathPreference, scheduleStyle: style, relaxDeptOrder: false });
-  if (!strict.infeasible.length) return strict;
-
-  // The same-department ascending rule is advisory (checkDepartmentSequencing
-  // emits warnings, not errors), but enforcing it as a hard placement
-  // constraint can make a correctly-encoded degree unschedulable - e.g. the ME
-  // BS core needs 16 ME courses in ascending order whose fixed fall/spring
-  // offerings simply don't fit 8 semesters. Finishing the degree outranks the
-  // heuristic, so retry without it and let the ordering surface as the
-  // warnings it actually is.
-  const relaxed = runPhase(plan, data, { scope, targetLoad, maxLoad, maxRetries, pathPreference, scheduleStyle: style, relaxDeptOrder: true });
-  const errs = (r) => r.violations.filter((v) => v.severity === 'error').length;
-  if (cmp([errs(relaxed), relaxed.infeasible.length], [errs(strict), strict.infeasible.length]) >= 0) return strict;
-
-  relaxed.warnings = [
-    ...relaxed.warnings,
-    'Some requirements could not be met in ascending course-number order, so ' +
-    'auto-generate relaxed the same-department ordering preference. Review the ' +
-    'ordering warnings below — keep a pair with "Allow", or move courses manually.',
-  ];
-  relaxed.relaxedDeptOrder = true;
-  return relaxed;
+  return runPhase(plan, data, { scope, targetLoad, maxLoad, maxRetries, pathPreference, scheduleStyle: style });
 }
 
-function runPhase(plan, data, { scope, targetLoad, maxLoad, maxRetries, pathPreference, scheduleStyle, relaxDeptOrder }) {
+function runPhase(plan, data, { scope, targetLoad, maxLoad, maxRetries, pathPreference, scheduleStyle }) {
   const bans = new Set();
   const optionSets = requirementOptionSets(plan, data);
   const tryBan = (cid) => {
@@ -713,7 +625,7 @@ function runPhase(plan, data, { scope, targetLoad, maxLoad, maxRetries, pathPref
   let best = null;
 
   for (let attempt = 1; attempt <= Math.max(1, maxRetries); attempt++) {
-    const result = generateOnce(plan, data, { scope, targetLoad, maxLoad, bans, pathPreference, scheduleStyle, relaxDeptOrder });
+    const result = generateOnce(plan, data, { scope, targetLoad, maxLoad, bans, pathPreference, scheduleStyle });
     const { violations } = checkAll(result.plan, data);
     const autoIds = new Set(result.placements.map((x) => x.courseId));
     const errors = violations.filter((v) => v.severity === 'error');
@@ -742,16 +654,6 @@ function runPhase(plan, data, { scope, targetLoad, maxLoad, maxRetries, pathPref
         const pl = result.placements.find((x) => x.courseId === cid);
         if (pl && !pl.mandatory && tryBan(cid)) bannedSomething = true;
       }
-    }
-    // infeasibilities caused by the department-ordering rule: ban the
-    // flexible auto-placed blocker (the higher-numbered same-dept course
-    // that got in first) and try a different combination
-    for (const inf of result.infeasible) {
-      const m = inf.message.match(/\(([A-Z]{2,5} \d{2,3}[A-Z]{0,2}) is already placed earlier\)/);
-      const blocker = m?.[1];
-      if (!blocker || bans.has(blocker) || !autoIds.has(blocker)) continue;
-      const pl = result.placements.find((x) => x.courseId === blocker);
-      if (pl && !pl.mandatory && tryBan(blocker)) bannedSomething = true;
     }
     if (globalThis.__AUTOGEN_DEBUG) {
       // opt-in dev trace: set globalThis.__AUTOGEN_DEBUG = true before calling

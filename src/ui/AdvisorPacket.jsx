@@ -1,18 +1,9 @@
 import React from 'react';
+import { ACADEMIC_YEAR_NAMES, groupIntoYears } from '../engine/model.js';
 import { ruleInfo } from '../engine/rules.js';
 import { KIND_LABEL, emptyExamTable, transferCreditGroups } from '../engine/examCredit.js';
 
-const YEAR_NAMES = ['First year', 'Sophomore year', 'Junior year', 'Senior year', 'Fifth year', 'Sixth year'];
-
-function groupIntoYears(semesters) {
-  const years = [];
-  for (const sem of semesters) {
-    const last = years[years.length - 1];
-    if (last && last.length < 2) last.push(sem);
-    else years.push([sem]);
-  }
-  return years;
-}
+const YEAR_NAMES = ACADEMIC_YEAR_NAMES;
 
 function creditsFor(data, ids) {
   return ids.reduce((a, cid) => a + (data.courses[cid]?.credits ?? 4), 0);
