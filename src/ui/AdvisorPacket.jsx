@@ -2,6 +2,15 @@ import React from 'react';
 import { ACADEMIC_YEAR_NAMES, groupIntoYears } from '../engine/model.js';
 import { ruleInfo } from '../engine/rules.js';
 import { KIND_LABEL, emptyExamTable, transferCreditGroups } from '../engine/examCredit.js';
+import { cumulativeGpa, formatGpa, getCourseGrade, getCourseStatus, programGpa } from '../engine/grades.js';
+
+function statusCell(plan, cid) {
+  const st = getCourseStatus(plan, cid);
+  if (st === 'in_progress') return 'In progress';
+  if (st !== 'completed') return '';
+  const g = getCourseGrade(plan, cid);
+  return g ? `Done · ${g}` : 'Done';
+}
 
 const YEAR_NAMES = ACADEMIC_YEAR_NAMES;
 
@@ -47,6 +56,7 @@ export function AdvisorPacket({
   const errors = violations.filter((v) => v.severity === 'error');
   const warnings = violations.filter((v) => v.severity === 'warning');
   const pwr = progress.pwr;
+  const overall = cumulativeGpa(plan, data);
 
   return (
     <article className="advisor-packet" aria-hidden="true">
@@ -54,7 +64,10 @@ export function AdvisorPacket({
         <p className="ap-kicker">University of Rochester · Unofficial planning packet</p>
         <h1>Schedule for advisor review</h1>
         <p className="ap-plan-name">{plan.name || 'Untitled plan'}</p>
-        <p className="ap-meta">Generated {generated} · {plannedCredits} of {requiredCredits} credit hours planned</p>
+        <p className="ap-meta">
+          Generated {generated} · {plannedCredits} of {requiredCredits} credit hours planned
+          {overall.gpa != null ? ` · cumulative GPA ${formatGpa(overall.gpa)} (student-entered, ${overall.credits} graded cr)` : ''}
+        </p>
       </header>
 
       <section className="ap-fields">
@@ -76,6 +89,12 @@ export function AdvisorPacket({
               {p.name} ({p.degree})
               {p.status !== 'ACTIVE' ? ' — requirements not loaded in this tool' : ''}
               {plan.doubleDegree && p.type === 'major' ? ' · double degree' : ''}
+              {(() => {
+                const r = progress.programs.find((x) => x.programId === p.id);
+                const g = r && !r.needsData ? programGpa(plan, data, p, r) : null;
+                if (!g || g.gpa == null) return '';
+                return ` · GPA in program ${formatGpa(g.gpa)}${p.minMajorGPA ? ` (minimum ${p.minMajorGPA.toFixed(1)})` : ''}`;
+              })()}
             </li>
           ))}
           {clusters.map((c) => (
@@ -126,6 +145,7 @@ export function AdvisorPacket({
                               <th>Code</th>
                               <th>Title</th>
                               <th>Cr</th>
+                              <th>Status</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -136,6 +156,7 @@ export function AdvisorPacket({
                                   <td className="ap-code">{cid}</td>
                                   <td>{c?.title || 'Not in the 2025–26 catalog'}</td>
                                   <td className="ap-cr">{c?.credits ?? 4}</td>
+                                  <td>{statusCell(plan, cid)}</td>
                                 </tr>
                               );
                             })}

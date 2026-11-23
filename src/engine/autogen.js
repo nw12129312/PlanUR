@@ -13,6 +13,7 @@
 // Pure functions; no UI or storage imports.
 
 import { getCourseMeta, plannedCourseIds } from './model.js';
+import { getCourseStatus } from './grades.js';
 import { computeProgress } from './progress.js';
 import { checkAll } from './constraints.js';
 import { groupCandidates, clusterCandidates, clusterGroupCandidates } from './candidates.js';
@@ -46,7 +47,11 @@ function semesterIndexMap(plan) {
 // Which placed courses may be removed under this scope.
 export function computeRemovable(plan, data, scope) {
   const placedIdx = semesterIndexMap(plan);
-  const unlocked = [...placedIdx.keys()].filter((cid) => !getCourseMeta(plan, cid).locked);
+  // Completed and in-progress courses are history, not choices: never removable,
+  // even if the student unlocked the card.
+  const unlocked = [...placedIdx.keys()].filter((cid) => (
+    !getCourseMeta(plan, cid).locked && getCourseStatus(plan, cid) === 'planned'
+  ));
   if (scope.kind === 'fromSemester') {
     return new Set(unlocked.filter((cid) => placedIdx.get(cid) >= scope.index));
   }

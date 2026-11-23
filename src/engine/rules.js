@@ -135,6 +135,18 @@ export const RULES = {
     title: 'Transfer share of the major',
     text: 'UR courses must fulfill at least half of the requirements in this concentration (ancillary-field courses are exempt from this restriction).',
   },
+  MAJOR_GPA_MIN: {
+    title: 'Major GPA below minimum',
+    text: 'Students must maintain a grade point average of at least 2.0 in the courses submitted for the major (UR Undergraduate Bulletin, probation rules). Some programs exclude allied/ancillary field courses. Grades are student-entered and unofficial.',
+  },
+  CUMULATIVE_GPA_MIN: {
+    title: 'Cumulative GPA below 2.0',
+    text: 'An overall (cumulative) grade point average of at least 2.0 is required to stay in good academic standing (UR Undergraduate Bulletin, probation rules). Grades are student-entered and unofficial.',
+  },
+  GRADE_NO_CREDIT: {
+    title: 'No credit earned',
+    text: 'Failing grades (E, XE, F, XF) and the marks W and I earn no credit, so the course does not count toward requirements or total credit hours (UR Undergraduate Bulletin grading system).',
+  },
   UNVERIFIED_COURSE_DATA: {
     title: 'Unverified course data',
     text: 'Credits/offering data for this course was not found in the sourced schedules; defaults are assumed and flagged.',
