@@ -248,6 +248,26 @@ export default function App() {
     });
   };
 
+  // What-if "switch" replaces the current majors (or minors); "add" appends.
+  const applyWhatIf = (programId, mode) => {
+    const program = DATA.programs.find((p) => p.id === programId);
+    if (!program) return;
+    const key = program.type === 'minor' ? 'minorIds' : 'majorIds';
+    setPlan((p) => {
+      const list = (p[key] || []).filter((id) => id !== programId);
+      const next = mode === 'replace' ? [programId, ...list.slice(1)] : [...list, programId];
+      return touch({ ...p, [key]: next });
+    });
+  };
+
+  const addMinor = (programId) => {
+    setPlan((p) => (p.minorIds.includes(programId) ? p : touch({ ...p, minorIds: [...p.minorIds, programId] })));
+  };
+
+  const addCluster = (clusterId) => {
+    setPlan((p) => (p.clusterIds.includes(clusterId) ? p : touch({ ...p, clusterIds: [...p.clusterIds, clusterId] })));
+  };
+
   const lockAll = (locked) => {
     setPlan((p) => {
       let next = p;
@@ -574,7 +594,8 @@ export default function App() {
               <Checklist data={DATA} plan={plan} progress={progress} violations={violations} clustersNeeded={clustersNeeded}
                 onAutoFill={autoFillGroup}
                 placedSet={placedSet}
-                onPickOption={pickRequirementOption} onChooseTrack={chooseTrack} onSwapProgram={swapProgram} />
+                onPickOption={pickRequirementOption} onChooseTrack={chooseTrack} onSwapProgram={swapProgram}
+                onWhatIfApply={applyWhatIf} onAddMinor={addMinor} onAddCluster={addCluster} />
             </aside>
           )}
       </main>
