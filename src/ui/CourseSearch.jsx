@@ -10,7 +10,7 @@ import { getEquivalencyGroups } from '../storage/dataStore.js';
 const equivalencyGroupsData = getEquivalencyGroups();
 
 // Courses visible before the catalog is expanded.
-const PREVIEW_COUNT = 8;
+const PREVIEW_COUNT = 6;
 
 export function CourseSearch({ data, plan, selectedPrograms, selectedClusters, placedSet, onAdd, targetLabel }) {
   // Shows a short preview by default; "Show all" expands to the full list.
@@ -134,7 +134,7 @@ export function CourseSearch({ data, plan, selectedPrograms, selectedClusters, p
         </Select>
       </div>
       </div>
-      <div id="catalog-results" className={`rail grid max-h-[26rem] min-h-0 content-start gap-1 overflow-y-auto overscroll-contain pr-1 @min-[640px]:grid-cols-2 ${open ? '@min-[960px]:grid-cols-3' : '@min-[960px]:grid-cols-4'}`}>
+      <div id="catalog-results" className={`rail grid max-h-[26rem] min-h-0 content-start gap-1 overflow-y-auto overscroll-contain pr-1 @min-[640px]:grid-cols-2 @min-[960px]:grid-cols-3`}>
         {(() => {
           // Alternatives from the same equivalency group display together,
           // labeled by path. Only groups the SELECTED programs actually depend
