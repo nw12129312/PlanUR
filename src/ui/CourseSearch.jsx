@@ -9,9 +9,11 @@ import { getEquivalencyGroups } from '../storage/dataStore.js';
 
 const equivalencyGroupsData = getEquivalencyGroups();
 
+// Courses visible before the catalog is expanded.
+const PREVIEW_COUNT = 4;
+
 export function CourseSearch({ data, plan, selectedPrograms, selectedClusters, placedSet, onAdd, targetLabel }) {
-  // Collapsed by default: the schedule and Auto-generate come first, and the
-  // catalog opens when the student wants to adjust by hand.
+  // Shows a short preview by default; "Show all" expands to the full list.
   const [open, setOpen] = useState(false);
   const [q, setQ] = useState('');
   const [dept, setDept] = useState('');
@@ -96,29 +98,20 @@ export function CourseSearch({ data, plan, selectedPrograms, selectedClusters, p
 
   return (
     <Panel
-      title={(
-        <button type="button" onClick={() => setOpen((x) => !x)} aria-expanded={open}
-          aria-controls="catalog-body" className="-mx-1 inline-flex items-center gap-1 rounded px-1 hover:text-accent">
-          Catalog
-          <Icon name={open ? 'chevronUp' : 'chevronDown'} size="sm" className="text-ink-3" />
-        </button>
-      )}
+      title="Catalog"
       className="overflow-hidden"
-      headerRight={open ? (
+      headerRight={(
         <div className="flex min-w-0 items-center gap-2">
           <span className="min-w-0 truncate text-xs text-ink-3" title="Where the + button adds a course">
             Adds to <span className="font-semibold text-ink-2">{targetLabel}</span>
           </span>
-          <Button kind="quiet" onClick={() => setOpen(false)}>Hide</Button>
+          <Button kind="quiet" onClick={() => setOpen((x) => !x)} aria-expanded={open} aria-controls="catalog-results">
+            {open ? <>Show fewer <Icon name="chevronUp" size="sm" /></> : <>Show all <Icon name="chevronDown" size="sm" /></>}
+          </Button>
         </div>
-      ) : (
-        <Button kind="quiet" onClick={() => setOpen(true)} aria-controls="catalog-body">
-          Browse courses <Icon name="chevronDown" size="sm" />
-        </Button>
       )}
-      bodyClassName={open ? 'flex flex-col gap-1.5 !p-2' : 'hidden'}
+      bodyClassName="flex flex-col gap-1.5 !p-2"
     >
-      {open && (<div id="catalog-body" className="contents">
       <div className="grid gap-1.5 @min-[640px]:grid-cols-[minmax(0,1fr)_minmax(0,22rem)]">
       <TextInput
         value={q}
@@ -141,7 +134,7 @@ export function CourseSearch({ data, plan, selectedPrograms, selectedClusters, p
         </Select>
       </div>
       </div>
-      <div className="rail grid max-h-[26rem] min-h-0 content-start gap-1 overflow-y-auto overscroll-contain pr-1 @min-[640px]:grid-cols-2 @min-[960px]:grid-cols-3">
+      <div id="catalog-results" className={`rail grid max-h-[26rem] min-h-0 content-start gap-1 overflow-y-auto overscroll-contain pr-1 @min-[640px]:grid-cols-2 ${open ? '@min-[960px]:grid-cols-3' : '@min-[960px]:grid-cols-4'}`}>
         {(() => {
           // Alternatives from the same equivalency group display together,
           // labeled by path. Only groups the SELECTED programs actually depend
@@ -170,6 +163,34 @@ export function CourseSearch({ data, plan, selectedPrograms, selectedClusters, p
               />
             </div>
           );
+          // Collapsed: a short preview of the first few courses (equivalency
+          // groups first, in the same order as the full list) and a button
+          // to see everything.
+          if (!open) {
+            const seen = new Set();
+            const flat = [];
+            for (const g of sections) {
+              for (const pth of g.paths) {
+                for (const cid of pth.courses) {
+                  const c = data.courses[cid];
+                  if (c && !seen.has(cid)) { seen.add(cid); flat.push(c); }
+                }
+              }
+            }
+            for (const c of rest) if (!seen.has(c.id)) { seen.add(c.id); flat.push(c); }
+            return (
+              <>
+                {flat.slice(0, PREVIEW_COUNT).map(card)}
+                {flat.length > PREVIEW_COUNT && (
+                  <button type="button" onClick={() => setOpen(true)} aria-expanded={false}
+                    className="col-span-full rounded-md py-1.5 text-center text-xs font-semibold text-accent hover:bg-accent-soft">
+                    {flat.length >= 400 ? 'Show all courses' : `Show all ${flat.length} courses`}
+                  </button>
+                )}
+                {flat.length === 0 && <div className="col-span-full py-4 text-center text-xs text-ink-3">No courses match.</div>}
+              </>
+            );
+          }
           return (
             <>
               {sections.map((g) => (
@@ -200,11 +221,16 @@ export function CourseSearch({ data, plan, selectedPrograms, selectedClusters, p
                 <div className="col-span-full py-1 text-center text-xs text-ink-3">Refine the search to see more…</div>
               )}
               {results.length === 0 && <div className="col-span-full py-4 text-center text-xs text-ink-3">No courses match.</div>}
+              {results.length > 0 && (
+                <button type="button" onClick={() => setOpen(false)} aria-expanded
+                  className="col-span-full rounded-md py-1.5 text-center text-xs font-semibold text-accent hover:bg-accent-soft">
+                  Show fewer
+                </button>
+              )}
             </>
           );
         })()}
       </div>
-      </div>)}
     </Panel>
   );
 }
