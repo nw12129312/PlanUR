@@ -119,8 +119,13 @@ function buildLedger(plan, data, scope) {
       // onto a LONGER sequence (place STAT 277 and "1 of [STAT 190]" silently
       // becomes "2 of [STAT 180, STAT 277]"), which then can't be finished.
       // Same choice rule computeProgress uses: most progress, then shortest.
+      // When an equivalency group spans the sequences, offer the union until
+      // one of them is started (the group's path choice decides which), then
+      // commit: CHEM 172 placed means CHEM 210, never the CHEM 204 path's 208.
+      const seqStarted = def.rule.type === 'sequence_one_of' &&
+        def.rule.sequences.some((seq) => seq.some((c) => coversCourse(placed, c, data.courses)));
       const cands = def.rule.type === 'sequence_one_of' &&
-                    !equivalencyGoverns(def.rule.sequences.flat(), data)
+                    (seqStarted || !equivalencyGoverns(def.rule.sequences.flat(), data))
         ? bansafe(pickSequence(def.rule.sequences, data, placed))
         : bansafe(groupCandidates(def, data, { program, chosenTrack: g.chosenTrack || r.chosenTrack }));
       const flexible = def.rule.type !== 'all_of' && def.rule.type !== 'sequence_one_of';
@@ -317,13 +322,39 @@ function generateOnce(plan, data, { scope, targetLoad, maxLoad, bans, pathPrefer
       // a "choice" only exists among paths the pool can actually draw from
       const withCandidates = options.filter((p) => p.courses.some((c) => candidateSet.has(c)));
       if (withCandidates.length) options = withCandidates;
+      // Linked groups (Physics I -> II -> III) are resolved one at a time, so
+      // keep each choice consistent with the paths already chosen: a path
+      // whose prerequisites only an excluded path provides can never be
+      // scheduled, and mixing honors and regular tracks breaks the catalog's
+      // "one of these sequences" rules.
+      const chosenAllows = (cid) => groupsForCourse(eqGroups, cid).every(({ group, paths }) => {
+        const chosen = pathChoice.get(group.id);
+        return !chosen || paths.some((x) => x.id === chosen);
+      });
+      const chosenPathOf = (cid) => {
+        for (const { group, paths } of groupsForCourse(eqGroups, cid)) {
+          const chosen = pathChoice.get(group.id);
+          const hit = chosen && paths.find((x) => x.id === chosen);
+          if (hit) return hit;
+        }
+        return null;
+      };
+      const unreachable = (p) => (p.courses.some((c) => (data.courses[c]?.prereqs || []).some((grp) =>
+        !grp.some((x) => isLevelEntry(x) || coversCourse(placedSet, x, data.courses) ||
+          (data.courses[x] && chosenAllows(x))))) ? 1 : 0);
+      const trackMismatch = (p) => (p.courses.some((c) => (data.courses[c]?.prereqs || []).some((grp) =>
+        grp.some((x) => !isLevelEntry(x)) &&
+        grp.every((x) => { const cp = !isLevelEntry(x) && chosenPathOf(x); return !cp || !!cp.accelerated !== !!p.accelerated; }) &&
+        grp.some((x) => !isLevelEntry(x) && chosenPathOf(x)))) ? 1 : 0);
       const scorePath = (p) => {
         const firstUnplaced = p.courses.find((c) => !coversCourse(placedSet, c, data.courses));
         const fc = firstUnplaced ? data.courses[firstUnplaced] : null;
         const offeredNow = fc && fc.offeredVerified && !fc.offered.includes(currentTerm) ? 1 : 0;
         const credits = p.courses.reduce((a, c) => a + (data.courses[c]?.credits ?? 4), 0);
         return [
+          unreachable(p),      // prerequisites still obtainable
           pathPreference === 'accelerated' ? (p.accelerated ? 0 : 1) : 0,
+          trackMismatch(p),    // same track as the linked groups already chosen
           offeredNow,          // next course placeable this term
           credits,             // lighter total load
           p.courses.length,
@@ -419,11 +450,42 @@ function generateOnce(plan, data, { scope, targetLoad, maxLoad, bans, pathPrefer
       if (!depthCache.has(cid)) depthCache.set(cid, chainDepth(cid, data));
       return depthCache.get(cid);
     };
-    const heightCache = new Map();
-    const heightOf = (cid) => {
-      if (!heightCache.has(cid)) heightCache.set(cid, heightAbove(cid, pool, data));
-      return heightCache.get(cid);
+    // Urgency is term-aware: a fall-only chain of four steps needs seven
+    // semesters, not four. chainEnd(cid, at) is the earliest semester the
+    // longest required chain stacked on cid can finish if cid lands at `at`.
+    // Only required courses count as chain links (non-flexible entries, and
+    // flexible ones whose every remaining candidate is needed): an elective
+    // pool drawn from a whole department would otherwise make every gateway
+    // course look urgent and crowd out the real long chains.
+    const requiredPool = [...new Set([
+      ...allEntries.filter((e) => !e.flexible).flatMap((e) => e.candidates),
+      ...forcedSet,
+    ])];
+    const successors = new Map(pool.map((cid) => [cid,
+      requiredPool.filter((other) => other !== cid &&
+        (data.courses[other]?.prereqs || []).some((g) => g.includes(cid)))]));
+    const nextOffered = (cid, from) => {
+      const c = data.courses[cid];
+      for (let i = from; i <= lastIdx; i++) if (!c || offeredOk(c, term(i))) return i;
+      return Infinity;
     };
+    const chainMemo = new Map();
+    const chainEnd = (cid, at, visiting = new Set()) => {
+      if (at === Infinity) return Infinity;
+      const key = `${cid}@${at}`;
+      if (chainMemo.has(key)) return chainMemo.get(key);
+      if (visiting.has(cid)) return at;
+      visiting.add(cid);
+      let end = at;
+      for (const succ of successors.get(cid) || []) {
+        end = Math.max(end, chainEnd(succ, nextOffered(succ, at + 1), visiting));
+      }
+      visiting.delete(cid);
+      chainMemo.set(key, end);
+      return end;
+    };
+    // would waiting for cid's next offering push its chain past the plan?
+    const mustStartNow = (cid) => chainEnd(cid, nextOffered(cid, s + 1)) > lastIdx;
 
     const placedBefore = new Set([
       ...p.transfer.map((t) => t.courseId),
@@ -455,7 +517,7 @@ function generateOnce(plan, data, { scope, targetLoad, maxLoad, bans, pathPrefer
           if (credits() + c.credits > maxLoad) continue;
           if (!eligibleByEquiv(cid, placedNow)) continue;
           if ((c.prereqs || []).some((g) => !orGroupSatisfied(g, placedBefore, eqGroups, data.courses))) continue;
-          const mustNow = s + heightOf(cid) >= lastIdx ? 0 : 1;
+          const mustNow = mustStartNow(cid) ? 0 : 1;
           const score = [
             mustNow,                                        // chains that must start now
             scarcity.get(cid) ?? 9,                         // (a) single-purpose first
@@ -541,21 +603,6 @@ function cmp(a, b) {
   return 0;
 }
 
-
-// Longest chain of pool courses stacked above cid (how many sequential
-// semesters must follow it).
-function heightAbove(cid, pool, data, seen = new Set()) {
-  if (seen.has(cid)) return 0;
-  seen.add(cid);
-  let h = 0;
-  for (const other of pool) {
-    if (other === cid) continue;
-    if ((data.courses[other]?.prereqs || []).some((g) => g.includes(cid))) {
-      h = Math.max(h, 1 + heightAbove(other, pool, data, seen));
-    }
-  }
-  return h;
-}
 
 // Every requirement group's full option set, so the retry loop can tell a
 // swap from a self-inflicted dead end. Banning is meant to try a DIFFERENT
