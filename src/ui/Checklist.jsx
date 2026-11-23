@@ -8,6 +8,7 @@ import { describeOptionAction } from '../engine/swapRequirement.js';
 import { coversCourse } from '../engine/crossList.js';
 import { ruleInfo } from '../engine/rules.js';
 import { resolveRequiredCredits } from '../engine/constraints.js';
+import { WhatIfPanel, ClosestPanel } from './WhatIf.jsx';
 import { creditsByStatus, cumulativeGpa, formatGpa, programGpa } from '../engine/grades.js';
 
 // How many options to render before collapsing the tail. ATHS electives has 92
@@ -435,7 +436,7 @@ function ClusterCard({ cluster, result }) {
   );
 }
 
-export function Checklist({ data, plan, progress, violations, clustersNeeded, onAutoFill, onHide, placedSet, onPickOption, onChooseTrack, onSwapProgram }) {
+export function Checklist({ data, plan, progress, violations, clustersNeeded, onAutoFill, onHide, placedSet, onPickOption, onChooseTrack, onSwapProgram, onWhatIfApply, onAddMinor, onAddCluster }) {
   const required = resolveRequiredCredits(plan, data);
   const byStatus = creditsByStatus(plan, data);
   const planned = byStatus.completed + byStatus.in_progress + byStatus.planned;
@@ -507,6 +508,11 @@ export function Checklist({ data, plan, progress, violations, clustersNeeded, on
             Pick a major to start the audit
           </p>
         )}
+
+        <ClosestPanel data={data} plan={plan} clustersNeeded={clustersNeeded}
+          onAddMinor={onAddMinor} onAddCluster={onAddCluster} />
+
+        <WhatIfPanel data={data} plan={plan} onApply={onWhatIfApply} />
 
         <div>
           <h3 className="label-caps mb-2">
