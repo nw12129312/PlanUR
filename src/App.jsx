@@ -12,15 +12,19 @@ import { swapPlacedCourses, moveCourseToSemester, placementWarnings } from './en
 import { applyRecordedExams, previewExamAdd, removeExamsFromPlan, upsertRecordedExam } from './engine/examCredit.js';
 import { divisionalCoverageForPlan } from './engine/coverage.js';
 import { listingOnPlan } from './engine/crossList.js';
-// dataStore is the ONLY module that touches window.storage (and the only
+// dataStore is the ONLY module that touches browser storage (and the only
 // place App reads bundled data from); see src/storage/dataStore.js.
+// account.js layers optional sign-in sync on top of it.
 import * as store from './storage/dataStore.js';
+import * as account from './storage/account.js';
+import { getCloud } from './storage/cloud/index.js';
 
 import { SetupPanel } from './ui/SetupPanel.jsx';
 import { CourseSearch } from './ui/CourseSearch.jsx';
 import { SemesterGrid } from './ui/SemesterGrid.jsx';
 import { Checklist } from './ui/Checklist.jsx';
 import { PlansModal } from './ui/PlansModal.jsx';
+import { AccountMenu, SaveStatus } from './ui/AccountMenu.jsx';
 import { GenerateBar, DiffModal, CoverageModal } from './ui/AutoGen.jsx';
 import { AdvisorPacket, exportAdvisorPdf } from './ui/AdvisorPacket.jsx';
 import { Button, Panel } from './ui/bits.jsx';
@@ -34,15 +38,23 @@ const DATA = {
   equivalencyGroups: store.getEquivalencyGroups(),
   examCredit: store.getExamCredit(),
 };
-// Placeholder until real accounts exist; dataStore signatures already take it.
-const USER = store.LOCAL_USER;
+const LOCAL = store.LOCAL_USER;
+// Account backend (Firebase), or null when sign-in isn't configured.
+const CLOUD = getCloud();
+const AUTOSAVE_MS = 700;
 
 export default function App() {
   const [plan, setPlan] = useState(() => newPlan('My first plan'));
   const [savedJson, setSavedJson] = useState(null);
   const [planIndex, setPlanIndex] = useState([]);
   const [storageState, setStorageState] = useState(store.storageStatus());
-  const [saveFlash, setSaveFlash] = useState(null);
+  const [userId, setUserId] = useState(LOCAL);          // LOCAL, or the signed-in uid
+  const [user, setUser] = useState(null);               // signed-in account details
+  const [saveState, setSaveState] = useState('saved');  // 'saving' | 'saved' | 'error'
+  const [syncState, setSyncState] = useState(null);     // null | 'syncing' | 'synced' | 'offline'
+  const [authBusy, setAuthBusy] = useState(false);
+  const [accountNotice, setAccountNotice] = useState(null);
+  const [ready, setReady] = useState(false);            // first load finished
   const [modalOpen, setModalOpen] = useState(false);
   const [activeSemesterId, setActiveSemesterId] = useState(null);
   const [genResult, setGenResult] = useState(null); // {base, result} pending diff review
@@ -82,21 +94,189 @@ export default function App() {
   planRef.current = plan;
 
   const dirty = savedJson !== JSON.stringify(plan);
+  const userIdRef = useRef(userId);
+  userIdRef.current = userId;
+  const savedJsonRef = useRef(savedJson);
+  savedJsonRef.current = savedJson;
+  const signingOut = useRef(false);
+  const enteredUid = useRef(null);   // account the app has switched to
+  const announceSignIn = useRef(false);
 
   useEffect(() => store.subscribeStorageStatus(setStorageState), []);
 
-  // Load index + most recent plan on mount.
+  const showPlan = (p) => { setPlan(p); setSavedJson(JSON.stringify(p)); setActiveSemesterId(null); };
+
+  // Open the plan last open on this device for this user, else the most
+  // recently edited one, else a fresh plan (not saved until it's edited).
+  async function openLatest(uid) {
+    const idx = await store.listPlans(uid);
+    setPlanIndex(idx);
+    const last = await store.getSetting(`last-open:${uid}`);
+    const pick = idx.find((e) => e.id === last)
+      || [...idx].sort((a, b) => (b.last_edited || 0) - (a.last_edited || 0))[0];
+    const p = pick && await store.loadPlan(uid, pick.id);
+    showPlan(p || newPlan('My first plan'));
+  }
+
+  // Load on mount: the remembered account's cached plans (so a signed-in
+  // user sees their plan straight away), otherwise this browser's plans.
   useEffect(() => {
     (async () => {
-      const idx = await store.listPlans(USER);
-      setPlanIndex(idx);
-      const latest = [...idx].sort((a, b) => (b.last_edited || 0) - (a.last_edited || 0))[0];
-      if (latest) {
-        const p = await store.loadPlan(USER, latest.id);
-        if (p) { setPlan(p); setSavedJson(JSON.stringify(p)); }
-      }
+      const remembered = CLOUD ? await store.getSetting('account') : null;
+      if (remembered) { setUserId(remembered); setSyncState('syncing'); }
+      await openLatest(remembered || LOCAL);
+      setReady(true);
     })();
   }, []);
+
+  useEffect(() => {
+    if (ready) store.setSetting(`last-open:${userId}`, plan.id);
+  }, [ready, userId, plan.id]);
+
+  // Save to this device (and the account when signed in).
+  async function persist(p, uid) {
+    const t = touch(p);
+    setSaveState('saving');
+    const res = await account.savePlan(CLOUD, uid, t);
+    if (userIdRef.current !== uid) return res;
+    setPlanIndex(res.index);
+    // Only adopt the stamped copy if nothing changed while saving.
+    setPlan((cur) => (cur === p ? t : cur));
+    if (planRef.current === p) setSavedJson(JSON.stringify(t));
+    setSaveState(res.ok ? 'saved' : 'error');
+    if (res.synced != null) setSyncState(res.synced ? 'synced' : 'offline');
+    return res;
+  }
+
+  // Save pending edits right away (before switching plans or accounts).
+  async function flushSave() {
+    if (savedJsonRef.current !== JSON.stringify(planRef.current)) {
+      await persist(planRef.current, userIdRef.current);
+    }
+  }
+
+  // Autosave shortly after each edit.
+  useEffect(() => {
+    if (!ready || !dirty) return undefined;
+    const uid = userId;
+    const t = setTimeout(() => persist(planRef.current, uid), AUTOSAVE_MS);
+    return () => clearTimeout(t);
+  }, [plan, ready, userId, dirty]);
+
+  // Last-chance save when the tab closes (local only; it has to be quick).
+  useEffect(() => {
+    const onHide = () => {
+      if (savedJsonRef.current !== JSON.stringify(planRef.current)) {
+        store.savePlan(userIdRef.current, touch(planRef.current));
+      }
+    };
+    window.addEventListener('pagehide', onHide);
+    return () => window.removeEventListener('pagehide', onHide);
+  }, []);
+
+  // ---- optional account (Google sign-in) ----
+  async function enterAccount(u) {
+    enteredUid.current = u.uid;
+    const announce = announceSignIn.current;
+    announceSignIn.current = false;
+    setUser(u);
+    setSyncState('syncing');
+    await flushSave();
+    const openId = planRef.current.id;
+    try {
+      const res = await account.mergeIntoAccount(CLOUD, u.uid);
+      await store.setSetting('account', u.uid);
+      setUserId(u.uid);
+      userIdRef.current = u.uid;
+      setPlanIndex(res.index);
+      const p = res.index.some((e) => e.id === openId) && await store.loadPlan(u.uid, openId);
+      if (p) showPlan(p); else await openLatest(u.uid);
+      setSyncState(res.ok ? 'synced' : 'offline');
+      if (announce) {
+        setAccountNotice(res.added
+          ? `Signed in as ${u.email || u.name}. ${res.added === 1 ? 'The plan' : `${res.added} plans`} from this browser ${res.added === 1 ? 'was' : 'were'} added to your account.`
+          : `Signed in as ${u.email || u.name}. Your plans now sync across devices.`);
+      }
+    } catch {
+      // Account unreachable: keep working from the device cache.
+      await store.setSetting('account', u.uid);
+      setUserId(u.uid);
+      userIdRef.current = u.uid;
+      await openLatest(u.uid);
+      setSyncState('offline');
+    }
+  }
+
+  async function leaveAccount() {
+    enteredUid.current = null;
+    await store.setSetting('account', null);
+    setUser(null);
+    setUserId(LOCAL);
+    userIdRef.current = LOCAL;
+    setSyncState(null);
+    await openLatest(LOCAL);
+  }
+
+  // Follow the sign-in state (restored sessions, sign-ins, expiry).
+  useEffect(() => {
+    if (!CLOUD || !ready) return undefined;
+    return CLOUD.onAuthChange((u) => {
+      if (u) {
+        if (enteredUid.current !== u.uid) enterAccount(u);
+      } else if (userIdRef.current !== LOCAL && !signingOut.current) {
+        leaveAccount();
+      }
+    });
+  }, [ready]);
+
+  // Pick up changes made on other devices.
+  useEffect(() => {
+    if (!CLOUD || userId === LOCAL) return undefined;
+    return CLOUD.subscribe(userId, async (records) => {
+      const { changed, index } = await account.applyRemote(userId, records);
+      if (userIdRef.current !== userId) return;
+      setPlanIndex(index);
+      const openId = planRef.current.id;
+      if (changed.includes(openId) && savedJsonRef.current === JSON.stringify(planRef.current)) {
+        const p = await store.loadPlan(userId, openId);
+        if (p) showPlan(p); else await openLatest(userId);
+      }
+    });
+  }, [userId]);
+
+  async function signInAction() {
+    setAuthBusy(true);
+    announceSignIn.current = true;
+    try {
+      await CLOUD.signIn(); // the auth listener above switches into the account
+    } catch (e) {
+      announceSignIn.current = false;
+      const code = e?.code || '';
+      if (!/popup-closed|cancelled-popup/.test(code)) {
+        setAccountNotice(`Couldn't sign in${code ? ` (${code.replace('auth/', '')})` : ''}. Your plans are still saved in this browser.`);
+      }
+    } finally {
+      setAuthBusy(false);
+    }
+  }
+
+  async function signOutAction() {
+    setAuthBusy(true);
+    signingOut.current = true;
+    try {
+      await flushSave();
+      setSyncState('syncing');
+      const { ok } = await account.forgetAccountOnDevice(CLOUD, userIdRef.current);
+      await CLOUD.signOut();
+      await leaveAccount();
+      setAccountNotice(ok
+        ? 'Signed out. Your plans are saved in your account; sign in on any device to see them.'
+        : "Signed out. Some changes hadn't reached your account yet, so they were kept on this device and will sync next time you sign in.");
+    } finally {
+      signingOut.current = false;
+      setAuthBusy(false);
+    }
+  }
 
   const { progress, violations } = useMemo(() => checkAll(plan, DATA), [plan]);
 
@@ -361,64 +541,44 @@ export default function App() {
     return touch({ ...p, semesters: p.semesters.filter((x) => x.id !== semId) });
   });
 
-  // ---- persistence (all through dataStore) ----
-  async function savePlanAction() {
-    const p = touch(planRef.current);
-    setPlan(p);
-    const { ok, index } = await store.savePlan(USER, p);
-    setPlanIndex(index);
-    setSavedJson(JSON.stringify(p));
-    setSaveFlash(ok ? 'Saved' : 'Saved locally — persistent storage failed');
-    setTimeout(() => setSaveFlash(null), 2500);
-  }
-
-  function confirmDiscard() {
-    return !dirty || window.confirm('This plan has unsaved changes. Discard them?');
-  }
-
+  // ---- plan list actions (all saving goes through dataStore/account) ----
   async function loadPlanAction(id) {
-    if (!confirmDiscard()) return;
-    const p = await store.loadPlan(USER, id);
-    if (p) { setPlan(p); setSavedJson(JSON.stringify(p)); setModalOpen(false); setActiveSemesterId(null); }
+    await flushSave();
+    const p = await store.loadPlan(userId, id);
+    if (p) { showPlan(p); setModalOpen(false); }
   }
 
-  function newPlanAction() {
-    if (!confirmDiscard()) return;
-    const p = newPlan(`Plan ${planIndex.length + 1}`);
-    setPlan(p);
-    setSavedJson(null);
+  async function newPlanAction() {
+    await flushSave();
+    showPlan(newPlan(`Plan ${planIndex.length + 1}`));
     setModalOpen(false);
-    setActiveSemesterId(null);
   }
 
   async function renamePlanAction(id, name) {
-    // rename = load + save composition; savePlan refreshes the index entry
-    const p = id === plan.id ? { ...planRef.current, name } : await store.loadPlan(USER, id);
+    if (id === plan.id) { setPlan((x) => ({ ...x, name })); return; } // autosaves
+    const p = await store.loadPlan(userId, id);
     if (!p) return;
-    const { index } = await store.savePlan(USER, { ...p, name });
+    const { index } = await account.savePlan(CLOUD, userId, touch({ ...p, name }));
     setPlanIndex(index);
-    if (plan.id === id) {
-      setPlan((x) => ({ ...x, name }));
-      setSavedJson(JSON.stringify({ ...p, name }));
-    }
   }
 
   async function duplicatePlanAction(id) {
-    if (id === plan.id) {
-      // duplicating the open plan copies its LIVE (possibly unsaved) state
-      const copy = { ...planRef.current, id: newPlan().id, name: `${planRef.current.name} (copy)`, lastEdited: Date.now() };
-      const { index } = await store.savePlan(USER, copy);
-      setPlanIndex(index);
-      return;
-    }
-    const { index } = await store.duplicatePlan(USER, id);
+    const src = id === plan.id ? planRef.current : await store.loadPlan(userId, id);
+    if (!src) return;
+    const copy = { ...src, id: newPlan().id, name: `${src.name} (copy)`, lastEdited: Date.now() };
+    const { index } = await account.savePlan(CLOUD, userId, copy);
     setPlanIndex(index);
   }
 
   async function deletePlanAction(id) {
     if (!window.confirm('Delete this plan permanently?')) return;
-    const { index } = await store.deletePlan(USER, id);
+    const { index } = await account.deletePlan(CLOUD, userId, id);
     setPlanIndex(index);
+    if (id === plan.id) {
+      const next = [...index].sort((a, b) => (b.last_edited || 0) - (a.last_edited || 0))[0];
+      const p = next && await store.loadPlan(userId, next.id);
+      showPlan(p || newPlan('My first plan'));
+    }
   }
 
   const storageBroken = storageState.available === false;
@@ -470,15 +630,13 @@ export default function App() {
             </div>
 
             <div className="flex items-center gap-1">
-              {saveFlash && saveFlash !== 'Saved' && <span className="hidden text-xs text-warn sm:inline">{saveFlash}</span>}
-              {dirty
-                ? <Button kind="primary" onClick={savePlanAction}>Save plan</Button>
-                : <Button kind="quiet" onClick={savePlanAction} title="All changes saved"><Icon name="check" size="sm" /> Saved</Button>}
+              <SaveStatus status={dirty && saveState === 'saved' ? 'saving' : saveState} sync={syncState} backend={store.storageBackendKind()} />
               <Button kind="quiet" onClick={() => exportAdvisorPdf(plan.name)}
                 title="Opens the print dialog — choose Save as PDF to email your adviser">
                 Export PDF
               </Button>
               <Button kind="quiet" onClick={() => setModalOpen(true)}>My plans</Button>
+              {CLOUD && <AccountMenu user={user} busy={authBusy} onSignIn={signInAction} onSignOut={signOutAction} />}
             </div>
           </div>
         </div>
@@ -486,7 +644,14 @@ export default function App() {
 
       {storageBroken && (
         <div className="banner banner-warn" role="status">
-          Persistent storage is unavailable ({storageState.lastError}). Your changes are kept in this session only until storage recovers.
+          This browser isn't allowing saves ({storageState.lastError}). Your changes last until you close this tab{CLOUD && userId === LOCAL ? ', or sign in to save them to an account' : ''}.
+        </div>
+      )}
+
+      {accountNotice && (
+        <div className="banner banner-info" role="status">
+          {accountNotice}
+          <button type="button" className="ml-2 underline hover:no-underline" onClick={() => setAccountNotice(null)}>Dismiss</button>
         </div>
       )}
 

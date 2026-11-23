@@ -46,7 +46,8 @@ describe('UI render smoke', () => {
     expect(html).toContain('wordmark-u');
     expect(html).toContain('wordmark-r');
     expect(html).toContain('UR Schedule Builder');
-    expect(html).toContain('Save plan');
+    expect(html).toContain('My plans');
+    expect(html).not.toContain('Sign in with Google'); // hidden until an account backend is configured
     expect(html).toContain('Export PDF');
     expect(html).toContain('Schedule for advisor review');
   });

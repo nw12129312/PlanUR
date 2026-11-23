@@ -17,7 +17,8 @@ src/engine/    pure, UI-free constraint engine
   whatIf.js        what-if audits and closest-to-finishing suggestions
   constraints.js   every check, plus checkAll
 src/data/      generated JSON (courses, programs, clusters, policy, meta, …)
-src/storage/   dataStore.js, the only module that touches window.storage
+src/storage/   dataStore.js (the only module that touches browser storage),
+               account.js + sync.js + cloud/ for optional Google sign-in sync
 src/ui/        React components (Tailwind v4)
 tests/         vitest suites
 tools/         Python data pipeline
@@ -46,9 +47,10 @@ python3 tools/build_data.py && npm run build   # after editing data
 python3 tools/make_artifact.py                 # artifact-format output
 ```
 
-`window.storage` only exists in the artifact runtime. Locally the app shows a
-"persistent storage unavailable" banner and keeps working in memory; that is
-the designed fallback, not a bug.
+Plans save to localStorage when the app runs as a normal web page, and to
+`window.storage` inside the artifact runtime. Google sign-in appears only when
+Firebase is configured; see [ACCOUNTS.md](ACCOUNTS.md) for setup and
+`VITE_CLOUD=demo` for trying it without Firebase.
 
 ## Adding a program (no app-code changes)
 
@@ -257,9 +259,12 @@ optimal assignment in pathological overlap cases.
 ## Storage
 
 All persistence flows through one module: `src/storage/dataStore.js`. It is the
-only file in the codebase that calls `window.storage` (the artifact runtime's
-per-user store — never localStorage); UI components and the engine never touch
-storage directly (the engine stays pure and receives data as parameters).
+only file in the codebase that touches browser storage: the artifact runtime's
+`window.storage` when present, otherwise `localStorage` (keys prefixed
+`planur:`). UI components and the engine never touch storage directly (the
+engine stays pure and receives data as parameters). Plans autosave shortly
+after each edit. Optional Google sign-in sync sits on top of this in
+`src/storage/account.js`; see [ACCOUNTS.md](ACCOUNTS.md).
 
 API: `savePlan(userId, plan)`, `loadPlan(userId, planId)`, `listPlans(userId)`,
 `deletePlan(userId, planId)`, `duplicatePlan(userId, planId)` — every

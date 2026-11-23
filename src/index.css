@@ -240,6 +240,7 @@ body {
 
 .banner-warn { background: var(--warn-soft); color: var(--warn); }
 .banner-bad { background: var(--bad-soft); color: var(--bad); }
+.banner-info { background: var(--accent-soft); color: var(--ink); }
 
 /* ------------------------------------------------------------ interaction --
    Skill rules hover-vs-tap and touch-target-size.
