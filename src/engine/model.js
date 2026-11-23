@@ -24,8 +24,7 @@ export function newPlan(name = 'Untitled plan', startYear = new Date().getFullYe
     transferExams: [], // [{examId, score, choice?}] from the CCAS AP handbook
     // per placed course: { source: 'manual'|'auto', locked: boolean, reason?: string }
     courseMeta: {},
-    // per-pair exceptions to the same-department ascending-number rule:
-    // [{ lower: 'BIOL 111L', higher: 'BIOL 250' }]
+    // leftover from the retired same-department numbering rule; ignored
     sequencingOverrides: [],
     // declared concentration / track / theme inside a program:
     // { [programId]: { [groupId]: trackName } }
@@ -68,12 +67,71 @@ export function isLocked(plan, courseId) {
   return getCourseMeta(plan, courseId).locked;
 }
 
+export const ACADEMIC_YEAR_NAMES = [
+  'First year', 'Sophomore year', 'Junior year', 'Senior year', 'Fifth year', 'Sixth year',
+];
+
+const TERM_LABEL = { fall: 'Fall', spring: 'Spring', summer: 'Summer' };
+const CHRONO_ORDER = { spring: 0, summer: 1, fall: 2 };
+const YEAR_ORDER = { fall: 0, spring: 1, summer: 2 };
+
+export function parseSemesterLabel(label) {
+  const m = String(label || '').match(/(Fall|Spring|Summer)\s+(\d{4})/);
+  if (!m) return null;
+  return { term: m[1].toLowerCase(), year: Number(m[2]) };
+}
+
+export function semesterChronoKey(sem) {
+  const parsed = parseSemesterLabel(sem?.label) || { term: sem?.term, year: 0 };
+  return parsed.year * 10 + (CHRONO_ORDER[parsed.term] ?? 9);
+}
+
+function academicYearKey(sem) {
+  const parsed = parseSemesterLabel(sem?.label) || { term: sem?.term, year: 0 };
+  return parsed.term === 'fall' ? parsed.year : parsed.year - 1;
+}
+
+// Academic year = Fall YYYY + Spring YYYY+1 + optional Summer YYYY+1.
+export function groupIntoYears(semesters) {
+  const buckets = new Map();
+  for (const sem of semesters || []) {
+    const key = academicYearKey(sem);
+    if (!buckets.has(key)) buckets.set(key, []);
+    buckets.get(key).push(sem);
+  }
+  return [...buckets.keys()].sort((a, b) => a - b).map((k) => {
+    const group = buckets.get(k).slice();
+    group.sort((a, b) => (YEAR_ORDER[a.term] ?? 9) - (YEAR_ORDER[b.term] ?? 9));
+    return group;
+  });
+}
+
+function summerYearForAcademicGroup(group) {
+  const spring = group.find((s) => s.term === 'spring');
+  if (spring) return parseSemesterLabel(spring.label)?.year ?? null;
+  const fall = group.find((s) => s.term === 'fall');
+  if (fall) {
+    const y = parseSemesterLabel(fall.label)?.year;
+    return y == null ? null : y + 1;
+  }
+  return null;
+}
+
+export function availableSummerSlots(plan) {
+  return groupIntoYears(plan.semesters || []).flatMap((group, i) => {
+    if (group.some((s) => s.term === 'summer')) return [];
+    const year = summerYearForAcademicGroup(group);
+    if (year == null) return [];
+    return [{ year, yearLabel: ACADEMIC_YEAR_NAMES[i] || `Year ${i + 1}` }];
+  });
+}
+
 export function addSemester(plan) {
   const i = plan.semesters.length;
   const last = plan.semesters[i - 1];
   let term = 'fall', year = new Date().getFullYear();
   if (last) {
-    const m = last.label.match(/(Fall|Spring)\s+(\d{4})/);
+    const m = last.label.match(/(Fall|Spring|Summer)\s+(\d{4})/);
     if (m) {
       term = m[1] === 'Fall' ? 'spring' : 'fall';
       year = m[1] === 'Fall' ? Number(m[2]) + 1 : Number(m[2]);
@@ -84,10 +142,29 @@ export function addSemester(plan) {
     semesters: [...plan.semesters, {
       id: `${term}-${year}-${i}-${Math.random().toString(36).slice(2, 6)}`,
       term,
-      label: `${term === 'fall' ? 'Fall' : 'Spring'} ${year}`,
+      label: `${TERM_LABEL[term]} ${year}`,
       courseIds: [],
     }],
   };
+}
+
+export function addSummerSemester(plan, year) {
+  const y = Number(year);
+  if (!Number.isFinite(y)) return plan;
+  const already = (plan.semesters || []).some((s) => (
+    s.term === 'summer' && parseSemesterLabel(s.label)?.year === y
+  ));
+  if (already) return plan;
+  const i = plan.semesters.length;
+  const added = {
+    id: `summer-${y}-${i}-${Math.random().toString(36).slice(2, 6)}`,
+    term: 'summer',
+    label: `Summer ${y}`,
+    courseIds: [],
+  };
+  const semesters = [...plan.semesters, added]
+    .sort((a, b) => semesterChronoKey(a) - semesterChronoKey(b));
+  return { ...plan, semesters };
 }
 
 // All course ids in the plan (semesters in order, then transfer bucket).

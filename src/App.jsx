@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 
-import { newPlan, addSemester, withCourseMeta, getCourseMeta } from './engine/model.js';
+import { newPlan, addSemester, addSummerSemester, withCourseMeta, getCourseMeta } from './engine/model.js';
 import { withScheduleStyle } from './engine/scheduleStyle.js';
 import { switchTrackChoice, withProgramSwap } from './engine/pathways.js';
 import { checkAll, resolveRequiredCredits } from './engine/constraints.js';
@@ -22,7 +22,7 @@ import { Checklist } from './ui/Checklist.jsx';
 import { PlansModal } from './ui/PlansModal.jsx';
 import { GenerateBar, DiffModal, CoverageModal } from './ui/AutoGen.jsx';
 import { AdvisorPacket, exportAdvisorPdf } from './ui/AdvisorPacket.jsx';
-import { Button, Tag, Ring, Panel } from './ui/bits.jsx';
+import { Button, Ring, Panel } from './ui/bits.jsx';
 import { Icon } from './ui/icons.jsx';
 
 const DATA = {
@@ -33,7 +33,6 @@ const DATA = {
   equivalencyGroups: store.getEquivalencyGroups(),
   examCredit: store.getExamCredit(),
 };
-const metaData = store.getMeta();
 // Placeholder until real accounts exist; dataStore signatures already take it.
 const USER = store.LOCAL_USER;
 
@@ -273,20 +272,6 @@ export default function App() {
   const autoFillGroup = (programId, groupId) =>
     runGenerate({ kind: 'group', programId, groupId }, 18);
 
-  // ---- department-ordering overrides (per-pair, plan-level) ----
-  const allowSequencing = (pair) => setPlan((p) => touch({
-    ...p,
-    sequencingOverrides: [
-      ...(p.sequencingOverrides || []).filter((o) => !(o.lower === pair.lower && o.higher === pair.higher)),
-      pair,
-    ],
-  }));
-  const removeSequencingOverride = (pair) => setPlan((p) => touch({
-    ...p,
-    sequencingOverrides: (p.sequencingOverrides || [])
-      .filter((o) => !(o.lower === pair.lower && o.higher === pair.higher)),
-  }));
-
   const applyGenerated = (nextPlan) => {
     setPlan(touch(nextPlan));
     setGenResult(null);
@@ -325,6 +310,7 @@ export default function App() {
   });
 
   const onAddSemester = () => setPlan((p) => touch(addSemester(p)));
+  const onAddSummer = (year) => setPlan((p) => touch(addSummerSemester(p, year)));
   const onRemoveSemester = (semId) => setPlan((p) => {
     const s = p.semesters.find((x) => x.id === semId);
     if (!s || s.courseIds.length) return p;
@@ -402,57 +388,52 @@ export default function App() {
     <>
     <div className="no-print flex flex-col bg-ground">
       <header className="site-header">
-        <div className="mx-auto flex w-full max-w-[1600px] flex-wrap items-center gap-x-3 gap-y-1.5 px-3 py-2 lg:px-4">
+        <div className="mx-auto flex w-full max-w-[1600px] flex-wrap items-center gap-x-3 gap-y-2 px-3 py-2 lg:px-4">
           <div className="flex shrink-0 items-center">
             <h1
               className="wordmark"
               aria-label="Planur — UR Schedule Builder"
               style={{
-                fontFamily: '"Times New Roman", Times, Georgia, serif',
+                fontFamily: '"Crimson Pro", "Times New Roman", Times, Georgia, serif',
                 fontWeight: 600,
-                fontSize: 22,
+                fontSize: 26,
                 lineHeight: 1,
-                letterSpacing: 0,
+                letterSpacing: '-0.01em',
               }}
             >
               Plan<span className="wordmark-u" style={{ color: '#89CFF0' }}>u</span><span className="wordmark-r" style={{ color: '#FFC200' }}>r</span>
             </h1>
           </div>
 
-          <div className="flex min-w-0 flex-1 items-center gap-2 sm:max-w-md">
-            <input
-              value={plan.name}
-              onChange={(e) => setPlan((p) => ({ ...p, name: e.target.value }))}
-              aria-label="Plan name"
-              className="input-flat min-h-8 w-full rounded-md border border-line bg-surface px-2.5 text-[13px] font-medium text-ink shadow-sm transition hover:border-ink-3/40 focus:border-accent focus:ring-2 focus:ring-accent/20"
-            />
-            {dirty ? <Tag tone="warn">Unsaved</Tag> : <Tag tone="good">Saved</Tag>}
-          </div>
+          <input
+            value={plan.name}
+            onChange={(e) => setPlan((p) => ({ ...p, name: e.target.value }))}
+            aria-label="Plan name"
+            className="input-flat min-h-9 min-w-[10rem] flex-1 rounded-md border border-transparent bg-transparent px-2 text-[15px] font-semibold text-ink transition hover:border-line focus:border-accent focus:bg-surface focus:ring-2 focus:ring-accent/20 sm:max-w-sm"
+          />
 
-          <div className="stat-pill">
-            <Ring pct={creditPct} label={`${plannedCredits} of ${requiredCredits} credit hours planned`} />
-            <div className="leading-tight">
-              <div className="tnum text-[13px] font-semibold text-ink">
+          <div className="ml-auto flex shrink-0 items-center gap-3">
+            <div className="flex items-center gap-2" title={`${plannedCredits} of ${requiredCredits} credit hours planned`}>
+              <Ring pct={creditPct} label={`${plannedCredits} of ${requiredCredits} credit hours planned`} />
+              <span className="tnum text-[13px] font-semibold text-ink">
                 {plannedCredits}<span className="font-normal text-ink-3"> / {requiredCredits} cr</span>
-              </div>
-              <div className="text-[11px] text-ink-3">
-                {errorCount > 0
-                  ? <span className="font-medium text-bad">{errorCount} rule {errorCount === 1 ? 'error' : 'errors'}</span>
-                  : 'No rule errors'}
-              </div>
+                {errorCount > 0 && (
+                  <span className="block text-xs font-semibold text-bad">{errorCount} {errorCount === 1 ? 'error' : 'errors'}</span>
+                )}
+              </span>
             </div>
-          </div>
 
-          <div className="flex shrink-0 items-center gap-2">
-            {saveFlash && <span className="hidden text-xs text-ink-3 sm:inline">{saveFlash}</span>}
-            <Button kind="primary" onClick={savePlanAction}>Save plan</Button>
-            <Button
-              onClick={() => exportAdvisorPdf(plan.name)}
-              title="Opens the print dialog — choose Save as PDF to email your adviser"
-            >
-              <Icon name="document" size="sm" /> Export PDF
-            </Button>
-            <Button onClick={() => setModalOpen(true)}>My plans</Button>
+            <div className="flex items-center gap-1">
+              {saveFlash && saveFlash !== 'Saved' && <span className="hidden text-xs text-warn sm:inline">{saveFlash}</span>}
+              {dirty
+                ? <Button kind="primary" onClick={savePlanAction}>Save plan</Button>
+                : <Button kind="quiet" onClick={savePlanAction} title="All changes saved"><Icon name="check" size="sm" /> Saved</Button>}
+              <Button kind="quiet" onClick={() => exportAdvisorPdf(plan.name)}
+                title="Opens the print dialog — choose Save as PDF to email your adviser">
+                Export PDF
+              </Button>
+              <Button kind="quiet" onClick={() => setModalOpen(true)}>My plans</Button>
+            </div>
           </div>
         </div>
       </header>
@@ -476,18 +457,17 @@ export default function App() {
         </div>
       )}
 
-      <div className="mx-auto w-full max-w-[1600px] px-3 pt-2 lg:px-4">
+      <div className="mx-auto w-full max-w-[1600px] px-3 pt-3 lg:px-4">
         {setupOpen ? (
           <Panel
             title="Programs & clusters"
-            icon="settings"
-            className="mb-2"
+            className="mb-3"
             headerRight={plan.majorIds.length > 0 && (
               <Button kind="quiet" onClick={() => setSetupOpen(false)}>Done <Icon name="chevronUp" size="sm" /></Button>
             )}
             bodyClassName="!p-0"
           >
-            <div className="p-2.5">
+            <div className="p-3">
               <SetupPanel data={DATA} plan={plan} clustersNeeded={clustersNeeded} coverage={coverage}
                 onChange={(p) => setPlan(touch(p))} />
             </div>
@@ -496,11 +476,8 @@ export default function App() {
           <button
             type="button"
             onClick={() => setSetupOpen(true)}
-            className="mb-2 flex w-full items-center gap-2 rounded-lg border border-line bg-surface px-3 py-1.5 text-left shadow-sm transition hover:border-accent/40 hover:bg-surface-2"
+            className="mb-3 flex min-h-10 w-full items-center gap-2.5 rounded-lg border border-line bg-surface px-3 py-2 text-left transition hover:border-ink-3/40"
           >
-            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-accent-soft text-accent">
-              <Icon name="settings" size="sm" />
-            </span>
             <span className="min-w-0 flex-1 truncate text-[13px] text-ink-2">
               {setupSummary.length
                 ? setupSummary.map((s, i) => (
@@ -511,12 +488,12 @@ export default function App() {
                   ))
                 : 'No programs selected — set up your degree plan'}
             </span>
-            <span className="inline-flex shrink-0 items-center gap-1 text-[13px] font-semibold text-accent">Edit <Icon name="chevronDown" size="sm" /></span>
+            <span className="inline-flex shrink-0 items-center gap-1 text-[13px] font-semibold text-ink-2">Edit <Icon name="chevronDown" size="sm" /></span>
           </button>
         )}
       </div>
 
-      <main className={`mx-auto grid w-full max-w-[1600px] items-start grid-cols-1 gap-2.5 px-3 pb-3 lg:px-4 ${
+      <main className={`mx-auto grid w-full max-w-[1600px] items-start grid-cols-1 gap-3 px-3 pb-4 lg:px-4 ${
         auditOpen
           ? 'lg:grid-cols-[minmax(220px,260px)_minmax(0,1fr)_minmax(240px,280px)] xl:grid-cols-[minmax(240px,280px)_minmax(0,1fr)_minmax(260px,300px)]'
           : 'lg:grid-cols-[minmax(240px,300px)_minmax(0,1fr)]'
@@ -533,11 +510,13 @@ export default function App() {
             />
           </aside>
 
-          <div className="@container min-w-0 space-y-2">
-            <GenerateBar plan={plan} data={DATA} onGenerate={runGenerate} onLockAll={lockAll}
-              onScheduleStyle={(id) => setPlan((p) => touch(withScheduleStyle(p, id)))}
-              busy={genBusy} />
+          <div className="@container min-w-0">
             <SemesterGrid
+              toolbar={(
+                <GenerateBar plan={plan} data={DATA} onGenerate={runGenerate} onLockAll={lockAll}
+                  onScheduleStyle={(id) => setPlan((p) => touch(withScheduleStyle(p, id)))}
+                  busy={genBusy} />
+              )}
               data={DATA}
               plan={plan}
               activeSemesterId={activeSemesterId}
@@ -547,6 +526,7 @@ export default function App() {
               onRemoveCourse={removeCourse}
               onToggleLock={toggleLock}
               onAddSemester={onAddSemester}
+              onAddSummer={onAddSummer}
               onRemoveSemester={onRemoveSemester}
               violationsByCourse={violationsByCourse}
               violationsBySemester={violationsBySemester}
@@ -563,23 +543,16 @@ export default function App() {
           {auditOpen && (
             <aside className="w-full overflow-hidden">
               <Checklist data={DATA} plan={plan} progress={progress} violations={violations} clustersNeeded={clustersNeeded}
-                onAutoFill={autoFillGroup} onAllowSequencing={allowSequencing} onRemoveSequencingOverride={removeSequencingOverride}
-                onHide={() => setAuditOpen(false)} placedSet={placedSet}
+                onAutoFill={autoFillGroup}
+                placedSet={placedSet}
                 onPickOption={pickRequirementOption} onChooseTrack={chooseTrack} onSwapProgram={swapProgram} />
             </aside>
           )}
       </main>
 
       <footer className="site-footer">
-        <div className="mx-auto flex w-full max-w-[1600px] flex-wrap items-center gap-x-3 gap-y-1 px-3 py-1.5 text-[11px] text-ink-3 lg:px-4">
-          <span className="font-medium text-ink-2">UR Schedule Builder</span>
-          <span aria-hidden="true">·</span>
-          <span>
-            {metaData.counts.activePrograms} programs · {metaData.counts.clusters} clusters · {metaData.counts.courses} courses
-            ({metaData.builtOn})
-          </span>
-          <span className="hidden sm:inline" aria-hidden="true">·</span>
-          <span className="hidden sm:inline">Not an official degree audit — confirm with your adviser.</span>
+        <div className="mx-auto w-full max-w-[1600px] px-3 py-3 text-xs text-ink-3 lg:px-4">
+          <span>UR Schedule Builder · Not an official degree audit — confirm with your adviser.</span>
         </div>
       </footer>
 

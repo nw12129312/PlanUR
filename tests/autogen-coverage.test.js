@@ -144,15 +144,11 @@ describe('regressions the full sweep caught', () => {
     expect(progress.programs[0].groups.find((g) => g.id === 'prereq-computing').complete).toBe(true);
   }, GENERATE_TIMEOUT_MS);
 
-  it('relaxes department ordering only when a degree is otherwise unschedulable', () => {
-    // ME BS: 16 ME core courses in ascending order do not fit 8 alternating
-    // fall/spring terms, so the advisory rule must yield to finishing the
-    // degree - and must say so rather than silently dropping the rule.
+  it('does not invent a department-numbering relaxation', () => {
     const me = generateFor('major-me-bs').result;
-    expect(me.relaxedDeptOrder).toBe(true);
-    expect(me.warnings.some((w) => /ascending course-number order/.test(w))).toBe(true);
+    expect(me.relaxedDeptOrder).toBeUndefined();
+    expect(me.warnings.some((w) => /ascending course-number order/.test(w))).toBe(false);
 
-    // A major that schedules fine in order must NOT be relaxed.
     const bio = generateFor('biol-ba').result;
     expect(bio.relaxedDeptOrder).toBeUndefined();
   }, GENERATE_TIMEOUT_MS);

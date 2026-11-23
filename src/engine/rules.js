@@ -13,7 +13,7 @@ export const RULES = {
   },
   OFFERING_TERM: {
     title: 'Offering term',
-    text: 'The course was not scheduled in this term in the 2025-26 CDCS schedules. Offering patterns can change year to year.',
+    text: 'The course was not scheduled in this term in harvested CDCS terms (including summer). Offering patterns can change year to year.',
   },
   OFFERING_UNVERIFIED: {
     title: 'Offering unverified',
@@ -126,14 +126,6 @@ export const RULES = {
   PROGRAM_MAX_100: {
     title: '100-level cap',
     text: 'This program caps how many 100-level courses may count.',
-  },
-  DEPT_SEQUENCING: {
-    title: 'Department course order',
-    text: 'Within one department, courses are generally expected in ascending number order - a lower-numbered course should not sit in a later semester than a higher-numbered one. This convention is right most of the time but has exceptions: use "Allow" on the flagged pair to override it for this plan.',
-  },
-  DEPT_SEQ_UNPARSEABLE: {
-    title: 'Code excluded from ordering check',
-    text: 'This course code could not be parsed into department + number, so the department-ordering rule skips it.',
   },
   AP_IB_MAJOR_EXCLUDED: {
     title: 'AP/IB credit excluded from this major',

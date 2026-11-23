@@ -19,13 +19,13 @@ function course(overrides = {}) {
 
 describe('CourseCard cross-list chip', () => {
   it('omits the chip when the course has no other listings', () => {
-    const html = renderToString(<CourseCard course={course()} />);
+    const html = renderToString(<CourseCard placed course={course()} />);
     expect(html).not.toContain('Cross-listed');
   });
 
   it('names the other codes when there are one or two aliases', () => {
     const html = renderToString(
-      <CourseCard course={course({
+      <CourseCard placed course={course({
         crossListings: ['DSCC 242', 'BCSC 232'],
         crossListingSource: 'CDCS Co-Located',
       })} />,

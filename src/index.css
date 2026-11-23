@@ -2,103 +2,88 @@
 
 /* =============================================================================
    UR Schedule Builder — production web UI
-   Rochester blue primary, clean SaaS dashboard layout, no artifact textures.
+
+   Design system from the ui-ux-pro-max skill ("Research Lab / University
+   Department" profile): Minimalism & Swiss Style, institutional navy with a
+   gold cluster accent, serif headings (Crimson Pro) over a hyperlegible sans
+   (Atkinson Hyperlegible Next). Dense dashboard spacing on a 4px grid.
+
+   Every text/background pair below is checked for WCAG AA 4.5:1 in both
+   themes. In particular --ink-3 on --surface-2 was 4.08:1 before; it is now
+   5.24:1 (light) and 6.00:1 (dark).
    ========================================================================== */
 
-:root {
-  --ground: #f4f6f9;
+:root,
+:root[data-theme="light"] {
+  --ground: #f8fafc;
   --surface: #ffffff;
-  --surface-2: #eef2f7;
+  --surface-2: #e9eef5;
   --ink: #0f172a;
   --ink-2: #475569;
-  --ink-3: #64748b;
-  --line: #e2e8f0;
-  --accent: #0b4fa2;
+  --ink-3: #556377;
+  --line: #d7dee7;
+  --accent: #1e3a5f;
   --accent-ink: #ffffff;
-  --accent-soft: #e8f0fb;
+  --accent-soft: #e6edf6;
   --cta: #c2410c;
   --cta-ink: #ffffff;
-  --cta-soft: #fff7ed;
+  --cta-soft: #fff1e6;
   --cta-strong: #9a3412;
-  --gold: #854d0e;
-  --gold-soft: #fef9c3;
-  --dandelion: #eab308;
+  --gold: #8a5300;
+  --gold-soft: #fef3c7;
   --good: #047857;
-  --good-soft: #ecfdf5;
+  --good-soft: #e7f6ef;
   --warn: #b45309;
-  --warn-soft: #fffbeb;
-  --bad: #dc2626;
-  --bad-soft: #fef2f2;
-  --info: #2563eb;
-  --info-soft: #eff6ff;
+  --warn-soft: #fef5e2;
+  --bad: #b91c1c;
+  --bad-soft: #fdecec;
+  --info: #1d4ed8;
+  --info-soft: #eaf1fe;
 
-  --shadow-sm: 0 1px 2px rgb(15 23 42 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(15 23 42 / 0.07), 0 2px 4px -2px rgb(15 23 42 / 0.05);
-  --shadow-lg: 0 10px 15px -3px rgb(15 23 42 / 0.08), 0 4px 6px -4px rgb(15 23 42 / 0.05);
+  /* Swiss style: structure comes from borders; shadows stay sharp and faint. */
+  --shadow-sm: 0 1px 0 rgb(15 23 42 / 0.04);
+  --shadow-md: 0 1px 2px rgb(15 23 42 / 0.06), 0 4px 10px -4px rgb(15 23 42 / 0.10);
+  --shadow-lg: 0 2px 6px rgb(15 23 42 / 0.06), 0 16px 32px -8px rgb(15 23 42 / 0.20);
+}
 
-  --header-h: 48px;
-  --dur: 160ms;
-  --radius: 8px;
-  --radius-lg: 10px;
+:root {
+  --header-h: 52px;
+  --dur: 180ms;
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+  --radius: 6px;
+  --radius-lg: 8px;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --ground: #0b1120;
-    --surface: #111827;
-    --surface-2: #1e293b;
-    --ink: #f1f5f9;
-    --ink-2: #94a3b8;
-    --ink-3: #64748b;
-    --line: #334155;
-    --accent: #60a5fa;
-    --accent-ink: #0b1120;
-    --accent-soft: #172554;
-    --cta: #fb923c;
-    --cta-ink: #0b1120;
-    --cta-soft: #431407;
-    --cta-strong: #fdba74;
-    --gold: #fbbf24;
-    --gold-soft: #422006;
-    --dandelion: #facc15;
-    --good: #34d399;
-    --good-soft: #064e3b;
-    --warn: #fbbf24;
-    --warn-soft: #451a03;
-    --bad: #f87171;
-    --bad-soft: #450a0a;
-    --info: #93c5fd;
-    --info-soft: #1e3a8a;
-    --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.35);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.45);
+    --ground: #0b1220; --surface: #111a2b; --surface-2: #1a2538;
+    --ink: #f1f5f9; --ink-2: #cbd5e1; --ink-3: #94a3b8; --line: #2a3850;
+    --accent: #8fb4e3; --accent-ink: #0b1220; --accent-soft: #1b2c47;
+    --cta: #fb923c; --cta-ink: #0b1220; --cta-soft: #3b1a0a; --cta-strong: #fdba74;
+    --gold: #e9b949; --gold-soft: #3a2a0a;
+    --good: #34d399; --good-soft: #0b3a2c;
+    --warn: #fbbf24; --warn-soft: #3a2508;
+    --bad: #f87171; --bad-soft: #3f1414;
+    --info: #93c5fd; --info-soft: #172a55;
+    --shadow-sm: 0 1px 0 rgb(0 0 0 / 0.3);
+    --shadow-md: 0 1px 2px rgb(0 0 0 / 0.4), 0 4px 10px -4px rgb(0 0 0 / 0.5);
+    --shadow-lg: 0 2px 6px rgb(0 0 0 / 0.4), 0 16px 32px -8px rgb(0 0 0 / 0.6);
   }
 }
 
-:root[data-theme="light"] {
-  --ground: #f4f6f9; --surface: #ffffff; --surface-2: #eef2f7;
-  --ink: #0f172a; --ink-2: #475569; --ink-3: #64748b; --line: #e2e8f0;
-  --accent: #0b4fa2; --accent-ink: #ffffff; --accent-soft: #e8f0fb;
-  --cta: #c2410c; --cta-ink: #ffffff; --cta-soft: #fff7ed; --cta-strong: #9a3412;
-  --gold: #854d0e; --gold-soft: #fef9c3;
-  --dandelion: #eab308;
-  --good: #047857; --good-soft: #ecfdf5;
-  --warn: #b45309; --warn-soft: #fffbeb;
-  --bad: #dc2626; --bad-soft: #fef2f2;
-  --info: #2563eb; --info-soft: #eff6ff;
-}
-
 :root[data-theme="dark"] {
-  --ground: #0b1120; --surface: #111827; --surface-2: #1e293b;
-  --ink: #f1f5f9; --ink-2: #94a3b8; --ink-3: #64748b; --line: #334155;
-  --accent: #60a5fa; --accent-ink: #0b1120; --accent-soft: #172554;
-  --cta: #fb923c; --cta-ink: #0b1120; --cta-soft: #431407; --cta-strong: #fdba74;
-  --gold: #fbbf24; --gold-soft: #422006;
-  --dandelion: #facc15;
-  --good: #34d399; --good-soft: #064e3b;
-  --warn: #fbbf24; --warn-soft: #451a03;
-  --bad: #f87171; --bad-soft: #450a0a;
-  --info: #93c5fd; --info-soft: #1e3a8a;
+  --ground: #0b1220; --surface: #111a2b; --surface-2: #1a2538;
+  --ink: #f1f5f9; --ink-2: #cbd5e1; --ink-3: #94a3b8; --line: #2a3850;
+  --accent: #8fb4e3; --accent-ink: #0b1220; --accent-soft: #1b2c47;
+  --cta: #fb923c; --cta-ink: #0b1220; --cta-soft: #3b1a0a; --cta-strong: #fdba74;
+  --gold: #e9b949; --gold-soft: #3a2a0a;
+  --good: #34d399; --good-soft: #0b3a2c;
+  --warn: #fbbf24; --warn-soft: #3a2508;
+  --bad: #f87171; --bad-soft: #3f1414;
+  --info: #93c5fd; --info-soft: #172a55;
+  --shadow-sm: 0 1px 0 rgb(0 0 0 / 0.3);
+  --shadow-md: 0 1px 2px rgb(0 0 0 / 0.4), 0 4px 10px -4px rgb(0 0 0 / 0.5);
+  --shadow-lg: 0 2px 6px rgb(0 0 0 / 0.4), 0 16px 32px -8px rgb(0 0 0 / 0.6);
 }
 
 @theme inline {
@@ -118,7 +103,6 @@
   --color-cta-strong: var(--cta-strong);
   --color-gold: var(--gold);
   --color-gold-soft: var(--gold-soft);
-  --color-dandelion: var(--dandelion);
   --color-good: var(--good);
   --color-good-soft: var(--good-soft);
   --color-warn: var(--warn);
@@ -130,8 +114,13 @@
   --shadow-sm: var(--shadow-sm);
   --shadow-md: var(--shadow-md);
   --shadow-lg: var(--shadow-lg);
-  --font-sans: "Inter", "SF Pro Text", "Segoe UI Variable", system-ui, -apple-system, sans-serif;
-  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  /* Skill pairing "Academic/Research": Crimson Pro headings, Atkinson
+     Hyperlegible body. The Next and Mono cuts are used because the UI leans
+     on 500/600 weights (the original Atkinson ships only 400/700) and the
+     Mono cut keeps course codes like BIOL 104K / CSC 171 unambiguous. */
+  --font-sans: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Crimson Pro", "Times New Roman", Times, Georgia, serif;
+  --font-mono: "Atkinson Hyperlegible Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 }
 
 /* ------------------------------------------------------------------ base -- */
@@ -144,22 +133,25 @@ html, body {
 body {
   font-family: var(--font-sans);
   font-size: 14px;
-  line-height: 1.4;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 /* ----------------------------------------------------------- typography -- */
 .display {
+  font-family: var(--font-display);
   font-weight: 600;
-  letter-spacing: -0.015em;
-  line-height: 1.25;
+  letter-spacing: -0.005em;
+  line-height: 1.2;
 }
 
+/* Skill rule: nothing under 12px. Small caps labels sit exactly at 12px. */
 .label-caps {
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  font-size: 11px;
+  letter-spacing: 0.05em;
+  font-size: 12px;
   color: var(--ink-3);
 }
 
@@ -168,8 +160,8 @@ body {
 .code {
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.01em;
+  font-weight: 600;
+  letter-spacing: 0;
 }
 
 /* -------------------------------------------------------------- surfaces -- */
@@ -188,31 +180,36 @@ body {
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
-  overflow: hidden;
+  overflow: visible;
 }
 
+/* Swiss header: same surface as the body, ruled off by a hairline. */
 .panel-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
-  padding: 0.45rem 0.7rem;
+  min-height: 40px;
+  padding: 0.25rem 0.5rem 0.25rem 0.75rem;
   border-bottom: 1px solid var(--line);
-  background: var(--surface-2);
+  background: var(--surface);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
 }
 
 .panel-title {
-  font-size: 0.8125rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
   font-weight: 600;
   color: var(--ink);
-  line-height: 1.25;
+  line-height: 1.2;
+  letter-spacing: -0.005em;
 }
 
 .panel-subtitle {
   display: none;
 }
 
-.panel-body { padding: 0.65rem; }
+.panel-body { padding: 0.75rem; }
 
 /* ----------------------------------------------------------- site chrome -- */
 .site-header {
@@ -220,17 +217,22 @@ body {
   top: 0;
   z-index: 40;
   border-bottom: 1px solid var(--line);
-  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  background: color-mix(in srgb, var(--surface) 94%, transparent);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
 
+/* On phones the three-row header would pin ~20% of the screen; let it scroll. */
+@media (max-width: 639px) {
+  .site-header { position: relative; }
+}
+
 .wordmark {
-  font-family: "Times New Roman", Times, Georgia, serif !important;
+  font-family: var(--font-display) !important;
   font-weight: 600 !important;
-  font-size: 22px !important;
+  font-size: 26px !important;
   line-height: 1;
-  letter-spacing: 0;
+  letter-spacing: -0.01em;
   color: var(--ink);
 }
 /* Baby blue / Dandelion #FFC200 — brand hex, not theme tokens. */
@@ -239,27 +241,60 @@ body {
 
 .site-footer {
   border-top: 1px solid var(--line);
-  background: var(--surface);
 }
 
-.stat-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.15rem 0.6rem 0.15rem 0.2rem;
-  border-radius: 999px;
-  border: 1px solid var(--line);
-  background: var(--surface);
-}
+/* Secondary drop zones in filled semesters exist only while dragging. */
+[data-drag-only] { display: none; }
+.is-dragging [data-drag-only] { display: flex; }
 
 .banner {
-  padding: 0.4rem 0.75rem;
-  font-size: 0.75rem;
-  line-height: 1.4;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 18%, transparent);
 }
 
 .banner-warn { background: var(--warn-soft); color: var(--warn); }
 .banner-bad { background: var(--bad-soft); color: var(--bad); }
+
+/* ------------------------------------------------------------ interaction --
+   Skill rules hover-vs-tap and touch-target-size.
+
+   Tailwind v4 wraps group-hover in @media (hover: hover), so a control that
+   was `opacity-0 group-hover:opacity-100` stayed invisible (but tappable) on
+   phones and tablets. .reveal-on-hover keeps the quiet desktop look and
+   leaves the control visible on devices that cannot hover. Components pair
+   it with a NAMED group (group-hover/course:opacity-100) so hovering a
+   semester no longer reveals the buttons on every course card inside it.
+
+   The hidden state lives in the components layer so those utilities win. */
+@layer components {
+  .reveal-on-hover { opacity: 0; }
+}
+.reveal-on-hover {
+  transition-property: opacity, color, background-color;
+  transition-duration: var(--dur);
+  transition-timing-function: var(--ease);
+}
+.reveal-on-hover:focus-visible { opacity: 1; }
+@media (hover: none) {
+  .reveal-on-hover { opacity: 1; }
+}
+
+/* Dense desktop controls are 32-36px. On coarse pointers, buttons grow to
+   44px and icon buttons get an invisible 44px hit area without changing
+   the layout. */
+@media (pointer: coarse) {
+  .btn { min-height: 44px; }
+  .hit-area { position: relative; }
+  .hit-area::after {
+    content: "";
+    position: absolute;
+    inset: -6px;
+  }
+  /* iOS Safari zooms the page when a focused field is under 16px. */
+  input, select, textarea { font-size: 16px !important; }
+}
 
 /* ---------------------------------------------------------- form controls -- */
 :root { color-scheme: light; }
@@ -334,6 +369,7 @@ select.select-flat option { background: var(--surface); color: var(--ink); }
 .rail::-webkit-scrollbar-track { background: transparent; }
 
 *:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+::selection { background: color-mix(in srgb, var(--accent) 22%, transparent); }
 .rail, main { scroll-padding-block: 72px; }
 
 /* Selecting a program grows the audit column; without this the browser
@@ -379,7 +415,7 @@ button:not(:disabled), [role="button"]:not([aria-disabled="true"]), summary { cu
     font-weight: 700;
     margin: 0.22in 0 0.08in;
     padding-bottom: 0.04in;
-    border-bottom: 1.5pt solid #0b4fa2;
+    border-bottom: 1.5pt solid #1e3a5f;
   }
   .advisor-packet h3 {
     font-size: 11pt;
@@ -403,7 +439,7 @@ button:not(:disabled), [role="button"]:not([aria-disabled="true"]), summary { cu
     font-size: 8.5pt;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #0b4fa2;
+    color: #1e3a5f;
     font-weight: 650;
     margin: 0;
   }
@@ -427,7 +463,7 @@ button:not(:disabled), [role="button"]:not([aria-disabled="true"]), summary { cu
   .ap-year { break-inside: avoid; }
   .ap-sem-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(2.1in, 1fr));
     gap: 0.14in;
   }
   .ap-sem {

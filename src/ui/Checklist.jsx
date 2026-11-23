@@ -23,7 +23,7 @@ function OptionChip({ cid, data, placedSet, action, onPick }) {
     <li className="flex items-center gap-1.5">
       <span className={`code shrink-0 rounded px-1 py-0.5 ${
         placed ? 'bg-good-soft text-good' : 'bg-surface text-ink-2'}`}>{cid}</span>
-      <span className="min-w-0 flex-1 truncate text-[11px] text-ink-3" title={c?.title || cid}>
+      <span className="min-w-0 flex-1 truncate text-xs text-ink-3" title={c?.title || cid}>
         {c?.title || 'not in the 2025-26 catalog'}
       </span>
       {placed
@@ -112,7 +112,7 @@ function OptionList({ courses, data, placedSet, actionFor, onPick }) {
       </ul>
       {courses.length > OPTION_CAP && (
         <button type="button" onClick={() => setShowAll((x) => !x)}
-          className="mt-1 text-[11px] font-semibold text-accent hover:underline">
+          className="mt-1 text-xs font-semibold text-accent hover:underline">
           {showAll ? 'Show fewer' : `Show all ${courses.length} options`}
         </button>
       )}
@@ -151,8 +151,8 @@ function RequirementRow({ group: g, program, data, placedSet, onAutoFill, onPick
           type="button"
           onClick={(e) => { e.preventDefault(); onAutoFill(program.id, g.id); }}
           title="Auto-fill just this requirement (adds courses; changes nothing else)"
-          className="inline-flex shrink-0 items-center gap-0.5 rounded px-1 text-[11px] font-bold text-accent hover:bg-accent-soft"
-        ><Icon name="bolt" size="sm" /> fill</button>
+          className="inline-flex shrink-0 items-center gap-0.5 rounded px-1 text-xs font-semibold text-ink-3 hover:bg-accent-soft hover:text-accent"
+        ><Icon name="bolt" size="sm" /> Fill</button>
       )}
     </>
   );
@@ -186,10 +186,10 @@ function RequirementRow({ group: g, program, data, placedSet, onAutoFill, onPick
             <div className="flex items-center gap-1">
               <Icon name="chevronRight" size="sm"
                 className="shrink-0 text-ink-3 transition-transform group-open/req:rotate-90" />
-              <span className="text-[11px] font-semibold text-accent">{spec.summary}</span>
+              <span className="text-xs font-medium text-ink-2">{spec.summary}</span>
             </div>
           </summary>
-          <div className="mt-1.5 space-y-2 rounded-lg bg-surface p-2 pl-2.5">
+          <div className="mt-1.5 space-y-2 border-l border-line pl-2.5">
             {spec.sets.map((s, i) => {
               const setAction = actionFor(s.courses.find((c) => !placedSet?.has(c)) || s.courses[0]);
               const canSwapSet = setAction?.kind === 'swap';
@@ -203,7 +203,7 @@ function RequirementRow({ group: g, program, data, placedSet, onAutoFill, onPick
                         type="button"
                         onClick={() => onPick(s.courses.find((c) => !placedSet?.has(c)) || s.courses[0])}
                         title={`Swap ${setAction.outgoing.join(' + ')} for ${setAction.incoming.join(' + ')}`}
-                        className="inline-flex shrink-0 items-center gap-0.5 rounded px-1 text-[10px] font-bold uppercase tracking-wide text-accent hover:bg-accent-soft"
+                        className="inline-flex shrink-0 items-center gap-0.5 rounded px-1 text-xs font-bold uppercase tracking-wide text-accent hover:bg-accent-soft"
                       >
                         <Icon name="swap" size="sm" /> swap
                       </button>
@@ -241,10 +241,10 @@ function RequirementRow({ group: g, program, data, placedSet, onAutoFill, onPick
         </div>
         {picker}
         <Meter have={g.have} need={g.need} complete={g.complete} />
-        <div className="mt-0.5 pl-4 text-[11px] font-semibold text-accent">{spec.summary}</div>
+        <div className="mt-0.5 pl-4 text-xs font-medium text-ink-2">{spec.summary}</div>
       </summary>
 
-      <div className="mt-1.5 space-y-2 rounded-lg bg-surface p-2 pl-2.5">
+      <div className="mt-1.5 space-y-2 border-l border-line pl-2.5">
         {/* Named alternatives (sequences, tracks) keep their grouping — the
             student picks a SET, not individual courses. */}
         {spec.sets && spec.sets.map((s, i) => {
@@ -259,7 +259,7 @@ function RequirementRow({ group: g, program, data, placedSet, onAutoFill, onPick
                   type="button"
                   onClick={() => onPick(s.courses.find((c) => !placedSet?.has(c)) || s.courses[0])}
                   title={`Swap ${setAction.outgoing.join(' + ')} for ${setAction.incoming.join(' + ')}`}
-                  className="inline-flex shrink-0 items-center gap-0.5 rounded px-1 text-[10px] font-bold uppercase tracking-wide text-accent hover:bg-accent-soft"
+                  className="inline-flex shrink-0 items-center gap-0.5 rounded px-1 text-xs font-bold uppercase tracking-wide text-accent hover:bg-accent-soft"
                 >
                   <Icon name="swap" size="sm" /> swap
                 </button>
@@ -275,13 +275,13 @@ function RequirementRow({ group: g, program, data, placedSet, onAutoFill, onPick
             actionFor={actionFor} onPick={onPick} />
         )}
         {spec.kind === 'filter' && (
-          <p className="text-[11px] leading-snug text-ink-2">
+          <p className="text-xs leading-snug text-ink-2">
             {spec.filterText}. Use the <span className="font-semibold">requirement filter</span> in Find
             courses to list them.
           </p>
         )}
         {spec.kind === 'breadth' && (
-          <p className="text-[11px] leading-snug text-ink-2">
+          <p className="text-xs leading-snug text-ink-2">
             Drawn from the tracks you did not choose in the track requirement above.
           </p>
         )}
@@ -294,7 +294,7 @@ function ProgramCard({ program, result, data, plan, onAutoFill, placedSet, onPic
   if (!program) return null;
   if (result.needsData) {
     return (
-      <div className="rounded-lg bg-surface-2 p-2">
+      <div className="border-t border-line pt-3">
         <div className="flex items-center gap-2">
           <span className="font-semibold text-ink">{program.name} <span className="text-ink-3 font-normal">({program.degree})</span></span>
           <Tag tone="warn">requirements not loaded</Tag>
@@ -316,14 +316,14 @@ function ProgramCard({ program, result, data, plan, onAutoFill, placedSet, onPic
     ? program.pathways
     : null;
   return (
-    <div className="rounded-lg bg-surface-2 p-2">
+    <div className="border-t border-line pt-3">
       <div className="flex items-center gap-2">
         <span className="min-w-0 flex-1 truncate font-semibold text-ink">
           {program.name} <span className="font-normal text-ink-3">({program.degree})</span>
         </span>
         {result.complete
-          ? <Tag tone="good">complete</Tag>
-          : <span className="tnum text-xs text-ink-2">{result.percent}%</span>}
+          ? <span className="inline-flex items-center gap-0.5 text-xs font-semibold text-good"><Icon name="check" size="sm" /> Done</span>
+          : <span className="tnum text-xs text-ink-3">{result.percent}%</span>}
       </div>
       {family && (
         <FamilyPicker
@@ -362,11 +362,11 @@ function ProgramCard({ program, result, data, plan, onAutoFill, placedSet, onPic
       </div>
       {program.notes?.length > 0 && (
         <details className="mt-2">
-          <summary className="cursor-pointer text-[11px] text-ink-3 hover:text-ink-2">Program rules & notes</summary>
-          <ul className="mt-1 list-disc space-y-0.5 pl-4 text-[11px] leading-snug text-ink-2">
+          <summary className="cursor-pointer text-xs text-ink-3 hover:text-ink-2">Program rules & notes</summary>
+          <ul className="mt-1 list-disc space-y-0.5 pl-4 text-xs leading-snug text-ink-2">
             {program.notes.map((n, i) => <li key={i}>{n}</li>)}
           </ul>
-          <a className="text-[11px] text-accent underline" href={program.sourceUrl} target="_blank" rel="noreferrer">Source </a>
+          <a className="text-xs text-accent underline" href={program.sourceUrl} target="_blank" rel="noreferrer">Source </a>
         </details>
       )}
     </div>
@@ -376,15 +376,17 @@ function ProgramCard({ program, result, data, plan, onAutoFill, placedSet, onPic
 function ClusterCard({ cluster, result }) {
   if (!cluster) return null;
   return (
-    <div className="rounded-lg bg-surface-2 p-2">
+    <div className="border-t border-line pt-3">
       <div className="flex items-center gap-2">
         <span className="min-w-0 flex-1 truncate font-semibold text-ink" title={cluster.description}>
-          <Icon name="hexagon" size="sm" className="mr-1 align-[-2px] text-gold" /> {cluster.name}
+          {cluster.name}
         </span>
-        {result.complete ? <Tag tone="good">complete</Tag> : <span className="tnum text-xs text-ink-2">{result.percent}%</span>}
+        {result.complete
+          ? <span className="inline-flex items-center gap-0.5 text-xs font-semibold text-good"><Icon name="check" size="sm" /> Done</span>
+          : <span className="tnum text-xs text-ink-3">{result.percent}%</span>}
       </div>
-      <div className="mt-0.5 text-[11px] text-ink-3">
-        <span className="code">{cluster.id}</span> · {cluster.homeDept} · {cluster.division.replace('-', ' ')}
+      <div className="mt-0.5 text-xs text-ink-3">
+        {cluster.homeDept} · {cluster.division.replace('-', ' ')}
       </div>
       {cluster.status === 'PARTIAL_PARSE' && (
         <div className="mt-1"><Tag tone="warn" title={ruleInfo('CLUSTER_PARTIAL_PARSE').text}>non-standard rule — verify</Tag></div>
@@ -413,7 +415,7 @@ function ClusterCard({ cluster, result }) {
   );
 }
 
-export function Checklist({ data, plan, progress, violations, clustersNeeded, onAutoFill, onAllowSequencing, onRemoveSequencingOverride, onHide, placedSet, onPickOption, onChooseTrack, onSwapProgram }) {
+export function Checklist({ data, plan, progress, violations, clustersNeeded, onAutoFill, onHide, placedSet, onPickOption, onChooseTrack, onSwapProgram }) {
   const required = resolveRequiredCredits(plan, data);
   const placedIds = [...new Set([
     ...plan.semesters.flatMap((s) => s.courseIds),
@@ -429,18 +431,17 @@ export function Checklist({ data, plan, progress, violations, clustersNeeded, on
   return (
     <Panel
       title="Degree audit"
-      icon="clipboard"
       headerRight={onHide && (
         <IconButton icon="close" label="Hide the degree audit panel" onClick={onHide} />
       )}
-      bodyClassName="flex flex-col gap-2 !p-2"
+      bodyClassName="flex flex-col gap-3 !p-3"
     >
-      <div className="space-y-2">
+      <div className="space-y-3">
 
-        <div className="rounded-lg bg-surface-2 p-2">
+        <div>
           <div className="flex items-baseline gap-1.5">
-            <span className="tnum text-xl font-semibold text-ink">{planned}</span>
-            <span className="text-sm text-ink-2">/ {required} credit hours</span>
+            <span className="tnum text-lg font-bold text-ink">{planned}</span>
+            <span className="text-[13px] text-ink-3">/ {required} credit hours</span>
           </div>
           <div className="mt-1"><Meter have={planned} need={required} complete={planned >= required} /></div>
           <div className="mt-2 flex flex-wrap items-center gap-1.5">
@@ -466,63 +467,26 @@ export function Checklist({ data, plan, progress, violations, clustersNeeded, on
         ))}
 
         {(plan.majorIds.length + plan.clusterIds.length) === 0 && (
-          <p className="rounded-lg border border-dashed border-line p-2 text-center text-xs text-ink-3">
+          <p className="border-t border-line pt-3 text-xs text-ink-3">
             Pick a major and clusters above to start the audit.
           </p>
         )}
 
-        <div className="rounded-lg bg-surface-2 p-2">
-          <h3 className="mb-2 text-[11px] font-semibold uppercase tracking-wider text-ink-3">
+        <div className="border-t border-line pt-3">
+          <h3 className="label-caps mb-2">
             Rule checks
-            {violations.length === 0 && <span className="ml-2 normal-case text-good">all clear</span>}
+            {violations.length === 0 && <span className="ml-2 normal-case tracking-normal text-good">all clear</span>}
           </h3>
           <div className="space-y-1">
-            {(() => {
-              // department-ordering violations come in pairs (one per card);
-              // show each pair once here, with its one-click override
-              const seenPairs = new Set();
-              return [...errors, ...warnings, ...infos].filter((x) => {
-                if (x.ruleId !== 'DEPT_SEQUENCING' || !x.pair) return true;
-                const k = `${x.pair.lower}|${x.pair.higher}`;
-                if (seenPairs.has(k)) return false;
-                seenPairs.add(k);
-                return true;
-              }).map((x, i) => (
+            {[...errors, ...warnings, ...infos].map((x, i) => (
                 <div key={i} className="flex items-start gap-1.5">
                   <SevChip severity={x.severity} title={`${ruleInfo(x.ruleId).title}: ${ruleInfo(x.ruleId).text}`}>
                     {ruleInfo(x.ruleId).title}
                   </SevChip>
-                  <span className="min-w-0 flex-1 text-[11px] leading-snug text-ink-2">{x.message}</span>
-                  {x.ruleId === 'DEPT_SEQUENCING' && x.pair && onAllowSequencing && (
-                    <button
-                      type="button"
-                      onClick={() => onAllowSequencing(x.pair)}
-                      title={`Allow ${x.pair.lower} to be scheduled after ${x.pair.higher} in this plan`}
-                      className="shrink-0 rounded-lg bg-surface-2 px-1.5 py-0.5 text-[11px] font-medium text-accent hover:bg-accent-soft"
-                    >Allow</button>
-                  )}
+                  <span className="min-w-0 flex-1 text-xs leading-snug text-ink-2">{x.message}</span>
                 </div>
-              ));
-            })()}
+            ))}
           </div>
-          {(plan.sequencingOverrides || []).length > 0 && (
-            <div className="mt-2 border-t border-line pt-1.5">
-              <div className="mb-1 text-[10px] uppercase tracking-wider text-ink-3">Sequencing overrides (this plan)</div>
-              <div className="flex flex-wrap gap-1">
-                {plan.sequencingOverrides.map((o, i) => (
-                  <span key={i} className="inline-flex items-center gap-1 rounded bg-surface-2 px-1.5 py-0.5 text-[11px] text-ink-2"
-                    title={`${o.lower} may be scheduled after ${o.higher}`}>
-                    <span className="code">{o.lower}</span> after <span className="code">{o.higher}</span>
-                    {onRemoveSequencingOverride && (
-                      <button type="button" onClick={() => onRemoveSequencingOverride(o)}
-                        aria-label={`Remove override ${o.lower} after ${o.higher}`}
-                        className="text-ink-3 hover:text-bad">{<Icon name="close" size="sm" />}</button>
-                    )}
-                  </span>
-                ))}
-              </div>
-            </div>
-          )}
         </div>
       </div>
     </Panel>

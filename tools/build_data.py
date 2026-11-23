@@ -50,8 +50,9 @@ def parse_code(code):
     m = re.match(r'^([A-Z]{2,5})\s+(\d{3})([A-Z]{0,2})$', code)
     return (m.group(1), int(m.group(2)), m.group(3)) if m else (None, None, None)
 
-# (introductoryScore heuristic removed 2026-07-07: superseded by the
-#  same-department ascending-number rule in src/engine/deptSequencing.js)
+# (introductoryScore heuristic removed 2026-07-07; the later same-department
+#  numbering rule was retired once CDCS prerequisites were complete enough
+#  to order courses on their own.)
 
 def offered_from_claim(claim_list):
     terms = set()
@@ -59,6 +60,7 @@ def offered_from_claim(claim_list):
         cl = c.lower()
         if 'fall' in cl: terms.add('fall')
         if 'spring' in cl: terms.add('spring')
+        if 'summer' in cl: terms.add('summer')
     return sorted(terms)
 
 # Officially stated prerequisites only. CNF: list of OR-groups.

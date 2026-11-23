@@ -1,6 +1,6 @@
 import React from 'react';
 import { Icon } from './icons.jsx';
-import { SearchSelect, SectionTitle, Tag } from './bits.jsx';
+import { IconButton, SearchSelect, SectionTitle } from './bits.jsx';
 
 const DIV_LABEL = {
   humanities: 'Humanities',
@@ -53,7 +53,7 @@ export function SetupPanel({ data, plan, clustersNeeded, coverage, onChange }) {
     }));
 
   return (
-    <div className="grid gap-3 md:grid-cols-3">
+    <div className="grid gap-x-4 gap-y-3 md:grid-cols-3">
       <div className="space-y-1.5">
         <SectionTitle>Major{plan.majorIds.length > 1 ? 's' : ''}</SectionTitle>
         <ProgramSelect programs={majors} value={plan.majorIds[0]} exclude={plan.majorIds}
@@ -78,29 +78,32 @@ export function SetupPanel({ data, plan, clustersNeeded, coverage, onChange }) {
           onChange={(v) => setList('minorIds', 0, v)} placeholder="Choose a minor…" />
         <ProgramSelect programs={minors} value={plan.minorIds[1]} exclude={plan.minorIds}
           onChange={(v) => setList('minorIds', 1, v)} placeholder="Add a second minor (optional)" />
-        <p className="text-[11px] leading-snug text-ink-3">
-          A minor or a second major may substitute for one or both clusters.
-        </p>
       </div>
 
       <div className="space-y-1.5">
         <SectionTitle
-          right={<Tag tone={clustersNeeded > plan.clusterIds.length ? 'warn' : 'good'}>
-            {plan.clusterIds.length}/{clustersNeeded} selected
-          </Tag>}
+          right={(
+            <span
+              className={`tnum text-xs font-semibold ${clustersNeeded > plan.clusterIds.length ? 'text-warn' : 'text-good'}`}
+              title="A minor or a second major can stand in for a cluster"
+            >
+              {plan.clusterIds.length}/{clustersNeeded}
+            </span>
+          )}
         >
           Clusters
         </SectionTitle>
         {plan.clusterIds.map((cid, i) => {
           const cl = data.clusters.find((c) => c.id === cid);
           return (
-            <div key={cid} className="flex items-center gap-1.5 rounded-md border border-line bg-surface-2 px-2 py-1 text-sm">
-              <span className="min-w-0 flex-1 truncate" title={cl ? `${cl.name} — ${cl.description}` : cid}>
-                <span className="code mr-1">{cid}</span>{cl?.name}
+            <div key={cid} className="flex min-h-9 items-center gap-1.5 rounded-md border border-line pl-2.5 pr-0.5 text-[13px]">
+              <span className="min-w-0 flex-1 truncate font-medium text-ink"
+                title={cl ? `${cid} · ${DIV_LABEL[cl.division]} — ${cl.description}` : cid}>
+                {cl?.name || cid}
               </span>
-              {cl && <Tag>{DIV_LABEL[cl.division]}</Tag>}
-              <button type="button" onClick={() => setList('clusterIds', i, null)} aria-label={`Remove cluster ${cid}`}
-                className="text-ink-3 hover:text-bad">{<Icon name="close" size="sm" />}</button>
+              {cl && <span className="shrink-0 text-xs text-ink-3">{DIV_LABEL[cl.division]}</span>}
+              <IconButton icon="close" label={`Remove cluster ${cid}`} tone="danger" size="sm"
+                onClick={() => setList('clusterIds', i, null)} />
             </div>
           );
         })}
@@ -113,13 +116,10 @@ export function SetupPanel({ data, plan, clustersNeeded, coverage, onChange }) {
             onChange={(v) => { if (v) setList('clusterIds', plan.clusterIds.length, v); }}
           />
         )}
-        <p className="text-[11px] leading-snug text-ink-3">
-          198 clusters loaded from the official 2025–26 Cluster Search Engine listing.
-        </p>
       </div>
 
       {coverage?.applicable && !coverage.satisfied && (
-        <div className="md:col-span-3 flex items-start gap-2 rounded-xl bg-warn-soft px-3 py-2.5" role="status">
+        <div className="md:col-span-3 flex items-start gap-2 rounded-md bg-warn-soft px-3 py-2" role="status">
           <Icon name="warning" size="md" className="mt-0.5 text-warn" />
           <p className="text-xs leading-snug text-warn">{coverage.message}</p>
         </div>

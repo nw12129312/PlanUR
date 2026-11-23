@@ -1,14 +1,17 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Icon } from './icons.jsx';
 import { Button, Select, SevChip, Tag } from './bits.jsx';
 import { ruleInfo } from '../engine/rules.js';
 import { SCHEDULE_STYLES, styleOf } from '../engine/scheduleStyle.js';
 
-// Toolbar: scope + target load + generate + lock controls.
+// Toolbar: one primary action, its settings behind a disclosure (the summary
+// shows the current load and style so nothing is hidden by surprise), and a
+// single lock toggle.
 export function GenerateBar({ plan, data, onGenerate, onLockAll, busy, onScheduleStyle }) {
   const [scopeKey, setScopeKey] = useState('all');
   const [target, setTarget] = useState('16');
   const [accelerated, setAccelerated] = useState(false);
+  const optionsRef = useRef(null);
   const scheduleStyle = styleOf(plan);
   const styleMeta = SCHEDULE_STYLES.find((s) => s.id === scheduleStyle) || SCHEDULE_STYLES[0];
 
@@ -30,45 +33,93 @@ export function GenerateBar({ plan, data, onGenerate, onLockAll, busy, onSchedul
     return { kind: 'all' };
   };
 
+  // <details> has no light-dismiss; close it on an outside click or Escape.
+  useEffect(() => {
+    const onDown = (e) => {
+      const el = optionsRef.current;
+      if (el?.open && !el.contains(e.target)) el.open = false;
+    };
+    const onKey = (e) => {
+      const el = optionsRef.current;
+      if (e.key === 'Escape' && el?.open) { el.open = false; el.querySelector('summary')?.focus(); }
+    };
+    document.addEventListener('mousedown', onDown);
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.removeEventListener('mousedown', onDown);
+      document.removeEventListener('keydown', onKey);
+    };
+  }, []);
+
+  const placed = plan.semesters.flatMap((s) => s.courseIds);
+  const allLocked = placed.length > 0 && placed.every((cid) => plan.courseMeta?.[cid]?.locked);
   const canGenerate = plan.majorIds.length > 0 && !busy;
+  const scopeLabel = scopeOptions.find((o) => o.key === scopeKey)?.label;
 
   return (
-    <div className="flex flex-wrap items-center gap-1.5 rounded-lg border border-line bg-surface px-2.5 py-1.5 shadow-sm">
-      <Button kind="primary" disabled={!canGenerate} className={canGenerate ? '' : 'opacity-40'}
+    <div className="flex flex-wrap items-center gap-1.5">
+      <Button kind="primary" disabled={!canGenerate}
         onClick={() => onGenerate(scopeFromKey(scopeKey), Number(target), accelerated ? 'accelerated' : 'auto')}>
         {busy ? 'Generating…' : <><Icon name="bolt" size="sm" /> Auto-generate</>}
       </Button>
-      <Select value={scopeKey} onChange={(e) => setScopeKey(e.target.value)} aria-label="Regeneration scope"
-        className="w-auto! min-w-48">
-        {scopeOptions.map((o) => <option key={o.key} value={o.key}>{o.label}</option>)}
-      </Select>
-      <Select value={target} onChange={(e) => setTarget(e.target.value)} aria-label="Target credits per semester"
-        className="w-auto! min-w-28">
-        {[14, 15, 16, 17, 18].map((n) => <option key={n} value={n}>{n} cr / sem</option>)}
-      </Select>
-      <label className="flex min-w-0 items-center gap-1.5 text-xs text-ink-2">
-        <span className="shrink-0 font-medium text-ink">Schedule style</span>
-        <Select
-          value={scheduleStyle}
-          onChange={(e) => onScheduleStyle?.(e.target.value)}
-          aria-label="Schedule style"
-          title={styleMeta.blurb}
-          className="w-auto! min-w-40"
+
+      <details ref={optionsRef} className="group/opts relative">
+        <summary
+          className="btn inline-flex min-h-9 cursor-pointer list-none items-center gap-1.5 rounded-md px-2.5 text-[13px] font-medium text-ink-2 transition-colors hover:bg-surface-2 hover:text-ink [&::-webkit-details-marker]:hidden"
+          title="Auto-generate settings"
         >
-          {SCHEDULE_STYLES.map((s) => (
-            <option key={s.id} value={s.id}>{s.label}</option>
-          ))}
-        </Select>
-      </label>
-      <label className="flex items-center gap-1.5 text-xs text-ink-2"
-        title="When alternative course sequences exist (e.g. honors calculus), prefer the accelerated path.">
-        <input type="checkbox" checked={accelerated} onChange={(e) => setAccelerated(e.target.checked)} />
-        Prefer accelerated paths
-      </label>
+          <span className="tnum">{target} cr/sem</span>
+          <span className="text-ink-3" aria-hidden="true">·</span>
+          <span className="max-w-[10rem] truncate">{styleMeta.label}</span>
+          {(scopeKey !== 'all' || accelerated) && (
+            <><span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" /><span className="sr-only">(custom settings)</span></>
+          )}
+          <Icon name="chevronDown" size="sm" className="text-ink-3 transition-transform group-open/opts:rotate-180" />
+        </summary>
+        <div className="absolute left-0 z-30 mt-1 w-72 space-y-3 rounded-lg border border-line bg-surface p-3 shadow-lg">
+          <label className="block">
+            <span className="mb-1 block text-xs font-semibold text-ink-2">Regenerate</span>
+            <Select value={scopeKey} onChange={(e) => setScopeKey(e.target.value)} aria-label="Regeneration scope"
+              title={scopeLabel}>
+              {scopeOptions.map((o) => <option key={o.key} value={o.key}>{o.label}</option>)}
+            </Select>
+          </label>
+          <label className="block">
+            <span className="mb-1 block text-xs font-semibold text-ink-2">Credits per semester</span>
+            <Select value={target} onChange={(e) => setTarget(e.target.value)} aria-label="Target credits per semester">
+              {[14, 15, 16, 17, 18].map((n) => <option key={n} value={n}>{n} credits</option>)}
+            </Select>
+          </label>
+          <label className="block">
+            <span className="mb-1 block text-xs font-semibold text-ink-2">Schedule style</span>
+            <Select
+              value={scheduleStyle}
+              onChange={(e) => onScheduleStyle?.(e.target.value)}
+              aria-label="Schedule style"
+            >
+              {SCHEDULE_STYLES.map((s) => (
+                <option key={s.id} value={s.id}>{s.label}</option>
+              ))}
+            </Select>
+            <span className="mt-1 block text-xs leading-snug text-ink-3">{styleMeta.blurb}</span>
+          </label>
+          <label className="flex items-start gap-2 text-[13px] text-ink">
+            <input type="checkbox" className="mt-0.5" checked={accelerated} onChange={(e) => setAccelerated(e.target.checked)} />
+            <span>
+              Prefer accelerated paths
+              <span className="block text-xs text-ink-3">e.g. honors calculus, when a sequence offers one</span>
+            </span>
+          </label>
+        </div>
+      </details>
+
       <span className="flex-1" />
-      <Button kind="quiet" onClick={() => onLockAll(true)} title="Lock every placed course (regenerate touches nothing)">Lock all</Button>
-      <Button kind="quiet" onClick={() => onLockAll(false)} title="Unlock every placed course (full clean regenerate)">Unlock all</Button>
-      <p className="basis-full m-0 text-[11px] leading-snug text-ink-3">{styleMeta.blurb}</p>
+      <Button kind="quiet" disabled={placed.length === 0} onClick={() => onLockAll(!allLocked)}
+        title={allLocked
+          ? 'Unlock every placed course (full clean regenerate)'
+          : 'Lock every placed course (regenerate touches nothing)'}>
+        <Icon name={allLocked ? 'unlock' : 'lock'} size="sm" /> {allLocked ? 'Unlock all' : 'Lock all'}
+      </Button>
     </div>
   );
 }
@@ -81,7 +132,7 @@ export function CoverageModal({ coverage, onAdjust, onProceed }) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-ink/40 p-4 backdrop-blur-sm" role="dialog" aria-modal="true" aria-label="Divisional coverage warning" onClick={onAdjust}>
       <div className="w-full max-w-md rounded-2xl border border-line bg-surface p-6 shadow-lg" onClick={(e) => e.stopPropagation()}>
-        <h2 className="mb-1 flex items-center gap-2 text-base font-semibold text-ink">
+        <h2 className="display mb-1 flex items-center gap-2 text-xl text-ink">
           <Icon name="warning" size="md" className="text-warn" /> Check your divisional coverage
         </h2>
         <p className="text-sm leading-snug text-ink-2">{coverage.message}</p>
@@ -165,7 +216,7 @@ export function DiffModal({ base, result, data, onApply, onClose }) {
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4" role="dialog" aria-modal="true" aria-label="Review generated changes" onClick={onClose}>
       <div className="flex max-h-[85vh] w-full max-w-2xl flex-col rounded-2xl bg-surface shadow-lg" onClick={(e) => e.stopPropagation()}>
         <header className="flex items-center gap-2 border-b border-line px-4 py-3">
-          <h2 className="text-base font-semibold text-ink">Review generated changes</h2>
+          <h2 className="display text-xl text-ink">Review generated changes</h2>
           <span className="text-xs text-ink-3">{ops.length} change{ops.length === 1 ? '' : 's'} · attempt {result.attempts}</span>
           <span className="flex-1" />
           <Button kind="quiet" onClick={() => setSelected(new Set(ops.map(opKey)))}>All</Button>
@@ -200,7 +251,7 @@ export function DiffModal({ base, result, data, onApply, onClose }) {
                         {op.type === 'remove' && `from ${op.fromLabel}`}
                       </span>
                     </div>
-                    {op.reason && <div className="mt-0.5 text-[11px] leading-snug text-ink-3">{op.reason}</div>}
+                    {op.reason && <div className="mt-0.5 text-xs leading-snug text-ink-3">{op.reason}</div>}
                   </div>
                 </li>
               );
@@ -212,19 +263,19 @@ export function DiffModal({ base, result, data, onApply, onClose }) {
               {result.infeasible.map((x, i) => (
                 <div key={`inf${i}`} className="flex items-start gap-1.5">
                   <SevChip severity="warning" title="Auto-generate could not satisfy this within the current semesters.">infeasible</SevChip>
-                  <span className="text-[11px] leading-snug text-ink-2">{x.message}</span>
+                  <span className="text-xs leading-snug text-ink-2">{x.message}</span>
                 </div>
               ))}
               {result.warnings.map((w, i) => (
                 <div key={`w${i}`} className="flex items-start gap-1.5">
                   <SevChip severity="info" title="Generation note">note</SevChip>
-                  <span className="text-[11px] leading-snug text-ink-2">{w}</span>
+                  <span className="text-xs leading-snug text-ink-2">{w}</span>
                 </div>
               ))}
               {errors.map((v, i) => (
                 <div key={`e${i}`} className="flex items-start gap-1.5">
                   <SevChip severity="error" title={`${ruleInfo(v.ruleId).title}: ${ruleInfo(v.ruleId).text}`}>{ruleInfo(v.ruleId).title}</SevChip>
-                  <span className="text-[11px] leading-snug text-ink-2">{v.message}</span>
+                  <span className="text-xs leading-snug text-ink-2">{v.message}</span>
                 </div>
               ))}
             </div>

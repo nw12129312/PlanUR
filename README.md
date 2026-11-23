@@ -78,9 +78,10 @@ src/storage/       dataStore.js - the ONLY module that touches window.storage
 src/ui/            React components (Tailwind v4, token-based light/dark theming)
 tests/             vitest: 67 tests (engine, equivalency, autogen, diff/apply, render smoke)
 tools/build_data.py        regenerates src/data/* from data-src/ raw captures
-tools/cdcs_harvest_all.py  refreshes the FULL course catalog (2 requests: CDCS
-                           returns the whole AS&E+Hajim term when posted with
-                           school=1 and an empty department filter)
+tools/cdcs_harvest_all.py  refreshes the FULL course catalog (one POST per
+                           term, including summer: CDCS returns the whole
+                           AS&E+Hajim term when posted with school=1 and an
+                           empty department filter)
 tools/crawl_requirements.py snapshots every department's requirement pages
                            into data-src/pages/ (+ manifest.json)
 tools/validate_programs.py data linter: run after every data edit; ERRORs fail,
@@ -116,8 +117,8 @@ non-blocking "persistent storage unavailable" banner and keeps working in-memory
   "id": "CSC 172", "dept": "CSC", "number": 172, "suffix": "",
   "title": "Data Structures & Algorithms",
   "credits": 4, "creditsVerified": true,
-  "offered": ["fall", "spring"],   // terms it actually ran in 2025–26
-  "offeredClaim": ["fall","spring"], // CDCS "Offered:" field (often broader)
+  "offered": ["fall", "spring"],   // terms it actually ran in harvested CDCS terms
+  "offeredClaim": ["fall","spring"], // CDCS "Offered:" field (often broader; not the summer gate)
   "offeredVerified": true,
   "prereqs": [["CSC 171"]],        // CNF: every inner list is an OR-group
   "prereqsVerified": true,
@@ -256,27 +257,10 @@ How a pass works:
    mismatch, or a capacity limit. Compound cluster options ("CHIN 114 and 115")
    are left for manual placement and said so.
 
-**Department sequencing (stopgap for incomplete prerequisite data).** Within one
-department, a course should not sit in a later semester than a same-department
-course with a lower number (same semester is fine) — `src/engine/deptSequencing.js`.
-This replaced the earlier `introductoryScore` soft heuristic: one system, not two
-that can disagree. It is blunt by design (~90% right per UR numbering
-conventions), so `checkDepartmentSequencing` reports it at **warning** severity
-with a per-pair escape hatch — `plan.sequencingOverrides = [{lower, higher}]`,
-written by the checklist's "Allow" button.
-
-Auto-generate enforces the same rule as a hard placement guard, plus a
-*strand-guard*: placing a course also removes every lower-numbered
-same-department candidate from future capacity, so a placement is rejected when
-it would drop a requirement below its remaining need. Because the rule is
-advisory, it can never be allowed to make a real degree unschedulable — the ME
-BS core needs 16 ME courses in ascending order whose fixed fall/spring offerings
-do not fit 8 alternating terms (`ME 240` would land in a 9th semester). So
-generation runs in two phases: strict first, and if that leaves requirements
-unmet, once more with the ordering guard relaxed. The relaxed result is used
-only if it is strictly better, and it is labelled — `result.relaxedDeptOrder`
-plus a warning naming what happened — so the ordering shows up as the warnings
-it actually is instead of being silently dropped.
+**Course order follows published prerequisites.** A course may not sit in the
+   same semester as, or earlier than, a prerequisite it lists. Catalog numbers
+   within a department are not treated as an ordering rule — UR numbering is
+   only a convention, and the CDCS prereq scrape is the source of truth.
 
 Scopes: `{kind:'all'}` (everything unlocked) · `{kind:'fromSemester', index}`
 (earlier semesters untouched) · `{kind:'program', programId}` (only courses used
