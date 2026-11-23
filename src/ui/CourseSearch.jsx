@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { CourseCard } from './CourseCard.jsx';
-import { Select, TextInput, Panel } from './bits.jsx';
+import { Button, Select, TextInput, Panel } from './bits.jsx';
+import { Icon } from './icons.jsx';
 import { groupCandidates, namedCandidates } from '../engine/candidates.js';
 import { groupsForCourseSet } from '../engine/equivalency.js';
 import { coversCourse } from '../engine/crossList.js';
@@ -9,6 +10,9 @@ import { getEquivalencyGroups } from '../storage/dataStore.js';
 const equivalencyGroupsData = getEquivalencyGroups();
 
 export function CourseSearch({ data, plan, selectedPrograms, selectedClusters, placedSet, onAdd, targetLabel }) {
+  // Collapsed by default: the schedule and Auto-generate come first, and the
+  // catalog opens when the student wants to adjust by hand.
+  const [open, setOpen] = useState(false);
   const [q, setQ] = useState('');
   const [dept, setDept] = useState('');
   const [reqKey, setReqKey] = useState('');
@@ -92,15 +96,29 @@ export function CourseSearch({ data, plan, selectedPrograms, selectedClusters, p
 
   return (
     <Panel
-      title="Catalog"
-      className="overflow-hidden"
-      headerRight={(
-        <span className="min-w-0 truncate pr-1 text-xs text-ink-3" title="Where the + button adds a course">
-          Adds to <span className="font-semibold text-ink-2">{targetLabel}</span>
-        </span>
+      title={(
+        <button type="button" onClick={() => setOpen((x) => !x)} aria-expanded={open}
+          aria-controls="catalog-body" className="-mx-1 inline-flex items-center gap-1 rounded px-1 hover:text-accent">
+          Catalog
+          <Icon name={open ? 'chevronUp' : 'chevronDown'} size="sm" className="text-ink-3" />
+        </button>
       )}
-      bodyClassName="flex flex-col gap-1.5 !p-2"
+      className="overflow-hidden"
+      headerRight={open ? (
+        <div className="flex min-w-0 items-center gap-2">
+          <span className="min-w-0 truncate text-xs text-ink-3" title="Where the + button adds a course">
+            Adds to <span className="font-semibold text-ink-2">{targetLabel}</span>
+          </span>
+          <Button kind="quiet" onClick={() => setOpen(false)}>Hide</Button>
+        </div>
+      ) : (
+        <Button kind="quiet" onClick={() => setOpen(true)} aria-controls="catalog-body">
+          Browse courses <Icon name="chevronDown" size="sm" />
+        </Button>
+      )}
+      bodyClassName={open ? 'flex flex-col gap-1.5 !p-2' : 'hidden'}
     >
+      {open && (<div id="catalog-body" className="contents">
       <div className="grid gap-1.5 @min-[640px]:grid-cols-[minmax(0,1fr)_minmax(0,22rem)]">
       <TextInput
         value={q}
@@ -186,6 +204,7 @@ export function CourseSearch({ data, plan, selectedPrograms, selectedClusters, p
           );
         })()}
       </div>
+      </div>)}
     </Panel>
   );
 }
