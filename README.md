@@ -4,6 +4,8 @@ A degree planner for University of Rochester undergraduates. Pick your majors,
 minors and clusters, lay courses out across your semesters, and see a live audit
 of every requirement as you go.
 
+**Live demo:** https://nw12129312.github.io/PlanUR/
+
 ![Planur showing a Computer Science BS plan with the degree audit](docs/screenshot.png)
 
 > Not an official degree audit. Requirements come from official UR pages and
