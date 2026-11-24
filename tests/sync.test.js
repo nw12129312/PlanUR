@@ -51,9 +51,9 @@ describe('saving in the browser without an account', () => {
     expect((await store.loadPlan(store.LOCAL_USER, p.id)).name).toBe('Browser plan');
   });
 
-  it('prefers the artifact runtime store when present', () => {
+  it('prefers the host page store when present', () => {
     globalThis.window = { storage: { getItem() {}, setItem() {} }, localStorage: {} };
-    expect(store.storageBackendKind()).toBe('artifact');
+    expect(store.storageBackendKind()).toBe('host');
   });
 });
 

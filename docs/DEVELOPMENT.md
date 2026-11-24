@@ -32,7 +32,7 @@ tools/         Python data pipeline
   rmp_scraper.py          RateMyProfessors data
   validate_programs.py    data linter: ERRORs fail, warnings are the review queue
   coverage.py             writes data-src/COVERAGE.md
-  make_artifact.py        dist/index.html → dist/artifact.html
+  make_embed.py           dist/index.html → dist/embed.html
 data-src/      raw sourced data (provenance), programs/*.json, pages/ snapshots,
                COVERAGE.md, TEMPLATE.program.json
 ```
@@ -44,11 +44,11 @@ npm run dev                                    # dev server
 npm test                                       # vitest
 npm run build                                  # single-file dist/index.html
 python3 tools/build_data.py && npm run build   # after editing data
-python3 tools/make_artifact.py                 # artifact-format output
+python3 tools/make_embed.py                    # embeddable body-only output
 ```
 
 Plans save to localStorage when the app runs as a normal web page, and to
-`window.storage` inside the artifact runtime. Google sign-in appears only when
+`window.storage` when a host page provides it. Google sign-in appears only when
 Firebase is configured (the `VITE_FIREBASE_*` values in `.env.example`, plus
 `firestore.rules`); `VITE_CLOUD=demo` tries it without Firebase.
 
@@ -63,7 +63,7 @@ Firebase is configured (the `VITE_FIREBASE_*` values in `.env.example`, plus
    aren't in the harvested schedules become flagged stubs automatically.
 4. `python3 tools/build_data.py && python3 tools/validate_programs.py && npm test`
    — the linter must report 0 errors; its stub warnings are your verify list.
-5. `npm run build && python3 tools/make_artifact.py`, then redeploy.
+5. `npm run build && python3 tools/make_embed.py`, then redeploy.
 6. `python3 tools/coverage.py` to refresh the coverage table.
 
 
@@ -259,7 +259,7 @@ optimal assignment in pathological overlap cases.
 ## Storage
 
 All persistence flows through one module: `src/storage/dataStore.js`. It is the
-only file in the codebase that touches browser storage: the artifact runtime's
+only file in the codebase that touches browser storage: the host page's
 `window.storage` when present, otherwise `localStorage` (keys prefixed
 `planur:`). UI components and the engine never touch storage directly (the
 engine stays pure and receives data as parameters). Plans autosave shortly

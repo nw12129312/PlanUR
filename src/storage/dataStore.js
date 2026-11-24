@@ -18,8 +18,8 @@
 // are plain JSON-serializable objects - no framework objects, class
 // instances, functions, or storage bookkeeping mixed into the Plan itself.
 //
-// Backend: the artifact runtime's window.storage when the app is embedded as
-// an artifact, otherwise the browser's localStorage (keys prefixed with
+// Backend: the host page's window.storage when the app is embedded in a page
+// that provides it, otherwise the browser's localStorage (keys prefixed with
 // "planur:"), so a plan survives reloads with no account. The access layer
 // feature-detects several method shapes, awaits thenables, wraps every call
 // in try/catch, and mirrors writes into an in-memory Map so a storage outage
@@ -83,11 +83,11 @@ function backend() {
   return null;
 }
 
-// Where plans are kept: 'artifact', 'browser', or null (session only).
+// Where plans are kept: 'host', 'browser', or null (session only).
 export function storageBackendKind() {
   try {
     if (typeof window === 'undefined') return null;
-    if (window.storage) return 'artifact';
+    if (window.storage) return 'host';
     if (window.localStorage) return 'browser';
   } catch {
     /* ignore */
