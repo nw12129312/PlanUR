@@ -30,7 +30,10 @@ of every requirement as you go.
   instead of or alongside your current one, without changing it.
 - **Closest to finishing** ranks the minors and clusters you're nearest to
   completing with the courses you already have.
-- **Saved plans** and a PDF export to bring to your adviser.
+- **Saved plans** that save automatically in your browser with no account,
+  plus optional **Google sign-in** to keep them in sync across devices
+  (set the `VITE_FIREBASE_*` values from `.env.example` to turn it on).
+- **PDF export** to bring to your adviser.
 
 ## Run it locally
 
