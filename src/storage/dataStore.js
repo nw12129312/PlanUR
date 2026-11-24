@@ -18,7 +18,7 @@
 // are plain JSON-serializable objects - no framework objects, class
 // instances, functions, or storage bookkeeping mixed into the Plan itself.
 //
-// window.storage is the artifact runtime's persistent per-user store (NOT
+// window.storage is the host page's persistent per-user store (NOT
 // localStorage). The access layer feature-detects several method shapes,
 // awaits thenables, wraps every call in try/catch, and mirrors writes into
 // an in-memory Map so a storage outage degrades to a visible status banner

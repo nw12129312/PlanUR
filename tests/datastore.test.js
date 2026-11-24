@@ -2,7 +2,7 @@ import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { newPlan } from '../src/engine/model.js';
 import * as store from '../src/storage/dataStore.js';
 
-// Fake window.storage backed by a Map, mimicking the artifact runtime API.
+// Fake window.storage backed by a Map, mimicking the host page storage API.
 function installFakeStorage() {
   const kv = new Map();
   globalThis.window = {
