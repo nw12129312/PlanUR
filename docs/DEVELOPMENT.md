@@ -31,7 +31,7 @@ tools/         Python data pipeline
   rmp_scraper.py          RateMyProfessors data
   validate_programs.py    data linter: ERRORs fail, warnings are the review queue
   coverage.py             writes data-src/COVERAGE.md
-  make_artifact.py        dist/index.html → dist/artifact.html
+  make_embed.py           dist/index.html → dist/embed.html
 data-src/      raw sourced data (provenance), programs/*.json, pages/ snapshots,
                COVERAGE.md, TEMPLATE.program.json
 ```
@@ -43,12 +43,12 @@ npm run dev                                    # dev server
 npm test                                       # vitest
 npm run build                                  # single-file dist/index.html
 python3 tools/build_data.py && npm run build   # after editing data
-python3 tools/make_artifact.py                 # artifact-format output
+python3 tools/make_embed.py                    # embeddable body-only output
 ```
 
-`window.storage` only exists in the artifact runtime. Locally the app shows a
-"persistent storage unavailable" banner and keeps working in memory; that is
-the designed fallback, not a bug.
+`window.storage` only exists when the app is embedded in a host page that
+provides it. Locally the app shows a "persistent storage unavailable" banner
+and keeps working in memory; that is the designed fallback, not a bug.
 
 ## Adding a program (no app-code changes)
 
@@ -61,7 +61,7 @@ the designed fallback, not a bug.
    aren't in the harvested schedules become flagged stubs automatically.
 4. `python3 tools/build_data.py && python3 tools/validate_programs.py && npm test`
    — the linter must report 0 errors; its stub warnings are your verify list.
-5. `npm run build && python3 tools/make_artifact.py`, then redeploy.
+5. `npm run build && python3 tools/make_embed.py`, then redeploy.
 6. `python3 tools/coverage.py` to refresh the coverage table.
 
 
@@ -257,7 +257,7 @@ optimal assignment in pathological overlap cases.
 ## Storage
 
 All persistence flows through one module: `src/storage/dataStore.js`. It is the
-only file in the codebase that calls `window.storage` (the artifact runtime's
+only file in the codebase that calls `window.storage` (the host page's
 per-user store — never localStorage); UI components and the engine never touch
 storage directly (the engine stays pure and receives data as parameters).
 
