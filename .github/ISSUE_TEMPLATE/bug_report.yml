@@ -1,0 +1,27 @@
+name: Report a bug
+description: Something in PlanUR is broken or looks wrong.
+title: "Bug: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What you did, what you expected, and what you saw instead.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Optional. Which major, semester or course, and the clicks that lead to the problem.
+      placeholder: |
+        1. Pick the Computer Science BS
+        2. Add CSC 172 to Fall 2027
+        3. ...
+  - type: textarea
+    id: environment
+    attributes:
+      label: Browser and device
+      description: Filled in automatically when you use the button in PlanUR.
+      render: text

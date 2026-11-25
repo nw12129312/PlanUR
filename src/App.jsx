@@ -25,6 +25,8 @@ import { CourseSearch } from './ui/CourseSearch.jsx';
 import { SemesterGrid } from './ui/SemesterGrid.jsx';
 import { Checklist } from './ui/Checklist.jsx';
 import { PlansModal } from './ui/PlansModal.jsx';
+import { FeedbackMenu } from './ui/FeedbackMenu.jsx';
+import { feedbackUrl } from './feedback.js';
 import { SemesterPicker } from './ui/SemesterPicker.jsx';
 import { AccountMenu, SaveStatus } from './ui/AccountMenu.jsx';
 import { GenerateBar, DiffModal, CoverageModal } from './ui/AutoGen.jsx';
@@ -646,6 +648,7 @@ export default function App() {
                 Export PDF
               </Button>
               <Button kind="quiet" onClick={() => setModalOpen(true)}>My plans</Button>
+              <FeedbackMenu />
               {CLOUD && <AccountMenu user={user} busy={authBusy} onSignIn={signInAction} onSignOut={signOutAction} />}
             </div>
           </div>
@@ -776,6 +779,10 @@ export default function App() {
       <footer className="site-footer">
         <div className="mx-auto w-full max-w-[1600px] px-3 py-3 text-xs text-ink-3 lg:px-4">
           <span>Not an official degree audit. Confirm your plan with your adviser.</span>
+          {' '}
+          <a className="underline underline-offset-2 hover:text-ink" href={feedbackUrl('bug')} target="_blank" rel="noopener noreferrer">Report a bug</a>
+          {' or '}
+          <a className="underline underline-offset-2 hover:text-ink" href={feedbackUrl('feedback')} target="_blank" rel="noopener noreferrer">share feedback</a>.
         </div>
       </footer>
 
