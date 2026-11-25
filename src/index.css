@@ -3,7 +3,8 @@
 /* =============================================================================
    UR Schedule Builder — production web UI
 
-   Quiet-tool design: one typeface (Atkinson Hyperlegible Next) at a few
+   Quiet-tool design: one typeface (Atkinson Hyperlegible Next; Michroma for
+   the wordmark only) at a few
    weights, sentence-case labels, no pills, no eyebrows, no serif display
    face, no mono. Panels are white fields on a pale ground separated by space,
    not boxes drawn with borders; borders are kept for form fields only.
@@ -26,6 +27,7 @@
   --accent: #1e3a5f;
   --accent-ink: #ffffff;
   --accent-soft: #e6edf6;
+  --wordmark-blue: #1f5fae;
   --cta: #c2410c;
   --cta-ink: #ffffff;
   --cta-soft: #fff1e6;
@@ -59,7 +61,7 @@
   :root:not([data-theme="light"]) {
     --ground: #0b1220; --surface: #111a2b; --surface-2: #1a2538;
     --ink: #f1f5f9; --ink-2: #cbd5e1; --ink-3: #94a3b8; --line: #2a3850;
-    --accent: #8fb4e3; --accent-ink: #0b1220; --accent-soft: #1b2c47;
+    --accent: #8fb4e3; --accent-ink: #0b1220; --accent-soft: #1b2c47; --wordmark-blue: #4f8fd6;
     --cta: #fb923c; --cta-ink: #0b1220; --cta-soft: #3b1a0a; --cta-strong: #fdba74;
     --gold: #e9b949; --gold-soft: #3a2a0a;
     --good: #34d399; --good-soft: #0b3a2c;
@@ -75,7 +77,7 @@
 :root[data-theme="dark"] {
   --ground: #0b1220; --surface: #111a2b; --surface-2: #1a2538;
   --ink: #f1f5f9; --ink-2: #cbd5e1; --ink-3: #94a3b8; --line: #2a3850;
-  --accent: #8fb4e3; --accent-ink: #0b1220; --accent-soft: #1b2c47;
+  --accent: #8fb4e3; --accent-ink: #0b1220; --accent-soft: #1b2c47; --wordmark-blue: #4f8fd6;
   --cta: #fb923c; --cta-ink: #0b1220; --cta-soft: #3b1a0a; --cta-strong: #fdba74;
   --gold: #e9b949; --gold-soft: #3a2a0a;
   --good: #34d399; --good-soft: #0b3a2c;
@@ -215,16 +217,14 @@ body {
 }
 
 .wordmark {
-  font-family: var(--font-sans) !important;
-  font-weight: 700 !important;
-  font-size: 22px !important;
+  font-family: "Michroma", var(--font-sans) !important;
+  font-weight: 400 !important;
+  font-size: 19px !important;
   line-height: 1;
   letter-spacing: 0;
   color: var(--ink);
 }
-/* Baby blue / Dandelion #FFC200 — brand hex, not theme tokens. */
-.wordmark-u { color: #89CFF0 !important; }
-.wordmark-r { color: #FFC200 !important; }
+.wordmark-ur { color: var(--wordmark-blue) !important; }
 
 .site-footer {}
 
