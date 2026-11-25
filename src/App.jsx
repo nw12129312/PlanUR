@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { newPlan, addSemester, addSummerSemester, withCourseMeta, getCourseMeta } from './engine/model.js';
 import { cumulativeGpa, earnsNoCredit, formatGpa, withCourseGrade, withCourseStatus } from './engine/grades.js';
@@ -12,6 +12,7 @@ import { swapPlacedCourses, moveCourseToSemester, placementWarnings } from './en
 import { applyRecordedExams, previewExamAdd, removeExamsFromPlan, upsertRecordedExam } from './engine/examCredit.js';
 import { divisionalCoverageForPlan } from './engine/coverage.js';
 import { listingOnPlan } from './engine/crossList.js';
+import { addCourseToSemester, semesterOptionsForCourse } from './engine/placement.js';
 // dataStore is the ONLY module that touches browser storage (and the only
 // place App reads bundled data from); see src/storage/dataStore.js.
 // account.js layers optional sign-in sync on top of it.
@@ -24,6 +25,7 @@ import { CourseSearch } from './ui/CourseSearch.jsx';
 import { SemesterGrid } from './ui/SemesterGrid.jsx';
 import { Checklist } from './ui/Checklist.jsx';
 import { PlansModal } from './ui/PlansModal.jsx';
+import { SemesterPicker } from './ui/SemesterPicker.jsx';
 import { AccountMenu, SaveStatus } from './ui/AccountMenu.jsx';
 import { GenerateBar, DiffModal, CoverageModal } from './ui/AutoGen.jsx';
 import { AdvisorPacket, exportAdvisorPdf } from './ui/AdvisorPacket.jsx';
@@ -56,6 +58,7 @@ export default function App() {
   const [accountNotice, setAccountNotice] = useState(null);
   const [ready, setReady] = useState(false);            // first load finished
   const [modalOpen, setModalOpen] = useState(false);
+  const [pickerCourseId, setPickerCourseId] = useState(null); // catalog add: choosing a semester
   const [activeSemesterId, setActiveSemesterId] = useState(null);
   const [genResult, setGenResult] = useState(null); // {base, result} pending diff review
   const [genBusy, setGenBusy] = useState(false);
@@ -346,6 +349,17 @@ export default function App() {
     setPlan(touch(result.plan));
   };
 
+  // Catalog add with a chosen semester. The engine refuses semesters the
+  // course can't go in (missing prerequisites, not offered that term).
+  const addCourseTo = (cid, semId) => {
+    const result = addCourseToSemester(planRef.current, DATA, cid, semId);
+    if (result.error) { showBlock(result.error); return null; }
+    setPlan(touch(result.plan));
+    return result.plan;
+  };
+
+  const closePicker = useCallback(() => setPickerCourseId(null), []);
+
   const pickRequirementOption = ({ programId, groupId, courseId }) => {
     const result = applyRequirementOption(planRef.current, DATA, { programId, groupId, courseId });
     if (result.error) { showBlock(result.error); return; }
@@ -380,9 +394,8 @@ export default function App() {
       if (p.transfer.some((t) => t.courseId === cid)) return;
       const targetSem = p.semesters.find((s) => s.courseIds.includes(targetCid));
       if (!targetSem) return;
-      const next = moveCourseToSemester(p, cid, targetSem.id);
-      setPlan(touch(next));
-      warnPlacement(next, [cid], [targetSem.id]);
+      const next = addCourseTo(cid, targetSem.id);
+      if (next) warnPlacement(next, [cid], [targetSem.id]);
       return;
     }
     const next = swapPlacedCourses(p, cid, targetCid);
@@ -397,6 +410,11 @@ export default function App() {
     const placed = p.semesters.some((s) => s.courseIds.includes(cid));
     if (origin === 'search' && !placed && blockedByEquivalency(cid)) return;
     if (origin === 'search' && p.transfer.some((t) => t.courseId === cid)) return;
+    if (origin === 'search' && !placed) {
+      const next = addCourseTo(cid, semId);
+      if (next) warnPlacement(next, [cid], [semId]);
+      return;
+    }
     const next = moveCourseToSemester(p, cid, semId);
     setPlan(touch(next));
     warnPlacement(next, [cid], [semId]);
@@ -740,8 +758,7 @@ export default function App() {
               selectedPrograms={selectedPrograms}
               selectedClusters={selectedClusters}
               placedSet={placedSet}
-              onAdd={(cid) => addCourse(cid)}
-              targetLabel={plan.semesters.find((s) => s.id === activeSemesterId)?.label || 'first open semester'}
+              onAdd={(cid) => setPickerCourseId(cid)}
             />
           </div>
 
@@ -784,6 +801,25 @@ export default function App() {
           onClose={() => setGenResult(null)}
         />
       )}
+
+      {pickerCourseId && DATA.courses[pickerCourseId] && (() => {
+        const { blocked, options } = semesterOptionsForCourse(plan, DATA, pickerCourseId);
+        return (
+          <SemesterPicker
+            course={DATA.courses[pickerCourseId]}
+            plan={plan}
+            blocked={blocked}
+            options={options}
+            activeSemesterId={activeSemesterId}
+            onPick={(semId) => {
+              const next = addCourseTo(pickerCourseId, semId);
+              if (next) setPickerCourseId(null);
+            }}
+            onAuto={() => { setPickerCourseId(null); addCourse(pickerCourseId); }}
+            onClose={closePicker}
+          />
+        );
+      })()}
 
       {modalOpen && (
         <PlansModal
