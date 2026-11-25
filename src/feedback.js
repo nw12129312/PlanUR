@@ -5,6 +5,10 @@ import meta from './data/meta.json';
 
 export const ISSUES_URL = 'https://github.com/nw12129312/PlanUR/issues/new';
 
+// A Google Form for visitors without a GitHub account. Leave empty to hide
+// the option in the Feedback menu.
+export const FEEDBACK_FORM_URL = '';
+
 export const FEEDBACK_KINDS = {
   bug: { template: 'bug_report.yml', title: 'Bug: ' },
   feedback: { template: 'feedback.yml', title: 'Feedback: ' },

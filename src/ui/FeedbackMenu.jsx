@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Icon } from './icons.jsx';
 import { Button } from './bits.jsx';
-import { feedbackUrl } from '../feedback.js';
+import { feedbackUrl, FEEDBACK_FORM_URL } from '../feedback.js';
 
 const ITEMS = [
   { kind: 'bug', icon: 'bug', label: 'Report a bug', note: 'Something is broken or looks wrong' },
@@ -42,9 +42,18 @@ export function FeedbackMenu() {
               </span>
             </a>
           ))}
-          <p className="px-2.5 pb-1.5 pt-1 text-xs leading-relaxed text-ink-3">
-            Opens a GitHub issue with your browser details filled in. You'll need a free GitHub account to post it.
-          </p>
+          {FEEDBACK_FORM_URL ? (
+            <p className="px-2.5 pb-1.5 pt-1 text-xs leading-relaxed text-ink-3">
+              These open a GitHub issue with your browser details filled in. No GitHub account?{' '}
+              <a role="menuitem" href={FEEDBACK_FORM_URL} target="_blank" rel="noopener noreferrer"
+                onClick={() => setOpen(false)}
+                className="font-semibold text-ink-2 underline underline-offset-2 hover:text-ink">Use the feedback form</a>.
+            </p>
+          ) : (
+            <p className="px-2.5 pb-1.5 pt-1 text-xs leading-relaxed text-ink-3">
+              Opens a GitHub issue with your browser details filled in. You'll need a free GitHub account to post it.
+            </p>
+          )}
         </div>
       )}
     </div>
