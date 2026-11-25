@@ -224,7 +224,9 @@ body {
   letter-spacing: 0;
   color: var(--ink);
 }
-.wordmark-ur { color: var(--wordmark-blue) !important; }
+.wordmark-u { color: var(--wordmark-blue) !important; }
+/* Dandelion #FFC200 — brand hex, same in both themes. */
+.wordmark-r { color: #FFC200 !important; }
 
 .site-footer {}
 
