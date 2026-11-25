@@ -100,7 +100,7 @@ describe('UI render smoke', () => {
       <CourseSearch
         data={DATA} plan={plan}
         selectedPrograms={selectedPrograms} selectedClusters={selectedClusters}
-        placedSet={new Set(['CSC 171'])} onAdd={() => {}} targetLabel="Fall 2026"
+        placedSet={new Set(['CSC 171'])} onAdd={() => {}}
       />,
     );
     expect(search).toContain('Catalog');

@@ -12,7 +12,7 @@ const equivalencyGroupsData = getEquivalencyGroups();
 // Courses visible before the catalog is expanded.
 const PREVIEW_COUNT = 6;
 
-export function CourseSearch({ data, plan, selectedPrograms, selectedClusters, placedSet, onAdd, targetLabel }) {
+export function CourseSearch({ data, plan, selectedPrograms, selectedClusters, placedSet, onAdd }) {
   // Shows a short preview by default; "Show all" expands to the full list.
   const [open, setOpen] = useState(false);
   const [q, setQ] = useState('');
@@ -102,9 +102,6 @@ export function CourseSearch({ data, plan, selectedPrograms, selectedClusters, p
       className="overflow-hidden"
       headerRight={(
         <div className="flex min-w-0 items-center gap-2">
-          <span className="min-w-0 truncate text-xs text-ink-3" title="Where the + button adds a course">
-            Adds to <span className="font-semibold text-ink-2">{targetLabel}</span>
-          </span>
           <Button kind="quiet" onClick={() => setOpen((x) => !x)} aria-expanded={open} aria-controls="catalog-results">
             {open ? <>Show fewer <Icon name="chevronUp" size="sm" /></> : <>Show all <Icon name="chevronDown" size="sm" /></>}
           </Button>
