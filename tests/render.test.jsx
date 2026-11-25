@@ -43,7 +43,8 @@ describe('UI render smoke', () => {
   it('renders the full App tree (empty initial plan)', () => {
     const html = renderToString(<App />);
     expect(html).toContain('PlanUR');
-    expect(html).toContain('wordmark-ur');
+    expect(html).toContain('wordmark-u');
+    expect(html).toContain('wordmark-r');
     expect(html).toContain('UR Schedule Builder');
     expect(html).toContain('My plans');
     expect(html).not.toContain('Sign in with Google'); // hidden until an account backend is configured
