@@ -217,6 +217,12 @@ def term_label(key):
 def season_of(key):
     return key.split('-')[1]
 
+def term_starts(key):
+    """Approximate first day of classes, only used to tell future terms apart."""
+    year, season = key.split('-')
+    month = {'spring': 1, 'summer': 5, 'fall': 8}[season]
+    return datetime.date(int(year), month, 15)
+
 def window_start(today, years):
     """First term of the window: the fall that began `years` academic years
     before the current one (Nov 2026, years=3 -> Fall 2023)."""
@@ -337,11 +343,18 @@ def main():
             print(f'POST {available[key]} …', flush=True)
             resp = curl(['-b', cookies, '--data-raw', urllib.parse.urlencode(body), BASE])
             part = parse(resp, season)
-            min_courses = 80 if season == 'summer' else 500
-            assert len(part) > min_courses, \
-                f'{available[key]} dump looks truncated ({len(part)} courses, {len(resp)} bytes)'
-            json.dump(part, open(out, 'w'))
             time.sleep(PAUSE)
+            min_courses = 80 if season == 'summer' else 500
+            if len(part) <= min_courses:
+                # A future term CDCS lists before departments have posted
+                # sections (Summer 2027 in November) is skipped, not fatal;
+                # the next run picks it up once it fills in.
+                if term_starts(key) > today:
+                    print(f'{term_label(key)}: only {len(part)} courses posted so far, skipping for now')
+                    continue
+                raise SystemExit(f'{available[key]} dump looks truncated '
+                                 f'({len(part)} courses, {len(resp)} bytes)')
+            json.dump(part, open(out, 'w'))
         notes = sum(1 for e in part.values() if e.get('public_notes'))
         named = sum(1 for e in part.values() if e.get('instructors'))
         print(f'{term_label(key)}: {len(part)} courses, {notes} with public notes, {named} with instructors')
@@ -359,6 +372,8 @@ def main():
             'harvestedOn': today.isoformat(),
             'years': args.years,
             'windowStart': window_start(today, args.years),
+        # Terms CDCS lists but which had too few sections to use yet.
+        'skipped': [term_label(k) for k in terms if k not in parts],
             'terms': stats,
         }, f, indent=1)
         f.write('\n')
