@@ -1,0 +1,113 @@
+name: Refresh course data
+
+# Re-harvests the CDCS course schedules (about three academic years back plus
+# every newly posted term), rebuilds src/data, runs the tests, and opens or
+# updates a "Refresh course data" pull request when anything changed.
+#
+# Timing: UR posts the next term's schedule around late March (fall) and late
+# October (spring) and keeps adjusting sections through registration. A weekly
+# run catches that; a second weekly run during those months picks up changes
+# faster. Each run is about a dozen requests to CDCS, five seconds apart.
+#
+# One-time repo setting: Settings > Actions > General > Workflow permissions >
+# "Allow GitHub Actions to create and approve pull requests".
+
+on:
+  schedule:
+    - cron: '17 11 * * 1'          # Mondays, about 6-7 AM in Rochester
+    - cron: '17 11 * 3,4,10,11 4'  # plus Thursdays during registration months
+  workflow_dispatch:
+    inputs:
+      years:
+        description: 'Academic years of history before the current one'
+        default: '3'
+  pull_request:
+    paths:
+      - tools/cdcs_harvest_all.py
+      - .github/workflows/refresh-course-data.yml
+
+concurrency:
+  group: refresh-course-data
+  cancel-in-progress: false
+
+jobs:
+  # On pull requests that touch the harvester, only check that CDCS is
+  # reachable from GitHub and that its term list still parses (one request).
+  check:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python3 tools/cdcs_harvest_all.py "$RUNNER_TEMP/cdcs" --list-terms
+
+  refresh:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Harvest CDCS schedules
+        id: harvest
+        run: |
+          python3 tools/cdcs_harvest_all.py "$RUNNER_TEMP/cdcs" --years "${{ inputs.years || '3' }}" | tee "$RUNNER_TEMP/harvest.log"
+          {
+            echo 'log<<EOF'
+            cat "$RUNNER_TEMP/harvest.log"
+            echo 'EOF'
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Rebuild app data
+        run: python3 tools/build_data.py
+
+      - name: Check for real changes
+        id: diff
+        run: |
+          # The harvest date alone is not worth a pull request.
+          if git diff --quiet -- . ':(exclude)data-src/cdcs-harvest.json' ':(exclude)src/data/meta.json'; then
+            git checkout -- data-src/cdcs-harvest.json src/data/meta.json
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No course data changes."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            git diff --stat
+          fi
+
+      - name: Test
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          npm ci
+          npm test
+
+      - name: Open or update pull request
+        if: steps.diff.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: data/cdcs-refresh
+          delete-branch: true
+          commit-message: Refresh course data from CDCS
+          title: Refresh course data from CDCS
+          body: |
+            Automatic refresh of the course schedules from [CDCS](https://cdcs.ur.rochester.edu/), rebuilt with `tools/build_data.py`. Tests passed in the workflow run.
+
+            ```
+            ${{ steps.harvest.outputs.log }}
+            ```
+          add-paths: |
+            data-src/ur-catalog-raw.json
+            data-src/cdcs-harvest.json
+            src/data/*.json

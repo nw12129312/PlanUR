@@ -15,6 +15,10 @@ export const RULES = {
     title: 'Offering term',
     text: 'The course was not scheduled in this term in harvested CDCS terms (including summer). Offering patterns can change year to year.',
   },
+  OFFERING_INACTIVE: {
+    title: 'Not offered recently',
+    text: 'The course has no sections in any harvested CDCS term from the last few academic years. It may have been discontinued or renumbered.',
+  },
   OFFERING_UNVERIFIED: {
     title: 'Offering unverified',
     text: 'No schedule data was sourced for this course, so term placement cannot be checked.',

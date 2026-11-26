@@ -1,6 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import { Button } from './bits.jsx';
 import { groupIntoYears } from '../engine/model.js';
+import { notRecentlyOfferedMessage } from '../engine/offering.js';
+import { getMeta } from '../storage/dataStore.js';
+
+const offeringWindow = getMeta().offeringWindow?.label;
 
 // Opened by the catalog's add button: choose which semester gets the course.
 // Semesters the engine rules out (missing prerequisites, not offered that
@@ -42,6 +46,12 @@ export function SemesterPicker({ course, plan, blocked, options, activeSemesterI
             <p role="alert" className="mx-2 rounded-md bg-bad-soft px-3 py-2 text-[13px] text-bad">{blocked}</p>
           ) : (
             <>
+              {course.notRecentlyOffered && (
+                <p role="note" className="mx-2 mb-2 rounded-md bg-warn-soft px-3 py-2 text-[13px] text-ink-2">
+                  <span className="font-semibold text-warn">Not offered recently. </span>
+                  {notRecentlyOfferedMessage(course, offeringWindow)}
+                </p>
+              )}
               <p className="px-2 pb-2 text-xs text-ink-3">Choose a semester.</p>
               {!anyAllowed && (
                 <p className="mx-2 mb-2 rounded-md bg-warn-soft px-3 py-2 text-[13px] text-ink-2">

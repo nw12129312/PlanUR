@@ -23,7 +23,7 @@ src/ui/        React components (Tailwind v4)
 tests/         vitest suites
 tools/         Python data pipeline
   build_data.py           regenerates src/data/* from data-src/
-  cdcs_harvest_all.py     refreshes the full course catalog from CDCS
+  cdcs_harvest_all.py     refreshes the course catalog from CDCS (about 3 years of terms)
   parse_cdcs_prereqs.py   extracts prerequisites from the CDCS harvest
   crawl_requirements.py   snapshots department requirement pages into data-src/pages/
   crawl_extra.py, fetch_missing.py   add pages the main crawler misses (merge, never overwrite)
@@ -46,6 +46,31 @@ npm run build                                  # single-file dist/index.html
 python3 tools/build_data.py && npm run build   # after editing data
 python3 tools/make_embed.py                    # embeddable body-only output
 ```
+
+## Refreshing course data
+
+`.github/workflows/refresh-course-data.yml` re-harvests CDCS every Monday (and
+also on Thursdays in March, April, October and November, when UR posts and
+adjusts the next term's schedule), rebuilds `src/data`, runs the tests, and
+opens or updates a "Refresh course data from CDCS" pull request when anything
+changed. Run it any time from the Actions tab (Run workflow), optionally with
+a different number of years. It needs "Allow GitHub Actions to create and
+approve pull requests" turned on under Settings > Actions > General.
+
+To refresh by hand:
+
+```bash
+python3 tools/cdcs_harvest_all.py /tmp/cdcs --list-terms   # what CDCS offers, and the window
+python3 tools/cdcs_harvest_all.py /tmp/cdcs                # harvest (reuses dumps in /tmp/cdcs)
+python3 tools/build_data.py && npm test
+```
+
+The term list comes from the live CDCS dropdown: every term from the fall
+three academic years back through the newest posted term. Each course records
+the terms it ran in (`terms_offered`); a course with none in that window gets
+`notRecentlyOffered: true`, and the app tags it "Not offered recently", warns
+when it is placed, and leaves it out of auto-generate when other options fill
+the requirement.
 
 Plans save to localStorage when the app runs as a normal web page, and to
 `window.storage` when a host page provides it. Google sign-in appears only when

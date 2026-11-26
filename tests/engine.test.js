@@ -94,8 +94,11 @@ describe('checkOfferingSemester', () => {
   it('emits info (not warning) for stub courses with no schedule data', () => {
     const stub = Object.values(coursesData).find((c) => c.stub);
     expect(stub, 'catalog should still contain at least one stub').toBeTruthy();
+    // Without a harvest window nothing is flagged as not offered recently.
+    const plain = { ...stub, notRecentlyOffered: false };
+    const data = { ...DATA, courses: { ...coursesData, [stub.id]: plain } };
     const plan = fill(planWith(), 0, [stub.id]);
-    const vs = checkOfferingSemester(plan, DATA);
+    const vs = checkOfferingSemester(plan, data);
     expect(byRule(vs, 'OFFERING_UNVERIFIED').length).toBe(1);
     expect(vs[0].severity).toBe('info');
   });

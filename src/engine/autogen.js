@@ -100,6 +100,13 @@ function buildLedger(plan, data, scope) {
   const entries = [];
   const notes = [];
 
+  // Leave out courses with no recent CDCS sections (likely discontinued)
+  // when enough recently offered options remain to fill the group.
+  const preferRecent = (cands, count) => {
+    const recent = cands.filter((cid) => !data.courses[cid]?.notRecentlyOffered);
+    return recent.length >= count ? recent : cands;
+  };
+
   const wantProgram = (pid) =>
     scope.kind !== 'program' && scope.kind !== 'group' ? true : scope.programId === pid;
 
@@ -147,6 +154,7 @@ function buildLedger(plan, data, scope) {
           if (above.length) finalCands = above;
         }
       }
+      if (flexible) finalCands = preferRecent(finalCands, remaining);
       entries.push({
         key: `${program.id}::${g.id}`,
         need: remaining,
@@ -177,8 +185,11 @@ function buildLedger(plan, data, scope) {
           key: `cluster::${cluster.id}::g${gi}`,
           need: remaining, // for credit-unit groups this is remaining credits
           unit: g.unit,
-          candidates: bansafe(clusterGroupCandidates(cluster.groups[gi], data.policy))
-            .filter((c) => !usedElsewhere.has(c)),
+          candidates: preferRecent(
+            bansafe(clusterGroupCandidates(cluster.groups[gi], data.policy))
+              .filter((c) => !usedElsewhere.has(c)),
+            g.unit === 'credits' ? Math.ceil(remaining / 4) : remaining,
+          ),
           flexible: true,
           clusterId: cluster.id,
           reason: `Cluster: ${cluster.name}`,
@@ -212,15 +223,22 @@ function orGroupSatisfied(orGroup, placedBeforeSet, eqGroups, courses) {
     : fam.has(p)));
 }
 
+// 0 = scheduled recently with sourced data, 1 = stub, 2 = no sections in the
+// CDCS window (likely discontinued), so autogen only reaches for it last.
+function dataQuality(c) {
+  if (c.notRecentlyOffered) return 2;
+  return c.stub ? 1 : 0;
+}
+
 // Choose which member of an OR-group to schedule when none is placed:
-// in-catalog, non-stub, shortest own chain, then alphabetical.
+// in-catalog, recently offered, non-stub, shortest own chain, then alphabetical.
 function pickOrMember(orGroup, data, seen) {
   const scored = orGroup
     .filter((cid) => data.courses[cid])
     .map((cid) => {
       const c = data.courses[cid];
       const depth = chainDepth(cid, data, new Set(seen));
-      return { cid, s: [c.stub ? 1 : 0, depth, cid] };
+      return { cid, s: [dataQuality(c), depth, cid] };
     })
     .sort((a, b) => (a.s[0] - b.s[0]) || (a.s[1] - b.s[1]) || byCourseId(a.s[2], b.s[2]));
   return scored[0]?.cid || null;
@@ -523,7 +541,7 @@ function generateOnce(plan, data, { scope, targetLoad, maxLoad, bans, pathPrefer
             scarcity.get(cid) ?? 9,                         // (a) single-purpose first
             -(gating.get(cid) ?? 0),                        // (b) unlock prerequisites early
             -(c.offeredVerified && c.offered.length === 1 && c.offered[0] === term(s) ? 1 : 0), // scarce offerings now
-            c.stub ? 1 : 0,                                 // verified data first
+            dataQuality(c),                                 // verified, current data first
             styleScore(cid, {
               style: packStyle,
               semesterIds: p.semesters[s].courseIds,

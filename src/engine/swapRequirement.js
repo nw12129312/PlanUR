@@ -158,7 +158,7 @@ function pickPrereqMember(orGroup, data, plan) {
     .filter((p) => !isLevelEntry(p) && data.courses[p])
     .map((cid) => {
       const c = data.courses[cid];
-      return { cid, stub: c.stub ? 1 : 0, depth: chainDepth(cid, data) };
+      return { cid, stub: c.notRecentlyOffered ? 2 : (c.stub ? 1 : 0), depth: chainDepth(cid, data) };
     })
     .sort((a, b) => (a.stub - b.stub) || (a.depth - b.depth) || a.cid.localeCompare(b.cid));
   return scored[0]?.cid || null;
