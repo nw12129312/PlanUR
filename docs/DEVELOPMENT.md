@@ -69,8 +69,8 @@ The term list comes from the live CDCS dropdown: every term from the fall
 three academic years back through the newest posted term. Each course records
 the terms it ran in (`terms_offered`); a course with none in that window gets
 `notRecentlyOffered: true`, and the app tags it "Not offered recently", warns
-when it is placed, and leaves it out of auto-generate when other options fill
-the requirement.
+when it is placed, and auto-generate ranks it after every recently offered
+option.
 
 Plans save to localStorage when the app runs as a normal web page, and to
 `window.storage` when a host page provides it. Google sign-in appears only when
