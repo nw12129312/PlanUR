@@ -31,23 +31,55 @@ describe('CourseCard instructor chip', () => {
     expect(html).not.toContain('Ted Pawlicki');
   });
 
-  it('shows the CDCS name next to a head icon for a single instructor', () => {
+  it('links a single instructor to their RateMyProfessors page with the rating', () => {
     const html = renderToString(<CourseCard placed course={course({ instructors: ['Ted Pawlicki'] })} />);
-    expect(html).toContain('Ted Pawlicki');
-    expect(html).not.toContain('2 instructors');
-    expect(html).toContain('aria-haspopup="dialog"');
+    expect(html).toMatch(/chip-text">Ted Pawlicki</);
+    expect(html).toContain('href="https://www.ratemyprofessors.com/professor/22421"');
+    expect(html).toContain('target="_blank"');
     expect(html).toMatch(/RateMyProfessors 2\.1\/5/);
+    expect(html).not.toContain('more instructors');
   });
 
-  it('collapses several instructors behind a clickable "N instructors" control', () => {
+  it('links every instructor by name when a course has several', () => {
     const html = renderToString(
       <CourseCard placed course={course({ instructors: ['Ted Pawlicki', 'Monika Polak'] })} />,
     );
-    expect(html).toContain('2 instructors');
-    expect(html).toContain('aria-expanded="false"');
+    expect(html).toMatch(/chip-text">Ted Pawlicki</);
+    expect(html).toMatch(/chip-text">Monika Polak</);
+    expect(html.match(/ratemyprofessors\.com\/professor\//g)).toHaveLength(2);
+    expect(html).not.toContain('instructors</span>');
+  });
+
+  it('falls back to a RateMyProfessors search for an unmatched name', () => {
+    const html = renderToString(
+      <CourseCard placed course={course({ instructors: ['Zzyzx Notaprofessor'] })} />,
+    );
+    expect(html).toContain('href="https://www.ratemyprofessors.com/search/professors/1331?q=Zzyzx%20Notaprofessor"');
+  });
+
+  it('keeps two most-rated names inline and the rest behind "+N more"', () => {
+    const names = ['Gongping Niu', 'Hari Rau-Murthy', 'Mark Herman', 'Mary Cook', 'Saul Lubkin'];
+    const html = renderToString(<CourseCard placed course={course({ instructors: names })} />);
+    expect(html).toMatch(/chip-text">Mark Herman</);
+    expect(html).toContain('+3 more');
     expect(html).toContain('aria-haspopup="dialog"');
-    expect(html).toMatch(/chip-text">2 instructors</);
-    expect(html).not.toMatch(/chip-text">Ted Pawlicki</);
+  });
+
+  it('puts program tags in the top row and colors majors, minors and clusters apart', () => {
+    const uses = [
+      { kind: 'major', id: 'm', label: 'Computer Science BS: Core' },
+      { kind: 'minor', id: 'n', label: 'Mathematics Minor: Calculus' },
+      { kind: 'cluster', id: 'c', label: 'Cluster: Psychology' },
+    ];
+    const html = renderToString(
+      <CourseCard placed uses={uses.slice(0, 2)} course={course({ instructors: ['Ted Pawlicki'] })} />,
+    );
+    expect(html).toContain('text-major');
+    expect(html).toContain('text-minor');
+    expect(html.indexOf('chip-text">Computer Science BS: Core')).toBeGreaterThan(-1);
+    expect(html.indexOf('chip-text">Computer Science BS: Core')).toBeLessThan(html.indexOf('chip-text">Ted Pawlicki'));
+    const cl = renderToString(<CourseCard placed uses={[uses[2]]} course={course()} />);
+    expect(cl).toContain('text-gold');
   });
 });
 

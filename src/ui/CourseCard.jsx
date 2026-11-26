@@ -7,7 +7,7 @@ import { groupsForCourse } from '../engine/equivalency.js';
 import { getEquivalencyGroups, getMeta, getRmp } from '../storage/dataStore.js';
 import { notRecentlyOfferedMessage, termLabel } from '../engine/offering.js';
 import {
-  rmpAriaSummary, rmpCompactLine, rmpDetailLines, rmpForInstructor, rmpPageUrl,
+  rmpAriaSummary, rmpCompactLine, rmpDetailLines, rmpForInstructor, rmpLinkForInstructor,
 } from '../engine/rmp.js';
 import { coursiclePageUrl } from '../engine/coursicle.js';
 import { COURSE_STATUSES, GRADE_OPTIONS, GRADE_POINTS, NON_GPA_MARKS, STATUS_LABEL } from '../engine/grades.js';
@@ -120,55 +120,75 @@ function ReviewsLink({ courseId, href, iconOnly }) {
   );
 }
 
-function InstructorMetrics({ rec, compact }) {
-  if (compact) {
-    const line = rmpCompactLine(rec);
-    if (!line) return null;
-    return (
-      <span className="tnum shrink-0 text-xs font-semibold text-ink-3">{line}</span>
-    );
-  }
-  const lines = rmpDetailLines(rec);
-  const href = rmpPageUrl(rec);
+// Show every instructor inline up to this many; past it, the first few
+// (most-rated first) stay inline and the rest sit behind a "+N more" list.
+const INLINE_INSTRUCTORS = 3;
+
+function instructorTitle(name, rec, exact) {
+  if (!exact) return `No RateMyProfessors match for ${name}. Opens a RateMyProfessors search (new tab).`;
+  return `${name}\n${rmpDetailLines(rec).join('\n')}\nOpens RateMyProfessors (new tab).`;
+}
+
+// One instructor's name, linked to their RateMyProfessors page (or a search
+// for the name when the directory has no single match), with the rating.
+function InstructorLink({ name, icon = false, fill = false }) {
+  const { rec, href, exact } = rmpLinkForInstructor(name, rmpDirectory);
+  const line = exact ? rmpCompactLine(rec) : '';
+  const stop = (e) => e.stopPropagation();
   return (
-    <div className="mt-1 flex flex-col gap-0.5 text-xs leading-snug text-ink-2">
-      {lines.map((line) => (
-        <div key={line} className="tnum">{line}</div>
-      ))}
-      {href && (
-        <a
-          href={href}
-          target="_blank"
-          rel="noreferrer"
-          className="mt-0.5 font-medium text-accent underline-offset-2 hover:underline"
-          onClick={(e) => e.stopPropagation()}
-        >
-          Open RateMyProfessors
-        </a>
-      )}
-    </div>
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      draggable={false}
+      onMouseDown={stop}
+      onClick={stop}
+      title={instructorTitle(name, rec, exact)}
+      aria-label={`${exact ? rmpAriaSummary(name, rec) : `Search RateMyProfessors for ${name}`} (opens in a new tab)`}
+      className={`chip-line gap-1 py-0.5 text-xs font-semibold text-ink-2 hover:text-ink hover:underline${fill ? ' w-full' : ''}`}
+    >
+      {icon && <Icon name="user" size="sm" />}
+      <span className={fill ? 'chip-text flex-1' : 'chip-text'}>{name}</span>
+      {line && <span className="tnum shrink-0 font-semibold text-ink-3">{line}</span>}
+    </a>
   );
 }
 
-function InstructorChip({ courseId, names }) {
+// Rank instructors with RateMyProfessors ratings first (most-rated first),
+// keeping CDCS order otherwise.
+function rankInstructors(names) {
+  return names
+    .map((name, i) => ({ name, i, n: rmpForInstructor(name, rmpDirectory)?.numRatings || 0 }))
+    .sort((x, y) => y.n - x.n || x.i - y.i)
+    .map((x) => x.name);
+}
+
+function InstructorLinks({ courseId, names }) {
+  const ranked = rankInstructors(names);
+  const overflow = ranked.length > INLINE_INSTRUCTORS;
+  const inline = overflow ? ranked.slice(0, INLINE_INSTRUCTORS - 1) : ranked;
+  return (
+    <>
+      {inline.map((name, i) => <InstructorLink key={name} name={name} icon={i === 0} />)}
+      {overflow && <MoreInstructors courseId={courseId} names={ranked} hidden={ranked.length - inline.length} />}
+    </>
+  );
+}
+
+function MoreInstructors({ courseId, names, hidden }) {
   const uid = useId();
   const listId = `${uid}-instructors`;
   const btnRef = useRef(null);
   const panelRef = useRef(null);
   const [open, setOpen] = useState(false);
   const [pos, setPos] = useState(null);
-  const single = names.length === 1;
-  const label = single ? names[0] : `${names.length} instructors`;
-  const aria = single
-    ? rmpAriaSummary(names[0], rmpForInstructor(names[0], rmpDirectory))
-    : `Instructors for ${courseId}`;
 
   const updatePos = () => {
     const el = btnRef.current;
     if (!el) return;
     const r = el.getBoundingClientRect();
     const gap = 4;
-    const width = Math.max(r.width, single ? 220 : 260);
+    const width = 280;
     const spaceBelow = window.innerHeight - r.bottom - 8;
     const openUp = spaceBelow < 160 && r.top > spaceBelow;
     let left = Math.round(r.left);
@@ -215,33 +235,23 @@ function InstructorChip({ courseId, names }) {
     };
   }, [open]);
 
-  if (!names.length) return null;
-
   const panel = open && pos && typeof document !== 'undefined'
     ? createPortal(
       <div
         ref={panelRef}
         id={listId}
         role="dialog"
-        aria-label={single ? `RateMyProfessors ratings for ${names[0]}` : `Instructors for ${courseId}`}
+        aria-label={`All ${names.length} instructors for ${courseId}`}
         tabIndex={-1}
         className="fixed z-[70] max-h-72 overflow-auto rounded-md border border-line bg-surface p-2 shadow-lg outline-none"
         style={{ left: pos.left, width: pos.width, top: pos.top, bottom: pos.bottom }}
       >
         <ul className="m-0 flex list-none flex-col gap-0.5 p-0">
-          {names.map((name) => {
-            const rec = rmpForInstructor(name, rmpDirectory);
-            return (
-              <li key={name} className="flex flex-col rounded px-1.5 py-1">
-                <div className="flex items-center gap-1.5 text-xs font-medium text-ink">
-                  <Icon name="user" size="sm" />
-                  <span className="min-w-0 flex-1 truncate">{name}</span>
-                  {!single && <InstructorMetrics rec={rec} compact />}
-                </div>
-                {single && <InstructorMetrics rec={rec} />}
-              </li>
-            );
-          })}
+          {names.map((name) => (
+            <li key={name} className="flex rounded px-1.5 py-0.5 hover:bg-surface-2">
+              <InstructorLink name={name} fill />
+            </li>
+          ))}
         </ul>
       </div>,
       document.body,
@@ -253,7 +263,7 @@ function InstructorChip({ courseId, names }) {
       <button
         ref={btnRef}
         type="button"
-        aria-label={aria}
+        aria-label={`${hidden} more instructors for ${courseId}`}
         aria-expanded={open}
         aria-haspopup="dialog"
         aria-controls={listId}
@@ -263,15 +273,18 @@ function InstructorChip({ courseId, names }) {
           e.stopPropagation();
           setOpen((v) => !v);
         }}
-        className="chip-line min-h-6 cursor-pointer gap-1 rounded py-0.5 text-xs font-semibold text-ink-2 hover:text-ink hover:underline"
+        className="chip-line min-h-6 cursor-pointer rounded py-0.5 text-xs font-semibold text-ink-3 hover:text-ink hover:underline"
       >
-        <Icon name="user" size="sm" />
-        <span className="chip-text">{label}</span>
+        <span className="chip-text">{`+${hidden} more`}</span>
       </button>
       {panel}
     </>
   );
 }
+
+// Majors, minors and clusters each get their own color on the card, so it's
+// clear at a glance what a course is being taken for.
+const USE_TONE = { major: 'major', minor: 'minor', cluster: 'gold' };
 
 const STATUS_TONE = { planned: 'text-ink-3', in_progress: 'text-accent', completed: 'text-good' };
 
@@ -323,9 +336,9 @@ export function CourseCard({ course: c, placed, uses = [], shortUses = false, vi
   const crossListings = (c.crossListings || []).filter(Boolean);
   const hasStatus = placed && typeof onSetStatus === 'function';
   const reviewsHref = coursiclePageUrl(c.id);
-  const showChips = placed && (hasStatus || uses.length > 0 || violations.length > 0 || c.stub
-    || c.notRecentlyOffered
-    || instructors.length > 0 || crossListings.length > 0 || !!reviewsHref);
+  const showTopTags = placed && (uses.length > 0 || violations.length > 0 || c.stub
+    || c.notRecentlyOffered || crossListings.length > 0);
+  const showBottom = placed && (instructors.length > 0 || !!reviewsHref);
   return (
     <div
       draggable={draggable}
@@ -351,7 +364,58 @@ export function CourseCard({ course: c, placed, uses = [], shortUses = false, vi
     >
       <div className="flex items-center gap-2">
         <span className="code min-w-[4.75rem] shrink-0 whitespace-nowrap text-ink">{c.id}</span>
-        <span className="line-clamp-2 min-w-0 flex-1 text-[13px] leading-snug text-ink-2">{c.title}</span>
+        <div className="flex min-w-0 flex-1 flex-wrap items-center gap-x-3 gap-y-0.5">
+          <span className={`min-w-0 text-[13px] leading-snug text-ink-2 ${placed ? 'max-w-full truncate' : 'line-clamp-2 flex-1'}`}>{c.title}</span>
+          {/* What the course counts toward, and anything wrong with it, sits
+              beside the title; the bottom row is kept for instructors and
+              reviews. Tags stay on one scrollable line rather than wrapping. */}
+          {showTopTags && (
+            <div className="chip-row flex min-w-0 max-w-full gap-3 overflow-x-auto">
+              {uses.slice(0, 2).map((u, i) => (
+                <Tag key={i} tone={USE_TONE[u.kind] || 'major'}
+                  icon={u.kind === 'cluster' ? 'hexagon' : undefined} title={u.label}>
+                  {u.kind === 'cluster'
+                    ? u.label.replace(/^Cluster:\s*/, '')
+                    : (shortUses ? u.label.replace(/^[^:]+:\s*/, '') : u.label)}
+                </Tag>
+              ))}
+              {uses.length > 2 && <Tag title={uses.map((u) => u.label).join(' · ')}>+{uses.length - 2}</Tag>}
+              {crossListings.length > 0 && (
+                <Tag
+                  tone="neutral"
+                  icon="link"
+                  title={`Same class as ${crossListings.join(', ')}${c.crossListingSource ? ` — ${c.crossListingSource}` : ''}`}
+                >
+                  {crossListings.length <= 3
+                    ? `Cross-listed ${crossListings.join(' · ')}`
+                    : `Cross-listed (${crossListings.length})`}
+                </Tag>
+              )}
+              {c.notRecentlyOffered && <NotOfferedTag course={c} />}
+              {c.stub && <Tag tone="warn" title="Known only from the cluster listing; credits and terms not yet sourced.">unsourced</Tag>}
+              {/* One chip per distinct rule. Department-ordering fires once per
+                  course pair, so an unfiltered map stacked four identical amber
+                  chips on a single card. */}
+              {[...new Map(violations.map((v) => [v.ruleId, v])).values()].map((v, i) => {
+                const dupes = violations.filter((x) => x.ruleId === v.ruleId);
+                return (
+                  <SevChip key={i} severity={v.severity}
+                    title={`${ruleInfo(v.ruleId).title}: ${ruleInfo(v.ruleId).text}\n\n${dupes.map((d) => d.message).join('\n')}`}>
+                    {ruleInfo(v.ruleId).title}{dupes.length > 1 ? ` ×${dupes.length}` : ''}
+                  </SevChip>
+                );
+              })}
+            </div>
+          )}
+          {/* Inside the wrapping block so on a narrow card it drops below the
+              title instead of squeezing it. */}
+          {hasStatus && (
+            <span className="ml-auto flex shrink-0">
+              <StatusControl courseId={c.id} status={status} grade={grade}
+                onSetStatus={onSetStatus} onSetGrade={onSetGrade} />
+            </span>
+          )}
+        </div>
         <span className="tnum shrink-0 text-xs text-ink-3">{c.credits} cr</span>
         {placed && onToggleLock && (
           <IconButton
@@ -382,52 +446,12 @@ export function CourseCard({ course: c, placed, uses = [], shortUses = false, vi
       {!placed && c.notRecentlyOffered && (
         <div className="chip-row mt-0.5 flex gap-3"><NotOfferedTag course={c} /></div>
       )}
-      {/* Chips sit on one scrollable row rather than wrapping: the skill flags a
-          compact label wrapping to a second line as a High-severity defect. Each
-          truncates via CSS and carries its full text for assistive tech, so
-          nothing is hover-only. */}
-      {showChips && (
+      {/* Bottom row: instructors (each linked to RateMyProfessors, with their
+          rating) and the course's reviews. One scrollable line, no wrapping. */}
+      {showBottom && (
         <div className="chip-row mt-0.5 flex gap-3 overflow-x-auto">
-          {hasStatus && (
-            <StatusControl courseId={c.id} status={status} grade={grade}
-              onSetStatus={onSetStatus} onSetGrade={onSetGrade} />
-          )}
-          {uses.slice(0, 2).map((u, i) => (
-            <Tag key={i} tone={u.kind === 'cluster' ? 'gold' : 'accent'}
-              icon={u.kind === 'cluster' ? 'hexagon' : undefined} title={u.label}>
-              {u.kind === 'cluster'
-                ? u.label.replace(/^Cluster:\s*/, '')
-                : (shortUses ? u.label.replace(/^[^:]+:\s*/, '') : u.label)}
-            </Tag>
-          ))}
-          {uses.length > 2 && <Tag title={uses.map((u) => u.label).join(' · ')}>+{uses.length - 2}</Tag>}
-          <InstructorChip courseId={c.id} names={instructors} />
+          <InstructorLinks courseId={c.id} names={instructors} />
           {reviewsHref && <ReviewsLink courseId={c.id} href={reviewsHref} />}
-          {crossListings.length > 0 && (
-            <Tag
-              tone="neutral"
-              icon="link"
-              title={`Same class as ${crossListings.join(', ')}${c.crossListingSource ? ` — ${c.crossListingSource}` : ''}`}
-            >
-              {crossListings.length <= 3
-                ? `Cross-listed ${crossListings.join(' · ')}`
-                : `Cross-listed (${crossListings.length})`}
-            </Tag>
-          )}
-          {c.notRecentlyOffered && <NotOfferedTag course={c} />}
-          {c.stub && placed && <Tag tone="warn" title="Known only from the cluster listing; credits and terms not yet sourced.">unsourced</Tag>}
-          {/* One chip per distinct rule. Department-ordering fires once per
-              course pair, so an unfiltered map stacked four identical amber
-              chips on a single card. */}
-          {[...new Map(violations.map((v) => [v.ruleId, v])).values()].map((v, i) => {
-            const dupes = violations.filter((x) => x.ruleId === v.ruleId);
-            return (
-              <SevChip key={i} severity={v.severity}
-                title={`${ruleInfo(v.ruleId).title}: ${ruleInfo(v.ruleId).text}\n\n${dupes.map((d) => d.message).join('\n')}`}>
-                {ruleInfo(v.ruleId).title}{dupes.length > 1 ? ` ×${dupes.length}` : ''}
-              </SevChip>
-            );
-          })}
         </div>
       )}
     </div>
