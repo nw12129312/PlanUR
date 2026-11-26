@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-import { newPlan, addSemester, addSummerSemester, withCourseMeta, getCourseMeta } from './engine/model.js';
+import { newPlan, addSemester, addSummerSemester, withCourseMeta, getCourseMeta, clearedPlan, isPlanEmpty } from './engine/model.js';
 import { cumulativeGpa, earnsNoCredit, formatGpa, withCourseGrade, withCourseStatus } from './engine/grades.js';
 import { withScheduleStyle } from './engine/scheduleStyle.js';
 import { switchTrackChoice, withProgramSwap } from './engine/pathways.js';
@@ -25,6 +25,7 @@ import { CourseSearch } from './ui/CourseSearch.jsx';
 import { SemesterGrid } from './ui/SemesterGrid.jsx';
 import { Checklist } from './ui/Checklist.jsx';
 import { PlansModal } from './ui/PlansModal.jsx';
+import { ClearPlanModal } from './ui/ClearPlanModal.jsx';
 import { SemesterPicker } from './ui/SemesterPicker.jsx';
 import { AccountMenu, SaveStatus } from './ui/AccountMenu.jsx';
 import { GenerateBar, DiffModal, CoverageModal } from './ui/AutoGen.jsx';
@@ -58,6 +59,7 @@ export default function App() {
   const [accountNotice, setAccountNotice] = useState(null);
   const [ready, setReady] = useState(false);            // first load finished
   const [modalOpen, setModalOpen] = useState(false);
+  const [clearOpen, setClearOpen] = useState(false);  // "Are you sure?" before clearing
   const [pickerCourseId, setPickerCourseId] = useState(null); // catalog add: choosing a semester
   const [activeSemesterId, setActiveSemesterId] = useState(null);
   const [genResult, setGenResult] = useState(null); // {base, result} pending diff review
@@ -559,6 +561,19 @@ export default function App() {
     return touch({ ...p, semesters: p.semesters.filter((x) => x.id !== semId) });
   });
 
+  // Clean slate for the open plan. It goes through the normal autosave, so
+  // the cleared plan replaces the saved copy here and in the account.
+  const clearPlan = () => {
+    setPlan((p) => touch(clearedPlan(p)));
+    setActiveSemesterId(null);
+    setGenResult(null);
+    setBlockNotice(null);
+    setMoveNotice(null);
+    setSetupOpen(true);
+    setClearOpen(false);
+  };
+  const closeClear = useCallback(() => setClearOpen(false), []);
+
   // ---- plan list actions (all saving goes through dataStore/account) ----
   async function loadPlanAction(id) {
     await flushSave();
@@ -725,6 +740,7 @@ export default function App() {
             <SemesterGrid
               toolbar={(
                 <GenerateBar plan={plan} data={DATA} onGenerate={runGenerate} onLockAll={lockAll}
+                  onClear={() => setClearOpen(true)} canClear={!isPlanEmpty(plan)}
                   onScheduleStyle={(id) => setPlan((p) => touch(withScheduleStyle(p, id)))}
                   busy={genBusy} />
               )}
@@ -820,6 +836,10 @@ export default function App() {
           />
         );
       })()}
+
+      {clearOpen && (
+        <ClearPlanModal planName={plan.name} onCancel={closeClear} onConfirm={clearPlan} />
+      )}
 
       {modalOpen && (
         <PlansModal
