@@ -45,6 +45,29 @@ jobs:
           python-version: '3.12'
       - run: python3 tools/cdcs_harvest_all.py "$RUNNER_TEMP/cdcs" --list-terms
 
+  # TEMPORARY: one full refresh committed back to this PR's branch. Removed
+  # before merge.
+  seed:
+    if: github.event_name == 'pull_request' && github.head_ref == 'data/cdcs-auto-refresh'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python3 tools/cdcs_harvest_all.py "$RUNNER_TEMP/cdcs"
+      - run: python3 tools/build_data.py
+      - run: |
+          git config user.name nw445664
+          git config user.email 358179765+nw445664@users.noreply.github.com
+          git add data-src/ur-catalog-raw.json data-src/cdcs-harvest.json src/data
+          git commit -m "Refresh course data from CDCS (Fall 2023 onward)"
+          git push
+
   refresh:
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
