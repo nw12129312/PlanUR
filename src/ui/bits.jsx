@@ -54,6 +54,8 @@ export function Tag({ tone = 'neutral', children, title, icon }) {
   const tones = {
     neutral: 'text-ink-2',
     accent: 'text-accent',
+    major: 'text-major',
+    minor: 'text-minor',
     cta: 'text-cta-strong',
     gold: 'text-gold',
     good: 'text-good',

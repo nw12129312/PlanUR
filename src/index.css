@@ -42,6 +42,8 @@
   --bad-soft: #fdecec;
   --info: #1d4ed8;
   --info-soft: #eaf1fe;
+  --major: #1d4ed8;
+  --minor: #7e22ce;
 
   /* Swiss style: structure comes from borders; shadows stay sharp and faint. */
   --shadow-sm: 0 1px 0 rgb(15 23 42 / 0.04);
@@ -68,6 +70,7 @@
     --warn: #fbbf24; --warn-soft: #3a2508;
     --bad: #f87171; --bad-soft: #3f1414;
     --info: #93c5fd; --info-soft: #172a55;
+    --major: #93c5fd; --minor: #d8b4fe;
     --shadow-sm: 0 1px 0 rgb(0 0 0 / 0.3);
     --shadow-md: 0 1px 2px rgb(0 0 0 / 0.4), 0 4px 10px -4px rgb(0 0 0 / 0.5);
     --shadow-lg: 0 2px 6px rgb(0 0 0 / 0.4), 0 16px 32px -8px rgb(0 0 0 / 0.6);
@@ -84,6 +87,7 @@
   --warn: #fbbf24; --warn-soft: #3a2508;
   --bad: #f87171; --bad-soft: #3f1414;
   --info: #93c5fd; --info-soft: #172a55;
+  --major: #93c5fd; --minor: #d8b4fe;
   --shadow-sm: 0 1px 0 rgb(0 0 0 / 0.3);
   --shadow-md: 0 1px 2px rgb(0 0 0 / 0.4), 0 4px 10px -4px rgb(0 0 0 / 0.5);
   --shadow-lg: 0 2px 6px rgb(0 0 0 / 0.4), 0 16px 32px -8px rgb(0 0 0 / 0.6);
@@ -113,6 +117,8 @@
   --color-bad: var(--bad);
   --color-bad-soft: var(--bad-soft);
   --color-info: var(--info);
+  --color-major: var(--major);
+  --color-minor: var(--minor);
   --color-info-soft: var(--info-soft);
   --shadow-sm: var(--shadow-sm);
   --shadow-md: var(--shadow-md);

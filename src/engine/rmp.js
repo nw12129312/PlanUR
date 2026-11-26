@@ -98,6 +98,26 @@ export function rmpPageUrl(rec) {
   return `https://www.ratemyprofessors.com/professor/${rec.id}`;
 }
 
+// University of Rochester's RateMyProfessors school id.
+export const RMP_SCHOOL_ID = 1331;
+
+// A RateMyProfessors search for this name at the school, for instructors
+// with no single directory match.
+export function rmpSearchUrl(name, schoolId = RMP_SCHOOL_ID) {
+  const q = String(name || '').trim();
+  if (!q) return null;
+  return `https://www.ratemyprofessors.com/search/professors/${schoolId}?q=${encodeURIComponent(q)}`;
+}
+
+// Where an instructor's name should link: their own page when matched,
+// otherwise a search for the name at the school.
+export function rmpLinkForInstructor(name, directory) {
+  const rec = rmpForInstructor(name, directory);
+  const page = rmpPageUrl(rec);
+  if (page) return { rec, href: page, exact: true };
+  return { rec, href: rmpSearchUrl(name, directory?.schoolId || RMP_SCHOOL_ID), exact: false };
+}
+
 function num(n, digits = 1) {
   if (n == null || Number.isNaN(Number(n))) return null;
   return Number(n).toFixed(digits);

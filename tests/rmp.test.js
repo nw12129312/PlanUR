@@ -51,3 +51,19 @@ describe('rmp display helpers', () => {
     expect(rmpDetailLines(null)[0]).toMatch(/No RateMyProfessors listing/);
   });
 });
+
+describe('rmpLinkForInstructor', () => {
+  it('links a matched name to the professor page', async () => {
+    const { rmpLinkForInstructor } = await import('../src/engine/rmp.js');
+    const link = rmpLinkForInstructor('Ted Pawlicki', rmpData);
+    expect(link.exact).toBe(true);
+    expect(link.href).toBe('https://www.ratemyprofessors.com/professor/22421');
+  });
+
+  it('falls back to a school search for an unmatched name', async () => {
+    const { rmpLinkForInstructor } = await import('../src/engine/rmp.js');
+    const link = rmpLinkForInstructor("Jane O'Nobody", rmpData);
+    expect(link.exact).toBe(false);
+    expect(link.href).toBe("https://www.ratemyprofessors.com/search/professors/1331?q=Jane%20O'Nobody");
+  });
+});
