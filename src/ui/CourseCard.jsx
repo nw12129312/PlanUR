@@ -8,6 +8,7 @@ import { getEquivalencyGroups, getRmp } from '../storage/dataStore.js';
 import {
   rmpAriaSummary, rmpCompactLine, rmpDetailLines, rmpForInstructor, rmpPageUrl,
 } from '../engine/rmp.js';
+import { coursiclePageUrl } from '../engine/coursicle.js';
 import { COURSE_STATUSES, GRADE_OPTIONS, GRADE_POINTS, NON_GPA_MARKS, STATUS_LABEL } from '../engine/grades.js';
 
 const equivalencyGroupsData = getEquivalencyGroups();
@@ -61,6 +62,47 @@ function detailsTitle(c) {
   if (c.description) parts.push(c.description);
   if (c.stub) parts.push('Stub entry: known only from the cluster listing; credits/terms not yet sourced.');
   return parts.join('\n');
+}
+
+// Link out to the course's Coursicle page for student reviews. Stops the
+// mouse/click events so it never starts a drag or triggers the card.
+function ReviewsLink({ courseId, href, iconOnly }) {
+  const stop = (e) => e.stopPropagation();
+  const label = `Read reviews of ${courseId} on Coursicle (opens in a new tab)`;
+  if (iconOnly) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        draggable={false}
+        aria-label={label}
+        title={label}
+        onMouseDown={stop}
+        onClick={stop}
+        style={{ transitionDuration: 'var(--dur)' }}
+        className="hit-area inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-md text-ink-3 transition-colors hover:bg-surface-2 hover:text-ink"
+      >
+        <Icon name="external" size="md" />
+      </a>
+    );
+  }
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      draggable={false}
+      aria-label={label}
+      title={label}
+      onMouseDown={stop}
+      onClick={stop}
+      className="chip-line gap-1 py-0.5 text-xs font-semibold text-ink-2 hover:text-ink hover:underline"
+    >
+      <Icon name="external" size="sm" />
+      <span className="chip-text">Reviews</span>
+    </a>
+  );
 }
 
 function InstructorMetrics({ rec, compact }) {
@@ -263,8 +305,9 @@ export function CourseCard({ course: c, placed, uses = [], shortUses = false, vi
   const swapTarget = placed && typeof onDropOnCourse === 'function';
   const crossListings = (c.crossListings || []).filter(Boolean);
   const hasStatus = placed && typeof onSetStatus === 'function';
+  const reviewsHref = coursiclePageUrl(c.id);
   const showChips = placed && (hasStatus || uses.length > 0 || violations.length > 0 || c.stub
-    || instructors.length > 0 || crossListings.length > 0);
+    || instructors.length > 0 || crossListings.length > 0 || !!reviewsHref);
   return (
     <div
       draggable={draggable}
@@ -306,6 +349,7 @@ export function CourseCard({ course: c, placed, uses = [], shortUses = false, vi
         {dropOver && (
           <span className="shrink-0 text-xs font-semibold text-accent">Swap</span>
         )}
+        {!placed && reviewsHref && <ReviewsLink courseId={c.id} href={reviewsHref} iconOnly />}
         {onAdd && <IconButton icon="plus" label={`Add ${c.id}`} tone="accent" onClick={onAdd} />}
         {onRemove && (
           <IconButton
@@ -337,6 +381,7 @@ export function CourseCard({ course: c, placed, uses = [], shortUses = false, vi
           ))}
           {uses.length > 2 && <Tag title={uses.map((u) => u.label).join(' · ')}>+{uses.length - 2}</Tag>}
           <InstructorChip courseId={c.id} names={instructors} />
+          {reviewsHref && <ReviewsLink courseId={c.id} href={reviewsHref} />}
           {crossListings.length > 0 && (
             <Tag
               tone="neutral"
