@@ -1,0 +1,66 @@
+{
+ "source": "https://cdcs.ur.rochester.edu/",
+ "harvestedOn": "2026-11-26",
+ "years": 3,
+ "windowStart": "2023-fall",
+ "skipped": [
+  "Summer 2027"
+ ],
+ "terms": [
+  {
+   "term": "2023-fall",
+   "label": "Fall 2023",
+   "courses": 1817
+  },
+  {
+   "term": "2024-spring",
+   "label": "Spring 2024",
+   "courses": 1900
+  },
+  {
+   "term": "2024-summer",
+   "label": "Summer 2024",
+   "courses": 202
+  },
+  {
+   "term": "2024-fall",
+   "label": "Fall 2024",
+   "courses": 1930
+  },
+  {
+   "term": "2025-spring",
+   "label": "Spring 2025",
+   "courses": 1893
+  },
+  {
+   "term": "2025-summer",
+   "label": "Summer 2025",
+   "courses": 174
+  },
+  {
+   "term": "2025-fall",
+   "label": "Fall 2025",
+   "courses": 1816
+  },
+  {
+   "term": "2026-spring",
+   "label": "Spring 2026",
+   "courses": 1779
+  },
+  {
+   "term": "2026-summer",
+   "label": "Summer 2026",
+   "courses": 213
+  },
+  {
+   "term": "2026-fall",
+   "label": "Fall 2026",
+   "courses": 1984
+  },
+  {
+   "term": "2027-spring",
+   "label": "Spring 2027",
+   "courses": 1998
+  }
+ ]
+}
