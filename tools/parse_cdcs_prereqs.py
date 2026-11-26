@@ -202,8 +202,15 @@ def split_top_level_commas(text):
     return [p for p in parts if p]
 
 
+# "MTH 165 (concurrently)": a corequisite flagged right after the code.
+CONCURRENT_SUFFIX_RE = re.compile(
+    r'([A-Z]{2,5}\s*\d{3}[A-Z]{0,2})\s*\((?:may be taken |taken |or )?concurrent(?:ly)?\)', re.I)
+
+
 def concurrent_codes(text, self_code, catalog_codes=None):
     skip = set()
+    for m in CONCURRENT_SUFFIX_RE.finditer(text or ''):
+        skip.update(codes_in(m.group(1), self_code, catalog_codes))
     for m in CONCURRENT_RE.finditer(text or ''):
         chunk = re.split(r'\s+if\s+|[.;]', m.group(1) or m.group(2), maxsplit=1)[0]
         skip.update(codes_in(chunk, self_code, catalog_codes))
@@ -589,6 +596,10 @@ def _self_test():
         'This course has no prerequisites and is open to all students.',
         'CSC 160', set(cat) | {'CSC 160'})
     assert d is None
+    d = parse_description(
+        'Prerequisites: CSC 171, MTH 161 and CSC 172 (concurrently)',
+        'CSC 200', set(cat) | {'CSC 200'})
+    assert d['prereqs'] == [['CSC 171'], ['MATH 161']], d  # (concurrently) = corequisite
     d = parse_description(
         'Permission of instructor required and successful completion of MUSC 111 and MUSC 112.',
         'MUSC 116', set(cat) | {'MUSC 116'})
