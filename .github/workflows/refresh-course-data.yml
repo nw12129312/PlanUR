@@ -60,13 +60,15 @@ jobs:
         with:
           python-version: '3.12'
       - run: python3 tools/cdcs_harvest_all.py "$RUNNER_TEMP/cdcs"
-      - run: python3 tools/build_data.py
       - run: |
           git config user.name nw445664
           git config user.email 358179765+nw445664@users.noreply.github.com
-          git add data-src/ur-catalog-raw.json data-src/cdcs-harvest.json src/data
-          git commit -m "Refresh course data from CDCS (Fall 2023 onward)"
-          git push
+          git checkout --orphan data/cdcs-dumps
+          git rm -rq --cached .
+          mkdir -p dumps && cp "$RUNNER_TEMP"/cdcs/cdcs-full-*.json dumps/
+          git add dumps
+          git commit -qm "CDCS term dumps (scratch)"
+          git push -f origin data/cdcs-dumps
 
   refresh:
     if: github.event_name != 'pull_request'

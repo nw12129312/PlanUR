@@ -69,9 +69,21 @@ WINDOW_SOURCE = ('CDCS (Registrar) schedules, ' + term_label(WINDOW_TERMS[0]) + 
                  + term_label(WINDOW_TERMS[-1])) if WINDOW_TERMS else \
     'CDCS (Registrar) Fall 2025 / Spring 2026 / Fall 2026 schedules'
 
+def _in_window(k):
+    return WINDOW_START is None or term_ord(k) >= WINDOW_START
+
+# Departments the harvest actually covers. A course is only flagged when its
+# department shows up in the window; courses from schools the College search
+# doesn't return (Simon, the Medical Center) are "unknown", not "not offered".
+HARVESTED_DEPTS = {e.get('dept') for e in catalog.values()
+                   if any(_in_window(k) for k in e.get('terms_offered') or [])} if harvest else set()
+
+def flag_not_recent(dept, history_known):
+    return WINDOW_START is not None and history_known and dept in HARVESTED_DEPTS
+
 def offering_fields(e):
     history = sorted(e.get('terms_offered') or [], key=term_ord)
-    recent = [k for k in history if WINDOW_START is None or term_ord(k) >= WINDOW_START]
+    recent = [k for k in history if _in_window(k)]
     if recent:
         offered = sorted({k.split('-')[1] for k in recent}, key=lambda t: ['fall', 'spring', 'summer'].index(t))
     else:
@@ -80,7 +92,9 @@ def offering_fields(e):
         'offered': offered,
         'offeredVerified': bool(offered),
         'lastOffered': history[-1] if history else None,
-        'notRecentlyOffered': WINDOW_START is not None and not recent,
+        # An entry with no term history at all predates term tracking (kept
+        # from an older harvest), so there is nothing to judge it by.
+        'notRecentlyOffered': not recent and flag_not_recent(e.get('dept'), bool(history)),
     }
 
 def parse_code(code):
@@ -241,7 +255,7 @@ for cl in clusters_raw:
                     'title': title,
                     'credits': 4, 'creditsVerified': False,
                     'offered': [], 'offeredClaim': [], 'offeredVerified': False,
-                    'lastOffered': None, 'notRecentlyOffered': WINDOW_START is not None,
+                    'lastOffered': None, 'notRecentlyOffered': flag_not_recent(dept, True),
                     'prereqs': [], 'prereqsVerified': False, 'prereqNote': None, 'prereqSource': None,
                     'instructors': [],
                     'description': '',
@@ -849,7 +863,7 @@ for code in sorted(referenced):
         'title': code,
         'credits': 4, 'creditsVerified': False,
         'offered': [], 'offeredClaim': [], 'offeredVerified': False,
-        'lastOffered': None, 'notRecentlyOffered': WINDOW_START is not None,
+        'lastOffered': None, 'notRecentlyOffered': flag_not_recent(dept, True),
         'prereqs': [], 'prereqsVerified': False, 'prereqNote': None, 'prereqSource': None,
         'instructors': [],
         'description': '',
