@@ -1,14 +1,33 @@
 {
  "builtOn": "2026-07-03",
  "counts": {
-  "courses": 4797,
-  "stubCourses": 1182,
+  "courses": 6177,
+  "stubCourses": 701,
   "clusters": 198,
   "programs": 183,
   "activePrograms": 182,
   "equivalencyGroups": 16,
   "activeEquivalencyGroups": 16,
-  "crossListFamilies": 653,
+  "crossListFamilies": 978,
+  "notRecentlyOffered": 647,
   "examCredit": 35
+ },
+ "catalogHarvestedOn": "2026-11-26",
+ "offeringWindow": {
+  "start": "2023-fall",
+  "terms": [
+   "2023-fall",
+   "2024-spring",
+   "2024-summer",
+   "2024-fall",
+   "2025-spring",
+   "2025-summer",
+   "2025-fall",
+   "2026-spring",
+   "2026-summer",
+   "2026-fall",
+   "2027-spring"
+  ],
+  "label": "Fall 2023 to Spring 2027"
  }
 }

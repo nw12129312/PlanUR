@@ -3,8 +3,10 @@
 
 Raw inputs (provenance):
   ur-catalog-raw.json   - parsed from CDCS (cdcs.ur.rochester.edu), the Registrar's
-                          official course description system, Fall 2025 + Spring 2026
-                          + Fall 2026 (Public Notes harvested for prerequisites).
+                          official course description system, by
+                          tools/cdcs_harvest_all.py: every term from about three
+                          academic years back to the newest posted term (listed in
+                          cdcs-harvest.json). Public Notes harvested for prerequisites.
   clusters-parsed.json  - parsed from the official Cluster Search Engine PDF
                           "Cluster Offerings by Department [2025-2026]"
                           (secure1.rochester.edu/registrar/CSE/).
@@ -13,7 +15,7 @@ Raw inputs (provenance):
 Everything that could NOT be confirmed from an official page carries a
 verified:false flag and, where useful, a note. Nothing is invented.
 """
-import json, re, os, sys
+import json, re, os, shutil, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 if HERE not in sys.path:
@@ -41,10 +43,59 @@ URLS = {
 }
 
 catalog = json.load(open(os.path.join(SRC, 'ur-catalog-raw.json')))
+_harvest_path = os.path.join(SRC, 'cdcs-harvest.json')
+harvest = json.load(open(_harvest_path)) if os.path.exists(_harvest_path) else None
 clusters_raw = json.load(open(os.path.join(SRC, 'clusters-parsed.json')))
 psc_tracks = json.load(open(os.path.join(SRC, 'psc-tracks.json')))
 
 # ---------------------------------------------------------------- courses ---
+
+_SEASON_ORDER = {'spring': 0, 'summer': 1, 'fall': 2}
+
+def term_ord(key):
+    year, season = key.split('-')
+    return int(year) * 3 + _SEASON_ORDER[season]
+
+def term_label(key):
+    year, season = key.split('-')
+    return f'{season.capitalize()} {year}'
+
+# The offering window is the set of CDCS terms the last harvest covered. A
+# course with no section in any of them is flagged notRecentlyOffered. Without
+# a harvest record (older data) nothing is flagged.
+WINDOW_START = term_ord(harvest['windowStart']) if harvest else None
+WINDOW_TERMS = [t['term'] for t in harvest['terms']] if harvest else []
+WINDOW_SOURCE = ('CDCS (Registrar) schedules, ' + term_label(WINDOW_TERMS[0]) + ' to '
+                 + term_label(WINDOW_TERMS[-1])) if WINDOW_TERMS else \
+    'CDCS (Registrar) Fall 2025 / Spring 2026 / Fall 2026 schedules'
+
+def _in_window(k):
+    return WINDOW_START is None or term_ord(k) >= WINDOW_START
+
+# Departments the harvest actually covers. A course is only flagged when its
+# department shows up in the window; courses from schools the College search
+# doesn't return (Simon, the Medical Center) are "unknown", not "not offered".
+HARVESTED_DEPTS = {e.get('dept') for e in catalog.values()
+                   if any(_in_window(k) for k in e.get('terms_offered') or [])} if harvest else set()
+
+def flag_not_recent(dept, history_known):
+    return WINDOW_START is not None and history_known and dept in HARVESTED_DEPTS
+
+def offering_fields(e):
+    history = sorted(e.get('terms_offered') or [], key=term_ord)
+    recent = [k for k in history if _in_window(k)]
+    if recent:
+        offered = sorted({k.split('-')[1] for k in recent}, key=lambda t: ['fall', 'spring', 'summer'].index(t))
+    else:
+        offered = e.get('terms_seen') or []
+    return {
+        'offered': offered,
+        'offeredVerified': bool(offered),
+        'lastOffered': history[-1] if history else None,
+        # An entry with no term history at all predates term tracking (kept
+        # from an older harvest), so there is nothing to judge it by.
+        'notRecentlyOffered': not recent and flag_not_recent(e.get('dept'), bool(history)),
+    }
 
 def parse_code(code):
     m = re.match(r'^([A-Z]{2,5})\s+(\d{3})([A-Z]{0,2})$', code)
@@ -162,16 +213,18 @@ for code, e in catalog.items():
     dept, num, suffix = parse_code(code)
     if dept is None:
         continue
-    offered = e.get('terms_seen') or []
     fields = prereq_fields(code)
+    offering = offering_fields(e)
     courses[code] = {
         'id': code, 'dept': dept, 'number': num, 'suffix': suffix,
         'title': e.get('title') or code,
         'credits': e.get('credits') if e.get('credits') is not None else 4,
         'creditsVerified': e.get('credits') is not None,
-        'offered': offered,
+        'offered': offering['offered'],
         'offeredClaim': offered_from_claim(e.get('offered_field', [])),
-        'offeredVerified': bool(offered),
+        'offeredVerified': offering['offeredVerified'],
+        'lastOffered': offering['lastOffered'],
+        'notRecentlyOffered': offering['notRecentlyOffered'],
         'prereqs': fields['prereqs'],
         'prereqsVerified': fields['prereqsVerified'],
         'prereqNote': fields['prereqNote'],
@@ -180,7 +233,7 @@ for code, e in catalog.items():
         'description': (e.get('desc') or '')[:260],
         'crossListings': [],
         'crossListingSource': None,
-        'source': 'CDCS (Registrar) Fall 2025 / Spring 2026 / Fall 2026 schedules',
+        'source': WINDOW_SOURCE,
         'stub': False,
     }
 
@@ -202,6 +255,7 @@ for cl in clusters_raw:
                     'title': title,
                     'credits': 4, 'creditsVerified': False,
                     'offered': [], 'offeredClaim': [], 'offeredVerified': False,
+                    'lastOffered': None, 'notRecentlyOffered': flag_not_recent(dept, True),
                     'prereqs': [], 'prereqsVerified': False, 'prereqNote': None, 'prereqSource': None,
                     'instructors': [],
                     'description': '',
@@ -809,6 +863,7 @@ for code in sorted(referenced):
         'title': code,
         'credits': 4, 'creditsVerified': False,
         'offered': [], 'offeredClaim': [], 'offeredVerified': False,
+        'lastOffered': None, 'notRecentlyOffered': flag_not_recent(dept, True),
         'prereqs': [], 'prereqsVerified': False, 'prereqNote': None, 'prereqSource': None,
         'instructors': [],
         'description': '',
@@ -982,16 +1037,30 @@ meta = {'builtOn': FETCH_DATE, 'counts': {
     'equivalencyGroups': len(equivalency_groups),
     'activeEquivalencyGroups': sum(1 for g in equivalency_groups if g['status'] == 'ACTIVE'),
     'crossListFamilies': cross_list_families,
+    'notRecentlyOffered': sum(1 for c in courses.values() if c['notRecentlyOffered']),
 }}
+if harvest:
+    meta['catalogHarvestedOn'] = harvest['harvestedOn']
+    meta['offeringWindow'] = {
+        'start': harvest['windowStart'],
+        'terms': WINDOW_TERMS,
+        'label': f"{term_label(WINDOW_TERMS[0])} to {term_label(WINDOW_TERMS[-1])}",
+    }
+
+def dump_pretty(obj, name):
+    with open(os.path.join(OUT, name), 'w') as f:
+        json.dump(obj, f, indent=1)
+        f.write('\n')
+
 json.dump(courses, open(os.path.join(OUT, 'courses.json'), 'w'), separators=(',', ':'))
 json.dump(clusters, open(os.path.join(OUT, 'clusters.json'), 'w'), separators=(',', ':'))
 json.dump(programs, open(os.path.join(OUT, 'programs.json'), 'w'), indent=1)
 json.dump(policy, open(os.path.join(OUT, 'policy.json'), 'w'), indent=1)
-json.dump(equivalency_groups, open(os.path.join(OUT, 'equivalency_groups.json'), 'w'), indent=1)
+dump_pretty(equivalency_groups, 'equivalency_groups.json')
 exam_credit_src = os.path.join(SRC, 'exam-credit.json')
 if os.path.exists(exam_credit_src):
     exam_credit = json.load(open(exam_credit_src))
-    json.dump(exam_credit, open(os.path.join(OUT, 'exam_credit.json'), 'w'), indent=1)
+    shutil.copyfile(exam_credit_src, os.path.join(OUT, 'exam_credit.json'))
     meta['counts']['examCredit'] = len(exam_credit.get('exams') or [])
-json.dump(meta, open(os.path.join(OUT, 'meta.json'), 'w'), indent=1)
+dump_pretty(meta, 'meta.json')
 print(json.dumps(meta, indent=1))

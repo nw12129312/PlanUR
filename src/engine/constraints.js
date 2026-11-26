@@ -8,6 +8,7 @@ import {
   checkEquivalencyConflicts, levelSatisfied, isLevelEntry, levelTag, describePrereqEntry,
 } from './equivalency.js';
 import { coversCourse, expandPlacedSet, familyKey } from './crossList.js';
+import { notRecentlyOfferedMessage } from './offering.js';
 import {
   MIN_CUMULATIVE_GPA, cumulativeGpa, earnsNoCredit, formatGpa, getCourseGrade, programGpa,
   semesterCourseIds,
@@ -65,6 +66,12 @@ export function checkOfferingSemester(plan, data) {
     for (const cid of sem.courseIds) {
       const c = ctx.course(cid);
       if (!c) continue;
+      if (c.notRecentlyOffered) {
+        out.push(v('OFFERING_INACTIVE', 'warning',
+          notRecentlyOfferedMessage(c),
+          { courseId: cid, semesterId: sem.id }));
+        continue;
+      }
       if (!c.offeredVerified) {
         out.push(v('OFFERING_UNVERIFIED', 'info',
           `${cid}: no harvested CDCS schedule data; cannot confirm it runs in ${sem.term}.`,

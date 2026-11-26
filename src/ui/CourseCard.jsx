@@ -4,7 +4,8 @@ import { SevChip, Tag, IconButton } from './bits.jsx';
 import { Icon } from './icons.jsx';
 import { ruleInfo } from '../engine/rules.js';
 import { groupsForCourse } from '../engine/equivalency.js';
-import { getEquivalencyGroups, getRmp } from '../storage/dataStore.js';
+import { getEquivalencyGroups, getMeta, getRmp } from '../storage/dataStore.js';
+import { notRecentlyOfferedMessage, termLabel } from '../engine/offering.js';
 import {
   rmpAriaSummary, rmpCompactLine, rmpDetailLines, rmpForInstructor, rmpPageUrl,
 } from '../engine/rmp.js';
@@ -13,6 +14,7 @@ import { COURSE_STATUSES, GRADE_OPTIONS, GRADE_POINTS, NON_GPA_MARKS, STATUS_LAB
 
 const equivalencyGroupsData = getEquivalencyGroups();
 const rmpDirectory = getRmp();
+const offeringWindow = getMeta().offeringWindow?.label;
 const useIsoLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 
 // courseId -> {name, pathNames, title} for equivalency badge (built once).
@@ -36,9 +38,21 @@ const EQUIV_BADGES = (() => {
 })();
 
 function offeredLabel(c) {
+  if (c.notRecentlyOffered) return 'not offered recently';
   if (!c.offeredVerified) return 'terms unverified';
   const names = { fall: 'Fall', spring: 'Spring', summer: 'Summer' };
-  return c.offered.map((t) => names[t] || t).join(' · ') || '—';
+  const seasons = c.offered.map((t) => names[t] || t).join(' · ') || '—';
+  return c.lastOffered ? `${seasons} (last ${termLabel(c.lastOffered)})` : seasons;
+}
+
+// Flag for a course with no sections in the harvested CDCS window. Shown on
+// catalog results and placed cards alike, so nobody plans around it unawares.
+function NotOfferedTag({ course }) {
+  return (
+    <Tag tone="warn" icon="warning" title={notRecentlyOfferedMessage(course, offeringWindow)}>
+      Not offered recently
+    </Tag>
+  );
 }
 
 export function namedInstructors(c) {
@@ -60,6 +74,7 @@ function detailsTitle(c) {
   }
   if (c.prereqNote) parts.push(`Note: ${c.prereqNote}`);
   if (c.description) parts.push(c.description);
+  if (c.notRecentlyOffered) parts.push(notRecentlyOfferedMessage(c, offeringWindow));
   if (c.stub) parts.push('Stub entry: known only from the cluster listing; credits/terms not yet sourced.');
   return parts.join('\n');
 }
@@ -296,8 +311,10 @@ function StatusControl({ courseId, status, grade, onSetStatus, onSetGrade }) {
 }
 
 // One course, either in search results (compact) or placed in a semester.
-export function CourseCard({ course: c, placed, uses = [], shortUses = false, violations = [], meta, status = 'planned', grade = null, onSetStatus, onSetGrade, onToggleLock, onRemove, onAdd, draggable, onDragStart, onDropOnCourse }) {
+export function CourseCard({ course: c, placed, uses = [], shortUses = false, violations: allViolations = [], meta, status = 'planned', grade = null, onSetStatus, onSetGrade, onToggleLock, onRemove, onAdd, draggable, onDragStart, onDropOnCourse }) {
   const [dropOver, setDropOver] = useState(false);
+  // The "Not offered recently" tag already says this; don't repeat it as a rule chip.
+  const violations = allViolations.filter((v) => v.ruleId !== 'OFFERING_INACTIVE');
   const instructors = namedInstructors(c);
   const title = detailsTitle(c)
     + (EQUIV_BADGES.has(c.id) ? `\n\n${EQUIV_BADGES.get(c.id).title}` : '')
@@ -307,6 +324,7 @@ export function CourseCard({ course: c, placed, uses = [], shortUses = false, vi
   const hasStatus = placed && typeof onSetStatus === 'function';
   const reviewsHref = coursiclePageUrl(c.id);
   const showChips = placed && (hasStatus || uses.length > 0 || violations.length > 0 || c.stub
+    || c.notRecentlyOffered
     || instructors.length > 0 || crossListings.length > 0 || !!reviewsHref);
   return (
     <div
@@ -361,6 +379,9 @@ export function CourseCard({ course: c, placed, uses = [], shortUses = false, vi
           />
         )}
       </div>
+      {!placed && c.notRecentlyOffered && (
+        <div className="chip-row mt-0.5 flex gap-3"><NotOfferedTag course={c} /></div>
+      )}
       {/* Chips sit on one scrollable row rather than wrapping: the skill flags a
           compact label wrapping to a second line as a High-severity defect. Each
           truncates via CSS and carries its full text for assistive tech, so
@@ -393,6 +414,7 @@ export function CourseCard({ course: c, placed, uses = [], shortUses = false, vi
                 : `Cross-listed (${crossListings.length})`}
             </Tag>
           )}
+          {c.notRecentlyOffered && <NotOfferedTag course={c} />}
           {c.stub && placed && <Tag tone="warn" title="Known only from the cluster listing; credits and terms not yet sourced.">unsourced</Tag>}
           {/* One chip per distinct rule. Department-ordering fires once per
               course pair, so an unfiltered map stacked four identical amber
