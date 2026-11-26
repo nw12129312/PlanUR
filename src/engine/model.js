@@ -39,6 +39,27 @@ export function newPlan(name = 'Untitled plan', startYear = new Date().getFullYe
   };
 }
 
+// A clean slate for an existing plan: same id, name and start year, with
+// no programs, clusters, courses, credit or grades. Saving it overwrites the
+// stored copy, so the clear carries over to this device and the account.
+export function clearedPlan(plan) {
+  const firstFall = (plan.semesters || []).find((s) => s.term === 'fall');
+  const year = Number(firstFall?.label?.match(/\d{4}/)?.[0]);
+  const fresh = newPlan(plan.name, Number.isFinite(year) ? year : undefined);
+  return {
+    ...fresh,
+    id: plan.id,
+    createdAt: plan.createdAt ?? fresh.createdAt,
+    preferences: { ...fresh.preferences, ...(plan.preferences || {}) },
+  };
+}
+
+export function isPlanEmpty(plan) {
+  return !plan.majorIds.length && !plan.minorIds.length && !plan.clusterIds.length
+    && !(plan.transfer || []).length && !(plan.transferExams || []).length
+    && plan.semesters.every((s) => !s.courseIds.length);
+}
+
 export function getTrackChoice(plan, programId, groupId) {
   return plan?.trackChoices?.[programId]?.[groupId] || '';
 }

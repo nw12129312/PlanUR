@@ -7,7 +7,7 @@ import { SCHEDULE_STYLES, styleOf } from '../engine/scheduleStyle.js';
 // Toolbar: one primary action, its settings behind a disclosure (the summary
 // shows the current load and style so nothing is hidden by surprise), and a
 // single lock toggle.
-export function GenerateBar({ plan, data, onGenerate, onLockAll, busy, onScheduleStyle }) {
+export function GenerateBar({ plan, data, onGenerate, onLockAll, onClear, canClear = true, busy, onScheduleStyle }) {
   const [scopeKey, setScopeKey] = useState('all');
   const [target, setTarget] = useState('16');
   const [accelerated, setAccelerated] = useState(false);
@@ -60,11 +60,19 @@ export function GenerateBar({ plan, data, onGenerate, onLockAll, busy, onSchedul
     ? 'Choose a major above, then auto-generate your semesters'
     : 'Fills your semesters from your major, minors and clusters';
 
-  // Centered so it reads as the next step after choosing programs; the lock
-  // toggle sits off to the right as a secondary control.
+  // Centered so it reads as the next step after choosing programs; Clear
+  // sits off to the left and the lock toggle off to the right, both kept
+  // well away from Auto-generate. On narrow widths Clear drops to the end.
   return (
     <div className="grid grid-cols-1 items-center justify-items-center gap-2 @min-[560px]:grid-cols-[1fr_auto_1fr]">
-      <span aria-hidden="true" className="hidden @min-[560px]:block" />
+      <div className="order-last flex justify-center justify-self-stretch whitespace-nowrap @min-[560px]:order-none @min-[560px]:justify-start">
+        {onClear && (
+          <Button kind="danger" disabled={!canClear || busy} onClick={onClear}
+            title="Remove every course, program and credit from this plan">
+            <Icon name="close" size="sm" /> Clear plan
+          </Button>
+        )}
+      </div>
       <div className="flex flex-col items-center gap-1">
       <div className="flex flex-wrap items-center justify-center gap-1.5 whitespace-nowrap">
       <Button kind="primary" disabled={!canGenerate}
