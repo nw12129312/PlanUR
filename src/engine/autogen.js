@@ -100,13 +100,6 @@ function buildLedger(plan, data, scope) {
   const entries = [];
   const notes = [];
 
-  // Leave out courses with no recent CDCS sections (likely discontinued)
-  // when enough recently offered options remain to fill the group.
-  const preferRecent = (cands, count) => {
-    const recent = cands.filter((cid) => !data.courses[cid]?.notRecentlyOffered);
-    return recent.length >= count ? recent : cands;
-  };
-
   const wantProgram = (pid) =>
     scope.kind !== 'program' && scope.kind !== 'group' ? true : scope.programId === pid;
 
@@ -154,7 +147,6 @@ function buildLedger(plan, data, scope) {
           if (above.length) finalCands = above;
         }
       }
-      if (flexible) finalCands = preferRecent(finalCands, remaining);
       entries.push({
         key: `${program.id}::${g.id}`,
         need: remaining,
@@ -185,11 +177,8 @@ function buildLedger(plan, data, scope) {
           key: `cluster::${cluster.id}::g${gi}`,
           need: remaining, // for credit-unit groups this is remaining credits
           unit: g.unit,
-          candidates: preferRecent(
-            bansafe(clusterGroupCandidates(cluster.groups[gi], data.policy))
-              .filter((c) => !usedElsewhere.has(c)),
-            g.unit === 'credits' ? Math.ceil(remaining / 4) : remaining,
-          ),
+          candidates: bansafe(clusterGroupCandidates(cluster.groups[gi], data.policy))
+            .filter((c) => !usedElsewhere.has(c)),
           flexible: true,
           clusterId: cluster.id,
           reason: `Cluster: ${cluster.name}`,
@@ -422,6 +411,23 @@ function generateOnce(plan, data, { scope, targetLoad, maxLoad, bans, pathPrefer
     resolveEquivGroups(poolSet, placedAll, term(s), pinnedSet);
     for (const e of entries) e.candidates = e.candidates.filter((c) => eligibleByEquiv(c, placedAll));
     const support = [];
+    // A cross-listed prerequisite goes in under the major's own department
+    // code when it has one (ENGL 202 needs ITAL 220 = ENGL 205): same class,
+    // but only the ENGL listing counts toward a major's department minimum.
+    const majorListing = (cid) => {
+      const c = cid && data.courses[cid];
+      if (!c || majorDepts.has(c.dept)) return cid;
+      const alt = (c.crossListings || [])
+        .filter((x) => data.courses[x] && majorDepts.has(data.courses[x].dept) &&
+          !data.courses[x].notRecentlyOffered && eligibleByEquiv(x, placedAll) &&
+          // only when it asks for nothing more (AME 233 needs PHYS 121; its
+          // ECE 433 listing does not)
+          (data.courses[x].prereqs || []).every((g) =>
+            (c.prereqs || []).some((h) => JSON.stringify(h) === JSON.stringify(g))) &&
+          JSON.stringify(data.courses[x].offered) === JSON.stringify(c.offered))
+        .sort(byCourseId)[0];
+      return alt || cid;
+    };
     const needSupport = (cid, forWhat, depthGuard) => {
       const c = data.courses[cid];
       if (!c || depthGuard.has(cid)) return;
@@ -431,7 +437,7 @@ function generateOnce(plan, data, { scope, targetLoad, maxLoad, bans, pathPrefer
           ? levelSatisfied(levelTag(x), placedAll, eqGroups)
           : (coversCourse(placedAll, x, data.courses) || poolSet.has(x) || support.some((e) => e.candidates[0] === x)))) continue;
         const allowed = g.filter((x) => !isLevelEntry(x) && eligibleByEquiv(x, placedAll));
-        const member = pickOrMember(allowed, data, depthGuard);
+        const member = majorListing(pickOrMember(allowed, data, depthGuard));
         if (!member) continue;
         support.push({
           key: `support::${member}`, need: 1, candidates: [member], flexible: false,
@@ -567,6 +573,94 @@ function generateOnce(plan, data, { scope, targetLoad, maxLoad, bans, pathPrefer
         if (e !== best.e) e.candidates = e.candidates.filter((x) => x !== best.cid);
       }
     }
+  }
+
+  // Top-up: the greedy pass stops each semester at the target load, so a
+  // requirement can be left over while a semester still has room under the
+  // cap (a 1-credit fall lab when every fall sits at 16). Place what is still
+  // unmet into the earliest semester that can legally take it.
+  const loadOf = (i) => p.semesters[i].courseIds.reduce((a, x) => a + (data.courses[x]?.credits ?? 4), 0);
+  const placedThrough = (i) => new Set([
+    ...p.transfer.map((t) => t.courseId),
+    ...p.semesters.slice(0, i).flatMap((x) => x.courseIds),
+  ]);
+  const prereqsMetBy = (c, i) => {
+    const before = placedThrough(i);
+    return !(c.prereqs || []).some((g) => !orGroupSatisfied(g, before, eqGroups, data.courses));
+  };
+  // Free `credits` in semester i by moving one flexible auto placement that
+  // nothing else depends on to another semester with room.
+  const makeRoom = (i, credits) => {
+    const placedNow = plannedCourseIds(p);
+    for (const pl of placements) {
+      const x = pl.courseId;
+      if (pl.mandatory || !p.semesters[i].courseIds.includes(x)) continue;
+      const xc = data.courses[x];
+      if (!xc || loadOf(i) - xc.credits + credits > maxLoad) continue;
+      const needed = placedNow.some((y) => (data.courses[y]?.prereqs || []).some((g) => g.includes(x)));
+      if (needed) continue;
+      for (let t = startIdx; t <= lastIdx; t++) {
+        if (t === i || !offeredOk(xc, term(t)) || loadOf(t) + xc.credits > maxLoad) continue;
+        if (!prereqsMetBy(xc, t)) continue;
+        p.semesters[i] = { ...p.semesters[i], courseIds: p.semesters[i].courseIds.filter((y) => y !== x) };
+        p.semesters[t] = { ...p.semesters[t], courseIds: [...p.semesters[t].courseIds, x] };
+        pl.semesterId = p.semesters[t].id;
+        pl.semesterLabel = p.semesters[t].label;
+        return true;
+      }
+    }
+    return false;
+  };
+  // Drop prerequisite placements whose course never got placed and is no
+  // longer wanted (support for an elective the scheduler chose not to take):
+  // they only eat room the top-up below may need.
+  const unmetTotal = () => buildLedger(p, data, scope).entries.reduce((a, e) => a + Math.max(0, e.need), 0);
+  for (let pruned = true; pruned;) {
+    pruned = false;
+    for (const pl of [...placements].reverse()) {
+      if (!/^Prerequisite for /.test(pl.reason)) continue;
+      const x = pl.courseId;
+      const placedNow = plannedCourseIds(p);
+      const wanted = buildLedger(p, data, scope).entries
+        .filter((e) => e.need > 0).flatMap((e) => e.candidates);
+      if ([...placedNow, ...wanted].some((y) => y !== x &&
+        (data.courses[y]?.prereqs || []).some((g) => g.includes(x)))) continue;
+      const idx = p.semesters.findIndex((sem) => sem.courseIds.includes(x));
+      if (idx < startIdx) continue;
+      const baseline = unmetTotal();
+      const saved = p.semesters[idx];
+      p.semesters[idx] = { ...saved, courseIds: saved.courseIds.filter((y) => y !== x) };
+      if (unmetTotal() > baseline) { p.semesters[idx] = saved; continue; }
+      placements.splice(placements.indexOf(pl), 1);
+      delete p.courseMeta[x];
+      pruned = true;
+    }
+  }
+
+  for (let round = 0; round < 4; round++) {
+    let placedAny = false;
+    const { entries: open } = buildLedger(p, data, scope);
+    for (const e of open) {
+      if (e.need <= 0) continue;
+      for (const cid of e.candidates) {
+        const c = data.courses[cid];
+        const placedNow = new Set(plannedCourseIds(p));
+        if (!c || bans.has(cid) || coversCourse(placedNow, cid, data.courses)) continue;
+        if (!eligibleByEquiv(cid, placedNow)) continue;
+        let done = false;
+        for (const allowMove of [false, true]) {
+          for (let s = startIdx; s <= lastIdx && !done; s++) {
+            if (!offeredOk(c, term(s)) || !prereqsMetBy(c, s)) continue;
+            if (loadOf(s) + c.credits > maxLoad && !(allowMove && makeRoom(s, c.credits))) continue;
+            place(cid, s, e.reason + equivReasonSuffix(cid) + offeringCaveat(c), !e.flexible);
+            done = true;
+          }
+          if (done) break;
+        }
+        if (done) { placedAny = true; break; }
+      }
+    }
+    if (!placedAny) break;
   }
 
   // diagnostics for anything still unmet

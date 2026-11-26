@@ -71,10 +71,12 @@ describe('catalog cross-listings', () => {
       if (!coursesData[base]) continue;
       const family = listingsOf(coursesData, base);
       if (!family.includes(id)) continue;
-      // Pre-existing families from CDCS/title matching are grandfathered; the
-      // manual override list must never add to them.
-      expect(coursesData[base].crossListingSource || '', `${base} + ${id}`)
-        .not.toMatch(/official program page/);
+      // Families CDCS itself co-locates (INTR 270 with INTR 270W since 2025)
+      // are the registrar's word; otherwise the manual override list must
+      // never be what joins a W variant to its sibling.
+      const source = coursesData[base].crossListingSource || '';
+      if (/CDCS Co-Located/.test(source)) continue;
+      expect(source, `${base} + ${id}`).not.toMatch(/official program page/);
     }
   });
 

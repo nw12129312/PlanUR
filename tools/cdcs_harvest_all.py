@@ -256,7 +256,7 @@ def select_terms(available, today, years):
 # Text from offerings within this many terms of a course's newest one is
 # merged (3 = one year: Fall 2025, Spring/Summer 2026 and Fall 2026 all feed
 # a course last seen in Fall 2026); anything older is ignored.
-TEXT_SPAN = 3
+TEXT_SPAN = 4
 
 def combine(parts, old_raw):
     """parts: {term_key: {code: entry}} -> rebuilt raw catalog."""
@@ -265,6 +265,7 @@ def combine(parts, old_raw):
         for code, e in part.items():
             by_code.setdefault(code, []).append((term_ord(key), key, e))
     fetched = set(parts)
+    latest = max(term_ord(k) for k in parts) if parts else 0
     catalog = {}
     for code, seen in by_code.items():
         seen.sort(key=lambda t: t[0])
@@ -274,6 +275,14 @@ def combine(parts, old_raw):
             if newest - o <= TEXT_SPAN:
                 merge(acc, {code: e})
         e = acc[code]
+        # Co-location pairs a section with another code in that one term, and
+        # build_data chains pairs into cross-listing families. Only the
+        # catalog's latest year counts, or an old pairing (ENGL 375 with
+        # ENGL 475 in 2024) joins classes that are separate today.
+        e['colocated'] = ''
+        for o, _, x in seen:
+            if latest - o <= TEXT_SPAN:
+                e['colocated'] = merge_text(e['colocated'], x.get('colocated', ''))
         history = {key for _, key, _ in seen}
         old = old_raw.get(code) or {}
         history |= {k for k in old.get('terms_offered') or [] if k not in fetched}
@@ -298,6 +307,8 @@ def main():
                     help='academic years of history before the current one (default 3)')
     ap.add_argument('--list-terms', action='store_true',
                     help='print the terms CDCS offers and the ones in the window, then exit')
+    ap.add_argument('--offline', action='store_true',
+                    help='rebuild only from the term dumps already in workdir')
     ap.add_argument('--today', help='YYYY-MM-DD; defaults to the current date (for testing)')
     args = ap.parse_args()
     today = datetime.date.fromisoformat(args.today) if args.today else datetime.date.today()
@@ -305,8 +316,17 @@ def main():
     work = args.workdir
     os.makedirs(work, exist_ok=True)
     cookies = os.path.join(work, 'cdcs-refresh-cookies.txt')
-    page = curl(['-c', cookies, BASE])
-    available = list_cdcs_terms(page)
+    if args.offline:
+        # Rebuild from dumps already in <workdir> without contacting CDCS.
+        page = ''
+        available = {}
+        for name in os.listdir(work):
+            m = re.match(r'cdcs-full-(Fall|Spring|Summer)-(\d{4})\.json$', name)
+            if m:
+                available[term_key(m.group(1), m.group(2))] = f'D-{m.group(1)} {m.group(2)}'
+    else:
+        page = curl(['-c', cookies, BASE])
+        available = list_cdcs_terms(page)
     assert available, 'could not read the CDCS term list (page layout changed or site unreachable)'
     terms = select_terms(available, today, args.years)
     print(f'CDCS lists {len(available)} terms: ' +
@@ -326,7 +346,7 @@ def main():
         'txtDescription': '', 'txtTitle': '', 'txtInstructor': '', 'ddlDeliveryMode': '',
         'btnSearchTop': 'Search',
     }
-    assert form['__VIEWSTATE'], 'no VIEWSTATE'
+    assert args.offline or form['__VIEWSTATE'], 'no VIEWSTATE'
 
     parts, stats = {}, []
     for key in terms:
